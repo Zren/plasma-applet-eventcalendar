@@ -38,10 +38,17 @@ Item {
             }
 
             PlasmaComponents.Button {
-                text: "Stop"
+                text: timerTicker.running ? "Stop" : "Start"
                 width: 60
                 height: parent.height
-                onClicked: resetTimer()
+                enabled: timerSeconds > 0
+                onClicked: {
+                    if (timerTicker.running) {
+                        timerTicker.stop()
+                    } else {
+                        timerTicker.start()
+                    }
+                }
             }
             
             PlasmaComponents.Switch {
@@ -131,18 +138,12 @@ Item {
         timerTicker.restart()
     }
 
-    function resetTimer() {
-        timerDuration = 0
-        timerSeconds = 0
-        timerTicker.stop()
-    }
-
     onTimerDurationChanged: {
         timerSeconds = timerDuration
     }
 
     onTimerSecondsChanged: {
-        console.log('onTimerSecondsChanged', timerSeconds)
+        // console.log('onTimerSecondsChanged', timerSeconds)
         timerLabel.text = formatTimer(timerSeconds)
 
         if (timerSeconds <= 0) {
