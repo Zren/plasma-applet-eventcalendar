@@ -14,7 +14,7 @@ Item {
     id: popup
 
     width: 800
-    height: 400
+    height: 500
 
     // Overload with config: plasmoid.configuration
     property variant config: { }
@@ -43,10 +43,31 @@ Item {
         anchors.fill: parent
     }
 
-    Row {
+    Grid {
+        columns: 2
+        rows: 2
+
         Item {
             width: popup.width / 2
-            height: popup.height
+            height: popup.height / 5
+
+            Rectangle {
+                color: PlasmaCore.ColorScope.backgroundColor
+                anchors.fill: parent
+            }
+        }
+        Item {
+            width: popup.width / 2
+            height: popup.height / 5
+
+            TimerView {
+                id: timerView
+            }
+        }
+
+        Item {
+            width: popup.width / 2
+            height: popup.height * 4/5
 
             AgendaView {
                 id: agendaView
@@ -54,14 +75,14 @@ Item {
         }
         Item {
             width: popup.width / 2
-            height: popup.height
+            height: popup.height * 4/5
             
             MonthView {
                 id: monthView
                 borderOpacity: 0.25
                 showWeekNumbers: false
                 width: popup.width / 2
-                height: popup.height
+                height: popup.height * 4/5
                 today: new Date()
 
                 function parseGCalEvents(data) {
