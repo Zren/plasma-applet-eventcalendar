@@ -22,7 +22,6 @@ Item {
     property alias today: monthView.today
     property alias selectedDate: monthView.currentDate
     property alias monthViewDate: monthView.displayedDate
-    property alias timerView: timerView
     property variant eventsData: { "items": [] }
     property variant weatherData: { "list": [] }
     property variant lastForecastAt: null
@@ -200,24 +199,7 @@ Item {
             console.log('onGCalError: ', err);
         }
         
-        console.log('access_token_expires_at', config.access_token_expires_at);
-        console.log('                    now', Date.now());
-        console.log('refresh_token', config.refresh_token);
-        if (config.refresh_token) {
-            console.log('fetchNewAccessToken');
-            fetchNewAccessToken(function(err, data, xhr) {
-                if (err || (!err && data && data.error)) {
-                    return console.log('Error when using refreshToken:', err, data);
-                }
-
-                config.access_token = data.access_token;
-                config.access_token_type = data.token_type;
-                config.access_token_expires_at = Date.now() + data.expires_in * 1000;
-                config.refresh_token = data.refresh_token;
-
-                update();
-            });
-        }
+        updateAccessToken();
     }
 
     function fetchNewAccessToken(callback) {
@@ -231,6 +213,29 @@ Item {
                 grant_type: 'refresh_token',
             },
         }, callback);
+    }
+
+    function updateAccessToken() {
+        console.log('access_token_expires_at', config.access_token_expires_at);
+        console.log('                    now', Date.now());
+        console.log('refresh_token', config.refresh_token);
+        if (config.refresh_token) {
+            console.log('fetchNewAccessToken');
+            fetchNewAccessToken(function(err, data, xhr) {
+                if (err || (!err && data && data.error)) {
+                    return console.log('Error when using refreshToken:', err, data);
+                }
+                console.log('onAccessToken', data);
+                data = JSON.parse(data);
+
+                config.access_token = data.access_token;
+                config.access_token_type = data.token_type;
+                config.access_token_expires_at = Date.now() + data.expires_in * 1000;
+                config.refresh_token = data.refresh_token;
+
+                update();
+            });
+        }
     }
 
     function fetchGCalEvents(args, callback) {
