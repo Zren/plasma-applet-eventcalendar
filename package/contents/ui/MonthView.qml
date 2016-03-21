@@ -350,11 +350,19 @@ PinchArea {
                 root.currentDate = new Date(date.yearNumber, date.monthNumber - 1, date.dayNumber)
             }
             onDoubleClicked: {
-                // stack.push(newEvent)
-                // stack.push(loginView)
+                console.log('onDoubleClickd', date);
+                
+                function dateString(year, month, day) {
+                    var s = '' + year;
+                    s += (month < 10 ? '0' : '') + month;
+                    s += (day < 10 ? '0' : '') + day;
+                    return s;
+                }
+
                 var url = 'https://calendar.google.com/calendar/render?action=TEMPLATE'
-                var startDate = '20160301'
-                var endDate = '20160301'
+                var startDate = dateString(date.yearNumber, date.monthNumber, date.dayNumber)
+                var endDate = new Date(date.yearNumber, date.monthNumber - 1, date.dayNumber + 1);
+                endDate = dateString(endDate.getFullYear(), endDate.getMonth() + 1, endDate.getDate())
                 url += '&dates=' + startDate + '/' + endDate
                 Qt.openUrlExternally(url)
             }
