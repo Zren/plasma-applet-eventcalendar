@@ -22,6 +22,7 @@ Item {
     property alias today: monthView.today
     property alias selectedDate: monthView.currentDate
     property alias monthViewDate: monthView.displayedDate
+    property alias timerView: timerView
     property variant eventsData: { "items": [] }
     property variant weatherData: { "list": [] }
     property variant lastForecastAt: null

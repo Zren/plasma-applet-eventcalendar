@@ -28,10 +28,12 @@ Item {
         intervalAlignment: PlasmaCore.Types.AlignToMinute
     }
 
-    Plasmoid.compactRepresentation: ClockView { }
-
-    // http://api.kde.org/frameworks-api/frameworks5-apidocs/plasma-framework/html/MonthView_8qml_source.html
+    Plasmoid.compactRepresentation: ClockView {
+        id: clock
+    }
+    
     Plasmoid.fullRepresentation: PopupView {
+        id: popup
         today: dataSource.data["Local"]["DateTime"]
         config: plasmoid.configuration
 
@@ -44,7 +46,7 @@ Item {
                 // update();
             }
         }
-    }
+    }   
 
     function action_KCMClock() {
         KCMShell.open("clock");

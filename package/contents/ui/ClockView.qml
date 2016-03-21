@@ -31,7 +31,7 @@ Item {
     Layout.maximumWidth: labels.width
 
     property string timeFormat: "h:mm AP"
-    property date currentTime
+    property variant timerView: null
     
     // Testing with qmlview
     Rectangle {
@@ -54,6 +54,7 @@ Item {
 
         Components.Label {
             id: timerLabel
+            visible: timerView && timerView.timerSeconds > 0
 
             font.family: theme.defaultFont.family
             font.pointSize: 1024
@@ -73,13 +74,15 @@ Item {
             // anchors.horizontalCenter: clock.horizontalCenter
 
             text: {
-                "0:00"
+                return timerView ? "T" + timerView.timerSeconds : "0:00"
             }
         }
 
         PlasmaCore.IconItem {
-            source: "alarm"
+            source: "chronometer"
+            width: sizehelper.height
             height: sizehelper.height
+            visible: timerView
         }
 
         Components.Label {
@@ -103,7 +106,6 @@ Item {
             // anchors.horizontalCenter: clock.horizontalCenter
 
             text: {
-                // clock.currentTime = ;
                 return Qt.formatTime(dataSource.data["Local"]["DateTime"], clock.timeFormat);
             }
         }

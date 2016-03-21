@@ -7,6 +7,15 @@
 
 
   <group name="General">
+    <entry name="timer_repeats" type="bool">
+      <default>false</default>
+    </entry>
+    <entry name="timer_in_taskbar" type="bool">
+      <default>false</default>
+    </entry>
+    <entry name="timer_ends_at" type="UInt">
+      <default>0</default>
+    </entry>
   </group>
 
   <group name="Google Calendar">
