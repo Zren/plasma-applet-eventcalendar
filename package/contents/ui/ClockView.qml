@@ -30,11 +30,9 @@ Item {
     Layout.minimumWidth: timeLabel.width
     Layout.maximumWidth: Layout.minimumWidth
 
-
     property string timeFormat: "h:mm AP"
     property date currentTime
-
-    property string lastDate: ""
+    
 
     MouseArea {
         id: mouseArea
@@ -60,6 +58,9 @@ Item {
 
         horizontalAlignment: Text.AlignHCenter
         verticalAlignment: Text.AlignVCenter
+
+
+        anchors.horizontalCenter: clock.horizontalCenter
 
         text: {
             // clock.currentTime = ;
