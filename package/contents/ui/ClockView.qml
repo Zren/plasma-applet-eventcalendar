@@ -26,13 +26,19 @@ import org.kde.plasma.components 2.0 as Components
 Item {
     id: clock
 
-    width: timeLabel.width
-    Layout.minimumWidth: timeLabel.width
-    Layout.maximumWidth: Layout.minimumWidth
+    width: labels.width
+    Layout.minimumWidth: labels.width
+    Layout.maximumWidth: labels.width
 
     property string timeFormat: "h:mm AP"
     property date currentTime
     
+    // Testing with qmlview
+    Rectangle {
+        visible: !popup
+        color: PlasmaCore.ColorScope.backgroundColor
+        anchors.fill: parent
+    }
 
     MouseArea {
         id: mouseArea
@@ -42,31 +48,67 @@ Item {
         onClicked: plasmoid.expanded = !plasmoid.expanded
     }
 
-    Components.Label {
-        id: timeLabel
+    Row {
+        id: labels
+        spacing: 10
 
-        font.family: theme.defaultFont.family
-        font.pointSize: 1024
-        minimumPointSize: 1
+        Components.Label {
+            id: timerLabel
 
-        width: timeLabel.paintedWidth
-        height: sizehelper.height
+            font.family: theme.defaultFont.family
+            font.pointSize: 1024
+            minimumPointSize: 1
 
-        // fontSizeMode: Text.Fit
-        fontSizeMode: Text.VerticalFit
-        wrapMode: Text.NoWrap
+            width: timerLabel.paintedWidth
+            height: sizehelper.height
 
-        horizontalAlignment: Text.AlignHCenter
-        verticalAlignment: Text.AlignVCenter
+            // fontSizeMode: Text.Fit
+            fontSizeMode: Text.VerticalFit
+            wrapMode: Text.NoWrap
+
+            horizontalAlignment: Text.AlignHCenter
+            verticalAlignment: Text.AlignVCenter
 
 
-        anchors.horizontalCenter: clock.horizontalCenter
+            // anchors.horizontalCenter: clock.horizontalCenter
 
-        text: {
-            // clock.currentTime = ;
-            return Qt.formatTime(dataSource.data["Local"]["DateTime"], clock.timeFormat);
+            text: {
+                "0:00"
+            }
+        }
+
+        PlasmaCore.IconItem {
+            source: "alarm"
+            height: sizehelper.height
+        }
+
+        Components.Label {
+            id: timeLabel
+
+            font.family: theme.defaultFont.family
+            font.pointSize: 1024
+            minimumPointSize: 1
+
+            width: timeLabel.paintedWidth
+            height: sizehelper.height
+
+            // fontSizeMode: Text.Fit
+            fontSizeMode: Text.VerticalFit
+            wrapMode: Text.NoWrap
+
+            horizontalAlignment: Text.AlignHCenter
+            verticalAlignment: Text.AlignVCenter
+
+
+            // anchors.horizontalCenter: clock.horizontalCenter
+
+            text: {
+                // clock.currentTime = ;
+                return Qt.formatTime(dataSource.data["Local"]["DateTime"], clock.timeFormat);
+            }
         }
     }
+    
 
     // Component.onCompleted: {
     //     clock.minimumWidth = timeLabel.width;

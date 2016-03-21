@@ -25,18 +25,50 @@ Item {
     }
 
     Column {
+        spacing: 4
+
         Row {
             spacing: 10
 
             PlasmaExtras.Heading {
                 id: timerLabel
                 text: "0:00"
-                level: 2
+                // level: 2
+                font.pixelSize: 40
+            }
+
+            PlasmaComponents.Button {
+                text: "Stop"
+                width: 60
+                height: parent.height
+                onClicked: resetTimer()
+            }
+            
+            PlasmaComponents.Switch {
+                id: timerRepeat
+                text: "Repeat"
+                height: parent.height
+            }
+
+            PlasmaComponents.Switch {
+                id: timerInTaskbar
+                text: "Taskbar"
+                height: parent.height
+            }
+        }
+
+        Row {
+            spacing: 10
+
+            PlasmaComponents.Button {
+                text: "30s"
+                width: 40
+                onClicked: setDurationAndStart(30)
             }
             PlasmaComponents.Button {
                 text: "1m"
                 width: 40
-                onClicked: setDurationAndStart(1 * 60)
+                onClicked: setDurationAndStart(60)
             }
             PlasmaComponents.Button {
                 text: "5m"
@@ -59,19 +91,16 @@ Item {
                 onClicked: setDurationAndStart(30 * 60)
             }
             PlasmaComponents.Button {
+                text: "45m"
+                width: 40
+                onClicked: setDurationAndStart(45 * 60)
+            }
+            PlasmaComponents.Button {
                 text: "1h"
                 width: 40
                 onClicked: setDurationAndStart(60 * 60)
             }
         }
-
-        // PlasmaComponents.ButtonRow {
-            
-            PlasmaComponents.Switch {
-                id: timerRepeat
-                text: "Repeat"
-            }
-        // }
     }
 
 
@@ -99,7 +128,13 @@ Item {
     function setDurationAndStart(duration) {
         timerDuration = duration
         timerSeconds = duration
-        timerTicker.start()
+        timerTicker.restart()
+    }
+
+    function resetTimer() {
+        timerDuration = 0
+        timerSeconds = 0
+        timerTicker.stop()
     }
 
     onTimerDurationChanged: {
