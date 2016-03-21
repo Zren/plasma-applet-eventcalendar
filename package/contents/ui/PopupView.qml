@@ -65,6 +65,9 @@ Item {
                 today: new Date()
 
                 function parseGCalEvents(data) {
+                    if (!(data && data.items))
+                        return;
+
                     // https://github.com/KDE/plasma-framework/blob/master/src/declarativeimports/calendar/daysmodel.h
                     for (var j = 0; j < data.items.length; j++) {
                         var eventItem = data.items[j];
