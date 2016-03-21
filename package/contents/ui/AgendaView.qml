@@ -16,6 +16,7 @@ Item {
 
     property int showNextNumDays: 14
     property bool clipPastEvents: false
+    property bool clipPastEventsToday: false
 
 
     ListModel {
@@ -283,9 +284,13 @@ Item {
         
         if (clipPastEvents) {
             // Remove calendar events before today.
+            var minDate = today;
+            if (!clipPastEventsToday) {
+                minDate = new Date(today.getFullYear(), today.getMonth(), today.getDate());
+            }
             for (var i = 0; i < agendaItemList.length; i++) {
                 var agendaItem = agendaItemList[i];
-                if (agendaItem.date < today) {
+                if (agendaItem.date < minDate) {
                     // console.log('removed agendaItem:', agendaItem.date)
                     agendaItemList.splice(i, 1);
                     i--;
