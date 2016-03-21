@@ -24,6 +24,7 @@ Item {
     property alias monthViewDate: monthView.displayedDate
     property variant eventsData: { "items": [] }
     property variant weatherData: { "list": [] }
+    property variant lastForecastAt: null
 
     onSelectedDateChanged: {
         console.log('onSeletedDateChanged', selectedDate)
@@ -49,8 +50,6 @@ Item {
 
             AgendaView {
                 id: agendaView
-                eventsData: popup.eventsData
-                weatherData: popup.weatherData
             }
         }
         Item {
@@ -110,6 +109,7 @@ Item {
         updateEvents();
     }
 
+
     function updateEvents() {
         var dateMin = monthView.firstDisplayedDate();
         var monthViewDateMax = monthView.lastDisplayedDate();
@@ -122,48 +122,67 @@ Item {
         eventsData = { "items": [] }
         updateUI();
 
-        fetchGCalEvents({
-            start: dateMin.toISOString(),
-            end: dateMax.toISOString(),
-            access_token: config.access_token,
-        }, function(err, data, xhr) {
-            if (err) {
-                return onGCalError(err);
-            }
+        if (config && config.access_token) {
+            fetchGCalEvents({
+                start: dateMin.toISOString(),
+                end: dateMax.toISOString(),
+                access_token: config.access_token,
+            }, function(err, data, xhr) {
+                if (err) {
+                    return onGCalError(err);
+                }
 
-            eventsData = data;
-            updateUI();
-        });
+                eventsData = data;
+                updateUI();
+            });
+        }
+        
+        if (config && config.weather_city_id2) {
+            // rate limit 1 request / hour
+            if (!lastForecastAt && Date.now() - lastForecastAt >= 60 * 60 * 1000) {
+                console.log('fetchWeatherForecast', lastForecastAt, Date.now());
+                fetchWeatherForecast({
+                    app_id: config.weather_app_id2,
+                    city_id: config.weather_city_id2,
+                }, function(err, data, xhr) {
+                    if (err) {
+                        return console.log('onWeatherError', err);
+                    }
+
+                    lastForecastAt = Date.now();
+                    weatherData = data;
+                    updateUI();
+                });
+            }
+        }
     }
 
     function updateUI() {
         var today = new Date();
-        console.log(monthViewDate.getYear(), today.getYear())
-        console.log(monthViewDate.getMonth(), today.getMonth())
-        console.log(monthViewDate.getDate(), today.getDate())
 
         if (monthViewDate.getYear() == today.getYear() && monthViewDate.getMonth() == today.getMonth()) {
             agendaView.showNextNumDays = 14;
             agendaView.clipPastEvents = true;
-            agendaView.updateWeatherForecast()
         } else {
             agendaView.showNextNumDays = 0;
             agendaView.clipPastEvents = false;
         }
 
         agendaView.parseGCalEvents(eventsData);
+        agendaView.parseWeatherForecast(weatherData);
         monthView.parseGCalEvents(eventsData);
     }
 
     function onGCalError(err) {
-        
         if (typeof err === 'object') {
             console.log('onGCalError: ', JSON.stringify(err, null, '\t'));
         } else {
             console.log('onGCalError: ', err);
         }
         
-
+        console.log('access_token_expires_at', config.access_token_expires_at);
+        console.log('                    now', Date.now());
+        console.log('refresh_token', config.refresh_token);
         if (config.refresh_token) {
             fetchNewAccessToken(function(err, data, xhr) {
                 if (!err && data && data.error) {
@@ -213,4 +232,14 @@ Item {
         });
     }
 
+    function fetchWeatherForecast(args, callback) {
+        if (!args.app_id) return callback('OpenWeatherMap AppId not set');
+        if (!args.city_id) return callback('OpenWeatherMap CityId not set');
+        
+        var url = 'http://api.openweathermap.org/data/2.5/';
+        url += 'forecast/daily?id=' + args.city_id;
+        url += '&units=metric';
+        url += '&appid=' + args.app_id;
+        Utils.getJSON(url, callback);
+    }
 }

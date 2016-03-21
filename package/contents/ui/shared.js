@@ -38,6 +38,9 @@ function getGCalEvents(callback) {
 }
 
 function fetchWeatherForecast(callback) {
+    if (!openweathermapAppId) return callback('openweathermapAppId not set');
+    if (!openweathermapCityId) return callback('openweathermapCityId not set');
+    
     var url = 'http://api.openweathermap.org/data/2.5/';
     url += 'forecast/daily?id=' + openweathermapCityId;
     url += '&units=metric';

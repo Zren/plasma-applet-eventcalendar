@@ -1,7 +1,7 @@
 [Desktop Entry]
 Encoding=UTF-8
 Name=Calendar2
-Comment=Plasmoid for a clock/calendar/alarm/timer.
+Comment=Plasmoid for a clock + calendar/agenda/weather synched with Google Calendar.
 
 Icon=view-calendar
 Type=Service

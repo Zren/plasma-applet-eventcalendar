@@ -1,21 +1,18 @@
 import QtQuick 2.0
 import QtQuick.Controls 1.1
+import QtQuick.Controls.Styles 1.1
 import QtQuick.Layouts 1.1
 import org.kde.plasma.core 2.0 as PlasmaCore
 import org.kde.plasma.calendar 2.0 as PlasmaCalendar
 import org.kde.plasma.components 2.0 as PlasmaComponents
 import org.kde.plasma.extras 2.0 as PlasmaExtras
 
-import "shared.js" as Shared
 
 Item {
     id: agendaView
 
     //anchors.margins: units.largeSpacing
     property int spacing: units.largeSpacing
-
-    property variant eventsData: { "items": [], }
-    property variant weatherData: { "list": [], }
 
     property int showNextNumDays: 14
     property bool clipPastEvents: false
@@ -35,172 +32,177 @@ Item {
         anchors.fill: parent
     }
     
-    // GroupBox {
-    //     id: gridBox
-    //     title: "Grid layout"
-    //     backgroundColor: PlasmaCore.ColorScope.backgroundColor
-    //     anchors.fill: parent
+    ListView {
+        id: agenda
+        model: agendaModel
+        anchors.fill: parent
+        spacing: 10
+        boundsBehavior: Flickable.StopAtBounds
 
-        ListView {
-            id: agenda
-            model: agendaModel
-            anchors.fill: parent
+        // Don't bother garbage collecting
+        // GC or Reloading the weather images is very slow.
+        cacheBuffer: 10000000 
+
+        delegate: RowLayout {
+            Layout.fillWidth: true
             spacing: 10
-            boundsBehavior: Flickable.StopAtBounds
 
-            delegate: RowLayout {
+
+            Column {
+
                 Layout.fillWidth: true
-                spacing: 10
+                Layout.preferredWidth: 50
 
+                Layout.alignment: Qt.AlignTop | Qt.AlignHCenter
 
-                Column {
-
-                    Layout.fillWidth: true
-                    Layout.preferredWidth: 50
-
-                    Layout.alignment: Qt.AlignTop | Qt.AlignHCenter
-
-                    Item {
-                        visible: showWeather
-                        anchors {
-                            left: parent.left
-                            right: parent.right
-                        }
-                        height: 16
-
-                        Image {
-                            id: itemWeatherIcon
-                            source: weatherIcon ? "images/" + weatherIcon + ".svg" : ""
-                            anchors.centerIn: parent
-                            asynchronous: true
-                            // sourceSize.width: 16
-                            // sourceSize.height: 16
-                        }
+                Item {
+                    visible: showWeather
+                    anchors {
+                        left: parent.left
+                        right: parent.right
                     }
+                    height: 16
 
-                    Text {
-                        id: itemWeatherText
-                        visible: showWeather
-                        text: weatherText
-                        color: PlasmaCore.ColorScope.textColor
-                        opacity: 0.5
-                        anchors {
-                            left: parent.left
-                            right: parent.right
-                        }
-                        horizontalAlignment: Text.AlignHCenter
-                    }
-
-                    Text {
-                        id: itemWeatherTemps
-                        visible: showWeather
-                        text: tempHigh + '° | ' + tempLow + '°'
-                        color: PlasmaCore.ColorScope.textColor
-                        opacity: 0.5
-                        anchors {
-                            left: parent.left
-                            right: parent.right
-                        }
-                        horizontalAlignment: Text.AlignHCenter
+                    Image {
+                        id: itemWeatherIcon
+                        source: weatherIcon ? "images/" + weatherIcon + ".svg" : ""
+                        anchors.centerIn: parent
+                        cache: true
+                        asynchronous: true
+                        sourceSize.width: parent.height
+                        sourceSize.height: parent.height
                     }
                 }
 
-                Column {
-                    Layout.preferredWidth: 50
-                    Layout.alignment: Qt.AlignTop
-                    Layout.fillWidth: true
-                    Text {
-                        id: itemDate
-                        text: Qt.formatDateTime(date, "MMM d")
-                        color: PlasmaCore.ColorScope.textColor
-                        opacity: 0.75
-                        anchors {
-                            left: parent.left
-                            right: parent.right
-                        }
-                        horizontalAlignment: Text.AlignRight
+                Text {
+                    id: itemWeatherText
+                    visible: showWeather
+                    text: weatherText
+                    color: PlasmaCore.ColorScope.textColor
+                    opacity: 0.5
+                    anchors {
+                        left: parent.left
+                        right: parent.right
                     }
-
-                    Text {
-                        id: itemDay
-                        text: Qt.formatDateTime(date, "ddd")
-                        color: PlasmaCore.ColorScope.textColor
-                        opacity: 0.5
-                        anchors {
-                            left: parent.left
-                            right: parent.right
-                        }
-                        horizontalAlignment: Text.AlignRight
-                    }
+                    horizontalAlignment: Text.AlignHCenter
                 }
 
-                Column {
-                    Layout.alignment: Qt.AlignTop | Qt.AlignLeft
-
-                    Repeater {
-                        model: events
-
-                        delegate: Column {
-
-                            Text {
-                                id: eventSummary
-                                text: summary
-                                color: PlasmaCore.ColorScope.textColor
-                            }
-
-                            Text {
-                                id: eventDateTime
-                                text: start.date ? "All Day" : Qt.formatDateTime(start.dateTime, "h") + " - " + Qt.formatDateTime(end.dateTime, "h AP")
-                                color: PlasmaCore.ColorScope.textColor
-                                opacity: 0.75
-                            }
-
-                            // Spacer
-                            Item {
-                                width: parent.width
-                                height: 10
-                            }
-
-                            // Component.onCompleted: {
-                            //     console.log(summary)
-                            // }
-                        }
+                Text {
+                    id: itemWeatherTemps
+                    visible: showWeather
+                    text: tempHigh + '° | ' + tempLow + '°'
+                    color: PlasmaCore.ColorScope.textColor
+                    opacity: 0.5
+                    anchors {
+                        left: parent.left
+                        right: parent.right
                     }
+                    horizontalAlignment: Text.AlignHCenter
                 }
-                
-
-                // Component.onCompleted: {
-                //     console.log(date)
-                // }
-                
             }
+
+            Rectangle {
+                anchors.fill: itemDateColumn
+                color: "transparent"
+
+                MouseArea {
+                    anchors.fill: parent
+                    hoverEnabled: true
+                    onEntered: parent.color = "#111"
+                    onExited: parent.color = "transparent"
+                    onClicked: {
+                        newEventInput.forceActiveFocus()
+                    }
+                }
+            }
+            Column {
+                id: itemDateColumn
+                Layout.preferredWidth: 50
+                Layout.alignment: Qt.AlignTop
+                Layout.fillWidth: true
+                Text {
+                    id: itemDate
+                    text: Qt.formatDateTime(date, "MMM d")
+                    color: PlasmaCore.ColorScope.textColor
+                    opacity: 0.75
+                    anchors {
+                        left: parent.left
+                        right: parent.right
+                    }
+                    horizontalAlignment: Text.AlignRight
+                }
+
+                Text {
+                    id: itemDay
+                    text: Qt.formatDateTime(date, "ddd")
+                    color: PlasmaCore.ColorScope.textColor
+                    opacity: 0.5
+                    anchors {
+                        left: parent.left
+                        right: parent.right
+                    }
+                    horizontalAlignment: Text.AlignRight
+                }
+            }
+
+            Column {
+                Layout.alignment: Qt.AlignTop | Qt.AlignLeft
+
+                TextField {
+                    id: newEventInput
+                    visible: activeFocus
+
+                    style: TextFieldStyle {
+                        textColor: "#eee"
+                        background: Rectangle {
+                            color: "#111"
+                        }
+                    }
+
+                    onAccepted: {
+                        console.log('newEvent', model.date, newEventInput.text)
+                        text = ""
+                        focus = false
+                    }
+                }
+
+                Repeater {
+                    model: events
+
+                    delegate: Column {
+                        id: eventColumn
+
+                        Text {
+                            id: eventSummary
+                            text: summary
+                            color: PlasmaCore.ColorScope.textColor
+                        }
+
+                        Text {
+                            id: eventDateTime
+                            text: start.date ? "All Day" : Qt.formatDateTime(start.dateTime, "h") + " - " + Qt.formatDateTime(end.dateTime, "h AP")
+                            color: PlasmaCore.ColorScope.textColor
+                            opacity: 0.75
+                        }
+
+                        // Spacer
+                        Item {
+                            width: parent.width
+                            height: 10
+                        }
+                    }
+                
+                }
+            }
+            
         }
-    // }
-
-    function updateWeatherForecast() {
-        console.log('getWeatherForecast');
-        console.log('Shared.openweathermapAppId:', Shared.openweathermapAppId);
-        console.log('Shared.openweathermapCityId:', Shared.openweathermapCityId);
-        Shared.getWeatherForecast(function(err, data) {
-            console.log('onWeatherForecast');
-            if (err) {
-                console.log(err, data);
-                return;
-            }
-            agendaView.parseWeatherForecast(data);
-        });
-    }
-
-    function onGCalEvents(data) {
-        parseGCalEvents(data);
-        updateWeatherForecast();        
     }
 
     function parseGCalEvents(data) {
         agendaModel.clear();
 
-        // if (!(data && data.items))
-        //     return;
+        if (!(data && data.items))
+            return;
 
         // var eventItemList = [];
         // var timeZoneOffset = new Date().getTimezoneOffset()/60;
@@ -327,6 +329,9 @@ Item {
     }
 
     function parseWeatherForecast(data) {
+        if (!(data && data.list))
+            return;
+
         // http://openweathermap.org/weather-conditions
         var weatherIconMap = {
             '01d': 'weather-clear',
@@ -372,15 +377,7 @@ Item {
     }
 
     Component.onCompleted: {
-        if (typeof popup === 'undefined') {
-            // Testing
-            Shared.getDemoGCalEvents(function(err, data) {
-                eventsData = data
-                // console.log(JSON.stringify(data, null, '\t'));
-                onGCalEvents(eventsData);
-            });
-        } else {
-            onGCalEvents(eventsData);
-        }
+        parseGCalEvents({ "items": [], });
+        parseWeatherForecast({ "list": [], });
     }
 }
