@@ -1,0 +1,21 @@
+[Desktop Entry]
+Encoding=UTF-8
+Name=Calendar2
+Comment=Plasmoid for a clock/calendar/alarm/timer.
+
+Icon=view-calendar
+Type=Service
+
+X-KDE-ParentApp=
+X-KDE-PluginInfo-Author=Chris Holland
+X-KDE-PluginInfo-Email=zrenfire@gmail.com
+X-KDE-PluginInfo-Category=Date and Time
+X-KDE-PluginInfo-License=GPL
+X-KDE-PluginInfo-Name=org.kde.plasma.calendar2
+X-KDE-PluginInfo-Website=github.com/Zren/plasma-applet-calendar2/
+X-KDE-PluginInfo-Version=4
+X-KDE-ServiceTypes=Plasma/Applet
+X-Plasma-API=declarativeappletscript
+X-Plasma-MainScript=ui/main.qml
+X-Plasma-Provides=org.kde.plasma.time,org.kde.plasma.date
+X-Plasma-RemoteLocation=
