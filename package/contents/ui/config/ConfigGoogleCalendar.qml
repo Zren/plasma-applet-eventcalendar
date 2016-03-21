@@ -338,7 +338,7 @@ Item {
         // cfg_* are not yet populated.
 
         console.log('access_token', plasmoid.configuration.access_token);
-        if (!cfg_access_token) {
+        if (!plasmoid.configuration.access_token) {
             console.log('client_id', plasmoid.configuration.client_id);
             generateUserCodeAndPoll();
         }
