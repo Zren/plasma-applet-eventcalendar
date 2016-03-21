@@ -184,7 +184,7 @@ Item {
         if (config.refresh_token) {
             console.log('fetchNewAccessToken');
             fetchNewAccessToken(function(err, data, xhr) {
-                if (!err && data && data.error) {
+                if (err || (!err && data && data.error)) {
                     return console.log('Error when using refreshToken:', err, data);
                 }
 
