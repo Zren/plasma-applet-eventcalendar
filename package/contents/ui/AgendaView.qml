@@ -36,6 +36,7 @@ Item {
         id: agenda
         model: agendaModel
         anchors.fill: parent
+        clip: true
         spacing: 10
         boundsBehavior: Flickable.StopAtBounds
 
