@@ -48,15 +48,13 @@ Item {
                 id: timerRepeat
                 text: "Repeat"
                 height: parent.height
-                checked: plasmoid.configuration.timer_repeats
             }
 
-            PlasmaComponents.Switch {
-                id: timerInTaskbar
-                text: "Taskbar"
-                height: parent.height
-                checked: plasmoid.configuration.timer_in_taskbar
-            }
+            // PlasmaComponents.Switch {
+            //     id: timerInTaskbar
+            //     text: "Taskbar"
+            //     height: parent.height
+            // }
         }
 
         Row {
