@@ -1,7 +1,7 @@
 [Desktop Entry]
 Encoding=UTF-8
-Name=Calendar2
-Comment=Plasmoid for a clock + calendar/agenda/weather synched with Google Calendar.
+Name=Event Calendar
+Comment=Plasmoid for a calendar+agenda with weather that synchs to Google Calendar.
 
 Icon=view-calendar
 Type=Service
@@ -11,8 +11,8 @@ X-KDE-PluginInfo-Author=Chris Holland
 X-KDE-PluginInfo-Email=zrenfire@gmail.com
 X-KDE-PluginInfo-Category=Date and Time
 X-KDE-PluginInfo-License=GPL
-X-KDE-PluginInfo-Name=org.kde.plasma.calendar2
-X-KDE-PluginInfo-Website=github.com/Zren/plasma-applet-calendar2/
+X-KDE-PluginInfo-Name=org.kde.plasma.eventcalendar
+X-KDE-PluginInfo-Website=https://github.com/Zren/plasma-applets/tree/master/org.kde.plasma.eventcalendar
 X-KDE-PluginInfo-Version=8
 X-KDE-ServiceTypes=Plasma/Applet
 X-Plasma-API=declarativeappletscript
