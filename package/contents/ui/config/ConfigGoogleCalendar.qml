@@ -300,8 +300,8 @@ Item {
             cfg_access_token_expires_at = Date.now() + data.expires_in * 1000;
             cfg_refresh_token = data.refresh_token;
 
-            plasmoid.configuration.access_token = cfg_access_token;
-            plasmoid.configuration.refresh_token = cfg_refresh_token;
+            // plasmoid.configuration.access_token = cfg_access_token;
+            // plasmoid.configuration.refresh_token = cfg_refresh_token;
         });
     }
 

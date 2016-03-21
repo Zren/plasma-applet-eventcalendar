@@ -89,24 +89,12 @@ Item {
     }
 
     function update() {
-        // Shared.googleAuthToken = config.access_token;
-        // Shared.openweathermapAppId = config.weather_app_id2;
-        // Shared.openweathermapCityId = config.weather_city_id2;
-
-        // if (config.access_token) {
-        //     fetchGCalEvents({
-        //     })
-        // } else if (config.weather_app_id) {
-        //     agendaView.updateWeatherForecast();
-        // }
-
-
         updateData();
-        
     }
 
     function updateData() {
         updateEvents();
+        updateWeather();
     }
 
 
@@ -114,10 +102,15 @@ Item {
         var dateMin = monthView.firstDisplayedDate();
         var monthViewDateMax = monthView.lastDisplayedDate();
         var agendaViewDateMax = new Date(today).setDate(today.getDate() + 14);
-        var dateMax = new Date(Math.max(monthViewDateMax, agendaViewDateMax));
+        var dateMax;
+        if (monthViewDate.getYear() == today.getYear() && monthViewDate.getMonth() == today.getMonth()) {
+            dateMax = new Date(Math.max(monthViewDateMax, agendaViewDateMax));
+        } else {
+            dateMax = monthViewDateMax;
+        }
 
-        console.log(dateMin);
-        console.log(dateMax);
+        // console.log(dateMin);
+        // console.log(dateMax);
 
         eventsData = { "items": [] }
         updateUI();
@@ -136,7 +129,9 @@ Item {
                 updateUI();
             });
         }
-        
+    }
+
+    function updateWeather() {
         if (config && config.weather_city_id2) {
             // rate limit 1 request / hour
             if (!lastForecastAt && Date.now() - lastForecastAt >= 60 * 60 * 1000) {
@@ -184,6 +179,7 @@ Item {
         console.log('                    now', Date.now());
         console.log('refresh_token', config.refresh_token);
         if (config.refresh_token) {
+            console.log('fetchNewAccessToken');
             fetchNewAccessToken(function(err, data, xhr) {
                 if (!err && data && data.error) {
                     return console.log('Error when using refreshToken:', err, data);

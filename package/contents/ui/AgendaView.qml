@@ -47,13 +47,9 @@ Item {
             Layout.fillWidth: true
             spacing: 10
 
-
             Column {
-
-                Layout.fillWidth: true
-                Layout.preferredWidth: 50
-
-                Layout.alignment: Qt.AlignTop | Qt.AlignHCenter
+                width: 50
+                Layout.alignment: Qt.AlignTop
 
                 Item {
                     visible: showWeather
@@ -100,26 +96,11 @@ Item {
                     horizontalAlignment: Text.AlignHCenter
                 }
             }
-
-            Rectangle {
-                anchors.fill: itemDateColumn
-                color: "transparent"
-
-                MouseArea {
-                    anchors.fill: parent
-                    hoverEnabled: true
-                    onEntered: parent.color = "#111"
-                    onExited: parent.color = "transparent"
-                    onClicked: {
-                        newEventInput.forceActiveFocus()
-                    }
-                }
-            }
             Column {
                 id: itemDateColumn
-                Layout.preferredWidth: 50
+                width: 50
                 Layout.alignment: Qt.AlignTop
-                Layout.fillWidth: true
+
                 Text {
                     id: itemDate
                     text: Qt.formatDateTime(date, "MMM d")
@@ -130,6 +111,13 @@ Item {
                         right: parent.right
                     }
                     horizontalAlignment: Text.AlignRight
+
+                    // MouseArea {
+                    //     anchors.fill: itemDateColumn
+                    //     onClicked: {
+                    //         newEventInput.forceActiveFocus()
+                    //     }
+                    // }
                 }
 
                 Text {
@@ -147,24 +135,7 @@ Item {
 
             Column {
                 Layout.alignment: Qt.AlignTop | Qt.AlignLeft
-
-                TextField {
-                    id: newEventInput
-                    visible: activeFocus
-
-                    style: TextFieldStyle {
-                        textColor: "#eee"
-                        background: Rectangle {
-                            color: "#111"
-                        }
-                    }
-
-                    onAccepted: {
-                        console.log('newEvent', model.date, newEventInput.text)
-                        text = ""
-                        focus = false
-                    }
-                }
+                Layout.fillWidth: true
 
                 Repeater {
                     model: events
@@ -191,10 +162,8 @@ Item {
                             height: 10
                         }
                     }
-                
                 }
             }
-            
         }
     }
 
@@ -360,7 +329,7 @@ Item {
 
             for (var i = 0; i < agendaModel.count; i++) {
                 var agendaItem = agendaModel.get(i);
-                if (day.getDate() == agendaItem.date.getDate()) {
+                if (day.getMonth() == agendaItem.date.getMonth() && day.getDate() == agendaItem.date.getDate()) {
                     // console.log(day);
                     agendaItem.tempLow = Math.floor(forecastItem.temp.min);
                     agendaItem.tempHigh = Math.ceil(forecastItem.temp.max);

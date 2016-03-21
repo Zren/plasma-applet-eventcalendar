@@ -51,12 +51,12 @@ Item {
         font.pointSize: 1024
         minimumPointSize: 1
 
-        width: parent.width
-        height: parent.height
+        width: timeLabel.paintedWidth
+        height: sizehelper.height
 
         // fontSizeMode: Text.Fit
         fontSizeMode: Text.VerticalFit
-
+        wrapMode: Text.NoWrap
 
         horizontalAlignment: Text.AlignHCenter
         verticalAlignment: Text.AlignVCenter
@@ -71,4 +71,18 @@ Item {
     //     clock.minimumWidth = timeLabel.width;
     //     clock.maximumWidth = clock.minimumWidth;
     // }
+
+    Components.Label {
+        id: sizehelper
+
+        font.weight: timeLabel.font.weight
+        font.italic: timeLabel.font.italic
+        font.pixelSize: 1024
+        font.pointSize: 1024
+        verticalAlignment: Text.AlignVCenter
+        visible: false
+        height: parent.height
+        width: sizehelper.paintedWidth
+        fontSizeMode: Text.VerticalFit
+    }
 }

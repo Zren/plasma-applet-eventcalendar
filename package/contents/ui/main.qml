@@ -40,7 +40,8 @@ Item {
         onIsExpandedChanged: {
             console.log('isExpanded', isExpanded);
             if (isExpanded) {
-                update();
+                monthViewDate = today
+                // update();
             }
         }
     }
