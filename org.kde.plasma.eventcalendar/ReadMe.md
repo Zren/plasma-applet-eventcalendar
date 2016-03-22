@@ -4,7 +4,9 @@ Plasmoid for a calendar+agenda with weather that synchs to Google Calendar.
 
 ## Screenshots
 
-![](https://i.imgur.com/60YxT9r.png)
+![](https://i.imgur.com/YLzrjwx.png)
+![](https://i.imgur.com/S1w3Sga.png)
+
 
 Theme: Next-AlphaBlack (Unreleased)
 
