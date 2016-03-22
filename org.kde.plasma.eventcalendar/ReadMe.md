@@ -27,7 +27,7 @@ cd plasma-applets/org.kde.plasma.eventcalendar
 ./install
 ```
 
-To update git pull then run the update script. Please note this script will restart plasmashell (so you don't have to relog)!
+To update, `git pull` then run the update script. Please note this script will restart plasmashell (so you don't have to relog)!
 
 ```
 git pull origin master
