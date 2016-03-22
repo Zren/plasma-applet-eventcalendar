@@ -17,6 +17,7 @@ Item {
     property alias cfg_timer_in_taskbar: timer_in_taskbar.checked
     property alias cfg_timer_ends_at: timer_ends_at.text
 
+    property bool showDebug: false
 
     SystemPalette {
         id: palette
@@ -29,6 +30,7 @@ Item {
         Layout.fillWidth: true
 
         RowLayout {
+            visible: showDebug
             Layout.fillWidth: true
             Label {
                 text: i18n("timer_repeats:")
@@ -40,6 +42,7 @@ Item {
         }
 
         RowLayout {
+            visible: showDebug
             Layout.fillWidth: true
             Label {
                 text: i18n("timer_in_taskbar:")
@@ -51,6 +54,7 @@ Item {
         }
 
         RowLayout {
+            visible: showDebug
             Layout.fillWidth: true
             Label {
                 text: i18n("timer_ends_at:")

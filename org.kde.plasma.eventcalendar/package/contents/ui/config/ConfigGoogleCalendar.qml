@@ -26,6 +26,8 @@ Item {
     property alias cfg_access_token_expires_at: access_token_expires_at.text
     property alias cfg_refresh_token: refresh_token.text
 
+    property bool showDebug: false
+
     SystemPalette {
         id: palette
     }
@@ -90,11 +92,13 @@ Item {
         //--- Advanced
 
         PlasmaExtras.Heading {
+            visible: showDebug
             level: 2
             text: i18n("Applet")
             color: palette.text
         }
         Item {
+            visible: showDebug
             width: height
             height: units.gridUnit / 2
         }
@@ -104,6 +108,7 @@ Item {
             
 
             RowLayout {
+                visible: showDebug
                 Layout.fillWidth: true
                 Label {
                     text: i18n("client_id:")
@@ -115,6 +120,7 @@ Item {
             }
 
             RowLayout {
+                visible: showDebug
                 Layout.fillWidth: true
                 Label {
                     text: i18n("client_secret:")
@@ -129,11 +135,13 @@ Item {
 
 
         PlasmaExtras.Heading {
+            visible: showDebug
             level: 2
             text: i18n("User Code")
             color: palette.text
         }
         Item {
+            visible: showDebug
             width: height
             height: units.gridUnit / 2
         }
@@ -143,6 +151,7 @@ Item {
             
 
             RowLayout {
+                visible: showDebug
                 Layout.fillWidth: true
                 Label {
                     text: i18n("device_code:")
@@ -154,6 +163,7 @@ Item {
             }
 
             RowLayout {
+                visible: showDebug
                 Layout.fillWidth: true
                 Label {
                     text: i18n("user_code:")
@@ -165,6 +175,7 @@ Item {
             }
 
             RowLayout {
+                visible: showDebug
                 Layout.fillWidth: true
                 Label {
                     text: i18n("user_code_verification_url:")
@@ -176,6 +187,7 @@ Item {
             }
 
             RowLayout {
+                visible: showDebug
                 Layout.fillWidth: true
                 Label {
                     text: i18n("user_code_expires_at:")
@@ -188,6 +200,7 @@ Item {
 
 
             RowLayout {
+                visible: showDebug
                 Layout.fillWidth: true
                 Label {
                     text: i18n("user_code_interval:")
@@ -227,6 +240,7 @@ Item {
             }
 
             RowLayout {
+                visible: showDebug
                 Layout.fillWidth: true
                 Label {
                     text: i18n("access_token_type:")
@@ -238,6 +252,7 @@ Item {
             }
 
             RowLayout {
+                visible: showDebug
                 Layout.fillWidth: true
                 Label {
                     text: i18n("access_token_expires_at:")
