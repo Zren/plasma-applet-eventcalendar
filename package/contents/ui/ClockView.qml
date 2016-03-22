@@ -35,7 +35,7 @@ Item {
     
     // Testing with qmlview
     Rectangle {
-        visible: !popup
+        visible: !root
         color: PlasmaCore.ColorScope.backgroundColor
         anchors.fill: parent
     }

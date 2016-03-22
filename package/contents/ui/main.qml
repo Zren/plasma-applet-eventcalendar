@@ -27,6 +27,10 @@ Item {
         interval: 60000
         intervalAlignment: PlasmaCore.Types.AlignToMinute
     }
+    
+    FontLoader {
+        source: "../fonts/weathericons-regular-webfont.ttf"
+    }
 
     Plasmoid.compactRepresentation: ClockView {
         id: clock
