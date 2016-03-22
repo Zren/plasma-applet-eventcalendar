@@ -13,8 +13,12 @@ import "shared.js" as Shared
 Item {
     id: popup
 
-    width: 800
-    height: 500
+    width: leftColWidth + 10 + rightColWidth
+    height: topRowHeight + 10 + bottomRowHeight
+    property int topRowHeight: 100
+    property int bottomRowHeight: 400
+    property int leftColWidth: 400
+    property int rightColWidth: 400
 
     // Overload with config: plasmoid.configuration
     property variant config: { }
@@ -46,10 +50,11 @@ Item {
     Grid {
         columns: 2
         rows: 2
+        spacing: 10
 
         Item {
-            width: popup.width / 2
-            height: popup.height / 5
+            width: leftColWidth
+            height: topRowHeight
 
             Rectangle {
                 color: PlasmaCore.ColorScope.backgroundColor
@@ -57,8 +62,8 @@ Item {
             }
         }
         Item {
-            width: popup.width / 2
-            height: popup.height / 5
+            width: rightColWidth
+            height: topRowHeight
 
             TimerView {
                 id: timerView
@@ -66,16 +71,27 @@ Item {
         }
 
         Item {
-            width: popup.width / 2
-            height: popup.height * 4/5
+            width: leftColWidth
+            height: bottomRowHeight
 
             AgendaView {
                 id: agendaView
             }
+
+            PlasmaComponents.Button {
+                iconSource: 'view-refresh'
+                width: 26
+                anchors.bottom: parent.bottom
+                anchors.right: parent.right
+                onClicked: {
+                    updateEvents()
+                    updateWeather(true)
+                }
+            }
         }
         Item {
-            width: popup.width / 2
-            height: popup.height * 4/5
+            width: rightColWidth
+            height: bottomRowHeight
             
             MonthView {
                 id: monthView
@@ -136,8 +152,12 @@ Item {
         // console.log(dateMin);
         // console.log(dateMax);
 
-        eventsData = { "items": [] }
-        updateUI();
+        // try {
+        //     eventsData = { "items": [] }
+        //     updateUI();
+        // } catch(e) {
+        //     console.log('updateEvents.updateUI error', e);
+        // }
 
         if (config && config.access_token) {
             fetchGCalEvents({
@@ -146,23 +166,35 @@ Item {
                 access_token: config.access_token,
             }, function(err, data, xhr) {
                 if (err) {
+                    if (typeof err === 'object') {
+                        console.log('err: ', JSON.stringify(err, null, '\t'));
+                    } else {
+                        console.log('err: ', err);
+                    }
                     return onGCalError(err);
+                    console.log('after onGCalError', err);
                 }
+                console.log('onGCalEvents', err);
+                console.log('onGCalEvents', JSON.stringify(data, null, '\t'))
 
-                eventsData = data;
+                if (eventsData && eventsData.items) {
+                    eventsData = data;
+                } else {
+                    eventsData = { "items": [] }
+                }
                 updateUI();
             });
         }
     }
 
-    function updateWeather() {
-        if (config && config.weather_city_id2) {
+    function updateWeather(force) {
+        if (config && config.weather_city_id) {
             // rate limit 1 request / hour
-            if (!lastForecastAt && Date.now() - lastForecastAt >= 60 * 60 * 1000) {
+            if (force || !lastForecastAt && Date.now() - lastForecastAt >= 60 * 60 * 1000) {
                 console.log('fetchWeatherForecast', lastForecastAt, Date.now());
                 fetchWeatherForecast({
-                    app_id: config.weather_app_id2,
-                    city_id: config.weather_city_id2,
+                    app_id: config.weather_app_id,
+                    city_id: config.weather_city_id,
                 }, function(err, data, xhr) {
                     if (err) {
                         return console.log('onWeatherError', err);
@@ -251,6 +283,7 @@ Item {
                 "Authorization": "Bearer " + args.access_token,
             }
         }, function(err, data, xhr) {
+            console.log('fetchGCalEvents.response', err, data, xhr.statusCode, xhr.status);
             if (!err && data && data.error) {
                 return callback(data, null, xhr);
             }

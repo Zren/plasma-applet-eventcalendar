@@ -10,8 +10,8 @@ Item {
     implicitWidth: pageColumn.implicitWidth
     implicitHeight: pageColumn.implicitHeight
 
-    property alias cfg_weather_app_id2: weather_app_id2.text
-    property alias cfg_weather_city_id2: weather_city_id2.text
+    property alias cfg_weather_app_id: weather_app_id.text
+    property alias cfg_weather_city_id: weather_city_id.text
 
     SystemPalette {
         id: palette
@@ -43,14 +43,22 @@ Item {
                     text: i18n("API App Id:")
                 }
                 TextField {
-                    id: weather_app_id2
+                    id: weather_app_id
                     Layout.fillWidth: true
                 }
             }
 
             Text {
-                text: 'Get your city\'s id at <a href="https://openweathermap.org/">https://openweathermap.org/</a>'
-                // linkColor: "#369"
+                text: 'Get your city\'s id at <a href="https://openweathermap.org/">https://openweathermap.org/</a>,'
+                onLinkActivated: Qt.openUrlExternally(link)
+                MouseArea {
+                    anchors.fill: parent
+                    acceptedButtons: Qt.NoButton // we don't want to eat clicks on the Text
+                    cursorShape: parent.hoveredLink ? Qt.PointingHandCursor : Qt.ArrowCursor
+                }
+            }
+            Text {
+                text: 'or by searching google with `<a href="https://www.google.ca/search?q=site%3Aopenweathermap.org%2Fcity+toronto">site:openweathermap.org/city</a>`.'
                 onLinkActivated: Qt.openUrlExternally(link)
                 MouseArea {
                     anchors.fill: parent
@@ -64,7 +72,7 @@ Item {
                     text: i18n("City Id:")
                 }
                 TextField {
-                    id: weather_city_id2
+                    id: weather_city_id
                     Layout.fillWidth: true
                 }
             }
