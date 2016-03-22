@@ -53,22 +53,14 @@ Item {
                 width: 50
                 Layout.alignment: Qt.AlignTop
 
-                Item {
+                FontIcon {
                     visible: showWeather
+                    source: weatherIcon
+                    height: 16
+                    width: width
                     anchors {
                         left: parent.left
                         right: parent.right
-                    }
-                    height: 16
-
-                    Image {
-                        id: itemWeatherIcon
-                        source: weatherIcon ? "images/" + weatherIcon + ".svg" : ""
-                        anchors.centerIn: parent
-                        cache: true
-                        asynchronous: true
-                        sourceSize.width: parent.height
-                        sourceSize.height: parent.height
                     }
                 }
 
@@ -153,7 +145,7 @@ Item {
 
                         Text {
                             id: eventDateTime
-                            text: start.date ? "All Day" : Qt.formatDateTime(start.dateTime, "h") + " - " + Qt.formatDateTime(end.dateTime, "h AP")
+                            text: start.date ? "All Day" : Qt.formatDateTime(start.dateTime, "h AP") + " - " + Qt.formatDateTime(end.dateTime, "h AP")
                             color: PlasmaCore.ColorScope.textColor
                             opacity: 0.75
                         }
