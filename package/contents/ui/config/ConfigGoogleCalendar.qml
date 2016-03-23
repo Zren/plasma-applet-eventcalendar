@@ -25,7 +25,23 @@ Item {
     property alias cfg_access_token_type: access_token_type.text
     property alias cfg_access_token_expires_at: access_token_expires_at.text
     property alias cfg_refresh_token: refresh_token.text
+    property alias cfg_calendar_id_list: calendar_id_list.text
+    property alias cfg_calendar_list: calendar_list.text
 
+    function setCalendarIdList(calendarIdList) {
+        cfg_calendar_id_list = calendarIdList.join(',');
+    }
+    function getCalendarIdList() {
+        return cfg_calendar_id_list.split(',');
+    }
+
+    function setCalendarList(calendarList) {
+        cfg_calendar_list = Qt.btoa(JSON.stringify(calendarList));
+    }
+    function getCalendarList() {
+        return cfg_calendar_list ? JSON.parse(Qt.atob(cfg_calendar_list)) : [];
+    }
+    
     property bool showDebug: false
 
     SystemPalette {
@@ -85,6 +101,96 @@ Item {
                     background: Rectangle {
                         color: "#eee"
                     }
+                }
+            }
+        }
+
+        PlasmaExtras.Heading {
+            level: 2
+            text: i18n("Calendars")
+            color: palette.text
+        }
+        Item {
+            width: height
+            height: units.gridUnit / 2
+        }
+        ColumnLayout {
+            spacing: units.smallSpacing * 2
+            Layout.fillWidth: true
+
+            ListModel {
+                id: calendarsModel
+
+                function onCalendarsShownChange() {
+                    var calendarIdList = [];
+                    for (var i = 0; i < calendarsModel.count; i++) {
+                        var item = calendarsModel.get(i);
+                        console.log('calendarsModel', item.calendarId);
+                        
+                        if (item.show) {
+                            calendarIdList.push(item.calendarId);
+                        }
+                    }
+
+                    generalPage.setCalendarIdList(calendarIdList);
+                }
+            }
+
+            Column {
+                Layout.fillWidth: true
+
+                Repeater {
+                    model: calendarsModel
+                    delegate: CheckBox {
+                        text: name
+                        checked: show
+                        // style: CheckBoxStyle {
+                        //     label: Item {
+                        //         Rectangle {
+                        //             anchors.fill: labelText
+                        //             color: backgroundColor
+                        //         }
+                        //         Text {
+                        //             id: labelText
+                        //             color: foregroundColor
+                        //             text: control.text
+                        //         }
+                        //     }
+                            
+                        // }
+
+                        onClicked: {
+                            calendarsModel.setProperty(index, 'show', checked)
+                            // model.show = checked
+                            console.log(index, model.calendarId, model.show, checked);
+
+                            calendarsModel.onCalendarsShownChange()
+                        }
+                    }
+                }
+            }
+
+            RowLayout {
+                visible: showDebug
+                Layout.fillWidth: true
+                Label {
+                    text: i18n("calendar_id_list:")
+                }
+                TextField {
+                    id: calendar_id_list
+                    Layout.fillWidth: true
+                }
+            }
+
+            RowLayout {
+                visible: showDebug
+                Layout.fillWidth: true
+                Label {
+                    text: i18n("calendar_list:")
+                }
+                TextField {
+                    id: calendar_list
+                    Layout.fillWidth: true
                 }
             }
         }
@@ -287,6 +393,51 @@ Item {
         onTriggered: pollAccessToken()
     }
 
+    function fetchGCalCalendars(args, callback) {
+        var url = 'https://www.googleapis.com/calendar/v3/users/me/calendarList';
+        Utils.getJSON({
+            url: url,
+            headers: {
+                "Authorization": "Bearer " + args.access_token,
+            }
+        }, function(err, data, xhr) {
+            console.log('fetchGCalEvents.response', err, data, xhr.status);
+            if (!err && data && data.error) {
+                return callback(data, null, xhr);
+            }
+            callback(err, data, xhr);
+        });
+    }
+
+    function updateGCalCalendars() {
+        console.log('access_token', cfg_access_token, plasmoid.configuration.access_token)
+        fetchGCalCalendars({
+            access_token: cfg_access_token || plasmoid.configuration.access_token,
+        }, function(err, data, xhr) {
+            setCalendarList(data.items);
+
+            var calendarIdList = getCalendarIdList();
+
+            var calendarList = getCalendarList();
+            calendarsModel.clear()
+            for (var i = 0; i < calendarList.length; i++) {
+                var item = calendarList[i];
+                // console.log(JSON.stringify(item));
+                var isShowned = calendarIdList.indexOf(item.id) >= 0;
+                calendarsModel.append({
+                    calendarId: item.id, 
+                    name: item.summary,
+                    description: item.description,
+                    backgroundColor: item.backgroundColor,
+                    foregroundColor: item.foregroundColor,
+                    show: isShowned,
+                });
+                console.log(item.summary, isShowned, item.id);
+            }
+            calendarsModel.onCalendarsShownChange()
+            
+        });
+    }
 
     function pollAccessToken() {
         var url = 'https://www.googleapis.com/oauth2/v4/token';
@@ -357,5 +508,13 @@ Item {
             console.log('client_id', plasmoid.configuration.client_id);
             generateUserCodeAndPoll();
         }
+
+        var list = generalPage.getCalendarIdList();
+        for (var i = 0; i < list.length; i++) {
+            var item = list[i];
+            console.log('calendar_id_list', item);
+        }
+
+        updateGCalCalendars();
     }
 }
