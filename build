@@ -1,0 +1,7 @@
+#!/bin/bash
+
+rm eventcalendar.plasmoid
+cd package
+zip -r eventcalendar.plasmoid *
+mv eventcalendar.plasmoid ../eventcalendar.plasmoid
+cd ..
