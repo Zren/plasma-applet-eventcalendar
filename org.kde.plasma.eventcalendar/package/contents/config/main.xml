@@ -56,7 +56,7 @@
 
   <group name="Weather">
     <entry name="weather_app_id" type="string">
-      <default>5819a34c58f8f07bc282820ca08948f1</default>
+      <default>99e575d9aa8a8407bcee7693d5912c6a</default>
     </entry>
     <entry name="weather_city_id" type="UInt">
       <default>0</default>
