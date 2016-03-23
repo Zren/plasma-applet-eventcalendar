@@ -1,7 +1,7 @@
 [Desktop Entry]
 Encoding=UTF-8
 Name=Event Calendar
-Comment=Plasmoid for a calendar+agenda with weather that synchs to Google Calendar.
+Comment=Plasmoid for a calendar+agenda with weather that syncs to Google Calendar.
 
 Icon=view-calendar
 Type=Service
