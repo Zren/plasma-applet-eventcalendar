@@ -32,8 +32,58 @@ Item {
         source: "../fonts/weathericons-regular-webfont.ttf"
     }
 
+    // org.kde.plasma.mediacontrollercompact
+    PlasmaCore.DataSource {
+        id: executeSource
+        engine: "executable"
+        connectedSources: []
+        onNewData: {
+            //we get new data when the process finished, so we can remove it
+            disconnectSource(sourceName)
+        }
+    }
+    function exec(cmd) {
+        //Note: we assume that 'cmd' is executed quickly so that a previous call
+        //with the same 'cmd' has already finished (otherwise no new cmd will be
+        //added because it is already in the list)
+        executeSource.connectSource(cmd)
+    }
+
     Plasmoid.compactRepresentation: ClockView {
         id: clock
+
+        // org.kde.plasma.volume
+        MouseArea {
+            id: mouseArea
+            anchors.fill: parent
+
+            property int wheelDelta: 0
+
+            onClicked: {
+                if (mouse.button == Qt.LeftButton) {
+                    plasmoid.expanded = !plasmoid.expanded;
+                }
+            }
+
+            // http://dev.man-online.org/man1/xdotool/
+            // xmodmap -pke
+            // keycode 122 = XF86AudioLowerVolume NoSymbol XF86AudioLowerVolume
+            // keycode 123 = XF86AudioRaiseVolume NoSymbol XF86AudioRaiseVolume
+            onWheel: {
+                var delta = wheel.angleDelta.y || wheel.angleDelta.x;
+                wheelDelta += delta;
+                // Magic number 120 for common "one click"
+                // See: http://qt-project.org/doc/qt-5/qml-qtquick-wheelevent.html#angleDelta-prop
+                while (wheelDelta >= 120) {
+                    wheelDelta -= 120;
+                    root.exec(plasmoid.configuration.clock_mousewheel_up)
+                }
+                while (wheelDelta <= -120) {
+                    wheelDelta += 120;
+                    root.exec(plasmoid.configuration.clock_mousewheel_down)
+                }
+            }
+        }
     }
     
     Plasmoid.fullRepresentation: PopupView {
