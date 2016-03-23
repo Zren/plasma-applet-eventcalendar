@@ -85,14 +85,13 @@ Item {
             }
         }
     }
-    
+
     Plasmoid.fullRepresentation: PopupView {
         id: popup
         today: dataSource.data["Local"]["DateTime"]
         config: plasmoid.configuration
 
         property bool isExpanded: plasmoid.expanded
-
         onIsExpandedChanged: {
             console.log('isExpanded', isExpanded);
             if (isExpanded) {
@@ -100,8 +99,16 @@ Item {
                 // update();
             }
         }
-    }   
 
+        Connections {
+            target: plasmoid.configuration
+            onCalendar_id_listChanged: { updateEvents() }
+            onAccess_tokenChanged: { updateEvents() }
+            onWeather_app_idChanged: { updateWeather(true) }
+            onWeather_city_idChanged: { updateWeather(true) }
+        }
+
+    }
     function action_KCMClock() {
         KCMShell.open("clock");
     }

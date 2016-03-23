@@ -153,20 +153,11 @@ Item {
         // console.log(dateMin);
         // console.log(dateMax);
 
-        // try {
-        //     eventsData = { "items": [] }
-        //     updateUI();
-        // } catch(e) {
-        //     console.log('updateEvents.updateUI error', e);
-        // }
-
         if (config && config.access_token) {
             var calendarIdList = plasmoid.configuration.calendar_id_list ? plasmoid.configuration.calendar_id_list.split(',') : ['primary'];
             var calendarList = plasmoid.configuration.calendar_list ? JSON.parse(Qt.atob(plasmoid.configuration.calendar_list)) : [];
-            // var calendarId = calendarIdList[0] || 'primary';
-            // console.log('calendar_id_list', plasmoid.configuration.calendar_id_list);
-            // console.log('calendarIdList', calendarIdList);
-            // console.log('calendarId', calendarId)
+
+            eventsByCalendar = {};
 
             for (var i = 0; i < calendarIdList.length; i++) {
                 (function(calendarId){
