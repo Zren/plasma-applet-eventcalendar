@@ -33,17 +33,24 @@ Item {
 
     property bool vertical: (plasmoid.formFactor == PlasmaCore.Types.Vertical)
 
+    Layout.maximumWidth: 3 // + 5 = 8
+
     Layout.minimumWidth: Layout.maximumWidth
     Layout.minimumHeight: Layout.maximumHeight
 
     Plasmoid.preferredRepresentation: Plasmoid.fullRepresentation
     Plasmoid.onActivated: showdesktop.showDesktop();
 
-    PlasmaCore.IconItem {
+    Rectangle {
         id:icon
-        source: plasmoid.configuration.icon
-        active: mouseArea.containsMouse
-        anchors.fill: parent
+        // source: plasmoid.configuration.icon
+        // active: mouseArea.containsMouse
+        color: mouseArea.containsMouse ? theme.buttonHoverColor : theme.buttonBackgroundColor
+        // anchors.fill: parent
+        y: -3
+        x: 0
+        width: plasmoid.width+5
+        height: plasmoid.height+3+5
     }
     ShowDesktop {
         id: showdesktop
