@@ -17,6 +17,7 @@ Item {
     property int showNextNumDays: 14
     property bool clipPastEvents: false
     property bool clipPastEventsToday: false
+    property bool cfg_clock_24h: false
 
 
     ListModel {
@@ -145,7 +146,7 @@ Item {
 
                         Text {
                             id: eventDateTime
-                            text: start.date ? "All Day" : Qt.formatDateTime(start.dateTime, "h AP") + " - " + Qt.formatDateTime(end.dateTime, "h AP")
+                            text: start.date ? "All Day" : Qt.formatDateTime(start.dateTime, cfg_clock_24h ? "h" : "h AP") + " - " + Qt.formatDateTime(end.dateTime, cfg_clock_24h ? "h" : "h AP")
                             color: PlasmaCore.ColorScope.textColor
                             opacity: 0.75
                         }
