@@ -5,7 +5,15 @@ function request(opt, callback) {
 	var req = new XMLHttpRequest();
     req.onreadystatechange = function() {
         if (req.readyState === 4) {
-            callback(null, req.responseText, req);
+            if (200 <= req.status && req.status < 400) {
+                callback(null, req.responseText, req);
+            } else {
+                if (req.status === 0) {
+                    console.log('HTTP 0 Headers: \n' + req.getAllResponseHeaders());
+                }
+                var msg = "HTTP Error " + req.status + ": " + req.statusText;
+                callback(msg, req.responseText, req);
+            }
         }
     }
     req.open(opt.method || "GET", opt.url, true);
