@@ -21,6 +21,7 @@ Item {
 
     // Overload with config: plasmoid.configuration
     property variant config: { }
+    property bool cfg_clock_24h: false
 
     property alias today: monthView.today
     property alias selectedDate: monthView.currentDate
@@ -230,6 +231,7 @@ Item {
             console.log('updateUI', calendarId, eventsByCalendar[calendarId].items.length, eventsData.items.length);
         }
 
+        agendaView.cfg_clock_24h = config ? config.clock_24h : false;
         agendaView.parseGCalEvents(eventsData);
         agendaView.parseWeatherForecast(weatherData);
         monthView.parseGCalEvents(eventsData);

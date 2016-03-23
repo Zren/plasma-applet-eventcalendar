@@ -52,6 +52,14 @@ Item {
     Plasmoid.compactRepresentation: ClockView {
         id: clock
 
+        cfg_clock_24h: plasmoid.configuration.clock_24h
+
+        Connections {
+            target: plasmoid.configuration
+            onClock_24hChanged: { timeFormat = plasmoid.configuration.clock_24h ? 'h:mm' : 'h:mm AP' }
+            // onClock_timeformatChanged: { timeFormat = plasmoid.configuration.timeformat }
+        }
+
         // org.kde.plasma.volume
         MouseArea {
             id: mouseArea
@@ -100,8 +108,13 @@ Item {
             }
         }
 
+        Component.onCompleted: {
+            agendaView.cfg_clock_24h = plasmoid.configuration.clock_24h
+        }
+
         Connections {
             target: plasmoid.configuration
+            onClock_24hChanged: { updateUI() }
             onCalendar_id_listChanged: { updateEvents() }
             onAccess_tokenChanged: { updateEvents() }
             onWeather_app_idChanged: { updateWeather(true) }

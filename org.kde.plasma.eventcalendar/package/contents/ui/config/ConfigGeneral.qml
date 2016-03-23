@@ -13,11 +13,16 @@ Item {
     implicitWidth: pageColumn.implicitWidth
     implicitHeight: pageColumn.implicitHeight
 
+    property alias cfg_clock_24h: clock_24h.checked
+    property alias cfg_clock_timeformat: clock_timeformat.text
     property alias cfg_clock_mousewheel_up: clock_mousewheel_up.text
     property alias cfg_clock_mousewheel_down: clock_mousewheel_down.text
     property alias cfg_timer_repeats: timer_repeats.checked
     property alias cfg_timer_in_taskbar: timer_in_taskbar.checked
     property alias cfg_timer_ends_at: timer_ends_at.text
+
+    property string timeFormat24hour: 'h:mm'
+    property string timeFormat12hour: 'h:mm AP'
 
     property bool showDebug: false
 
@@ -42,7 +47,87 @@ Item {
         }
         ColumnLayout {
             PlasmaExtras.Heading {
-                level: 4
+                level: 3
+                text: i18n("Time Format")
+                color: palette.text
+            }
+
+            RowLayout {
+                Layout.fillWidth: true
+                Label {
+                    text: i18n("24 hour clock:")
+                }
+                CheckBox {
+                    Layout.fillWidth: true
+                    id: clock_24h
+
+                    onClicked: {
+                        cfg_clock_timeformat = cfg_clock_24h ? timeFormat24hour : timeFormat12hour
+                    }
+                }
+            }
+
+            Text {
+                visible: showDebug
+                text: '<a href="http://doc.qt.io/qt-5/qml-qtqml-qt.html#formatDateTime-method">Time Format Documentation</a>'
+                color: "#8a6d3b"
+                linkColor: "#369"
+                onLinkActivated: Qt.openUrlExternally(link)
+                MouseArea {
+                    anchors.fill: parent
+                    acceptedButtons: Qt.NoButton // we don't want to eat clicks on the Text
+                    cursorShape: parent.hoveredLink ? Qt.PointingHandCursor : Qt.ArrowCursor
+                }
+            }
+            RowLayout {
+                visible: showDebug
+                Button {
+                    text: '24 Hour Clock'
+                    onClicked: {
+                        clock_timeformat.text = timeFormat24hour
+                    }
+                }
+                Label {
+                    text: Qt.formatDateTime(new Date(), timeFormat24hour);
+                }
+            }
+            RowLayout {
+                visible: showDebug
+                Button {
+                    text: '12 Hour Clock'
+                    onClicked: {
+                        clock_timeformat.text = timeFormat12hour
+                    }
+                }
+                Label {
+                    text: Qt.formatDateTime(new Date(), timeFormat12hour);
+                }
+            }
+            RowLayout {
+                visible: showDebug
+                Layout.fillWidth: true
+                Label {
+                    text: i18n("Line 1:")
+                }
+                TextField {
+                    Layout.fillWidth: true
+                    id: clock_timeformat
+
+                    onTextChanged: {
+                        var is12hour = text.toLowerCase().indexOf('ap') >= 0;
+                        cfg_clock_24h = !is12hour;
+                    }
+                }
+            }
+
+
+
+            Item {
+                width: height
+                height: units.gridUnit / 2
+            }
+            PlasmaExtras.Heading {
+                level: 3
                 text: i18n("Mouse Wheel")
                 color: palette.text
             }
@@ -53,13 +138,19 @@ Item {
                     cfg_clock_mousewheel_down = 'amixer -q sset Master 10%-'
                 }
             }
-            Button {
-                text: 'xdotool (UI) (sudo apt-get install xdotool)'
-                onClicked: {
-                    cfg_clock_mousewheel_up = 'xdotool key XF86AudioRaiseVolume'
-                    cfg_clock_mousewheel_down = 'xdotool key XF86AudioLowerVolume'
+            RowLayout {
+                Button {
+                    text: 'xdotool (UI)'
+                    onClicked: {
+                        cfg_clock_mousewheel_up = 'xdotool key XF86AudioRaiseVolume'
+                        cfg_clock_mousewheel_down = 'xdotool key XF86AudioLowerVolume'
+                    }
+                }
+                Label {
+                    text: 'sudo apt-get install xdotool'
                 }
             }
+            
 
             RowLayout {
                 Layout.fillWidth: true
