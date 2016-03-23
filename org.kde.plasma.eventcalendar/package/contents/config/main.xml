@@ -58,6 +58,12 @@
     <entry name="refresh_token" type="string">
       <default></default>
     </entry>
+    <entry name="calendar_list" type="string">
+      <default></default>
+    </entry>
+    <entry name="calendar_id_list" type="string">
+      <default></default>
+    </entry>
   </group>
 
   <group name="Weather">

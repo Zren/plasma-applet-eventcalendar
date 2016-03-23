@@ -26,6 +26,7 @@ Item {
     property alias selectedDate: monthView.currentDate
     property alias monthViewDate: monthView.displayedDate
     property variant eventsData: { "items": [] }
+    property variant eventsByCalendar: { "": { "items": [] } }
     property variant weatherData: { "list": [] }
     property variant lastForecastAt: null
 
@@ -124,6 +125,7 @@ Item {
     }
 
     Component.onCompleted: {
+        delete eventsByCalendar[''] // Is there really no way to initialize an empty JSON object?
         update();
     }
 
@@ -159,30 +161,41 @@ Item {
         // }
 
         if (config && config.access_token) {
-            fetchGCalEvents({
-                start: dateMin.toISOString(),
-                end: dateMax.toISOString(),
-                access_token: config.access_token,
-            }, function(err, data, xhr) {
-                if (err) {
-                    if (typeof err === 'object') {
-                        console.log('err: ', JSON.stringify(err, null, '\t'));
-                    } else {
-                        console.log('err: ', err);
-                    }
-                    return onGCalError(err);
-                    console.log('after onGCalError', err);
-                }
-                console.log('onGCalEvents', err);
-                console.log('onGCalEvents', JSON.stringify(data, null, '\t'))
+            var calendarIdList = plasmoid.configuration.calendar_id_list ? plasmoid.configuration.calendar_id_list.split(',') : ['primary'];
+            var calendarList = plasmoid.configuration.calendar_list ? JSON.parse(Qt.atob(plasmoid.configuration.calendar_list)) : [];
+            // var calendarId = calendarIdList[0] || 'primary';
+            // console.log('calendar_id_list', plasmoid.configuration.calendar_id_list);
+            // console.log('calendarIdList', calendarIdList);
+            // console.log('calendarId', calendarId)
 
-                if (eventsData && eventsData.items) {
-                    eventsData = data;
-                } else {
-                    eventsData = { "items": [] }
-                }
-                updateUI();
-            });
+            for (var i = 0; i < calendarIdList.length; i++) {
+                (function(calendarId){
+                    fetchGCalEvents({
+                        calendarId: calendarId,
+                        start: dateMin.toISOString(),
+                        end: dateMax.toISOString(),
+                        access_token: config.access_token,
+                    }, function(err, data, xhr) {
+                        if (err) {
+                            if (typeof err === 'object') {
+                                console.log('err: ', JSON.stringify(err, null, '\t'));
+                            } else {
+                                console.log('err: ', err);
+                            }
+                            if (xhr.status === 404) {
+                                return;
+                            }
+                            return onGCalError(err);
+                        }
+                        // console.log('onGCalEvents', JSON.stringify(data, null, '\t'))
+
+                        
+                        eventsByCalendar[calendarId] = data;
+                        updateUI();
+                    });
+                })(calendarIdList[i]);
+                
+            }
         }
     }
 
@@ -217,6 +230,13 @@ Item {
         } else {
             agendaView.showNextNumDays = 0;
             agendaView.clipPastEvents = false;
+        }
+
+
+        eventsData = { items: [] }
+        for (var calendarId in eventsByCalendar) {
+            eventsData.items = eventsData.items.concat(eventsByCalendar[calendarId].items);
+            console.log('updateUI', calendarId, eventsByCalendar[calendarId].items.length, eventsData.items.length);
         }
 
         agendaView.parseGCalEvents(eventsData);
@@ -271,7 +291,9 @@ Item {
 
     function fetchGCalEvents(args, callback) {
         var url = 'https://www.googleapis.com/calendar/v3';
-        url += '/calendars/primary/events';
+        url += '/calendars/'
+        url += encodeURIComponent(args.calendarId);
+        url += '/events';
         url += '?timeMin=' + encodeURIComponent(args.start);
         url += '&timeMax=' + encodeURIComponent(args.end);
         url += '&singleEvents=' + encodeURIComponent('true');
@@ -282,7 +304,7 @@ Item {
                 "Authorization": "Bearer " + args.access_token,
             }
         }, function(err, data, xhr) {
-            console.log('fetchGCalEvents.response', err, data, xhr.status);
+            // console.log('fetchGCalEvents.response', err, data, xhr.status);
             if (!err && data && data.error) {
                 return callback(data, null, xhr);
             }
