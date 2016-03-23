@@ -8,7 +8,6 @@ import org.kde.plasma.components 2.0 as PlasmaComponents
 import org.kde.plasma.extras 2.0 as PlasmaExtras
 
 import "utils.js" as Utils
-import "shared.js" as Shared
 
 Item {
     id: popup
@@ -196,6 +195,7 @@ Item {
                     app_id: config.weather_app_id,
                     city_id: config.weather_city_id,
                 }, function(err, data, xhr) {
+                    console.log('updateWeather.response', err, data, xhr.status);
                     if (err) {
                         return console.log('onWeatherError', err);
                     }
@@ -263,7 +263,6 @@ Item {
                 config.access_token = data.access_token;
                 config.access_token_type = data.token_type;
                 config.access_token_expires_at = Date.now() + data.expires_in * 1000;
-                config.refresh_token = data.refresh_token;
 
                 update();
             });
@@ -283,7 +282,7 @@ Item {
                 "Authorization": "Bearer " + args.access_token,
             }
         }, function(err, data, xhr) {
-            console.log('fetchGCalEvents.response', err, data, xhr.statusCode, xhr.status);
+            console.log('fetchGCalEvents.response', err, data, xhr.status);
             if (!err && data && data.error) {
                 return callback(data, null, xhr);
             }
