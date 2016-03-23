@@ -68,7 +68,7 @@ Item {
             visible: cfg_access_token
             Text {
                 text: 'Currently Synched.'
-                color: "#8a6d3b"
+                color: "#3c763d"
             }
         }
         Column {
@@ -466,8 +466,7 @@ Item {
             cfg_access_token_expires_at = Date.now() + data.expires_in * 1000;
             cfg_refresh_token = data.refresh_token;
 
-            // plasmoid.configuration.access_token = cfg_access_token;
-            // plasmoid.configuration.refresh_token = cfg_refresh_token;
+            updateGCalCalendars();
         });
     }
 
@@ -504,17 +503,11 @@ Item {
         // cfg_* are not yet populated.
 
         console.log('access_token', plasmoid.configuration.access_token);
-        if (!plasmoid.configuration.access_token) {
+        if (plasmoid.configuration.access_token) {
+            updateGCalCalendars();
+        } else {
             console.log('client_id', plasmoid.configuration.client_id);
             generateUserCodeAndPoll();
         }
-
-        var list = generalPage.getCalendarIdList();
-        for (var i = 0; i < list.length; i++) {
-            var item = list[i];
-            console.log('calendar_id_list', item);
-        }
-
-        updateGCalCalendars();
     }
 }
