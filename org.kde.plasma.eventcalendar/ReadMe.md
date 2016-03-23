@@ -2,13 +2,15 @@
 
 Plasmoid for a calendar+agenda with weather that synchs to Google Calendar.
 
+http://kde-look.org/content/show.php?content=175591
+
 ## Screenshots
 
 ![](https://i.imgur.com/YLzrjwx.png)
 ![](https://i.imgur.com/S1w3Sga.png)
 
 
-## Install via KDE (Soon :construction:)
+## Install via KDE
 
 1. Right Click Panel > Panel Options > Unlock Widgets
 2. Right Click Panel > Panel Options > Add Widgets
