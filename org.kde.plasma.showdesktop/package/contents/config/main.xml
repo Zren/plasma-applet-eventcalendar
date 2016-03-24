@@ -9,5 +9,11 @@
     <entry name="icon" type="String">
       <default>user-desktop</default>
     </entry>
+    <entry name="mousewheel_up" type="string">
+      <default>amixer -q sset Master 10%+</default>
+    </entry>
+    <entry name="mousewheel_down" type="string">
+      <default>amixer -q sset Master 10%-</default>
+    </entry>
   </group>
 </kcfg>
