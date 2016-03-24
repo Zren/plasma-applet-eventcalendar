@@ -7,6 +7,12 @@
 
 
   <group name="General">
+    <entry name="widget_show_spacer" type="bool">
+      <default>true</default>
+    </entry>
+    <entry name="widget_show_timer" type="bool">
+      <default>true</default>
+    </entry>
     <entry name="clock_24h" type="bool">
       <default>false</default>
     </entry>
