@@ -13,6 +13,7 @@ Item {
 
     //anchors.margins: units.largeSpacing
     property int spacing: units.largeSpacing
+    property alias agendaListView: agenda
 
     property int showNextNumDays: 14
     property bool clipPastEvents: false
@@ -160,6 +161,30 @@ Item {
                 }
             }
         }
+    }
+
+    function scrollToTop() {
+        agendaListView.positionViewAtBeginning()
+    }
+
+    function scrollToDate(date) {
+        for (var i = 0; i < agendaModel.count; i++) {
+            var agendaItem = agendaModel.get(i);
+            if (date.getFullYear() == agendaItem.date.getFullYear() && date.getMonth() == agendaItem.date.getMonth() && date.getDate() == agendaItem.date.getDate()) {
+                agendaListView.positionViewAtIndex(i, ListView.Beginning);
+                return;
+            } else if (date < agendaItem.date) { // assume agendaItem.date is aligned to midnight
+                // If the date is smaller than the current agendaItem.date, scroll to the previous agendaItem.
+                if (i > 0) {
+                    agendaListView.positionViewAtIndex(i-1, ListView.Beginning);
+                } else {
+                    agendaListView.positionViewAtBeginning()
+                }
+                return;
+            }
+        }
+        // If the date is greater than any item in the agenda, scroll to the bottom.
+        agendaListView.positionViewAtEnd()
     }
 
     function parseGCalEvents(data) {

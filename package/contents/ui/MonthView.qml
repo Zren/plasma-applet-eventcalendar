@@ -95,6 +95,7 @@ PinchArea {
 
     function resetToToday() {
         calendarBackend.resetToToday();
+        currentDate = calendarBackend.today
         stack.pop(null);
     }
 

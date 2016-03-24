@@ -31,8 +31,10 @@ Item {
     property bool cfg_widget_show_spacer: true
     // property bool cfg_widget_show_meteogram: false
     property bool cfg_widget_show_timer: true
+    property bool cfg_agenda_scroll_on_select: true
+    property bool cfg_agenda_scroll_on_monthchange: false
     
-
+    property alias agendaListView: agendaView.agendaListView
     property alias today: monthView.today
     property alias selectedDate: monthView.currentDate
     property alias monthViewDate: monthView.displayedDate
@@ -43,10 +45,25 @@ Item {
 
     onSelectedDateChanged: {
         console.log('onSeletedDateChanged', selectedDate)
+        scrollToSelection()
+    }
+    function scrollToSelection() {
+        if (!cfg_agenda_scroll_on_select)
+            return;
+        if (true) {
+            agendaView.scrollToDate(selectedDate)
+        } else {
+            agendaView.scrollToTop()
+        }
     }
 
     onMonthViewDateChanged: {
         console.log('onMonthViewDateChanged', monthViewDate)
+        if (cfg_agenda_scroll_on_monthchange) {
+            var startOfMonth = new Date(monthViewDate);
+            startOfMonth.setDate(1);
+            selectedDate = startOfMonth;
+        }
         updateEvents();
     }
 
@@ -269,6 +286,7 @@ Item {
         agendaView.parseWeatherForecast(weatherData);
         monthView.parseGCalEvents(eventsData);
         updateHeight()
+        // scrollToSelection();
     }
 
     function onGCalError(err) {
