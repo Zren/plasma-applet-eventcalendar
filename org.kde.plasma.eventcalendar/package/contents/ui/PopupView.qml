@@ -12,17 +12,20 @@ import "utils.js" as Utils
 Item {
     id: popup
 
-    width: leftColWidth + 10 + rightColWidth
-    height: bottomRowHeight
+    // use Layout.prefferedHeight instead of height so that the plasmoid resizes.
+    width: columnWidth + 10 + columnWidth
+    Layout.preferredHeight: bottomRowHeight
     property int topRowHeight: 100
     property int bottomRowHeight: 400
     property int columnWidth: 400
-    property int leftColWidth: columnWidth
-    property int rightColWidth: columnWidth
     function updateHeight() {
         var rows = Math.ceil(widgetGrid.visibleChildren.length / widgetGrid.columns)
-        popup.height = rows * topRowHeight + (rows > 0 ? 10 : 0) + bottomRowHeight
-        widgetGrid.visible = rows > 0
+        Layout.preferredHeight = rows * topRowHeight + (rows > 0 ? 10 : 0) + bottomRowHeight
+
+        // Debugging with qmlviewer
+        if (typeof root === 'undefined') {
+            height = Layout.preferredHeight
+        }
     }
 
     // Overload with config: plasmoid.configuration
@@ -120,7 +123,7 @@ Item {
             spacing: 10
 
             Item {
-                width: leftColWidth
+                width: columnWidth
                 height: bottomRowHeight
 
                 AgendaView {
@@ -139,15 +142,15 @@ Item {
                 }
             }
             Item {
-                width: rightColWidth
+                width: columnWidth
                 height: bottomRowHeight
                 
                 MonthView {
                     id: monthView
                     borderOpacity: 0.25
                     showWeekNumbers: false
-                    width: popup.width / 2
-                    height: popup.height * 4/5
+                    width: columnWidth
+                    height: bottomRowHeight
                     today: new Date()
 
                     function parseGCalEvents(data) {

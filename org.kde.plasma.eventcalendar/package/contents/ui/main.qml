@@ -56,7 +56,7 @@ Item {
 
         Connections {
             target: plasmoid.configuration
-            onClock_24hChanged: { timeFormat = plasmoid.configuration.clock_24h ? 'h:mm' : 'h:mm AP' }
+            // onClock_24hChanged: { timeFormat = plasmoid.configuration.clock_24h ? 'h:mm' : 'h:mm AP' }
             // onClock_timeformatChanged: { timeFormat = plasmoid.configuration.timeformat }
         }
 
@@ -122,6 +122,8 @@ Item {
             onAccess_tokenChanged: { updateEvents() }
             onWeather_app_idChanged: { updateWeather(true) }
             onWeather_city_idChanged: { updateWeather(true) }
+            onWidget_show_spacerChanged: { updateHeight() }
+            onWidget_show_timerChanged: { updateHeight() }
         }
 
     }
