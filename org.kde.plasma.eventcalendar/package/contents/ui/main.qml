@@ -98,6 +98,8 @@ Item {
         id: popup
         today: dataSource.data["Local"]["DateTime"]
         config: plasmoid.configuration
+        cfg_widget_show_spacer: plasmoid.configuration.widget_show_spacer
+        cfg_widget_show_timer: plasmoid.configuration.widget_show_timer
 
         property bool isExpanded: plasmoid.expanded
         onIsExpandedChanged: {

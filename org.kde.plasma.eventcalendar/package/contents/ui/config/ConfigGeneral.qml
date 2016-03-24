@@ -13,6 +13,8 @@ Item {
     implicitWidth: pageColumn.implicitWidth
     implicitHeight: pageColumn.implicitHeight
 
+    property alias cfg_widget_show_spacer: widget_show_spacer.checked
+    property alias cfg_widget_show_timer: widget_show_timer.checked
     property alias cfg_clock_24h: clock_24h.checked
     property alias cfg_clock_timeformat: clock_timeformat.text
     property alias cfg_clock_mousewheel_up: clock_mousewheel_up.text
@@ -38,6 +40,31 @@ Item {
 
         PlasmaExtras.Heading {
             level: 2
+            text: i18n("Widgets")
+            color: palette.text
+        }
+        Item {
+            width: height
+            height: units.gridUnit / 2
+        }
+        ColumnLayout {
+            Text {
+                text: "Show/Hide widgets above the calendar."
+            }
+            CheckBox {
+                Layout.fillWidth: true
+                id: widget_show_spacer
+                text: "Spacer"
+            }
+            CheckBox {
+                Layout.fillWidth: true
+                id: widget_show_timer
+                text: "Timer"
+            }
+        }
+
+        PlasmaExtras.Heading {
+            level: 2
             text: i18n("Clock")
             color: palette.text
         }
@@ -52,18 +79,13 @@ Item {
                 color: palette.text
             }
 
-            RowLayout {
+            CheckBox {
                 Layout.fillWidth: true
-                Label {
-                    text: i18n("24 hour clock:")
-                }
-                CheckBox {
-                    Layout.fillWidth: true
-                    id: clock_24h
+                id: clock_24h
+                text: i18n("24 hour clock")
 
-                    onClicked: {
-                        cfg_clock_timeformat = cfg_clock_24h ? timeFormat24hour : timeFormat12hour
-                    }
+                onClicked: {
+                    cfg_clock_timeformat = cfg_clock_24h ? timeFormat24hour : timeFormat12hour
                 }
             }
 

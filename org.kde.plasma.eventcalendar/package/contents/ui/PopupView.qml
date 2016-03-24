@@ -13,15 +13,25 @@ Item {
     id: popup
 
     width: leftColWidth + 10 + rightColWidth
-    height: topRowHeight + 10 + bottomRowHeight
+    height: bottomRowHeight
     property int topRowHeight: 100
     property int bottomRowHeight: 400
-    property int leftColWidth: 400
-    property int rightColWidth: 400
+    property int columnWidth: 400
+    property int leftColWidth: columnWidth
+    property int rightColWidth: columnWidth
+    function updateHeight() {
+        var rows = Math.ceil(widgetGrid.visibleChildren.length / widgetGrid.columns)
+        popup.height = rows * topRowHeight + (rows > 0 ? 10 : 0) + bottomRowHeight
+        widgetGrid.visible = rows > 0
+    }
 
     // Overload with config: plasmoid.configuration
     property variant config: { }
     property bool cfg_clock_24h: false
+    property bool cfg_widget_show_spacer: true
+    // property bool cfg_widget_show_meteogram: false
+    property bool cfg_widget_show_timer: true
+    
 
     property alias today: monthView.today
     property alias selectedDate: monthView.currentDate
@@ -48,75 +58,97 @@ Item {
         anchors.fill: parent
     }
 
-    Grid {
-        columns: 2
-        rows: 2
+    Column {
         spacing: 10
+        Grid {
+            id: widgetGrid
+            columns: 2
+            spacing: 10
 
-        Item {
-            width: leftColWidth
-            height: topRowHeight
+            Item {
+                id: spacerItem
+                visible: cfg_widget_show_spacer
+                width: columnWidth
+                height: topRowHeight
 
-            Rectangle {
-                color: PlasmaCore.ColorScope.backgroundColor
-                anchors.fill: parent
+                // Rectangle {
+                //     color: PlasmaCore.ColorScope.backgroundColor
+                //     anchors.fill: parent
+                // }
             }
-        }
-        Item {
-            width: rightColWidth
-            height: topRowHeight
+            // Item {
+            //     id: meteogramItem
+            //     visible: cfg_widget_show_meteogram
+            //     width: columnWidth
+            //     height: topRowHeight
 
-            TimerView {
-                id: timerView
-            }
-        }
+            //     ForecastGraph {
+            //         width: columnWidth
+            //         height: topRowHeight
+            //     }
+            // }
+            Item {
+                id: timerItem
+                visible: cfg_widget_show_timer
+                width: columnWidth
+                height: topRowHeight
 
-        Item {
-            width: leftColWidth
-            height: bottomRowHeight
-
-            AgendaView {
-                id: agendaView
-            }
-
-            PlasmaComponents.Button {
-                iconSource: 'view-refresh'
-                width: 26
-                anchors.bottom: parent.bottom
-                anchors.right: parent.right
-                onClicked: {
-                    updateEvents()
-                    updateWeather(true)
+                TimerView {
+                    id: timerView
                 }
             }
         }
-        Item {
-            width: rightColWidth
-            height: bottomRowHeight
-            
-            MonthView {
-                id: monthView
-                borderOpacity: 0.25
-                showWeekNumbers: false
-                width: popup.width / 2
-                height: popup.height * 4/5
-                today: new Date()
+        Grid {
+            columns: 2
+            spacing: 10
 
-                function parseGCalEvents(data) {
-                    if (!(data && data.items))
-                        return;
+            Item {
+                width: leftColWidth
+                height: bottomRowHeight
 
-                    // https://github.com/KDE/plasma-framework/blob/master/src/declarativeimports/calendar/daysmodel.h
-                    for (var j = 0; j < data.items.length; j++) {
-                        var eventItem = data.items[j];
-                        var month = eventItem.start.dateTime.getMonth();
-                        var date = eventItem.start.dateTime.getDate();
-                        for (var i = 0; i < monthView.daysModel2.count; i++) {
-                            var dayData = monthView.daysModel2.get(i);
-                            if (month+1 == dayData.monthNumber && date == dayData.dayNumber) {
-                                // console.log(dayData.monthNumber, dayData.dayNumber, eventItem.start.dateTime, eventItem.summary);
-                                monthView.daysModel2.setProperty(i, 'showEventBadge', true);
-                                break;
+                AgendaView {
+                    id: agendaView
+                }
+
+                PlasmaComponents.Button {
+                    iconSource: 'view-refresh'
+                    width: 26
+                    anchors.bottom: parent.bottom
+                    anchors.right: parent.right
+                    onClicked: {
+                        updateEvents()
+                        updateWeather(true)
+                    }
+                }
+            }
+            Item {
+                width: rightColWidth
+                height: bottomRowHeight
+                
+                MonthView {
+                    id: monthView
+                    borderOpacity: 0.25
+                    showWeekNumbers: false
+                    width: popup.width / 2
+                    height: popup.height * 4/5
+                    today: new Date()
+
+                    function parseGCalEvents(data) {
+                        if (!(data && data.items))
+                            return;
+
+                        // https://github.com/KDE/plasma-framework/blob/master/src/declarativeimports/calendar/daysmodel.h
+                        for (var j = 0; j < data.items.length; j++) {
+                            var eventItem = data.items[j];
+                            var month = eventItem.start.dateTime.getMonth();
+                            var date = eventItem.start.dateTime.getDate();
+                            for (var i = 0; i < monthView.daysModel2.count; i++) {
+                                var dayData = monthView.daysModel2.get(i);
+                                if (month+1 == dayData.monthNumber && date == dayData.dayNumber) {
+                                    // console.log(dayData.monthNumber, dayData.dayNumber, eventItem.start.dateTime, eventItem.summary);
+                                    monthView.daysModel2.setProperty(i, 'showEventBadge', true);
+                                    break;
+                                }
                             }
                         }
                     }
@@ -127,6 +159,7 @@ Item {
 
     Component.onCompleted: {
         delete eventsByCalendar[''] // Is there really no way to initialize an empty JSON object?
+        updateHeight()
         update();
     }
 
@@ -235,6 +268,7 @@ Item {
         agendaView.parseGCalEvents(eventsData);
         agendaView.parseWeatherForecast(weatherData);
         monthView.parseGCalEvents(eventsData);
+        updateHeight()
     }
 
     function onGCalError(err) {
