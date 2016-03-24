@@ -106,6 +106,7 @@ Item {
             console.log('isExpanded', isExpanded);
             if (isExpanded) {
                 monthViewDate = today
+                selectedDate = today
                 // update();
             }
         }
