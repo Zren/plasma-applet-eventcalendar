@@ -16,6 +16,9 @@
     <entry name="clock_24h" type="bool">
       <default>false</default>
     </entry>
+    <entry name="clock_show_seconds" type="bool">
+      <default>false</default>
+    </entry>
     <entry name="clock_timeformat" type="string">
       <default></default>
     </entry>

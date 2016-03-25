@@ -30,7 +30,7 @@ Item {
     Layout.minimumWidth: labels.width
     Layout.maximumWidth: labels.width
 
-    // property string timeFormat: "h:mm AP"
+    property string cfg_clock_timeformat: "h:mm AP"
     property bool cfg_clock_24h: false
     property variant timerView: null
     
@@ -107,7 +107,11 @@ Item {
             // anchors.horizontalCenter: clock.horizontalCenter
 
             text: {
-                return Qt.formatTime(dataSource.data["Local"]["DateTime"], clock.cfg_clock_24h ? "h:mm" : "h:mm AP");
+                if (clock.cfg_clock_timeformat) {
+                    return Qt.formatDateTime(dataSource.data["Local"]["DateTime"], clock.cfg_clock_timeformat);
+                } else {
+                    return Qt.formatTime(dataSource.data["Local"]["DateTime"], clock.cfg_clock_24h ? "h:mm" : "h:mm AP");
+                }
             }
         }
     }
