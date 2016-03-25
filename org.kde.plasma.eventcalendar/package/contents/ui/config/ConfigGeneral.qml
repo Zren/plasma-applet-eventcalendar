@@ -64,6 +64,11 @@ Item {
             }
         }
 
+        
+        Item {
+            width: height
+            height: units.gridUnit / 2
+        }
         PlasmaExtras.Heading {
             level: 2
             text: i18n("Clock")
