@@ -1,11 +1,12 @@
 import QtQuick 2.0
 import QtQuick.Controls 1.1
-import QtQuick.Controls.Styles 1.1
+import QtQuick.Controls.Styles.Plasma 2.0 as Styles
 import QtQuick.Layouts 1.1
 import org.kde.plasma.core 2.0 as PlasmaCore
 import org.kde.plasma.calendar 2.0 as PlasmaCalendar
 import org.kde.plasma.components 2.0 as PlasmaComponents
 import org.kde.plasma.extras 2.0 as PlasmaExtras
+
 
 Item {
     id: timerView
@@ -13,6 +14,7 @@ Item {
     property int timerSeconds: 0
     property int timerDuration: 0
     property alias isRepeatingTimer: timerRepeat.checked
+    property int defaultTimerWidth: 48
 
     width: 400
     height: 100
@@ -38,8 +40,22 @@ Item {
             }
 
             PlasmaComponents.Button {
-                text: timerTicker.running ? "Stop" : "Start"
+                iconSource: timerTicker.running ? 'media-playback-pause' : 'media-playback-start'
                 width: 60
+                style: Styles.ButtonStyle {
+                    label: PlasmaCore.IconItem {
+                        id: icon
+                        source: control.iconName || control.iconSource
+                        anchors.verticalCenter: parent.verticalCenter
+                        Layout.minimumWidth: valid ? units.iconSizes.tiny : 0
+                        Layout.preferredWidth: valid ? units.iconSizes.small : 0
+                        visible: valid
+                        Layout.minimumHeight: Layout.minimumWidth
+                        Layout.preferredHeight: Layout.preferredWidth
+                        active: control.hovered
+                        colorGroup: PlasmaCore.Theme.ButtonColorGroup
+                    }
+                }
                 height: parent.height
                 enabled: timerSeconds > 0
                 onClicked: {
@@ -65,46 +81,46 @@ Item {
         }
 
         Row {
-            spacing: 10
+            spacing: 2
 
             PlasmaComponents.Button {
                 text: "30s"
-                width: 40
+                width: defaultTimerWidth
                 onClicked: setDurationAndStart(30)
             }
             PlasmaComponents.Button {
                 text: "1m"
-                width: 40
+                width: defaultTimerWidth
                 onClicked: setDurationAndStart(60)
             }
             PlasmaComponents.Button {
                 text: "5m"
-                width: 40
+                width: defaultTimerWidth
                 onClicked: setDurationAndStart(5 * 60)
             }
             PlasmaComponents.Button {
                 text: "10m"
-                width: 40
+                width: defaultTimerWidth
                 onClicked: setDurationAndStart(10 * 60)
             }
             PlasmaComponents.Button {
                 text: "15m"
-                width: 40
+                width: defaultTimerWidth
                 onClicked: setDurationAndStart(15 * 60)
             }
             PlasmaComponents.Button {
                 text: "30m"
-                width: 40
+                width: defaultTimerWidth
                 onClicked: setDurationAndStart(30 * 60)
             }
             PlasmaComponents.Button {
                 text: "45m"
-                width: 40
+                width: defaultTimerWidth
                 onClicked: setDurationAndStart(45 * 60)
             }
             PlasmaComponents.Button {
                 text: "1h"
-                width: 40
+                width: defaultTimerWidth
                 onClicked: setDurationAndStart(60 * 60)
             }
         }
@@ -157,6 +173,9 @@ Item {
         var seconds = nSeconds - hours*3600 - minutes*60;
         var s = "" + (seconds < 10 ? "0" : "") + seconds;
         s = minutes + ":" + s
+        if (hours > 0) {
+            s = hours + ":" + (minutes < 10 ? "0" : "") + s
+        }
         return s
     }
 
