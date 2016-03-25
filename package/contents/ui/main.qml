@@ -24,8 +24,8 @@ Item {
         id: dataSource
         engine: "time"
         connectedSources: ["Local"]
-        interval: 60000
-        intervalAlignment: PlasmaCore.Types.AlignToMinute
+        interval: plasmoid.configuration.clock_show_seconds ? 1000 : 60000
+        intervalAlignment: plasmoid.configuration.clock_show_seconds ? PlasmaCore.Types.NoAlignment : PlasmaCore.Types.AlignToMinute
     }
     
     FontLoader {
@@ -53,12 +53,7 @@ Item {
         id: clock
 
         cfg_clock_24h: plasmoid.configuration.clock_24h
-
-        Connections {
-            target: plasmoid.configuration
-            // onClock_24hChanged: { timeFormat = plasmoid.configuration.clock_24h ? 'h:mm' : 'h:mm AP' }
-            // onClock_timeformatChanged: { timeFormat = plasmoid.configuration.timeformat }
-        }
+        cfg_clock_timeformat: plasmoid.configuration.clock_timeformat
 
         // org.kde.plasma.volume
         MouseArea {

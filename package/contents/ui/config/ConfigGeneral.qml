@@ -16,6 +16,7 @@ Item {
     property alias cfg_widget_show_spacer: widget_show_spacer.checked
     property alias cfg_widget_show_timer: widget_show_timer.checked
     property alias cfg_clock_24h: clock_24h.checked
+    property alias cfg_clock_show_seconds: clock_show_seconds.checked
     property alias cfg_clock_timeformat: clock_timeformat.text
     property alias cfg_clock_mousewheel_up: clock_mousewheel_up.text
     property alias cfg_clock_mousewheel_down: clock_mousewheel_down.text
@@ -88,9 +89,14 @@ Item {
                     cfg_clock_timeformat = cfg_clock_24h ? timeFormat24hour : timeFormat12hour
                 }
             }
+            CheckBox {
+                visible: showDebug
+                Layout.fillWidth: true
+                id: clock_show_seconds
+                text: i18n("Show Seconds")
+            }
 
             Text {
-                visible: showDebug
                 text: '<a href="http://doc.qt.io/qt-5/qml-qtqml-qt.html#formatDateTime-method">Time Format Documentation</a>'
                 color: "#8a6d3b"
                 linkColor: "#369"
@@ -102,31 +108,6 @@ Item {
                 }
             }
             RowLayout {
-                visible: showDebug
-                Button {
-                    text: '24 Hour Clock'
-                    onClicked: {
-                        clock_timeformat.text = timeFormat24hour
-                    }
-                }
-                Label {
-                    text: Qt.formatDateTime(new Date(), timeFormat24hour);
-                }
-            }
-            RowLayout {
-                visible: showDebug
-                Button {
-                    text: '12 Hour Clock'
-                    onClicked: {
-                        clock_timeformat.text = timeFormat12hour
-                    }
-                }
-                Label {
-                    text: Qt.formatDateTime(new Date(), timeFormat12hour);
-                }
-            }
-            RowLayout {
-                visible: showDebug
                 Layout.fillWidth: true
                 Label {
                     text: i18n("Line 1:")
@@ -138,7 +119,12 @@ Item {
                     onTextChanged: {
                         var is12hour = text.toLowerCase().indexOf('ap') >= 0;
                         cfg_clock_24h = !is12hour;
+                        cfg_clock_show_seconds = text.indexOf('s') >= 0
+
                     }
+                }
+                Label {
+                    text: Qt.formatDateTime(new Date(), cfg_clock_timeformat)
                 }
             }
 
