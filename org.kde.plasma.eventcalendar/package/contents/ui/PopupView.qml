@@ -328,9 +328,18 @@ Item {
             agendaView.clipPastEvents = false;
         }
 
+        var calendarList = config && config.calendar_list ? JSON.parse(Qt.atob(config.calendar_list)) : [];
 
         eventsData = { items: [] }
         for (var calendarId in eventsByCalendar) {
+            calendarList.forEach(function(calendar){
+                if (calendarId == calendar.id) {
+                    eventsByCalendar[calendarId].items.forEach(function(event){
+                        event.backgroundColor = event.backgroundColor || calendar.backgroundColor;
+                    });
+                }
+            });
+
             eventsData.items = eventsData.items.concat(eventsByCalendar[calendarId].items);
             console.log('updateUI', calendarId, eventsByCalendar[calendarId].items.length, eventsData.items.length);
         }

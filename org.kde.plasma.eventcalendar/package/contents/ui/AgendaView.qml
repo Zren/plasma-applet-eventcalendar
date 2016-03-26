@@ -211,6 +211,15 @@ Item {
                             height: eventColumn.height
                             color: mouseArea.containsMouse ? theme.buttonBackgroundColor : "none"
 
+                            Rectangle {
+                                anchors.left: parent.left
+                                anchors.top: parent.top
+                                anchors.bottom: parent.bottom
+                                anchors.leftMargin: -3 - width
+                                width: 2
+                                color: backgroundColor
+                            }
+
                             ColumnLayout {
                                 id: eventColumn
                                 // Layout.fillWidth: true
@@ -513,7 +522,10 @@ Item {
                         "sequence": 0,
                         "reminders": {
                             "useDefault": false
-                        }
+                        },
+
+                        // Optional
+                        "backgroundColor": "#9a9cff" // We apply the calendar.backgroundColor
                     },
                 ] 
             };
