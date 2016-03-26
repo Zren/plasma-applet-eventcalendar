@@ -53,6 +53,7 @@ PinchArea {
 
     property alias cellHeight: mainDaysCalendar.cellHeight
     // property QtObject daysModel: calendarBackend.daysModel
+    property alias daysModel : daysModel
 
     signal dayDoubleClicked(variant dayData)
 
