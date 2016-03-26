@@ -53,7 +53,8 @@ PinchArea {
 
     property alias cellHeight: mainDaysCalendar.cellHeight
     // property QtObject daysModel: calendarBackend.daysModel
-    property alias daysModel2: daysModel2
+
+    signal dayDoubleClicked(variant dayData)
 
     property QtObject calendarBackend: calendarBackend
 
@@ -114,7 +115,7 @@ PinchArea {
         // console.log('displayedDate', date);
         // console.log(day, month+1, year);
 
-        daysModel2.clear();
+        daysModel.clear();
         var totalDays = calendarBackend.days * calendarBackend.weeks;
         var daysBeforeCurrentMonth = 0;
         var daysAfterCurrentMonth = 0;
@@ -144,7 +145,7 @@ PinchArea {
                 dayData.monthNumber = previousMonth.getMonth() + 1;
                 dayData.yearNumber = previousMonth.getFullYear();
                 dayData.showEventBadge = false;
-                daysModel2.append(dayData);
+                daysModel.append(dayData);
             }
         }
 
@@ -155,7 +156,7 @@ PinchArea {
             dayData.monthNumber = month + 1;
             dayData.yearNumber = year;
             dayData.showEventBadge = false;
-            daysModel2.append(dayData);
+            daysModel.append(dayData);
         }
 
         if (daysAfterCurrentMonth > 0) {
@@ -167,7 +168,7 @@ PinchArea {
                 dayData.monthNumber = nextMonth.getMonth() + 1;
                 dayData.yearNumber = nextMonth.getFullYear();
                 dayData.showEventBadge = false;
-                daysModel2.append(dayData);
+                daysModel.append(dayData);
             }
         }
     }
@@ -222,7 +223,7 @@ PinchArea {
     }
 
     ListModel {
-        id: daysModel2
+        id: daysModel
 
         Component.onCompleted: {
             updateMonthOverview()
@@ -230,12 +231,12 @@ PinchArea {
     }
 
     function firstDisplayedDate() {
-        var day = daysModel2.get(0);
+        var day = daysModel.get(0);
         return new Date(day.yearNumber, day.monthNumber-1, day.dayNumber);
     }
 
     function lastDisplayedDate() {
-        var day = daysModel2.get(daysModel2.count - 1);
+        var day = daysModel.get(daysModel.count - 1);
         return new Date(day.yearNumber, day.monthNumber-1, day.dayNumber);
     }
 
@@ -332,7 +333,7 @@ PinchArea {
 
             headerModel: calendarBackend.days
             // gridModel: calendarBackend.daysModel
-            gridModel: daysModel2
+            gridModel: daysModel
 
             dateMatchingPrecision: Calendar.MatchYearMonthAndDay
 
@@ -351,21 +352,8 @@ PinchArea {
                 root.currentDate = new Date(date.yearNumber, date.monthNumber - 1, date.dayNumber)
             }
             onDoubleClicked: {
-                console.log('onDoubleClickd', date);
-                
-                function dateString(year, month, day) {
-                    var s = '' + year;
-                    s += (month < 10 ? '0' : '') + month;
-                    s += (day < 10 ? '0' : '') + day;
-                    return s;
-                }
-
-                var url = 'https://calendar.google.com/calendar/render?action=TEMPLATE'
-                var startDate = dateString(date.yearNumber, date.monthNumber, date.dayNumber)
-                var endDate = new Date(date.yearNumber, date.monthNumber - 1, date.dayNumber + 1);
-                endDate = dateString(endDate.getFullYear(), endDate.getMonth() + 1, endDate.getDate())
-                url += '&dates=' + startDate + '/' + endDate
-                Qt.openUrlExternally(url)
+                console.log('MonthView.onDoubleClicked', date);
+                root.dayDoubleClicked(date)
             }
         }
     }

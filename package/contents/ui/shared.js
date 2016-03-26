@@ -1,59 +1,18 @@
 .import "utils.js" as Utils
 
-var googleAuthToken = '';
-var openweathermapCityId = '';
-var openweathermapAppId = '';
-
-
-function fetchGCalEvents(callback) {
-    var url = 'https://www.googleapis.com/calendar/v3';
-    url += '/calendars/primary/events';
-    url += '?timeMin=' + encodeURIComponent('2016-03-01T0:00:00-00:00');
-    url += '&timeMax=' + encodeURIComponent('2016-04-01T0:00:00-00:00');
-    url += '&singleEvents=' + encodeURIComponent('true');
-    url += '&timeZone=' + encodeURIComponent('Etc/UTC');
-    Utils.getJSON({
-        url: url,
-        headers: {
-            "Authorization": "Bearer " + googleAuthToken,
-        }
-    }, function(err, data, xhr) {
-        if (!err && data && data.error) {
-            return callback(data, null, xhr);
-        }
-        callback(err, data, xhr);
-    });
-}
-
-function getDemoGCalEvents(callback) {
-    Utils.getJSON('data/demoEvents.json', callback);
-}
-
-function getGCalEvents(callback) {
-    // return getDemoGCalEvents(callback);
-    if (!googleAuthToken) {
-        return callback('googleAuthToken not set');
+function openGoogleCalendarNewEventUrl(date) {
+    function dateString(year, month, day) {
+        var s = '' + year;
+        s += (month < 10 ? '0' : '') + month;
+        s += (day < 10 ? '0' : '') + day;
+        return s;
     }
-    fetchGCalEvents(callback);
-}
 
-function fetchWeatherForecast(callback) {
-    if (!openweathermapAppId) return callback('openweathermapAppId not set');
-    if (!openweathermapCityId) return callback('openweathermapCityId not set');
-    
-    var url = 'http://api.openweathermap.org/data/2.5/';
-    url += 'forecast/daily?id=' + openweathermapCityId;
-    url += '&units=metric';
-    url += '&appid=' + openweathermapAppId;
-    Utils.getJSON(url, callback);
-}
+    var nextDay = new Date(date.getFullYear(), date.getMonth(), date.getDate() + 1)
 
-function getWeatherForecast(callback) {
-    // return Utils.getJSON('data/demoWeatherForecast.json', callback);
-    if (!openweathermapAppId) {
-        return callback('openweathermapAppId not set');
-    } else if (!openweathermapCityId) {
-        return callback('openweathermapCityId not set');
-    }
-    fetchWeatherForecast(callback);
+    var url = 'https://calendar.google.com/calendar/render?action=TEMPLATE'
+    var startDate = dateString(date.getFullYear(), date.getMonth() + 1, date.getDate())
+    var endDate = dateString(nextDay.getFullYear(), nextDay.getMonth() + 1, nextDay.getDate())
+    url += '&dates=' + startDate + '/' + endDate
+    Qt.openUrlExternally(url)
 }

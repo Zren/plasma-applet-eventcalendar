@@ -7,6 +7,21 @@ ConfigModel {
         icon: "preferences-desktop-color"
         source: "config/ConfigGeneral.qml"
     }
+    // ConfigCategory {
+    //     name: i18n("Clock")
+    //     icon: "clock"
+    //     source: "config/ConfigClock.qml"
+    // }
+    ConfigCategory {
+        name: i18n("Calendar")
+        icon: "view-calendar"
+        source: "config/ConfigCalendar.qml"
+    }
+    ConfigCategory {
+        name: i18n("Agenda")
+        icon: "view-calendar-agenda"
+        source: "config/ConfigAgenda.qml"
+    }
     ConfigCategory {
         name: i18n("Google Calendar")
         icon: "google-chrome"

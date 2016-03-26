@@ -8,6 +8,7 @@ import org.kde.plasma.components 2.0 as PlasmaComponents
 import org.kde.plasma.extras 2.0 as PlasmaExtras
 
 import "utils.js" as Utils
+import "shared.js" as Shared
 
 Item {
     id: popup
@@ -162,15 +163,25 @@ Item {
                             var eventItem = data.items[j];
                             var month = eventItem.start.dateTime.getMonth();
                             var date = eventItem.start.dateTime.getDate();
-                            for (var i = 0; i < monthView.daysModel2.count; i++) {
-                                var dayData = monthView.daysModel2.get(i);
+                            for (var i = 0; i < monthView.daysModel.count; i++) {
+                                var dayData = monthView.daysModel.get(i);
                                 if (month+1 == dayData.monthNumber && date == dayData.dayNumber) {
                                     // console.log(dayData.monthNumber, dayData.dayNumber, eventItem.start.dateTime, eventItem.summary);
-                                    monthView.daysModel2.setProperty(i, 'showEventBadge', true);
+                                    monthView.daysModel.setProperty(i, 'showEventBadge', true);
                                     break;
                                 }
                             }
                         }
+                    }
+
+                    onDayDoubleClicked: {
+                        var date = new Date(dayData.yearNumber, dayData.monthNumber-1, dayData.dayNumber);
+                        console.log('Popup.monthView.onDoubleClicked', date);
+                        if (true) {
+                            // cfg_month_day_doubleclick == "browser_newevent"
+                            Shared.openGoogleCalendarNewEventUrl(date);
+                        }
+                        
                     }
                 }
             }
