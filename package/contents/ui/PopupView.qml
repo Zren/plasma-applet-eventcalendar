@@ -135,7 +135,7 @@ Item {
                         if (config && config.access_token) {
                             var calendarIdList = plasmoid.configuration.calendar_id_list ? plasmoid.configuration.calendar_id_list.split(',') : ['primary'];
                             var calendarList = plasmoid.configuration.calendar_list ? JSON.parse(Qt.atob(plasmoid.configuration.calendar_list)) : [];
-                            console.log('calendarList', JSON.stringify(calendarList, null, '\t'))
+                            // console.log('calendarList', JSON.stringify(calendarList, null, '\t'))
                             var list = []
                             calendarList.forEach(function(calendar){
                                 if (calendar.accessRole == 'owner') {
