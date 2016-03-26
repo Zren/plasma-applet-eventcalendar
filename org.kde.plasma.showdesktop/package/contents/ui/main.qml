@@ -18,6 +18,9 @@
 
 import QtQuick 2.1
 import QtQuick.Layouts 1.1
+import QtQuick.Controls.Styles 1.1 as QtQuickControlStyle
+import QtQuick.Controls.Private 1.0 as QtQuickControlsPrivate
+import QtQuick.Controls.Styles.Plasma 2.0 as Styles
 
 import org.kde.plasma.plasmoid 2.0
 import org.kde.plasma.core 2.0 as PlasmaCore
@@ -41,57 +44,125 @@ Item {
     Plasmoid.preferredRepresentation: Plasmoid.fullRepresentation
     Plasmoid.onActivated: showdesktop.showDesktop();
 
-    Rectangle {
-        id:icon
-        // source: plasmoid.configuration.icon
-        // active: mouseArea.containsMouse
-        color: mouseArea.containsMouse ? theme.buttonHoverColor : theme.buttonBackgroundColor
-        // anchors.fill: parent
-        y: -3
-        x: 0
-        width: plasmoid.width+5
-        height: plasmoid.height+3+5
-    }
     ShowDesktop {
         id: showdesktop
     }
 
-    PlasmaCore.ToolTipArea {
-        anchors.fill: parent
-        mainText : i18n("Show Desktop")
-        subText : i18n("Show the Plasma desktop")
-        icon : plasmoid.configuration.icon
+    Rectangle {
+        y: -4
+        x: 0
+        width: plasmoid.width+5
+        height: plasmoid.height+3+5
+        color: "transparent"
 
-        MouseArea {
-            id: mouseArea
+        Item {
             anchors.fill: parent
-            hoverEnabled: true
-            onClicked: showdesktop.showDesktop();
 
+            Rectangle {
+                id: surfaceNormal
+                anchors.fill: parent
+                anchors.topMargin: 1
+                color: "transparent"
+                border.color: theme.buttonBackgroundColor
+            }
 
-            // org.kde.plasma.volume
-            property int wheelDelta: 0
+            Rectangle {
+                id: surfaceHovered
+                anchors.fill: parent
+                anchors.topMargin: 1
+                color: theme.buttonBackgroundColor
+                opacity: 0
+            }
 
-            // http://dev.man-online.org/man1/xdotool/
-            // xmodmap -pke
-            // keycode 122 = XF86AudioLowerVolume NoSymbol XF86AudioLowerVolume
-            // keycode 123 = XF86AudioRaiseVolume NoSymbol XF86AudioRaiseVolume
-            onWheel: {
-                var delta = wheel.angleDelta.y || wheel.angleDelta.x;
-                wheelDelta += delta;
-                // Magic number 120 for common "one click"
-                // See: http://qt-project.org/doc/qt-5/qml-qtquick-wheelevent.html#angleDelta-prop
-                while (wheelDelta >= 120) {
-                    wheelDelta -= 120;
-                    root.exec(plasmoid.configuration.mousewheel_up)
+            Rectangle {
+                id: surfacePressed
+                anchors.fill: parent
+                color: theme.buttonHoverColor
+                opacity: 0
+            }
+
+            state: {
+                if (control.containsPress) return "pressed"
+                if (control.containsMouse) return "hovered"
+                return "normal"
+            }
+
+            states: [
+                State { name: "normal" },
+                State { name: "hovered"
+                    PropertyChanges {
+                        target: surfaceHovered
+                        opacity: 1
+                    }
+                },
+                State { name: "pressed"
+                    PropertyChanges {
+                        target: surfacePressed
+                        opacity: 1
+                    }
                 }
-                while (wheelDelta <= -120) {
-                    wheelDelta += 120;
-                    root.exec(plasmoid.configuration.mousewheel_down)
+            ]
+    
+            transitions: [
+                Transition {
+                    to: "normal"
+                    //Cross fade from pressed to normal
+                    ParallelAnimation {
+                        NumberAnimation { target: surfaceHovered; property: "opacity"; to: 0; duration: 100 }
+                        NumberAnimation { target: surfacePressed; property: "opacity"; to: 0; duration: 100 }
+                    }
+                }
+            ]
+
+            MouseArea {
+                id: control
+                anchors.fill: parent
+                hoverEnabled: true
+                onClicked: showdesktop.showDesktop();
+
+
+                // org.kde.plasma.volume
+                property int wheelDelta: 0
+
+                // http://dev.man-online.org/man1/xdotool/
+                // xmodmap -pke
+                // keycode 122 = XF86AudioLowerVolume NoSymbol XF86AudioLowerVolume
+                // keycode 123 = XF86AudioRaiseVolume NoSymbol XF86AudioRaiseVolume
+                onWheel: {
+                    var delta = wheel.angleDelta.y || wheel.angleDelta.x;
+                    wheelDelta += delta;
+                    // Magic number 120 for common "one click"
+                    // See: http://qt-project.org/doc/qt-5/qml-qtquick-wheelevent.html#angleDelta-prop
+                    while (wheelDelta >= 120) {
+                        wheelDelta -= 120;
+                        root.exec(plasmoid.configuration.mousewheel_up)
+                    }
+                    while (wheelDelta <= -120) {
+                        wheelDelta += 120;
+                        root.exec(plasmoid.configuration.mousewheel_down)
+                    }
                 }
             }
         }
+
+        // PlasmaComponents.Button {
+        //     anchors.fill: parent
+        //     // anchors.left: parent.left
+        //     // anchors.top: parent.top + 3
+        //     // anchors.right: parent.right + 5
+        //     // anchors.bottom: parent.bottom + 5
+        //     // width: parent.width
+        //     // height: parent.height
+        //     onClicked: showdesktop.showDesktop()
+        // }
     }
+
+    // PlasmaCore.ToolTipArea {
+    //     anchors.fill: parent
+    //     mainText : i18n("Show Desktop")
+    //     subText : i18n("Show the Plasma desktop")
+    //     icon : plasmoid.configuration.icon
+    // }
 
     // org.kde.plasma.mediacontrollercompact
     PlasmaCore.DataSource {
