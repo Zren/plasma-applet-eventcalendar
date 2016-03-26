@@ -7,6 +7,7 @@ import org.kde.plasma.calendar 2.0 as PlasmaCalendar
 import org.kde.plasma.components 2.0 as PlasmaComponents
 import org.kde.plasma.extras 2.0 as PlasmaExtras
 
+import "shared.js" as Shared
 
 Item {
     id: agendaView
@@ -92,95 +93,136 @@ Item {
                     horizontalAlignment: Text.AlignHCenter
                 }
             }
-            Column {
-                id: itemDateColumn
-                width: 50
+            Rectangle {
+                width: itemDateColumn.width
+                height: itemDateColumn.height
+                color: mouseArea.containsMouse ? theme.buttonBackgroundColor : "none"
                 Layout.alignment: Qt.AlignTop
 
-                Text {
-                    id: itemDate
-                    text: Qt.formatDateTime(date, "MMM d")
-                    color: PlasmaCore.ColorScope.textColor
-                    opacity: 0.75
-                    anchors {
-                        left: parent.left
-                        right: parent.right
-                    }
-                    horizontalAlignment: Text.AlignRight
+                Column {
+                    id: itemDateColumn
+                    width: 50
 
-                    // MouseArea {
-                    //     anchors.fill: itemDateColumn
-                    //     onClicked: {
-                    //         newEventInput.forceActiveFocus()
-                    //     }
-                    // }
+                    Text {
+                        id: itemDate
+                        text: Qt.formatDateTime(date, "MMM d")
+                        color: PlasmaCore.ColorScope.textColor
+                        opacity: 0.75
+                        anchors {
+                            left: parent.left
+                            right: parent.right
+                        }
+                        horizontalAlignment: Text.AlignRight
+
+                        // MouseArea {
+                        //     anchors.fill: itemDateColumn
+                        //     onClicked: {
+                        //         newEventInput.forceActiveFocus()
+                        //     }
+                        // }
+                    }
+
+                    Text {
+                        id: itemDay
+                        text: Qt.formatDateTime(date, "ddd")
+                        color: PlasmaCore.ColorScope.textColor
+                        opacity: 0.5
+                        anchors {
+                            left: parent.left
+                            right: parent.right
+                        }
+                        horizontalAlignment: Text.AlignRight
+                    }
                 }
 
-                Text {
-                    id: itemDay
-                    text: Qt.formatDateTime(date, "ddd")
-                    color: PlasmaCore.ColorScope.textColor
-                    opacity: 0.5
-                    anchors {
-                        left: parent.left
-                        right: parent.right
+                MouseArea {
+                    id: mouseArea
+                    anchors.fill: itemDateColumn
+                    hoverEnabled: true
+                    cursorShape: containsMouse ? Qt.PointingHandCursor : Qt.ArrowCursor
+                    onClicked: {
+                        console.log('agendaItem.date.clicked', date)
+                        if (true) {
+                            // cfg_agenda_date_clicked == "browser_newevent"
+                            Shared.openGoogleCalendarNewEventUrl(date);
+                        }
                     }
-                    horizontalAlignment: Text.AlignRight
                 }
             }
 
             Column {
                 Layout.alignment: Qt.AlignTop | Qt.AlignLeft
                 Layout.fillWidth: true
+                spacing: 10
 
                 Repeater {
                     model: events
 
-                    delegate: Column {
-                        id: eventColumn
+                    delegate: Rectangle {
+                        width: eventColumn.width
+                        height: eventColumn.height
+                        color: mouseArea.containsMouse ? theme.buttonBackgroundColor : "none"
 
-                        Text {
-                            id: eventSummary
-                            text: summary
-                            color: PlasmaCore.ColorScope.textColor
-                        }
+                        Column {
+                            id: eventColumn
 
-                        Text {
-                            id: eventDateTime
-                            text: {
-                                if (start.date) {
-                                    return "All Day"
-                                } else {
-                                    var s = formatEventTime(start.dateTime);
-                                    if (start.dateTime.valueOf() != end.dateTime.valueOf()) {
-                                        s += " - ";
-                                        if (!(start.dateTime.getFullYear() == end.dateTime.getFullYear() && start.dateTime.getMonth() == end.dateTime.getMonth() && start.dateTime.getDate() == end.dateTime.getDate())) {
-                                            s += Qt.formatDateTime(end.dateTime, "MMM d") + ", ";
+                            Text {
+                                id: eventSummary
+                                text: summary
+                                color: PlasmaCore.ColorScope.textColor
+                            }
+
+                            Text {
+                                id: eventDateTime
+                                text: {
+                                    if (start.date) {
+                                        return "All Day"
+                                    } else {
+                                        var s = formatEventTime(start.dateTime);
+                                        if (start.dateTime.valueOf() != end.dateTime.valueOf()) {
+                                            s += " - ";
+                                            if (!(start.dateTime.getFullYear() == end.dateTime.getFullYear() && start.dateTime.getMonth() == end.dateTime.getMonth() && start.dateTime.getDate() == end.dateTime.getDate())) {
+                                                s += Qt.formatDateTime(end.dateTime, "MMM d") + ", ";
+                                            }
+                                            s += formatEventTime(end.dateTime);
                                         }
-                                        s += formatEventTime(end.dateTime);
+                                        return s;
                                     }
-                                    return s;
                                 }
-                            }
-                            color: PlasmaCore.ColorScope.textColor
-                            opacity: 0.75
+                                color: PlasmaCore.ColorScope.textColor
+                                opacity: 0.75
 
-                            function formatEventTime(dateTime) {
-                                var timeFormat = "h"
-                                if (dateTime.getMinutes() != 0) {
-                                    timeFormat += ":mm"
+                                function formatEventTime(dateTime) {
+                                    var timeFormat = "h"
+                                    if (dateTime.getMinutes() != 0) {
+                                        timeFormat += ":mm"
+                                    }
+                                    if (!cfg_clock_24h) {
+                                        timeFormat += " AP"
+                                    }
+                                    return Qt.formatDateTime(dateTime, timeFormat)
                                 }
-                                if (!cfg_clock_24h) {
-                                    timeFormat += " AP"
-                                }
-                                return Qt.formatDateTime(dateTime, timeFormat)
                             }
+
+                            // Spacer
+                            // Item {
+                            //     width: parent.width
+                            //     height: 10
+                            // }
                         }
 
-                        // Spacer
-                        Item {
-                            width: parent.width
-                            height: 10
+                        MouseArea {
+                            id: mouseArea
+                            anchors.fill: eventColumn
+                            hoverEnabled: true
+                            cursorShape: containsMouse ? Qt.PointingHandCursor : Qt.ArrowCursor
+                            onClicked: {
+                                console.log('agendaItem.event.clicked', start.date)
+                                if (true) {
+                                    // cfg_agenda_event_clicked == "browser_viewevent"
+                                    Qt.openUrlExternally(htmlLink)
+                                }
+                            }
                         }
                     }
                 }
@@ -397,5 +439,41 @@ Item {
     Component.onCompleted: {
         parseGCalEvents({ "items": [], });
         parseWeatherForecast({ "list": [], });
+
+        if (typeof main === 'undefined') {
+            clipPastEvents = false
+            var debugData = {
+                "items": [
+                    {
+                        "kind": "calendar#event",
+                        "etag": "\"2561779720126000\"",
+                        "id": "a1a1a1a1a1a1a1a1a1a1a1a1a1_20160325",
+                        "status": "confirmed",
+                        "htmlLink": "https://www.google.com/calendar/event?eid=aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa&ctz=Etc/UTC",
+                        "created": "2008-03-24T22:34:26.000Z",
+                        "updated": "2010-08-04T02:44:20.063Z",
+                        "summary": "Dude's Birthday",
+                        "start": {
+                            "date": "2016-03-25"
+                        },
+                        "end": {
+                            "date": "2016-03-26"
+                        },
+                        "recurringEventId": "a1a1a1a1a1a1a1a1a1a1a1a1a1",
+                        "originalStartTime": {
+                            "date": "2016-03-25"
+                        },
+                        "transparency": "transparent",
+                        "iCalUID": "a1a1a1a1a1a1a1a1a1a1a1a1a1@google.com",
+                        "sequence": 0,
+                        "reminders": {
+                            "useDefault": false
+                        }
+                    },
+                ] 
+            };
+            debugData.items.push(debugData.items[0]);
+            parseGCalEvents(debugData);
+        }
     }
 }
