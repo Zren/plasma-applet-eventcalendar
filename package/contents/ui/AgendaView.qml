@@ -21,6 +21,8 @@ Item {
     property bool clipPastEventsToday: false
     property bool cfg_clock_24h: false
 
+    signal newEventFormOpened(variant agendaItem, variant newEventCalendarId)
+    signal submitNewEventForm(variant calendarId, variant date, string text)
 
     ListModel {
         id: agendaModel
@@ -50,6 +52,8 @@ Item {
 
         delegate: RowLayout {
             Layout.fillWidth: true
+            anchors.left: parent.left
+            anchors.right: parent.right
             spacing: 10
 
             Column {
@@ -142,90 +146,130 @@ Item {
                     cursorShape: containsMouse ? Qt.PointingHandCursor : Qt.ArrowCursor
                     onClicked: {
                         console.log('agendaItem.date.clicked', date)
-                        if (true) {
+                        if (false) {
                             // cfg_agenda_date_clicked == "browser_newevent"
                             Shared.openGoogleCalendarNewEventUrl(date);
+                        } else if (true) {
+                            // cfg_agenda_date_clicked == "agenda_newevent"
+                            newEventForm.visible = !newEventForm.visible
                         }
                     }
                 }
             }
 
-            Column {
+            ColumnLayout {
                 Layout.alignment: Qt.AlignTop | Qt.AlignLeft
-                Layout.fillWidth: true
-                spacing: 10
+                spacing: 0
+                Item {
+                    Layout.fillWidth: true
+                }
 
-                Repeater {
-                    model: events
 
-                    delegate: Rectangle {
-                        width: eventColumn.width
-                        height: eventColumn.height
-                        color: mouseArea.containsMouse ? theme.buttonBackgroundColor : "none"
-
-                        Column {
-                            id: eventColumn
-
-                            Text {
-                                id: eventSummary
-                                text: summary
-                                color: PlasmaCore.ColorScope.textColor
-                            }
-
-                            Text {
-                                id: eventDateTime
-                                text: {
-                                    if (start.date) {
-                                        return "All Day"
-                                    } else {
-                                        var s = formatEventTime(start.dateTime);
-                                        if (start.dateTime.valueOf() != end.dateTime.valueOf()) {
-                                            s += " - ";
-                                            if (!(start.dateTime.getFullYear() == end.dateTime.getFullYear() && start.dateTime.getMonth() == end.dateTime.getMonth() && start.dateTime.getDate() == end.dateTime.getDate())) {
-                                                s += Qt.formatDateTime(end.dateTime, "MMM d") + ", ";
-                                            }
-                                            s += formatEventTime(end.dateTime);
-                                        }
-                                        return s;
-                                    }
-                                }
-                                color: PlasmaCore.ColorScope.textColor
-                                opacity: 0.75
-
-                                function formatEventTime(dateTime) {
-                                    var timeFormat = "h"
-                                    if (dateTime.getMinutes() != 0) {
-                                        timeFormat += ":mm"
-                                    }
-                                    if (!cfg_clock_24h) {
-                                        timeFormat += " AP"
-                                    }
-                                    return Qt.formatDateTime(dateTime, timeFormat)
-                                }
-                            }
-
-                            // Spacer
-                            // Item {
-                            //     width: parent.width
-                            //     height: 10
-                            // }
+                ColumnLayout {
+                    id: newEventForm
+                    visible: false
+                    onVisibleChanged: {
+                        if (visible) {
+                            newEventText.forceActiveFocus()
+                            newEventFormOpened(model, newEventCalendarId)
                         }
+                    }
+                    PlasmaComponents.ComboBox {
+                        id: newEventCalendarId
+                        Layout.fillWidth: true
+                        model: ['asdf']
+                    }
 
-                        MouseArea {
-                            id: mouseArea
-                            anchors.fill: eventColumn
-                            hoverEnabled: true
-                            cursorShape: containsMouse ? Qt.PointingHandCursor : Qt.ArrowCursor
-                            onClicked: {
-                                console.log('agendaItem.event.clicked', start.date)
-                                if (true) {
-                                    // cfg_agenda_event_clicked == "browser_viewevent"
-                                    Qt.openUrlExternally(htmlLink)
+                    RowLayout {
+                        PlasmaComponents.TextField {
+                            id: newEventText
+                            Layout.fillWidth: true
+                            placeholderText: "Eg: 9am-5pm Work"
+                            onAccepted: {
+                                var calendarId = newEventCalendarId.model[newEventCalendarId.currentIndex]
+                                submitNewEventForm(calendarId, date, text)
+                                text = ''
+                            }
+                        }
+                    }
+
+                    Item {
+                        Layout.fillWidth: true
+                        height: 10
+                    }
+                }
+
+                ColumnLayout {
+                    spacing: 10
+                    Layout.fillWidth: true
+
+                    Repeater {
+                        model: events
+
+                        delegate: Rectangle {
+                            width: eventColumn.width
+                            height: eventColumn.height
+                            color: mouseArea.containsMouse ? theme.buttonBackgroundColor : "none"
+
+                            ColumnLayout {
+                                id: eventColumn
+
+                                Text {
+                                    id: eventSummary
+                                    text: summary
+                                    color: PlasmaCore.ColorScope.textColor
+                                }
+
+                                Text {
+                                    id: eventDateTime
+                                    text: {
+                                        if (start.date) {
+                                            return "All Day"
+                                        } else {
+                                            var s = formatEventTime(start.dateTime);
+                                            if (start.dateTime.valueOf() != end.dateTime.valueOf()) {
+                                                s += " - ";
+                                                if (!(start.dateTime.getFullYear() == end.dateTime.getFullYear() && start.dateTime.getMonth() == end.dateTime.getMonth() && start.dateTime.getDate() == end.dateTime.getDate())) {
+                                                    s += Qt.formatDateTime(end.dateTime, "MMM d") + ", ";
+                                                }
+                                                s += formatEventTime(end.dateTime);
+                                            }
+                                            return s;
+                                        }
+                                    }
+                                    color: PlasmaCore.ColorScope.textColor
+                                    opacity: 0.75
+
+                                    function formatEventTime(dateTime) {
+                                        var timeFormat = "h"
+                                        if (dateTime.getMinutes() != 0) {
+                                            timeFormat += ":mm"
+                                        }
+                                        if (!cfg_clock_24h) {
+                                            timeFormat += " AP"
+                                        }
+                                        return Qt.formatDateTime(dateTime, timeFormat)
+                                    }
+                                }
+                            }
+
+                            MouseArea {
+                                id: mouseArea
+                                anchors.fill: eventColumn
+                                hoverEnabled: true
+                                cursorShape: containsMouse ? Qt.PointingHandCursor : Qt.ArrowCursor
+                                onClicked: {
+                                    console.log('agendaItem.event.clicked', start.date)
+                                    if (true) {
+                                        // cfg_agenda_event_clicked == "browser_viewevent"
+                                        Qt.openUrlExternally(htmlLink)
+                                    }
                                 }
                             }
                         }
                     }
                 }
+
             }
         }
     }

@@ -31,7 +31,7 @@ function post(opt, callback) {
         opt = {url: opt};
     }
     opt.method = 'POST';
-    opt.headers = opt.header || {};
+    opt.headers = opt.headers || {};
     opt.headers['Content-Type'] = 'application/x-www-form-urlencoded';
     if (opt.data) {
         var s = '';
@@ -59,7 +59,7 @@ function postJSON(opt, callback) {
         opt = {url: opt};
     }
     opt.method = 'POST';
-    opt.headers = opt.header || {};
+    opt.headers = opt.headers || {};
     opt.headers['Content-Type'] = 'application/json';
     if (opt.data) {
         opt.data = JSON.stringify(opt.data);
