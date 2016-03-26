@@ -207,12 +207,13 @@ Item {
                         model: events
 
                         delegate: Rectangle {
-                            width: eventColumn.width
+                            Layout.fillWidth: true
                             height: eventColumn.height
                             color: mouseArea.containsMouse ? theme.buttonBackgroundColor : "none"
 
                             ColumnLayout {
                                 id: eventColumn
+                                // Layout.fillWidth: true
 
                                 Text {
                                     id: eventSummary
@@ -255,7 +256,7 @@ Item {
 
                             MouseArea {
                                 id: mouseArea
-                                anchors.fill: eventColumn
+                                anchors.fill: parent
                                 hoverEnabled: true
                                 cursorShape: containsMouse ? Qt.PointingHandCursor : Qt.ArrowCursor
                                 onClicked: {
