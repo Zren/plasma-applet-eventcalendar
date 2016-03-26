@@ -196,6 +196,7 @@ Item {
     }
 
     function createNotification() {
+        // https://github.com/KDE/plasma-workspace/blob/master/dataengines/notifications/notifications.operations
         var service = notificationSource.serviceForSource("notification");
         var operation = service.operationDescription("createNotification");
 
@@ -203,8 +204,7 @@ Item {
         operation["appIcon"] = "chronometer";
         operation.summary = i18n("Timer finished");
         operation["body"] = formatTimer(timerDuration) + " has passed";
-        operation["timeout"] = 2000;
-        operation["transient"] = true;
+        operation["expireTimeout"] = 2000;
 
         service.startOperationCall(operation);
     }
