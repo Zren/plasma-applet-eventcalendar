@@ -100,7 +100,7 @@ Item {
             Rectangle {
                 width: itemDateColumn.width
                 height: itemDateColumn.height
-                color: mouseArea.containsMouse ? theme.buttonBackgroundColor : "none"
+                color: mouseArea.containsMouse ? theme.buttonBackgroundColor : "transparent"
                 Layout.alignment: Qt.AlignTop
 
                 Column {
@@ -209,7 +209,7 @@ Item {
                         delegate: Rectangle {
                             Layout.fillWidth: true
                             height: eventColumn.height
-                            color: mouseArea.containsMouse ? theme.buttonBackgroundColor : "none"
+                            color: mouseArea.containsMouse ? theme.buttonBackgroundColor : "transparent"
 
                             Rectangle {
                                 anchors.left: parent.left
