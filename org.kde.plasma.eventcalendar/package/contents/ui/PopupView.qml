@@ -129,6 +129,46 @@ Item {
 
                 AgendaView {
                     id: agendaView
+
+                    onNewEventFormOpened: {
+                        console.log('onNewEventFormOpened')
+                        if (config && config.access_token) {
+                            var calendarIdList = plasmoid.configuration.calendar_id_list ? plasmoid.configuration.calendar_id_list.split(',') : ['primary'];
+                            var calendarList = plasmoid.configuration.calendar_list ? JSON.parse(Qt.atob(plasmoid.configuration.calendar_list)) : [];
+                            console.log('calendarList', JSON.stringify(calendarList, null, '\t'))
+                            var list = []
+                            calendarList.forEach(function(calendar){
+                                if (calendar.accessRole == 'owner') {
+                                    list.push({
+                                        'calendarId': calendar.id,
+                                        'text': calendar.summary,
+                                    })
+                                }
+                            });
+                            newEventCalendarId.model = list
+                        }
+                    }
+                    onSubmitNewEventForm: {
+                        console.log('onSubmitNewEventForm', calendarId)
+                        if (config && config.access_token) {
+                            var calendarId2 = calendarId.calendarId ? calendarId.calendarId : calendarId
+                            var calendarList = plasmoid.configuration.calendar_list ? JSON.parse(Qt.atob(plasmoid.configuration.calendar_list)) : [];
+                            var dateString = date.getFullYear() + '-' + (date.getMonth()+1) + '-' + date.getDate()
+                            console.log('text', dateString + ' ' + text)
+                            Shared.createGCalEvent({
+                                access_token: config.access_token,
+                                calendarId: calendarId2,
+                                text: dateString + ' ' + text,
+                            }, function(err, data) {
+                                // console.log(err, JSON.stringify(data, null, '\t'));
+                                var calendarIdList = plasmoid.configuration.calendar_id_list ? plasmoid.configuration.calendar_id_list.split(',') : ['primary'];
+                                if (calendarIdList.indexOf(calendarId2) >= 0) {
+                                    eventsByCalendar[calendarId2].items.push(data);
+                                    updateUI()
+                                }
+                            })
+                        }
+                    }
                 }
 
                 PlasmaComponents.Button {

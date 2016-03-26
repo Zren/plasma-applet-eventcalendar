@@ -30,8 +30,13 @@ ColumnLayout {
                     ExclusiveGroup { id: agenda_date_clickGroup }
                     RadioButton {
                         text: "Open New Event In Browser"
-                        checked: true
                         exclusiveGroup: agenda_date_clickGroup
+                        enabled: false
+                    }
+                    RadioButton {
+                        text: "Open New Event Form"
+                        exclusiveGroup: agenda_date_clickGroup
+                        checked: true
                     }
                 }
             }
