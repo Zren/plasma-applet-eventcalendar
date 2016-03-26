@@ -24,7 +24,7 @@ Item {
     property alias cfg_timer_in_taskbar: timer_in_taskbar.checked
     property alias cfg_timer_ends_at: timer_ends_at.text
 
-    property string timeFormat24hour: 'h:mm'
+    property string timeFormat24hour: 'hh:mm'
     property string timeFormat12hour: 'h:mm AP'
 
     property bool showDebug: false
