@@ -110,7 +110,7 @@ Item {
                 if (clock.cfg_clock_timeformat) {
                     return Qt.formatDateTime(dataSource.data["Local"]["DateTime"], clock.cfg_clock_timeformat);
                 } else {
-                    return Qt.formatTime(dataSource.data["Local"]["DateTime"], clock.cfg_clock_24h ? "h:mm" : "h:mm AP");
+                    return Qt.formatTime(dataSource.data["Local"]["DateTime"], clock.cfg_clock_24h ? "hh:mm" : "h:mm AP");
                 }
             }
         }
