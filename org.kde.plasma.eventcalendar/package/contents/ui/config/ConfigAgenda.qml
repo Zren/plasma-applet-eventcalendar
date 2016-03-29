@@ -17,6 +17,55 @@ ColumnLayout {
     ColumnLayout {
         Layout.alignment: Qt.AlignTop | Qt.AlignLeft
 
+        GroupBox {
+            Layout.fillWidth: true
+
+            ColumnLayout {
+
+                RowLayout {
+                    Label {
+                        text: "Click Weather:"
+                        Layout.alignment: Qt.AlignTop | Qt.AlignLeft
+                    }
+                    ColumnLayout {
+                        ExclusiveGroup { id: agenda_weather_clickGroup }
+                        RadioButton {
+                            text: "Open City Forecast In Browser"
+                            exclusiveGroup: agenda_weather_clickGroup
+                            checked: true
+                        }
+                    }
+                }
+
+                RowLayout {
+                    CheckBox {
+                        enabled: false
+                        checked: true
+                        text: "Weather Icon"
+                    }
+                    Slider {
+                        id: agenda_weather_icon_size
+                        enabled: false
+                        minimumValue: 12
+                        maximumValue: 48
+                        stepSize: 1
+                        value: 24
+                    }
+                    Label {
+                        text: agenda_weather_icon_size.value + 'px'
+                    }
+
+                }
+
+                RowLayout {
+                    CheckBox {
+                        enabled: false
+                        checked: false
+                        text: "Weather Text"
+                    }
+                }
+            }
+        }
 
         GroupBox {
             Layout.fillWidth: true

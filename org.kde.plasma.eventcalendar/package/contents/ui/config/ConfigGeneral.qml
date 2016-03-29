@@ -18,6 +18,8 @@ Item {
     property alias cfg_clock_24h: clock_24h.checked
     property alias cfg_clock_show_seconds: clock_show_seconds.checked
     property alias cfg_clock_timeformat: clock_timeformat.text
+    property alias cfg_clock_timeformat_2: clock_timeformat_2.text
+    property alias cfg_clock_line_2: clock_line_2.checked
     property alias cfg_clock_mousewheel_up: clock_mousewheel_up.text
     property alias cfg_clock_mousewheel_down: clock_mousewheel_down.text
     property alias cfg_timer_repeats: timer_repeats.checked
@@ -34,6 +36,26 @@ Item {
     }
 
     Layout.fillWidth: true
+
+
+
+    function onClockFormatChange() {
+        var combinedFormat = cfg_clock_timeformat;
+        if (cfg_clock_line_2) {
+            combinedFormat += '\n' + cfg_clock_timeformat_2;
+        }
+        var is12hour = combinedFormat.toLowerCase().indexOf('ap') >= 0;
+        cfg_clock_24h = !is12hour;
+        cfg_clock_show_seconds = combinedFormat.indexOf('s') >= 0
+    }
+
+    // Component.onCompleted: {
+    //     cfg_clock_timeformat = 'h:mm ap'
+    //     cfg_clock_timeformat_2 = 'MMM d, yyyy'
+    //     cfg_clock_line_2 = true
+    // }
+
+
 
     ColumnLayout {
         id: pageColumn
@@ -112,24 +134,63 @@ Item {
                     cursorShape: parent.hoveredLink ? Qt.PointingHandCursor : Qt.ArrowCursor
                 }
             }
+
             RowLayout {
                 Layout.fillWidth: true
+                CheckBox {
+                    enabled: false
+                    checked: true
+                }
                 Label {
                     text: i18n("Line 1:")
                 }
                 TextField {
                     Layout.fillWidth: true
                     id: clock_timeformat
-
-                    onTextChanged: {
-                        var is12hour = text.toLowerCase().indexOf('ap') >= 0;
-                        cfg_clock_24h = !is12hour;
-                        cfg_clock_show_seconds = text.indexOf('s') >= 0
-
-                    }
+                    onTextChanged: onClockFormatChange()
                 }
                 Label {
                     text: Qt.formatDateTime(new Date(), cfg_clock_timeformat)
+                }
+            }
+
+            RowLayout {
+                visible: false
+                Layout.fillWidth: true
+                CheckBox {
+                    id: clock_line_2
+                    checked: false
+                    onCheckedChanged: onClockFormatChange()
+                }
+                Label {
+                    text: i18n("Line 2:")
+                }
+                TextField {
+                    Layout.fillWidth: true
+                    id: clock_timeformat_2
+                    onTextChanged: onClockFormatChange()
+                }
+                Label {
+                    text: Qt.formatDateTime(new Date(), cfg_clock_timeformat_2)
+                }
+                Button {
+                    property string dateFormat: {
+                        // org.kde.plasma.digitalclock
+                        // remove "dddd" from the locale format string
+                        // /all/ locales in LongFormat have "dddd" either
+                        // at the beginning or at the end. so we just
+                        // remove it + the delimiter and space
+                        var format = Qt.locale().dateFormat(Locale.LongFormat);
+                        format = format.replace(/(^dddd.?\s)|(,?\sdddd$)/, "");
+                        return;
+                    }
+                    text: Qt.formatDate(new Date(), dateFormat)
+                    onClicked: cfg_clock_timeformat_2 = dateFormat
+                }
+                Button {
+                    property string dateFormat: Qt.locale().dateFormat(Locale.ShortFormat);
+                    text: Qt.formatDate(new Date(), dateFormat)
+                    onClicked: cfg_clock_timeformat_2 = dateFormat
                 }
             }
 

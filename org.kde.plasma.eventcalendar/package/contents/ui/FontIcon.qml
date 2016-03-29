@@ -21,6 +21,7 @@ Item {
 
         font.family: "weathericons"
         font.pointSize: -1
+        font.pixelSize: parent.height
         anchors.centerIn: parent
     }
 

@@ -21,7 +21,7 @@ Item {
 
     // Testing with qmlview
     Rectangle {
-        visible: !popup
+        visible: typeof popup === 'undefined'
         color: PlasmaCore.ColorScope.backgroundColor
         anchors.fill: parent
     }
