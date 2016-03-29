@@ -28,7 +28,15 @@ Item {
 
     width: labels.width
     Layout.minimumWidth: labels.width
-    Layout.maximumWidth: labels.width
+    // Layout.maximumWidth: timeLabel.width
+
+    property date currentTime: {
+        if (typeof dataSource === 'undefined') {
+            return new Date();
+        } else {
+            return dataSource.data["Local"]["DateTime"];
+        }
+    }
 
     property string cfg_clock_timeformat: "h:mm AP"
     property bool cfg_clock_24h: false
@@ -36,17 +44,9 @@ Item {
     
     // Testing with qmlview
     Rectangle {
-        visible: !root
+        visible: typeof root === 'undefined'
         color: PlasmaCore.ColorScope.backgroundColor
         anchors.fill: parent
-    }
-
-    MouseArea {
-        id: mouseArea
-
-        anchors.fill: parent
-
-        onClicked: plasmoid.expanded = !plasmoid.expanded
     }
 
     Row {
@@ -55,7 +55,7 @@ Item {
 
         Components.Label {
             id: timerLabel
-            visible: timerView && timerView.timerSeconds > 0
+            visible: false
 
             font.family: theme.defaultFont.family
             font.pointSize: 1024
@@ -75,7 +75,7 @@ Item {
             // anchors.horizontalCenter: clock.horizontalCenter
 
             text: {
-                return timerView ? "T" + timerView.timerSeconds : "0:00"
+                return "0:00"
             }
         }
 
@@ -83,7 +83,7 @@ Item {
             source: "chronometer"
             width: sizehelper.height
             height: sizehelper.height
-            visible: timerView
+            visible: false
         }
 
         Components.Label {
@@ -108,9 +108,9 @@ Item {
 
             text: {
                 if (clock.cfg_clock_timeformat) {
-                    return Qt.formatDateTime(dataSource.data["Local"]["DateTime"], clock.cfg_clock_timeformat);
+                    return Qt.formatDateTime(clock.currentTime, clock.cfg_clock_timeformat);
                 } else {
-                    return Qt.formatTime(dataSource.data["Local"]["DateTime"], clock.cfg_clock_24h ? "hh:mm" : "h:mm AP");
+                    return Qt.formatTime(clock.currentTime, clock.cfg_clock_24h ? "hh:mm" : "h:mm AP");
                 }
             }
         }
@@ -127,7 +127,7 @@ Item {
 
         font.weight: timeLabel.font.weight
         font.italic: timeLabel.font.italic
-        font.pixelSize: 1024
+        // font.pixelSize: 1024
         font.pointSize: 1024
         verticalAlignment: Text.AlignVCenter
         visible: false

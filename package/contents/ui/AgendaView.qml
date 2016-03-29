@@ -20,6 +20,8 @@ Item {
     property bool clipPastEvents: false
     property bool clipPastEventsToday: false
     property bool cfg_clock_24h: false
+    property int cfg_agenda_weather_icon_height: 24
+    property bool cfg_agenda_weather_show_text: false
 
     signal newEventFormOpened(variant agendaItem, variant newEventCalendarId)
     signal submitNewEventForm(variant calendarId, variant date, string text)
@@ -33,7 +35,7 @@ Item {
 
     // Testing with qmlview
     Rectangle {
-        visible: !popup
+        visible: typeof popup === 'undefined'
         color: PlasmaCore.ColorScope.backgroundColor
         anchors.fill: parent
     }
@@ -56,51 +58,78 @@ Item {
             anchors.right: parent.right
             spacing: 10
 
-            Column {
-                width: 50
+            LinkRect {
                 Layout.alignment: Qt.AlignTop
 
-                FontIcon {
-                    visible: showWeather
-                    source: weatherIcon
-                    height: 16
-                    width: width
-                    anchors {
-                        left: parent.left
-                        right: parent.right
+                Column {
+                    id: itemWeatherColumn
+                    width: 50
+                    Layout.alignment: Qt.AlignTop
+
+                    FontIcon {
+                        visible: showWeather
+                        source: weatherIcon
+                        height: cfg_agenda_weather_icon_height
+                        anchors {
+                            left: parent.left
+                            right: parent.right
+                        }
+                    }
+
+                    Text {
+                        id: itemWeatherText
+                        visible: showWeather && cfg_agenda_weather_show_text
+                        text: weatherText
+                        color: PlasmaCore.ColorScope.textColor
+                        opacity: 0.5
+                        anchors {
+                            left: parent.left
+                            right: parent.right
+                        }
+                        horizontalAlignment: Text.AlignHCenter
+                    }
+
+                    Text {
+                        id: itemWeatherTemps
+                        visible: showWeather
+                        text: tempHigh + '° | ' + tempLow + '°'
+                        color: PlasmaCore.ColorScope.textColor
+                        opacity: 0.5
+                        anchors {
+                            left: parent.left
+                            right: parent.right
+                        }
+                        horizontalAlignment: Text.AlignHCenter
                     }
                 }
 
-                Text {
-                    id: itemWeatherText
-                    visible: showWeather
-                    text: weatherText
-                    color: PlasmaCore.ColorScope.textColor
-                    opacity: 0.5
-                    anchors {
-                        left: parent.left
-                        right: parent.right
-                    }
-                    horizontalAlignment: Text.AlignHCenter
-                }
+                // PlasmaCore.ToolTipArea {
+                //     anchors.fill: parent
+                //     mainText: weatherDescription
+                //     subText: {
+                //         var lines = [];
+                //         lines.push(tempHigh + '° | ' + tempLow + '°');
+                //         lines.push('<b>Morning:</b> ' + tempMorn + '°');
+                //         lines.push('<b>Day:</b> ' + tempDay + '°');
+                //         lines.push('<b>Evening:</b> ' + tempEve + '°');
+                //         lines.push('<b>Night:</b> ' + tempNight + '°');
+                //         return lines.join('<br>');
+                //     }
+                //     icon: weatherIcon
+                // }
 
-                Text {
-                    id: itemWeatherTemps
-                    visible: showWeather
-                    text: tempHigh + '° | ' + tempLow + '°'
-                    color: PlasmaCore.ColorScope.textColor
-                    opacity: 0.5
-                    anchors {
-                        left: parent.left
-                        right: parent.right
+                onClicked: {
+                    console.log('agendaItem.date.clicked', date)
+                    if (true) {
+                        // cfg_agenda_weather_clicked == "browser_viewcityforecast"
+                        if (config.weather_city_id) {
+                            Shared.openOpenWeatherMapCityUrl(config.weather_city_id);
+                        }
                     }
-                    horizontalAlignment: Text.AlignHCenter
                 }
             }
-            Rectangle {
-                width: itemDateColumn.width
-                height: itemDateColumn.height
-                color: mouseArea.containsMouse ? theme.buttonBackgroundColor : "transparent"
+
+            LinkRect {
                 Layout.alignment: Qt.AlignTop
 
                 Column {
@@ -139,20 +168,14 @@ Item {
                     }
                 }
 
-                MouseArea {
-                    id: mouseArea
-                    anchors.fill: itemDateColumn
-                    hoverEnabled: true
-                    cursorShape: containsMouse ? Qt.PointingHandCursor : Qt.ArrowCursor
-                    onClicked: {
-                        console.log('agendaItem.date.clicked', date)
-                        if (false) {
-                            // cfg_agenda_date_clicked == "browser_newevent"
-                            Shared.openGoogleCalendarNewEventUrl(date);
-                        } else if (true) {
-                            // cfg_agenda_date_clicked == "agenda_newevent"
-                            newEventForm.visible = !newEventForm.visible
-                        }
+                onClicked: {
+                    console.log('agendaItem.date.clicked', date)
+                    if (false) {
+                        // cfg_agenda_date_clicked == "browser_newevent"
+                        Shared.openGoogleCalendarNewEventUrl(date);
+                    } else if (true) {
+                        // cfg_agenda_date_clicked == "agenda_newevent"
+                        newEventForm.visible = !newEventForm.visible
                     }
                 }
             }
@@ -206,74 +229,68 @@ Item {
                     Repeater {
                         model: events
 
-                        delegate: Rectangle {
+                        // delegate: Rectangle {
+                        delegate: LinkRect {
+                            width: undefined
                             Layout.fillWidth: true
                             height: eventColumn.height
-                            color: mouseArea.containsMouse ? theme.buttonBackgroundColor : "transparent"
 
-                            Rectangle {
-                                anchors.left: parent.left
-                                anchors.top: parent.top
-                                anchors.bottom: parent.bottom
-                                anchors.leftMargin: -3 - width
-                                width: 2
-                                color: backgroundColor
-                            }
-
-                            ColumnLayout {
-                                id: eventColumn
-                                // Layout.fillWidth: true
-
-                                Text {
-                                    id: eventSummary
-                                    text: summary
-                                    color: PlasmaCore.ColorScope.textColor
+                            RowLayout {
+                                Rectangle {
+                                    width: 2
+                                    height: eventColumn.height
+                                    color: model.backgroundColor
                                 }
 
-                                Text {
-                                    id: eventDateTime
-                                    text: {
-                                        if (start.date) {
-                                            return "All Day"
-                                        } else {
-                                            var s = formatEventTime(start.dateTime);
-                                            if (start.dateTime.valueOf() != end.dateTime.valueOf()) {
-                                                s += " - ";
-                                                if (!(start.dateTime.getFullYear() == end.dateTime.getFullYear() && start.dateTime.getMonth() == end.dateTime.getMonth() && start.dateTime.getDate() == end.dateTime.getDate())) {
-                                                    s += Qt.formatDateTime(end.dateTime, "MMM d") + ", ";
+                                ColumnLayout {
+                                    id: eventColumn
+                                    // Layout.fillWidth: true
+
+                                    Text {
+                                        id: eventSummary
+                                        text: summary
+                                        color: PlasmaCore.ColorScope.textColor
+                                    }
+
+                                    Text {
+                                        id: eventDateTime
+                                        text: {
+                                            if (start.date) {
+                                                return "All Day"
+                                            } else {
+                                                var s = formatEventTime(start.dateTime);
+                                                if (start.dateTime.valueOf() != end.dateTime.valueOf()) {
+                                                    s += " - ";
+                                                    if (!(start.dateTime.getFullYear() == end.dateTime.getFullYear() && start.dateTime.getMonth() == end.dateTime.getMonth() && start.dateTime.getDate() == end.dateTime.getDate())) {
+                                                        s += Qt.formatDateTime(end.dateTime, "MMM d") + ", ";
+                                                    }
+                                                    s += formatEventTime(end.dateTime);
                                                 }
-                                                s += formatEventTime(end.dateTime);
+                                                return s;
                                             }
-                                            return s;
                                         }
-                                    }
-                                    color: PlasmaCore.ColorScope.textColor
-                                    opacity: 0.75
+                                        color: PlasmaCore.ColorScope.textColor
+                                        opacity: 0.75
 
-                                    function formatEventTime(dateTime) {
-                                        var timeFormat = "h"
-                                        if (dateTime.getMinutes() != 0) {
-                                            timeFormat += ":mm"
+                                        function formatEventTime(dateTime) {
+                                            var timeFormat = "h"
+                                            if (dateTime.getMinutes() != 0) {
+                                                timeFormat += ":mm"
+                                            }
+                                            if (!cfg_clock_24h) {
+                                                timeFormat += " AP"
+                                            }
+                                            return Qt.formatDateTime(dateTime, timeFormat)
                                         }
-                                        if (!cfg_clock_24h) {
-                                            timeFormat += " AP"
-                                        }
-                                        return Qt.formatDateTime(dateTime, timeFormat)
                                     }
                                 }
                             }
 
-                            MouseArea {
-                                id: mouseArea
-                                anchors.fill: parent
-                                hoverEnabled: true
-                                cursorShape: containsMouse ? Qt.PointingHandCursor : Qt.ArrowCursor
-                                onClicked: {
-                                    console.log('agendaItem.event.clicked', start.date)
-                                    if (true) {
-                                        // cfg_agenda_event_clicked == "browser_viewevent"
-                                        Qt.openUrlExternally(htmlLink)
-                                    }
+                            onClicked: {
+                                console.log('agendaItem.event.clicked', start.date)
+                                if (true) {
+                                    // cfg_agenda_event_clicked == "browser_viewevent"
+                                    Qt.openUrlExternally(htmlLink)
                                 }
                             }
                         }
@@ -306,6 +323,33 @@ Item {
         }
         // If the date is greater than any item in the agenda, scroll to the bottom.
         agendaListView.positionViewAtEnd()
+    }
+
+    function buildAgendaItem(dateTime) {
+        return {
+            date: dateTime,
+            events: [],
+            showWeather: false,
+            tempLow: 0,
+            tempHigh: 0,
+            weatherIcon: "",
+            weatherText: "",
+            weatherDescription: "",
+            weather: {
+                temp: {
+                    morn: 0,
+                    day: 0,
+                    eve: 0,
+                    night: 0,
+                },
+                pressure: 0,
+                humidity: 0,
+                speed: 0,
+                clouds: 93,
+                rain: 0,
+                snow: 2.69,
+            },
+        };
     }
 
     function parseGCalEvents(data) {
@@ -353,15 +397,7 @@ Item {
                 if (agendaItem) {
                     agendaItemList.push(agendaItem);
                 }
-                agendaItem = {
-                    date: eventItem.start.dateTime,
-                    events: [],
-                    showWeather: false,
-                    tempLow: 0,
-                    tempHigh: 0,
-                    weatherIcon: "",
-                    weatherText: "",
-                };
+                agendaItem = buildAgendaItem(eventItem.start.dateTime);
             }
 
             agendaItem.events.push(eventItem);
@@ -391,15 +427,7 @@ Item {
                 }
 
                 // It doesn't, so we need to insert an item.
-                var newAgendaItem = {
-                    date: new Date(day),
-                    events: [],
-                    showWeather: false,
-                    tempLow: 0,
-                    tempHigh: 0,
-                    weatherIcon: "",
-                    weatherText: "",
-                };
+                var newAgendaItem = buildAgendaItem(new Date(day));
 
                 // Insert before the agendaItem with a higher date.
                 for (var i = 0; i < agendaItemList.length; i++) {
@@ -483,7 +511,13 @@ Item {
                     var weatherIcon = weatherIconMap[forecastItem.weather[0].icon] || 'weather-severe-alert';
                     agendaModel.setProperty(i, 'weatherIcon', weatherIcon);
                     agendaModel.setProperty(i, 'weatherText', forecastItem.weather[0].main);
+                    agendaModel.setProperty(i, 'weatherDescription', forecastItem.weather[0].description);
+                    // agendaModel.setProperty(i, 'tempMorn', Math.round(forecastItem.temp.morn));
+                    // agendaModel.setProperty(i, 'tempDay', Math.round(forecastItem.temp.day));
+                    // agendaModel.setProperty(i, 'tempEve', Math.round(forecastItem.temp.eve));
+                    // agendaModel.setProperty(i, 'tempNight', Math.round(forecastItem.temp.night));
                     agendaModel.setProperty(i, 'showWeather', true);
+                    
                     break;
                 }
             }
@@ -494,9 +528,9 @@ Item {
         parseGCalEvents({ "items": [], });
         parseWeatherForecast({ "list": [], });
 
-        if (typeof main === 'undefined') {
+        if (typeof root === 'undefined') {
             clipPastEvents = false
-            var debugData = {
+            var debugEventData = {
                 "items": [
                     {
                         "kind": "calendar#event",
@@ -529,8 +563,52 @@ Item {
                     },
                 ] 
             };
-            debugData.items.push(debugData.items[0]);
-            parseGCalEvents(debugData);
+            debugEventData.items.push(debugEventData.items[0]);
+            parseGCalEvents(debugEventData);
+
+            var debugWeatherData = {
+                "city": {
+                    "id": 1,
+                    "name": "Area 51",
+                    "coord": {
+                        "lon": 0.249672,
+                        "lat": 0.550098
+                    },
+                    "country": "CA",
+                    "population": 0
+                },
+                "cod": "200",
+                "message": 0.0275,
+                "cnt": 7,
+                "list": [
+                    {
+                        "dt": 1459270800,
+                        "temp": {
+                            "day": 5.3,
+                            "min": -6.14,
+                            "max": 5.43,
+                            "night": -6.14,
+                            "eve": 1.01,
+                            "morn": 5.3
+                        },
+                        "pressure": 1006.93,
+                        "humidity": 49,
+                        "weather": [
+                            {
+                            "id": 800,
+                            "main": "Clear",
+                            "description": "clear sky",
+                            "icon": "01d"
+                            }
+                        ],
+                        "speed": 6.82,
+                        "deg": 327,
+                        "clouds": 0
+                    },
+                ],
+            };
+            parseWeatherForecast(debugWeatherData);
+
         }
     }
 }

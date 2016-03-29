@@ -37,3 +37,9 @@ function createGCalEvent(args, callback) {
         callback(err, data, xhr);
     });
 }
+
+function openOpenWeatherMapCityUrl(cityId) {
+    var url = 'http://openweathermap.org/city/';
+    url += cityId;
+    Qt.openUrlExternally(url);
+}

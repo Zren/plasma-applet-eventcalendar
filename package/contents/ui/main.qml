@@ -15,10 +15,6 @@ Item {
     width: units.gridUnit * 10
     height: units.gridUnit * 4
 
-    Plasmoid.preferredRepresentation: Plasmoid.compactRepresentation
-
-    Plasmoid.toolTipMainText: Qt.formatTime(dataSource.data["Local"]["DateTime"])
-    Plasmoid.toolTipSubText: Qt.formatDate(dataSource.data["Local"]["DateTime"], Qt.locale().dateFormat(Locale.LongFormat))
 
     PlasmaCore.DataSource {
         id: dataSource
@@ -27,6 +23,9 @@ Item {
         interval: plasmoid.configuration.clock_show_seconds ? 1000 : 60000
         intervalAlignment: plasmoid.configuration.clock_show_seconds ? PlasmaCore.Types.NoAlignment : PlasmaCore.Types.AlignToMinute
     }
+    
+    Plasmoid.toolTipMainText: Qt.formatTime(dataSource.data["Local"]["DateTime"])
+    Plasmoid.toolTipSubText: Qt.formatDate(dataSource.data["Local"]["DateTime"], Qt.locale().dateFormat(Locale.LongFormat))
     
     FontLoader {
         source: "../fonts/weathericons-regular-webfont.ttf"
@@ -49,7 +48,7 @@ Item {
         executeSource.connectSource(cmd)
     }
 
-    Plasmoid.compactRepresentation: ClockView {
+    property Component clockComponent: ClockView {
         id: clock
 
         cfg_clock_24h: plasmoid.configuration.clock_24h
@@ -89,10 +88,11 @@ Item {
         }
     }
 
-    Plasmoid.fullRepresentation: PopupView {
+    property Component popupComponent: PopupView {
         id: popup
         today: dataSource.data["Local"]["DateTime"]
         config: plasmoid.configuration
+        cfg_clock_24h: plasmoid.configuration.clock_24h
         cfg_widget_show_spacer: plasmoid.configuration.widget_show_spacer
         cfg_widget_show_timer: plasmoid.configuration.widget_show_timer
 
@@ -102,12 +102,8 @@ Item {
             if (isExpanded) {
                 monthViewDate = today
                 selectedDate = today
-                // update();
+                updateHeight();
             }
-        }
-
-        Component.onCompleted: {
-            agendaView.cfg_clock_24h = plasmoid.configuration.clock_24h
         }
 
         Connections {
@@ -122,6 +118,13 @@ Item {
         }
 
     }
+
+
+    Plasmoid.preferredRepresentation: Plasmoid.compactRepresentation
+    Plasmoid.compactRepresentation: clockComponent
+    Plasmoid.fullRepresentation: popupComponent
+    
+
     function action_KCMClock() {
         KCMShell.open("clock");
     }
