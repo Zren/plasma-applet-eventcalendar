@@ -155,7 +155,6 @@ Item {
             }
 
             RowLayout {
-                visible: false
                 Layout.fillWidth: true
                 CheckBox {
                     id: clock_line_2

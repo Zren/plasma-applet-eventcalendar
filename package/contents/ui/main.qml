@@ -53,6 +53,8 @@ Item {
 
         cfg_clock_24h: plasmoid.configuration.clock_24h
         cfg_clock_timeformat: plasmoid.configuration.clock_timeformat
+        cfg_clock_timeformat_2: plasmoid.configuration.clock_timeformat_2
+        cfg_clock_line_2: plasmoid.configuration.clock_line_2
 
         // org.kde.plasma.volume
         MouseArea {
