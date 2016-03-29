@@ -22,6 +22,12 @@
     <entry name="clock_timeformat" type="string">
       <default></default>
     </entry>
+    <entry name="clock_timeformat_2" type="string">
+      <default></default>
+    </entry>
+    <entry name="clock_line_2" type="bool">
+      <default>false</default>
+    </entry>
     <entry name="clock_mousewheel_up" type="string">
       <default>amixer -q sset Master 10%+</default>
     </entry>

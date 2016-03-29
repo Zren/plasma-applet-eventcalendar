@@ -39,8 +39,12 @@ Item {
     }
 
     property string cfg_clock_timeformat: "h:mm AP"
+    property string cfg_clock_timeformat_2: "yyyy-MM-dd"
     property bool cfg_clock_24h: false
-    property variant timerView: null
+    property bool cfg_clock_line_2: false
+    property int lineWidth: cfg_clock_line_2 ? Math.max(timeLabel.paintedWidth, timeLabel2.paintedWidth) : timeLabel.paintedWidth
+    property int lineHeight: cfg_clock_line_2 ? sizehelper.height / 2 : sizehelper.height
+    
     
     // Testing with qmlview
     Rectangle {
@@ -86,40 +90,84 @@ Item {
             visible: false
         }
 
-        Components.Label {
-            id: timeLabel
+        Column {
+            // width: Math.max(timeLabel.width, timeLabel2.width)
+            // height: sizehelper.height
 
-            font.family: theme.defaultFont.family
-            font.pointSize: 1024
-            minimumPointSize: 1
+            Components.Label {
+                id: timeLabel
 
-            width: timeLabel.paintedWidth
-            height: sizehelper.height
+                font.family: theme.defaultFont.family
+                font.pointSize: 1024
+                minimumPointSize: 1
 
-            // fontSizeMode: Text.Fit
-            fontSizeMode: Text.VerticalFit
-            wrapMode: Text.NoWrap
+                width: clock.lineWidth
+                height: clock.lineHeight
 
-            horizontalAlignment: Text.AlignHCenter
-            verticalAlignment: Text.AlignVCenter
+                // fontSizeMode: Text.Fit
+                fontSizeMode: Text.VerticalFit
+                wrapMode: Text.NoWrap
+
+                horizontalAlignment: Text.AlignHCenter
+                verticalAlignment: Text.AlignVCenter
 
 
-            // anchors.horizontalCenter: clock.horizontalCenter
+                // anchors.horizontalCenter: clock.horizontalCenter
 
-            text: {
-                if (clock.cfg_clock_timeformat) {
-                    return Qt.formatDateTime(clock.currentTime, clock.cfg_clock_timeformat);
-                } else {
-                    return Qt.formatTime(clock.currentTime, clock.cfg_clock_24h ? "hh:mm" : "h:mm AP");
+                text: {
+                    if (clock.cfg_clock_timeformat) {
+                        return Qt.formatDateTime(clock.currentTime, clock.cfg_clock_timeformat);
+                    } else {
+                        return Qt.formatTime(clock.currentTime, clock.cfg_clock_24h ? "hh:mm" : "h:mm AP");
+                    }
+                }
+            }
+            Components.Label {
+                id: timeLabel2
+
+                font.family: theme.defaultFont.family
+                font.pointSize: 1024
+                minimumPointSize: 1
+
+                width: clock.lineWidth
+                height: clock.lineHeight
+
+                // fontSizeMode: Text.Fit
+                fontSizeMode: Text.VerticalFit
+                wrapMode: Text.NoWrap
+
+                horizontalAlignment: Text.AlignHCenter
+                verticalAlignment: Text.AlignVCenter
+
+
+                // anchors.horizontalCenter: clock.horizontalCenter
+
+                text: {
+                    if (clock.cfg_clock_timeformat_2) {
+                        return Qt.formatDateTime(clock.currentTime, clock.cfg_clock_timeformat_2);
+                    } else {
+                        return Qt.formatDate(clock.currentTime, "yyyy-MM-dd");
+                    }
                 }
             }
         }
+        
     }
     
 
-    // Component.onCompleted: {
-    //     clock.minimumWidth = timeLabel.width;
-    //     clock.maximumWidth = clock.minimumWidth;
+    Component.onCompleted: {
+
+    }
+
+    // Timer {
+    //     interval: 1000
+    //     running: true
+    //     repeat: true
+
+    //     onTriggered: {
+    //         clock.width = timeLabel.width
+    //         clock.height = labels.height
+    //     }
     // }
 
     Components.Label {
