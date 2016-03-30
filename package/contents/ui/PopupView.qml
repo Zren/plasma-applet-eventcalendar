@@ -37,6 +37,9 @@ Item {
     property bool cfg_widget_show_timer: true
     property bool cfg_agenda_scroll_on_select: true
     property bool cfg_agenda_scroll_on_monthchange: false
+    property bool cfg_agenda_weather_show_icon: false
+    property int cfg_agenda_weather_icon_height: 24
+    property bool cfg_agenda_weather_show_text: false
     
     property alias agendaListView: agendaView.agendaListView
     property alias today: monthView.today
@@ -129,6 +132,10 @@ Item {
 
                 AgendaView {
                     id: agendaView
+
+                    cfg_agenda_weather_show_icon: popup.cfg_agenda_weather_show_icon
+                    cfg_agenda_weather_icon_height: popup.cfg_agenda_weather_icon_height
+                    cfg_agenda_weather_show_text: popup.cfg_agenda_weather_show_text
 
                     onNewEventFormOpened: {
                         console.log('onNewEventFormOpened')

@@ -10,6 +10,10 @@ ColumnLayout {
     id: page
     property bool showDebug: false
 
+    property alias cfg_agenda_weather_show_icon: agenda_weather_show_icon.checked
+    property alias cfg_agenda_weather_icon_height: agenda_weather_icon_height.value
+    property alias cfg_agenda_weather_show_text: agenda_weather_show_text.checked
+
     SystemPalette {
         id: palette
     }
@@ -23,6 +27,32 @@ ColumnLayout {
             ColumnLayout {
 
                 RowLayout {
+                    CheckBox {
+                        id: agenda_weather_show_icon
+                        checked: true
+                        text: "Weather Icon"
+                    }
+                    Slider {
+                        id: agenda_weather_icon_height
+                        minimumValue: 12
+                        maximumValue: 48
+                        stepSize: 1
+                        value: 24
+                    }
+                    Label {
+                        text: cfg_agenda_weather_icon_height + 'px'
+                    }
+
+                }
+
+                RowLayout {
+                    CheckBox {
+                        id: agenda_weather_show_text
+                        text: "Weather Text"
+                    }
+                }
+
+                RowLayout {
                     Label {
                         text: "Click Weather:"
                         Layout.alignment: Qt.AlignTop | Qt.AlignLeft
@@ -34,34 +64,6 @@ ColumnLayout {
                             exclusiveGroup: agenda_weather_clickGroup
                             checked: true
                         }
-                    }
-                }
-
-                RowLayout {
-                    CheckBox {
-                        enabled: false
-                        checked: true
-                        text: "Weather Icon"
-                    }
-                    Slider {
-                        id: agenda_weather_icon_size
-                        enabled: false
-                        minimumValue: 12
-                        maximumValue: 48
-                        stepSize: 1
-                        value: 24
-                    }
-                    Label {
-                        text: agenda_weather_icon_size.value + 'px'
-                    }
-
-                }
-
-                RowLayout {
-                    CheckBox {
-                        enabled: false
-                        checked: false
-                        text: "Weather Text"
                     }
                 }
             }
