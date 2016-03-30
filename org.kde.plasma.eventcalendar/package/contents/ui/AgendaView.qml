@@ -20,6 +20,7 @@ Item {
     property bool clipPastEvents: false
     property bool clipPastEventsToday: false
     property bool cfg_clock_24h: false
+    property bool cfg_agenda_weather_show_icon: false
     property int cfg_agenda_weather_icon_height: 24
     property bool cfg_agenda_weather_show_text: false
 
@@ -67,7 +68,7 @@ Item {
                     Layout.alignment: Qt.AlignTop
 
                     FontIcon {
-                        visible: showWeather
+                        visible: showWeather && cfg_agenda_weather_show_icon
                         source: weatherIcon
                         height: cfg_agenda_weather_icon_height
                         anchors {

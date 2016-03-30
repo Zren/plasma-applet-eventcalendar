@@ -45,6 +45,19 @@
     </entry>
   </group>
 
+  <group name="Agenda">
+    <entry name="agenda_weather_show_icon" type="bool">
+      <default>true</default>
+    </entry>
+    <entry name="agenda_weather_icon_height" type="UInt">
+      <default>24</default>
+    </entry>
+    <entry name="agenda_weather_show_text" type="bool">
+      <default>false</default>
+    </entry>
+  </group>
+
+
   <group name="Google Calendar">
     <entry name="client_id" type="string">
       <default>391436299960-o4hchof1u5vq49rdn2nlnlbs295qeqhj.apps.googleusercontent.com</default>
