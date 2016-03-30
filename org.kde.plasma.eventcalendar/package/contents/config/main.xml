@@ -28,6 +28,9 @@
     <entry name="clock_line_2" type="bool">
       <default>false</default>
     </entry>
+    <entry name="clock_line_2_height_ratio" type="double">
+      <default>0.4</default>
+    </entry>
     <entry name="clock_mousewheel_up" type="string">
       <default>amixer -q sset Master 10%+</default>
     </entry>
