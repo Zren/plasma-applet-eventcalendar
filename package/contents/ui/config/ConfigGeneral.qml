@@ -20,6 +20,7 @@ Item {
     property alias cfg_clock_timeformat: clock_timeformat.text
     property alias cfg_clock_timeformat_2: clock_timeformat_2.text
     property alias cfg_clock_line_2: clock_line_2.checked
+    property alias cfg_clock_line_2_height_ratio: clock_line_2_height_ratio.value
     property alias cfg_clock_mousewheel_up: clock_mousewheel_up.text
     property alias cfg_clock_mousewheel_down: clock_mousewheel_down.text
     property alias cfg_timer_repeats: timer_repeats.checked
@@ -30,6 +31,7 @@ Item {
     property string timeFormat12hour: 'h:mm AP'
 
     property bool showDebug: false
+    property int indentWidth: 24
 
     SystemPalette {
         id: palette
@@ -135,61 +137,116 @@ Item {
                 }
             }
 
-            RowLayout {
+            GroupBox {
                 Layout.fillWidth: true
-                CheckBox {
-                    enabled: false
-                    checked: true
-                }
-                Label {
-                    text: i18n("Line 1:")
-                }
-                TextField {
-                    Layout.fillWidth: true
-                    id: clock_timeformat
-                    onTextChanged: onClockFormatChange()
-                }
-                Label {
-                    text: Qt.formatDateTime(new Date(), cfg_clock_timeformat)
+
+                ColumnLayout {
+                    RowLayout {
+                        Layout.fillWidth: true
+                        CheckBox {
+                            enabled: false
+                            checked: true
+                            text: i18n("Line 1:")
+                        }
+                        TextField {
+                            Layout.fillWidth: true
+                            id: clock_timeformat
+                            onTextChanged: onClockFormatChange()
+                        }
+                        Label {
+                            text: Qt.formatDateTime(new Date(), cfg_clock_timeformat)
+                        }
+                    }
+                    RowLayout {
+                        Layout.fillWidth: true
+                        Text { width: indentWidth } // indent
+                        CheckBox {
+                            enabled: false
+                            checked: false
+                            text: i18n("Bold")
+                        }
+                    }
                 }
             }
 
-            RowLayout {
+            GroupBox {
                 Layout.fillWidth: true
-                CheckBox {
-                    id: clock_line_2
-                    checked: false
-                    onCheckedChanged: onClockFormatChange()
-                }
-                Label {
-                    text: i18n("Line 2:")
-                }
-                TextField {
-                    Layout.fillWidth: true
-                    id: clock_timeformat_2
-                    onTextChanged: onClockFormatChange()
-                }
-                Label {
-                    text: Qt.formatDateTime(new Date(), cfg_clock_timeformat_2)
-                }
-                Button {
-                    property string dateFormat: {
-                        // org.kde.plasma.digitalclock
-                        // remove "dddd" from the locale format string
-                        // /all/ locales in LongFormat have "dddd" either
-                        // at the beginning or at the end. so we just
-                        // remove it + the delimiter and space
-                        var format = Qt.locale().dateFormat(Locale.LongFormat);
-                        format = format.replace(/(^dddd.?\s)|(,?\sdddd$)/, "");
-                        return;
+
+                ColumnLayout {
+                    RowLayout {
+                        Layout.fillWidth: true
+                        CheckBox {
+                            id: clock_line_2
+                            checked: false
+                            onCheckedChanged: onClockFormatChange()
+                            text: i18n("Line 2:")
+                        }
+                        TextField {
+                            Layout.fillWidth: true
+                            id: clock_timeformat_2
+                            onTextChanged: onClockFormatChange()
+                        }
+                        Label {
+                            text: Qt.formatDateTime(new Date(), cfg_clock_timeformat_2)
+                        }
                     }
-                    text: Qt.formatDate(new Date(), dateFormat)
-                    onClicked: cfg_clock_timeformat_2 = dateFormat
-                }
-                Button {
-                    property string dateFormat: Qt.locale().dateFormat(Locale.ShortFormat);
-                    text: Qt.formatDate(new Date(), dateFormat)
-                    onClicked: cfg_clock_timeformat_2 = dateFormat
+
+                    RowLayout {
+                        Layout.fillWidth: true
+                        Text { width: indentWidth } // indent
+                        Label {
+                            text: "Preset:"
+                        }
+                        Button {
+                            property string dateFormat: {
+                                // org.kde.plasma.digitalclock
+                                // remove "dddd" from the locale format string
+                                // /all/ locales in LongFormat have "dddd" either
+                                // at the beginning or at the end. so we just
+                                // remove it + the delimiter and space
+                                var format = Qt.locale().dateFormat(Locale.LongFormat);
+                                format = format.replace(/(^dddd.?\s)|(,?\sdddd$)/, "");
+                                return;
+                            }
+                            text: Qt.formatDate(new Date(), dateFormat)
+                            onClicked: cfg_clock_timeformat_2 = dateFormat
+                        }
+                        Button {
+                            property string dateFormat: Qt.locale().dateFormat(Locale.ShortFormat);
+                            text: Qt.formatDate(new Date(), dateFormat)
+                            onClicked: cfg_clock_timeformat_2 = dateFormat
+                        }
+                    }
+
+                    RowLayout {
+                        Layout.fillWidth: true
+                        Text { width: indentWidth } // indent
+                        CheckBox {
+                            enabled: false
+                            checked: false
+                            text: i18n("Bold")
+                        }
+                    }
+
+                    RowLayout {
+                        Layout.fillWidth: true
+                        Text { width: indentWidth } // indent
+                        Label {
+                            text: "Height:"
+                        }
+                        Slider {
+                            id: clock_line_2_height_ratio
+                            minimumValue: 0.3
+                            maximumValue: 0.7
+                            stepSize: 0.05
+                            value: 0.4
+                            Layout.fillWidth: true
+                            // orientation: Qt.Vertical
+                        }
+                        Label {
+                            text: Math.floor(cfg_clock_line_2_height_ratio * 100) + '%'
+                        }
+                    }
                 }
             }
 

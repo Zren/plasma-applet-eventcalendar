@@ -41,9 +41,12 @@ Item {
     property string cfg_clock_timeformat: "h:mm AP"
     property string cfg_clock_timeformat_2: "yyyy-MM-dd"
     property bool cfg_clock_24h: false
-    property bool cfg_clock_line_2: false
+    property bool cfg_clock_line_2: true
+    property double cfg_clock_line_2_height_ratio: 0.4
     property int lineWidth: cfg_clock_line_2 ? Math.max(timeLabel.paintedWidth, timeLabel2.paintedWidth) : timeLabel.paintedWidth
-    property int lineHeight: cfg_clock_line_2 ? sizehelper.height / 2 : sizehelper.height
+    property int lineHeight1: cfg_clock_line_2 ? sizehelper.height - (sizehelper.height * cfg_clock_line_2_height_ratio) : sizehelper.height
+    property int lineHeight2: cfg_clock_line_2 ? sizehelper.height * cfg_clock_line_2_height_ratio : sizehelper.height
+
     
     
     // Testing with qmlview
@@ -102,7 +105,7 @@ Item {
                 minimumPointSize: 1
 
                 width: clock.lineWidth
-                height: clock.lineHeight
+                height: clock.lineHeight1
 
                 // fontSizeMode: Text.Fit
                 fontSizeMode: Text.VerticalFit
@@ -130,7 +133,7 @@ Item {
                 minimumPointSize: 1
 
                 width: clock.lineWidth
-                height: clock.lineHeight
+                height: clock.lineHeight2
 
                 // fontSizeMode: Text.Fit
                 fontSizeMode: Text.VerticalFit
