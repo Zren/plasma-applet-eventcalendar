@@ -94,7 +94,6 @@ Item {
 
     property Component popupComponent: PopupView {
         id: popup
-        today: dataSource.data["Local"]["DateTime"]
         config: plasmoid.configuration
         cfg_clock_24h: plasmoid.configuration.clock_24h
         cfg_widget_show_spacer: plasmoid.configuration.widget_show_spacer
@@ -108,6 +107,7 @@ Item {
         onIsExpandedChanged: {
             console.log('isExpanded', isExpanded);
             if (isExpanded) {
+                today = dataSource.data["Local"]["DateTime"]
                 monthViewDate = today
                 selectedDate = today
                 updateHeight();

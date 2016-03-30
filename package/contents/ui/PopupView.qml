@@ -77,7 +77,7 @@ Item {
 
     // Debugging
     Rectangle {
-        visible: !root
+        visible: typeof root === 'undefined'
         color: PlasmaCore.ColorScope.backgroundColor
         anchors.fill: parent
     }
@@ -199,7 +199,10 @@ Item {
                     showWeekNumbers: false
                     width: columnWidth
                     height: bottomRowHeight
-                    today: new Date()
+
+                    Component.onCompleted: {
+                        today = new Date();
+                    }
 
                     function parseGCalEvents(data) {
                         if (!(data && data.items))
@@ -325,9 +328,9 @@ Item {
     }
 
     function updateUI() {
-        var today = new Date();
+        var now = new Date();
 
-        if (monthViewDate.getYear() == today.getYear() && monthViewDate.getMonth() == today.getMonth()) {
+        if (monthViewDate.getYear() == now.getYear() && monthViewDate.getMonth() == now.getMonth()) {
             agendaView.showNextNumDays = 14;
             agendaView.clipPastEvents = true;
         } else {
