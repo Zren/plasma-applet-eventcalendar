@@ -200,9 +200,9 @@ Item {
                     width: columnWidth
                     height: bottomRowHeight
 
-                    Component.onCompleted: {
-                        today = new Date();
-                    }
+                    // Component.onCompleted: {
+                    //     today = new Date();
+                    // }
 
                     function parseGCalEvents(data) {
                         if (!(data && data.items))
@@ -256,6 +256,9 @@ Item {
 
     function updateEvents() {
         var dateMin = monthView.firstDisplayedDate();
+        if (!dateMin) {
+            return;
+        }
         var monthViewDateMax = monthView.lastDisplayedDate();
         var agendaViewDateMax = new Date(today).setDate(today.getDate() + 14);
         var dateMax;
