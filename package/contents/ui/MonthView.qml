@@ -206,7 +206,6 @@ PinchArea {
         days: 7
         weeks: 6
         firstDayOfWeek: Qt.locale().firstDayOfWeek
-        today: root.today
 
         Component.onCompleted: {
             // daysModel.setPluginsManager(EventPluginsManager);
@@ -233,11 +232,13 @@ PinchArea {
 
     function firstDisplayedDate() {
         var day = daysModel.get(0);
+        if (!day) return null;
         return new Date(day.yearNumber, day.monthNumber-1, day.dayNumber);
     }
 
     function lastDisplayedDate() {
         var day = daysModel.get(daysModel.count - 1);
+        if (!day) return null;
         return new Date(day.yearNumber, day.monthNumber-1, day.dayNumber);
     }
 

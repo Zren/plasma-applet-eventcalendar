@@ -107,7 +107,7 @@ Item {
         onIsExpandedChanged: {
             console.log('isExpanded', isExpanded);
             if (isExpanded) {
-                today = dataSource.data["Local"]["DateTime"]
+                today = dataSource.data["Local"]["DateTime"] || new Date()
                 monthViewDate = today
                 selectedDate = today
                 updateHeight();
