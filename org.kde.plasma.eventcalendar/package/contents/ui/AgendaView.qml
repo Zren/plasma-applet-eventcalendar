@@ -475,28 +475,6 @@ Item {
         if (!(data && data.list))
             return;
 
-        // http://openweathermap.org/weather-conditions
-        var weatherIconMap = {
-            '01d': 'weather-clear',
-            '02d': 'weather-few-clouds',
-            '03d': 'weather-clouds',
-            '04d': 'weather-overcast',
-            '09d': 'weather-showers-scattered',
-            '10d': 'weather-showers',
-            '11d': 'weather-storm',
-            '13d': 'weather-snow',
-            '50d': 'weather-fog',
-            '01n': 'weather-clear-night',
-            '02n': 'weather-few-clouds',
-            '03n': 'weather-clouds',
-            '04n': 'weather-overcast',
-            '09n': 'weather-showers-scattered',
-            '10n': 'weather-showers',
-            '11n': 'weather-storm',
-            '13n': 'weather-snow',
-            '50n': 'weather-fog',
-        };
-
         for (var j = 0; j < data.list.length; j++) {
             var forecastItem = data.list[j];
             var day = new Date(forecastItem.dt * 1000);
@@ -509,7 +487,7 @@ Item {
                     agendaItem.tempHigh = Math.ceil(forecastItem.temp.max);
                     agendaModel.setProperty(i, 'tempLow', Math.floor(forecastItem.temp.min));
                     agendaModel.setProperty(i, 'tempHigh', Math.ceil(forecastItem.temp.max));
-                    var weatherIcon = weatherIconMap[forecastItem.weather[0].icon] || 'weather-severe-alert';
+                    var weatherIcon = Shared.weatherIconMap[forecastItem.weather[0].icon] || 'weather-severe-alert';
                     agendaModel.setProperty(i, 'weatherIcon', weatherIcon);
                     agendaModel.setProperty(i, 'weatherText', forecastItem.weather[0].main);
                     agendaModel.setProperty(i, 'weatherDescription', forecastItem.weather[0].description);

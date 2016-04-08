@@ -33,7 +33,7 @@ Item {
     property variant config: { }
     property bool cfg_clock_24h: false
     property bool cfg_widget_show_spacer: true
-    // property bool cfg_widget_show_meteogram: false
+    property bool cfg_widget_show_meteogram: true
     property bool cfg_widget_show_timer: true
     property bool cfg_agenda_scroll_on_select: true
     property bool cfg_agenda_scroll_on_monthchange: false
@@ -47,7 +47,8 @@ Item {
     property alias monthViewDate: monthView.displayedDate
     property variant eventsData: { "items": [] }
     property variant eventsByCalendar: { "": { "items": [] } }
-    property variant weatherData: { "list": [] }
+    property variant dailyWeatherData: { "list": [] }
+    property variant hourlyWeatherData: { "list": [] }
     property variant lastForecastAt: null
 
     onSelectedDateChanged: {
@@ -94,23 +95,19 @@ Item {
                 visible: cfg_widget_show_spacer
                 width: columnWidth
                 height: topRowHeight
-
-                // Rectangle {
-                //     color: PlasmaCore.ColorScope.backgroundColor
-                //     anchors.fill: parent
-                // }
             }
-            // Item {
-            //     id: meteogramItem
-            //     visible: cfg_widget_show_meteogram
-            //     width: columnWidth
-            //     height: topRowHeight
+            Item {
+                id: meteogramItem
+                visible: cfg_widget_show_meteogram
+                width: columnWidth
+                height: topRowHeight
 
-            //     ForecastGraph {
-            //         width: columnWidth
-            //         height: topRowHeight
-            //     }
-            // }
+                ForecastGraph {
+                    id: meteogramView
+                    width: columnWidth
+                    height: topRowHeight
+                }
+            }
             Item {
                 id: timerItem
                 visible: cfg_widget_show_timer
@@ -257,6 +254,7 @@ Item {
     function updateEvents() {
         var dateMin = monthView.firstDisplayedDate();
         if (!dateMin) {
+            console.log('updateEvents', 'no dateMin');
             return;
         }
         var monthViewDateMax = monthView.lastDisplayedDate();
@@ -274,6 +272,10 @@ Item {
         if (config && config.access_token) {
             var calendarIdList = plasmoid.configuration.calendar_id_list ? plasmoid.configuration.calendar_id_list.split(',') : ['primary'];
             var calendarList = plasmoid.configuration.calendar_list ? JSON.parse(Qt.atob(plasmoid.configuration.calendar_list)) : [];
+
+            console.log('updateEvents', dateMin, ' - ', dateMax);
+            console.log('calendarIdList', calendarIdList);
+            console.log('calendarList.length', calendarList.length);
 
             eventsByCalendar = {};
 
@@ -310,27 +312,55 @@ Item {
 
     function updateWeather(force) {
         if (config && config.weather_city_id) {
-            // rate limit 1 request / hour
+            // rate limit 1 update / hour
             if (force || !lastForecastAt && Date.now() - lastForecastAt >= 60 * 60 * 1000) {
-                console.log('fetchWeatherForecast', lastForecastAt, Date.now());
-                fetchWeatherForecast({
-                    app_id: config.weather_app_id,
-                    city_id: config.weather_city_id,
-                }, function(err, data, xhr) {
-                    console.log('updateWeather.response', err, data, xhr.status);
-                    if (err) {
-                        return console.log('onWeatherError', err);
-                    }
+                updateDailyWeather();
 
-                    lastForecastAt = Date.now();
-                    weatherData = data;
-                    updateUI();
-                });
+                if (popup.cfg_widget_show_meteogram) {
+                    updateHourlyWeather();
+                }
             }
         }
     }
 
+    function updateDailyWeather() {
+        console.log('fetchDailyWeatherForecast', lastForecastAt, Date.now());
+        Shared.fetchDailyWeatherForecast({
+            app_id: config.weather_app_id,
+            city_id: config.weather_city_id,
+        }, function(err, data, xhr) {
+            console.log('fetchDailyWeatherForecast.response', err, data, xhr.status);
+            if (err) {
+                return console.log('onWeatherError', err);
+                console.log('onWeatherError.data: ', JSON.stringify(data, null, '\t'));
+            }
+
+            lastForecastAt = Date.now();
+            dailyWeatherData = data;
+            updateUI();
+        });
+    }
+
+    function updateHourlyWeather() {
+        console.log('fetchHourlyWeatherForecast', lastForecastAt, Date.now());
+        Shared.fetchHourlyWeatherForecast({
+            app_id: config.weather_app_id,
+            city_id: config.weather_city_id,
+        }, function(err, data, xhr) {
+            console.log('fetchHourlyWeatherForecast.response', err, data, xhr.status);
+            if (err) {
+                return console.log('onWeatherError', err);
+                console.log('onWeatherError.data: ', JSON.stringify(data, null, '\t'));
+            }
+
+            lastForecastAt = Date.now();
+            hourlyWeatherData = data;
+            meteogramView.parseWeatherForecast(hourlyWeatherData);
+        });
+    }
+
     function updateUI() {
+        console.log('updateUI');
         var now = new Date();
 
         if (monthViewDate.getYear() == now.getYear() && monthViewDate.getMonth() == now.getMonth()) {
@@ -359,7 +389,7 @@ Item {
 
         agendaView.cfg_clock_24h = config ? config.clock_24h : false;
         agendaView.parseGCalEvents(eventsData);
-        agendaView.parseWeatherForecast(weatherData);
+        agendaView.parseWeatherForecast(dailyWeatherData);
         monthView.parseGCalEvents(eventsData);
         updateHeight()
         // scrollToSelection();
@@ -376,6 +406,7 @@ Item {
     }
 
     function fetchNewAccessToken(callback) {
+        console.log('fetchNewAccessToken');
         var url = 'https://www.googleapis.com/oauth2/v4/token';
         Utils.post({
             url: url,
@@ -411,6 +442,7 @@ Item {
     }
 
     function fetchGCalEvents(args, callback) {
+        console.log('fetchGCalEvents', args.calendarId);
         var url = 'https://www.googleapis.com/calendar/v3';
         url += '/calendars/'
         url += encodeURIComponent(args.calendarId);
@@ -425,22 +457,11 @@ Item {
                 "Authorization": "Bearer " + args.access_token,
             }
         }, function(err, data, xhr) {
-            // console.log('fetchGCalEvents.response', err, data, xhr.status);
+            console.log('fetchGCalEvents.response', err, data, xhr.status);
             if (!err && data && data.error) {
                 return callback(data, null, xhr);
             }
             callback(err, data, xhr);
         });
-    }
-
-    function fetchWeatherForecast(args, callback) {
-        if (!args.app_id) return callback('OpenWeatherMap AppId not set');
-        if (!args.city_id) return callback('OpenWeatherMap CityId not set');
-        
-        var url = 'http://api.openweathermap.org/data/2.5/';
-        url += 'forecast/daily?id=' + args.city_id;
-        url += '&units=metric';
-        url += '&appid=' + args.app_id;
-        Utils.getJSON(url, callback);
     }
 }

@@ -14,6 +14,7 @@ Item {
     implicitHeight: pageColumn.implicitHeight
 
     property alias cfg_widget_show_spacer: widget_show_spacer.checked
+    property alias cfg_widget_show_meteogram: widget_show_meteogram.checked
     property alias cfg_widget_show_timer: widget_show_timer.checked
     property alias cfg_clock_24h: clock_24h.checked
     property alias cfg_clock_show_seconds: clock_show_seconds.checked
@@ -80,6 +81,11 @@ Item {
                 Layout.fillWidth: true
                 id: widget_show_spacer
                 text: "Spacer"
+            }
+            CheckBox {
+                Layout.fillWidth: true
+                id: widget_show_meteogram
+                text: "Meteogram"
             }
             CheckBox {
                 Layout.fillWidth: true
