@@ -67,6 +67,9 @@
     <entry name="agenda_weather_show_text" type="bool">
       <default>false</default>
     </entry>
+    <entry name="agenda_breakup_multiday_events" type="bool">
+      <default>true</default>
+    </entry>
   </group>
 
 

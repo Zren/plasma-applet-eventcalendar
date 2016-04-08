@@ -105,6 +105,7 @@ Item {
         cfg_agenda_weather_show_icon: plasmoid.configuration.agenda_weather_show_icon
         cfg_agenda_weather_icon_height: plasmoid.configuration.agenda_weather_icon_height
         cfg_agenda_weather_show_text: plasmoid.configuration.agenda_weather_show_text
+        cfg_agenda_breakup_multiday_events: plasmoid.configuration.agenda_breakup_multiday_events
 
 
         property bool isExpanded: plasmoid.expanded
@@ -122,6 +123,7 @@ Item {
         Connections {
             target: plasmoid.configuration
             onClock_24hChanged: { updateUI() }
+            onAgenda_breakup_multiday_eventsChanged: { updateUI() }
             onCalendar_id_listChanged: { updateEvents() }
             onAccess_tokenChanged: { updateEvents() }
             onWeather_app_idChanged: { updateWeather(true) }

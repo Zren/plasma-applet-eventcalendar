@@ -13,6 +13,7 @@ ColumnLayout {
     property alias cfg_agenda_weather_show_icon: agenda_weather_show_icon.checked
     property alias cfg_agenda_weather_icon_height: agenda_weather_icon_height.value
     property alias cfg_agenda_weather_show_text: agenda_weather_show_text.checked
+    property alias cfg_agenda_breakup_multiday_events: agenda_breakup_multiday_events.checked
 
     SystemPalette {
         id: palette
@@ -108,6 +109,18 @@ ColumnLayout {
                         checked: true
                         exclusiveGroup: agenda_event_clickGroup
                     }
+                }
+            }
+        }
+
+
+        GroupBox {
+            Layout.fillWidth: true
+
+            RowLayout {
+                CheckBox {
+                    id: agenda_breakup_multiday_events
+                    text: "Show event each day for multiday events"
                 }
             }
         }

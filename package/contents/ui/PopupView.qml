@@ -40,6 +40,7 @@ Item {
     property bool cfg_agenda_weather_show_icon: false
     property int cfg_agenda_weather_icon_height: 24
     property bool cfg_agenda_weather_show_text: false
+    property bool cfg_agenda_breakup_multiday_events: true
     
     property alias agendaListView: agendaView.agendaListView
     property alias today: monthView.today
@@ -131,6 +132,7 @@ Item {
                 AgendaView {
                     id: agendaView
 
+                    cfg_agenda_breakup_multiday_events: popup.cfg_agenda_breakup_multiday_events
                     cfg_agenda_weather_show_icon: popup.cfg_agenda_weather_show_icon
                     cfg_agenda_weather_icon_height: popup.cfg_agenda_weather_icon_height
                     cfg_agenda_weather_show_text: popup.cfg_agenda_weather_show_text
