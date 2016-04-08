@@ -88,3 +88,32 @@ var weatherIconMap = {
     '13n': 'weather-snow',
     '50n': 'weather-fog',
 };
+
+function formatEventTime(dateTime) {
+    var timeFormat = "h"
+    if (dateTime.getMinutes() != 0) {
+        timeFormat += ":mm"
+    }
+    if (!cfg_clock_24h) {
+        timeFormat += " AP"
+    }
+    return Qt.formatDateTime(dateTime, timeFormat)
+}
+
+function formatEventDuration(event) {
+    if (event.start.date) {
+        return "All Day"
+    } else {
+        var startTime = event.start.dateTime;
+        var endTime = event.end.dateTime;
+        var s = formatEventTime(startTime);
+        if (startTime.valueOf() != endTime.valueOf()) {
+            s += " - ";
+            if (!(startTime.getFullYear() == endTime.getFullYear() && startTime.getMonth() == endTime.getMonth() && startTime.getDate() == endTime.getDate())) {
+                s += Qt.formatDateTime(endTime, "MMM d") + ", ";
+            }
+            s += formatEventTime(endTime);
+        }
+        return s;
+    }
+}

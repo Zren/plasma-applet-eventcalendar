@@ -23,6 +23,8 @@ import org.kde.plasma.components 2.0 as Components
 
 import org.kde.plasma.calendar 2.0
 
+import "shared.js" as Shared
+
 MouseArea {
     id: dayStyle
 
@@ -144,7 +146,7 @@ MouseArea {
             var lines = [];
             for (var i = 0; i < model.events.count; i++) {
                 var eventItem = model.events.get(i);
-                lines.push('<b>' + eventItem.summary + ':</b> ' + eventItem.start.dateTime + ' - ' + eventItem.end.dateTime);
+                lines.push('<b>' + eventItem.summary + ':</b> ' + Shared.formatEventDuration(eventItem));
             }
             return lines.join('<br>');
         }
