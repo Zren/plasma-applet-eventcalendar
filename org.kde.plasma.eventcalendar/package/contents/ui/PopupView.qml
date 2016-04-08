@@ -205,6 +205,14 @@ Item {
                         if (!(data && data.items))
                             return;
 
+                        // Clear event data since data contains events from all calendars, and this function
+                        // is called every time a calendar is recieved.
+                        for (var i = 0; i < monthView.daysModel.count; i++) {
+                            var dayData = monthView.daysModel.get(i);
+                            monthView.daysModel.setProperty(i, 'showEventBadge', false);
+                            dayData.events.clear();
+                        }
+
                         // https://github.com/KDE/plasma-framework/blob/master/src/declarativeimports/calendar/daysmodel.h
                         for (var j = 0; j < data.items.length; j++) {
                             var eventItem = data.items[j];
@@ -215,6 +223,9 @@ Item {
                                 if (month+1 == dayData.monthNumber && date == dayData.dayNumber) {
                                     // console.log(dayData.monthNumber, dayData.dayNumber, eventItem.start.dateTime, eventItem.summary);
                                     monthView.daysModel.setProperty(i, 'showEventBadge', true);
+                                    var events = dayData.events || [];
+                                    events.append(eventItem);
+                                    monthView.daysModel.setProperty(i, 'events', events);
                                     break;
                                 }
                             }
