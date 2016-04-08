@@ -104,20 +104,20 @@ Item {
                     }
                 }
 
-                // PlasmaCore.ToolTipArea {
-                //     anchors.fill: parent
-                //     mainText: weatherDescription
-                //     subText: {
-                //         var lines = [];
-                //         lines.push(tempHigh + '° | ' + tempLow + '°');
-                //         lines.push('<b>Morning:</b> ' + tempMorn + '°');
-                //         lines.push('<b>Day:</b> ' + tempDay + '°');
-                //         lines.push('<b>Evening:</b> ' + tempEve + '°');
-                //         lines.push('<b>Night:</b> ' + tempNight + '°');
-                //         return lines.join('<br>');
-                //     }
-                //     icon: weatherIcon
-                // }
+                PlasmaCore.ToolTipArea {
+                    anchors.fill: parent
+                    mainText: weatherDescription
+                    subText: {
+                        var lines = [];
+                        lines.push(tempHigh + '° | ' + tempLow + '°');
+                        lines.push('<b>Morning:</b> ' + weatherTempMorn + '°');
+                        lines.push('<b>Day:</b> ' + weatherTempDay + '°');
+                        lines.push('<b>Evening:</b> ' + weatherTempEve + '°');
+                        lines.push('<b>Night:</b> ' + weatherTempNight + '°');
+                        return lines.join('<br>');
+                    }
+                    icon: weatherIcon
+                }
 
                 onClicked: {
                     console.log('agendaItem.date.clicked', date)
@@ -336,20 +336,10 @@ Item {
             weatherIcon: "",
             weatherText: "",
             weatherDescription: "",
-            weather: {
-                temp: {
-                    morn: 0,
-                    day: 0,
-                    eve: 0,
-                    night: 0,
-                },
-                pressure: 0,
-                humidity: 0,
-                speed: 0,
-                clouds: 93,
-                rain: 0,
-                snow: 2.69,
-            },
+            weatherTempMorn: 0,
+            weatherTempDay: 0,
+            weatherTempEve: 0,
+            weatherTempNight: 0,
         };
     }
 
@@ -491,10 +481,10 @@ Item {
                     agendaModel.setProperty(i, 'weatherIcon', weatherIcon);
                     agendaModel.setProperty(i, 'weatherText', forecastItem.weather[0].main);
                     agendaModel.setProperty(i, 'weatherDescription', forecastItem.weather[0].description);
-                    // agendaModel.setProperty(i, 'tempMorn', Math.round(forecastItem.temp.morn));
-                    // agendaModel.setProperty(i, 'tempDay', Math.round(forecastItem.temp.day));
-                    // agendaModel.setProperty(i, 'tempEve', Math.round(forecastItem.temp.eve));
-                    // agendaModel.setProperty(i, 'tempNight', Math.round(forecastItem.temp.night));
+                    agendaModel.setProperty(i, 'weatherTempMorn', Math.round(forecastItem.temp.morn));
+                    agendaModel.setProperty(i, 'weatherTempDay', Math.round(forecastItem.temp.day));
+                    agendaModel.setProperty(i, 'weatherTempEve', Math.round(forecastItem.temp.eve));
+                    agendaModel.setProperty(i, 'weatherTempNight', Math.round(forecastItem.temp.night));
                     agendaModel.setProperty(i, 'showWeather', true);
                     
                     break;
@@ -561,7 +551,7 @@ Item {
                 "cnt": 7,
                 "list": [
                     {
-                        "dt": 1459270800,
+                        "dt": Date.now()/1000,
                         "temp": {
                             "day": 5.3,
                             "min": -6.14,
