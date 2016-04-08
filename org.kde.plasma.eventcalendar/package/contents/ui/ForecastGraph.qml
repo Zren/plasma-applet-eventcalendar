@@ -219,7 +219,7 @@ Item {
         // ]
         gridCanvas.requestPaint();
 
-        if (typeof root === "undefined") {
+        if (typeof popup === "undefined") {
             updateWeatherData();
         }
     }
