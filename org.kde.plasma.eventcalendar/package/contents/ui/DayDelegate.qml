@@ -140,7 +140,7 @@ MouseArea {
     PlasmaCore.ToolTipArea {
         active: model.showEventBadge || false
         anchors.fill: parent
-        mainText: model.events.count + ' events'
+        mainText: Qt.formatDate(thisDate, Locale.LongFormat)
         
         subText: {
             var lines = [];
@@ -150,8 +150,6 @@ MouseArea {
             }
             return lines.join('<br>');
         }
-        
-        icon: 'flag'
     }
 
     Component.onCompleted: {
