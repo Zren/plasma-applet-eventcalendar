@@ -46,6 +46,9 @@ Item {
     property bool cfg_clock_24h: false
     property bool cfg_clock_line_2: true
     property double cfg_clock_line_2_height_ratio: 0.4
+    property bool cfg_clock_line_1_bold: true
+    property bool cfg_clock_line_2_bold: true
+    
     property int lineWidth: cfg_clock_line_2 ? Math.max(timeLabel.paintedWidth, timeLabel2.paintedWidth) : timeLabel.paintedWidth
     property int lineHeight1: cfg_clock_line_2 ? sizehelper.height - (sizehelper.height * cfg_clock_line_2_height_ratio) : sizehelper.height
     property int lineHeight2: cfg_clock_line_2 ? sizehelper.height * cfg_clock_line_2_height_ratio : sizehelper.height
@@ -105,6 +108,7 @@ Item {
                 id: timeLabel
 
                 font.family: theme.defaultFont.family
+                font.weight: clock.cfg_clock_line_1_bold ? Font.Bold : Font.Normal
                 font.pointSize: 1024
                 minimumPointSize: 1
 
@@ -127,6 +131,7 @@ Item {
                 visible: cfg_clock_line_2
 
                 font.family: theme.defaultFont.family
+                font.weight: clock.cfg_clock_line_2_bold ? Font.Bold : Font.Normal
                 font.pointSize: 1024
                 minimumPointSize: 1
 
