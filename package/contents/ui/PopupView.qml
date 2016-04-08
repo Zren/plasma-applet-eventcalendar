@@ -49,6 +49,7 @@ Item {
     property variant eventsByCalendar: { "": { "items": [] } }
     property variant dailyWeatherData: { "list": [] }
     property variant hourlyWeatherData: { "list": [] }
+    property variant currentWeatherData: null
     property variant lastForecastAt: null
 
     onSelectedDateChanged: {
@@ -350,8 +351,11 @@ Item {
             }
 
             lastForecastAt = Date.now();
+            currentWeatherData = data.list[0];
             dailyWeatherData = data;
             updateUI();
+
+            meteogramView.parseWeatherForecast(currentWeatherData, hourlyWeatherData);
         });
     }
 
@@ -369,7 +373,7 @@ Item {
 
             lastForecastAt = Date.now();
             hourlyWeatherData = data;
-            meteogramView.parseWeatherForecast(hourlyWeatherData);
+            meteogramView.parseWeatherForecast(currentWeatherData, hourlyWeatherData);
         });
     }
 

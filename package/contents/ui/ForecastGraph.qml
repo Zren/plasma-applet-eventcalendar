@@ -133,7 +133,7 @@ Item {
                 onPaint: {
                     // var ctx = canvas.getContext("2d");
                     context.reset();
-                    if (graph.gridData.length == 0) return;
+                    if (graph.gridData.length < 2) return;
                     if (graph.yAxisMin == graph.yAxisMax) return;
 
                     // rain
@@ -233,24 +233,58 @@ Item {
             Shared.fetchHourlyWeatherForecast({
                 app_id: '99e575d9aa8a8407bcee7693d5912c6a',
                 city_id: '5967629',
-            }, onWeatherData);
+            }, function(err, hourlyData, xhr) {
+                Shared.fetchDailyWeatherForecast({
+                    app_id: '99e575d9aa8a8407bcee7693d5912c6a',
+                    city_id: '5967629',
+                }, function(err, dailyData, xhr) {
+                    var current = dailyData.list[0];
+                    // hourlyData.list.splice(0, 0, {
+                    //     dt: current.dt,
+                    //     main: {
+                    //         temp: current.temp.min,
+                    //     },
+                    //     weather: current.weather,
+                    //     rain: {
+                    //         '3h': current.rain || 0,
+                    //     },
+                    //     snow: {
+                    //         '3h': current.snow || 0,
+                    //     },
+
+                    // });
+                    parseWeatherForecast(current, hourlyData)
+                });
+            });
         }
     }
 
-    function onWeatherData(err, data, xhr) {
-        parseWeatherForecast(data);
-    }
+    // function onWeatherData(err, data, xhr) {
+    //     parseWeatherForecast(data);
+    // }
         
 
-    function parseWeatherForecast(data) {
+    function parseWeatherForecast(currentWeatherData, data) {
         console.log(JSON.stringify(data, null, '\t'));
         var gData = [];
-        if (data.list.length > 0) {
+        if (currentWeatherData) {
+            var rain = currentWeatherData.rain || 0;
+            var snow = currentWeatherData.snow || 0;
+            var mm = rain + snow;
             gData.push({
-                y: data.list[0].main.temp,
-                xLabel: Date.now(),
-                percipitation: 0,
+                y: currentWeatherData.temp.min,
+                xLabel: currentWeatherData.dt,
+                percipitation: mm,
+                weatherIcon: Shared.weatherIconMap[currentWeatherData.weather[0].icon] || 'weather-severe-alert',
             });
+        } else {
+            if (data.list.length > 0) {
+                gData.push({
+                    y: data.list[0].main.temp,
+                    xLabel: Date.now(),
+                    percipitation: 0,
+                });
+            }
         }
 
         for (var i = 0; i < data.list.length; i++) {
