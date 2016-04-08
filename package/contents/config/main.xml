@@ -10,6 +10,9 @@
     <entry name="widget_show_spacer" type="bool">
       <default>true</default>
     </entry>
+    <entry name="widget_show_meteogram" type="bool">
+      <default>false</default>
+    </entry>
     <entry name="widget_show_timer" type="bool">
       <default>true</default>
     </entry>

@@ -3,6 +3,9 @@ function request(opt, callback) {
         opt = {url: opt};
     }
 	var req = new XMLHttpRequest();
+    req.onerror = function(e) {
+        console.log('XMLHttpRequest.onerror', e.status, e.statusText, e.message, e);
+    }
     req.onreadystatechange = function() {
         if (req.readyState === 4) {
             if (200 <= req.status && req.status < 400) {

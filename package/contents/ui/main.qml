@@ -97,6 +97,7 @@ Item {
         config: plasmoid.configuration
         cfg_clock_24h: plasmoid.configuration.clock_24h
         cfg_widget_show_spacer: plasmoid.configuration.widget_show_spacer
+        cfg_widget_show_meteogram: plasmoid.configuration.widget_show_meteogram
         cfg_widget_show_timer: plasmoid.configuration.widget_show_timer
         cfg_agenda_weather_show_icon: plasmoid.configuration.agenda_weather_show_icon
         cfg_agenda_weather_icon_height: plasmoid.configuration.agenda_weather_icon_height
@@ -111,6 +112,7 @@ Item {
                 monthViewDate = today
                 selectedDate = today
                 updateHeight();
+                updateWeather();
             }
         }
 
@@ -122,6 +124,12 @@ Item {
             onWeather_app_idChanged: { updateWeather(true) }
             onWeather_city_idChanged: { updateWeather(true) }
             onWidget_show_spacerChanged: { updateHeight() }
+            onWidget_show_meteogramChanged: {
+                updateHeight();
+                if (plasmoid.configuration.widget_show_meteogram) {
+                    updateHourlyWeather();
+                }
+            }
             onWidget_show_timerChanged: { updateHeight() }
         }
 
