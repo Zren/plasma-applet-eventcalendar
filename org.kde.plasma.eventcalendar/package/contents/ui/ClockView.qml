@@ -29,6 +29,9 @@ Item {
     width: labels.width
     Layout.minimumWidth: labels.width
     // Layout.maximumWidth: timeLabel.width
+    property variant formFactor: PlasmaCore.Types.Vertical
+    property int maxLineHeight: 24
+
 
     property date currentTime: {
         if (typeof dataSource === 'undefined') {
@@ -60,6 +63,7 @@ Item {
         id: labels
         spacing: 10
 
+        /*
         Components.Label {
             id: timerLabel
             visible: false
@@ -71,8 +75,7 @@ Item {
             width: timerLabel.paintedWidth
             height: sizehelper.height
 
-            // fontSizeMode: Text.Fit
-            fontSizeMode: Text.VerticalFit
+            // fontSizeMode: Text.VerticalFit
             wrapMode: Text.NoWrap
 
             horizontalAlignment: Text.AlignHCenter
@@ -92,6 +95,7 @@ Item {
             height: sizehelper.height
             visible: false
         }
+        */
 
         Column {
             // width: Math.max(timeLabel.width, timeLabel2.width)
@@ -104,18 +108,11 @@ Item {
                 font.pointSize: 1024
                 minimumPointSize: 1
 
-                width: clock.lineWidth
-                height: clock.lineHeight1
-
-                // fontSizeMode: Text.Fit
                 fontSizeMode: Text.VerticalFit
                 wrapMode: Text.NoWrap
 
                 horizontalAlignment: Text.AlignHCenter
                 verticalAlignment: Text.AlignVCenter
-
-
-                // anchors.horizontalCenter: clock.horizontalCenter
 
                 text: {
                     if (clock.cfg_clock_timeformat) {
@@ -127,23 +124,17 @@ Item {
             }
             Components.Label {
                 id: timeLabel2
+                visible: cfg_clock_line_2
 
                 font.family: theme.defaultFont.family
                 font.pointSize: 1024
                 minimumPointSize: 1
 
-                width: clock.lineWidth
-                height: clock.lineHeight2
-
-                // fontSizeMode: Text.Fit
                 fontSizeMode: Text.VerticalFit
                 wrapMode: Text.NoWrap
 
                 horizontalAlignment: Text.AlignHCenter
                 verticalAlignment: Text.AlignVCenter
-
-
-                // anchors.horizontalCenter: clock.horizontalCenter
 
                 text: {
                     if (clock.cfg_clock_timeformat_2) {
@@ -180,10 +171,63 @@ Item {
         font.italic: timeLabel.font.italic
         // font.pixelSize: 1024
         font.pointSize: 1024
-        verticalAlignment: Text.AlignVCenter
         visible: false
-        height: parent.height
-        width: sizehelper.paintedWidth
-        fontSizeMode: Text.VerticalFit
     }
+
+    state: "verticalPanel"
+    states: [
+        State {
+            name: "horizontalPanel"
+            when: clock.formFactor == PlasmaCore.Types.Horizontal
+
+            PropertyChanges { target: sizehelper
+                width: sizehelper.paintedWidth
+                height: clock.height
+                fontSizeMode: Text.VerticalFit
+                // verticalAlignment: Text.AlignVCenter
+            }
+            PropertyChanges { target: timeLabel
+                width: clock.lineWidth
+                height: clock.lineHeight1
+            }
+            PropertyChanges { target: timeLabel2
+                width: clock.lineWidth
+                height: clock.lineHeight2
+            }
+                
+        },
+
+        State {
+            name: "verticalPanel"
+            when: clock.formFactor == PlasmaCore.Types.Vertical
+
+            PropertyChanges { target: clock
+                height: cfg_clock_line_2 ? maxLineHeight*2 : maxLineHeight
+                // Layout.minimumHeight: 1
+                // Layout.preferredHeight: clock.height
+                // Layout.maximumHeight: clock.height
+                // Layout.fillHeight: false
+                // Layout.fillWidth: true
+                Layout.maximumHeight: cfg_clock_line_2 ? maxLineHeight*2 : maxLineHeight
+                Layout.minimumHeight: Layout.maximumHeight
+            }
+
+            PropertyChanges { target: sizehelper
+                width: clock.width
+                height: cfg_clock_line_2 ? maxLineHeight*2 : maxLineHeight
+                fontSizeMode: Text.Fit
+                // horizontalAlignment: Text.AlignHCenter
+            }
+            PropertyChanges { target: timeLabel
+                width: clock.width
+                height: cfg_clock_line_2 ? maxLineHeight*2 - (maxLineHeight*2 * cfg_clock_line_2_height_ratio) : maxLineHeight
+                fontSizeMode: Text.Fit
+            }
+            PropertyChanges { target: timeLabel2
+                width: clock.width
+                height: cfg_clock_line_2 ? maxLineHeight*2 * cfg_clock_line_2_height_ratio : 0
+                fontSizeMode: Text.Fit
+            }
+        }
+    ]
 }

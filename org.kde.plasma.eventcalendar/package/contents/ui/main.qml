@@ -51,6 +51,7 @@ Item {
     property Component clockComponent: ClockView {
         id: clock
 
+        formFactor: plasmoid.formFactor
         cfg_clock_24h: plasmoid.configuration.clock_24h
         cfg_clock_timeformat: plasmoid.configuration.clock_timeformat
         cfg_clock_timeformat_2: plasmoid.configuration.clock_timeformat_2
