@@ -23,6 +23,7 @@ Item {
     property bool cfg_agenda_weather_show_icon: false
     property int cfg_agenda_weather_icon_height: 24
     property bool cfg_agenda_weather_show_text: false
+    property bool cfg_agenda_breakup_multiday_events: true
 
     signal newEventFormOpened(variant agendaItem, variant newEventCalendarId)
     signal submitNewEventForm(variant calendarId, variant date, string text)
@@ -303,7 +304,7 @@ Item {
 
     function buildAgendaItem(dateTime) {
         return {
-            date: dateTime,
+            date: new Date(dateTime),
             events: [],
             showWeather: false,
             tempLow: 0,
@@ -354,22 +355,30 @@ Item {
         // }
 
         var agendaItemList = [];
-        var agendaItem;
+        function getAgendaItemByDate(date) {
+            for (var i = 0; i < agendaItemList.length; i++) {
+                var agendaItem = agendaItemList[i];
+                var isSameDay = agendaItem.date.getDate() == date.getDate();
+                if (isSameDay) {
+                    return agendaItem;
+                }
+            }
+            return null;
+        }
         for (var i = 0; i < data.items.length; i++) {
             var eventItem = data.items[i];
-            // console.log(agendaItem && agendaItem.date.getDate(), eventItem.start.dateTime.getDate());
-            var isSameDay = agendaItem && agendaItem.date.getDate() == eventItem.start.dateTime.getDate();
-            if (!agendaItem || !isSameDay) {
-                if (agendaItem) {
+            for (var eventItemDate = new Date(eventItem.start.dateTime); eventItemDate < eventItem.end.dateTime; eventItemDate.setDate(eventItemDate.getDate() + 1)) {
+                var agendaItem = getAgendaItemByDate(eventItemDate);
+                if (!agendaItem) {
+                    agendaItem = buildAgendaItem(eventItemDate);
                     agendaItemList.push(agendaItem);
                 }
-                agendaItem = buildAgendaItem(eventItem.start.dateTime);
-            }
+                agendaItem.events.push(eventItem);
 
-            agendaItem.events.push(eventItem);
-        }
-        if (agendaItem) {
-            agendaItemList.push(agendaItem);
+                if (!cfg_agenda_breakup_multiday_events) {
+                    break;
+                }
+            }
         }
 
         if (showNextNumDays > 0) {
@@ -490,6 +499,35 @@ Item {
                         },
                         "end": {
                             "date": "2016-03-26"
+                        },
+                        "recurringEventId": "a1a1a1a1a1a1a1a1a1a1a1a1a1",
+                        "originalStartTime": {
+                            "date": "2016-03-25"
+                        },
+                        "transparency": "transparent",
+                        "iCalUID": "a1a1a1a1a1a1a1a1a1a1a1a1a1@google.com",
+                        "sequence": 0,
+                        "reminders": {
+                            "useDefault": false
+                        },
+
+                        // Optional
+                        "backgroundColor": "#9a9cff" // We apply the calendar.backgroundColor
+                    },
+                    {
+                        "kind": "calendar#event",
+                        "etag": "\"2561779720126000\"",
+                        "id": "a1a1a1a1a1a1a1a1a1a1a1a1a1_20160325",
+                        "status": "confirmed",
+                        "htmlLink": "https://www.google.com/calendar/event?eid=aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa&ctz=Etc/UTC",
+                        "created": "2008-03-24T22:34:26.000Z",
+                        "updated": "2010-08-04T02:44:20.063Z",
+                        "summary": "Multiday Event",
+                        "start": {
+                            "date": "2016-03-25"
+                        },
+                        "end": {
+                            "date": "2016-03-30"
                         },
                         "recurringEventId": "a1a1a1a1a1a1a1a1a1a1a1a1a1",
                         "originalStartTime": {
