@@ -146,6 +146,7 @@ PinchArea {
                 dayData.monthNumber = previousMonth.getMonth() + 1;
                 dayData.yearNumber = previousMonth.getFullYear();
                 dayData.showEventBadge = false;
+                dayData.events = [];
                 daysModel.append(dayData);
             }
         }
@@ -157,6 +158,7 @@ PinchArea {
             dayData.monthNumber = month + 1;
             dayData.yearNumber = year;
             dayData.showEventBadge = false;
+            dayData.events = [];
             daysModel.append(dayData);
         }
 
@@ -169,6 +171,7 @@ PinchArea {
                 dayData.monthNumber = nextMonth.getMonth() + 1;
                 dayData.yearNumber = nextMonth.getFullYear();
                 dayData.showEventBadge = false;
+                dayData.events = [];
                 daysModel.append(dayData);
             }
         }

@@ -135,6 +135,23 @@ MouseArea {
         color: theme.highlightColor
     }
 
+    PlasmaCore.ToolTipArea {
+        active: model.showEventBadge || false
+        anchors.fill: parent
+        mainText: model.events.count + ' events'
+        
+        subText: {
+            var lines = [];
+            for (var i = 0; i < model.events.count; i++) {
+                var eventItem = model.events.get(i);
+                lines.push('<b>' + eventItem.summary + ':</b> ' + eventItem.start.dateTime + ' - ' + eventItem.end.dateTime);
+            }
+            return lines.join('<br>');
+        }
+        
+        icon: 'flag'
+    }
+
     Component.onCompleted: {
         if (stack.depth === 1 && today) {
             root.date = model
