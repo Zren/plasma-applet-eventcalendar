@@ -22,6 +22,8 @@ Item {
     property alias cfg_clock_timeformat_2: clock_timeformat_2.text
     property alias cfg_clock_line_2: clock_line_2.checked
     property alias cfg_clock_line_2_height_ratio: clock_line_2_height_ratio.value
+    property alias cfg_clock_line_1_bold: clock_line_1_bold.checked
+    property alias cfg_clock_line_2_bold: clock_line_2_bold.checked
     property alias cfg_clock_mousewheel_up: clock_mousewheel_up.text
     property alias cfg_clock_mousewheel_down: clock_mousewheel_down.text
     property alias cfg_timer_repeats: timer_repeats.checked
@@ -167,8 +169,7 @@ Item {
                         Layout.fillWidth: true
                         Text { width: indentWidth } // indent
                         CheckBox {
-                            enabled: false
-                            checked: false
+                            id: clock_line_1_bold
                             text: i18n("Bold")
                         }
                     }
@@ -228,8 +229,7 @@ Item {
                         Layout.fillWidth: true
                         Text { width: indentWidth } // indent
                         CheckBox {
-                            enabled: false
-                            checked: false
+                            id: clock_line_2_bold
                             text: i18n("Bold")
                         }
                     }

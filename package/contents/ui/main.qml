@@ -57,6 +57,8 @@ Item {
         cfg_clock_timeformat_2: plasmoid.configuration.clock_timeformat_2
         cfg_clock_line_2: plasmoid.configuration.clock_line_2
         cfg_clock_line_2_height_ratio: plasmoid.configuration.clock_line_2_height_ratio
+        cfg_clock_line_1_bold: plasmoid.configuration.clock_line_1_bold
+        cfg_clock_line_2_bold: plasmoid.configuration.clock_line_2_bold
         
 
         // org.kde.plasma.volume
