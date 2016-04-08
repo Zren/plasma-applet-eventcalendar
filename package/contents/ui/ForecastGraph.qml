@@ -34,6 +34,7 @@ Item {
         property int yAxisScale: 2
         property int yAxisScaleCount: 4
         property double yAxisRainMax: 5
+        property bool showYAxisRainMax: true
 
         property int gridX: yAxisLabelWidth
         property int gridX2: width
@@ -45,6 +46,8 @@ Item {
         property color scaleColor: "#111"
         property color labelColor: "#888"
         property string precipitationColor: "rgba(64, 128, 200, .7)"
+        property color tempAbove0Color: "#900"
+        property color tempBelow0Color: "#369"
 
         property variant gridData: []
         property variant yData: []
@@ -137,9 +140,11 @@ Item {
                     if (graph.yAxisMin == graph.yAxisMax) return;
 
                     // rain
+                    graph.showYAxisRainMax = false
                     for (var i = 1; i < graph.gridData.length; i++) {
                         var item = graph.gridData[i];
                         if (item.percipitation) {
+                            graph.showYAxisRainMax = true
                             var rainY = Math.min(item.percipitation, graph.yAxisRainMax) / graph.yAxisRainMax;
                             var a = graph.gridPoint(i-1, graph.yAxisMin);
                             var b = graph.gridPoint(i, graph.yAxisMin);
@@ -185,21 +190,45 @@ Item {
 
 
                     // yAxis label: precipitation
-                    context.fillStyle = graph.precipitationColor
-                    context.font = "12px sans-serif"
-                    context.textAlign = 'end'
-                    var labelText = graph.yAxisRainMax + 'mm';
-                    context.fillText(labelText, graph.gridX2, graph.gridY + 6)
+                    if (graph.showYAxisRainMax) {
+                        context.fillStyle = graph.precipitationColor
+                        context.font = "12px sans-serif"
+                        context.textAlign = 'end'
+                        var labelText = graph.yAxisRainMax + 'mm';
+                        context.fillText(labelText, graph.gridX2, graph.gridY + 6)
+                    }
 
 
 
                     // temp
-                    context.strokeStyle = '#900'
+                    // context.strokeStyle = '#900'
                     context.lineWidth = 3;
                     var path = [];
+                    var pathMinY;
+                    var pathMaxY;
                     for (var i = 0; i < graph.gridData.length; i++) {
                         var item = graph.gridData[i];
                         path.push({ x: i, y: item.y });
+                        if (i == 0 || item.y < pathMinY) pathMinY = item.y;
+                        if (i == 0 || item.y > pathMaxY) pathMaxY = item.y;
+                    }
+                    var pZeroY = graph.gridPoint(0, 0).y;
+                    var pMaxY = graph.gridPoint(0, pathMinY).y; // y axis gets flipped
+                    var pMinY = graph.gridPoint(0, pathMaxY).y; // y axis gets flipped
+                    var height = pMaxY - pMinY;
+                    var pZeroYRatio = (pZeroY-pMinY) / height;
+                    console.log(pMinY, pMaxY)
+                    console.log(height)
+                    console.log(pZeroY, pZeroYRatio)
+                    if (pZeroYRatio <= 0) {
+                        context.strokeStyle = graph.tempBelow0Color;
+                    } else if (pZeroYRatio >= 1) {
+                        context.strokeStyle = graph.tempAbove0Color;
+                    } else {
+                        var gradient = context.createLinearGradient(0, pMinY, 0, pMaxY);
+                        gradient.addColorStop(pZeroYRatio-0.0001, graph.tempAbove0Color);
+                        gradient.addColorStop(pZeroYRatio, graph.tempBelow0Color);
+                        context.strokeStyle = gradient;
                     }
                     drawCurve(path);
                     
@@ -230,13 +259,14 @@ Item {
                 url: 'ForecastGraphData.json'
             }, onWeatherData);
         } else {
+            var city_id = 5983720;
             Shared.fetchHourlyWeatherForecast({
                 app_id: '99e575d9aa8a8407bcee7693d5912c6a',
-                city_id: '5967629',
+                city_id: city_id,
             }, function(err, hourlyData, xhr) {
                 Shared.fetchDailyWeatherForecast({
                     app_id: '99e575d9aa8a8407bcee7693d5912c6a',
-                    city_id: '5967629',
+                    city_id: city_id,
                 }, function(err, dailyData, xhr) {
                     var current = dailyData.list[0];
                     // hourlyData.list.splice(0, 0, {
