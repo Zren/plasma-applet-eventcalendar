@@ -326,7 +326,18 @@ PinchArea {
 
         initialItem: DaysCalendar {
             id: mainDaysCalendar
-            title: calendarBackend.displayedDate.getFullYear() == new Date().getFullYear() ? root.selectedMonth :  root.selectedMonth + ", " + root.selectedYear
+            title: {
+                if (calendarBackend.displayedDate.getFullYear() == today.getFullYear()) {
+                    if (calendarBackend.displayedDate.getMonth() == today.getMonth()) {
+                        return root.selectedMonth + " " + today.getDate() + ", " + root.selectedYear;
+                    } else {
+                        return root.selectedMonth;
+                    }
+
+                } else {
+                    return root.selectedMonth + ", " + root.selectedYear;
+                }
+            }
 
             columns: calendarBackend.days
             rows: calendarBackend.weeks

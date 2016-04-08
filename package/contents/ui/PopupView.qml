@@ -237,6 +237,9 @@ Item {
 
     Component.onCompleted: {
         delete eventsByCalendar[''] // Is there really no way to initialize an empty JSON object?
+        if (typeof root === 'undefined') {
+            today = new Date();
+        }
         updateHeight()
         update();
     }
