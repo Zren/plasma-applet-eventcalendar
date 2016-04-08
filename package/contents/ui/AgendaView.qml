@@ -255,34 +255,9 @@ Item {
 
                                     Text {
                                         id: eventDateTime
-                                        text: {
-                                            if (start.date) {
-                                                return "All Day"
-                                            } else {
-                                                var s = formatEventTime(start.dateTime);
-                                                if (start.dateTime.valueOf() != end.dateTime.valueOf()) {
-                                                    s += " - ";
-                                                    if (!(start.dateTime.getFullYear() == end.dateTime.getFullYear() && start.dateTime.getMonth() == end.dateTime.getMonth() && start.dateTime.getDate() == end.dateTime.getDate())) {
-                                                        s += Qt.formatDateTime(end.dateTime, "MMM d") + ", ";
-                                                    }
-                                                    s += formatEventTime(end.dateTime);
-                                                }
-                                                return s;
-                                            }
-                                        }
+                                        text: Shared.formatEventDuration(model)
                                         color: PlasmaCore.ColorScope.textColor
                                         opacity: 0.75
-
-                                        function formatEventTime(dateTime) {
-                                            var timeFormat = "h"
-                                            if (dateTime.getMinutes() != 0) {
-                                                timeFormat += ":mm"
-                                            }
-                                            if (!cfg_clock_24h) {
-                                                timeFormat += " AP"
-                                            }
-                                            return Qt.formatDateTime(dateTime, timeFormat)
-                                        }
                                     }
                                 }
                             }
