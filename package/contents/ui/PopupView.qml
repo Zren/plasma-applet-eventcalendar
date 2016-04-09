@@ -41,6 +41,7 @@ Item {
     property int cfg_agenda_weather_icon_height: 24
     property bool cfg_agenda_weather_show_text: false
     property bool cfg_agenda_breakup_multiday_events: true
+    property bool cfg_month_show_border: false
     
     property alias agendaListView: agendaView.agendaListView
     property alias today: monthView.today
@@ -195,7 +196,7 @@ Item {
                 
                 MonthView {
                     id: monthView
-                    borderOpacity: 0.25
+                    borderOpacity: cfg_month_show_border ? 0.25 : 0
                     showWeekNumbers: false
                     width: columnWidth
                     height: bottomRowHeight
