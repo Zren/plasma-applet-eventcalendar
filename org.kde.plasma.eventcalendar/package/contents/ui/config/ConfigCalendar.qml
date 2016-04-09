@@ -10,6 +10,8 @@ ColumnLayout {
     id: page
     property bool showDebug: false
 
+    property alias cfg_month_show_border: month_show_border.checked
+
     SystemPalette {
         id: palette
     }
@@ -53,6 +55,24 @@ ColumnLayout {
                         exclusiveGroup: month_date_doubleclickGroup
                     }
                 }
+            }
+        }
+        
+        Item {
+            width: height
+            height: units.gridUnit / 2
+        }
+        PlasmaExtras.Heading {
+            level: 2
+            text: i18n("Style")
+            color: palette.text
+        }
+        GroupBox {
+            Layout.fillWidth: true
+
+            CheckBox {
+                id: month_show_border
+                text: "Show Borders"
             }
         }
 
