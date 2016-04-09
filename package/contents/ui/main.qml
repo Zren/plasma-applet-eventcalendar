@@ -107,6 +107,7 @@ Item {
         cfg_agenda_weather_icon_height: plasmoid.configuration.agenda_weather_icon_height
         cfg_agenda_weather_show_text: plasmoid.configuration.agenda_weather_show_text
         cfg_agenda_breakup_multiday_events: plasmoid.configuration.agenda_breakup_multiday_events
+        cfg_month_show_border: plasmoid.configuration.month_show_border
 
 
         property bool isExpanded: plasmoid.expanded

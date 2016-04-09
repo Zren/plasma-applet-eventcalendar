@@ -59,6 +59,12 @@
       <default>0</default>
     </entry>
   </group>
+  
+  <group name="Calendar">
+    <entry name="month_show_border" type="bool">
+      <default>true</default>
+    </entry>
+  </group>
 
   <group name="Agenda">
     <entry name="agenda_weather_show_icon" type="bool">

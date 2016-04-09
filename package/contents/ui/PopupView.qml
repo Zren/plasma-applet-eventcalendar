@@ -42,7 +42,7 @@ Item {
     property int cfg_agenda_weather_icon_height: 24
     property bool cfg_agenda_weather_show_text: false
     property bool cfg_agenda_breakup_multiday_events: true
-    property bool cfg_month_show_border: false
+    property bool cfg_month_show_border: true
     
     property alias agendaListView: agendaView.agendaListView
     property alias today: monthView.today
