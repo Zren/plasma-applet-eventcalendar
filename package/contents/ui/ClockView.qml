@@ -41,6 +41,8 @@ Item {
         }
     }
 
+    property string cfg_clock_fontfamily: ""
+    property string clock_fontfamily: cfg_clock_fontfamily ? cfg_clock_fontfamily : theme.defaultFont.family
     property string cfg_clock_timeformat: "h:mm AP"
     property string cfg_clock_timeformat_2: "yyyy-MM-dd"
     property bool cfg_clock_24h: false
@@ -107,7 +109,7 @@ Item {
             Components.Label {
                 id: timeLabel
 
-                font.family: theme.defaultFont.family
+                font.family: clock.clock_fontfamily
                 font.weight: clock.cfg_clock_line_1_bold ? Font.Bold : Font.Normal
                 font.pointSize: 1024
                 minimumPointSize: 1
@@ -130,7 +132,7 @@ Item {
                 id: timeLabel2
                 visible: cfg_clock_line_2
 
-                font.family: theme.defaultFont.family
+                font.family: clock.clock_fontfamily
                 font.weight: clock.cfg_clock_line_2_bold ? Font.Bold : Font.Normal
                 font.pointSize: 1024
                 minimumPointSize: 1
@@ -172,6 +174,7 @@ Item {
     Components.Label {
         id: sizehelper
 
+        font.family: timeLabel.font.family
         font.weight: timeLabel.font.weight
         font.italic: timeLabel.font.italic
         // font.pixelSize: 1024

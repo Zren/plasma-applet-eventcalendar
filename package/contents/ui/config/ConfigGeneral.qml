@@ -18,6 +18,7 @@ Item {
     property alias cfg_widget_show_timer: widget_show_timer.checked
     property alias cfg_clock_24h: clock_24h.checked
     property alias cfg_clock_show_seconds: clock_show_seconds.checked
+    property string cfg_clock_fontfamily: ""
     property alias cfg_clock_timeformat: clock_timeformat.text
     property alias cfg_clock_timeformat_2: clock_timeformat_2.text
     property alias cfg_clock_line_2: clock_line_2.checked
@@ -42,7 +43,19 @@ Item {
 
     Layout.fillWidth: true
 
-
+    // populate
+    onCfg_clock_fontfamilyChanged: {
+        // org.kde.plasma.digitalclock
+        // HACK by the time we populate our model and/or the ComboBox is finished the value is still undefined
+        if (cfg_clock_fontfamily) {
+            for (var i = 0, j = clock_fontfamilyComboBox.model.length; i < j; ++i) {
+                if (clock_fontfamilyComboBox.model[i].value == cfg_clock_fontfamily) {
+                    clock_fontfamilyComboBox.currentIndex = i
+                    break
+                }
+            }
+        }
+    }
 
     function onClockFormatChange() {
         var combinedFormat = cfg_clock_timeformat;
@@ -131,6 +144,38 @@ Item {
                 Layout.fillWidth: true
                 id: clock_show_seconds
                 text: i18n("Show Seconds")
+            }
+
+            RowLayout {
+                Label {
+                    text: "Font:"
+                }
+                ComboBox {
+                    // org.kde.plasma.digitalclock
+                    Layout.fillWidth: true
+                    id: clock_fontfamilyComboBox
+                    textRole: "text" // doesn't autodeduce from model because we manually populate it
+
+                    Component.onCompleted: {
+                        // org.kde.plasma.digitalclock
+                        var arr = [] // use temp array to avoid constant binding stuff
+                        arr.push({text: i18nc("Use default font", "Default"), value: ""})
+
+                        var fonts = Qt.fontFamilies()
+                        var foundIndex = 0
+                        for (var i = 0, j = fonts.length; i < j; ++i) {
+                            arr.push({text: fonts[i], value: fonts[i]})
+                        }
+                        model = arr
+                    }
+
+                    onCurrentIndexChanged: {
+                        var current = model[currentIndex]
+                        if (current) {
+                            generalPage.cfg_clock_fontfamily = current.value
+                        }
+                    }
+                }
             }
 
             Text {

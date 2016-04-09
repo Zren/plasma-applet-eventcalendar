@@ -53,6 +53,7 @@ Item {
 
         formFactor: plasmoid.formFactor
         cfg_clock_24h: plasmoid.configuration.clock_24h
+        cfg_clock_fontfamily: plasmoid.configuration.clock_fontfamily
         cfg_clock_timeformat: plasmoid.configuration.clock_timeformat
         cfg_clock_timeformat_2: plasmoid.configuration.clock_timeformat_2
         cfg_clock_line_2: plasmoid.configuration.clock_line_2
