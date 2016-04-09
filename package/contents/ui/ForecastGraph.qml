@@ -33,7 +33,7 @@ Item {
         property int yAxisMax: 20
         property int yAxisScale: 2
         property int yAxisScaleCount: 4
-        property double yAxisRainMax: 5
+        property double yAxisRainMax: 2
         property bool showYAxisRainMax: true
 
         property int gridX: yAxisLabelWidth
@@ -46,6 +46,7 @@ Item {
         property color scaleColor: "#111"
         property color labelColor: PlasmaCore.ColorScope.textColor
         property color precipitationColor: "#acd"
+        property color precipitationTextOulineColor: "#134"
         property color tempAbove0Color: "#900"
         property color tempBelow0Color: "#369"
 
@@ -66,6 +67,9 @@ Item {
                 }
                 if (i == 0 || y > yDataMax) {
                     yDataMax = y
+                }
+                if (gridData[i].percipitation > yAxisRainMax) {
+                    yAxisRainMax = Math.ceil(gridData[i].percipitation)
                 }
             }
 
@@ -189,17 +193,6 @@ Item {
                     }
 
 
-                    // yAxis label: precipitation
-                    if (graph.showYAxisRainMax) {
-                        context.fillStyle = graph.precipitationColor
-                        context.font = "12px sans-serif"
-                        context.textAlign = 'end'
-                        var labelText = graph.yAxisRainMax + 'mm';
-                        context.fillText(labelText, graph.gridX2, graph.gridY + 6)
-                    }
-
-
-
                     // temp
                     // context.strokeStyle = '#900'
                     context.lineWidth = 3;
@@ -231,6 +224,20 @@ Item {
                         context.strokeStyle = gradient;
                     }
                     drawCurve(path);
+
+
+                    // yAxis label: precipitation
+                    if (graph.showYAxisRainMax) {
+                        context.fillStyle = graph.precipitationColor
+                        context.font = "12px sans-serif"
+                        context.textAlign = 'end'
+                        var labelText = graph.yAxisRainMax + 'mm';
+                        context.strokeStyle = graph.precipitationTextOulineColor;
+                        context.lineWidth = 3;
+                        context.strokeText(labelText, graph.gridX2, graph.gridY + 6)
+                        context.fillText(labelText, graph.gridX2, graph.gridY + 6)
+                    }
+                    
                     
                     console.log('painted');
                 }
