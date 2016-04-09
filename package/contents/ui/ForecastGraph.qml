@@ -44,8 +44,8 @@ Item {
         property int gridHeight: gridY2 - gridY
 
         property color scaleColor: "#111"
-        property color labelColor: "#888"
-        property string precipitationColor: "rgba(64, 128, 200, .7)"
+        property color labelColor: PlasmaCore.ColorScope.textColor
+        property color precipitationColor: "#acd"
         property color tempAbove0Color: "#900"
         property color tempBelow0Color: "#369"
 
@@ -259,32 +259,14 @@ Item {
                 url: 'ForecastGraphData.json'
             }, onWeatherData);
         } else {
+            var app_id = '99e575d9aa8a8407bcee7693d5912c6a';
             var city_id = 5983720;
             Shared.fetchHourlyWeatherForecast({
-                app_id: '99e575d9aa8a8407bcee7693d5912c6a',
+                app_id: app_id,
                 city_id: city_id,
             }, function(err, hourlyData, xhr) {
-                Shared.fetchDailyWeatherForecast({
-                    app_id: '99e575d9aa8a8407bcee7693d5912c6a',
-                    city_id: city_id,
-                }, function(err, dailyData, xhr) {
-                    var current = dailyData.list[0];
-                    // hourlyData.list.splice(0, 0, {
-                    //     dt: current.dt,
-                    //     main: {
-                    //         temp: current.temp.min,
-                    //     },
-                    //     weather: current.weather,
-                    //     rain: {
-                    //         '3h': current.rain || 0,
-                    //     },
-                    //     snow: {
-                    //         '3h': current.snow || 0,
-                    //     },
-
-                    // });
-                    parseWeatherForecast(current, hourlyData)
-                });
+                var currentWeatherData = hourlyData.list[0];
+                parseWeatherForecast(currentWeatherData, hourlyData)
             });
         }
     }
@@ -295,18 +277,23 @@ Item {
         
 
     function parseWeatherForecast(currentWeatherData, data) {
-        console.log(JSON.stringify(data, null, '\t'));
+        // console.log(JSON.stringify(data, null, '\t'));
         var gData = [];
-        if (currentWeatherData) {
-            var rain = currentWeatherData.rain || 0;
-            var snow = currentWeatherData.snow || 0;
+
+        function parseDailyWeatherItem(item) {
+            var rain = item.rain && item.rain['3h'] || 0;
+            var snow = item.snow && item.snow['3h'] || 0;
             var mm = rain + snow;
-            gData.push({
-                y: currentWeatherData.temp.min,
-                xLabel: currentWeatherData.dt,
+            return {
+                y: item.main.temp,
+                xLabel: item.dt * 1000,
                 percipitation: mm,
-                weatherIcon: Shared.weatherIconMap[currentWeatherData.weather[0].icon] || 'weather-severe-alert',
-            });
+                weatherIcon: Shared.weatherIconMap[item.weather[0].icon] || 'weather-severe-alert'
+            };
+        }
+
+        if (currentWeatherData) {
+            gData.push(parseDailyWeatherItem(currentWeatherData));
         } else {
             if (data.list.length > 0) {
                 gData.push({
@@ -319,18 +306,10 @@ Item {
 
         for (var i = 0; i < data.list.length; i++) {
             var item = data.list[i];
-            var rain = item.rain && item.rain['3h'] || 0;
-            var snow = item.snow && item.snow['3h'] || 0;
-            var mm = rain + snow;
-            gData.push({
-                y: item.main.temp,
-                xLabel: item.dt * 1000,
-                percipitation: mm,
-                weatherIcon: Shared.weatherIconMap[item.weather[0].icon] || 'weather-severe-alert'
-            });
+            gData.push(parseDailyWeatherItem(item));
         }
 
-        console.log(JSON.stringify(gData, null, '\t'));
+        // console.log(JSON.stringify(gData, null, '\t'));
 
         // Only forcast next 24 hours 
         gData = gData.slice(0, Math.ceil(24 / 3));

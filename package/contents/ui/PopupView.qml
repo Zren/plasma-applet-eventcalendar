@@ -9,6 +9,7 @@ import org.kde.plasma.extras 2.0 as PlasmaExtras
 
 import "utils.js" as Utils
 import "shared.js" as Shared
+import "debugfixtures.js" as DebugFixtures
 
 Item {
     id: popup
@@ -257,6 +258,13 @@ Item {
         }
         updateHeight()
         update();
+        if (typeof root === 'undefined') {
+            // eventsByCalendar['debug'] = DebugFixtures.getEventData();
+            eventsData = DebugFixtures.getEventData();
+            // updateUI();
+            // agendaView.parseGCalEvents(eventsData);
+            // monthView.parseGCalEvents(eventsData);
+        }
     }
 
     function update() {
@@ -331,7 +339,9 @@ Item {
     function updateWeather(force) {
         if (config && config.weather_city_id) {
             // rate limit 1 update / hour
-            if (force || !lastForecastAt && Date.now() - lastForecastAt >= 60 * 60 * 1000) {
+            var timeSinceUpdate = lastForecastAt ? Date.now() - lastForecastAt : Date.now();
+            console.log('updateWeather.timeSinceUpdate', timeSinceUpdate)
+            if (force || timeSinceUpdate >= 60 * 60 * 1000) {
                 updateDailyWeather();
 
                 if (popup.cfg_widget_show_meteogram) {
@@ -347,18 +357,13 @@ Item {
             app_id: config.weather_app_id,
             city_id: config.weather_city_id,
         }, function(err, data, xhr) {
-            console.log('fetchDailyWeatherForecast.response', err, data, xhr.status);
-            if (err) {
-                return console.log('onWeatherError', err);
-                console.log('onWeatherError.data: ', JSON.stringify(data, null, '\t'));
-            }
+            if (err) return console.log('fetchDailyWeatherForecast.err', err, xhr && xhr.status, data);
+            console.log('fetchDailyWeatherForecast.response');
+            // console.log('fetchDailyWeatherForecast.response', data);
 
             lastForecastAt = Date.now();
-            currentWeatherData = data.list[0];
             dailyWeatherData = data;
             updateUI();
-
-            meteogramView.parseWeatherForecast(currentWeatherData, hourlyWeatherData);
         });
     }
 
@@ -368,14 +373,13 @@ Item {
             app_id: config.weather_app_id,
             city_id: config.weather_city_id,
         }, function(err, data, xhr) {
-            console.log('fetchHourlyWeatherForecast.response', err, data, xhr.status);
-            if (err) {
-                return console.log('onWeatherError', err);
-                console.log('onWeatherError.data: ', JSON.stringify(data, null, '\t'));
-            }
+            if (err) return console.log('fetchHourlyWeatherForecast.err', err, xhr && xhr.status, data);
+            console.log('fetchHourlyWeatherForecast.response');
+            // console.log('fetchHourlyWeatherForecast.response', data);
 
             lastForecastAt = Date.now();
             hourlyWeatherData = data;
+            currentWeatherData = data.list[0];
             meteogramView.parseWeatherForecast(currentWeatherData, hourlyWeatherData);
         });
     }
