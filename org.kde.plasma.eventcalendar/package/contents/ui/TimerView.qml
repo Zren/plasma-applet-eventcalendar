@@ -39,23 +39,8 @@ Item {
                 font.pointSize: -1
             }
 
-            PlasmaComponents.Button {
+            PlasmaComponents.ToolButton {
                 iconSource: timerTicker.running ? 'media-playback-pause' : 'media-playback-start'
-                width: 60
-                style: Styles.ButtonStyle {
-                    label: PlasmaCore.IconItem {
-                        id: icon
-                        source: control.iconName || control.iconSource
-                        anchors.verticalCenter: parent.verticalCenter
-                        Layout.minimumWidth: valid ? units.iconSizes.tiny : 0
-                        Layout.preferredWidth: valid ? units.iconSizes.small : 0
-                        visible: valid
-                        Layout.minimumHeight: Layout.minimumWidth
-                        Layout.preferredHeight: Layout.preferredWidth
-                        active: control.hovered
-                        colorGroup: PlasmaCore.Theme.ButtonColorGroup
-                    }
-                }
                 height: parent.height
                 enabled: timerSeconds > 0
                 onClicked: {
