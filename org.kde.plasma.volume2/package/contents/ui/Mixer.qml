@@ -14,23 +14,23 @@ Item {
     Layout.minimumHeight: units.gridUnit * 12
     Layout.minimumWidth: 200
     Layout.preferredHeight: units.gridUnit * 24
-    Layout.preferredWidth: 400
+    Layout.preferredWidth: mixerItemRow.childrenRect.width
     property string displayName: i18n("Audio Volume")
 
     property int mixerItemWidth: 100
     property int volumeSliderWidth: 50
 
-    public alias sinkModel: appsModel
-    public alias sinkModel: sourceModel
-    public alias sinkModel: sinkModel
+    property alias appsModel: appsModel
+    property alias sourceModel: sourceModel
+    property alias sinkModel: sinkModel
 
     // width: 450
     height: Layout.preferredHeight
 
-    onWidthChanged: {
-        Layout.minimumWidth = width
-        Layout.preferredWidth = width
-    }
+    // onWidthChanged: {
+    //     Layout.minimumWidth = width
+    //     Layout.preferredWidth = width
+    // }
 
 
     Rectangle {
@@ -51,21 +51,23 @@ Item {
         id: sinkModel
     }
 
-    RowLayout {
+
+
+    Row {
         id: mixerItemRow
         anchors.right: parent.right
-        // anchors.fill: parent
+        width: childrenRect.width
         height: parent.height
         spacing: 10
-        onWidthChanged: {
-            // parent.width = width
+        // onWidthChanged: {
+        //     // parent.width = width
 
-            console.log(parent.width, width)
+        //     console.log(parent.width, width)
         
-            parent.width = Math.max(width, parent.width)
+        //     parent.width = Math.max(width, parent.width)
 
-            console.log(parent.width)
-        }
+        //     console.log(parent.width)
+        // }
 
         MixerItemGroup {
             height: parent.height

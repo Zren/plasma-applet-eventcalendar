@@ -1,5 +1,5 @@
 [Desktop Entry]
-Name=Audio Volume
+Name=Audio Volume 2
 Name[ast]=Volume d'audiu
 Name[ca]=Volum de l'àudio
 Name[ca@valencia]=Volum de l'àudio
@@ -49,7 +49,7 @@ X-KDE-PluginInfo-Name=org.kde.plasma.volume2
 X-KDE-PluginInfo-Category=Multimedia
 X-KDE-PluginInfo-Author=Harald Sitter
 X-KDE-PluginInfo-Email=sitter@kde.org
-X-KDE-PluginInfo-Version=1.0.0
+X-KDE-PluginInfo-Version=2.0.0
 X-KDE-PluginInfo-Website=
 X-KDE-PluginInfo-License=GPL
 X-KDE-PluginInfo-EnabledByDefault=true
