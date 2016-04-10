@@ -1,5 +1,7 @@
-# Volume
+# Audio Volume (Win7 Mixer)
 
 A fork of the default plasmoid with a Windows 7 theme (vertical sliders).
 
-This fork is currently using the same key so it will replace the default rather installing side by side.
+## Screenshot
+
+![](https://i.imgur.com/rNLMN29.png)
