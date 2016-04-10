@@ -1,0 +1,55 @@
+[Desktop Entry]
+Name=Audio Volume
+Name[ast]=Volume d'audiu
+Name[ca]=Volum de l'àudio
+Name[ca@valencia]=Volum de l'àudio
+Name[cs]=Hlasitost zvuku
+Name[da]=Lydstyrke
+Name[de]=Lautstärke
+Name[el]=Ένταση ήχου
+Name[en_GB]=Audio Volume
+Name[es]=Volumen del sonido
+Name[et]=Helitugevus
+Name[fi]=Äänenvoimakkuus
+Name[gl]=Volume do son
+Name[it]=Volume audio
+Name[ko]=오디오 음량
+Name[lt]=Garsumas
+Name[nl]=Geluidsvolume
+Name[nn]=Lydstyrke
+Name[pa]=ਆਡੀਓ ਵਾਲੀਅਮ
+Name[pl]=Głośność dźwięku
+Name[pt]=Volume do Áudio
+Name[pt_BR]=Volume do áudio
+Name[ru]=Громкость
+Name[sk]=Hlasitosť zvuku
+Name[sl]=Glasnost zvoka
+Name[sr]=Јачина звука
+Name[sr@ijekavian]=Јачина звука
+Name[sr@ijekavianlatin]=Jačina zvuka
+Name[sr@latin]=Jačina zvuka
+Name[sv]=Ljudvolym
+Name[uk]=Гучність
+Name[x-test]=xxAudio Volumexx
+Name[zh_CN]=音频音量
+Name[zh_TW]=音效音量
+Comment=
+
+Icon=org.kde.plasma.volume
+Type=Service
+X-KDE-ServiceTypes=Plasma/Applet,Plasma/PopupApplet
+
+X-Plasma-API=declarativeappletscript
+X-Plasma-MainScript=ui/main.qml
+
+X-Plasma-NotificationArea=true
+X-Plasma-ConfigPlugins=kcm_pulseaudio
+
+X-KDE-PluginInfo-Name=org.kde.plasma.volume
+X-KDE-PluginInfo-Category=Multimedia
+X-KDE-PluginInfo-Author=Harald Sitter
+X-KDE-PluginInfo-Email=sitter@kde.org
+X-KDE-PluginInfo-Version=1.0.0
+X-KDE-PluginInfo-Website=
+X-KDE-PluginInfo-License=GPL
+X-KDE-PluginInfo-EnabledByDefault=true
