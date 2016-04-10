@@ -12,8 +12,8 @@ import org.kde.plasma.private.volume 0.1
 Item {
     id: root
     Layout.minimumHeight: units.gridUnit * 12
-    Layout.minimumWidth: 200
     Layout.preferredHeight: units.gridUnit * 24
+    Layout.minimumWidth: 200
     Layout.preferredWidth: mixerItemRow.childrenRect.width
     property string displayName: i18n("Audio Volume")
 
@@ -24,13 +24,13 @@ Item {
     property alias sourceModel: sourceModel
     property alias sinkModel: sinkModel
 
-    // width: 450
+    width: mixerItemRow.childrenRect.width
     height: Layout.preferredHeight
 
-    // onWidthChanged: {
-    //     Layout.minimumWidth = width
-    //     Layout.preferredWidth = width
-    // }
+    onWidthChanged: {
+        // Layout.minimumWidth = width
+        Layout.preferredWidth = width
+    }
 
 
     Rectangle {
@@ -53,7 +53,7 @@ Item {
 
 
 
-    Row {
+    RowLayout {
         id: mixerItemRow
         anchors.right: parent.right
         width: childrenRect.width

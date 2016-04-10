@@ -32,21 +32,28 @@ import "../code/icon.js" as Icon
 
 Item {
     id: main
-    // Layout.minimumHeight: 400
-    // Layout.preferredHeight: 400
-    // Layout.minimumWidth: 400
+    // Layout.minimumHeight: units.gridUnit * 12
+    Layout.preferredHeight: units.gridUnit * 24
+    Layout.minimumWidth: 10
     Layout.preferredWidth: mixerItemRow.width
-    // Layout.maximumWidth: Layout.preferredWidth
-    width: mixerItemRow.width
+    Layout.maximumWidth: plasmoid.screenGeometry.width
+
+    // width: mixerItemRow.childrenRect.width
+    onWidthChanged: {
+        // Layout.minimumWidth = width
+        // Layout.preferredWidth = width
+    }
+
+
     property string displayName: i18n("Audio Volume")
 
     Plasmoid.icon: sinkModel.sinks.length > 0 ? Icon.name(sinkModel.sinks[0].volume, sinkModel.sinks[0].muted) : Icon.name(0, true)
-    Plasmoid.switchWidth: units.gridUnit * 12
-    Plasmoid.switchHeight: units.gridUnit * 12
+    // Plasmoid.switchWidth: units.gridUnit * 12
+    // Plasmoid.switchHeight: units.gridUnit * 12
     Plasmoid.toolTipMainText: displayName
-    Plasmoid.fullRepresentation: Mixer {
-        id: mixer2
-    }
+    // Plasmoid.fullRepresentation: Mixer {
+    //     id: mixer2
+    // }
     // FIXME:    Plasmoid.toolTipSubText: sinkModel.volumeText
 
     function runOnAllSinks(func) {
@@ -98,6 +105,9 @@ Item {
             onClicked: {
                 if (mouse.button == Qt.LeftButton) {
                     plasmoid.expanded = !wasExpanded;
+                    // if (expanded) {
+                    //     main.width = mixerItemRow.childrenRect.width
+                    // }
                 }
             }
             onWheel: {
@@ -153,33 +163,14 @@ Item {
         id: osd
     }
 
-    // id: root
-    // Layout.minimumHeight: units.gridUnit * 12
-    // Layout.minimumWidth: 200
-    // Layout.preferredHeight: units.gridUnit * 24
-    // Layout.preferredWidth: 400
-    // property string displayName: i18n("Audio Volume")
-
     property int mixerItemWidth: 100
     property int volumeSliderWidth: 50
 
-    // property alias appsModel: appsModel
-    // property alias sourceModel: sourceModel
-    // property alias sinkModel: sinkModel
 
-    // width: 450
-    // height: Layout.preferredHeight
-
-    // onWidthChanged: {
-    //     Layout.minimumWidth = width
-    //     Layout.preferredWidth = width
+    // Rectangle {
+    //     color: PlasmaCore.ColorScope.backgroundColor
+    //     anchors.fill: parent
     // }
-
-
-    Rectangle {
-        color: PlasmaCore.ColorScope.backgroundColor
-        anchors.fill: parent
-    }
 
 
     // https://github.com/KDE/plasma-pa/tree/master/src/kcm/package/contents/ui
@@ -194,28 +185,34 @@ Item {
         id: sinkModel
     }
 
-    RowLayout {
+
+
+    Row {
         id: mixerItemRow
         anchors.right: parent.right
         width: childrenRect.width
         height: parent.height
         spacing: 10
-        // onWidthChanged: {
-        //     // parent.width = width
+        onWidthChanged: {
+            // parent.width = width
 
-        //     console.log('a', Layout.minimumWidth, Layout.preferredWidth, Layout.maximumWidth, parent.width, width)
+            console.log('a', Layout.minimumWidth, Layout.preferredWidth, Layout.maximumWidth, parent.width, width)
         
-        //     // parent.width = Math.max(width, parent.width)
-        //     // Layout.minimumWidth = Math.max(width, Layout.minimumWidth)
-        //     Layout.preferredWidth = Math.max(width, Layout.preferredWidth)
-        //     Layout.maximumWidth = Math.max(width, Layout.maximumWidth)
-        //     parent.width = Layout.preferredWidth
+            // parent.width = Math.max(width, parent.width)
+            // Layout.minimumWidth = Math.max(width, Layout.minimumWidth)
+            // Layout.preferredWidth = Math.max(width, Layout.preferredWidth)
+            // Layout.maximumWidth = Math.max(width, Layout.maximumWidth)
+            // main.width = width
+            // Layout.minimumWidth = width
+            // Layout.preferredWidth = width
+            // Layout.maximumWidth = width
 
-        //     console.log('b', Layout.minimumWidth, Layout.preferredWidth, Layout.maximumWidth, parent.width, width)
-        // }
+            console.log('b', Layout.minimumWidth, Layout.preferredWidth, Layout.maximumWidth, parent.width, width)
+        }
 
         MixerItemGroup {
             height: parent.height
+            // width: childrenRect.width
             title: 'Apps'
     
             model: appsModel
@@ -250,6 +247,7 @@ Item {
 
         MixerItemGroup {
             height: parent.height
+            // width: childrenRect.width
             title: 'Mics'
     
             model: sourceModel
@@ -262,6 +260,7 @@ Item {
 
         MixerItemGroup {
             height: parent.height
+            // width: childrenRect.width
             title: 'Speakers'
     
             model: sinkModel
