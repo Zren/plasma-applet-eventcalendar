@@ -19,17 +19,7 @@ Item {
 
     property string icon: ''
     property int volumeSliderWidth: 50
-
-    // property string label: {
-    //     var desc = PulseObject.description;
-    //     var map = {
-    //         'Built-In Audio Analog Stereo': 'Speakers',
-    //     }
-    //     if (map[desc]) {
-    //         return map[desc];
-    //     } else if (desc.indexOf('HDMI'))
-    //     desk
-    // }
+    
     property string label: {
         var name = PulseObject.name;
         if (name.indexOf('alsa_input.') >= 0) {
@@ -47,7 +37,7 @@ Item {
         if (appName) {
             return appName;
         }
-        
+
         return name
     }
     
