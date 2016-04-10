@@ -32,22 +32,22 @@ import "../code/icon.js" as Icon
 
 Item {
     id: main
-    Layout.minimumHeight: 400
-    Layout.minimumWidth: 400
-    Layout.preferredHeight: 400
-    Layout.preferredWidth: 400
+    // Layout.minimumHeight: 400
+    // Layout.preferredHeight: 400
+    // Layout.minimumWidth: 400
+    Layout.preferredWidth: mixerItemRow.width
+    // Layout.maximumWidth: Layout.preferredWidth
+    width: mixerItemRow.width
     property string displayName: i18n("Audio Volume")
 
     Plasmoid.icon: sinkModel.sinks.length > 0 ? Icon.name(sinkModel.sinks[0].volume, sinkModel.sinks[0].muted) : Icon.name(0, true)
     Plasmoid.switchWidth: units.gridUnit * 12
     Plasmoid.switchHeight: units.gridUnit * 12
     Plasmoid.toolTipMainText: displayName
+    Plasmoid.fullRepresentation: Mixer {
+        id: mixer2
+    }
     // FIXME:    Plasmoid.toolTipSubText: sinkModel.volumeText
-
-    // property alias sinkModel: mixer.sinkModel
-    // MixerView {
-    //     id: mixer
-    // }
 
     function runOnAllSinks(func) {
         if (typeof(sinkModel) === "undefined") {
@@ -56,7 +56,7 @@ Item {
         } else if (sinkModel.count < 0) {
             return;
         }
-        for (var i = 0; i < mixer.sinkModel.count; ++i) {
+        for (var i = 0; i < sinkModel.count; ++i) {
             sinkModel.currentIndex = i;
             sinkModel.currentItem[func]();
         }
@@ -168,12 +168,12 @@ Item {
     // property alias sinkModel: sinkModel
 
     // width: 450
-    height: Layout.preferredHeight
+    // height: Layout.preferredHeight
 
-    onWidthChanged: {
-        Layout.minimumWidth = width
-        Layout.preferredWidth = width
-    }
+    // onWidthChanged: {
+    //     Layout.minimumWidth = width
+    //     Layout.preferredWidth = width
+    // }
 
 
     Rectangle {
@@ -197,20 +197,22 @@ Item {
     RowLayout {
         id: mixerItemRow
         anchors.right: parent.right
-        // anchors.fill: parent
+        width: childrenRect.width
         height: parent.height
         spacing: 10
-        onWidthChanged: {
-            // parent.width = width
+        // onWidthChanged: {
+        //     // parent.width = width
 
-            console.log(parent.width, width)
+        //     console.log('a', Layout.minimumWidth, Layout.preferredWidth, Layout.maximumWidth, parent.width, width)
         
-            // parent.width = Math.max(width, parent.width)
-            Layout.minimumWidth = Math.max(width, Layout.minimumWidth)
-            Layout.preferredWidth = Math.max(width, Layout.preferredWidth)
+        //     // parent.width = Math.max(width, parent.width)
+        //     // Layout.minimumWidth = Math.max(width, Layout.minimumWidth)
+        //     Layout.preferredWidth = Math.max(width, Layout.preferredWidth)
+        //     Layout.maximumWidth = Math.max(width, Layout.maximumWidth)
+        //     parent.width = Layout.preferredWidth
 
-            console.log(parent.width)
-        }
+        //     console.log('b', Layout.minimumWidth, Layout.preferredWidth, Layout.maximumWidth, parent.width, width)
+        // }
 
         MixerItemGroup {
             height: parent.height
@@ -218,8 +220,8 @@ Item {
     
             model: appsModel
             delegate: MixerItem {
-                width: root.mixerItemWidth
-                volumeSliderWidth: root.volumeSliderWidth
+                width: main.mixerItemWidth
+                volumeSliderWidth: main.volumeSliderWidth
                 icon: {
                     var client = PulseObject.client;
                     // Virtual streams don't have a valid client object, force a default icon for them
@@ -252,8 +254,8 @@ Item {
     
             model: sourceModel
             delegate: MixerItem {
-                width: root.mixerItemWidth
-                volumeSliderWidth: root.volumeSliderWidth
+                width: main.mixerItemWidth
+                volumeSliderWidth: main.volumeSliderWidth
                 icon: Volume > 0 ? 'mic-on' : 'mic-off'
             }
         }
