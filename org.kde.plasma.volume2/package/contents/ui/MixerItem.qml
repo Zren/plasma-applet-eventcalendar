@@ -10,6 +10,8 @@ import org.kde.plasma.extras 2.0 as PlasmaExtras
 
 import org.kde.plasma.private.volume 0.1
 
+import "../code/sinkcommands.js" as PulseObjectCommands
+
 Item {
     id: mixerItem
     width: 50
@@ -38,50 +40,6 @@ Item {
             return name
         }
     }
-
-
-    function volumePercent(volume) {
-        return 100 * volume / slider.maximumValue;
-    }
-
-    function setVolume(volume) {
-        if (volume > 0 && PulseObject.muted) {
-            toggleMute();
-        }
-        PulseObject.volume = volume
-    }
-
-    function bound(value, min, max) {
-        return Math.max(min, Math.min(value, max));
-    }
-
-    // FIXME: increase/decrease are also present on app streams as they derive
-    //        from this, they are not used there though.
-    //        seems naughty.
-    function increaseVolume() {
-        var step = slider.maximumValue / 15;
-        var volume = bound(PulseObject.volume + step, 0, slider.maximumValue);
-        setVolume(volume);
-        osd.show(volumePercent(volume));
-    }
-
-    function decreaseVolume() {
-        var step = slider.maximumValue / 15;
-        var volume = bound(PulseObject.volume - step, 0, slider.maximumValue);
-        setVolume(volume);
-        osd.show(volumePercent(volume));
-    }
-
-    function toggleMute() {
-        var toMute = !PulseObject.muted;
-        if (toMute) {
-            osd.show(0);
-        } else {
-            osd.show(volumePercent(PulseObject.volume));
-        }
-        PulseObject.muted = toMute;
-    }
-
     
     ColumnLayout {
         anchors.fill: parent
@@ -154,7 +112,7 @@ Item {
 
                 onValueChanged: {
                     if (!ignoreValueChange) {
-                        setVolume(value);
+                        PulseObjectCommands.setVolume(PulseObject, value);
 
                         if (!pressed) {
                             updateTimer.restart();
