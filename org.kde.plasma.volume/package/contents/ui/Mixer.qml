@@ -1,5 +1,7 @@
 import QtQuick 2.0
 import QtQuick.Layouts 1.0
+import QtQuick.Controls 1.0
+import QtQuick.Controls.Styles.Plasma 2.0 as PlasmaStyles
 
 import org.kde.plasma.core 2.0 as PlasmaCore
 import org.kde.plasma.components 2.0 as PlasmaComponents
@@ -8,56 +10,111 @@ import org.kde.plasma.extras 2.0 as PlasmaExtras
 import org.kde.plasma.private.volume 0.1
 
 Item {
-    PlasmaExtras.ScrollArea {
-        id: scrollView;
+    id: root
+    Layout.minimumHeight: units.gridUnit * 12
+    Layout.minimumWidth: 450
+    Layout.preferredHeight: units.gridUnit * 24
+    Layout.preferredWidth: 450
+    property string displayName: i18n("Audio Volume")
 
-        anchors {
-            fill: parent
-            rightMargin: 16
+    property int mixerItemWidth: 100
+    property int volumeSliderWidth: 50
+
+    width: 450
+    height: Layout.preferredHeight
+
+    onWidthChanged: {
+        Layout.minimumWidth = width
+        Layout.preferredWidth = width
+    }
+
+
+    Rectangle {
+        color: PlasmaCore.ColorScope.backgroundColor
+        anchors.fill: parent
+    }
+
+
+    // https://github.com/KDE/plasma-pa/tree/master/src/kcm/package/contents/ui
+    PulseObjectFilterModel {
+        id: appsModel
+        sourceModel: SinkInputModel {}
+    }
+    SinkModel {
+        id: sinkModel
+    }
+    SourceModel {
+        id: sourceModel
+    }
+
+    RowLayout {
+        id: mixerItemRow
+        // anchors.fill: parent
+        height: parent.height
+        spacing: 10
+        onWidthChanged: {
+            // parent.width = width
+
+            console.log(parent.width, width)
+        
+            parent.width = Math.max(width, parent.width)
+
+            console.log(parent.width)
         }
 
-        ColumnLayout {
-            property int maximumWidth: scrollView.viewport.width
-            width: maximumWidth
-            Layout.maximumWidth: maximumWidth
-
-            Header {
-                Layout.fillWidth: true
-                visible: sinkView.count > 0
-                text: i18n("Playback Devices")
-            }
-            ListView {
-                id: sinkView
-
-                Layout.fillWidth: true
-                Layout.minimumHeight: contentHeight
-                Layout.maximumHeight: contentHeight
-
-                model: SinkModel {
-                    id: sinkModel
+        MixerItemGroup {
+            height: parent.height
+            title: 'Apps'
+    
+            model: appsModel
+            delegate: MixerItem {
+                width: root.mixerItemWidth
+                volumeSliderWidth: root.volumeSliderWidth
+                icon: {
+                    var client = PulseObject.client;
+                    // Virtual streams don't have a valid client object, force a default icon for them
+                    if (client) {
+                        if (client.properties['application.icon_name']) {
+                            return client.properties['application.icon_name'].toLowerCase();
+                        } else if (client.properties['application.process.binary']) {
+                            var binary = client.properties['application.process.binary'].toLowerCase()
+                            // FIXME: I think this should do a reverse-desktop-file lookup
+                            // or maybe appdata could be used?
+                            // At any rate we need to attempt mapping binary to desktop file
+                            // such that we could get the icon.
+                            if (binary === 'chrome' || binary === 'chromium') {
+                                return 'google-chrome';
+                            }
+                            return binary;
+                        }
+                        return 'unknown';
+                    } else {
+                        return 'audio-card';
+                    }
                 }
-                boundsBehavior: Flickable.StopAtBounds;
-                delegate: SinkListItem {}
-            }
 
-            Header {
-                Layout.fillWidth: true
-                visible: sourceView.count > 0
-                text: i18n("Capture Devices")
             }
-            ListView {
-                id: sourceView
+        }
 
-                Layout.fillWidth: true
-                Layout.minimumHeight: contentHeight
-                Layout.maximumHeight: contentHeight
-
-                model: SourceModel {
-                    id: sourceModel
-                }
-                boundsBehavior: Flickable.StopAtBounds;
-                delegate: SourceListItem {}
+        MixerItemGroup {
+            height: parent.height
+            title: 'Mics'
+    
+            model: sourceModel
+            delegate: MixerItem {
+                width: root.mixerItemWidth
+                volumeSliderWidth: root.volumeSliderWidth
+                icon: Volume > 0 ? 'mic-on' : 'mic-off'
             }
+        }
+
+        MixerItemGroup {
+            height: parent.height
+            title: 'Speakers'
+    
+            model: sinkModel
+            mixerItemIcon: 'speaker'
         }
     }
+    
 }
