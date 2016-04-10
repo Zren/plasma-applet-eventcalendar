@@ -191,6 +191,24 @@ Item {
         Item {
             id: muteButton
         }
+
+
+        VolumeIcon {
+            Layout.maximumWidth: mixerItem.volumeSliderWidth
+            Layout.maximumHeight: mixerItem.volumeSliderWidth
+            Layout.minimumWidth: Layout.maximumWidth
+            Layout.minimumHeight: Layout.maximumHeight
+
+            anchors.horizontalCenter: parent.horizontalCenter
+
+            volume: PulseObject.volume
+            muted: PulseObject.muted
+
+            MouseArea {
+                anchors.fill: parent
+                onPressed: PulseObject.muted = !PulseObject.muted
+            }
+        }
     }
     
 }

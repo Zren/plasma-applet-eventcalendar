@@ -32,10 +32,10 @@ import "../code/icon.js" as Icon
 
 Item {
     id: main
-    Layout.minimumHeight: units.gridUnit * 12
-    Layout.minimumWidth: units.gridUnit * 12
-    Layout.preferredHeight: units.gridUnit * 20
-    Layout.preferredWidth: units.gridUnit * 20
+    Layout.minimumHeight: 400
+    Layout.minimumWidth: 400
+    Layout.preferredHeight: 400
+    Layout.preferredWidth: 400
     property string displayName: i18n("Audio Volume")
 
     Plasmoid.icon: sinkModel.sinks.length > 0 ? Icon.name(sinkModel.sinks[0].volume, sinkModel.sinks[0].muted) : Icon.name(0, true)
@@ -44,16 +44,21 @@ Item {
     Plasmoid.toolTipMainText: displayName
     // FIXME:    Plasmoid.toolTipSubText: sinkModel.volumeText
 
+    // property alias sinkModel: mixer.sinkModel
+    // MixerView {
+    //     id: mixer
+    // }
+
     function runOnAllSinks(func) {
-        if (typeof(sinkView) === "undefined") {
+        if (typeof(sinkModel) === "undefined") {
             print("This case we need to handle.");
             return;
-        } else if (sinkView.count < 0) {
+        } else if (sinkModel.count < 0) {
             return;
         }
-        for (var i = 0; i < sinkView.count; ++i) {
-            sinkView.currentIndex = i;
-            sinkView.currentItem[func]();
+        for (var i = 0; i < mixer.sinkModel.count; ++i) {
+            sinkModel.currentIndex = i;
+            sinkModel.currentItem[func]();
         }
     }
 
@@ -148,56 +153,118 @@ Item {
         id: osd
     }
 
-    PlasmaExtras.ScrollArea {
-        id: scrollView;
+    // id: root
+    // Layout.minimumHeight: units.gridUnit * 12
+    // Layout.minimumWidth: 200
+    // Layout.preferredHeight: units.gridUnit * 24
+    // Layout.preferredWidth: 400
+    // property string displayName: i18n("Audio Volume")
 
-        anchors {
-            fill: parent
-            rightMargin: 16
+    property int mixerItemWidth: 100
+    property int volumeSliderWidth: 50
+
+    // property alias appsModel: appsModel
+    // property alias sourceModel: sourceModel
+    // property alias sinkModel: sinkModel
+
+    // width: 450
+    height: Layout.preferredHeight
+
+    onWidthChanged: {
+        Layout.minimumWidth = width
+        Layout.preferredWidth = width
+    }
+
+
+    Rectangle {
+        color: PlasmaCore.ColorScope.backgroundColor
+        anchors.fill: parent
+    }
+
+
+    // https://github.com/KDE/plasma-pa/tree/master/src/kcm/package/contents/ui
+    PulseObjectFilterModel {
+        id: appsModel
+        sourceModel: SinkInputModel {}
+    }
+    SourceModel {
+        id: sourceModel
+    }
+    SinkModel {
+        id: sinkModel
+    }
+
+    RowLayout {
+        id: mixerItemRow
+        anchors.right: parent.right
+        // anchors.fill: parent
+        height: parent.height
+        spacing: 10
+        onWidthChanged: {
+            // parent.width = width
+
+            console.log(parent.width, width)
+        
+            // parent.width = Math.max(width, parent.width)
+            Layout.minimumWidth = Math.max(width, Layout.minimumWidth)
+            Layout.preferredWidth = Math.max(width, Layout.preferredWidth)
+
+            console.log(parent.width)
         }
 
-        ColumnLayout {
-            property int maximumWidth: scrollView.viewport.width
-            width: maximumWidth
-            Layout.maximumWidth: maximumWidth
-
-            Header {
-                Layout.fillWidth: true
-                visible: sinkView.count > 0
-                text: i18n("Playback Devices")
-            }
-            ListView {
-                id: sinkView
-
-                Layout.fillWidth: true
-                Layout.minimumHeight: contentHeight
-                Layout.maximumHeight: contentHeight
-
-                model: SinkModel {
-                    id: sinkModel
+        MixerItemGroup {
+            height: parent.height
+            title: 'Apps'
+    
+            model: appsModel
+            delegate: MixerItem {
+                width: root.mixerItemWidth
+                volumeSliderWidth: root.volumeSliderWidth
+                icon: {
+                    var client = PulseObject.client;
+                    // Virtual streams don't have a valid client object, force a default icon for them
+                    if (client) {
+                        if (client.properties['application.icon_name']) {
+                            return client.properties['application.icon_name'].toLowerCase();
+                        } else if (client.properties['application.process.binary']) {
+                            var binary = client.properties['application.process.binary'].toLowerCase()
+                            // FIXME: I think this should do a reverse-desktop-file lookup
+                            // or maybe appdata could be used?
+                            // At any rate we need to attempt mapping binary to desktop file
+                            // such that we could get the icon.
+                            if (binary === 'chrome' || binary === 'chromium') {
+                                return 'google-chrome';
+                            }
+                            return binary;
+                        }
+                        return 'unknown';
+                    } else {
+                        return 'audio-card';
+                    }
                 }
-                boundsBehavior: Flickable.StopAtBounds;
-                delegate: SinkListItem {}
-            }
 
-            Header {
-                Layout.fillWidth: true
-                visible: sourceView.count > 0
-                text: i18n("Capture Devices")
             }
-            ListView {
-                id: sourceView
+        }
 
-                Layout.fillWidth: true
-                Layout.minimumHeight: contentHeight
-                Layout.maximumHeight: contentHeight
-
-                model: SourceModel {
-                    id: sourceModel
-                }
-                boundsBehavior: Flickable.StopAtBounds;
-                delegate: SourceListItem {}
+        MixerItemGroup {
+            height: parent.height
+            title: 'Mics'
+    
+            model: sourceModel
+            delegate: MixerItem {
+                width: root.mixerItemWidth
+                volumeSliderWidth: root.volumeSliderWidth
+                icon: Volume > 0 ? 'mic-on' : 'mic-off'
             }
+        }
+
+        MixerItemGroup {
+            height: parent.height
+            title: 'Speakers'
+    
+            model: sinkModel
+            mixerItemIcon: 'speaker'
         }
     }
+    
 }
