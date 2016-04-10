@@ -31,6 +31,7 @@ import org.kde.plasma.plasmoid 2.0
 import org.kde.plasma.private.volume 0.1
 
 import "../code/icon.js" as Icon
+import "../code/sinkcommands.js" as PulseObjectCommands
 
 Item {
     id: main
@@ -47,71 +48,31 @@ Item {
     // Plasmoid.switchHeight: units.gridUnit * 12
     Plasmoid.toolTipMainText: displayName
 
-    property int maximumValue: 65536
-
-    function bound(value, min, max) {
-        return Math.max(min, Math.min(value, max));
-    }
-
-    function volumePercent(volume) {
-        return 100 * volume / maximumValue;
-    }
-
-    function toggleMute(pulseObject) {
-        var toMute = !pulseObject.muted;
-        if (toMute) {
-            osd.show(0);
-        } else {
-            osd.show(volumePercent(pulseObject.volume));
-        }
-        pulseObject.muted = toMute;
-    }
-
-    function setVolume(pulseObject, volume) {
-        if (volume > 0 && pulseObject.muted) {
-            toggleMute(pulseObject);
-        }
-        pulseObject.volume = volume
-    }
-
-    function addVolume(pulseObject, step) {
-        console.log('addVolume', pulseObject, step);
-        var volume = bound(pulseObject.volume + step, 0, maximumValue);
-        setVolume(pulseObject, volume);
-        osd.show(volumePercent(volume));
-    }
-
-    function increaseVolume(pulseObject) {
-        console.log('increaseVolume', pulseObject);
-        var step = maximumValue / 15;
-        addVolume(pulseObject, step);
-    }
-
-
-    function decreaseVolume(pulseObject) {
-        console.log('decreaseVolume', pulseObject);
-        var step = maximumValue / 15;
-        addVolume(pulseObject, -step);
+    function showOsd(volume) {
+        osd.show(PulseObjectCommands.volumePercent(volume));
     }
 
     function increaseDefaultSinkVolume() {
         console.log('increaseDefaultSinkVolume');
         for (var i = 0; i < sinkModel.sinks.length; ++i) {
-            increaseVolume(sinkModel.sinks[i]);
+            PulseObjectCommands.increaseVolume(sinkModel.sinks[i]);
+            showOsd(sinkModel.sinks[i].volume);
         }
     }
 
     function decreaseDefaultSinkVolume() {
         console.log('decreaseDefaultSinkVolume');
         for (var i = 0; i < sinkModel.sinks.length; ++i) {
-            decreaseVolume(sinkModel.sinks[i]);
+            PulseObjectCommands.decreaseVolume(sinkModel.sinks[i]);
+            showOsd(sinkModel.sinks[i].volume);
         }
     }
 
     function toggleDefaultSinksMute() {
         console.log('toggleDefaultSinksMute');
         for (var i = 0; i < sinkModel.sinks.length; ++i) {
-            toggleMute(sinkModel.sinks[i]);
+            PulseObjectCommands.toggleMute(sinkModel.sinks[i]);
+            showOsd(sinkModel.sinks[i].volume);
         }
     }
 
