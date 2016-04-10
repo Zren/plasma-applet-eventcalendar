@@ -338,10 +338,21 @@ Item {
 
     function updateWeather(force) {
         if (config && config.weather_city_id) {
-            // rate limit 1 update / hour
-            var timeSinceUpdate = lastForecastAt ? Date.now() - lastForecastAt : Date.now();
-            console.log('updateWeather.timeSinceUpdate', timeSinceUpdate)
-            if (force || timeSinceUpdate >= 60 * 60 * 1000) {
+            // update every hour
+            var shouldUpdate = false;
+            if (lastForecastAt) {
+                var now = new Date();
+                var currentHour = now.getHours();
+                var lastUpdateHour = new Date(lastForecastAt).getHours();
+                var beenOverAnHour = now.valueOf() - lastForecastAt >= 60 * 60 * 1000;
+                if (lastUpdateHour != currentHour || beenOverAnHour) {
+                    shouldUpdate = true;
+                }
+            } else {
+                shouldUpdate = true;
+            }
+            
+            if (force || shouldUpdate) {
                 updateDailyWeather();
 
                 if (popup.cfg_widget_show_meteogram) {
