@@ -32,23 +32,27 @@ Item {
     // }
     property string label: {
         var name = PulseObject.name;
-        if (name.indexOf('.analog-') >= 0) {
-            return 'Speaker'
-        } else if (name.indexOf('.hdmi-') >= 0) {
-            return 'HDMI'
-        } else {
-            return name
+        if (name.indexOf('alsa_input.') >= 0) {
+            if (name.indexOf('.analog-') >= 0) {
+                return 'Mic'
+            }
+        } else if (name.indexOf('alsa_output.') >= 0) {
+            if (name.indexOf('.analog-') >= 0) {
+                return 'Speaker'
+            } else if (name.indexOf('.hdmi-') >= 0) {
+                return 'HDMI'
+            }
         }
+        var appName = PulseObject.properties['application.name'];
+        if (appName) {
+            return appName;
+        }
+        
+        return name
     }
     
     ColumnLayout {
         anchors.fill: parent
-
-        Item {
-            id: appIcon
-        }
-
-
 
         QIconItem {
             id: clientIcon
@@ -60,16 +64,34 @@ Item {
         }
 
         Label {
-            Layout.fillWidth: true
-            // width: parent.width
             id: textLabel
             text: mixerItem.label
             color: PlasmaCore.ColorScope.textColor
-            // level: 5
             opacity: 0.6
             wrapMode: Text.Wrap
             elide: Text.ElideRight
+            Layout.fillWidth: true
             horizontalAlignment: Text.AlignHCenter
+        }
+
+        PlasmaCore.ToolTipArea {
+            anchors.top: clientIcon.top
+            anchors.bottom: textLabel.bottom
+            anchors.left: parent.left
+            anchors.right: parent.right
+            mainText: mixerItem.label
+            subText: {
+                var lines = [];
+                lines.push(PulseObject.name);
+                lines.push(PulseObject.description);
+                lines.push(PulseObject.activePortIndex)
+                for (var key in PulseObject.properties) {
+                    lines.push('<b>' + key + ':</b> ' + PulseObject.properties[key]);
+                }
+                
+                return lines.join('<br>');
+            }
+            icon: mixerItem.icon
         }
 
         Item {
