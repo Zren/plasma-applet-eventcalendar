@@ -20,6 +20,8 @@
 
 import QtQuick 2.0
 import QtQuick.Layouts 1.0
+import QtQuick.Controls 1.0
+import QtQuick.Controls.Styles.Plasma 2.0 as PlasmaStyles
 
 import org.kde.plasma.core 2.0 as PlasmaCore
 import org.kde.plasma.components 2.0 as PlasmaComponents
@@ -38,51 +40,83 @@ Item {
     Layout.preferredWidth: mixerItemRow.width
     Layout.maximumWidth: plasmoid.screenGeometry.width
 
-    // width: mixerItemRow.childrenRect.width
-    onWidthChanged: {
-        // Layout.minimumWidth = width
-        // Layout.preferredWidth = width
-    }
-
-
     property string displayName: i18n("Audio Volume")
 
-    Plasmoid.icon: sinkModel.sinks.length > 0 ? Icon.name(sinkModel.sinks[0].volume, sinkModel.sinks[0].muted) : Icon.name(0, true)
+    // Plasmoid.icon: sinkModel.sinks.length > 0 ? Icon.name(sinkModel.sinks[0].volume, sinkModel.sinks[0].muted) : Icon.name(0, true)
     // Plasmoid.switchWidth: units.gridUnit * 12
     // Plasmoid.switchHeight: units.gridUnit * 12
     Plasmoid.toolTipMainText: displayName
-    // Plasmoid.fullRepresentation: Mixer {
-    //     id: mixer2
-    // }
-    // FIXME:    Plasmoid.toolTipSubText: sinkModel.volumeText
 
-    function runOnAllSinks(func) {
-        if (typeof(sinkModel) === "undefined") {
-            print("This case we need to handle.");
-            return;
-        } else if (sinkModel.count < 0) {
-            return;
+    property int maximumValue: 65536
+
+    function bound(value, min, max) {
+        return Math.max(min, Math.min(value, max));
+    }
+
+    function volumePercent(volume) {
+        return 100 * volume / maximumValue;
+    }
+
+    function toggleMute(pulseObject) {
+        var toMute = !pulseObject.muted;
+        if (toMute) {
+            osd.show(0);
+        } else {
+            osd.show(volumePercent(pulseObject.volume));
         }
-        for (var i = 0; i < sinkModel.count; ++i) {
-            sinkModel.currentIndex = i;
-            sinkModel.currentItem[func]();
+        pulseObject.muted = toMute;
+    }
+
+    function setVolume(pulseObject, volume) {
+        if (volume > 0 && pulseObject.muted) {
+            toggleMute(pulseObject);
+        }
+        pulseObject.volume = volume
+    }
+
+    function addVolume(pulseObject, step) {
+        console.log('addVolume', pulseObject, step);
+        var volume = bound(pulseObject.volume + step, 0, maximumValue);
+        setVolume(pulseObject, volume);
+        osd.show(volumePercent(volume));
+    }
+
+    function increaseVolume(pulseObject) {
+        console.log('increaseVolume', pulseObject);
+        var step = maximumValue / 15;
+        addVolume(pulseObject, step);
+    }
+
+
+    function decreaseVolume(pulseObject) {
+        console.log('decreaseVolume', pulseObject);
+        var step = maximumValue / 15;
+        addVolume(pulseObject, -step);
+    }
+
+    function increaseDefaultSinkVolume() {
+        console.log('increaseDefaultSinkVolume');
+        for (var i = 0; i < sinkModel.sinks.length; ++i) {
+            increaseVolume(sinkModel.sinks[i]);
         }
     }
 
-    function increaseVolume() {
-        runOnAllSinks("increaseVolume");
+    function decreaseDefaultSinkVolume() {
+        console.log('decreaseDefaultSinkVolume');
+        for (var i = 0; i < sinkModel.sinks.length; ++i) {
+            decreaseVolume(sinkModel.sinks[i]);
+        }
     }
 
-    function decreaseVolume() {
-        runOnAllSinks("decreaseVolume");
-    }
-
-    function muteVolume() {
-        runOnAllSinks("toggleMute");
+    function toggleDefaultSinksMute() {
+        console.log('toggleDefaultSinksMute');
+        for (var i = 0; i < sinkModel.sinks.length; ++i) {
+            toggleMute(sinkModel.sinks[i]);
+        }
     }
 
     Plasmoid.compactRepresentation: PlasmaCore.IconItem {
-        source: plasmoid.icon
+        source: sinkModel.sinks.length > 0 ? Icon.name(sinkModel.sinks[0].volume, sinkModel.sinks[0].muted) : Icon.name(0, true)
         active: mouseArea.containsMouse
         colorGroup: PlasmaCore.ColorScope.colorGroup
 
@@ -99,15 +133,12 @@ Item {
                 if (mouse.button == Qt.LeftButton) {
                     wasExpanded = plasmoid.expanded;
                 } else if (mouse.button == Qt.MiddleButton) {
-                    muteVolume();
+                    toggleDefaultSinksMute();
                 }
             }
             onClicked: {
                 if (mouse.button == Qt.LeftButton) {
                     plasmoid.expanded = !wasExpanded;
-                    // if (expanded) {
-                    //     main.width = mixerItemRow.childrenRect.width
-                    // }
                 }
             }
             onWheel: {
@@ -117,11 +148,11 @@ Item {
                 // See: http://qt-project.org/doc/qt-5/qml-qtquick-wheelevent.html#angleDelta-prop
                 while (wheelDelta >= 120) {
                     wheelDelta -= 120;
-                    increaseVolume();
+                    increaseDefaultSinkVolume();
                 }
                 while (wheelDelta <= -120) {
                     wheelDelta += 120;
-                    decreaseVolume();
+                    decreaseDefaultSinkVolume();
                 }
             }
         }
@@ -143,19 +174,19 @@ Item {
             objectName: "increase_volume"
             text: i18n("Increase Volume")
             shortcut: Qt.Key_VolumeUp
-            onTriggered: increaseVolume()
+            onTriggered: increaseDefaultSinkVolume()
         }
         GlobalAction {
             objectName: "decrease_volume"
             text: i18n("Decrease Volume")
             shortcut: Qt.Key_VolumeDown
-            onTriggered: decreaseVolume()
+            onTriggered: decreaseDefaultSinkVolume()
         }
         GlobalAction {
             objectName: "mute"
             text: i18n("Mute")
             shortcut: Qt.Key_VolumeMute
-            onTriggered: muteVolume()
+            onTriggered: toggleDefaultSinksMute()
         }
     }
 
@@ -165,13 +196,6 @@ Item {
 
     property int mixerItemWidth: 100
     property int volumeSliderWidth: 50
-
-
-    // Rectangle {
-    //     color: PlasmaCore.ColorScope.backgroundColor
-    //     anchors.fill: parent
-    // }
-
 
     // https://github.com/KDE/plasma-pa/tree/master/src/kcm/package/contents/ui
     PulseObjectFilterModel {
@@ -185,34 +209,15 @@ Item {
         id: sinkModel
     }
 
-
-
     Row {
         id: mixerItemRow
         anchors.right: parent.right
         width: childrenRect.width
         height: parent.height
         spacing: 10
-        onWidthChanged: {
-            // parent.width = width
-
-            console.log('a', Layout.minimumWidth, Layout.preferredWidth, Layout.maximumWidth, parent.width, width)
-        
-            // parent.width = Math.max(width, parent.width)
-            // Layout.minimumWidth = Math.max(width, Layout.minimumWidth)
-            // Layout.preferredWidth = Math.max(width, Layout.preferredWidth)
-            // Layout.maximumWidth = Math.max(width, Layout.maximumWidth)
-            // main.width = width
-            // Layout.minimumWidth = width
-            // Layout.preferredWidth = width
-            // Layout.maximumWidth = width
-
-            console.log('b', Layout.minimumWidth, Layout.preferredWidth, Layout.maximumWidth, parent.width, width)
-        }
 
         MixerItemGroup {
             height: parent.height
-            // width: childrenRect.width
             title: 'Apps'
     
             model: appsModel
@@ -247,25 +252,51 @@ Item {
 
         MixerItemGroup {
             height: parent.height
-            // width: childrenRect.width
             title: 'Mics'
     
             model: sourceModel
             delegate: MixerItem {
                 width: main.mixerItemWidth
                 volumeSliderWidth: main.volumeSliderWidth
-                icon: Volume > 0 ? 'mic-on' : 'mic-off'
+                icon: PulseObject.volume > 0 && !PulseObject.muted ? 'mic-on' : 'mic-off'
             }
         }
 
         MixerItemGroup {
             height: parent.height
-            // width: childrenRect.width
             title: 'Speakers'
     
             model: sinkModel
             mixerItemIcon: 'speaker'
         }
+
+        // GroupBox {
+        //     style: PlasmaStyles.GroupBoxStyle {}
+
+        //     Text {
+        //         text: parent.title
+        //         color: PlasmaCore.ColorScope.textColor
+        //         Layout.fillWidth: true
+        //         horizontalAlignment: Text.AlignHCenter
+        //     }
+            
+        //     ListView {
+        //         model: sinkModel
+        //         width: Math.max(childrenRect.width, mixerItemWidth)
+        //         // width: childrenRect.width
+        //         height: parent.height
+        //         spacing: 10
+        //         boundsBehavior: Flickable.StopAtBounds
+        //         orientation: ListView.Horizontal
+
+        //         delegate: MixerItem {
+        //             width: mixerItemWidth
+        //             volumeSliderWidth: volumeSliderWidth
+        //             icon: 'speaker'
+        //         }
+        //     }
+        // }
+
     }
     
 }
