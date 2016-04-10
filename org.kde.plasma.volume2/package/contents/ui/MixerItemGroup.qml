@@ -11,7 +11,6 @@ import org.kde.plasma.private.volume 0.1
 
 GroupBox {
     style: PlasmaStyles.GroupBoxStyle {}
-    property string title: ''
     property alias view: view
     property alias spacing: view.spacing
     property alias model: view.model
