@@ -12,30 +12,33 @@ function volumePercent(volume) {
 function toggleMute(pulseObject) {
     var toMute = !pulseObject.muted;
     pulseObject.muted = toMute;
+    return toMute
 }
 
 function setVolume(pulseObject, volume) {
+    console.log('setVolume', pulseObject.volume, '=>', volume);
     if (volume > 0 && pulseObject.muted) {
         toggleMute(pulseObject);
     }
     pulseObject.volume = volume
+    return volume
 }
 
 function addVolume(pulseObject, step) {
     console.log('addVolume', pulseObject, step);
     var volume = bound(pulseObject.volume + step, 0, maximumValue);
-    setVolume(pulseObject, volume);
+    return setVolume(pulseObject, volume);
 }
 
 function increaseVolume(pulseObject) {
     console.log('increaseVolume', pulseObject);
     var step = maximumValue / totalSteps;
-    addVolume(pulseObject, step);
+    return addVolume(pulseObject, step);
 }
 
 
 function decreaseVolume(pulseObject) {
     console.log('decreaseVolume', pulseObject);
     var step = maximumValue / totalSteps;
-    addVolume(pulseObject, -step);
+    return addVolume(pulseObject, -step);
 }

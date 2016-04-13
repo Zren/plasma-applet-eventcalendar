@@ -55,24 +55,24 @@ Item {
     function increaseDefaultSinkVolume() {
         console.log('increaseDefaultSinkVolume');
         for (var i = 0; i < sinkModel.sinks.length; ++i) {
-            PulseObjectCommands.increaseVolume(sinkModel.sinks[i]);
-            showOsd(sinkModel.sinks[i].volume);
+            var volume = PulseObjectCommands.increaseVolume(sinkModel.sinks[i]);
+            showOsd(volume);
         }
     }
 
     function decreaseDefaultSinkVolume() {
         console.log('decreaseDefaultSinkVolume');
         for (var i = 0; i < sinkModel.sinks.length; ++i) {
-            PulseObjectCommands.decreaseVolume(sinkModel.sinks[i]);
-            showOsd(sinkModel.sinks[i].volume);
+            var volume = PulseObjectCommands.decreaseVolume(sinkModel.sinks[i]);
+            showOsd(volume);
         }
     }
 
     function toggleDefaultSinksMute() {
         console.log('toggleDefaultSinksMute');
         for (var i = 0; i < sinkModel.sinks.length; ++i) {
-            PulseObjectCommands.toggleMute(sinkModel.sinks[i]);
-            showOsd(sinkModel.sinks[i].volume);
+            var toMute = PulseObjectCommands.toggleMute(sinkModel.sinks[i]);
+            showOsd(toMute ? 0 : sinkModel.sinks[i].volume);
         }
     }
 
@@ -104,6 +104,13 @@ Item {
             }
             onWheel: {
                 var delta = wheel.angleDelta.y || wheel.angleDelta.x;
+                if (delta > 0) {
+                    increaseDefaultSinkVolume();
+                } else if (delta < 0) {
+                    decreaseDefaultSinkVolume();
+                }
+                return;
+                
                 wheelDelta += delta;
                 // Magic number 120 for common "one click"
                 // See: http://qt-project.org/doc/qt-5/qml-qtquick-wheelevent.html#angleDelta-prop
