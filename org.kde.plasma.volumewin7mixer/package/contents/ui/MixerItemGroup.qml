@@ -18,6 +18,7 @@ GroupBox {
     property int mixerItemWidth: 100
     property int volumeSliderWidth: 50
     property string mixerItemIcon: ''
+    visible: view.count > 0
 
     Text {
         text: parent.title
