@@ -89,8 +89,16 @@ var weatherIconMap = {
     '50n': 'weather-fog',
 };
 
-function isSameDay(a, b) {
+function isSameDate(a, b) {
     return a.getFullYear() == b.getFullYear() && a.getMonth() == b.getMonth() && a.getDate() == b.getDate();
+}
+function isDateEarlier(a, b) {
+    var c = new Date(b.getFullYear(), b.getMonth(), b.getDate()); // midnight of date b
+    return a < c;
+}
+function isDateAfter(a, b) {
+    var c = new Date(b.getFullYear(), b.getMonth(), b.getDate() + 1); // midnight of next day after b
+    return a >= c;
 }
 
 function formatEventTime(dateTime) {
@@ -104,7 +112,7 @@ function formatEventTime(dateTime) {
     return Qt.formatDateTime(dateTime, timeFormat)
 }
 
-function formatEventDuration(event) {
+function formatEventDuration(event, relativeDate) {
     var startTime = event.start.dateTime;
     var endTime = event.end.dateTime;
     if (event.start.date) {
@@ -112,7 +120,7 @@ function formatEventDuration(event) {
         // Humans consider the event to end at 23:59 the day before though.
         var dayBefore = new Date(endTime);
         dayBefore.setDate(dayBefore.getDate() - 1);
-        if (isSameDay(startTime, dayBefore)) {
+        if (isSameDate(startTime, dayBefore)) {
             return "All Day";
         } else {
             var s = Qt.formatDateTime(startTime, "MMM d");
@@ -121,10 +129,14 @@ function formatEventDuration(event) {
             return s;
         }
     } else {
-        var s = formatEventTime(startTime);
+        var s = "";
+        if (!relativeDate || isDateEarlier(startTime, relativeDate)) {
+            s += Qt.formatDateTime(startTime, "MMM d") + ", ";
+        }
+        s += formatEventTime(startTime);
         if (startTime.valueOf() != endTime.valueOf()) {
             s += " - ";
-            if (!isSameDay(startTime, endTime)) {
+            if (!isSameDate(startTime, endTime)) {
                 s += Qt.formatDateTime(endTime, "MMM d") + ", ";
             }
             s += formatEventTime(endTime);

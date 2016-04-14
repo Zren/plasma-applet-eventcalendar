@@ -60,6 +60,7 @@ Item {
             anchors.left: parent.left
             anchors.right: parent.right
             spacing: 10
+            property date agendaItemDate: model.date
 
             LinkRect {
                 Layout.alignment: Qt.AlignTop
@@ -257,7 +258,7 @@ Item {
 
                                     Text {
                                         id: eventDateTime
-                                        text: Shared.formatEventDuration(model)
+                                        text: Shared.formatEventDuration(model, agendaItemDate)
                                         color: PlasmaCore.ColorScope.textColor
                                         opacity: 0.75
                                     }
