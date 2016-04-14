@@ -1,3 +1,11 @@
+[b]v26 - Apr 14 2016[/b]
+
+* Update meteogram on hour change.
+* Event badges each day in the calendar for multiday events.
+* Better event date formatting for multiday events.
+* Terrible support for use as a desktop widget. A desktop widget is a fixed size, and only shows the popup calendar view. The background border doesn't scale to fit either, but you can resize it to fit the widget by clicking and holding the background, then resizing it.
+* Don't serialize the google calendar login code to the config if not logged in.
+
 [b]v25 - Apr 9 2016[/b]
 
 * Calendar borders are optional.
