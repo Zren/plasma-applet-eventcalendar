@@ -77,7 +77,7 @@
       <default>false</default>
     </entry>
     <entry name="agenda_breakup_multiday_events" type="bool">
-      <default>true</default>
+      <default>false</default>
     </entry>
   </group>
 

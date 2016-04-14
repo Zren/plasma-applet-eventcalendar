@@ -13,7 +13,7 @@ ColumnLayout {
     property alias cfg_agenda_weather_show_icon: agenda_weather_show_icon.checked
     property alias cfg_agenda_weather_icon_height: agenda_weather_icon_height.value
     property alias cfg_agenda_weather_show_text: agenda_weather_show_text.checked
-    property alias cfg_agenda_breakup_multiday_events: agenda_breakup_multiday_events.checked
+    property bool cfg_agenda_breakup_multiday_events: false
 
     SystemPalette {
         id: palette
@@ -118,9 +118,30 @@ ColumnLayout {
             Layout.fillWidth: true
 
             RowLayout {
-                CheckBox {
-                    id: agenda_breakup_multiday_events
-                    text: "Show event each day for multiday events"
+                Label {
+                    text: "Show multi-day events:"
+                    Layout.alignment: Qt.AlignTop | Qt.AlignLeft
+                }
+                ColumnLayout {
+                    ExclusiveGroup {
+                        id: agenda_breakup_multiday_eventsGroup
+                    }
+                    RadioButton {
+                        text: "On all days"
+                        checked: cfg_agenda_breakup_multiday_events
+                        exclusiveGroup: agenda_breakup_multiday_eventsGroup
+                        onClicked: {
+                            cfg_agenda_breakup_multiday_events = true
+                        }
+                    }
+                    RadioButton {
+                        text: "Only on the first and current day"
+                        checked: !cfg_agenda_breakup_multiday_events
+                        exclusiveGroup: agenda_breakup_multiday_eventsGroup
+                        onClicked: {
+                            cfg_agenda_breakup_multiday_events = false
+                        }
+                    }
                 }
             }
         }
