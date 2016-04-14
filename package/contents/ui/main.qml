@@ -82,6 +82,16 @@ Item {
             // keycode 123 = XF86AudioRaiseVolume NoSymbol XF86AudioRaiseVolume
             onWheel: {
                 var delta = wheel.angleDelta.y || wheel.angleDelta.x;
+                
+                // if (delta > 0) {
+                //     topOverlap += 1
+                //     bottomOverlap += 1
+                // } else {
+                //     topOverlap -= 1
+                //     bottomOverlap -= 1
+                // }
+                // return;
+
                 wheelDelta += delta;
                 // Magic number 120 for common "one click"
                 // See: http://qt-project.org/doc/qt-5/qml-qtquick-wheelevent.html#angleDelta-prop
