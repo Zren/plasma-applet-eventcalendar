@@ -16,11 +16,11 @@ Item {
 
     property alias cfg_client_id: client_id.text
     property alias cfg_client_secret: client_secret.text
-    property alias cfg_device_code: device_code.text
-    property alias cfg_user_code: user_code.text
-    property alias cfg_user_code_verification_url: user_code_verification_url.text
-    property alias cfg_user_code_expires_at: user_code_expires_at.text
-    property alias cfg_user_code_interval: user_code_interval.text
+    property alias val_device_code: device_code.text
+    property alias val_user_code: user_code.text
+    property alias val_user_code_verification_url: user_code_verification_url.text
+    property alias val_user_code_expires_at: user_code_expires_at.text
+    property alias val_user_code_interval: user_code_interval.text
     property alias cfg_access_token: access_token.text
     property alias cfg_access_token_type: access_token_type.text
     property alias cfg_access_token_expires_at: access_token_expires_at.text
@@ -446,7 +446,7 @@ Item {
             data: {
                 client_id: cfg_client_id,
                 client_secret: cfg_client_secret,
-                code: cfg_device_code,
+                code: val_device_code,
                 grant_type: 'http://oauth.net/grant_type/device/1.0',
             },
         }, function(err, data) {
@@ -486,11 +486,11 @@ Item {
             data = JSON.parse(data);
             console.log('data', JSON.stringify(data, null, '\t'));
 
-            cfg_device_code = data.device_code;
-            cfg_user_code = data.user_code;
-            cfg_user_code_verification_url = data.verification_url;
-            cfg_user_code_expires_at = Date.now() + data.expires_in * 1000;
-            cfg_user_code_interval = data.interval;
+            val_device_code = data.device_code;
+            val_user_code = data.user_code;
+            val_user_code_verification_url = data.verification_url;
+            val_user_code_expires_at = Date.now() + data.expires_in * 1000;
+            val_user_code_interval = data.interval;
 
             userCodeInput.text = data.user_code;
 
