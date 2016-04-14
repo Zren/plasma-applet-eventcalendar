@@ -4,4 +4,4 @@ A fork of the [default volume plasmoid](https://github.com/KDE/plasma-pa/tree/Pl
 
 ## Screenshot
 
-![](https://i.imgur.com/rNLMN29.png)
+![](https://i.imgur.com/h5EpwID.png)
