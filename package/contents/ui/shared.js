@@ -89,6 +89,10 @@ var weatherIconMap = {
     '50n': 'weather-fog',
 };
 
+function isSameDay(a, b) {
+    return a.getFullYear() == b.getFullYear() && a.getMonth() == b.getMonth() && a.getDate() == b.getDate();
+}
+
 function formatEventTime(dateTime) {
     var timeFormat = "h"
     if (dateTime.getMinutes() != 0) {
@@ -101,15 +105,22 @@ function formatEventTime(dateTime) {
 }
 
 function formatEventDuration(event) {
+    var startTime = event.start.dateTime;
+    var endTime = event.end.dateTime;
     if (event.start.date) {
-        return "All Day"
+        var s = "All Day";
+        var nextDay = new Date(startTime);
+        nextDay.setDate(nextDay.getDate() + 1);
+        if (!isSameDay(nextDay, endTime)) {
+            s += " - ";
+            s += Qt.formatDateTime(endTime, "MMM d");
+        }
+        return s;
     } else {
-        var startTime = event.start.dateTime;
-        var endTime = event.end.dateTime;
         var s = formatEventTime(startTime);
         if (startTime.valueOf() != endTime.valueOf()) {
             s += " - ";
-            if (!(startTime.getFullYear() == endTime.getFullYear() && startTime.getMonth() == endTime.getMonth() && startTime.getDate() == endTime.getDate())) {
+            if (!isSameDay(startTime, endTime)) {
                 s += Qt.formatDateTime(endTime, "MMM d") + ", ";
             }
             s += formatEventTime(endTime);
