@@ -221,17 +221,16 @@ Item {
                         // https://github.com/KDE/plasma-framework/blob/master/src/declarativeimports/calendar/daysmodel.h
                         for (var j = 0; j < data.items.length; j++) {
                             var eventItem = data.items[j];
-                            var month = eventItem.start.dateTime.getMonth();
-                            var date = eventItem.start.dateTime.getDate();
-                            for (var i = 0; i < monthView.daysModel.count; i++) {
-                                var dayData = monthView.daysModel.get(i);
-                                if (month+1 == dayData.monthNumber && date == dayData.dayNumber) {
-                                    // console.log(dayData.monthNumber, dayData.dayNumber, eventItem.start.dateTime, eventItem.summary);
-                                    monthView.daysModel.setProperty(i, 'showEventBadge', true);
-                                    var events = dayData.events || [];
-                                    events.append(eventItem);
-                                    monthView.daysModel.setProperty(i, 'events', events);
-                                    break;
+                            for (var eventItemDate = new Date(eventItem.start.dateTime); eventItemDate < eventItem.end.dateTime; eventItemDate.setDate(eventItemDate.getDate() + 1)) {
+                                for (var i = 0; i < monthView.daysModel.count; i++) {
+                                    var dayData = monthView.daysModel.get(i);
+                                    if (eventItemDate.getMonth() + 1 == dayData.monthNumber && eventItemDate.getDate() == dayData.dayNumber) {
+                                        monthView.daysModel.setProperty(i, 'showEventBadge', true);
+                                        var events = dayData.events || [];
+                                        events.append(eventItem);
+                                        monthView.daysModel.setProperty(i, 'events', events);
+                                        break;
+                                    }
                                 }
                             }
                         }
