@@ -366,18 +366,27 @@ Item {
             }
             return null;
         }
+        function insertEventAtDate(date, eventItem) {
+            var agendaItem = getAgendaItemByDate(date);
+            if (!agendaItem) {
+                agendaItem = buildAgendaItem(date);
+                agendaItemList.push(agendaItem);
+            }
+            agendaItem.events.push(eventItem);
+        }
         for (var i = 0; i < data.items.length; i++) {
             var eventItem = data.items[i];
-            for (var eventItemDate = new Date(eventItem.start.dateTime); eventItemDate < eventItem.end.dateTime; eventItemDate.setDate(eventItemDate.getDate() + 1)) {
-                var agendaItem = getAgendaItemByDate(eventItemDate);
-                if (!agendaItem) {
-                    agendaItem = buildAgendaItem(eventItemDate);
-                    agendaItemList.push(agendaItem);
+            if (cfg_agenda_breakup_multiday_events) {
+                for (var eventItemDate = new Date(eventItem.start.dateTime); eventItemDate < eventItem.end.dateTime; eventItemDate.setDate(eventItemDate.getDate() + 1)) {
+                    insertEventAtDate(eventItemDate, eventItem);
                 }
-                agendaItem.events.push(eventItem);
-
-                if (!cfg_agenda_breakup_multiday_events) {
-                    break;
+            } else {
+                var now = new Date();
+                var inProgress = eventItem.start.dateTime <= now && now <= eventItem.end.dateTime;
+                if (inProgress) {
+                    insertEventAtDate(now, eventItem);
+                } else {
+                    insertEventAtDate(eventItem.start.dateTime, eventItem);
                 }
             }
         }
