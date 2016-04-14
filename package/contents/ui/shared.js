@@ -108,14 +108,18 @@ function formatEventDuration(event) {
     var startTime = event.start.dateTime;
     var endTime = event.end.dateTime;
     if (event.start.date) {
-        var s = "All Day";
-        var nextDay = new Date(startTime);
-        nextDay.setDate(nextDay.getDate() + 1);
-        if (!isSameDay(nextDay, endTime)) {
+        // GCal ends all day events at midnight, which is technically the next day.
+        // Humans consider the event to end at 23:59 the day before though.
+        var dayBefore = new Date(endTime);
+        dayBefore.setDate(dayBefore.getDate() - 1);
+        if (isSameDay(startTime, dayBefore)) {
+            return "All Day";
+        } else {
+            var s = Qt.formatDateTime(startTime, "MMM d");
             s += " - ";
-            s += Qt.formatDateTime(endTime, "MMM d");
+            s += Qt.formatDateTime(dayBefore, "MMM d");
+            return s;
         }
-        return s;
     } else {
         var s = formatEventTime(startTime);
         if (startTime.valueOf() != endTime.valueOf()) {
