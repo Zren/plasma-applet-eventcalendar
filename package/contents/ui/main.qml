@@ -12,8 +12,9 @@ import org.kde.kquickcontrolsaddons 2.0 // KCMShell
 Item {
     id: root
 
-    width: units.gridUnit * 10
-    height: units.gridUnit * 4
+    property bool anyWidgetVisible: plasmoid.configuration.widget_show_spacer ||  plasmoid.configuration.widget_show_meteogram ||  plasmoid.configuration.widget_show_timer
+    width: 400 + 10 + 400
+    height: 400 + (anyWidgetVisible ? 10 + 100 : 0)
 
 
     PlasmaCore.DataSource {
@@ -143,7 +144,7 @@ Item {
     }
 
 
-    Plasmoid.preferredRepresentation: Plasmoid.compactRepresentation
+    Plasmoid.preferredRepresentation: plasmoid.containmentType == PlasmaCore.ContainmentType.DesktopContainment ? Plasmoid.fullRepresentation : Plasmoid.compactRepresentation
     Plasmoid.compactRepresentation: clockComponent
     Plasmoid.fullRepresentation: popupComponent
     
