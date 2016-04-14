@@ -119,6 +119,7 @@ Item {
 
                 horizontalAlignment: Text.AlignHCenter
                 verticalAlignment: Text.AlignVCenter
+                smooth: true
 
                 text: {
                     if (clock.cfg_clock_timeformat) {
@@ -127,6 +128,13 @@ Item {
                         return Qt.formatTime(clock.currentTime, clock.cfg_clock_24h ? "hh:mm" : "h:mm AP");
                     }
                 }
+
+                // Rectangle {
+                //     border.width: 1
+                //     border.color: '#f00'
+                //     color: 'transparent'
+                //     anchors.fill: parent
+                // }
             }
             Components.Label {
                 id: timeLabel2
@@ -142,6 +150,7 @@ Item {
 
                 horizontalAlignment: Text.AlignHCenter
                 verticalAlignment: Text.AlignVCenter
+                smooth: true
 
                 text: {
                     if (clock.cfg_clock_timeformat_2) {
@@ -150,6 +159,13 @@ Item {
                         return Qt.formatDate(clock.currentTime, "yyyy-MM-dd");
                     }
                 }
+
+                // Rectangle {
+                //     border.width: 1
+                //     border.color: '#ff0'
+                //     color: 'transparent'
+                //     anchors.fill: parent
+                // }
             }
         }
         
@@ -179,8 +195,12 @@ Item {
         font.italic: timeLabel.font.italic
         // font.pixelSize: 1024
         font.pointSize: 1024
+        height: paintedHeight
         visible: false
     }
+
+    // property int topOverlap: 2
+    // property int bottomOverlap: 2
 
     state: "verticalPanel"
     states: [
@@ -192,7 +212,6 @@ Item {
                 width: sizehelper.paintedWidth
                 height: clock.height
                 fontSizeMode: Text.VerticalFit
-                // verticalAlignment: Text.AlignVCenter
             }
             PropertyChanges { target: timeLabel
                 width: clock.lineWidth
@@ -202,7 +221,13 @@ Item {
                 width: clock.lineWidth
                 height: clock.lineHeight2
             }
-                
+
+            // PropertyChanges { target: sizehelper
+            //     height: clock.height + topOverlap + bottomOverlap
+            // }
+            // PropertyChanges { target: labels
+            //     y: -topOverlap
+            // }
         },
 
         State {
