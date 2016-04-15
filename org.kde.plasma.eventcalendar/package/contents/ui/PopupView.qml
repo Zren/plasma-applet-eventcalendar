@@ -48,6 +48,8 @@ Item {
     property alias today: monthView.today
     property alias selectedDate: monthView.currentDate
     property alias monthViewDate: monthView.displayedDate
+    property date visibleDateMin: new Date()
+    property date visibleDateMax: new Date()
     property variant eventsData: { "items": [] }
     property variant eventsByCalendar: { "": { "items": [] } }
     property variant dailyWeatherData: { "list": [] }
@@ -139,6 +141,9 @@ Item {
                     cfg_agenda_weather_icon_height: popup.cfg_agenda_weather_icon_height
                     cfg_agenda_weather_show_text: popup.cfg_agenda_weather_show_text
 
+                    visibleDateMin: popup.visibleDateMin
+                    visibleDateMax: popup.visibleDateMax
+
                     onNewEventFormOpened: {
                         console.log('onNewEventFormOpened')
                         if (config && config.access_token) {
@@ -221,16 +226,20 @@ Item {
                         // https://github.com/KDE/plasma-framework/blob/master/src/declarativeimports/calendar/daysmodel.h
                         for (var j = 0; j < data.items.length; j++) {
                             var eventItem = data.items[j];
-                            for (var eventItemDate = new Date(eventItem.start.dateTime); eventItemDate < eventItem.end.dateTime; eventItemDate.setDate(eventItemDate.getDate() + 1)) {
-                                for (var i = 0; i < monthView.daysModel.count; i++) {
-                                    var dayData = monthView.daysModel.get(i);
-                                    if (eventItemDate.getMonth() + 1 == dayData.monthNumber && eventItemDate.getDate() == dayData.dayNumber) {
-                                        monthView.daysModel.setProperty(i, 'showEventBadge', true);
-                                        var events = dayData.events || [];
-                                        events.append(eventItem);
-                                        monthView.daysModel.setProperty(i, 'events', events);
-                                        break;
-                                    }
+                            var eventItemStartDate = new Date(eventItem.start.dateTime.getFullYear(), eventItem.start.dateTime.getMonth(), eventItem.start.dateTime.getDate());
+                            var eventItemEndDate = new Date(eventItem.end.dateTime.getFullYear(), eventItem.end.dateTime.getMonth(), eventItem.end.dateTime.getDate());
+                            console.log(eventItemStartDate, eventItemEndDate)
+                            for (var i = 0; i < monthView.daysModel.count; i++) {
+                                var dayData = monthView.daysModel.get(i);
+                                var dayDataDate = new Date(dayData.yearNumber, dayData.monthNumber - 1, dayData.dayNumber);
+                                if (eventItemStartDate <= dayDataDate && dayDataDate <= eventItemEndDate) {
+                                    console.log('\t', dayDataDate)
+                                    monthView.daysModel.setProperty(i, 'showEventBadge', true);
+                                    var events = dayData.events || [];
+                                    events.append(eventItem);
+                                    monthView.daysModel.setProperty(i, 'events', events);
+                                } else if (eventItemEndDate < dayDataDate) {
+                                    break;
                                 }
                             }
                         }
@@ -303,6 +312,8 @@ Item {
             console.log('calendarList.length', calendarList.length);
 
             eventsByCalendar = {};
+            popup.visibleDateMin = dateMin
+            popup.visibleDateMax = dateMax
 
             for (var i = 0; i < calendarIdList.length; i++) {
                 (function(calendarId){
