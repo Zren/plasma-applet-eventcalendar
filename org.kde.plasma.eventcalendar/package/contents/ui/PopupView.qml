@@ -228,12 +228,12 @@ Item {
                             var eventItem = data.items[j];
                             var eventItemStartDate = new Date(eventItem.start.dateTime.getFullYear(), eventItem.start.dateTime.getMonth(), eventItem.start.dateTime.getDate());
                             var eventItemEndDate = new Date(eventItem.end.dateTime.getFullYear(), eventItem.end.dateTime.getMonth(), eventItem.end.dateTime.getDate());
-                            console.log(eventItemStartDate, eventItemEndDate)
+                            // console.log(eventItemStartDate, eventItemEndDate)
                             for (var i = 0; i < monthView.daysModel.count; i++) {
                                 var dayData = monthView.daysModel.get(i);
                                 var dayDataDate = new Date(dayData.yearNumber, dayData.monthNumber - 1, dayData.dayNumber);
                                 if (eventItemStartDate <= dayDataDate && dayDataDate <= eventItemEndDate) {
-                                    console.log('\t', dayDataDate)
+                                    // console.log('\t', dayDataDate)
                                     monthView.daysModel.setProperty(i, 'showEventBadge', true);
                                     var events = dayData.events || [];
                                     events.append(eventItem);
