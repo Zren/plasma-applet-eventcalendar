@@ -1,3 +1,8 @@
+[b]v27 - Apr 15 2016[/b]
+
+* Fix duplication of events longer than a month in the agenda.
+* Performance tweak with events with really long durations (like years).
+
 [b]v26 - Apr 14 2016[/b]
 
 * Update meteogram on hour change.
