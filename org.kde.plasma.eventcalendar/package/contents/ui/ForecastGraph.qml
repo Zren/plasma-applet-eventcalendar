@@ -43,12 +43,18 @@ Item {
         property int gridY2: height - xAxisLabelHeight
         property int gridHeight: gridY2 - gridY
 
-        property color scaleColor: "#111"
-        property color labelColor: PlasmaCore.ColorScope.textColor
+        property color scaleColor: theme.buttonBackgroundColor
+        property color labelColor: theme.textColor
         property color precipitationColor: "#acd"
         property color precipitationTextOulineColor: "#134"
         property color tempAbove0Color: "#900"
         property color tempBelow0Color: "#369"
+
+        Connections {
+            target: theme
+            onTextColorChanged: { gridCanvas.requestPaint(); }
+            onButtonBackgroundColorChanged: { gridCanvas.requestPaint(); }
+        }
 
         property variant gridData: []
         property variant yData: []
