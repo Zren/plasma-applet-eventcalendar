@@ -20,6 +20,10 @@ Item {
     property int showNextNumDays: 14
     property bool clipPastEvents: false
     property bool clipPastEventsToday: false
+    property bool clipEventsOutsideLimits: true
+    property date visibleDateMin: new Date()
+    property date visibleDateMax: new Date()
+
     property bool cfg_clock_24h: false
     property bool cfg_agenda_weather_show_icon: false
     property int cfg_agenda_weather_icon_height: 24
@@ -287,10 +291,10 @@ Item {
     function scrollToDate(date) {
         for (var i = 0; i < agendaModel.count; i++) {
             var agendaItem = agendaModel.get(i);
-            if (date.getFullYear() == agendaItem.date.getFullYear() && date.getMonth() == agendaItem.date.getMonth() && date.getDate() == agendaItem.date.getDate()) {
+            if (Shared.isSameDate(date, agendaItem.date)) {
                 agendaListView.positionViewAtIndex(i, ListView.Beginning);
                 return;
-            } else if (date < agendaItem.date) { // assume agendaItem.date is aligned to midnight
+            } else if (Shared.isDateEarlier(date, agendaItem.date)) {
                 // If the date is smaller than the current agendaItem.date, scroll to the previous agendaItem.
                 if (i > 0) {
                     agendaListView.positionViewAtIndex(i-1, ListView.Beginning);
@@ -360,8 +364,7 @@ Item {
         function getAgendaItemByDate(date) {
             for (var i = 0; i < agendaItemList.length; i++) {
                 var agendaItem = agendaItemList[i];
-                var isSameDay = agendaItem.date.getDate() == date.getDate();
-                if (isSameDay) {
+                if (Shared.isSameDate(agendaItem.date, date)) {
                     return agendaItem;
                 }
             }
@@ -378,7 +381,10 @@ Item {
         for (var i = 0; i < data.items.length; i++) {
             var eventItem = data.items[i];
             if (cfg_agenda_breakup_multiday_events) {
-                for (var eventItemDate = new Date(eventItem.start.dateTime); eventItemDate < eventItem.end.dateTime; eventItemDate.setDate(eventItemDate.getDate() + 1)) {
+                // for Max(start, visibleMin) .. Min(end, visibleMax)
+                var lowerLimitDate = agendaView.clipEventsOutsideLimits && eventItem.start.dateTime < agendaView.visibleDateMin ? agendaView.visibleDateMin : eventItem.start.dateTime;
+                var upperLimitDate = agendaView.clipEventsOutsideLimits && eventItem.end.dateTime > agendaView.visibleDateMax ? agendaView.visibleDateMax : eventItem.end.dateTime;
+                for (var eventItemDate = new Date(lowerLimitDate); eventItemDate <= upperLimitDate; eventItemDate.setDate(eventItemDate.getDate() + 1)) {
                     insertEventAtDate(eventItemDate, eventItem);
                 }
             } else {
@@ -398,11 +404,11 @@ Item {
             for (var day = new Date(today); day <= end; day.setDate(day.getDate() + 1)) {
                 // console.log(day);
 
-                // Check if agenedaItem with this date already exists.
+                // Check if an agendaItem with this date already exists.
                 var index = -1;
                 for (var i = 0; i < agendaItemList.length; i++) {
                     var agendaItem = agendaItemList[i];
-                    if (day.getMonth() == agendaItem.date.getMonth() && day.getDate() == agendaItem.date.getDate()) {
+                    if (Shared.isSameDate(day, agendaItem.date)) {
                         index = i;
                         break;
                     }
@@ -418,7 +424,7 @@ Item {
                 // Insert before the agendaItem with a higher date.
                 for (var i = 0; i < agendaItemList.length; i++) {
                     var agendaItem = agendaItemList[i];
-                    if (day.getMonth() == agendaItem.date.getMonth() && day.getDate() < agendaItem.date.getDate()) {
+                    if (Shared.isDateEarlier(day, agendaItem.date)) {
                         index = i;
                         break;
                     }
@@ -466,7 +472,7 @@ Item {
 
             for (var i = 0; i < agendaModel.count; i++) {
                 var agendaItem = agendaModel.get(i);
-                if (day.getMonth() == agendaItem.date.getMonth() && day.getDate() == agendaItem.date.getDate()) {
+                if (Shared.isSameDate(day, agendaItem.date)) {
                     // console.log(day);
                     agendaItem.tempLow = Math.floor(forecastItem.temp.min);
                     agendaItem.tempHigh = Math.ceil(forecastItem.temp.max);
