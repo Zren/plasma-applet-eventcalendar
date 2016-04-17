@@ -43,6 +43,7 @@ Item {
     property bool cfg_agenda_weather_show_text: false
     property bool cfg_agenda_breakup_multiday_events: true
     property bool cfg_month_show_border: true
+    property bool cfg_month_show_weeknumbers: true
     
     property alias agendaListView: agendaView.agendaListView
     property alias today: monthView.today
@@ -203,7 +204,7 @@ Item {
                 MonthView {
                     id: monthView
                     borderOpacity: cfg_month_show_border ? 0.25 : 0
-                    showWeekNumbers: false
+                    showWeekNumbers: cfg_month_show_weeknumbers
                     width: columnWidth
                     height: bottomRowHeight
 

@@ -11,6 +11,7 @@ ColumnLayout {
     property bool showDebug: false
 
     property alias cfg_month_show_border: month_show_border.checked
+    property alias cfg_month_show_weeknumbers: month_show_weeknumbers.checked
 
     SystemPalette {
         id: palette
@@ -69,10 +70,16 @@ ColumnLayout {
         }
         GroupBox {
             Layout.fillWidth: true
-
-            CheckBox {
-                id: month_show_border
-                text: "Show Borders"
+            
+            ColumnLayout {
+                CheckBox {
+                    id: month_show_border
+                    text: "Show Borders"
+                }
+                CheckBox {
+                    id: month_show_weeknumbers
+                    text: "Show Week Numbers"
+                }
             }
         }
 
