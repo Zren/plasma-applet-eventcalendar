@@ -146,7 +146,12 @@ MouseArea {
             var lines = [];
             for (var i = 0; i < model.events.count; i++) {
                 var eventItem = model.events.get(i);
-                lines.push('<b>' + eventItem.summary + ':</b> ' + Shared.formatEventDuration(eventItem, thisDate));
+                var line = '<b>' + eventItem.summary + ':</b> ';
+                line += Shared.formatEventDuration(eventItem, {
+                    relativeDate: thisDate,
+                    // clock_24h: false,
+                });
+                lines.push(line);
             }
             return lines.join('<br>');
         }

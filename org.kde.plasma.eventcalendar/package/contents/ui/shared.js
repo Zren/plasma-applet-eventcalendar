@@ -101,18 +101,21 @@ function isDateAfter(a, b) {
     return a >= c;
 }
 
-function formatEventTime(dateTime) {
+function formatEventTime(dateTime, args) {
+    var clock_24h = args && args.clock_24h;
     var timeFormat = "h"
     if (dateTime.getMinutes() != 0) {
         timeFormat += ":mm"
     }
-    if (!cfg_clock_24h) {
+    if (!clock_24h) {
         timeFormat += " AP"
     }
     return Qt.formatDateTime(dateTime, timeFormat)
 }
 
-function formatEventDuration(event, relativeDate) {
+function formatEventDuration(event, args) {
+    var relativeDate = args && args.relativeDate;
+    var clock_24h = args && args.clock_24h;
     var startTime = event.start.dateTime;
     var endTime = event.end.dateTime;
     if (event.start.date) {
@@ -133,13 +136,13 @@ function formatEventDuration(event, relativeDate) {
         if (!relativeDate || isDateEarlier(startTime, relativeDate)) {
             s += Qt.formatDateTime(startTime, "MMM d") + ", ";
         }
-        s += formatEventTime(startTime);
+        s += formatEventTime(startTime, { clock_24h: clock_24h });
         if (startTime.valueOf() != endTime.valueOf()) {
             s += " - ";
             if (!isSameDate(startTime, endTime)) {
                 s += Qt.formatDateTime(endTime, "MMM d") + ", ";
             }
-            s += formatEventTime(endTime);
+            s += formatEventTime(endTime, { clock_24h: clock_24h });
         }
         return s;
     }

@@ -260,7 +260,12 @@ Item {
 
                                     Text {
                                         id: eventDateTime
-                                        text: Shared.formatEventDuration(model, agendaItemDate)
+                                        text: {
+                                            Shared.formatEventDuration(model, {
+                                                relativeDate: agendaItemDate,
+                                                clock_24h: agendaView.cfg_clock_24h
+                                            })
+                                        }
                                         color: PlasmaCore.ColorScope.textColor
                                         opacity: 0.75
                                     }
