@@ -50,12 +50,11 @@ Item {
     property double cfg_clock_line_2_height_ratio: 0.4
     property bool cfg_clock_line_1_bold: true
     property bool cfg_clock_line_2_bold: true
+    property int cfg_clock_maxheight: 0
     
     property int lineWidth: cfg_clock_line_2 ? Math.max(timeLabel.paintedWidth, timeLabel2.paintedWidth) : timeLabel.paintedWidth
     property int lineHeight1: cfg_clock_line_2 ? sizehelper.height - (sizehelper.height * cfg_clock_line_2_height_ratio) : sizehelper.height
     property int lineHeight2: cfg_clock_line_2 ? sizehelper.height * cfg_clock_line_2_height_ratio : sizehelper.height
-
-    
     
     // Testing with qmlview
     Rectangle {
@@ -67,6 +66,7 @@ Item {
     Row {
         id: labels
         spacing: 10
+        anchors.centerIn: parent
 
         /*
         Components.Label {
@@ -173,7 +173,7 @@ Item {
     
 
     Component.onCompleted: {
-
+        formFactor = PlasmaCore.Types.Horizontal
     }
 
     // Timer {
@@ -210,7 +210,7 @@ Item {
 
             PropertyChanges { target: sizehelper
                 width: sizehelper.paintedWidth
-                height: clock.height
+                height: cfg_clock_maxheight > 0 ? cfg_clock_maxheight : clock.height
                 fontSizeMode: Text.VerticalFit
             }
             PropertyChanges { target: timeLabel

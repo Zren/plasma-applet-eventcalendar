@@ -25,6 +25,7 @@ Item {
     property alias cfg_clock_line_2_height_ratio: clock_line_2_height_ratio.value
     property alias cfg_clock_line_1_bold: clock_line_1_bold.checked
     property alias cfg_clock_line_2_bold: clock_line_2_bold.checked
+    property string cfg_clock_mousewheel: "runcommand"
     property alias cfg_clock_mousewheel_up: clock_mousewheel_up.text
     property alias cfg_clock_mousewheel_down: clock_mousewheel_down.text
     property alias cfg_timer_repeats: timer_repeats.checked
@@ -66,6 +67,14 @@ Item {
         cfg_clock_24h = !is12hour;
         cfg_clock_show_seconds = combinedFormat.indexOf('s') >= 0
     }
+
+    function setCommands(up, down) {
+        cfg_clock_mousewheel = 'run_commands'
+        clock_mousewheelGroup_runcommands.checked = true
+        cfg_clock_mousewheel_up = up
+        cfg_clock_mousewheel_down = down
+    }
+
 
     // Component.onCompleted: {
     //     cfg_clock_timeformat = 'h:mm ap'
@@ -312,48 +321,74 @@ Item {
                 text: i18n("Mouse Wheel")
                 color: palette.text
             }
-            Button {
-                text: 'amixer (No UI)'
-                onClicked: {
-                    cfg_clock_mousewheel_up = 'amixer -q sset Master 10%+'
-                    cfg_clock_mousewheel_down = 'amixer -q sset Master 10%-'
-                }
-            }
-            RowLayout {
-                Button {
-                    text: 'xdotool (UI)'
-                    onClicked: {
-                        cfg_clock_mousewheel_up = 'xdotool key XF86AudioRaiseVolume'
-                        cfg_clock_mousewheel_down = 'xdotool key XF86AudioLowerVolume'
+            GroupBox {
+                Layout.fillWidth: true
+
+                ColumnLayout {
+                    ExclusiveGroup { id: clock_mousewheelGroup }
+                    RadioButton {
+                        visible: showDebug
+                        exclusiveGroup: clock_mousewheelGroup
+                        checked: cfg_clock_mousewheel == 'resize_clock'
+                        text: 'Resize Clock'
+                        onClicked: {
+                            cfg_clock_mousewheel = 'resize_clock'
+                        }
                     }
-                }
-                Label {
-                    text: 'sudo apt-get install xdotool'
-                }
-            }
-            
 
-            RowLayout {
-                Layout.fillWidth: true
-                Label {
-                    text: i18n("Mouse Wheel Up:")
-                }
-                TextField {
-                    Layout.fillWidth: true
-                    id: clock_mousewheel_up
+                    RadioButton {
+                        id: clock_mousewheelGroup_runcommands
+                        exclusiveGroup: clock_mousewheelGroup
+                        checked: cfg_clock_mousewheel == 'run_commands'
+                        text: 'Run Commands'
+                        onClicked: {
+                            cfg_clock_mousewheel = 'run_commands'
+                        }
+                    }
+                    RowLayout {
+                        Layout.fillWidth: true
+                        Text { width: indentWidth } // indent
+                        Label {
+                            text: 'Scoll Up:'
+                        }
+                        TextField {
+                            Layout.fillWidth: true
+                            id: clock_mousewheel_up
+                        }
+                    }
+                    RowLayout {
+                        Layout.fillWidth: true
+                        Text { width: indentWidth } // indent
+                        Label {
+                            text: 'Scroll Down:'
+                        }
+                        TextField {
+                            Layout.fillWidth: true
+                            id: clock_mousewheel_down
+                        }
+                    }
+
+                    RadioButton {
+                        exclusiveGroup: clock_mousewheelGroup
+                        checked: false
+                        text: 'Volume (No UI) (amixer)'
+                        onClicked: {
+                            setCommands('amixer -q sset Master 10%+', 'amixer -q sset Master 10%-')
+                        }
+                    }
+
+                    RadioButton {
+                        exclusiveGroup: clock_mousewheelGroup
+                        checked: false
+                        text: 'Volume (UI) (xdotool) (sudo apt-get install xdotool)'
+                        onClicked: {
+                            setCommands('xdotool key XF86AudioRaiseVolume', 'xdotool key XF86AudioLowerVolume')
+                        }
+                    }
+
                 }
             }
 
-            RowLayout {
-                Layout.fillWidth: true
-                Label {
-                    text: i18n("Mouse Wheel Down:")
-                }
-                TextField {
-                    Layout.fillWidth: true
-                    id: clock_mousewheel_down
-                }
-            }
         }
 
         PlasmaExtras.Heading {
