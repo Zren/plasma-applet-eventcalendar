@@ -12,6 +12,8 @@ Item {
 
     property alias cfg_weather_app_id: weather_app_id.text
     property alias cfg_weather_city_id: weather_city_id.text
+    property string cfg_weather_units: 'metric'
+    
 
     SystemPalette {
         id: palette
@@ -74,6 +76,44 @@ Item {
                 TextField {
                     id: weather_city_id
                     Layout.fillWidth: true
+                }
+            }
+
+            GroupBox {
+                Layout.fillWidth: true
+
+                RowLayout {
+                    Label {
+                        text: "Units:"
+                        Layout.alignment: Qt.AlignTop | Qt.AlignLeft
+                    }
+                    ColumnLayout {
+                        ExclusiveGroup { id: weather_unitsGroup }
+                        RadioButton {
+                            text: "Celsius"
+                            checked: cfg_weather_units == 'metric'
+                            exclusiveGroup: weather_unitsGroup
+                            onClicked: {
+                                cfg_weather_units = 'metric'
+                            }
+                        }
+                        RadioButton {
+                            text: "Fahrenheit"
+                            checked: cfg_weather_units == 'imperial'
+                            exclusiveGroup: weather_unitsGroup
+                            onClicked: {
+                                cfg_weather_units = 'imperial'
+                            }
+                        }
+                        RadioButton {
+                            text: "Kelvin"
+                            checked: cfg_weather_units == 'kelvin'
+                            exclusiveGroup: weather_unitsGroup
+                            onClicked: {
+                                cfg_weather_units = 'kelvin'
+                            }
+                        }
+                    }
                 }
             }
         }

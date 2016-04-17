@@ -141,6 +141,7 @@ Item {
             onAccess_tokenChanged: { updateEvents() }
             onWeather_app_idChanged: { updateWeather(true) }
             onWeather_city_idChanged: { updateWeather(true) }
+            onWeather_unitsChanged: { updateWeather(true) }
             onWidget_show_spacerChanged: { updateHeight() }
             onWidget_show_meteogramChanged: {
                 updateHeight();

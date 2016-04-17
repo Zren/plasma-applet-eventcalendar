@@ -274,9 +274,11 @@ Item {
         } else {
             var app_id = '99e575d9aa8a8407bcee7693d5912c6a';
             var city_id = 5983720;
+            var units = 'metric';
             Shared.fetchHourlyWeatherForecast({
                 app_id: app_id,
                 city_id: city_id,
+                units: units,
             }, function(err, hourlyData, xhr) {
                 var currentWeatherData = hourlyData.list[0];
                 parseWeatherForecast(currentWeatherData, hourlyData)

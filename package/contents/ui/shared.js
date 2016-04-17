@@ -50,7 +50,7 @@ function fetchHourlyWeatherForecast(args, callback) {
     
     var url = 'http://api.openweathermap.org/data/2.5/';
     url += 'forecast?id=' + args.city_id;
-    url += '&units=metric';
+    url += '&units=' + (args.units || 'metric');
     url += '&appid=' + args.app_id;
     Utils.getJSON(url, callback);
 }
@@ -62,7 +62,7 @@ function fetchDailyWeatherForecast(args, callback) {
     
     var url = 'http://api.openweathermap.org/data/2.5/';
     url += 'forecast/daily?id=' + args.city_id;
-    url += '&units=metric';
+    url += '&units=' + (args.units || 'metric');
     url += '&appid=' + args.app_id;
     Utils.getJSON(url, callback);
 }
