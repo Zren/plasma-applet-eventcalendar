@@ -116,14 +116,12 @@ Item {
                     mainText: weatherDescription
                     subText: {
                         var lines = [];
-                        lines.push(tempHigh + '° | ' + tempLow + '°');
                         lines.push('<b>Morning:</b> ' + weatherTempMorn + '°');
                         lines.push('<b>Day:</b> ' + weatherTempDay + '°');
                         lines.push('<b>Evening:</b> ' + weatherTempEve + '°');
                         lines.push('<b>Night:</b> ' + weatherTempNight + '°');
                         return lines.join('<br>');
                     }
-                    icon: weatherIcon
                 }
 
                 onClicked: {
