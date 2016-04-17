@@ -381,7 +381,15 @@ Item {
             if (cfg_agenda_breakup_multiday_events) {
                 // for Max(start, visibleMin) .. Min(end, visibleMax)
                 var lowerLimitDate = agendaView.clipEventsOutsideLimits && eventItem.start.dateTime < agendaView.visibleDateMin ? agendaView.visibleDateMin : eventItem.start.dateTime;
-                var upperLimitDate = agendaView.clipEventsOutsideLimits && eventItem.end.dateTime > agendaView.visibleDateMax ? agendaView.visibleDateMax : eventItem.end.dateTime;
+                var upperLimitDate = eventItem.end.dateTime;
+                if (eventItem.end.date) {
+                    // All Day event "ends" day before.
+                    upperLimitDate = new Date(eventItem.end.dateTime);
+                    upperLimitDate.setDate(upperLimitDate.getDate() - 1);
+                }
+                if (agendaView.clipEventsOutsideLimits && upperLimitDate > agendaView.visibleDateMax) {
+                    upperLimitDate = agendaView.visibleDateMax;
+                }
                 for (var eventItemDate = new Date(lowerLimitDate); eventItemDate <= upperLimitDate; eventItemDate.setDate(eventItemDate.getDate() + 1)) {
                     insertEventAtDate(eventItemDate, eventItem);
                 }
