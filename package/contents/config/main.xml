@@ -43,6 +43,12 @@
     <entry name="clock_line_2_bold" type="bool">
       <default>false</default>
     </entry>
+    <entry name="clock_maxheight" type="int">
+      <default>0</default>
+    </entry>
+    <entry name="clock_mousewheel" type="string">
+      <default>run_commands</default>
+    </entry>
     <entry name="clock_mousewheel_up" type="string">
       <default>amixer -q sset Master 10%+</default>
     </entry>
