@@ -1,3 +1,10 @@
+[b]v28 - Apr 17 2016[/b]
+
+* Fix full day events showing an extra day in agenda.
+* Add digitalclock's week numbers.
+* Add Fahrenheit + Kelvin options.
+* Redesign mousewheel config section.
+
 [b]v27 - Apr 15 2016[/b]
 
 * Fix duplication of events longer than a month in the agenda.
