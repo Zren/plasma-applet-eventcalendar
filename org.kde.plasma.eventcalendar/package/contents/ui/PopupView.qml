@@ -377,6 +377,7 @@ Item {
         Shared.fetchDailyWeatherForecast({
             app_id: config.weather_app_id,
             city_id: config.weather_city_id,
+            units: config.weather_units,
         }, function(err, data, xhr) {
             if (err) return console.log('fetchDailyWeatherForecast.err', err, xhr && xhr.status, data);
             console.log('fetchDailyWeatherForecast.response');
@@ -393,6 +394,7 @@ Item {
         Shared.fetchHourlyWeatherForecast({
             app_id: config.weather_app_id,
             city_id: config.weather_city_id,
+            units: config.weather_units,
         }, function(err, data, xhr) {
             if (err) return console.log('fetchHourlyWeatherForecast.err', err, xhr && xhr.status, data);
             console.log('fetchHourlyWeatherForecast.response');
