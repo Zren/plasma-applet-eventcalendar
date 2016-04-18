@@ -88,6 +88,12 @@
     <entry name="agenda_breakup_multiday_events" type="bool">
       <default>false</default>
     </entry>
+    <entry name="agenda_newevent_remember_calendar" type="bool">
+      <default>true</default>
+    </entry>
+    <entry name="agenda_newevent_last_calendar_id" type="string">
+      <default></default>
+    </entry>
   </group>
 
 

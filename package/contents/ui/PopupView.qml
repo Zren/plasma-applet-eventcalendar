@@ -44,6 +44,8 @@ Item {
     property bool cfg_agenda_breakup_multiday_events: true
     property bool cfg_month_show_border: true
     property bool cfg_month_show_weeknumbers: true
+    property bool cfg_agenda_newevent_remember_calendar: true
+    property string cfg_agenda_newevent_last_calendar_id: ''
     
     property alias agendaListView: agendaView.agendaListView
     property alias today: monthView.today
@@ -152,8 +154,12 @@ Item {
                             var calendarList = plasmoid.configuration.calendar_list ? JSON.parse(Qt.atob(plasmoid.configuration.calendar_list)) : [];
                             // console.log('calendarList', JSON.stringify(calendarList, null, '\t'))
                             var list = []
+                            var selectedIndex = 0;
                             calendarList.forEach(function(calendar){
                                 if (calendar.accessRole == 'owner') {
+                                    if (popup.cfg_agenda_newevent_remember_calendar && calendar.id === popup.cfg_agenda_newevent_last_calendar_id) {
+                                        selectedIndex = list.length; // index after insertion
+                                    }
                                     list.push({
                                         'calendarId': calendar.id,
                                         'text': calendar.summary,
@@ -161,6 +167,7 @@ Item {
                                 }
                             });
                             newEventCalendarId.model = list
+                            newEventCalendarId.currentIndex = selectedIndex
                         }
                     }
                     onSubmitNewEventForm: {
@@ -170,6 +177,9 @@ Item {
                             var calendarList = plasmoid.configuration.calendar_list ? JSON.parse(Qt.atob(plasmoid.configuration.calendar_list)) : [];
                             var dateString = date.getFullYear() + '-' + (date.getMonth()+1) + '-' + date.getDate()
                             console.log('text', dateString + ' ' + text)
+                            if (popup.cfg_agenda_newevent_remember_calendar) {
+                                popup.cfg_agenda_newevent_last_calendar_id = calendarId2
+                            }
                             Shared.createGCalEvent({
                                 access_token: config.access_token,
                                 calendarId: calendarId2,

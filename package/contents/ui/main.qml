@@ -128,6 +128,8 @@ Item {
         cfg_agenda_weather_icon_height: plasmoid.configuration.agenda_weather_icon_height
         cfg_agenda_weather_show_text: plasmoid.configuration.agenda_weather_show_text
         cfg_agenda_breakup_multiday_events: plasmoid.configuration.agenda_breakup_multiday_events
+        cfg_agenda_newevent_remember_calendar: plasmoid.configuration.agenda_newevent_remember_calendar
+        cfg_agenda_newevent_last_calendar_id: plasmoid.configuration.agenda_newevent_last_calendar_id
         cfg_month_show_border: plasmoid.configuration.month_show_border
         cfg_month_show_weeknumbers: plasmoid.configuration.month_show_weeknumbers
 
