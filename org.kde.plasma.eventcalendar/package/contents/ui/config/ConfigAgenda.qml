@@ -14,6 +14,7 @@ ColumnLayout {
     property alias cfg_agenda_weather_icon_height: agenda_weather_icon_height.value
     property alias cfg_agenda_weather_show_text: agenda_weather_show_text.checked
     property bool cfg_agenda_breakup_multiday_events: false
+    property alias cfg_agenda_newevent_remember_calendar: agenda_newevent_remember_calendar.checked
 
     SystemPalette {
         id: palette
@@ -144,6 +145,16 @@ ColumnLayout {
                     }
                 }
             }
+        }
+
+        GroupBox {
+            Layout.fillWidth: true
+
+            CheckBox {
+                id: agenda_newevent_remember_calendar
+                text: "Remember selected calendar in New Event Form"
+            }
+        
         }
 
 
