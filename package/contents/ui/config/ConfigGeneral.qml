@@ -213,9 +213,9 @@ Item {
                     RowLayout {
                         Layout.fillWidth: true
                         CheckBox {
-                            enabled: false
                             checked: true
                             text: i18n("Line 1:")
+                            onCheckedChanged: checked = true
                         }
                         TextField {
                             Layout.fillWidth: true
