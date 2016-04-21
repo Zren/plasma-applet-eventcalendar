@@ -138,7 +138,7 @@ MouseArea {
     }
 
     PlasmaCore.ToolTipArea {
-        active: model.showEventBadge || false
+        // active: model.showEventBadge || false
         anchors.fill: parent
         mainText: Qt.formatDate(thisDate, Locale.LongFormat)
         
