@@ -76,9 +76,10 @@ Item {
 
     onMonthViewDateChanged: {
         console.log('onMonthViewDateChanged', monthViewDate)
+        var startOfMonth = new Date(monthViewDate);
+        startOfMonth.setDate(1);
+        agendaView.currentMonth = new Date(startOfMonth);
         if (cfg_agenda_scroll_on_monthchange) {
-            var startOfMonth = new Date(monthViewDate);
-            startOfMonth.setDate(1);
             selectedDate = startOfMonth;
         }
         updateEvents();
