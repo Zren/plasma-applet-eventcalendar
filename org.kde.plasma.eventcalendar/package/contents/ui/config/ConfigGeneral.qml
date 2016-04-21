@@ -140,6 +140,7 @@ Item {
             }
 
             CheckBox {
+                visible: showDebug
                 Layout.fillWidth: true
                 id: clock_24h
                 text: i18n("24 hour clock")
@@ -220,11 +221,34 @@ Item {
                             Layout.fillWidth: true
                             id: clock_timeformat
                             onTextChanged: onClockFormatChange()
+                            placeholderText: 'h:mm AP'
                         }
                         Label {
                             text: Qt.formatDateTime(new Date(), cfg_clock_timeformat)
                         }
                     }
+
+                    RowLayout {
+                        Layout.fillWidth: true
+                        Text { width: indentWidth } // indent
+                        Label {
+                            text: "Preset:"
+                        }
+                        Button {
+                            text: Qt.formatDateTime(new Date(), timeFormat12hour)
+                            onClicked: cfg_clock_timeformat = timeFormat12hour
+                        }
+                        Button {
+                            text: Qt.formatDateTime(new Date(), timeFormat24hour)
+                            onClicked: cfg_clock_timeformat = timeFormat24hour
+                        }
+                        Button {
+                            property string dateFormat: 'MMM d, ' + Qt.locale().timeFormat(Locale.ShortFormat);
+                            text: Qt.formatDateTime(new Date(), dateFormat)
+                            onClicked: cfg_clock_timeformat = dateFormat
+                        }
+                    }
+
                     RowLayout {
                         Layout.fillWidth: true
                         Text { width: indentWidth } // indent
@@ -281,6 +305,11 @@ Item {
                         Button {
                             property string dateFormat: Qt.locale().dateFormat(Locale.ShortFormat);
                             text: Qt.formatDate(new Date(), dateFormat)
+                            onClicked: cfg_clock_timeformat_2 = dateFormat
+                        }
+                        Button {
+                            property string dateFormat: 'MMM d';
+                            text: Qt.formatDateTime(new Date(), dateFormat)
                             onClicked: cfg_clock_timeformat_2 = dateFormat
                         }
                         Button {
