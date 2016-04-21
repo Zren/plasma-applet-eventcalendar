@@ -42,7 +42,6 @@ X-KDE-ServiceTypes=Plasma/Applet,Plasma/PopupApplet
 X-Plasma-API=declarativeappletscript
 X-Plasma-MainScript=ui/main.qml
 
-X-Plasma-NotificationArea=true
 X-Plasma-ConfigPlugins=kcm_pulseaudio
 
 X-KDE-PluginInfo-Name=org.kde.plasma.volumewin7mixer
