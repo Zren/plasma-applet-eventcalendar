@@ -243,6 +243,11 @@ Item {
                             onClicked: cfg_clock_timeformat = timeFormat24hour
                         }
                         Button {
+                            property string dateFormat: Qt.locale().timeFormat(Locale.ShortFormat).replace('mm', 'mm:ss');
+                            text: Qt.formatDateTime(new Date(), dateFormat)
+                            onClicked: cfg_clock_timeformat = dateFormat
+                        }
+                        Button {
                             property string dateFormat: 'MMM d, ' + Qt.locale().timeFormat(Locale.ShortFormat);
                             text: Qt.formatDateTime(new Date(), dateFormat)
                             onClicked: cfg_clock_timeformat = dateFormat
