@@ -157,6 +157,29 @@ ColumnLayout {
         
         }
 
+        GroupBox {
+            Layout.fillWidth: true
+            title: 'Current Month'
+
+            ColumnLayout {
+                CheckBox {
+                    enabled: false
+                    checked: true
+                    text: "Always show next 14 days"
+                }
+                CheckBox {
+                    enabled: false
+                    checked: true
+                    text: "Hide completed events"
+                }
+                CheckBox {
+                    enabled: false
+                    checked: true
+                    text: "Show all events of the current day (including completed events)"
+                }
+            }
+        }
+
 
     }
 }
