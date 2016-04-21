@@ -155,6 +155,12 @@ Item {
                 text: i18n("Show Seconds")
             }
 
+
+            Text {
+                Layout.maximumWidth: generalPage.width
+                wrapMode: Text.Wrap
+                text: 'The default font for the Breeze theme is Noto Sans which has a large vertical spacing. Try using the Sans Serif font if you find the text too small when adding a second line.'
+            }
             RowLayout {
                 Label {
                     text: "Font:"
@@ -276,6 +282,10 @@ Item {
                             property string dateFormat: Qt.locale().dateFormat(Locale.ShortFormat);
                             text: Qt.formatDate(new Date(), dateFormat)
                             onClicked: cfg_clock_timeformat_2 = dateFormat
+                        }
+                        Button {
+                            text: "Sans Serif"
+                            onClicked: cfg_clock_fontfamily = "Sans Serif"
                         }
                     }
 
