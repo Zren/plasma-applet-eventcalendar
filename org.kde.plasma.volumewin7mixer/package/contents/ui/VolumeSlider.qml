@@ -78,12 +78,14 @@ PlasmaComponents.Slider {
                 height: index % 5 == 0 ? control.width/2 : control.width/5 // 0%, 50%, 100% have longer ticks
                 y: control.width - height
                 x: {
-                    if (index == repeater.count-1) { // Align tick at very top to it's top.
+                    if (index == 0) { // Align tick at very bottom to it's bottom.
+                        return 0
+                    } else if (index == repeater.count-1) { // Align tick at very top to it's top.
                         return repeater.width - width
                     } else {
                         //Position ticklines from styleData.handleWidth to width - styleData.handleWidth/2
                         //position them at an half handle width increment
-                        styleData.handleWidth / 2 + index * ((repeater.width - styleData.handleWidth) / (repeater.count>1 ? repeater.count-1 : 1)) - 1
+                        return styleData.handleWidth / 2 + index * ((repeater.width - styleData.handleWidth) / (repeater.count>1 ? repeater.count-1 : 1)) - 1
                     }
                 }
 
