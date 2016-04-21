@@ -21,8 +21,10 @@ Item {
     property bool clipPastEvents: false
     property bool clipPastEventsToday: false
     property bool clipEventsOutsideLimits: true
+    property bool clipEventsFromOtherMonths: true
     property date visibleDateMin: new Date()
     property date visibleDateMax: new Date()
+    property date currentMonth: new Date()
 
     property bool cfg_clock_24h: false
     property bool cfg_agenda_weather_show_icon: false
@@ -405,6 +407,21 @@ Item {
                     insertEventAtDate(now, eventItem);
                 } else {
                     insertEventAtDate(eventItem.start.dateTime, eventItem);
+                }
+            }
+        }
+
+        if (clipEventsFromOtherMonths) {
+            // Remove calendar from different months
+            var currentMonthMin = new Date(currentMonth.getFullYear(), currentMonth.getMonth(), 1);
+            var currentMonthMaxExclusive = new Date(currentMonth.getFullYear(), currentMonth.getMonth()+1, 1);
+            
+            for (var i = 0; i < agendaItemList.length; i++) {
+                var agendaItem = agendaItemList[i];
+                if (agendaItem.date < currentMonthMin || currentMonthMaxExclusive <= agendaItem.date) {
+                    console.log('removed agendaItem:', agendaItem.date)
+                    agendaItemList.splice(i, 1);
+                    i--;
                 }
             }
         }
