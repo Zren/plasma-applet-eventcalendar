@@ -40,43 +40,31 @@ Item {
 
         return name
     }
-
-    PlasmaCore.ToolTipArea {
-        anchors.top: clientIcon.top
-        anchors.bottom: textLabel.bottom
-        anchors.left: parent.left
-        anchors.right: parent.right
-        mainText: mixerItem.label
-        subText: {
-            // maximum of 8 visible lines. Extra lines are cut off.
-            var lines = [];
-            function addLine(key, value) {
-                if (typeof value === 'undefined') return;
-                if (typeof value === 'string' && value.length === 0) return;
-                lines.push('<b>' + key + ':</b> ' + value);
-            }
-            addLine('Name', PulseObject.name);
-            addLine('Description', PulseObject.description);
-            addLine('Port', PulseObject.activePortIndex);
-            function addPropertyLine(key) {
-                addLine(key, PulseObject.properties[key]);
-            }
-            addPropertyLine('alsa.mixer_name');
-            addPropertyLine('application.process.binary');
-            addPropertyLine('application.process.id');
-            addPropertyLine('application.process.user');
-
-            // for (var key in PulseObject.properties) {
-            //     lines.push('<b>' + key + ':</b> ' + PulseObject.properties[key]);
-            // }
-            return lines.join('<br>');
+    property string tooltipSubText: {
+        // maximum of 8 visible lines. Extra lines are cut off.
+        var lines = [];
+        function addLine(key, value) {
+            if (typeof value === 'undefined') return;
+            if (typeof value === 'string' && value.length === 0) return;
+            lines.push('<b>' + key + ':</b> ' + value);
         }
-        icon: mixerItem.icon
-        // onContainsMouseChanged: {
-        //     for (var key in PulseObject.properties) {
-        //         console.log(key, PulseObject.properties[key]);
-        //     }
+        addLine('Name', PulseObject.name);
+        addLine('Description', PulseObject.description);
+        if (typeof PulseObject.activePortIndex !== 'undefined') {
+            addLine('Port', '[' + PulseObject.activePortIndex +'] ' + PulseObject.ports[PulseObject.activePortIndex].description);
+        }
+        function addPropertyLine(key) {
+            addLine(key, PulseObject.properties[key]);
+        }
+        addPropertyLine('alsa.mixer_name');
+        addPropertyLine('application.process.binary');
+        addPropertyLine('application.process.id');
+        addPropertyLine('application.process.user');
+
+        // for (var key in PulseObject.properties) {
+        //     lines.push('<b>' + key + ':</b> ' + PulseObject.properties[key]);
         // }
+        return lines.join('<br>');
     }
     
     ColumnLayout {
@@ -89,11 +77,18 @@ Item {
             anchors.horizontalCenter: parent.horizontalCenter
             width: mixerItem.volumeSliderWidth
             height: mixerItem.volumeSliderWidth
-        }
 
+            PlasmaCore.ToolTipArea {
+                anchors.fill: parent
+                mainText: mixerItem.label
+                subText: tooltipSubText
+                icon: mixerItem.icon
+            }
+        }
+    
         Label {
             id: textLabel
-            text: mixerItem.label
+            text: mixerItem.label + '\n\n'
             color: PlasmaCore.ColorScope.textColor
             opacity: 0.6
             wrapMode: Text.Wrap
@@ -101,6 +96,13 @@ Item {
             maximumLineCount: 2
             Layout.fillWidth: true
             horizontalAlignment: Text.AlignHCenter
+
+            PlasmaCore.ToolTipArea {
+                anchors.fill: parent
+                mainText: mixerItem.label
+                subText: tooltipSubText
+                icon: mixerItem.icon
+            }
         }
 
         Item {
