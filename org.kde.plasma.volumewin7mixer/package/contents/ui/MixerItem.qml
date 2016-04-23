@@ -40,6 +40,44 @@ Item {
 
         return name
     }
+
+    PlasmaCore.ToolTipArea {
+        anchors.top: clientIcon.top
+        anchors.bottom: textLabel.bottom
+        anchors.left: parent.left
+        anchors.right: parent.right
+        mainText: mixerItem.label
+        subText: {
+            // maximum of 8 visible lines. Extra lines are cut off.
+            var lines = [];
+            function addLine(key, value) {
+                if (typeof value === 'undefined') return;
+                if (typeof value === 'string' && value.length === 0) return;
+                lines.push('<b>' + key + ':</b> ' + value);
+            }
+            addLine('Name', PulseObject.name);
+            addLine('Description', PulseObject.description);
+            addLine('Port', PulseObject.activePortIndex);
+            function addPropertyLine(key) {
+                addLine(key, PulseObject.properties[key]);
+            }
+            addPropertyLine('alsa.mixer_name');
+            addPropertyLine('application.process.binary');
+            addPropertyLine('application.process.id');
+            addPropertyLine('application.process.user');
+
+            // for (var key in PulseObject.properties) {
+            //     lines.push('<b>' + key + ':</b> ' + PulseObject.properties[key]);
+            // }
+            return lines.join('<br>');
+        }
+        icon: mixerItem.icon
+        // onContainsMouseChanged: {
+        //     for (var key in PulseObject.properties) {
+        //         console.log(key, PulseObject.properties[key]);
+        //     }
+        // }
+    }
     
     ColumnLayout {
         anchors.fill: parent
@@ -60,46 +98,9 @@ Item {
             opacity: 0.6
             wrapMode: Text.Wrap
             elide: Text.ElideRight
+            maximumLineCount: 2
             Layout.fillWidth: true
             horizontalAlignment: Text.AlignHCenter
-        }
-
-        PlasmaCore.ToolTipArea {
-            anchors.top: clientIcon.top
-            anchors.bottom: textLabel.bottom
-            anchors.left: parent.left
-            anchors.right: parent.right
-            mainText: mixerItem.label
-            subText: {
-                // maximum of 8 visible lines. Extra lines are cut off.
-                var lines = [];
-                function addLine(key, value) {
-                    if (typeof value === 'undefined') return;
-                    if (typeof value === 'string' && value.length === 0) return;
-                    lines.push('<b>' + key + ':</b> ' + value);
-                }
-                addLine('Name', PulseObject.name);
-                addLine('Description', PulseObject.description);
-                addLine('Port', PulseObject.activePortIndex);
-                function addPropertyLine(key) {
-                    addLine(key, PulseObject.properties[key]);
-                }
-                addPropertyLine('alsa.mixer_name');
-                addPropertyLine('application.process.binary');
-                addPropertyLine('application.process.id');
-                addPropertyLine('application.process.user');
-
-                // for (var key in PulseObject.properties) {
-                //     lines.push('<b>' + key + ':</b> ' + PulseObject.properties[key]);
-                // }
-                return lines.join('<br>');
-            }
-            icon: mixerItem.icon
-            // onContainsMouseChanged: {
-            //     for (var key in PulseObject.properties) {
-            //         console.log(key, PulseObject.properties[key]);
-            //     }
-            // }
         }
 
         Item {
