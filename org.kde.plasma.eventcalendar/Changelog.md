@@ -1,3 +1,11 @@
+[b]v29 - Apr 22 2016[/b]
+
+* Fix full day events showing an extra day in the calendar.
+* Only show events from the current month in the agenda (but always show the next 2 weeks).
+* Add a few presets to the clock config.
+* Add tooltip to events without events so its stays open when hovering over them.
+* Optionally remember the selected calendar in the new event form.
+
 [b]v28 - Apr 17 2016[/b]
 
 * Fix full day events showing an extra day in agenda.
