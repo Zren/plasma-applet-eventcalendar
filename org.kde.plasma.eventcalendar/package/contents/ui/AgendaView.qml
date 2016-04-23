@@ -113,17 +113,14 @@ Item {
                     }
                 }
 
-                PlasmaCore.ToolTipArea {
-                    anchors.fill: parent
-                    mainText: weatherDescription
-                    subText: {
-                        var lines = [];
-                        lines.push('<b>Morning:</b> ' + weatherTempMorn + '°');
-                        lines.push('<b>Day:</b> ' + weatherTempDay + '°');
-                        lines.push('<b>Evening:</b> ' + weatherTempEve + '°');
-                        lines.push('<b>Night:</b> ' + weatherTempNight + '°');
-                        return lines.join('<br>');
-                    }
+                tooltipMainText: weatherDescription
+                tooltipSubText: {
+                    var lines = [];
+                    lines.push('<b>Morning:</b> ' + weatherTempMorn + '°');
+                    lines.push('<b>Day:</b> ' + weatherTempDay + '°');
+                    lines.push('<b>Evening:</b> ' + weatherTempEve + '°');
+                    lines.push('<b>Night:</b> ' + weatherTempNight + '°');
+                    return lines.join('<br>');
                 }
 
                 onClicked: {
