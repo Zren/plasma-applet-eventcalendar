@@ -1,5 +1,4 @@
 var maximumValue = 65536;
-var totalSteps = 15;
 
 function bound(value, min, max) {
     return Math.max(min, Math.min(value, max));
@@ -32,6 +31,7 @@ function addVolume(pulseObject, step) {
 
 function increaseVolume(pulseObject) {
     console.log('increaseVolume', pulseObject);
+    var totalSteps = plasmoid.configuration.volumeUpDownSteps;
     var step = maximumValue / totalSteps;
     return addVolume(pulseObject, step);
 }
@@ -39,6 +39,7 @@ function increaseVolume(pulseObject) {
 
 function decreaseVolume(pulseObject) {
     console.log('decreaseVolume', pulseObject);
+    var totalSteps = plasmoid.configuration.volumeUpDownSteps;
     var step = maximumValue / totalSteps;
     return addVolume(pulseObject, -step);
 }

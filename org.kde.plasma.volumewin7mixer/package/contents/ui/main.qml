@@ -28,6 +28,8 @@ import org.kde.plasma.components 2.0 as PlasmaComponents
 import org.kde.plasma.extras 2.0 as PlasmaExtras
 import org.kde.plasma.plasmoid 2.0
 
+import org.kde.kquickcontrolsaddons 2.0 // KCMShell
+
 import org.kde.plasma.private.volume 0.1
 
 import "../code/icon.js" as Icon
@@ -266,5 +268,12 @@ Item {
         // }
 
     }
-    
+
+    function action_KCMAudioVolume() {
+        KCMShell.open("kcm_pulseaudio");
+    }
+
+    Component.onCompleted: {
+        plasmoid.setAction("KCMAudioVolume", i18n("Audio Volume Settings..."), "configure");
+    }
 }
