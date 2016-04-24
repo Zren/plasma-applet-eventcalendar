@@ -28,12 +28,15 @@ cd plasma-applets/org.kde.plasma.eventcalendar
 ./install
 ```
 
-To update, `git pull` then run the update script. Please note this script will restart plasmashell (so you don't have to relog)!
+To update, run the `./update` script. It will run a `git pull` then reinstall the applet. Please note this script will restart plasmashell (so you don't have to relog)!
 
-```
-git pull origin master
-./update
-```
+## Install via Package Manager
+
+Some awesome users seemed to have packaged this applet under `plasma5-applets-eventcalendar`.
+
+* https://aur.archlinux.org/packages/plasma5-applets-eventcalendar/
+* https://chakraos.org/ccr/packages.php?ID=7656
+
 
 ## Configure
 
