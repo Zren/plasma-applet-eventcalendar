@@ -1,0 +1,5 @@
+#!/bin/bash
+
+plasmapkg2 -u package
+killall plasmashell
+kstart plasmashell
