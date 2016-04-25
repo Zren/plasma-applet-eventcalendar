@@ -282,6 +282,27 @@ Item {
         dragSource = null;
     }
 
+    // org.kde.plasma.mediacontrollercompact
+    PlasmaCore.DataSource {
+        id: executeSource
+        engine: "executable"
+        connectedSources: []
+        onNewData: {
+            //we get new data when the process finished, so we can remove it
+            disconnectSource(sourceName)
+        }
+    }
+    function exec(cmd) {
+        //Note: we assume that 'cmd' is executed quickly so that a previous call
+        //with the same 'cmd' has already finished (otherwise no new cmd will be
+        //added because it is already in the list)
+        executeSource.connectSource(cmd)
+    }
+
+    function action_openTaskManager() {
+        exec("ksysguard");
+    }
+
     Component.onCompleted: {
         tasks.requestLayout.connect(layoutTimer.restart);
         tasks.requestLayout.connect(iconGeometryTimer.restart);
@@ -298,5 +319,7 @@ Item {
         tasks.presentWindows.connect(backend.presentWindows);
         mouseHandler.urlDropped.connect(backend.urlDropped);
         dragHelper.dropped.connect(resetDragSource);
+
+        plasmoid.setAction("openTaskManager", i18n("Start Task Manager"), "utilities-system-monitor");
     }
 }
