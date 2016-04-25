@@ -44,7 +44,7 @@
       <default>false</default>
     </entry>
     <entry name="launchers" type="String">
-      <default>file:///usr/share/applications/org.kde.dolphin.desktop?wmClass=dolphin,file:///usr/share/applications/google-chrome.desktop?wmClass=google-chrome</default>
+      <default>file:///usr/share/applications/org.kde.konsole.desktop?wmClass=konsole,file:///usr/share/applications/org.kde.dolphin.desktop?wmClass=dolphin,file:///usr/share/applications/google-chrome.desktop?wmClass=google-chrome</default>
     </entry>
     <entry name="middleClickAction" type="Enum">
       <choices>
