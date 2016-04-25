@@ -7,8 +7,10 @@ import org.kde.plasma.calendar 2.0 as PlasmaCalendar
 import org.kde.plasma.components 2.0 as PlasmaComponents
 import org.kde.plasma.extras 2.0 as PlasmaExtras
 
+import "../utils.js" as Utils
+
 Item {
-    id: generalPage
+    id: page
 
     implicitWidth: pageColumn.implicitWidth
     implicitHeight: pageColumn.implicitHeight
@@ -37,6 +39,7 @@ Item {
 
     property bool showDebug: false
     property int indentWidth: 24
+    property string appletVersion: ''
 
     SystemPalette {
         id: palette
@@ -87,6 +90,24 @@ Item {
     ColumnLayout {
         id: pageColumn
         Layout.fillWidth: true
+
+        GroupBox {
+            Layout.fillWidth: true
+            visible: appletVersion
+
+            ColumnLayout {
+                Text {
+                    text: "Version: " + appletVersion
+
+                    Component.onCompleted: {
+                        Utils.getAppletVersion(function(err, appletVersion) {
+                            page.appletVersion = appletVersion
+                        });
+                    }
+                }
+
+            }
+        }
 
         PlasmaExtras.Heading {
             level: 2
@@ -158,7 +179,7 @@ Item {
 
 
             Text {
-                Layout.maximumWidth: generalPage.width
+                Layout.maximumWidth: page.width
                 wrapMode: Text.Wrap
                 text: 'The default font for the Breeze theme is Noto Sans which has a large vertical spacing. Try using the Sans Serif font if you find the text too small when adding a second line.'
             }
@@ -188,7 +209,7 @@ Item {
                     onCurrentIndexChanged: {
                         var current = model[currentIndex]
                         if (current) {
-                            generalPage.cfg_clock_fontfamily = current.value
+                            page.cfg_clock_fontfamily = current.value
                         }
                     }
                 }
