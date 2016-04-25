@@ -5,3 +5,5 @@ A fork of the [default plasmoid](https://github.com/KDE/plasma-desktop/tree/mast
 * Default to 1 line
 * Default to manual sorting
 * Don't sort launchers to the left
+* Only show Task Manager Settings context menu item when clicking the panel.
+* Add "Start Task Manager" context menu item when clicking the panel that launches KSysGuard.
