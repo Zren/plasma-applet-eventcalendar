@@ -104,7 +104,7 @@ MouseArea {
             }
 
             showingContextMenu = true;
-            tasks.itemContextMenu(task, plasmoid.action("configure"));
+            tasks.itemContextMenu(task, null);
         }
     }
 
