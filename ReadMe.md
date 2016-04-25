@@ -23,7 +23,7 @@ http://kde-look.org/content/show.php?content=175591
 ## Install via GitHub
 
 ```
-git clone git@github.com:Zren/plasma-applets.git
+git clone https://github.com/Zren/plasma-applets.git
 cd plasma-applets/org.kde.plasma.eventcalendar
 ./install
 ```
