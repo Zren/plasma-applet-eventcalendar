@@ -1,0 +1,4 @@
+#!/bin/bash
+
+plasmapkg2 -u package
+plasmawindowed $(basename $PWD)
