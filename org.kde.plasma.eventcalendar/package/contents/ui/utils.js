@@ -2,7 +2,7 @@ function request(opt, callback) {
     if (typeof opt === 'string') {
         opt = {url: opt};
     }
-	var req = new XMLHttpRequest();
+    var req = new XMLHttpRequest();
     req.onerror = function(e) {
         console.log('XMLHttpRequest.onerror', e.status, e.statusText, e.message, e);
     }
@@ -70,3 +70,64 @@ function postJSON(opt, callback) {
     getJSON(opt, callback);
 }
 
+function getFile(url, callback) {
+    var req = new XMLHttpRequest();
+    req.onerror = function(e) {
+        console.log('XMLHttpRequest.onerror', e.status, e.statusText, e.message, e);
+    }
+    req.onreadystatechange = function() {
+        if (req.readyState === 4) {
+            // Since the file is local, it will have HTTP 0 Unsent.
+            callback(null, req.responseText, req);
+        }
+    }
+    req.open("GET", url, true);
+    req.send();
+}
+
+function parseMetadata(data) {
+    var lines = data.split('\n');
+    var d = {};
+    for (var i = 0; i < lines.length; i++) {
+        var line = lines[i];
+        var delimeterIndex = line.indexOf('=');
+        if (delimeterIndex >= 0) {
+            var key = line.substr(0, delimeterIndex);
+            var value = line.substr(delimeterIndex + 1);
+            d[key] = value;
+        }
+    }
+    return d;
+}
+
+function getAppletMetadata(callback) {
+    var url = Qt.resolvedUrl('.');
+    // var url = 'file:///home/chris/.local/share/plasma/plasmoids/org.kde.plasma.eventcalendar/contents/ui/';
+
+    var s = '/share/plasma/plasmoids/';
+    var index = url.indexOf(s);
+    if (index >= 0) {
+        var a = index + s.length;
+        var b = url.indexOf('/', a);
+        // var packageName = url.substr(a, b-a);
+        var metadataUrl = url.substr(0, b) + '/metadata.desktop';
+        Utils.getFile(metadataUrl, function(err, data) {
+            if (err) {
+                return callback(err);
+            }
+
+            var metadata = parseMetadata(data);
+            callback(null, metadata);
+        });
+    } else {
+        return callback('Could not parse version.');
+    }
+}
+
+function getAppletVersion(callback) {
+    getAppletMetadata(function(err, metadata) {
+        if (err) return callback(err);
+
+        callback(err, metadata['X-KDE-PluginInfo-Version']);
+    });
+}
