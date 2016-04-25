@@ -182,7 +182,7 @@ Item {
     Binding {
         target: backend.groupManager
         property: "separateLaunchers"
-        value: !iconsOnly
+        value: false // !iconsOnly
     }
 
     TaskManager.DragHelper {
