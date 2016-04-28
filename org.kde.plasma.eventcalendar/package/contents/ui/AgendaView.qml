@@ -408,6 +408,9 @@ Item {
             }
         }
 
+        var today = new Date();
+        var nextNumDaysEndExclusive = new Date(currentMonth.getFullYear(), currentMonth.getMonth(), today.getDate() + showNextNumDays);
+
         if (clipEventsFromOtherMonths) {
             // Remove calendar from different months
             var currentMonthMin = new Date(currentMonth.getFullYear(), currentMonth.getMonth(), 1);
@@ -415,7 +418,7 @@ Item {
             
             for (var i = 0; i < agendaItemList.length; i++) {
                 var agendaItem = agendaItemList[i];
-                if (agendaItem.date < currentMonthMin || currentMonthMaxExclusive <= agendaItem.date) {
+                if (agendaItem.date < currentMonthMin || currentMonthMaxExclusive <= agendaItem.date && nextNumDaysEndExclusive <= agendaItem.date) {
                     console.log('removed agendaItem:', agendaItem.date)
                     agendaItemList.splice(i, 1);
                     i--;
@@ -424,9 +427,7 @@ Item {
         }
 
         if (showNextNumDays > 0) {
-            var today = new Date();
-            var end = new Date().setDate(today.getDate() + showNextNumDays);
-            for (var day = new Date(today); day <= end; day.setDate(day.getDate() + 1)) {
+            for (var day = new Date(today); day <= nextNumDaysEndExclusive; day.setDate(day.getDate() + 1)) {
                 // console.log(day);
 
                 // Check if an agendaItem with this date already exists.
