@@ -12,5 +12,11 @@
     <entry name="showVolumeTickmarks" type="bool">
       <default>true</default>
     </entry>
+    <entry name="showOpenKcmAudioVolume" type="bool">
+      <default>true</default>
+    </entry>
+    <entry name="showOpenPavucontrol" type="bool">
+      <default>false</default>
+    </entry>
   </group>
 </kcfg>

@@ -160,6 +160,23 @@ Item {
         }
     }
 
+    // org.kde.plasma.mediacontrollercompact
+    PlasmaCore.DataSource {
+        id: executeSource
+        engine: "executable"
+        connectedSources: []
+        onNewData: {
+            //we get new data when the process finished, so we can remove it
+            disconnectSource(sourceName)
+        }
+    }
+    function exec(cmd) {
+        //Note: we assume that 'cmd' is executed quickly so that a previous call
+        //with the same 'cmd' has already finished (otherwise no new cmd will be
+        //added because it is already in the list)
+        executeSource.connectSource(cmd)
+    }
+
     VolumeOSD {
         id: osd
     }
@@ -269,11 +286,31 @@ Item {
 
     }
 
+    function updateActions() {
+        if (plasmoid.configuration.showOpenKcmAudioVolume) {
+            plasmoid.setAction("KCMAudioVolume", i18n("Audio Volume Settings..."), "configure");
+        } else {
+            plasmoid.removeAction("KCMAudioVolume")
+        }
+        if (plasmoid.configuration.showOpenPavucontrol) {
+            plasmoid.setAction("pavucontrol", i18n("PulseAudio Control"), "configure");
+        } else {
+            plasmoid.removeAction("pavucontrol")
+        }
+    }
+
+    function action_pavucontrol() {
+        exec("pavucontrol");
+    }
+
     function action_KCMAudioVolume() {
         KCMShell.open("kcm_pulseaudio");
     }
 
-    Component.onCompleted: {
-        plasmoid.setAction("KCMAudioVolume", i18n("Audio Volume Settings..."), "configure");
+    Connections {
+        target: plasmoid
+        onContextualActionsAboutToShow: {
+            updateActions()
+        }
     }
 }

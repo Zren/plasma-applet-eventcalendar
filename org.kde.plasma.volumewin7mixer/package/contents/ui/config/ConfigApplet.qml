@@ -11,6 +11,8 @@ ColumnLayout {
 
     property alias cfg_volumeUpDownSteps: volumeUpDownSteps.value
     property alias cfg_showVolumeTickmarks: showVolumeTickmarks.checked
+    property alias cfg_showOpenKcmAudioVolume: showOpenKcmAudioVolume.checked
+    property alias cfg_showOpenPavucontrol: showOpenPavucontrol.checked
     
 
     ColumnLayout {
@@ -49,6 +51,33 @@ ColumnLayout {
                 	id: showVolumeTickmarks
                 	checked: true
                 	text: 'Show Ticks every 10%'
+                }
+
+            }
+        }
+
+        GroupBox {
+            Layout.fillWidth: true
+            title: 'Context Menu'
+
+            ColumnLayout {
+
+                CheckBox {
+                    id: showOpenKcmAudioVolume
+                    text: 'KDE Audio Volume'
+                }
+
+                CheckBox {
+                    id: showOpenPavucontrol
+                    text: 'pavucontrol (PulseAudio Control) (GUI) (Audio Boost)'
+                }
+
+                RowLayout {
+                    Text { width: 24 } // indent
+                    Text {
+                        font.family: 'monospace'
+                        text: 'sudo apt-get install pavucontrol'
+                    }
                 }
 
             }
