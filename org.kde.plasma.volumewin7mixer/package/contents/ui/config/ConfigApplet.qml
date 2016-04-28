@@ -69,7 +69,7 @@ ColumnLayout {
 
                 CheckBox {
                     id: showOpenPavucontrol
-                    text: 'pavucontrol (PulseAudio Control) (GUI) (Audio Boost)'
+                    text: 'pavucontrol (PulseAudio Control) (Can do Audio Boost)'
                 }
 
                 RowLayout {
