@@ -1,6 +1,7 @@
 
 import QtQuick 2.0
 import QtQuick.Controls 1.0
+import QtQuick.Controls.Styles 1.0
 import QtQuick.Layouts 1.0
 import org.kde.plasma.core 2.0 as PlasmaCore
 import org.kde.plasma.calendar 2.0 as PlasmaCalendar
@@ -160,6 +161,18 @@ Item {
                 color: palette.text
             }
 
+            Text {
+                text: '<a href="http://doc.qt.io/qt-5/qml-qtqml-qt.html#formatDateTime-method">Time Format Documentation</a>'
+                color: "#8a6d3b"
+                linkColor: "#369"
+                onLinkActivated: Qt.openUrlExternally(link)
+                MouseArea {
+                    anchors.fill: parent
+                    acceptedButtons: Qt.NoButton // we don't want to eat clicks on the Text
+                    cursorShape: parent.hoveredLink ? Qt.PointingHandCursor : Qt.ArrowCursor
+                }
+            }
+
             CheckBox {
                 visible: showDebug
                 Layout.fillWidth: true
@@ -216,15 +229,9 @@ Item {
             }
 
             Text {
-                text: '<a href="http://doc.qt.io/qt-5/qml-qtqml-qt.html#formatDateTime-method">Time Format Documentation</a>'
-                color: "#8a6d3b"
-                linkColor: "#369"
-                onLinkActivated: Qt.openUrlExternally(link)
-                MouseArea {
-                    anchors.fill: parent
-                    acceptedButtons: Qt.NoButton // we don't want to eat clicks on the Text
-                    cursorShape: parent.hoveredLink ? Qt.PointingHandCursor : Qt.ArrowCursor
-                }
+                Layout.maximumWidth: page.width
+                wrapMode: Text.Wrap
+                text: 'You can also use <b>\'&lt;b&gt;\'ddd\'&lt;\/b&gt;\'</b> or <b>\'&lt;font color=\"#77aaadd\"&gt;\'ddd\'&lt;\/font&gt;\'</b> to style a section. Note the single quotes around the tags are used to bypass the time format.'
             }
 
             GroupBox {
@@ -272,6 +279,12 @@ Item {
                             property string dateFormat: 'MMM d, ' + Qt.locale().timeFormat(Locale.ShortFormat);
                             text: Qt.formatDateTime(new Date(), dateFormat)
                             onClicked: cfg_clock_timeformat = dateFormat
+                        }
+                        Button {
+                            property string dateFormat: '\'<font color="#3daee9">\'MMM d\'</font>\' ' + Qt.locale().timeFormat(Locale.ShortFormat);
+                            text: Qt.formatDateTime(new Date(), dateFormat.replace())
+                            onClicked: cfg_clock_timeformat = dateFormat
+                            style: ButtonStyle {}
                         }
                     }
 
