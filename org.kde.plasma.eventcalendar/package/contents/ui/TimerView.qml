@@ -2,6 +2,7 @@ import QtQuick 2.0
 import QtQuick.Controls 1.1
 import QtQuick.Controls.Styles.Plasma 2.0 as Styles
 import QtQuick.Layouts 1.1
+import QtMultimedia 5.6
 import org.kde.plasma.core 2.0 as PlasmaCore
 import org.kde.plasma.calendar 2.0 as PlasmaCalendar
 import org.kde.plasma.components 2.0 as PlasmaComponents
@@ -15,6 +16,8 @@ Item {
     property int timerDuration: 0
     property alias isRepeatingTimer: timerRepeat.checked
     property int defaultTimerWidth: 48
+    property bool cfg_timer_sfx_enabled: true
+    property string cfg_timer_sfx_filepath: "/usr/share/sounds/freedesktop/stereo/complete.oga"
 
     width: 400
     height: 100
@@ -167,11 +170,18 @@ Item {
     function onTimerFinished() {
         timerTicker.stop()
         createNotification()
+        notificationSound.play()
 
         if (isRepeatingTimer) {
             timerSeconds = timerDuration
             timerTicker.start()
         }
+    }
+
+    Audio {
+        id: notificationSound
+        source: cfg_timer_sfx_filepath
+        muted: !cfg_timer_sfx_enabled
     }
 
     PlasmaCore.DataSource {
