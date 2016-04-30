@@ -1,3 +1,10 @@
+[b]v30 - Apr 29 2016[/b]
+
+* Fix events from next month not showing in the agenda when on the current month (when in the next 14 days).
+* Add optional sound effect when timer completes. Now depends on QtMultimedia.
+* Add clock preset with custom color.
+* Show current version in the config.
+
 [b]v29 - Apr 22 2016[/b]
 
 * Fix full day events showing an extra day in the calendar.
