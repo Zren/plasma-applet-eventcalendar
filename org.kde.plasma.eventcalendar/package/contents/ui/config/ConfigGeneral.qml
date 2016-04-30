@@ -2,6 +2,7 @@
 import QtQuick 2.0
 import QtQuick.Controls 1.0
 import QtQuick.Controls.Styles 1.0
+import QtQuick.Dialogs 1.0
 import QtQuick.Layouts 1.0
 import org.kde.plasma.core 2.0 as PlasmaCore
 import org.kde.plasma.calendar 2.0 as PlasmaCalendar
@@ -19,6 +20,8 @@ Item {
     property alias cfg_widget_show_spacer: widget_show_spacer.checked
     property alias cfg_widget_show_meteogram: widget_show_meteogram.checked
     property alias cfg_widget_show_timer: widget_show_timer.checked
+    property alias cfg_timer_sfx_enabled: timer_sfx_enabled.checked
+    property alias cfg_timer_sfx_filepath: timer_sfx_filepath.text
     property alias cfg_clock_24h: clock_24h.checked
     property alias cfg_clock_show_seconds: clock_show_seconds.checked
     property string cfg_clock_fontfamily: ""
@@ -79,6 +82,20 @@ Item {
         cfg_clock_mousewheel_down = down
     }
 
+    FileDialog {
+        id: timer_sfx_filepathDialog
+        title: 'Chose a sound effect'
+        folder: '/usr/share/sounds'
+        nameFilters: [ "Sound files (*.wav *.mp3 *.oga *.ogg)", "All files (*)" ]
+        onAccepted: {
+            console.log("You chose: " + fileUrls)
+            cfg_timer_sfx_filepath = fileUrl
+        }
+        onRejected: {
+            console.log("Canceled")
+        }
+    }
+
 
     // Component.onCompleted: {
     //     cfg_clock_timeformat = 'h:mm ap'
@@ -133,13 +150,38 @@ Item {
                 id: widget_show_meteogram
                 text: "Meteogram"
             }
-            CheckBox {
-                Layout.fillWidth: true
-                id: widget_show_timer
-                text: "Timer"
+
+        }
+        GroupBox {
+            Layout.fillWidth: true
+
+            ColumnLayout {
+                CheckBox {
+                    id: widget_show_timer
+                    text: "Timer"
+                }
+                RowLayout {
+                    Text { width: indentWidth } // indent
+                    CheckBox {
+                        id: timer_sfx_enabled
+                        text: "SFX:"
+                    }
+                    Button {
+                        text: "Choose"
+                        onClicked: timer_sfx_filepathDialog.visible = true
+                        enabled: cfg_timer_sfx_enabled
+                    }
+                    TextField {
+                        // Layout.fillWidth: true // Doesn't fucking work.
+                        width: page.width // hack
+                        id: timer_sfx_filepath
+                        enabled: cfg_timer_sfx_enabled
+                        placeholderText: "/usr/share/sounds/freedesktop/stereo/complete.oga"
+                    }
+                }
+                
             }
         }
-
         
         Item {
             width: height

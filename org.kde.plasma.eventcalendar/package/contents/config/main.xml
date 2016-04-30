@@ -16,6 +16,12 @@
     <entry name="widget_show_timer" type="bool">
       <default>true</default>
     </entry>
+    <entry name="timer_sfx_enabled" type="bool">
+      <default>true</default>
+    </entry>
+    <entry name="timer_sfx_filepath" type="string">
+      <default>/usr/share/sounds/freedesktop/stereo/complete.oga</default>
+    </entry>
     <entry name="clock_24h" type="bool">
       <default>false</default>
     </entry>

@@ -36,6 +36,8 @@ Item {
     property bool cfg_widget_show_spacer: true
     property bool cfg_widget_show_meteogram: true
     property bool cfg_widget_show_timer: true
+    property bool cfg_timer_sfx_enabled: true
+    property string cfg_timer_sfx_filepath: "/usr/share/sounds/freedesktop/stereo/complete.oga"
     property bool cfg_agenda_scroll_on_select: true
     property bool cfg_agenda_scroll_on_monthchange: false
     property bool cfg_agenda_weather_show_icon: false
@@ -126,6 +128,8 @@ Item {
 
                 TimerView {
                     id: timerView
+                    cfg_timer_sfx_enabled: popup.cfg_timer_sfx_enabled
+                    cfg_timer_sfx_filepath: popup.cfg_timer_sfx_filepath
                 }
             }
         }

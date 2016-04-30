@@ -124,6 +124,8 @@ Item {
         cfg_widget_show_spacer: plasmoid.configuration.widget_show_spacer
         cfg_widget_show_meteogram: plasmoid.configuration.widget_show_meteogram
         cfg_widget_show_timer: plasmoid.configuration.widget_show_timer
+        cfg_timer_sfx_enabled: plasmoid.configuration.timer_sfx_enabled
+        cfg_timer_sfx_filepath: plasmoid.configuration.timer_sfx_filepath
         cfg_agenda_weather_show_icon: plasmoid.configuration.agenda_weather_show_icon
         cfg_agenda_weather_icon_height: plasmoid.configuration.agenda_weather_icon_height
         cfg_agenda_weather_show_text: plasmoid.configuration.agenda_weather_show_text
