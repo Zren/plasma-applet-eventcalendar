@@ -114,7 +114,7 @@ Item {
             visible: appletVersion
 
             ColumnLayout {
-                Text {
+                Label {
                     text: "Version: " + appletVersion
 
                     Component.onCompleted: {
@@ -137,7 +137,7 @@ Item {
             height: units.gridUnit / 2
         }
         ColumnLayout {
-            Text {
+            Label {
                 text: "Show/Hide widgets above the calendar."
             }
             CheckBox {
@@ -203,10 +203,8 @@ Item {
                 color: palette.text
             }
 
-            Text {
+            Label {
                 text: '<a href="http://doc.qt.io/qt-5/qml-qtqml-qt.html#formatDateTime-method">Time Format Documentation</a>'
-                color: "#8a6d3b"
-                linkColor: "#369"
                 onLinkActivated: Qt.openUrlExternally(link)
                 MouseArea {
                     anchors.fill: parent
@@ -233,7 +231,7 @@ Item {
             }
 
 
-            Text {
+            Label {
                 Layout.maximumWidth: page.width
                 wrapMode: Text.Wrap
                 text: 'The default font for the Breeze theme is Noto Sans which has a large vertical spacing. Try using the Sans Serif font if you find the text too small when adding a second line.'
@@ -270,7 +268,7 @@ Item {
                 }
             }
 
-            Text {
+            Label {
                 Layout.maximumWidth: page.width
                 wrapMode: Text.Wrap
                 text: 'You can also use <b>\'&lt;b&gt;\'ddd\'&lt;\/b&gt;\'</b> or <b>\'&lt;font color=\"#77aaadd\"&gt;\'ddd\'&lt;\/font&gt;\'</b> to style a section. Note the single quotes around the tags are used to bypass the time format.'
