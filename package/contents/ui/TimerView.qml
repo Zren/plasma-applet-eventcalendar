@@ -55,17 +55,25 @@ Item {
                 }
             }
             
-            PlasmaComponents.Switch {
-                id: timerRepeat
-                text: "Repeat"
-                height: parent.height
-            }
+            ColumnLayout {
+                anchors.verticalCenter: parent.verticalCenter
+                PlasmaComponents.Switch {
+                    id: timerRepeat
+                    text: "Repeat"
+                    // height: parent.height / 2
+                }
 
-            // PlasmaComponents.Switch {
-            //     id: timerInTaskbar
-            //     text: "Taskbar"
-            //     height: parent.height
-            // }
+                PlasmaComponents.Switch {
+                    id: timerSfxEnabled
+                    text: "Sound"
+                    // checked: cfg_timer_sfx_enabled
+                    onClicked: {
+                        cfg_timer_sfx_enabled = checked
+                    }
+                    // height: parent.height / 2
+                }
+            }
+            
         }
 
         Row {
