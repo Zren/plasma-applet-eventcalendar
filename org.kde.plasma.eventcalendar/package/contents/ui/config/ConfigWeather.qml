@@ -50,7 +50,7 @@ Item {
                 }
             }
 
-            Text {
+            Label {
                 text: 'Get your city\'s id at <a href="https://openweathermap.org/">https://openweathermap.org/</a>,'
                 onLinkActivated: Qt.openUrlExternally(link)
                 MouseArea {
@@ -59,7 +59,7 @@ Item {
                     cursorShape: parent.hoveredLink ? Qt.PointingHandCursor : Qt.ArrowCursor
                 }
             }
-            Text {
+            Label {
                 text: 'or by searching google with `<a href="https://www.google.ca/search?q=site%3Aopenweathermap.org%2Fcity+toronto">site:openweathermap.org/city</a>`.'
                 onLinkActivated: Qt.openUrlExternally(link)
                 MouseArea {
