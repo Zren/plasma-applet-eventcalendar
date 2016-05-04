@@ -4,6 +4,8 @@ import QtQuick.Controls 1.0
 import QtQuick.Layouts 1.0
 import org.kde.plasma.extras 2.0 as PlasmaExtras
 
+import ".."
+
 Item {
     id: generalPage
 
@@ -50,23 +52,11 @@ Item {
                 }
             }
 
-            Label {
+            LinkText {
                 text: 'Get your city\'s id at <a href="https://openweathermap.org/">https://openweathermap.org/</a>,'
-                onLinkActivated: Qt.openUrlExternally(link)
-                MouseArea {
-                    anchors.fill: parent
-                    acceptedButtons: Qt.NoButton // we don't want to eat clicks on the Text
-                    cursorShape: parent.hoveredLink ? Qt.PointingHandCursor : Qt.ArrowCursor
-                }
             }
-            Label {
+            LinkText {
                 text: 'or by searching google with `<a href="https://www.google.ca/search?q=site%3Aopenweathermap.org%2Fcity+toronto">site:openweathermap.org/city</a>`.'
-                onLinkActivated: Qt.openUrlExternally(link)
-                MouseArea {
-                    anchors.fill: parent
-                    acceptedButtons: Qt.NoButton // we don't want to eat clicks on the Text
-                    cursorShape: parent.hoveredLink ? Qt.PointingHandCursor : Qt.ArrowCursor
-                }
             }
             RowLayout {
                 Layout.fillWidth: true
