@@ -178,7 +178,10 @@ Item {
     function onTimerFinished() {
         timerTicker.stop()
         createNotification()
-        notificationSound.play()
+        if (cfg_timer_sfx_enabled) {
+            notificationSound.source = cfg_timer_sfx_filepath
+            notificationSound.play()
+        }
 
         if (isRepeatingTimer) {
             timerSeconds = timerDuration
@@ -188,8 +191,10 @@ Item {
 
     Audio {
         id: notificationSound
-        source: cfg_timer_sfx_filepath
-        muted: !cfg_timer_sfx_enabled
+
+        onStopped: {
+            // source = ""
+        }
     }
 
     PlasmaCore.DataSource {
