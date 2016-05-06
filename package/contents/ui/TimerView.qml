@@ -35,12 +35,28 @@ Item {
         Row {
             spacing: 10
 
-            PlasmaExtras.Heading {
-                id: timerLabel
-                text: "0:00"
-                font.pixelSize: 40
-                font.pointSize: -1
-            }
+                PlasmaExtras.Heading {
+                    id: timerLabel
+                    text: "0:00"
+                    font.pixelSize: 40
+                    font.pointSize: -1
+
+                    MouseArea {
+                        anchors.fill: parent
+
+                        onWheel: {
+                            var delta = wheel.angleDelta.y || wheel.angleDelta.x;
+                            if (delta > 0) {
+                                setDuration(timerDuration + 60)
+                                timerTicker.stop()
+                            } else if (delta < 0) {
+                                setDuration(timerDuration - 60)
+                                timerTicker.stop()
+                            }
+                        }
+                    }
+                }
+            
 
             PlasmaComponents.ToolButton {
                 iconSource: timerTicker.running ? 'media-playback-pause' : 'media-playback-start'
@@ -129,6 +145,7 @@ Item {
         // Debug in qmlviewer
         if (typeof popup === 'undefined') {
             timerView.timerDuration = 3
+            isRepeatingTimer = true
             timerTicker.start()
         }
     }
@@ -144,9 +161,16 @@ Item {
         }
     }
 
-    function setDurationAndStart(duration) {
+    function setDuration(duration) {
+        if (duration <= 0) {
+            return
+        }
         timerDuration = duration
         timerSeconds = duration
+    }
+
+    function setDurationAndStart(duration) {
+        setDuration(duration)
         timerTicker.restart()
     }
 
