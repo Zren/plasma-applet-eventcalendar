@@ -286,17 +286,28 @@ Item {
 
     }
 
-    function updateActions() {
-        if (plasmoid.configuration.showOpenKcmAudioVolume) {
-            plasmoid.setAction("KCMAudioVolume", i18n("Audio Volume Settings..."), "configure");
-        } else {
-            plasmoid.removeAction("KCMAudioVolume")
-        }
-        if (plasmoid.configuration.showOpenPavucontrol) {
-            plasmoid.setAction("pavucontrol", i18n("PulseAudio Control"), "configure");
-        } else {
-            plasmoid.removeAction("pavucontrol")
-        }
+    // function updateActions() {
+    //     if (plasmoid.configuration.showOpenKcmAudioVolume) {
+    //         plasmoid.setAction("KCMAudioVolume", i18n("Audio Volume Settings..."), "configure");
+    //     } else {
+    //         plasmoid.removeAction("KCMAudioVolume")
+    //     }
+    //     if (plasmoid.configuration.showOpenPavucontrol) {
+    //         plasmoid.setAction("pavucontrol", i18n("PulseAudio Control"), "configure");
+    //     } else {
+    //         plasmoid.removeAction("pavucontrol")
+    //     }
+    // }
+    // 
+    // Connections {
+    //     target: plasmoid
+    //     onContextualActionsAboutToShow: {
+    //         updateActions()
+    //     }
+    // }
+
+    function action_alsamixer() {
+        exec("konsole -e alsamixer");
     }
 
     function action_pavucontrol() {
@@ -307,10 +318,9 @@ Item {
         KCMShell.open("kcm_pulseaudio");
     }
 
-    Connections {
-        target: plasmoid
-        onContextualActionsAboutToShow: {
-            updateActions()
-        }
+    Component.onCompleted: {
+        plasmoid.setAction("KCMAudioVolume", i18n("Audio Volume Settings..."), "configure");
+        plasmoid.setAction("pavucontrol", i18n("PulseAudio Control"), "configure");
+        plasmoid.setAction("alsamixer", i18n("AlsaMixer"), "configure");
     }
 }

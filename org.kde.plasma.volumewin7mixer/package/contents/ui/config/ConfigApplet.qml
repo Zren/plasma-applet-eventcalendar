@@ -56,32 +56,32 @@ ColumnLayout {
             }
         }
 
-        GroupBox {
-            Layout.fillWidth: true
-            title: 'Context Menu'
+        // GroupBox {
+        //     Layout.fillWidth: true
+        //     title: 'Context Menu'
 
-            ColumnLayout {
+        //     ColumnLayout {
 
-                CheckBox {
-                    id: showOpenKcmAudioVolume
-                    text: 'KDE Audio Volume'
-                }
+        //         CheckBox {
+        //             id: showOpenKcmAudioVolume
+        //             text: 'KDE Audio Volume'
+        //         }
 
-                CheckBox {
-                    id: showOpenPavucontrol
-                    text: 'pavucontrol (PulseAudio Control) (Can do Audio Boost)'
-                }
+        //         CheckBox {
+        //             id: showOpenPavucontrol
+        //             text: 'pavucontrol (PulseAudio Control) (Can do Audio Boost)'
+        //         }
 
-                RowLayout {
-                    Text { width: 24 } // indent
-                    Text {
-                        font.family: 'monospace'
-                        text: 'sudo apt-get install pavucontrol'
-                    }
-                }
+        //         RowLayout {
+        //             Text { width: 24 } // indent
+        //             Text {
+        //                 font.family: 'monospace'
+        //                 text: 'sudo apt-get install pavucontrol'
+        //             }
+        //         }
 
-            }
-        }
+        //     }
+        // }
 
     }
 }
