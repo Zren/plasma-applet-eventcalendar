@@ -33,6 +33,8 @@ Item {
     property bool cfg_agenda_weather_show_text: false
     property bool cfg_agenda_breakup_multiday_events: true
 
+    property color inProgressColor: theme.highlightColor
+
     signal newEventFormOpened(variant agendaItem, variant newEventCalendarId)
     signal submitNewEventForm(variant calendarId, variant date, string text)
 
@@ -68,7 +70,7 @@ Item {
             anchors.right: parent.right
             spacing: 10
             property date agendaItemDate: model.date
-            property bool agendaItemIsToday: Shared.isSameDate(currentTime, model.date)
+            property bool agendaItemIsToday: currentTime && model.date ? Shared.isSameDate(currentTime, model.date) : false
             property bool agendaItemInProgress: agendaItemIsToday
 
             LinkRect {
@@ -81,7 +83,7 @@ Item {
 
                     FontIcon {
                         visible: showWeather && cfg_agenda_weather_show_icon
-                        color: agendaItemIsToday ? PlasmaCore.ColorScope.highlightColor : PlasmaCore.ColorScope.textColor
+                        color: agendaItemIsToday ? inProgressColor : PlasmaCore.ColorScope.textColor
                         source: weatherIcon
                         height: cfg_agenda_weather_icon_height
                         anchors {
@@ -94,7 +96,7 @@ Item {
                         id: itemWeatherText
                         visible: showWeather && cfg_agenda_weather_show_text
                         text: weatherText
-                        color: agendaItemIsToday ? PlasmaCore.ColorScope.highlightColor : PlasmaCore.ColorScope.textColor
+                        color: agendaItemIsToday ? inProgressColor : PlasmaCore.ColorScope.textColor
                         opacity: 0.75
                         anchors {
                             left: parent.left
@@ -107,7 +109,7 @@ Item {
                         id: itemWeatherTemps
                         visible: showWeather
                         text: tempHigh + '° | ' + tempLow + '°'
-                        color: agendaItemIsToday ? PlasmaCore.ColorScope.highlightColor : PlasmaCore.ColorScope.textColor
+                        color: agendaItemIsToday ? inProgressColor : PlasmaCore.ColorScope.textColor
                         opacity: 0.75
                         anchors {
                             left: parent.left
@@ -148,8 +150,9 @@ Item {
                     Text {
                         id: itemDate
                         text: Qt.formatDateTime(date, "MMM d")
-                        color: agendaItemIsToday ? PlasmaCore.ColorScope.highlightColor : PlasmaCore.ColorScope.textColor
+                        color: agendaItemIsToday ? inProgressColor : PlasmaCore.ColorScope.textColor
                         opacity: agendaItemIsToday ? 1 : 0.75
+                        font.weight: agendaItemIsToday ? Font.Bold : Font.Normal
                         anchors {
                             left: parent.left
                             right: parent.right
@@ -167,8 +170,9 @@ Item {
                     Text {
                         id: itemDay
                         text: Qt.formatDateTime(date, "ddd")
-                        color: agendaItemIsToday ? PlasmaCore.ColorScope.highlightColor : PlasmaCore.ColorScope.textColor
-                        opacity: agendaItemIsToday ? 0.75 : 0.5
+                        color: agendaItemIsToday ? inProgressColor : PlasmaCore.ColorScope.textColor
+                        opacity: agendaItemIsToday ? 1 : 0.5
+                        font.weight: agendaItemIsToday ? Font.Bold : Font.Normal
                         anchors {
                             left: parent.left
                             right: parent.right
@@ -243,7 +247,7 @@ Item {
                             width: undefined
                             Layout.fillWidth: true
                             height: eventColumn.height
-                            property bool eventItemInProgress: start.dateTime <= currentTime && currentTime <= end.dateTime
+                            property bool eventItemInProgress: start && currentTime && end ? start.dateTime <= currentTime && currentTime <= end.dateTime : false
 
                             RowLayout {
                                 Rectangle {
@@ -259,7 +263,8 @@ Item {
                                     Text {
                                         id: eventSummary
                                         text: summary
-                                        color: eventItemInProgress ? PlasmaCore.ColorScope.highlightColor : PlasmaCore.ColorScope.textColor
+                                        color: eventItemInProgress ? inProgressColor : PlasmaCore.ColorScope.textColor
+                                        font.weight: eventItemInProgress ? Font.Bold : Font.Normal
                                     }
 
                                     Text {
@@ -270,8 +275,9 @@ Item {
                                                 clock_24h: agendaView.cfg_clock_24h
                                             })
                                         }
-                                        color: eventItemInProgress ? PlasmaCore.ColorScope.highlightColor : PlasmaCore.ColorScope.textColor
-                                        opacity: 0.75
+                                        color: eventItemInProgress ? inProgressColor : PlasmaCore.ColorScope.textColor
+                                        opacity: eventItemInProgress ? 1 : 0.75
+                                        font.weight: eventItemInProgress ? Font.Bold : Font.Normal
                                     }
                                 }
                             }
