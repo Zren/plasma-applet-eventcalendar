@@ -11,8 +11,8 @@ ColumnLayout {
 
     property alias cfg_volumeUpDownSteps: volumeUpDownSteps.value
     property alias cfg_showVolumeTickmarks: showVolumeTickmarks.checked
-    property alias cfg_showOpenKcmAudioVolume: showOpenKcmAudioVolume.checked
-    property alias cfg_showOpenPavucontrol: showOpenPavucontrol.checked
+    // property alias cfg_showOpenKcmAudioVolume: showOpenKcmAudioVolume.checked
+    // property alias cfg_showOpenPavucontrol: showOpenPavucontrol.checked
     
 
     ColumnLayout {
