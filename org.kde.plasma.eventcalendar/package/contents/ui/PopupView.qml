@@ -149,6 +149,8 @@ Item {
                     cfg_agenda_weather_icon_height: popup.cfg_agenda_weather_icon_height
                     cfg_agenda_weather_show_text: popup.cfg_agenda_weather_show_text
 
+                    currentTime: today
+
                     visibleDateMin: popup.visibleDateMin
                     visibleDateMax: popup.visibleDateMax
 

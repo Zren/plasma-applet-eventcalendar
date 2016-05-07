@@ -29,9 +29,25 @@ function getEventData() {
             "backgroundColor": "#9a9cff" // We apply the calendar.backgroundColor
         });
     }
-    addEvent("Dude's Birthday", {date: "2016-03-25"}, {date: "2016-03-26"});
-    addEvent("Dudette's Birthday", {date: "2016-03-29"}, {date: "2016-03-30"});
-    addEvent("Multiday Event", {date: "2016-03-25"}, {date: "2016-03-30"});
+
+    function dateString(d) {
+        return d.toISOString().substr(0, 10)
+    }
+    function nowPlus(n) {
+        var d = new Date();
+        d.setDate(d.getDate() + n);
+        return d;
+    }
+    function addAllDayTestEvent(summary, startDaysFromNow, endDaysFromNow) {
+        var start = dateString(nowPlus(startDaysFromNow));
+        var end = dateString(nowPlus(endDaysFromNow));
+        addEvent(summary, {date: start }, {date: end });
+    }
+
+    addEvent("Multiday Event", {date: "2016-05-10"}, {date: "2016-05-30"});
+    addAllDayTestEvent("Dude's Birthday", 0, 1);
+    addAllDayTestEvent("Dudette's Birthday", 1, 2);
+    addAllDayTestEvent("Multiday Event", 3, 5);
     return debugEventData;
 }
 
