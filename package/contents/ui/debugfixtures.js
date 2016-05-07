@@ -43,11 +43,22 @@ function getEventData() {
         var end = dateString(nowPlus(endDaysFromNow));
         addEvent(summary, {date: start }, {date: end });
     }
+    function addMinuteTestEvent(summary, startMinutesFromNow) {
+        var start = new Date()
+        start = new Date(start.getFullYear(), start.getMonth(), start.getDate(), start.getHours(), start.getMinutes(), 0);
+        start.setMinutes(start.getMinutes() + startMinutesFromNow)
+        var end = new Date(start)
+        end.setMinutes(end.getMinutes() + 1)
+        addEvent(summary, {dateTime: start }, {dateTime: end });
+    }
 
     addEvent("Multiday Event", {date: "2016-05-10"}, {date: "2016-05-30"});
     addAllDayTestEvent("Dude's Birthday", 0, 1);
     addAllDayTestEvent("Dudette's Birthday", 1, 2);
     addAllDayTestEvent("Multiday Event", 3, 5);
+    for (var i = 0; i < 5; i++) {
+        addMinuteTestEvent("Minute Event " + i, i);
+    }
     return debugEventData;
 }
 

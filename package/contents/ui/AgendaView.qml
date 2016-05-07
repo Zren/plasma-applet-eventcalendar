@@ -539,4 +539,15 @@ Item {
             parseWeatherForecast(DebugFixtures.getDailyWeatherData());
         }
     }
+
+    Timer {
+        running: true
+        repeat: true
+        interval: (60 * 1000) - (Date.now() % (60 * 1000)) // Align to minute
+        onTriggered: {
+            // console.log('onTriggered', interval)
+            currentTime = new Date()
+            interval = 60 * 1000
+        }
+    }
 }
