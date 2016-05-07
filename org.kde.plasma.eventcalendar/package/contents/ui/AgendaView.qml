@@ -97,7 +97,7 @@ Item {
                         visible: showWeather && cfg_agenda_weather_show_text
                         text: weatherText
                         color: agendaItemIsToday ? inProgressColor : PlasmaCore.ColorScope.textColor
-                        opacity: 0.75
+                        opacity: agendaItemIsToday ? 1 : 0.75
                         anchors {
                             left: parent.left
                             right: parent.right
@@ -110,7 +110,7 @@ Item {
                         visible: showWeather
                         text: tempHigh + '° | ' + tempLow + '°'
                         color: agendaItemIsToday ? inProgressColor : PlasmaCore.ColorScope.textColor
-                        opacity: 0.75
+                        opacity: agendaItemIsToday ? 1 : 0.75
                         anchors {
                             left: parent.left
                             right: parent.right
