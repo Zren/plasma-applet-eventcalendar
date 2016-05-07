@@ -34,6 +34,7 @@ Item {
     property bool cfg_agenda_breakup_multiday_events: true
 
     property color inProgressColor: theme.highlightColor
+    property int inProgressFontWeight: Font.Bold
 
     signal newEventFormOpened(variant agendaItem, variant newEventCalendarId)
     signal submitNewEventForm(variant calendarId, variant date, string text)
@@ -98,6 +99,7 @@ Item {
                         text: weatherText
                         color: agendaItemIsToday ? inProgressColor : PlasmaCore.ColorScope.textColor
                         opacity: agendaItemIsToday ? 1 : 0.75
+                        font.weight: agendaItemIsToday ? inProgressFontWeight : Font.Normal
                         anchors {
                             left: parent.left
                             right: parent.right
@@ -111,6 +113,7 @@ Item {
                         text: tempHigh + '° | ' + tempLow + '°'
                         color: agendaItemIsToday ? inProgressColor : PlasmaCore.ColorScope.textColor
                         opacity: agendaItemIsToday ? 1 : 0.75
+                        font.weight: agendaItemIsToday ? inProgressFontWeight : Font.Normal
                         anchors {
                             left: parent.left
                             right: parent.right
@@ -152,7 +155,7 @@ Item {
                         text: Qt.formatDateTime(date, "MMM d")
                         color: agendaItemIsToday ? inProgressColor : PlasmaCore.ColorScope.textColor
                         opacity: agendaItemIsToday ? 1 : 0.75
-                        font.weight: agendaItemIsToday ? Font.Bold : Font.Normal
+                        font.weight: agendaItemIsToday ? inProgressFontWeight : Font.Normal
                         anchors {
                             left: parent.left
                             right: parent.right
@@ -172,7 +175,7 @@ Item {
                         text: Qt.formatDateTime(date, "ddd")
                         color: agendaItemIsToday ? inProgressColor : PlasmaCore.ColorScope.textColor
                         opacity: agendaItemIsToday ? 1 : 0.5
-                        font.weight: agendaItemIsToday ? Font.Bold : Font.Normal
+                        font.weight: agendaItemIsToday ? inProgressFontWeight : Font.Normal
                         anchors {
                             left: parent.left
                             right: parent.right
@@ -264,7 +267,7 @@ Item {
                                         id: eventSummary
                                         text: summary
                                         color: eventItemInProgress ? inProgressColor : PlasmaCore.ColorScope.textColor
-                                        font.weight: eventItemInProgress ? Font.Bold : Font.Normal
+                                        font.weight: eventItemInProgress ? inProgressFontWeight : Font.Normal
                                     }
 
                                     Text {
@@ -277,7 +280,7 @@ Item {
                                         }
                                         color: eventItemInProgress ? inProgressColor : PlasmaCore.ColorScope.textColor
                                         opacity: eventItemInProgress ? 1 : 0.75
-                                        font.weight: eventItemInProgress ? Font.Bold : Font.Normal
+                                        font.weight: eventItemInProgress ? inProgressFontWeight : Font.Normal
                                     }
                                 }
                             }
