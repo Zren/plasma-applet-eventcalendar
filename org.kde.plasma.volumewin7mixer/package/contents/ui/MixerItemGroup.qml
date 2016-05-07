@@ -17,7 +17,7 @@ GroupBox {
     property alias delegate: view.delegate
     property int mixerItemWidth: 100
     property int volumeSliderWidth: 50
-    property string mixerItemIcon: ''
+    property string mixerGroupType: ''
     visible: view.count > 0
 
     Text {
@@ -39,7 +39,7 @@ GroupBox {
         delegate: MixerItem {
             width: mixerItemWidth
             volumeSliderWidth: volumeSliderWidth
-            icon: mixerItemIcon
+            mixerItemType: mixerGroupType
         }
     }
 }

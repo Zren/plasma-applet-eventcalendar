@@ -4,6 +4,7 @@ import QtQuick.Controls 1.0
 import QtQuick.Controls.Styles.Plasma 2.0 as PlasmaStyles
 
 import org.kde.kquickcontrolsaddons 2.0
+import org.kde.draganddrop 2.0
 import org.kde.plasma.core 2.0 as PlasmaCore
 import org.kde.plasma.components 2.0 as PlasmaComponents
 import org.kde.plasma.extras 2.0 as PlasmaExtras
@@ -12,14 +13,52 @@ import org.kde.plasma.private.volume 0.1
 
 import "../code/sinkcommands.js" as PulseObjectCommands
 
-Item {
+PlasmaComponents.ListItem {
     id: mixerItem
     width: 50
     height: parent.height
-
-    property string icon: ''
+    checked: dropArea.containsDrag
+    property string mixerItemType: ''
     property int volumeSliderWidth: 50
-    
+
+    property string icon: {
+        if (mixerItemType == 'SinkInput') {
+            // App
+            var client = PulseObject.client;
+            // Virtual streams don't have a valid client object, force a default icon for them
+            if (client) {
+                if (client.properties['application.icon_name']) {
+                    return client.properties['application.icon_name'].toLowerCase();
+                } else if (client.properties['application.process.binary']) {
+                    var binary = client.properties['application.process.binary'].toLowerCase()
+                    // FIXME: I think this should do a reverse-desktop-file lookup
+                    // or maybe appdata could be used?
+                    // At any rate we need to attempt mapping binary to desktop file
+                    // such that we could get the icon.
+                    if (binary === 'chrome' || binary === 'chromium') {
+                        return 'google-chrome';
+                    }
+                    return binary;
+                }
+                return 'unknown';
+            } else {
+                return 'audio-card';
+            }
+        } else if (mixerItemType == 'Sink') {
+            // Speaker
+            return 'speaker';
+        } else if (mixerItemType == 'Source') {
+            // Microphone
+            if (PulseObject.volume > 0 && !PulseObject.muted) {
+                return 'mic-on';
+            } else {
+                return 'mic-off';
+            }
+        } else {
+            return 'unknown';
+        }
+    }
+
     property string label: {
         var name = PulseObject.name;
         if (name.indexOf('alsa_input.') >= 0) {
@@ -40,6 +79,7 @@ Item {
 
         return name
     }
+
     property string tooltipSubText: {
         // maximum of 8 visible lines. Extra lines are cut off.
         var lines = [];
@@ -66,6 +106,53 @@ Item {
         // }
         return lines.join('<br>');
     }
+
+    DropArea {
+        id: dropArea
+        anchors.fill: parent
+        enabled: mixerItemType == 'Sink'
+        onDrop: {
+            console.log('DropArea.onDrop')
+            console.log(main.draggedStream, '=>', PulseObject)
+            // logObj(main.draggedStream)
+            // logObj(main.draggedStream.properties)
+            // logObj(PulseObject)
+            // logObj(PulseObject.properties)
+            main.draggedStream.sinkIndex = PulseObject.index
+        }
+    }
+
+    function logObj(obj) {
+        for (var key in obj) {
+            if (typeof obj[key] === 'function') continue;
+            console.log(obj, key, obj[key])
+        }
+    }
+
+    DragArea {
+        id: dragArea
+        anchors.fill: parent
+        delegate: parent
+        enabled: mixerItemType == 'SinkInput'
+
+        mimeData {
+            source: mixerItem
+        }
+
+        onDragStarted: {
+            console.log('DragArea.onDragStarted')
+            main.draggedStream = PulseObject
+        }
+        onDrop: {
+            console.log('DragArea.onDrop')
+            main.draggedStream = null
+        }
+
+        MouseArea {
+            anchors.fill: parent
+            cursorShape: dragArea.enabled ? (pressed ? Qt.ClosedHandCursor : Qt.OpenHandCursor) : undefined
+        }
+    }
     
     ColumnLayout {
         anchors.fill: parent
@@ -88,7 +175,17 @@ Item {
     
         Label {
             id: textLabel
-            text: mixerItem.label + '\n\n'
+            text: mixerItem.label + '\n'
+            function updateLineCount() {
+                if (lineCount == 1) {
+                    textLabel.text = mixerItem.label + '\n'
+                } else if (truncated) {
+                    textLabel.text = mixerItem.label
+                }
+            }
+            onLineCountChanged: updateLineCount()
+            onTruncatedChanged: updateLineCount()
+
             color: PlasmaCore.ColorScope.textColor
             opacity: 0.6
             wrapMode: Text.Wrap

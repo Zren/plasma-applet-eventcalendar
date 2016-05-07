@@ -42,6 +42,7 @@ Item {
     Layout.minimumWidth: 10
     Layout.preferredWidth: mixerItemRow.width
     Layout.maximumWidth: plasmoid.screenGeometry.width
+    property QtObject draggedStream: null
 
     property string displayName: i18n("Audio Volume")
 
@@ -206,35 +207,9 @@ Item {
         MixerItemGroup {
             height: parent.height
             title: 'Apps'
-    
-            model: appsModel
-            delegate: MixerItem {
-                width: main.mixerItemWidth
-                volumeSliderWidth: main.volumeSliderWidth
-                icon: {
-                    var client = PulseObject.client;
-                    // Virtual streams don't have a valid client object, force a default icon for them
-                    if (client) {
-                        if (client.properties['application.icon_name']) {
-                            return client.properties['application.icon_name'].toLowerCase();
-                        } else if (client.properties['application.process.binary']) {
-                            var binary = client.properties['application.process.binary'].toLowerCase()
-                            // FIXME: I think this should do a reverse-desktop-file lookup
-                            // or maybe appdata could be used?
-                            // At any rate we need to attempt mapping binary to desktop file
-                            // such that we could get the icon.
-                            if (binary === 'chrome' || binary === 'chromium') {
-                                return 'google-chrome';
-                            }
-                            return binary;
-                        }
-                        return 'unknown';
-                    } else {
-                        return 'audio-card';
-                    }
-                }
 
-            }
+            model: appsModel
+            mixerGroupType: 'SinkInput'
         }
 
         MixerItemGroup {
@@ -242,19 +217,15 @@ Item {
             title: 'Mics'
     
             model: sourceModel
-            delegate: MixerItem {
-                width: main.mixerItemWidth
-                volumeSliderWidth: main.volumeSliderWidth
-                icon: PulseObject.volume > 0 && !PulseObject.muted ? 'mic-on' : 'mic-off'
-            }
+            mixerGroupType: 'Source'
         }
 
         MixerItemGroup {
             height: parent.height
             title: 'Speakers'
-    
+            
             model: sinkModel
-            mixerItemIcon: 'speaker'
+            mixerGroupType: 'Sink'
         }
 
         // GroupBox {
