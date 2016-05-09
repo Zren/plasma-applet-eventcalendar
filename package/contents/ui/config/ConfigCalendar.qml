@@ -74,11 +74,49 @@ ColumnLayout {
             ColumnLayout {
                 CheckBox {
                     id: month_show_border
-                    text: "Show Borders"
+                    text: i18n("Show Borders")
                 }
                 CheckBox {
                     id: month_show_weeknumbers
-                    text: "Show Week Numbers"
+                    text: i18n("Show Week Numbers")
+                }
+                RowLayout {
+                    Label {
+                        text: i18n("Event Badge:")
+                        Layout.alignment: Qt.AlignTop | Qt.AlignLeft
+                    }
+                    ColumnLayout {
+                        ExclusiveGroup { id: month_eventbadge_styleGroup }
+                        RadioButton {
+                            enabled: false
+                            text: i18n("Theme")
+                            exclusiveGroup: month_eventbadge_styleGroup
+                        }
+                        RadioButton {
+                            text: i18n("Bottom Bar")
+                            checked: true
+                            exclusiveGroup: month_eventbadge_styleGroup
+                        }
+                    }
+                }
+                RowLayout {
+                    Label {
+                        text: i18n("Selected:")
+                        Layout.alignment: Qt.AlignTop | Qt.AlignLeft
+                    }
+                    ColumnLayout {
+                        ExclusiveGroup { id: month_selected_styleGroup }
+                        RadioButton {
+                            enabled: false
+                            text: i18n("Theme")
+                            exclusiveGroup: month_selected_styleGroup
+                        }
+                        RadioButton {
+                            text: i18n("Solid Color")
+                            checked: true
+                            exclusiveGroup: month_selected_styleGroup
+                        }
+                    }
                 }
             }
         }
