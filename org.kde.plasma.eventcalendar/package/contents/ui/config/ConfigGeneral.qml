@@ -116,7 +116,7 @@ Item {
 
             ColumnLayout {
                 Label {
-                    text: "Version: " + appletVersion
+                    text: i18n("Version: %1", appletVersion)
 
                     Component.onCompleted: {
                         Utils.getAppletVersion(function(err, appletVersion) {
@@ -137,21 +137,31 @@ Item {
             width: height
             height: units.gridUnit / 2
         }
-        ColumnLayout {
-            Label {
-                text: "Show/Hide widgets above the calendar."
-            }
-            CheckBox {
-                Layout.fillWidth: true
-                id: widget_show_spacer
-                text: "Spacer"
-            }
-            CheckBox {
-                Layout.fillWidth: true
-                id: widget_show_meteogram
-                text: "Meteogram"
-            }
 
+        Label {
+            text: i18n("Show/Hide widgets above the calendar.")
+        }
+        GroupBox {
+            Layout.fillWidth: true
+
+            ColumnLayout {
+                CheckBox {
+                    Layout.fillWidth: true
+                    id: widget_show_spacer
+                    text: i18n("Spacer")
+                }
+            }
+        }
+        GroupBox {
+            Layout.fillWidth: true
+
+            ColumnLayout {
+                CheckBox {
+                    Layout.fillWidth: true
+                    id: widget_show_meteogram
+                    text: i18n("Meteogram")
+                }
+            }
         }
         GroupBox {
             Layout.fillWidth: true
@@ -159,16 +169,16 @@ Item {
             ColumnLayout {
                 CheckBox {
                     id: widget_show_timer
-                    text: "Timer"
+                    text: i18n("Timer")
                 }
                 RowLayout {
                     Text { width: indentWidth } // indent
                     CheckBox {
                         id: timer_sfx_enabled
-                        text: "SFX:"
+                        text: i18n("SFX:")
                     }
                     Button {
-                        text: "Choose"
+                        text: i18n("Choose")
                         onClicked: timer_sfx_filepathDialog.visible = true
                         enabled: cfg_timer_sfx_enabled
                     }
@@ -182,6 +192,11 @@ Item {
                 }
                 
             }
+        }
+
+        Label {
+            visible: false
+            text: i18n("You can also resize the entire popup by holding down Alt and dragging with the right mouse button.")
         }
         
         Item {
