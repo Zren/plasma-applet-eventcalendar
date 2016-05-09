@@ -29,8 +29,7 @@ GroupBox {
     
     ListView {
         id: view
-        width: Math.max(childrenRect.width, mixerItemWidth)
-        // width: childrenRect.width
+        width: Math.max(childrenRect.width, mixerItemWidth) // At least 1 mixer item wide
         height: parent.height
         spacing: 10
         boundsBehavior: Flickable.StopAtBounds
