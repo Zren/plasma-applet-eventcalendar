@@ -1,3 +1,11 @@
+[b]v31 - May 9 2016[/b]
+
+* Highlight current weather, date, and events in progress.
+* Add non persistent (bug) sound toggle in the timer.
+* Scroll over the timer to add/remove a minute from the duration.
+* Show mm percipitation label in each 3h period.
+* Fix scrolling to selection. Reenable showing previous events earlier in the current month since it now scrolls to the current date properly.
+
 [b]v30 - Apr 29 2016[/b]
 
 * Fix events from next month not showing in the agenda when on the current month (when in the next 14 days).
