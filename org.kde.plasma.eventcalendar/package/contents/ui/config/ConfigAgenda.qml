@@ -180,6 +180,36 @@ ColumnLayout {
             }
         }
 
+        GroupBox {
+            visible: false
+            Layout.fillWidth: true
+            title: 'Colors'
+
+            ColumnLayout {
+                RowLayout {
+                    Label {
+                        text: "Event In Progress:"
+                    }
+                    TextField {
+                        id: agenda_event_inprogress_color
+                        placeholderText: theme.highlightColor
+                    }
+                    Button {
+                        text: "Highlight"
+                        onClicked: {
+                            agenda_event_inprogress_color.text = 'highlightColor'
+                        }
+                    }
+                    Button {
+                        text: "Normal"
+                        onClicked: {
+                            agenda_event_inprogress_color.text = 'textColor'
+                        }
+                    }
+                }
+            }
+        }
+
 
     }
 }
