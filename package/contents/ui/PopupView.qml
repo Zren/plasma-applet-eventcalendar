@@ -438,7 +438,7 @@ Item {
 
         if (monthViewDate.getYear() == now.getYear() && monthViewDate.getMonth() == now.getMonth()) {
             agendaView.showNextNumDays = 14;
-            agendaView.clipPastEvents = true;
+            agendaView.clipPastEvents = false;
         } else {
             agendaView.showNextNumDays = 0;
             agendaView.clipPastEvents = false;
@@ -465,7 +465,7 @@ Item {
         agendaView.parseWeatherForecast(dailyWeatherData);
         monthView.parseGCalEvents(eventsData);
         updateHeight()
-        // scrollToSelection();
+        scrollToSelection();
     }
 
     function onGCalError(err) {
