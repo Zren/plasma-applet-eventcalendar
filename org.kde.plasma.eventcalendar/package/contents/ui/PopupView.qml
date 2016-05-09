@@ -62,9 +62,12 @@ Item {
     property variant currentWeatherData: null
     property variant lastForecastAt: null
 
-    onSelectedDateChanged: {
-        console.log('onSeletedDateChanged', selectedDate)
-        scrollToSelection()
+    Connections {
+        target: monthView
+        onDateSelected: {
+            console.log('onDateSelected', selectedDate)
+            scrollToSelection()
+        }   
     }
     function scrollToSelection() {
         if (!cfg_agenda_scroll_on_select)

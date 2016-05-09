@@ -55,6 +55,7 @@ PinchArea {
     // property QtObject daysModel: calendarBackend.daysModel
     property alias daysModel : daysModel
 
+    signal dateSelected(date selectedDate)
     signal dayDoubleClicked(variant dayData)
 
     property QtObject calendarBackend: calendarBackend
@@ -95,9 +96,14 @@ PinchArea {
         return Qt.formatDate(d, "dddd dd MMM yyyy");
     }
 
+    function setSelectedDate(d) {
+        currentDate = d
+        dateSelected(currentDate)
+    }
+
     function resetToToday() {
         calendarBackend.resetToToday();
-        currentDate = calendarBackend.today
+        setSelectedDate(calendarBackend.today)
         stack.pop(null);
     }
 
@@ -365,7 +371,8 @@ PinchArea {
                 var rowNumber = Math.floor(index / columns);
                 week = 1 + calendarBackend.weeksModel[rowNumber];
                 root.date = date
-                root.currentDate = new Date(date.yearNumber, date.monthNumber - 1, date.dayNumber)
+                root.setSelectedDate(new Date(date.yearNumber, date.monthNumber - 1, date.dayNumber))
+                
             }
             onDoubleClicked: {
                 console.log('MonthView.onDoubleClicked', date);
@@ -432,7 +439,7 @@ PinchArea {
     }
 
     Component.onCompleted: {
-        root.currentDate = calendarBackend.today
+        setSelectedDate(calendarBackend.today)
     }
 
 }
