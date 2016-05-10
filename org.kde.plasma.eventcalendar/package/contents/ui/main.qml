@@ -143,6 +143,7 @@ Item {
                 today = dataSource.data["Local"]["DateTime"] || new Date()
                 monthViewDate = today
                 selectedDate = today
+                scrollToSelection()
                 updateHeight();
                 updateWeather();
             }
