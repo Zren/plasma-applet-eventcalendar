@@ -498,6 +498,12 @@ Item {
             }
         }
 
+        // Make sure the agendaItemList is sorted.
+        // When we have a in-progress multiday event on the current date,
+        // and cfg_agenda_breakup_multiday_events is false, the current date agendaItem is
+        // out of order since the agendaItem is inserted earlier.
+        agendaItemList.sort(function(a,b) { return a.date - b.date; });
+
         for (var i = 0; i < agendaItemList.length; i++) {
             agendaModel.append(agendaItemList[i]);
         }
