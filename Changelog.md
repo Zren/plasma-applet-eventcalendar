@@ -1,3 +1,7 @@
+[b]v32 - May 9 2016[/b]
+
+* Fix in-progress multiday events positioning the current day in agenda in the wrong place.
+
 [b]v31 - May 9 2016[/b]
 
 * Highlight current weather, date, and events in progress.
