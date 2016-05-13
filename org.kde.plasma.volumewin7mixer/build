@@ -1,0 +1,7 @@
+#!/bin/bash
+
+rm win7volumemixer.plasmoid
+cd package
+zip -r win7volumemixer.plasmoid *
+mv win7volumemixer.plasmoid ../win7volumemixer.plasmoid
+cd ..
