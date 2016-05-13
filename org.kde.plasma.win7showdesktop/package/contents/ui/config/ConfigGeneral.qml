@@ -12,7 +12,8 @@ Item {
 
     implicitWidth: pageColumn.implicitWidth
     implicitHeight: pageColumn.implicitHeight
-
+    
+    property string cfg_mousewheel: 'run_commands'
     property alias cfg_mousewheel_up: mousewheel_up.text
     property alias cfg_mousewheel_down: mousewheel_down.text
 
@@ -22,66 +23,84 @@ Item {
         id: palette
     }
 
+    function setCommands(up, down) {
+        cfg_mousewheel = 'run_commands'
+        mousewheelGroup_runcommands.checked = true
+        cfg_mousewheel_up = up
+        cfg_mousewheel_down = down
+    }
+
     Layout.fillWidth: true
 
     ColumnLayout {
         id: pageColumn
         Layout.fillWidth: true
 
-        PlasmaExtras.Heading {
-            level: 2
-            text: i18n("Clock")
-            color: palette.text
-        }
-        Item {
-            width: height
-            height: units.gridUnit / 2
-        }
         ColumnLayout {
             PlasmaExtras.Heading {
                 level: 3
                 text: i18n("Mouse Wheel")
                 color: palette.text
             }
-            Button {
-                text: 'amixer (No UI)'
-                onClicked: {
-                    cfg_mousewheel_up = 'amixer -q sset Master 10%+'
-                    cfg_mousewheel_down = 'amixer -q sset Master 10%-'
-                }
-            }
-            RowLayout {
-                Button {
-                    text: 'xdotool (UI)'
-                    onClicked: {
-                        cfg_mousewheel_up = 'xdotool key XF86AudioRaiseVolume'
-                        cfg_mousewheel_down = 'xdotool key XF86AudioLowerVolume'
+            GroupBox {
+                Layout.fillWidth: true
+
+                ColumnLayout {
+                    ExclusiveGroup { id: mousewheelGroup }
+
+                    RadioButton {
+                        id: mousewheelGroup_runcommands
+                        exclusiveGroup: mousewheelGroup
+                        checked: cfg_mousewheel == 'run_commands'
+                        text: 'Run Commands'
+                        onClicked: {
+                            cfg_mousewheel = 'run_commands'
+                        }
                     }
-                }
-                Label {
-                    text: 'sudo apt-get install xdotool'
+                    RowLayout {
+                        Layout.fillWidth: true
+                        Text { width: indentWidth } // indent
+                        Label {
+                            text: 'Scoll Up:'
+                        }
+                        TextField {
+                            Layout.fillWidth: true
+                            id: mousewheel_up
+                        }
+                    }
+                    RowLayout {
+                        Layout.fillWidth: true
+                        Text { width: indentWidth } // indent
+                        Label {
+                            text: 'Scroll Down:'
+                        }
+                        TextField {
+                            Layout.fillWidth: true
+                            id: mousewheel_down
+                        }
+                    }
+
+                    RadioButton {
+                        exclusiveGroup: mousewheelGroup
+                        checked: false
+                        text: 'Volume (No UI) (amixer)'
+                        onClicked: {
+                            setCommands('amixer -q sset Master 10%+', 'amixer -q sset Master 10%-')
+                        }
+                    }
+
+                    RadioButton {
+                        exclusiveGroup: mousewheelGroup
+                        checked: false
+                        text: 'Volume (UI) (xdotool) (sudo apt-get install xdotool)'
+                        onClicked: {
+                            setCommands('xdotool key XF86AudioRaiseVolume', 'xdotool key XF86AudioLowerVolume')
+                        }
+                    }
+
                 }
             }
-            RowLayout {
-                Layout.fillWidth: true
-                Label {
-                    text: i18n("Mouse Wheel Up:")
-                }
-                TextField {
-                    Layout.fillWidth: true
-                    id: mousewheel_up
-                }
-            }
-            RowLayout {
-                Layout.fillWidth: true
-                Label {
-                    text: i18n("Mouse Wheel Down:")
-                }
-                TextField {
-                    Layout.fillWidth: true
-                    id: mousewheel_down
-                }
-            }
+
         }
     }
 }

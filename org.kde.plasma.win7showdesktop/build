@@ -1,0 +1,7 @@
+#!/bin/bash
+
+rm win7showdesktop.plasmoid
+cd package
+zip -r win7showdesktop.plasmoid *
+mv win7showdesktop.plasmoid ../win7showdesktop.plasmoid
+cd ..

@@ -1,8 +1,6 @@
-# Show Desktop
+# Show Desktop (Win7)
 
 A fork of the default plasmoid but removes the icon and looks like a flat thin button.
-
-This fork is currently using the same key so it will replace the default rather installing side by side.
 
 ## Screenshots
 
