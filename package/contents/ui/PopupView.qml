@@ -188,7 +188,7 @@ Item {
                             var dateString = date.getFullYear() + '-' + (date.getMonth()+1) + '-' + date.getDate()
                             console.log('text', dateString + ' ' + text)
                             if (popup.cfg_agenda_newevent_remember_calendar) {
-                                popup.cfg_agenda_newevent_last_calendar_id = calendarId2
+                                plasmoid.configuration.agenda_newevent_last_calendar_id = calendarId2
                             }
                             Shared.createGCalEvent({
                                 access_token: config.access_token,
