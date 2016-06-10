@@ -169,7 +169,7 @@ ColumnLayout {
                 }
                 CheckBox {
                     enabled: false
-                    checked: true
+                    checked: false
                     text: "Hide completed events"
                 }
                 CheckBox {
