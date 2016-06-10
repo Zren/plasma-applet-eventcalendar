@@ -298,7 +298,7 @@ MouseArea {
 
             active: task.containsMouse || task.showingContextMenu
             enabled: true
-            // usesPlasmaTheme: false
+            usesPlasmaTheme: false
 
             source: model.DecorationRole
         }

@@ -223,8 +223,8 @@ Column {
                 PlasmaCore.IconItem {
                     anchors.fill: parent
                     source: icon
-                    // animated: false
-                    // usesPlasmaTheme: false
+                    animated: false
+                    usesPlasmaTheme: false
                     visible: !albumArtImage.available
                 }
             }
@@ -336,8 +336,8 @@ Column {
                 x: _s
                 width: units.iconSizes.desktop
                 height: width
-                // animated: false
-                // usesPlasmaTheme: false
+                animated: false
+                usesPlasmaTheme: false
                 source: icon
             }
         }
