@@ -103,6 +103,15 @@ MouseArea {
         z: todayRect.z - 1
     }
 
+    // Loader {
+    //     active: model.showEventBadge || false
+    //     anchors.bottom: parent.bottom
+    //     anchors.right: parent.right
+    //     height: parent.height / 3
+    //     width: height
+    //     sourceComponent: eventsMarkerComponent
+    // }
+
     Components.Label {
         id: label
         anchors {
