@@ -18,7 +18,7 @@ PlasmaComponents.ListItem {
     width: 50
     height: parent.height
     checked: dropArea.containsDrag
-    // separatorVisible: false // Requires: plasma-framework v22
+    separatorVisible: false
     property string mixerItemType: ''
     property int volumeSliderWidth: 50
 
