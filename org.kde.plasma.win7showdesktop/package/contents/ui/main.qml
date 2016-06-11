@@ -34,12 +34,56 @@ import org.kde.kquickcontrolsaddons 2.0
 Item {
     id: root
 
-    property bool vertical: (plasmoid.formFactor == PlasmaCore.Types.Vertical)
-
-    Layout.maximumWidth: 3 // + 5 = 8
-
     Layout.minimumWidth: Layout.maximumWidth
     Layout.minimumHeight: Layout.maximumHeight
+
+    state: {
+        if (plasmoid.formFactor == PlasmaCore.Types.Vertical) return "vertical"
+        if (plasmoid.formFactor == PlasmaCore.Types.Horizontal) return "horizontal"
+        return "square"
+    }
+
+    states: [
+        State { name: "square"
+            PropertyChanges {
+                target: buttonRect
+                y: 0
+                x: 0
+                width: plasmoid.width
+                height: plasmoid.height
+            }
+        },
+        State { name: "vertical" // ...panel (fat short button)
+        // Assume it's on the bottom. Breeze has margins of top=4 right=5 bottom=1 left=N/A
+            PropertyChanges {
+                target: root
+                Layout.maximumWidth: plasmoid.width
+                Layout.maximumHeight: 5 // + 5 = 8
+            }
+            PropertyChanges {
+                target: buttonRect
+                y: 0
+                x: 0
+                width: plasmoid.width+5
+                height: plasmoid.height+5
+            }
+        },
+        State { name: "horizontal" // ...panel (thin tall button)
+            // Assume it's on the right. Breeze has margins of top=4 right=5 bottom=1 left=N/A
+            PropertyChanges {
+                target: root
+                Layout.maximumWidth: 3 // + 5 = 8
+                Layout.maximumHeight: plasmoid.height
+            }
+            PropertyChanges {
+                target: buttonRect
+                y: -4
+                x: 0
+                width: plasmoid.width+5
+                height: plasmoid.height+3+5
+            }
+        }
+    ]
 
     Plasmoid.preferredRepresentation: Plasmoid.fullRepresentation
     Plasmoid.onActivated: showdesktop.showDesktop();
@@ -49,10 +93,7 @@ Item {
     }
 
     Rectangle {
-        y: -4
-        x: 0
-        width: plasmoid.width+5
-        height: plasmoid.height+3+5
+        id: buttonRect
         color: "transparent"
 
         Item {
