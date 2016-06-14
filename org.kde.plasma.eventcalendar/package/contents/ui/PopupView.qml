@@ -16,23 +16,24 @@ Item {
 
     // use Layout.prefferedHeight instead of height so that the plasmoid resizes.
     // width: columnWidth + 10 + columnWidth
-    property int padding: 10 * units.devicePixelRatio
+    property int spacing: 10 * units.devicePixelRatio
     property int topRowHeight: 100 * units.devicePixelRatio
     property int bottomRowHeight: 400 * units.devicePixelRatio
     property int columnWidth: width / 2
+    property int padding: 0
 
     Layout.minimumWidth: (400 + 10 + 400) * units.devicePixelRatio
-    Layout.preferredWidth: (400 + 10 + 400) * units.devicePixelRatio
+    Layout.preferredWidth: (400 + 10 + 400) * units.devicePixelRatio + padding * 2
     Layout.maximumWidth: plasmoid.screenGeometry.width
 
     Layout.minimumHeight: 400 * units.devicePixelRatio
-    Layout.preferredHeight: (cfg_widget_show_meteogram || cfg_widget_show_timer ? 400 + 10 + 100 : 400) * units.devicePixelRatio
+    Layout.preferredHeight: (cfg_widget_show_meteogram || cfg_widget_show_timer ? 400 + 10 + 100 : 400) * units.devicePixelRatio + padding * 2
     Layout.maximumHeight: plasmoid.screenGeometry.height
 
     // Overload with config: plasmoid.configuration
     property variant config: { }
     property bool cfg_clock_24h: false
-    property bool cfg_widget_show_spacer: true
+    property bool cfg_widget_show_pin: false
     property bool cfg_widget_show_meteogram: true
     property bool cfg_widget_show_timer: true
     property bool cfg_timer_sfx_enabled: true
@@ -97,7 +98,6 @@ Item {
         anchors.fill: parent
     }
 
-    // state: "agenda+month"
     onStateChanged: {
         console.log(popup.state, widgetGrid.columns, widgetGrid.rows)
     }
@@ -146,20 +146,23 @@ Item {
         }
     ]
 
-    GridLayout {
-        id: widgetGrid
-        // Layout.fillWidth: true
-        // Layout.fillHeight: true
+    ColumnLayout {
         width: parent.width
         height: parent.height
-        columnSpacing: popup.padding
-        rowSpacing: popup.padding
+
+    GridLayout {
+        id: widgetGrid
+        Layout.fillWidth: true
+        Layout.fillHeight: true
+        columnSpacing: popup.spacing
+        rowSpacing: popup.spacing
         onColumnsChanged: {
             console.log(popup.state, widgetGrid.columns, widgetGrid.rows)
         }
         onRowsChanged: {
             console.log(popup.state, widgetGrid.columns, widgetGrid.rows)
         }
+        Layout.margins: popup.padding
 
                 ForecastGraph {
                     id: meteogramView
@@ -316,6 +319,8 @@ Item {
                         
                     }
                 }
+    }
+
     }
 
     Component.onCompleted: {

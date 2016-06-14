@@ -116,7 +116,6 @@ Item {
         id: popup
         config: plasmoid.configuration
         cfg_clock_24h: plasmoid.configuration.clock_24h
-        cfg_widget_show_spacer: plasmoid.configuration.widget_show_spacer
         cfg_widget_show_meteogram: plasmoid.configuration.widget_show_meteogram
         cfg_widget_show_timer: plasmoid.configuration.widget_show_timer
         cfg_timer_sfx_enabled: plasmoid.configuration.timer_sfx_enabled
@@ -130,6 +129,20 @@ Item {
         cfg_month_show_border: plasmoid.configuration.month_show_border
         cfg_month_show_weeknumbers: plasmoid.configuration.month_show_weeknumbers
 
+        // If pin is enabled, we need to add some padding around the popup unless
+        // * we're a desktop widget (no need)
+        // * the timer widget is enabled since there's room in the top right
+        property bool isPinVisible: {
+            // plasmoid.location == PlasmaCore.Types.Floating when using plasmawindowed and when used as a desktop widget.
+            return plasmoid.location != PlasmaCore.Types.Floating // && plasmoid.configuration.widget_show_pin
+        }
+        padding: {
+            if (isPinVisible && !plasmoid.configuration.widget_show_timer) {
+                return units.largeSpacing;
+            } else {
+                return 0;
+            }
+        }
 
         property bool isExpanded: plasmoid.expanded
         onIsExpandedChanged: {
@@ -157,6 +170,17 @@ Item {
                     updateHourlyWeather();
                 }
             }
+        }
+
+        // Allows the user to keep the calendar open for reference
+        PlasmaComponents.ToolButton {
+            visible: isPinVisible
+            anchors.right: parent.right
+            width: Math.round(units.gridUnit * 1.25)
+            height: width
+            checkable: true
+            iconSource: "window-pin"
+            onCheckedChanged: plasmoid.hideOnWindowDeactivate = !checked
         }
 
     }
