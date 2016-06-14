@@ -172,6 +172,7 @@ Item {
                 Layout.fillWidth: true
                 Layout.minimumHeight: popup.topRowHeight
                 Layout.preferredHeight: parent.height / 5
+                cfg_clock_24h: popup.cfg_clock_24h
             }
 
             TimerView {
