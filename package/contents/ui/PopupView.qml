@@ -15,20 +15,19 @@ Item {
     id: popup
 
     // use Layout.prefferedHeight instead of height so that the plasmoid resizes.
-    width: columnWidth + 10 + columnWidth
-    Layout.preferredHeight: bottomRowHeight
-    property int topRowHeight: 100
-    property int bottomRowHeight: 400
-    property int columnWidth: 400
-    function updateHeight() {
-        var rows = Math.ceil(widgetGrid.visibleChildren.length / widgetGrid.columns)
-        Layout.preferredHeight = rows * topRowHeight + (rows > 0 ? 10 : 0) + bottomRowHeight
+    // width: columnWidth + 10 + columnWidth
+    property int padding: 10 * units.devicePixelRatio
+    property int topRowHeight: 100 * units.devicePixelRatio
+    property int bottomRowHeight: 400 * units.devicePixelRatio
+    property int columnWidth: width / 2
 
-        // Debugging with qmlviewer
-        if (typeof root === 'undefined') {
-            height = Layout.preferredHeight
-        }
-    }
+    Layout.minimumWidth: (400 + 10 + 400) * units.devicePixelRatio
+    Layout.preferredWidth: (400 + 10 + 400) * units.devicePixelRatio
+    Layout.maximumWidth: plasmoid.screenGeometry.width
+
+    Layout.minimumHeight: 400 * units.devicePixelRatio
+    Layout.preferredHeight: (cfg_widget_show_meteogram || cfg_widget_show_timer ? 400 + 10 + 100 : 400) * units.devicePixelRatio
+    Layout.maximumHeight: plasmoid.screenGeometry.height
 
     // Overload with config: plasmoid.configuration
     property variant config: { }
@@ -98,54 +97,94 @@ Item {
         anchors.fill: parent
     }
 
-    Column {
-        spacing: 10
-        Grid {
-            id: widgetGrid
-            columns: 2
-            spacing: 10
+    // state: "agenda+month"
+    onStateChanged: {
+        console.log(popup.state, widgetGrid.columns, widgetGrid.rows)
+    }
+    states: [
+        State {
+            name: "agenda+month"
+            when: !popup.cfg_widget_show_meteogram && !popup.cfg_widget_show_timer
 
-            Item {
-                id: spacerItem
-                visible: cfg_widget_show_spacer
-                width: columnWidth
-                height: topRowHeight
+            PropertyChanges { target: widgetGrid
+                columns: 2
+                rows: 1
             }
-            Item {
-                id: meteogramItem
-                visible: cfg_widget_show_meteogram
-                width: columnWidth
-                height: topRowHeight
+        },
+        State {
+            name: "meteogram+agenda+month"
+            when: popup.cfg_widget_show_meteogram && !popup.cfg_widget_show_timer
+
+            PropertyChanges { target: widgetGrid
+                columns: 2
+                rows: 2
+            }
+            PropertyChanges { target: meteogramView
+                Layout.columnSpan: 2
+            }
+        },
+        State {
+            name: "timer+agenda+month"
+            when: !popup.cfg_widget_show_meteogram && popup.cfg_widget_show_timer
+
+            PropertyChanges { target: widgetGrid
+                columns: 2
+                rows: 2
+            }
+            PropertyChanges { target: timerView
+                Layout.columnSpan: 2
+            }
+        },
+        State {
+            name: "meteogram+timer+agenda+month"
+            when: popup.cfg_widget_show_meteogram && popup.cfg_widget_show_timer
+
+            PropertyChanges { target: widgetGrid
+                columns: 2
+                rows: 2
+            }
+        }
+    ]
+
+    GridLayout {
+        id: widgetGrid
+        // Layout.fillWidth: true
+        // Layout.fillHeight: true
+        width: parent.width
+        height: parent.height
+        columnSpacing: popup.padding
+        rowSpacing: popup.padding
+        onColumnsChanged: {
+            console.log(popup.state, widgetGrid.columns, widgetGrid.rows)
+        }
+        onRowsChanged: {
+            console.log(popup.state, widgetGrid.columns, widgetGrid.rows)
+        }
 
                 ForecastGraph {
                     id: meteogramView
-                    width: columnWidth
-                    height: topRowHeight
+                    visible: cfg_widget_show_meteogram
+                    Layout.fillWidth: true
+                    Layout.minimumHeight: popup.topRowHeight
+                    Layout.preferredHeight: parent.height / 5
                 }
-            }
-            Item {
-                id: timerItem
-                visible: cfg_widget_show_timer
-                width: columnWidth
-                height: topRowHeight
 
                 TimerView {
                     id: timerView
+                    visible: cfg_widget_show_timer
+                    Layout.fillWidth: true
+                    Layout.minimumHeight: popup.topRowHeight
+                    Layout.preferredHeight: parent.height / 5
                     cfg_timer_sfx_enabled: popup.cfg_timer_sfx_enabled
                     cfg_timer_sfx_filepath: popup.cfg_timer_sfx_filepath
                 }
-            }
-        }
-        Grid {
-            columns: 2
-            spacing: 10
-
-            Item {
-                width: columnWidth
-                height: bottomRowHeight
 
                 AgendaView {
                     id: agendaView
+
+                    Layout.preferredWidth: parent.width / 2
+                    Layout.fillWidth: true
+                    Layout.fillHeight: true
 
                     cfg_agenda_breakup_multiday_events: popup.cfg_agenda_breakup_multiday_events
                     cfg_agenda_weather_show_icon: popup.cfg_agenda_weather_show_icon
@@ -204,29 +243,26 @@ Item {
                             })
                         }
                     }
-                }
-
-                PlasmaComponents.Button {
-                    iconSource: 'view-refresh'
-                    width: 26
-                    anchors.bottom: parent.bottom
-                    anchors.right: parent.right
-                    onClicked: {
-                        updateEvents()
-                        updateWeather(true)
+                    PlasmaComponents.Button {
+                        iconSource: 'view-refresh'
+                        width: 26
+                        anchors.bottom: parent.bottom
+                        anchors.right: parent.right
+                        onClicked: {
+                            updateEvents()
+                            updateWeather(true)
+                        }
                     }
                 }
-            }
-            Item {
-                width: columnWidth
-                height: bottomRowHeight
-                
+
                 MonthView {
                     id: monthView
                     borderOpacity: cfg_month_show_border ? 0.25 : 0
                     showWeekNumbers: cfg_month_show_weeknumbers
-                    width: columnWidth
-                    height: bottomRowHeight
+
+                    Layout.preferredWidth: parent.width/2
+                    Layout.fillWidth: true
+                    Layout.fillHeight: true
 
                     // Component.onCompleted: {
                     //     today = new Date();
@@ -280,8 +316,6 @@ Item {
                         
                     }
                 }
-            }
-        }
     }
 
     Component.onCompleted: {
@@ -289,7 +323,6 @@ Item {
         if (typeof root === 'undefined') {
             today = new Date();
         }
-        updateHeight()
         update();
         if (typeof root === 'undefined') {
             // eventsByCalendar['debug'] = DebugFixtures.getEventData();
@@ -464,7 +497,6 @@ Item {
         agendaView.parseGCalEvents(eventsData);
         agendaView.parseWeatherForecast(dailyWeatherData);
         monthView.parseGCalEvents(eventsData);
-        updateHeight()
         scrollToSelection();
     }
 

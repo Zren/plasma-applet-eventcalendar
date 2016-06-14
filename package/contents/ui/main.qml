@@ -12,11 +12,6 @@ import org.kde.kquickcontrolsaddons 2.0 // KCMShell
 Item {
     id: root
 
-    property bool anyWidgetVisible: plasmoid.configuration.widget_show_spacer ||  plasmoid.configuration.widget_show_meteogram ||  plasmoid.configuration.widget_show_timer
-    width: 400 + 10 + 400
-    height: 400 + (anyWidgetVisible ? 10 + 100 : 0)
-
-
     PlasmaCore.DataSource {
         id: dataSource
         engine: "time"
@@ -144,7 +139,6 @@ Item {
                 monthViewDate = today
                 selectedDate = today
                 scrollToSelection()
-                updateHeight();
                 updateWeather();
             }
         }
@@ -158,14 +152,11 @@ Item {
             onWeather_app_idChanged: { updateWeather(true) }
             onWeather_city_idChanged: { updateWeather(true) }
             onWeather_unitsChanged: { updateWeather(true) }
-            onWidget_show_spacerChanged: { updateHeight() }
             onWidget_show_meteogramChanged: {
-                updateHeight();
                 if (plasmoid.configuration.widget_show_meteogram) {
                     updateHourlyWeather();
                 }
             }
-            onWidget_show_timerChanged: { updateHeight() }
         }
 
     }

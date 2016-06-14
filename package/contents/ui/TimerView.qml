@@ -19,8 +19,8 @@ Item {
     property bool cfg_timer_sfx_enabled: true
     property string cfg_timer_sfx_filepath: "/usr/share/sounds/freedesktop/stereo/complete.oga"
 
-    width: 400
-    height: 100
+    // width: 400
+    // height: 100
 
     // Testing with qmlview
     Rectangle {
