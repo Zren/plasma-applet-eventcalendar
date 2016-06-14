@@ -7,7 +7,6 @@
 * Add a pin button.
 * The meteogram now takes up the entire top row when the timer is disabled.
 
-
 [b]v32 - May 9 2016[/b]
 
 * Fix in-progress multiday events positioning the current day in agenda in the wrong place.

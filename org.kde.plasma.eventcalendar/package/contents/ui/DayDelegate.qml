@@ -103,14 +103,69 @@ MouseArea {
         z: todayRect.z - 1
     }
 
-    // Loader {
-    //     active: model.showEventBadge || false
-    //     anchors.bottom: parent.bottom
-    //     anchors.right: parent.right
-    //     height: parent.height / 3
-    //     width: height
-    //     sourceComponent: eventsMarkerComponent
-    // }
+    Item {
+        id: eventBadge
+        visible: model.showEventBadge || false
+        anchors.fill: parent
+
+        Rectangle {
+            id: eventBadgeBottomBar
+            visible: parent.visible && false
+            anchors.left: parent.left
+            anchors.right: parent.right
+            anchors.bottom: parent.bottom
+            height: parent.height / 5
+            opacity: 0.6
+            color: theme.highlightColor
+        }
+
+        Item {
+            id: eventBadgeDots
+            visible: parent.visible && true
+            anchors.horizontalCenter: parent.horizontalCenter
+            anchors.bottom: parent.bottom
+            anchors.margins: parent.height / 5
+            property int dotSize: parent.height / 10
+            property color dotColor: theme.highlightColor
+
+            Row {
+                anchors.horizontalCenter: parent.horizontalCenter
+                spacing: units.smallSpacing
+
+                Rectangle {
+                    visible: parent.visible && model.events.count >= 1
+                    width: eventBadgeDots.dotSize
+                    height: eventBadgeDots.dotSize
+                    radius: width / 2
+                    color: eventBadgeDots.dotColor
+                }
+                Rectangle {
+                    visible: parent.visible && model.events.count >= 2
+                    width: eventBadgeDots.dotSize
+                    height: eventBadgeDots.dotSize
+                    radius: width / 2
+                    color: eventBadgeDots.dotColor
+                }
+                Rectangle {
+                    visible: parent.visible && model.events.count >= 3
+                    width: eventBadgeDots.dotSize
+                    height: eventBadgeDots.dotSize
+                    radius: width / 2
+                    color: eventBadgeDots.dotColor
+                }
+            }
+        }
+
+        // Loader {
+        //     id: eventBadgeTheme
+        //     active: parent.visible && false
+        //     anchors.bottom: parent.bottom
+        //     anchors.right: parent.right
+        //     height: parent.height / 3
+        //     width: height
+        //     sourceComponent: eventsMarkerComponent
+        // }
+    }
 
     Components.Label {
         id: label
@@ -133,17 +188,6 @@ MouseArea {
         Behavior on color {
             ColorAnimation { duration: units.shortDuration * 2 }
         }
-    }
-
-    Rectangle {
-        id: eventBadge
-        visible: model.showEventBadge || false
-        anchors.left: parent.left
-        anchors.right: parent.right
-        anchors.bottom: parent.bottom
-        height: parent.height / 5
-        opacity: 0.6
-        color: theme.highlightColor
     }
 
     PlasmaCore.ToolTipArea {
