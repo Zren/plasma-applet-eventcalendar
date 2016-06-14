@@ -191,7 +191,7 @@ Item {
                         Shared.openGoogleCalendarNewEventUrl(date);
                     } else if (true) {
                         // cfg_agenda_date_clicked == "agenda_newevent"
-                        newEventForm.visible = !newEventForm.visible
+                        newEventForm.active = !newEventForm.active
                     }
                 }
             }
@@ -203,40 +203,46 @@ Item {
                     Layout.fillWidth: true
                 }
 
-
-                ColumnLayout {
+                Loader {
                     id: newEventForm
-                    visible: false
-                    onVisibleChanged: {
-                        if (visible) {
-                            newEventText.forceActiveFocus()
-                            newEventFormOpened(model, newEventCalendarId)
-                        }
-                    }
-                    PlasmaComponents.ComboBox {
-                        id: newEventCalendarId
-                        Layout.fillWidth: true
-                        model: ['asdf']
-                    }
+                    active: false
+                    visible: active
 
-                    RowLayout {
-                        PlasmaComponents.TextField {
-                            id: newEventText
-                            Layout.fillWidth: true
-                            placeholderText: "Eg: 9am-5pm Work"
-                            onAccepted: {
-                                var calendarId = newEventCalendarId.model[newEventCalendarId.currentIndex]
-                                submitNewEventForm(calendarId, date, text)
-                                text = ''
+                    Layout.fillWidth: true
+                    sourceComponent: Component {
+
+                        ColumnLayout {
+                            Component.onCompleted: {
+                                newEventText.forceActiveFocus()
+                                newEventFormOpened(model, newEventCalendarId)
+                            }
+                            PlasmaComponents.ComboBox {
+                                id: newEventCalendarId
+                                Layout.fillWidth: true
+                                model: ['asdf']
+                            }
+
+                            RowLayout {
+                                PlasmaComponents.TextField {
+                                    id: newEventText
+                                    Layout.fillWidth: true
+                                    placeholderText: "Eg: 9am-5pm Work"
+                                    onAccepted: {
+                                        var calendarId = newEventCalendarId.model[newEventCalendarId.currentIndex]
+                                        submitNewEventForm(calendarId, date, text)
+                                        text = ''
+                                    }
+                                }
+                            }
+
+                            Item {
+                                Layout.fillWidth: true
+                                height: 10
                             }
                         }
                     }
-
-                    Item {
-                        Layout.fillWidth: true
-                        height: 10
-                    }
                 }
+                
 
                 ColumnLayout {
                     spacing: 10
