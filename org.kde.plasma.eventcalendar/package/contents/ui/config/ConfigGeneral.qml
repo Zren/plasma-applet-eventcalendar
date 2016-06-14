@@ -299,7 +299,7 @@ Item {
                             Layout.fillWidth: true
                             id: clock_timeformat
                             onTextChanged: onClockFormatChange()
-                            placeholderText: 'h:mm AP'
+                            placeholderText: Qt.locale().timeFormat(Locale.ShortFormat)
                         }
                         Label {
                             text: Qt.formatDateTime(new Date(), cfg_clock_timeformat)
@@ -365,6 +365,7 @@ Item {
                             Layout.fillWidth: true
                             id: clock_timeformat_2
                             onTextChanged: onClockFormatChange()
+                            placeholderText: Qt.locale().dateFormat(Locale.ShortFormat)
                         }
                         Label {
                             text: Qt.formatDateTime(new Date(), cfg_clock_timeformat_2)

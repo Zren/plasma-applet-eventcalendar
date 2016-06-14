@@ -125,7 +125,7 @@ Item {
                     if (clock.cfg_clock_timeformat) {
                         return Qt.formatDateTime(clock.currentTime, clock.cfg_clock_timeformat);
                     } else {
-                        return Qt.formatTime(clock.currentTime, clock.cfg_clock_24h ? "hh:mm" : "h:mm AP");
+                        return Qt.formatTime(clock.currentTime, Qt.locale().timeFormat(Locale.ShortFormat));
                     }
                 }
 
@@ -156,7 +156,7 @@ Item {
                     if (clock.cfg_clock_timeformat_2) {
                         return Qt.formatDateTime(clock.currentTime, clock.cfg_clock_timeformat_2);
                     } else {
-                        return Qt.formatDate(clock.currentTime, "yyyy-MM-dd");
+                        return Qt.formatDate(clock.currentTime, Qt.locale().dateFormat(Locale.ShortFormat));
                     }
                 }
 
