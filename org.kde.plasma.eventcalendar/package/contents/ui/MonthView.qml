@@ -28,7 +28,7 @@ import org.kde.plasma.extras 2.0 as PlasmaExtras
 PinchArea {
     id: root
 
-    anchors.fill: parent
+    // anchors.fill: parent
 
     property alias selectedMonth: calendarBackend.monthName
     property alias selectedYear: calendarBackend.year

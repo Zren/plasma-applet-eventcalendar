@@ -43,8 +43,8 @@ Item {
         id: agendaModel
     }
 
-    width: 400
-    height: 400
+    // width: 400
+    // height: 400
 
     // Testing with qmlview
     Rectangle {
