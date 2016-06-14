@@ -252,7 +252,7 @@ Item {
                 }
                 ComboBox {
                     // org.kde.plasma.digitalclock
-                    Layout.fillWidth: true
+                    // Layout.fillWidth: true
                     id: clock_fontfamilyComboBox
                     textRole: "text" // doesn't autodeduce from model because we manually populate it
 
