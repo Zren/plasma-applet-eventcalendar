@@ -173,7 +173,7 @@ Item {
     
 
     Component.onCompleted: {
-        formFactor = PlasmaCore.Types.Horizontal
+        // formFactor = PlasmaCore.Types.Horizontal
     }
 
     // Timer {
