@@ -124,9 +124,11 @@ MouseArea {
             visible: parent.visible && true
             anchors.horizontalCenter: parent.horizontalCenter
             anchors.bottom: parent.bottom
-            anchors.margins: parent.height / 5
-            property int dotSize: parent.height / 10
+            anchors.margins: parent.height / 4
+            property int dotSize: (parent.height / 8) + dotBorderWidth*2
             property color dotColor: theme.highlightColor
+            property int dotBorderWidth: 1
+            property color dotBorderColor: theme.backgroundColor
 
             Row {
                 anchors.horizontalCenter: parent.horizontalCenter
@@ -138,6 +140,8 @@ MouseArea {
                     height: eventBadgeDots.dotSize
                     radius: width / 2
                     color: eventBadgeDots.dotColor
+                    border.width: eventBadgeDots.dotBorderWidth
+                    border.color: eventBadgeDots.dotBorderColor
                 }
                 Rectangle {
                     visible: parent.visible && model.events.count >= 2
@@ -145,6 +149,8 @@ MouseArea {
                     height: eventBadgeDots.dotSize
                     radius: width / 2
                     color: eventBadgeDots.dotColor
+                    border.width: eventBadgeDots.dotBorderWidth
+                    border.color: eventBadgeDots.dotBorderColor
                 }
                 Rectangle {
                     visible: parent.visible && model.events.count >= 3
@@ -152,6 +158,8 @@ MouseArea {
                     height: eventBadgeDots.dotSize
                     radius: width / 2
                     color: eventBadgeDots.dotColor
+                    border.width: eventBadgeDots.dotBorderWidth
+                    border.color: eventBadgeDots.dotBorderColor
                 }
             }
         }
