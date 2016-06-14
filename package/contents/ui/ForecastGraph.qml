@@ -11,8 +11,14 @@ import "utils.js" as Utils
 import "shared.js" as Shared
 
 Item {
+    id: meteogramView
     width: 400
     height: 100
+    property bool cfg_clock_24h: false
+    onCfg_clock_24hChanged: {
+        graph.gridData = formatXAxisLabels(graph.gridData)
+        graph.update();
+    }
 
     Rectangle {
         visible: typeof root === 'undefined'
@@ -53,8 +59,8 @@ Item {
 
         Connections {
             target: theme
-            onTextColorChanged: { gridCanvas.requestPaint(); }
-            onButtonBackgroundColorChanged: { gridCanvas.requestPaint(); }
+            onTextColorChanged: { graph.update(); }
+            onButtonBackgroundColorChanged: { graph.update(); }
         }
 
         property variant gridData: []
@@ -276,7 +282,7 @@ Item {
         //     {'y': 2},
         //     {'y': 3},
         // ]
-        gridCanvas.requestPaint();
+        graph.update();
 
         if (typeof popup === "undefined") {
             updateWeatherData();
@@ -318,7 +324,7 @@ Item {
             var mm = rain + snow;
             return {
                 y: item.main.temp,
-                xLabel: item.dt * 1000,
+                xTimestamp: item.dt * 1000,
                 percipitation: mm,
                 weatherIcon: Shared.weatherIconMap[item.weather[0].icon] || 'weather-severe-alert'
             };
@@ -330,7 +336,7 @@ Item {
             if (data.list.length > 0) {
                 gData.push({
                     y: data.list[0].main.temp,
-                    xLabel: Date.now(),
+                    xTimestamp: Date.now(),
                     percipitation: 0,
                 });
             }
@@ -346,24 +352,33 @@ Item {
         // Only forcast next 24 hours 
         gData = gData.slice(0, Math.ceil(24 / 3));
 
-        // Format xAxis Labels as 12 hour clock
-        // (3am = 3) (11pm = 11p)
+        // Format xAxis Labels
+        gData = formatXAxisLabels(gData);
+
+        graph.gridData = gData;
+        graph.update();
+    }
+
+    function formatXAxisLabels(gData) {
         for (var i = 0; i < gData.length; i++) {
             if (i != 0 && i != gData.length-1) {
-                var date = new Date(gData[i].xLabel);
+                var date = new Date(gData[i].xTimestamp);
                 var hour = date.getHours();
                 var label = '';
-                label += hour % 12 == 0 ? 12 : hour % 12
-                label += (hour < 12 ? '' : 'p')
+                if (meteogramView.cfg_clock_24h) {
+                    label += hour
+                } else {
+                    // 12 hour clock
+                    // (3am = 3) (11pm = 11p)
+                    label += hour % 12 == 0 ? 12 : hour % 12
+                    label += (hour < 12 ? '' : 'p')
+                }
                 gData[i].xLabel = label;
             } else {
                 gData[i].xLabel = '';
             }
         }
-
-        graph.gridData = gData;
-        graph.update();
-
+        return gData;
     }
 }
 
