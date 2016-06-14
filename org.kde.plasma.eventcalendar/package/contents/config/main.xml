@@ -86,6 +86,9 @@
     <entry name="month_show_weeknumbers" type="bool">
       <default>false</default>
     </entry>
+    <entry name="month_eventbadge_type" type="string">
+      <default>theme</default>
+    </entry>
   </group>
 
   <group name="Agenda">

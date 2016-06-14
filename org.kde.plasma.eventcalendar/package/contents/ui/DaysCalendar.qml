@@ -48,6 +48,7 @@ Item {
     property int columns
 
     property bool showWeekNumbers
+    property string eventBadgeType: "theme"
 
     onShowWeekNumbersChanged: canvas.requestPaint()
 
@@ -231,20 +232,20 @@ Item {
         }
     }
 
-    // PlasmaCore.Svg {
-    //     id: calendarSvg
-    //     imagePath: "widgets/calendar"
-    // }
+    PlasmaCore.Svg {
+        id: calendarSvg
+        imagePath: "widgets/calendar"
+    }
 
-    // Component {
-    //     id: eventsMarkerComponent
+    Component {
+        id: eventsMarkerComponent
 
-    //     PlasmaCore.SvgItem {
-    //         id: eventsMarker
-    //         svg: calendarSvg
-    //         elementId: "event"
-    //     }
-    // }
+        PlasmaCore.SvgItem {
+            id: eventsMarker
+            svg: calendarSvg
+            elementId: "event"
+        }
+    }
 
     Connections {
         target: theme
@@ -335,6 +336,18 @@ Item {
 
                 onClicked: daysCalendar.activated(index, model, delegate)
                 onDoubleClicked: daysCalendar.doubleClicked(index, model, delegate)
+
+                eventBadgeType: {
+                    if (daysCalendar.eventBadgeType == 'theme') {
+                        if (calendarSvg.hasElement('event')) {
+                        return daysCalendar.eventBadgeType
+                        } else {
+                            return 'bottomBar'
+                        }
+                    } else {
+                        return daysCalendar.eventBadgeType
+                    }
+                }
 
                 Connections {
                     target: daysCalendar

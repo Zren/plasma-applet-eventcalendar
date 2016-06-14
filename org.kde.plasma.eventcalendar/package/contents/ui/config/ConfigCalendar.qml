@@ -12,6 +12,7 @@ ColumnLayout {
 
     property alias cfg_month_show_border: month_show_border.checked
     property alias cfg_month_show_weeknumbers: month_show_weeknumbers.checked
+    property string cfg_month_eventbadge_type: 'bottomBar'
 
     SystemPalette {
         id: palette
@@ -88,19 +89,28 @@ ColumnLayout {
                     ColumnLayout {
                         ExclusiveGroup { id: month_eventbadge_styleGroup }
                         RadioButton {
-                            enabled: false
                             text: i18n("Theme")
                             exclusiveGroup: month_eventbadge_styleGroup
+                            checked: cfg_month_eventbadge_type == 'theme'
+                            onClicked: {
+                                cfg_month_eventbadge_type = 'theme'
+                            }
                         }
                         RadioButton {
-                            enabled: false
-                            text: i18n("Dots")
+                            text: i18n("Dots (3 Maximum)")
                             exclusiveGroup: month_eventbadge_styleGroup
+                            checked: cfg_month_eventbadge_type == 'dots'
+                            onClicked: {
+                                cfg_month_eventbadge_type = 'dots'
+                            }
                         }
                         RadioButton {
                             text: i18n("Bottom Bar")
-                            checked: true
                             exclusiveGroup: month_eventbadge_styleGroup
+                            checked: cfg_month_eventbadge_type == 'bottomBar'
+                            onClicked: {
+                                cfg_month_eventbadge_type = 'bottomBar'
+                            }
                         }
                     }
                 }

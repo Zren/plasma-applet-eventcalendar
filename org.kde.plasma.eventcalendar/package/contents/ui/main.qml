@@ -128,6 +128,7 @@ Item {
         cfg_agenda_newevent_last_calendar_id: plasmoid.configuration.agenda_newevent_last_calendar_id
         cfg_month_show_border: plasmoid.configuration.month_show_border
         cfg_month_show_weeknumbers: plasmoid.configuration.month_show_weeknumbers
+        cfg_month_eventbadge_type: plasmoid.configuration.month_eventbadge_type
 
         // If pin is enabled, we need to add some padding around the popup unless
         // * we're a desktop widget (no need)
