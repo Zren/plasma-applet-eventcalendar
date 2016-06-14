@@ -50,6 +50,7 @@ PinchArea {
     property int firstDay: new Date(showDate.getFullYear(), showDate.getMonth(), 1).getDay()
     property alias today: calendarBackend.today
     property bool showWeekNumbers: false
+    property string eventBadgeType: 'theme'
 
     property alias cellHeight: mainDaysCalendar.cellHeight
     // property QtObject daysModel: calendarBackend.daysModel
@@ -352,6 +353,7 @@ PinchArea {
             rows: calendarBackend.weeks
 
             showWeekNumbers: root.showWeekNumbers
+            eventBadgeType: root.eventBadgeType
 
             headerModel: calendarBackend.days
             // gridModel: calendarBackend.daysModel

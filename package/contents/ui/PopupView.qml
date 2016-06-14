@@ -46,6 +46,7 @@ Item {
     property bool cfg_agenda_breakup_multiday_events: true
     property bool cfg_month_show_border: true
     property bool cfg_month_show_weeknumbers: true
+    property string cfg_month_eventbadge_type: 'theme'
     property bool cfg_agenda_newevent_remember_calendar: true
     property string cfg_agenda_newevent_last_calendar_id: ''
     
@@ -263,6 +264,7 @@ Item {
                 id: monthView
                 borderOpacity: cfg_month_show_border ? 0.25 : 0
                 showWeekNumbers: cfg_month_show_weeknumbers
+                eventBadgeType: cfg_month_eventbadge_type
 
                 Layout.preferredWidth: parent.width/2
                 Layout.fillWidth: true

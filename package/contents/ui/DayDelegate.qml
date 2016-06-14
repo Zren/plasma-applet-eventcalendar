@@ -29,6 +29,7 @@ MouseArea {
     id: dayStyle
 
     hoverEnabled: true
+    property string eventBadgeType: "bottomBar"
 
     signal activated
 
@@ -110,7 +111,7 @@ MouseArea {
 
         Rectangle {
             id: eventBadgeBottomBar
-            visible: parent.visible && false
+            visible: parent.visible && dayStyle.eventBadgeType == 'bottomBar'
             anchors.left: parent.left
             anchors.right: parent.right
             anchors.bottom: parent.bottom
@@ -121,7 +122,7 @@ MouseArea {
 
         Item {
             id: eventBadgeDots
-            visible: parent.visible && true
+            visible: parent.visible && dayStyle.eventBadgeType == 'dots'
             anchors.horizontalCenter: parent.horizontalCenter
             anchors.bottom: parent.bottom
             anchors.margins: parent.height / 4
@@ -164,15 +165,15 @@ MouseArea {
             }
         }
 
-        // Loader {
-        //     id: eventBadgeTheme
-        //     active: parent.visible && false
-        //     anchors.bottom: parent.bottom
-        //     anchors.right: parent.right
-        //     height: parent.height / 3
-        //     width: height
-        //     sourceComponent: eventsMarkerComponent
-        // }
+        Loader {
+            id: eventBadgeTheme
+            active: parent.visible && dayStyle.eventBadgeType == 'theme'
+            anchors.bottom: parent.bottom
+            anchors.right: parent.right
+            height: parent.height / 3
+            width: height
+            sourceComponent: eventsMarkerComponent
+        }
     }
 
     Components.Label {
