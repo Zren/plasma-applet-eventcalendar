@@ -93,6 +93,11 @@ ColumnLayout {
                             exclusiveGroup: month_eventbadge_styleGroup
                         }
                         RadioButton {
+                            enabled: false
+                            text: i18n("Dots")
+                            exclusiveGroup: month_eventbadge_styleGroup
+                        }
+                        RadioButton {
                             text: i18n("Bottom Bar")
                             checked: true
                             exclusiveGroup: month_eventbadge_styleGroup
