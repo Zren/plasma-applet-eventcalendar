@@ -1,3 +1,13 @@
+[b]v33 - June 13 2016[/b]
+
+* Round percipitation if >1mm.
+* Show past events in the current month.
+* Fix last selected calendar not saving.
+* Properly scale the widget when resized (eg: desktop widget).
+* Add a pin button.
+* The meteogram now takes up the entire top row when the timer is disabled.
+
+
 [b]v32 - May 9 2016[/b]
 
 * Fix in-progress multiday events positioning the current day in agenda in the wrong place.
