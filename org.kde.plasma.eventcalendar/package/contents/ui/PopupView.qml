@@ -150,177 +150,179 @@ Item {
         width: parent.width
         height: parent.height
 
-    GridLayout {
-        id: widgetGrid
-        Layout.fillWidth: true
-        Layout.fillHeight: true
-        columnSpacing: popup.spacing
-        rowSpacing: popup.spacing
-        onColumnsChanged: {
-            console.log(popup.state, widgetGrid.columns, widgetGrid.rows)
-        }
-        onRowsChanged: {
-            console.log(popup.state, widgetGrid.columns, widgetGrid.rows)
-        }
-        Layout.margins: popup.padding
+        GridLayout {
+            id: widgetGrid
+            Layout.fillWidth: true
+            Layout.fillHeight: true
+            columnSpacing: popup.spacing
+            rowSpacing: popup.spacing
+            onColumnsChanged: {
+                console.log(popup.state, widgetGrid.columns, widgetGrid.rows)
+            }
+            onRowsChanged: {
+                console.log(popup.state, widgetGrid.columns, widgetGrid.rows)
+            }
+            Layout.margins: popup.padding
 
-                ForecastGraph {
-                    id: meteogramView
-                    visible: cfg_widget_show_meteogram
-                    Layout.fillWidth: true
-                    Layout.minimumHeight: popup.topRowHeight
-                    Layout.preferredHeight: parent.height / 5
-                }
 
-                TimerView {
-                    id: timerView
-                    visible: cfg_widget_show_timer
-                    Layout.fillWidth: true
-                    Layout.minimumHeight: popup.topRowHeight
-                    Layout.preferredHeight: parent.height / 5
-                    cfg_timer_sfx_enabled: popup.cfg_timer_sfx_enabled
-                    cfg_timer_sfx_filepath: popup.cfg_timer_sfx_filepath
-                }
+            ForecastGraph {
+                id: meteogramView
+                visible: cfg_widget_show_meteogram
+                Layout.fillWidth: true
+                Layout.minimumHeight: popup.topRowHeight
+                Layout.preferredHeight: parent.height / 5
+            }
 
-                AgendaView {
-                    id: agendaView
+            TimerView {
+                id: timerView
+                visible: cfg_widget_show_timer
+                Layout.fillWidth: true
+                Layout.minimumHeight: popup.topRowHeight
+                Layout.preferredHeight: parent.height / 5
+                cfg_timer_sfx_enabled: popup.cfg_timer_sfx_enabled
+                cfg_timer_sfx_filepath: popup.cfg_timer_sfx_filepath
+            }
 
-                    Layout.preferredWidth: parent.width / 2
-                    Layout.fillWidth: true
-                    Layout.fillHeight: true
+            AgendaView {
+                id: agendaView
 
-                    cfg_agenda_breakup_multiday_events: popup.cfg_agenda_breakup_multiday_events
-                    cfg_agenda_weather_show_icon: popup.cfg_agenda_weather_show_icon
-                    cfg_agenda_weather_icon_height: popup.cfg_agenda_weather_icon_height
-                    cfg_agenda_weather_show_text: popup.cfg_agenda_weather_show_text
+                Layout.preferredWidth: parent.width / 2
+                Layout.fillWidth: true
+                Layout.fillHeight: true
 
-                    currentTime: today
+                cfg_agenda_breakup_multiday_events: popup.cfg_agenda_breakup_multiday_events
+                cfg_agenda_weather_show_icon: popup.cfg_agenda_weather_show_icon
+                cfg_agenda_weather_icon_height: popup.cfg_agenda_weather_icon_height
+                cfg_agenda_weather_show_text: popup.cfg_agenda_weather_show_text
 
-                    visibleDateMin: popup.visibleDateMin
-                    visibleDateMax: popup.visibleDateMax
+                currentTime: today
 
-                    onNewEventFormOpened: {
-                        console.log('onNewEventFormOpened')
-                        if (config && config.access_token) {
-                            var calendarIdList = plasmoid.configuration.calendar_id_list ? plasmoid.configuration.calendar_id_list.split(',') : ['primary'];
-                            var calendarList = plasmoid.configuration.calendar_list ? JSON.parse(Qt.atob(plasmoid.configuration.calendar_list)) : [];
-                            // console.log('calendarList', JSON.stringify(calendarList, null, '\t'))
-                            var list = []
-                            var selectedIndex = 0;
-                            calendarList.forEach(function(calendar){
-                                if (calendar.accessRole == 'owner') {
-                                    if (popup.cfg_agenda_newevent_remember_calendar && calendar.id === popup.cfg_agenda_newevent_last_calendar_id) {
-                                        selectedIndex = list.length; // index after insertion
-                                    }
-                                    list.push({
-                                        'calendarId': calendar.id,
-                                        'text': calendar.summary,
-                                    })
+                visibleDateMin: popup.visibleDateMin
+                visibleDateMax: popup.visibleDateMax
+
+                onNewEventFormOpened: {
+                    console.log('onNewEventFormOpened')
+                    if (config && config.access_token) {
+                        var calendarIdList = plasmoid.configuration.calendar_id_list ? plasmoid.configuration.calendar_id_list.split(',') : ['primary'];
+                        var calendarList = plasmoid.configuration.calendar_list ? JSON.parse(Qt.atob(plasmoid.configuration.calendar_list)) : [];
+                        // console.log('calendarList', JSON.stringify(calendarList, null, '\t'))
+                        var list = []
+                        var selectedIndex = 0;
+                        calendarList.forEach(function(calendar){
+                            if (calendar.accessRole == 'owner') {
+                                if (popup.cfg_agenda_newevent_remember_calendar && calendar.id === popup.cfg_agenda_newevent_last_calendar_id) {
+                                    selectedIndex = list.length; // index after insertion
                                 }
-                            });
-                            newEventCalendarId.model = list
-                            newEventCalendarId.currentIndex = selectedIndex
-                        }
-                    }
-                    onSubmitNewEventForm: {
-                        console.log('onSubmitNewEventForm', calendarId)
-                        if (config && config.access_token) {
-                            var calendarId2 = calendarId.calendarId ? calendarId.calendarId : calendarId
-                            var calendarList = plasmoid.configuration.calendar_list ? JSON.parse(Qt.atob(plasmoid.configuration.calendar_list)) : [];
-                            var dateString = date.getFullYear() + '-' + (date.getMonth()+1) + '-' + date.getDate()
-                            console.log('text', dateString + ' ' + text)
-                            if (popup.cfg_agenda_newevent_remember_calendar) {
-                                plasmoid.configuration.agenda_newevent_last_calendar_id = calendarId2
+                                list.push({
+                                    'calendarId': calendar.id,
+                                    'text': calendar.summary,
+                                })
                             }
-                            Shared.createGCalEvent({
-                                access_token: config.access_token,
-                                calendarId: calendarId2,
-                                text: dateString + ' ' + text,
-                            }, function(err, data) {
-                                // console.log(err, JSON.stringify(data, null, '\t'));
-                                var calendarIdList = plasmoid.configuration.calendar_id_list ? plasmoid.configuration.calendar_id_list.split(',') : ['primary'];
-                                if (calendarIdList.indexOf(calendarId2) >= 0) {
-                                    eventsByCalendar[calendarId2].items.push(data);
-                                    updateUI()
-                                }
-                            })
-                        }
-                    }
-                    PlasmaComponents.Button {
-                        iconSource: 'view-refresh'
-                        width: 26
-                        anchors.bottom: parent.bottom
-                        anchors.right: parent.right
-                        onClicked: {
-                            updateEvents()
-                            updateWeather(true)
-                        }
+                        });
+                        newEventCalendarId.model = list
+                        newEventCalendarId.currentIndex = selectedIndex
                     }
                 }
+                onSubmitNewEventForm: {
+                    console.log('onSubmitNewEventForm', calendarId)
+                    if (config && config.access_token) {
+                        var calendarId2 = calendarId.calendarId ? calendarId.calendarId : calendarId
+                        var calendarList = plasmoid.configuration.calendar_list ? JSON.parse(Qt.atob(plasmoid.configuration.calendar_list)) : [];
+                        var dateString = date.getFullYear() + '-' + (date.getMonth()+1) + '-' + date.getDate()
+                        console.log('text', dateString + ' ' + text)
+                        if (popup.cfg_agenda_newevent_remember_calendar) {
+                            plasmoid.configuration.agenda_newevent_last_calendar_id = calendarId2
+                        }
+                        Shared.createGCalEvent({
+                            access_token: config.access_token,
+                            calendarId: calendarId2,
+                            text: dateString + ' ' + text,
+                        }, function(err, data) {
+                            // console.log(err, JSON.stringify(data, null, '\t'));
+                            var calendarIdList = plasmoid.configuration.calendar_id_list ? plasmoid.configuration.calendar_id_list.split(',') : ['primary'];
+                            if (calendarIdList.indexOf(calendarId2) >= 0) {
+                                eventsByCalendar[calendarId2].items.push(data);
+                                updateUI()
+                            }
+                        })
+                    }
+                }
+                PlasmaComponents.Button {
+                    iconSource: 'view-refresh'
+                    width: 26
+                    anchors.bottom: parent.bottom
+                    anchors.right: parent.right
+                    onClicked: {
+                        updateEvents()
+                        updateWeather(true)
+                    }
+                }
+            }
 
-                MonthView {
-                    id: monthView
-                    borderOpacity: cfg_month_show_border ? 0.25 : 0
-                    showWeekNumbers: cfg_month_show_weeknumbers
+            MonthView {
+                id: monthView
+                borderOpacity: cfg_month_show_border ? 0.25 : 0
+                showWeekNumbers: cfg_month_show_weeknumbers
 
-                    Layout.preferredWidth: parent.width/2
-                    Layout.fillWidth: true
-                    Layout.fillHeight: true
+                Layout.preferredWidth: parent.width/2
+                Layout.fillWidth: true
+                Layout.fillHeight: true
 
-                    // Component.onCompleted: {
-                    //     today = new Date();
-                    // }
+                // Component.onCompleted: {
+                //     today = new Date();
+                // }
 
-                    function parseGCalEvents(data) {
-                        if (!(data && data.items))
-                            return;
+                function parseGCalEvents(data) {
+                    if (!(data && data.items))
+                        return;
 
-                        // Clear event data since data contains events from all calendars, and this function
-                        // is called every time a calendar is recieved.
+                    // Clear event data since data contains events from all calendars, and this function
+                    // is called every time a calendar is recieved.
+                    for (var i = 0; i < monthView.daysModel.count; i++) {
+                        var dayData = monthView.daysModel.get(i);
+                        monthView.daysModel.setProperty(i, 'showEventBadge', false);
+                        dayData.events.clear();
+                    }
+
+                    // https://github.com/KDE/plasma-framework/blob/master/src/declarativeimports/calendar/daysmodel.h
+                    for (var j = 0; j < data.items.length; j++) {
+                        var eventItem = data.items[j];
+                        var eventItemStartDate = new Date(eventItem.start.dateTime.getFullYear(), eventItem.start.dateTime.getMonth(), eventItem.start.dateTime.getDate());
+                        var eventItemEndDate = new Date(eventItem.end.dateTime.getFullYear(), eventItem.end.dateTime.getMonth(), eventItem.end.dateTime.getDate());
+                        if (eventItem.end.date) {
+                            // All day events end at midnight which is technically the next day.
+                            eventItemEndDate.setDate(eventItemEndDate.getDate() - 1);
+                        }
+                        // console.log(eventItemStartDate, eventItemEndDate)
                         for (var i = 0; i < monthView.daysModel.count; i++) {
                             var dayData = monthView.daysModel.get(i);
-                            monthView.daysModel.setProperty(i, 'showEventBadge', false);
-                            dayData.events.clear();
-                        }
-
-                        // https://github.com/KDE/plasma-framework/blob/master/src/declarativeimports/calendar/daysmodel.h
-                        for (var j = 0; j < data.items.length; j++) {
-                            var eventItem = data.items[j];
-                            var eventItemStartDate = new Date(eventItem.start.dateTime.getFullYear(), eventItem.start.dateTime.getMonth(), eventItem.start.dateTime.getDate());
-                            var eventItemEndDate = new Date(eventItem.end.dateTime.getFullYear(), eventItem.end.dateTime.getMonth(), eventItem.end.dateTime.getDate());
-                            if (eventItem.end.date) {
-                                // All day events end at midnight which is technically the next day.
-                                eventItemEndDate.setDate(eventItemEndDate.getDate() - 1);
-                            }
-                            // console.log(eventItemStartDate, eventItemEndDate)
-                            for (var i = 0; i < monthView.daysModel.count; i++) {
-                                var dayData = monthView.daysModel.get(i);
-                                var dayDataDate = new Date(dayData.yearNumber, dayData.monthNumber - 1, dayData.dayNumber);
-                                if (eventItemStartDate <= dayDataDate && dayDataDate <= eventItemEndDate) {
-                                    // console.log('\t', dayDataDate)
-                                    monthView.daysModel.setProperty(i, 'showEventBadge', true);
-                                    var events = dayData.events || [];
-                                    events.append(eventItem);
-                                    monthView.daysModel.setProperty(i, 'events', events);
-                                } else if (eventItemEndDate < dayDataDate) {
-                                    break;
-                                }
+                            var dayDataDate = new Date(dayData.yearNumber, dayData.monthNumber - 1, dayData.dayNumber);
+                            if (eventItemStartDate <= dayDataDate && dayDataDate <= eventItemEndDate) {
+                                // console.log('\t', dayDataDate)
+                                monthView.daysModel.setProperty(i, 'showEventBadge', true);
+                                var events = dayData.events || [];
+                                events.append(eventItem);
+                                monthView.daysModel.setProperty(i, 'events', events);
+                            } else if (eventItemEndDate < dayDataDate) {
+                                break;
                             }
                         }
-                    }
-
-                    onDayDoubleClicked: {
-                        var date = new Date(dayData.yearNumber, dayData.monthNumber-1, dayData.dayNumber);
-                        console.log('Popup.monthView.onDoubleClicked', date);
-                        if (true) {
-                            // cfg_month_day_doubleclick == "browser_newevent"
-                            Shared.openGoogleCalendarNewEventUrl(date);
-                        }
-                        
                     }
                 }
-    }
 
+                onDayDoubleClicked: {
+                    var date = new Date(dayData.yearNumber, dayData.monthNumber-1, dayData.dayNumber);
+                    console.log('Popup.monthView.onDoubleClicked', date);
+                    if (true) {
+                        // cfg_month_day_doubleclick == "browser_newevent"
+                        Shared.openGoogleCalendarNewEventUrl(date);
+                    }
+                    
+                }
+            }
+
+            
+        }
     }
 
     Component.onCompleted: {
