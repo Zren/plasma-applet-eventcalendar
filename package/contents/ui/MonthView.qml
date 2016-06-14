@@ -234,6 +234,7 @@ PinchArea {
 
     ListModel {
         id: daysModel
+        dynamicRoles: true
 
         Component.onCompleted: {
             updateMonthOverview()
