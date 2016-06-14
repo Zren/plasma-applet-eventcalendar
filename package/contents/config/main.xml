@@ -7,9 +7,16 @@
 
 
   <group name="General">
+    <!-- Removed in: v33
     <entry name="widget_show_spacer" type="bool">
       <default>false</default>
     </entry>
+    -->
+    <!--
+    <entry name="widget_show_pin" type="bool">
+      <default>false</default>
+    </entry>
+    -->
     <entry name="widget_show_meteogram" type="bool">
       <default>true</default>
     </entry>

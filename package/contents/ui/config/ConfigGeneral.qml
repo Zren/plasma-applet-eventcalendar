@@ -18,7 +18,7 @@ Item {
     implicitWidth: pageColumn.implicitWidth
     implicitHeight: pageColumn.implicitHeight
 
-    property alias cfg_widget_show_spacer: widget_show_spacer.checked
+    // property alias cfg_widget_show_pin: widget_show_pin.checked
     property alias cfg_widget_show_meteogram: widget_show_meteogram.checked
     property alias cfg_widget_show_timer: widget_show_timer.checked
     property alias cfg_timer_sfx_enabled: timer_sfx_enabled.checked
@@ -141,17 +141,17 @@ Item {
         Label {
             text: i18n("Show/Hide widgets above the calendar.")
         }
-        GroupBox {
-            Layout.fillWidth: true
+        // GroupBox {
+        //     Layout.fillWidth: true
 
-            ColumnLayout {
-                CheckBox {
-                    Layout.fillWidth: true
-                    id: widget_show_spacer
-                    text: i18n("Spacer")
-                }
-            }
-        }
+        //     ColumnLayout {
+        //         CheckBox {
+        //             Layout.fillWidth: true
+        //             id: widget_show_pin
+        //             text: i18n("Pin Button to prevent the calendar from closing")
+        //         }
+        //     }
+        // }
         GroupBox {
             Layout.fillWidth: true
 
