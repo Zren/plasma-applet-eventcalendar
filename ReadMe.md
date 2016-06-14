@@ -6,8 +6,8 @@ http://kde-look.org/content/show.php?content=175591
 
 ## Screenshots
 
-![](https://i.imgur.com/YLzrjwx.png)
-![](https://i.imgur.com/S1w3Sga.png)
+![](https://i.imgur.com/C8uSVZf.png)
+![](https://i.imgur.com/mXT23zo.png)
 
 
 ## Install via KDE
