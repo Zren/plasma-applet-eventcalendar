@@ -1,3 +1,12 @@
+[b]v34 - June 14 2016[/b]
+
+* Fix clock scaling on vertical panels.
+* Use the locale's timeformat by default.
+* Can now also choose your theme's calendar event indicator. By default it uses the theme, or the old solid rectangle if on an older version of KDE.
+* Included a dots event indicator showing if there's 0-3+ events on that day.
+* Performance increase when drawing the agenda (specifically the invisible new event form).
+* 24h labels in the meteogram and the calendar tooltips.
+
 [b]v33 - June 13 2016[/b]
 
 * Round percipitation if >1mm.
