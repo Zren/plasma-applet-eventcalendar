@@ -92,6 +92,26 @@ Item {
             yAxisMax = Math.ceil(yDataMax)
         }
 
+        function updateGridItemAreas() {
+            var areas = [];
+            // Skip the first gridItem since it's area starts at the edge of the grid.
+            for (var i = 1; i < gridData.length; i++) {
+                var a = graph.gridPoint(i-2, graph.yAxisMin);
+                var b = graph.gridPoint(i-1, graph.yAxisMin);
+                var area = {};
+                area.areaX = a.x
+                area.areaY = a.y
+                area.areaWidth = b.x - a.x
+                area.areaHeight = graph.gridHeight
+                console.log(JSON.stringify(area));
+                area.gridItem = gridData[i];
+                areas.push(area);
+            }
+            console.log(JSON.stringify(areas));
+            gridDataAreas.model = areas;
+        }
+
+
         function gridPoint(x, y) {
             return {
                 x: (x - xAxisMin) / (xAxisMax - xAxisMin) * gridWidth + gridX,
@@ -267,11 +287,45 @@ Item {
                     //     context.fillText(labelText, graph.gridX2, graph.gridY + 6)
                     // }
                     
-                    
+
+                    // Area
+                    graph.updateGridItemAreas()
+
                     console.log('painted');
                 }
 
             }
+
+
+ 
+            Repeater {
+                id: gridDataAreas
+                anchors.fill: parent
+                model: ListModel {}
+
+                delegate: Rectangle {
+                    x: modelData.areaX+modelData.areaWidth
+                    y: modelData.areaY-modelData.areaHeight
+                    width: modelData.areaWidth
+                    height: modelData.areaHeight
+                    // color: ["#880", "#008"][index % 2]
+                    color: "transparent"
+
+                    PlasmaCore.ToolTipArea {
+                        anchors.fill: parent
+                        icon: modelData.gridItem.weatherIcon
+                        mainText: modelData.gridItem.tooltipMainText
+                        subText: modelData.gridItem.tooltipSubText
+                        location: PlasmaCore.Types.BottomEdge
+                    }
+
+                    Component.onCompleted: {
+                        console.log(x, y)
+                    }
+                }
+
+            }
+
 
         }
     }
@@ -322,11 +376,21 @@ Item {
             var rain = item.rain && item.rain['3h'] || 0;
             var snow = item.snow && item.snow['3h'] || 0;
             var mm = rain + snow;
+
+            // console.log(JSON.stringify(item))
+            var tooltipSubText = item.weather[0].description;
+            tooltipSubText += '<br>' + item.main.temp + '°';
+            if (mm) {
+                tooltipSubText += '<br>' + mm + 'mm';
+            }
+
             return {
                 y: item.main.temp,
                 xTimestamp: item.dt * 1000,
                 percipitation: mm,
-                weatherIcon: Shared.weatherIconMap[item.weather[0].icon] || 'weather-severe-alert'
+                tooltipMainText: new Date(item.dt * 1000),
+                tooltipSubText: tooltipSubText,
+                weatherIcon: Shared.weatherIconMap[item.weather[0].icon] || 'weather-severe-alert',
             };
         }
 
