@@ -249,7 +249,7 @@ Item {
                             context.fillStyle = graph.precipitationColor
                             context.font = "12px sans-serif"
                             context.textAlign = 'end'
-                            var labelText = (item.percipitation > 1 ? Math.round(item.percipitation) : item.percipitation.toFixed(1)) + 'mm';
+                            var labelText = (item.percipitation >= 1 ? Math.round(item.percipitation) : item.percipitation.toFixed(1)) + 'mm';
                             context.strokeStyle = graph.precipitationTextOulineColor;
                             context.lineWidth = 3;
                             context.strokeText(labelText, p.x, graph.gridY + 6)
