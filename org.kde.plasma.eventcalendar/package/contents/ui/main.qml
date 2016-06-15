@@ -138,7 +138,7 @@ Item {
             return plasmoid.location != PlasmaCore.Types.Floating // && plasmoid.configuration.widget_show_pin
         }
         padding: {
-            if (isPinVisible && !plasmoid.configuration.widget_show_timer) {
+            if (isPinVisible && !(plasmoid.configuration.widget_show_timer || plasmoid.configuration.widget_show_meteogram)) {
                 return units.largeSpacing;
             } else {
                 return 0;
