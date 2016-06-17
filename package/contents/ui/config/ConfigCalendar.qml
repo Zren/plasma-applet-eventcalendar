@@ -10,6 +10,7 @@ ColumnLayout {
     id: page
     property bool showDebug: false
 
+    property alias cfg_widget_show_calendar: widget_show_calendar.checked
     property alias cfg_month_show_border: month_show_border.checked
     property alias cfg_month_show_weeknumbers: month_show_weeknumbers.checked
     property string cfg_month_eventbadge_type: 'bottomBar'
@@ -22,6 +23,12 @@ ColumnLayout {
         Layout.alignment: Qt.AlignTop | Qt.AlignLeft
 
 
+        CheckBox {
+            Layout.fillWidth: true
+            id: widget_show_calendar
+            text: "Show calendar"
+        }
+        
         GroupBox {
             Layout.fillWidth: true
 

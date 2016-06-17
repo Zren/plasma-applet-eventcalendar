@@ -38,6 +38,7 @@ Item {
     property alias cfg_timer_repeats: timer_repeats.checked
     property alias cfg_timer_in_taskbar: timer_in_taskbar.checked
     property alias cfg_timer_ends_at: timer_ends_at.text
+    property alias cfg_update_pollinterval: update_pollinterval.value
 
     property string timeFormat24hour: 'hh:mm'
     property string timeFormat12hour: 'h:mm AP'
@@ -109,6 +110,20 @@ Item {
     ColumnLayout {
         id: pageColumn
         Layout.fillWidth: true
+
+        RowLayout {
+            Label {
+                text: i18n("Polling interval: ")
+            }
+            
+            SpinBox {
+                id: update_pollinterval
+                
+                suffix: i18ncp("Polling interval in minutes", "min", "min", value)
+                minimumValue: 1
+                maximumValue: 90
+            }
+        }
 
         GroupBox {
             Layout.fillWidth: true
