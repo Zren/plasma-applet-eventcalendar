@@ -80,6 +80,9 @@
     <entry name="timer_ends_at" type="UInt">
       <default>0</default>
     </entry>
+    <entry name="update_pollinterval" type="UInt">
+      <default>20</default>
+    </entry>
   </group>
   
   <group name="Calendar">
