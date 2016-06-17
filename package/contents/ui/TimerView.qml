@@ -35,27 +35,27 @@ Item {
         Row {
             spacing: 10
 
-                PlasmaExtras.Heading {
-                    id: timerLabel
-                    text: "0:00"
-                    font.pixelSize: 40
-                    font.pointSize: -1
+            PlasmaExtras.Heading {
+                id: timerLabel
+                text: "0:00"
+                font.pixelSize: 40
+                font.pointSize: -1
 
-                    MouseArea {
-                        anchors.fill: parent
+                MouseArea {
+                    anchors.fill: parent
 
-                        onWheel: {
-                            var delta = wheel.angleDelta.y || wheel.angleDelta.x;
-                            if (delta > 0) {
-                                setDuration(timerDuration + 60)
-                                timerTicker.stop()
-                            } else if (delta < 0) {
-                                setDuration(timerDuration - 60)
-                                timerTicker.stop()
-                            }
+                    onWheel: {
+                        var delta = wheel.angleDelta.y || wheel.angleDelta.x;
+                        if (delta > 0) {
+                            setDuration(timerDuration + 60)
+                            timerTicker.stop()
+                        } else if (delta < 0) {
+                            setDuration(timerDuration - 60)
+                            timerTicker.stop()
                         }
                     }
                 }
+            }
             
 
             PlasmaComponents.ToolButton {
@@ -72,7 +72,8 @@ Item {
             }
             
             ColumnLayout {
-                anchors.verticalCenter: parent.verticalCenter
+                anchors.bottom: parent.bottom
+                
                 PlasmaComponents.Switch {
                     id: timerRepeat
                     text: i18n("Repeat")
