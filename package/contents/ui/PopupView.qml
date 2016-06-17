@@ -22,7 +22,7 @@ Item {
     property int columnWidth: width / 2
     property int padding: 0
 
-    Layout.minimumWidth: (400 + 10 + 400) * units.devicePixelRatio
+    Layout.minimumWidth: (cfg_widget_show_calendar ? (400 + 10 + 400) : 400) * units.devicePixelRatio
     Layout.preferredWidth: (400 + 10 + 400) * units.devicePixelRatio + padding * 2
     Layout.maximumWidth: plasmoid.screenGeometry.width
 
@@ -36,6 +36,7 @@ Item {
     property bool cfg_widget_show_pin: false
     property bool cfg_widget_show_meteogram: true
     property bool cfg_widget_show_timer: true
+    property bool cfg_widget_show_calendar: true
     property bool cfg_timer_sfx_enabled: true
     property string cfg_timer_sfx_filepath: "/usr/share/sounds/freedesktop/stereo/complete.oga"
     property bool cfg_agenda_scroll_on_select: true
@@ -263,6 +264,7 @@ Item {
 
             MonthView {
                 id: monthView
+                visible: cfg_widget_show_calendar
                 borderOpacity: cfg_month_show_border ? 0.25 : 0
                 showWeekNumbers: cfg_month_show_weeknumbers
                 eventBadgeType: cfg_month_eventbadge_type

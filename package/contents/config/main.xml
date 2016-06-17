@@ -23,6 +23,9 @@
     <entry name="widget_show_timer" type="bool">
       <default>true</default>
     </entry>
+    <entry name="widget_show_calendar" type="bool">
+      <default>true</default>
+    </entry>
     <entry name="timer_sfx_enabled" type="bool">
       <default>true</default>
     </entry>
