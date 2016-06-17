@@ -10,6 +10,7 @@ ColumnLayout {
     id: page
     property bool showDebug: false
 
+    property alias cfg_widget_show_agenda: widget_show_agenda.checked
     property alias cfg_agenda_weather_show_icon: agenda_weather_show_icon.checked
     property alias cfg_agenda_weather_icon_height: agenda_weather_icon_height.value
     property alias cfg_agenda_weather_show_text: agenda_weather_show_text.checked
@@ -22,6 +23,12 @@ ColumnLayout {
 
     ColumnLayout {
         Layout.alignment: Qt.AlignTop | Qt.AlignLeft
+                
+        CheckBox {
+            Layout.fillWidth: true
+            id: widget_show_agenda
+            text: "Show agenda"
+        }
 
         GroupBox {
             Layout.fillWidth: true

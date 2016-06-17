@@ -22,12 +22,30 @@ Item {
     property int columnWidth: width / 2
     property int padding: 0
 
-    Layout.minimumWidth: (cfg_widget_show_calendar ? (400 + 10 + 400) : 400) * units.devicePixelRatio
-    Layout.preferredWidth: (400 + 10 + 400) * units.devicePixelRatio + padding * 2
+    Layout.minimumWidth: {
+        if (cfg_widget_show_agenda && cfg_widget_show_calendar) {
+            return (400 + 10 + 400) * units.devicePixelRatio
+        } else {
+            return 400 * units.devicePixelRatio
+        }
+    }
+    Layout.preferredWidth: {
+        if (cfg_widget_show_agenda && cfg_widget_show_calendar) {
+            return (400 + 10 + 400) * units.devicePixelRatio + padding * 2
+        } else {
+            return 400 * units.devicePixelRatio + padding * 2
+        }
+    }
     Layout.maximumWidth: plasmoid.screenGeometry.width
 
     Layout.minimumHeight: 400 * units.devicePixelRatio
-    Layout.preferredHeight: (cfg_widget_show_meteogram || cfg_widget_show_timer ? 400 + 10 + 100 : 400) * units.devicePixelRatio + padding * 2
+    Layout.preferredHeight: {
+        if ((cfg_widget_show_meteogram || cfg_widget_show_timer) && (cfg_widget_show_agenda || cfg_widget_show_calendar)) {
+            return (400 + 10 + 100) * units.devicePixelRatio + padding * 2
+        } else {
+            return 400 * units.devicePixelRatio + padding * 2
+        }
+    }
     Layout.maximumHeight: plasmoid.screenGeometry.height
 
     // Overload with config: plasmoid.configuration
@@ -36,6 +54,7 @@ Item {
     property bool cfg_widget_show_pin: false
     property bool cfg_widget_show_meteogram: true
     property bool cfg_widget_show_timer: true
+    property bool cfg_widget_show_agenda: true
     property bool cfg_widget_show_calendar: true
     property bool cfg_timer_sfx_enabled: true
     property string cfg_timer_sfx_filepath: "/usr/share/sounds/freedesktop/stereo/complete.oga"
@@ -107,7 +126,7 @@ Item {
     states: [
         State {
             name: "agenda+month"
-            when: !popup.cfg_widget_show_meteogram && !popup.cfg_widget_show_timer
+            when: popup.cfg_widget_show_agenda && popup.cfg_widget_show_calendar && !popup.cfg_widget_show_meteogram && !popup.cfg_widget_show_timer
 
             PropertyChanges { target: widgetGrid
                 columns: 2
@@ -116,7 +135,7 @@ Item {
         },
         State {
             name: "meteogram+agenda+month"
-            when: popup.cfg_widget_show_meteogram && !popup.cfg_widget_show_timer
+            when: popup.cfg_widget_show_agenda && popup.cfg_widget_show_calendar && popup.cfg_widget_show_meteogram && !popup.cfg_widget_show_timer
 
             PropertyChanges { target: widgetGrid
                 columns: 2
@@ -128,7 +147,7 @@ Item {
         },
         State {
             name: "timer+agenda+month"
-            when: !popup.cfg_widget_show_meteogram && popup.cfg_widget_show_timer
+            when: popup.cfg_widget_show_agenda && popup.cfg_widget_show_calendar && !popup.cfg_widget_show_meteogram && popup.cfg_widget_show_timer
 
             PropertyChanges { target: widgetGrid
                 columns: 2
@@ -140,11 +159,19 @@ Item {
         },
         State {
             name: "meteogram+timer+agenda+month"
-            when: popup.cfg_widget_show_meteogram && popup.cfg_widget_show_timer
+            when: popup.cfg_widget_show_agenda && popup.cfg_widget_show_calendar && popup.cfg_widget_show_meteogram && popup.cfg_widget_show_timer
 
             PropertyChanges { target: widgetGrid
                 columns: 2
                 rows: 2
+            }
+        },
+        State {
+            name: "singleColumn"
+            when: !(popup.cfg_widget_show_agenda && popup.cfg_widget_show_calendar)
+
+            PropertyChanges { target: widgetGrid
+                columns: 1
             }
         }
     ]
@@ -189,6 +216,7 @@ Item {
 
             AgendaView {
                 id: agendaView
+                visible: cfg_widget_show_agenda
 
                 Layout.preferredWidth: parent.width / 2
                 Layout.fillWidth: true

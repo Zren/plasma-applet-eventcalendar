@@ -23,6 +23,9 @@
     <entry name="widget_show_timer" type="bool">
       <default>true</default>
     </entry>
+    <entry name="widget_show_agenda" type="bool">
+      <default>true</default>
+    </entry>
     <entry name="widget_show_calendar" type="bool">
       <default>true</default>
     </entry>
