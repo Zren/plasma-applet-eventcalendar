@@ -338,14 +338,18 @@ Item {
                 onDoubleClicked: daysCalendar.doubleClicked(index, model, delegate)
 
                 eventBadgeType: {
-                    if (daysCalendar.eventBadgeType == 'theme') {
-                        if (calendarSvg.hasElement('event')) {
-                        return daysCalendar.eventBadgeType
-                        } else {
-                            return 'bottomBar'
-                        }
-                    } else {
-                        return daysCalendar.eventBadgeType
+                    switch (daysCalendar.eventBadgeType) {
+                        case 'bottomBar':
+                        case 'dots':
+                            return daysCalendar.eventBadgeType
+
+                        case 'theme':
+                        default:
+                            if (calendarSvg.hasElement('event')) {
+                                return daysCalendar.eventBadgeType
+                            } else {
+                                return 'bottomBar'
+                            }
                     }
                 }
 
