@@ -154,7 +154,9 @@ Item {
         }
 
         Label {
-            text: i18n("Show/Hide widgets above the calendar.")
+            Layout.maximumWidth: page.width
+            wrapMode: Text.Wrap
+            text: i18n("Show/Hide widgets above the calendar. Toggle Agenda/Calendar on their respective tabs.")
         }
         // GroupBox {
         //     Layout.fillWidth: true
