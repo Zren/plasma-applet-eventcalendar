@@ -66,6 +66,7 @@ Item {
                 TextField {
                     id: weather_city_id
                     Layout.fillWidth: true
+                    placeholderText: i18n("Eg: 5983720")
                 }
             }
 
