@@ -2,7 +2,7 @@ import QtQuick 2.0
 import QtQuick.Controls 1.1
 import QtQuick.Controls.Styles.Plasma 2.0 as Styles
 import QtQuick.Layouts 1.1
-import QtMultimedia 5.6
+import QtMultimedia 5.4
 import org.kde.plasma.core 2.0 as PlasmaCore
 import org.kde.plasma.calendar 2.0 as PlasmaCalendar
 import org.kde.plasma.components 2.0 as PlasmaComponents
