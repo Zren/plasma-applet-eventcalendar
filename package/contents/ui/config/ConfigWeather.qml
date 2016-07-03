@@ -7,7 +7,8 @@ import org.kde.plasma.extras 2.0 as PlasmaExtras
 import ".."
 
 Item {
-    id: generalPage
+    id: page
+    property bool showDebug: false
 
     implicitWidth: pageColumn.implicitWidth
     implicitHeight: pageColumn.implicitHeight
@@ -42,6 +43,7 @@ Item {
             
 
             RowLayout {
+                visible: showDebug
                 Layout.fillWidth: true
                 Label {
                     text: i18n("API App Id:")
