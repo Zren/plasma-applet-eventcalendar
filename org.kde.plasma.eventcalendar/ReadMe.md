@@ -2,7 +2,7 @@
 
 Plasmoid for a calendar+agenda with weather that synchs to Google Calendar.
 
-http://kde-look.org/content/show.php?content=175591
+https://www.kde-look.org/p/998901/
 
 ## Screenshots
 
