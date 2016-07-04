@@ -7,9 +7,11 @@ import org.kde.plasma.core 2.0 as PlasmaCore
 import org.kde.plasma.extras 2.0 as PlasmaExtras
 
 import "../utils.js" as Utils
+import ".."
 
 Item {
-    id: generalPage
+    id: page
+    property bool showDebug: false
 
     implicitWidth: pageColumn.implicitWidth
     implicitHeight: pageColumn.implicitHeight
@@ -42,12 +44,6 @@ Item {
     function getCalendarList() {
         return cfg_calendar_list ? JSON.parse(Qt.atob(cfg_calendar_list)) : [];
     }
-    
-    property bool showDebug: false
-
-    SystemPalette {
-        id: palette
-    }
 
     Layout.fillWidth: true
 
@@ -56,14 +52,8 @@ Item {
         Layout.fillWidth: true
 
 
-        PlasmaExtras.Heading {
-            level: 2
+        HeaderText {
             text: i18n("Login")
-            color: palette.text
-        }
-        Item {
-            width: height
-            height: units.gridUnit / 2
         }
         Column {
             visible: cfg_access_token
@@ -78,16 +68,9 @@ Item {
                 text: 'To sync with Google Calendar'
                 color: "#8a6d3b"
             }
-            Text {
+            LinkText {
                 text: 'Enter the following code at <a href="https://www.google.com/device">https://www.google.com/device</a>.'
                 color: "#8a6d3b"
-                linkColor: "#369"
-                onLinkActivated: Qt.openUrlExternally(link)
-                MouseArea {
-                    anchors.fill: parent
-                    acceptedButtons: Qt.NoButton // we don't want to eat clicks on the Text
-                    cursorShape: parent.hoveredLink ? Qt.PointingHandCursor : Qt.ArrowCursor
-                }
             }
             TextField {
                 id: userCodeInput
@@ -106,14 +89,8 @@ Item {
             }
         }
 
-        PlasmaExtras.Heading {
-            level: 2
+        HeaderText {
             text: i18n("Calendars")
-            color: palette.text
-        }
-        Item {
-            width: height
-            height: units.gridUnit / 2
         }
         ColumnLayout {
             spacing: units.smallSpacing * 2
@@ -133,7 +110,7 @@ Item {
                         }
                     }
 
-                    generalPage.setCalendarIdList(calendarIdList);
+                    page.setCalendarIdList(calendarIdList);
                 }
             }
 
@@ -196,14 +173,8 @@ Item {
             }
         }
 
-        PlasmaExtras.Heading {
-            level: 2
+        HeaderText {
             text: i18n("Misc")
-            color: palette.text
-        }
-        Item {
-            width: height
-            height: units.gridUnit / 2
         }
         ColumnLayout {
 
@@ -224,16 +195,9 @@ Item {
 
         //--- Advanced
 
-        PlasmaExtras.Heading {
+        HeaderText {
             visible: showDebug
-            level: 2
             text: i18n("Applet")
-            color: palette.text
-        }
-        Item {
-            visible: showDebug
-            width: height
-            height: units.gridUnit / 2
         }
         ColumnLayout {
             spacing: units.smallSpacing * 2
@@ -266,17 +230,9 @@ Item {
         }
 
 
-
-        PlasmaExtras.Heading {
+        HeaderText {
             visible: showDebug
-            level: 2
             text: i18n("User Code")
-            color: palette.text
-        }
-        Item {
-            visible: showDebug
-            width: height
-            height: units.gridUnit / 2
         }
         ColumnLayout {
             spacing: units.smallSpacing * 2
@@ -347,14 +303,8 @@ Item {
 
 
 
-        PlasmaExtras.Heading {
-            level: 2
+        HeaderText {
             text: i18n("Token")
-            color: palette.text
-        }
-        Item {
-            width: height
-            height: units.gridUnit / 2
         }
         ColumnLayout {
             spacing: units.smallSpacing * 2
