@@ -16,6 +16,7 @@ Item {
     property alias cfg_weather_app_id: weather_app_id.text
     property alias cfg_weather_city_id: weather_city_id.text
     property string cfg_weather_units: 'metric'
+    property alias cfg_events_pollinterval: weather_pollinterval.value // TODO
     
 
     SystemPalette {
@@ -69,6 +70,21 @@ Item {
                     id: weather_city_id
                     Layout.fillWidth: true
                     placeholderText: i18n("Eg: 5983720")
+                }
+            }
+
+            RowLayout {
+                Label {
+                    text: i18n("Update forecast every: ")
+                }
+                
+                SpinBox {
+                    id: weather_pollinterval
+                    enabled: false
+                    
+                    suffix: i18ncp("Polling interval in minutes", "min", "min", value)
+                    minimumValue: 10
+                    maximumValue: 90
                 }
             }
 
