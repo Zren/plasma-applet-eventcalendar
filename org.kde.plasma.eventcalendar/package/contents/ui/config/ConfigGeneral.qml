@@ -46,10 +46,6 @@ Item {
     property int indentWidth: 24
     property string appletVersion: ''
 
-    SystemPalette {
-        id: palette
-    }
-
     Layout.fillWidth: true
 
     // populate
@@ -128,14 +124,8 @@ Item {
             }
         }
 
-        PlasmaExtras.Heading {
-            level: 2
+        HeaderText {
             text: i18n("Widgets")
-            color: palette.text
-        }
-        Item {
-            width: height
-            height: units.gridUnit / 2
         }
 
         Label {
@@ -201,24 +191,13 @@ Item {
             text: i18n("You can also resize the entire popup by holding down Alt and dragging with the right mouse button.")
         }
         
-        Item {
-            width: height
-            height: units.gridUnit / 2
-        }
-        PlasmaExtras.Heading {
-            level: 2
+        HeaderText {
             text: i18n("Clock")
-            color: palette.text
-        }
-        Item {
-            width: height
-            height: units.gridUnit / 2
         }
         ColumnLayout {
-            PlasmaExtras.Heading {
-                level: 3
+            HeaderText {
                 text: i18n("Time Format")
-                color: palette.text
+                level: 3
             }
 
             LinkText {
@@ -246,44 +225,51 @@ Item {
             Label {
                 Layout.maximumWidth: page.width
                 wrapMode: Text.Wrap
-                text: 'The default font for the Breeze theme is Noto Sans which has a large vertical spacing. Try using the Sans Serif font if you find the text too small when adding a second line.'
-            }
-            RowLayout {
-                Label {
-                    text: "Font:"
-                }
-                ComboBox {
-                    // org.kde.plasma.digitalclock
-                    // Layout.fillWidth: true
-                    id: clock_fontfamilyComboBox
-                    textRole: "text" // doesn't autodeduce from model because we manually populate it
-
-                    Component.onCompleted: {
-                        // org.kde.plasma.digitalclock
-                        var arr = [] // use temp array to avoid constant binding stuff
-                        arr.push({text: i18nc("Use default font", "Default"), value: ""})
-
-                        var fonts = Qt.fontFamilies()
-                        var foundIndex = 0
-                        for (var i = 0, j = fonts.length; i < j; ++i) {
-                            arr.push({text: fonts[i], value: fonts[i]})
-                        }
-                        model = arr
-                    }
-
-                    onCurrentIndexChanged: {
-                        var current = model[currentIndex]
-                        if (current) {
-                            page.cfg_clock_fontfamily = current.value
-                        }
-                    }
-                }
+                text: i18n("The default font for the Breeze theme is Noto Sans which hard to read with small text. Try using the Sans Serif font if you find the text too small when adding a second line.")
             }
 
             Label {
                 Layout.maximumWidth: page.width
                 wrapMode: Text.Wrap
-                text: 'You can also use <b>\'&lt;b&gt;\'ddd\'&lt;\/b&gt;\'</b> or <b>\'&lt;font color=\"#77aaadd\"&gt;\'ddd\'&lt;\/font&gt;\'</b> to style a section. Note the single quotes around the tags are used to bypass the time format.'
+                text: i18n("You can also use <b>\'&lt;b&gt;\'ddd\'&lt;\/b&gt;\'</b> or <b>\'&lt;font color=\"#77aaadd\"&gt;\'ddd\'&lt;\/font&gt;\'</b> to style a section. Note the single quotes around the tags are used to bypass the time format.")
+            }
+
+            GroupBox {
+                Layout.fillWidth: true
+
+                ColumnLayout {
+                    RowLayout {
+                        Label {
+                            text: "Font:"
+                        }
+                        ComboBox {
+                            // org.kde.plasma.digitalclock
+                            // Layout.fillWidth: true
+                            id: clock_fontfamilyComboBox
+                            textRole: "text" // doesn't autodeduce from model because we manually populate it
+
+                            Component.onCompleted: {
+                                // org.kde.plasma.digitalclock
+                                var arr = [] // use temp array to avoid constant binding stuff
+                                arr.push({text: i18nc("Use default font", "Default"), value: ""})
+
+                                var fonts = Qt.fontFamilies()
+                                var foundIndex = 0
+                                for (var i = 0, j = fonts.length; i < j; ++i) {
+                                    arr.push({text: fonts[i], value: fonts[i]})
+                                }
+                                model = arr
+                            }
+
+                            onCurrentIndexChanged: {
+                                var current = model[currentIndex]
+                                if (current) {
+                                    page.cfg_clock_fontfamily = current.value
+                                }
+                            }
+                        }
+                    }
+                }
             }
 
             GroupBox {
@@ -443,14 +429,9 @@ Item {
 
 
 
-            Item {
-                width: height
-                height: units.gridUnit / 2
-            }
-            PlasmaExtras.Heading {
-                level: 3
+            HeaderText {
                 text: i18n("Mouse Wheel")
-                color: palette.text
+                level: 3
             }
             GroupBox {
                 Layout.fillWidth: true
@@ -522,44 +503,26 @@ Item {
 
         }
 
-        PlasmaExtras.Heading {
+        HeaderText {
             visible: showDebug
-            level: 2
             text: i18n("Timer")
-            color: palette.text
-        }
-        Item {
-            visible: showDebug
-            width: height
-            height: units.gridUnit / 2
         }
         ColumnLayout {
-            RowLayout {
-                visible: showDebug
+            visible: showDebug
+
+            CheckBox {
+                id: timer_repeats
                 Layout.fillWidth: true
-                Label {
-                    text: i18n("timer_repeats:")
-                }
-                PlasmaComponents.Switch {
-                    id: timer_repeats
-                    Layout.fillWidth: true
-                }
+                text: i18n("timer_repeats")
+            }
+
+            CheckBox {
+                id: timer_in_taskbar
+                Layout.fillWidth: true
+                text: i18n("timer_in_taskbar")
             }
 
             RowLayout {
-                visible: showDebug
-                Layout.fillWidth: true
-                Label {
-                    text: i18n("timer_in_taskbar:")
-                }
-                PlasmaComponents.Switch {
-                    id: timer_in_taskbar
-                    Layout.fillWidth: true
-                }
-            }
-
-            RowLayout {
-                visible: showDebug
                 Layout.fillWidth: true
                 Label {
                     text: i18n("timer_ends_at:")
