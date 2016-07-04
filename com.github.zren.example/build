@@ -1,0 +1,10 @@
+#!/bin/bash
+# Version 2
+
+plasmoidName=$(basename $PWD) # Parent folder name
+plasmoidName="${plasmoidName##*.}" # Strip namespace (Eg: "org.kde.plasma.")
+rm ${plasmoidName}.plasmoid
+cd package
+zip -r ${plasmoidName}.plasmoid *
+mv ${plasmoidName}.plasmoid ../${plasmoidName}.plasmoid
+cd ..
