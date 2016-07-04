@@ -131,7 +131,7 @@ Item {
         cfg_month_show_border: plasmoid.configuration.month_show_border
         cfg_month_show_weeknumbers: plasmoid.configuration.month_show_weeknumbers
         cfg_month_eventbadge_type: plasmoid.configuration.month_eventbadge_type
-        cfg_update_pollinterval: plasmoid.configuration.update_pollinterval
+        cfg_events_pollinterval: plasmoid.configuration.events_pollinterval
 
         // If pin is enabled, we need to add some padding around the popup unless
         // * we're a desktop widget (no need)

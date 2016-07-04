@@ -27,6 +27,7 @@ Item {
     property alias cfg_refresh_token: refresh_token.text
     property alias cfg_calendar_id_list: calendar_id_list.text
     property alias cfg_calendar_list: calendar_list.text
+    property alias cfg_events_pollinterval: events_pollinterval.value
 
     function setCalendarIdList(calendarIdList) {
         cfg_calendar_id_list = calendarIdList.join(',');
@@ -191,6 +192,32 @@ Item {
                 TextField {
                     id: calendar_list
                     Layout.fillWidth: true
+                }
+            }
+        }
+
+        PlasmaExtras.Heading {
+            level: 2
+            text: i18n("Misc")
+            color: palette.text
+        }
+        Item {
+            width: height
+            height: units.gridUnit / 2
+        }
+        ColumnLayout {
+
+            RowLayout {
+                Label {
+                    text: i18n("Refresh events every: ")
+                }
+                
+                SpinBox {
+                    id: events_pollinterval
+
+                    suffix: i18ncp("Polling interval in minutes", "min", "min", value)
+                    minimumValue: 5
+                    maximumValue: 90
                 }
             }
         }

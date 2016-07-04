@@ -69,7 +69,7 @@ Item {
     property string cfg_month_eventbadge_type: 'theme'
     property bool cfg_agenda_newevent_remember_calendar: true
     property string cfg_agenda_newevent_last_calendar_id: ''
-    property int cfg_update_pollinterval: 20
+    property int cfg_events_pollinterval: 20
     
     property alias agendaListView: agendaView.agendaListView
     property alias today: monthView.today
@@ -380,7 +380,7 @@ Item {
         
         repeat: true
         triggeredOnStart: true
-        interval: cfg_update_pollinterval * 60000
+        interval: cfg_events_pollinterval * 60000
         onTriggered: update()
     }
 
