@@ -3,7 +3,7 @@ import QtQuick.Controls 1.0
 import org.kde.plasma.core 2.0 as PlasmaCore
 
 Label {
-	linkColor: PlasmaCore.ColorScope.highlightColor
+    linkColor: PlasmaCore.ColorScope.highlightColor
     onLinkActivated: Qt.openUrlExternally(link)
     MouseArea {
         anchors.fill: parent
