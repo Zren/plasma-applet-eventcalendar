@@ -6,13 +6,14 @@ PlasmaExtras.Heading {
     text: "Heading"
     level: 2
     color: palette.text
-    // font.underline: true
+    property bool showUnderline: level <= 2
 
     SystemPalette {
         id: palette
     }
 
     Rectangle {
+        visible: heading.showUnderline
         anchors.bottom: heading.bottom
         width: heading.parent.width
         height: 1

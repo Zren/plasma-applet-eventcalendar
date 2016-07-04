@@ -29,14 +29,8 @@ Item {
         id: pageColumn
         Layout.fillWidth: true
 
-        PlasmaExtras.Heading {
-            level: 2
+        HeaderText {
             text: i18n("OpenWeatherMap")
-            color: palette.text
-        }
-        Item {
-            width: height
-            height: units.gridUnit / 2
         }
         ColumnLayout {
             spacing: units.smallSpacing * 2
@@ -83,7 +77,7 @@ Item {
                     enabled: false
                     
                     suffix: i18ncp("Polling interval in minutes", "min", "min", value)
-                    minimumValue: 10
+                    minimumValue: 60
                     maximumValue: 90
                 }
             }

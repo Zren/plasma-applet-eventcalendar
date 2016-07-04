@@ -58,24 +58,35 @@ Item {
         Column {
             visible: cfg_access_token
             Text {
-                text: 'Currently Synched.'
+                text: i18n("Currently Synched.")
                 color: "#3c763d"
+            }
+            Button {
+                text: i18n("Logout")
+                onClicked: {
+                    cfg_access_token = ''
+                    cfg_refresh_token = ''
+                    cfg_calendar_list = ''
+                    cfg_calendar_id_list = ''
+                    calendarsModel.clear()
+                    generateUserCodeAndPoll()
+                }
             }
         }
         Column {
             visible: !cfg_access_token
             Text {
-                text: 'To sync with Google Calendar'
+                text: i18n("To sync with Google Calendar")
                 color: "#8a6d3b"
             }
             LinkText {
-                text: 'Enter the following code at <a href="https://www.google.com/device">https://www.google.com/device</a>.'
+                text: i18n("Enter the following code at <a href=\"https://www.google.com/device\">https://www.google.com/device</a>.")
                 color: "#8a6d3b"
             }
             TextField {
                 id: userCodeInput
 
-                placeholderText: "Generating Code..."
+                placeholderText: i18n("Generating Code...")
                 readOnly: true
 
                 onFocusChanged: selectAll()
@@ -304,9 +315,11 @@ Item {
 
 
         HeaderText {
+            visible: showDebug
             text: i18n("Token")
         }
         ColumnLayout {
+            visible: showDebug
             spacing: units.smallSpacing * 2
             Layout.fillWidth: true
             
@@ -323,7 +336,6 @@ Item {
             }
 
             RowLayout {
-                visible: showDebug
                 Layout.fillWidth: true
                 Label {
                     text: i18n("access_token_type:")
@@ -335,7 +347,6 @@ Item {
             }
 
             RowLayout {
-                visible: showDebug
                 Layout.fillWidth: true
                 Label {
                     text: i18n("access_token_expires_at:")

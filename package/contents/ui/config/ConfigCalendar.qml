@@ -67,14 +67,8 @@ ColumnLayout {
             }
         }
         
-        Item {
-            width: height
-            height: units.gridUnit / 2
-        }
-        PlasmaExtras.Heading {
-            level: 2
+        HeaderText {
             text: i18n("Style")
-            color: palette.text
         }
         GroupBox {
             Layout.fillWidth: true
