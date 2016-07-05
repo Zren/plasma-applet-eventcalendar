@@ -1,7 +1,7 @@
 [b]v35 - July 3 2016[/b]
 
 * Tooltips for 3h periods for the Meteogram.
-* Hide the calendar/agenda.
+* Toggles for hiding the calendar/agenda.
 * Periodically refresh the calendar events and update the forecast.
 * Fix defaulting to the "bottom bar" event badge when the "theme" event badge isn't supported.
 * Change version of QtMultimedia dependency from 5.6 to 5.4.

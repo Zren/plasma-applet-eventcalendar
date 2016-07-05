@@ -16,9 +16,11 @@ This folder is useful for quickly writing a new plasmoid.
 
 Note that official KDE software is only mirrored on github, but github is much better for navigating the codebase.
 
-* https://github.com/KDE/plasma-desktop/tree/master/applets/
-* https://github.com/KDE/plasma-workspace/blob/master/applets/
+* https://github.com/KDE/plasma-desktop/tree/master/applets
+* https://github.com/KDE/plasma-workspace/blob/master/applets
+* https://github.com/KDE/kdeplasma-addons/tree/master/applets
 * https://github.com/KDE/plasma-pa/tree/master/applet
+* https://github.com/KDE/plasma-nm/tree/master/applet
 
 
 ## Documentation
