@@ -86,10 +86,24 @@ Item {
     ]
 
     Plasmoid.preferredRepresentation: Plasmoid.fullRepresentation
-    Plasmoid.onActivated: showdesktop.showDesktop ? showdesktop.showDesktop() : showdesktop.minimizeAll()
+    // Plasmoid.onActivated: showdesktop.showDesktop ? showdesktop.showDesktop() : showdesktop.minimizeAll()
 
     ShowDesktop {
         id: showdesktop
+        property bool isPeeking: false
+        onIsPeekingChanged: {
+            if (isPeeking) {
+                showdesktop.showingDesktop = true
+            }
+        }
+    }
+
+    Timer {
+        id: peekTimer
+        interval: 1000
+        onTriggered: {
+            showdesktop.isPeeking = true
+        }
     }
 
     Rectangle {
@@ -160,13 +174,29 @@ Item {
                 anchors.fill: parent
                 hoverEnabled: true
                 onClicked: {
-                    if (showdesktop.showDesktop) {
-                        // 5.6
-                        showdesktop.showDesktop();
+                    if (showdesktop.isPeeking && showdesktop.showingDesktop) {
+                        showdesktop.isPeeking = false
                     } else {
-                        // 5.7+
-                        showdesktop.showingDesktop = !showdesktop.showingDesktop
-                        // showdesktop.minimizeAll();
+                        peekTimer.stop()
+
+                        if (true) {
+                            showdesktop.showingDesktop = !showdesktop.showingDesktop
+                        } else {
+                            showdesktop.showingDesktop = false
+                            showdesktop.minimizeAll()
+                        }
+                    }
+                }
+                onEntered: {
+                    if (!showdesktop.showingDesktop) {
+                        peekTimer.restart()
+                    }
+                }
+                onExited: {
+                    peekTimer.stop()
+                    if (showdesktop.isPeeking) {
+                        showdesktop.isPeeking = false
+                        showdesktop.showingDesktop = false
                     }
                 }
 
