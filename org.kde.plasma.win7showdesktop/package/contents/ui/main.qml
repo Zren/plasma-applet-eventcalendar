@@ -86,7 +86,7 @@ Item {
     ]
 
     Plasmoid.preferredRepresentation: Plasmoid.fullRepresentation
-    // Plasmoid.onActivated: showdesktop.showDesktop ? showdesktop.showDesktop() : showdesktop.minimizeAll()
+    // Plasmoid.onActivated: control.click()
 
     ShowDesktop {
         id: showdesktop
@@ -223,6 +223,7 @@ Item {
                         wheelDelta += 120;
                         root.exec(plasmoid.configuration.mousewheel_down)
                     }
+                    wheel.accepted = true
                 }
             }
         }
