@@ -189,7 +189,9 @@ Item {
                 }
                 onEntered: {
                     if (!showdesktop.showingDesktop) {
-                        peekTimer.restart()
+                        if (false) {
+                            peekTimer.restart()
+                        }
                     }
                 }
                 onExited: {
