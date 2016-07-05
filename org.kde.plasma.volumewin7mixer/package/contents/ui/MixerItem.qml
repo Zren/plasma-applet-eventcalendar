@@ -228,11 +228,10 @@ PlasmaComponents.ListItem {
                 maximumValue: 65536
                 stepSize: maximumValue / 100
                 visible: PulseObject.hasVolume
-                enabled: {
-                    if (typeof PulseObject.volumeWritable === 'undefined') {
-                        return !PulseObject.muted
-                    }
-                    return PulseObject.volumeWritable && !PulseObject.muted
+                enabled: typeof PulseObject.volumeWritable === 'undefined' || PulseObject.volumeWritable
+
+                opacity: {
+                    return enabled && PulseObject.muted ? 0.5 : 1
                 }
 
                 onVolumeChanged: {
