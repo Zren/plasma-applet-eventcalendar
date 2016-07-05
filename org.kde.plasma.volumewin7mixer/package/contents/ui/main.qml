@@ -42,45 +42,88 @@ Item {
     Layout.minimumWidth: 10
     Layout.preferredWidth: mixerItemRow.width
     Layout.maximumWidth: plasmoid.screenGeometry.width
+    property int maxVolumePercent: Plasmoid.configuration.maximumVolume
+    property int maxVolumeValue: Math.round(maxVolumePercent * PulseAudio.NormalVolume / 100.0)
+    property int volumeStep: Math.round(Plasmoid.configuration.volumeStep * PulseAudio.NormalVolume / 100.0)
     property QtObject draggedStream: null
 
     property string displayName: i18n("Audio Volume")
-
-    // Plasmoid.icon: sinkModel.sinks.length > 0 ? Icon.name(sinkModel.sinks[0].volume, sinkModel.sinks[0].muted) : Icon.name(0, true)
+    Plasmoid.icon: sinkModel.defaultSink ? Icon.name(sinkModel.defaultSink.volume, sinkModel.defaultSink.muted) : Icon.name(0, true)
     // Plasmoid.switchWidth: units.gridUnit * 12
     // Plasmoid.switchHeight: units.gridUnit * 12
     Plasmoid.toolTipMainText: displayName
+    Plasmoid.toolTipSubText: {
+        if (sinkModel.defaultSink) {
+            var sinkVolumePercent = Math.round(PulseObjectCommands.volumePercent(sinkModel.defaultSink.volume));
+            return i18n("Volume at %1%\n%2", sinkVolumePercent, sinkModel.defaultSink.description);
+        } else {
+            return "";
+        }
+    }
 
     function showOsd(volume) {
         osd.show(PulseObjectCommands.volumePercent(volume));
     }
 
     function increaseDefaultSinkVolume() {
-        console.log('increaseDefaultSinkVolume');
-        for (var i = 0; i < sinkModel.sinks.length; ++i) {
-            var volume = PulseObjectCommands.increaseVolume(sinkModel.sinks[i]);
-            showOsd(volume);
+        if (!sinkModel.defaultSink) {
+            return;
         }
+        sinkModel.defaultSink.muted = false;
+        var volume = PulseObjectCommands.increaseVolume(sinkModel.defaultSink);
+        showOsd(volume);
     }
 
     function decreaseDefaultSinkVolume() {
-        console.log('decreaseDefaultSinkVolume');
-        for (var i = 0; i < sinkModel.sinks.length; ++i) {
-            var volume = PulseObjectCommands.decreaseVolume(sinkModel.sinks[i]);
-            showOsd(volume);
+        if (!sinkModel.defaultSink) {
+            return;
         }
+        sinkModel.defaultSink.muted = false;
+        var volume = PulseObjectCommands.decreaseVolume(sinkModel.defaultSink);
+        showOsd(volume);
     }
 
     function toggleDefaultSinksMute() {
-        console.log('toggleDefaultSinksMute');
-        for (var i = 0; i < sinkModel.sinks.length; ++i) {
-            var toMute = PulseObjectCommands.toggleMute(sinkModel.sinks[i]);
-            showOsd(toMute ? 0 : sinkModel.sinks[i].volume);
+        if (!sinkModel.defaultSink) {
+            return;
         }
+        var toMute = PulseObjectCommands.toggleMute(sinkModel.defaultSink);
+        showOsd(toMute ? 0 : sinkModel.defaultSink.volume);
+    }
+
+    function showMicrophoneOsd(volume) {
+        osd.showMicrophone(PulseObjectCommands.volumePercent(volume));
+    }
+
+    function increaseDefaultSourceVolume() {
+        console.log
+        if (!sourceModel.defaultSource) {
+            return;
+        }
+        sourceModel.defaultSource.muted = false;
+        var volume = PulseObjectCommands.increaseVolume(sourceModel.defaultSource);
+        showMicrophoneOsd(volume);
+    }
+    
+    function decreaseDefaultSourceVolume() {
+        if (!sourceModel.defaultSource) {
+            return;
+        }
+        sourceModel.defaultSource.muted = false;
+        var volume = PulseObjectCommands.decreaseVolume(sourceModel.defaultSource);
+        showMicrophoneOsd(volume);
+    }
+
+    function toggleDefaultSourceMute() {
+        if (!sourceModel.defaultSource) {
+            return;
+        }
+        var toMute = PulseObjectCommands.toggleMute(sourceModel.defaultSource);
+        showOsd(toMute ? 0 : sourceModel.defaultSource.volume);
     }
 
     Plasmoid.compactRepresentation: PlasmaCore.IconItem {
-        source: sinkModel.sinks.length > 0 ? Icon.name(sinkModel.sinks[0].volume, sinkModel.sinks[0].muted) : Icon.name(0, true)
+        source: sinkModel.defaultSink ? Icon.name(sinkModel.defaultSink.volume, sinkModel.defaultSink.muted) : Icon.name(0, true)
         active: mouseArea.containsMouse
         colorGroup: PlasmaCore.ColorScope.colorGroup
 
@@ -158,6 +201,24 @@ Item {
             text: i18n("Mute")
             shortcut: Qt.Key_VolumeMute
             onTriggered: toggleDefaultSinksMute()
+        }
+        GlobalAction {
+            objectName: "increase_microphone_volume"
+            text: i18n("Increase Microphone Volume")
+            shortcut: Qt.Key_MicVolumeUp
+            onTriggered: increaseDefaultSourceVolume()
+        }
+        GlobalAction {
+            objectName: "decrease_microphone_volume"
+            text: i18n("Decrease Microphone Volume")
+            shortcut: Qt.Key_MicVolumeDown
+            onTriggered: decreaseDefaultSourceVolume()
+        }
+        GlobalAction {
+            objectName: "mic_mute"
+            text: i18n("Mute Microphone")
+            shortcut: Qt.Key_MicMute
+            onTriggered: toggleDefaultSourceMute()
         }
     }
 
