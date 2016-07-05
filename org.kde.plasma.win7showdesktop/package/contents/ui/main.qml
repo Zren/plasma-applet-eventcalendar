@@ -86,7 +86,7 @@ Item {
     ]
 
     Plasmoid.preferredRepresentation: Plasmoid.fullRepresentation
-    Plasmoid.onActivated: showdesktop.showDesktop();
+    Plasmoid.onActivated: showdesktop.showDesktop ? showdesktop.showDesktop() : showdesktop.minimizeAll()
 
     ShowDesktop {
         id: showdesktop
@@ -159,7 +159,16 @@ Item {
                 id: control
                 anchors.fill: parent
                 hoverEnabled: true
-                onClicked: showdesktop.showDesktop();
+                onClicked: {
+                    if (showdesktop.showDesktop) {
+                        // 5.6
+                        showdesktop.showDesktop();
+                    } else {
+                        // 5.7+
+                        showdesktop.showingDesktop = !showdesktop.showingDesktop
+                        // showdesktop.minimizeAll();
+                    }
+                }
 
 
                 // org.kde.plasma.volume
