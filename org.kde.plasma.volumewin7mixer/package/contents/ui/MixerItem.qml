@@ -21,6 +21,7 @@ PlasmaComponents.ListItem {
     separatorVisible: false
     property string mixerItemType: ''
     property int volumeSliderWidth: 50
+    property bool isVolumeBoosted: false
 
     property string icon: {
         if (mixerItemType == 'SinkInput') {
@@ -225,7 +226,7 @@ PlasmaComponents.ListItem {
 
                 minimumValue: 0
                 // FIXME: I do wonder if exposing max through the model would be useful at all
-                maximumValue: 65536
+                maximumValue: mixerItem.isVolumeBoosted ? 98304 : 65536
                 stepSize: maximumValue / 100
                 visible: PulseObject.hasVolume
                 enabled: typeof PulseObject.volumeWritable === 'undefined' || PulseObject.volumeWritable
@@ -294,7 +295,8 @@ PlasmaComponents.ListItem {
 
             MouseArea {
                 anchors.fill: parent
-                onPressed: PulseObject.muted = !PulseObject.muted
+                // onPressed: PulseObject.muted = !PulseObject.muted
+                onPressed: mixerItem.isVolumeBoosted = !mixerItem.isVolumeBoosted
             }
         }
     }

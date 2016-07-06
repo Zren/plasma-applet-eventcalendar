@@ -14,34 +14,17 @@ PlasmaComponents.Slider {
     id: slider
     orientation: Qt.Vertical
     tickmarksEnabled: true
+    property bool isVolumeBoosted: value > 66000 // 100% is 65863.68, not 65536... Bleh. Just trigger at a round number.
+    property bool isBoostable: maximumValue > 66000
+    // onValueChanged: {
+    //     console.log('onValueChanged', value)
+    // }
+
 
     // http://api.kde.org/frameworks-api/frameworks5-apidocs/plasma-framework/html/SliderStyle_8qml_source.html
     style: PlasmaStyles.SliderStyle {
 
         handle: Item {}
-
-        // groove: PlasmaCore.FrameSvgItem {
-        //     id: groove
-        //     imagePath: "widgets/slider"
-        //     prefix: "groove"
-        //     // height: implicitHeight
-        //     height: control.orientation == Qt.Horizontal ? control.height :  control.width
-        //     colorGroup: PlasmaCore.ColorScope.colorGroup
-        //     opacity: control.enabled ? 1 : 0.6
-    
-        //     PlasmaCore.FrameSvgItem {
-        //         id: highlight
-        //         imagePath: "widgets/slider"
-        //         prefix: "groove-highlight"
-        //         height: groove.height
-    
-        //         width: styleData.handlePosition
-        //         anchors.verticalCenter: parent.verticalCenter
-        //         colorGroup: PlasmaCore.ColorScope.colorGroup
-    
-        //         visible: value > 0
-        //     }
-        // }
 
         groove: Rectangle {
             id: groove
@@ -55,9 +38,16 @@ PlasmaComponents.Slider {
     
                 width: styleData.handlePosition
                 anchors.verticalCenter: parent.verticalCenter
-                color: theme.highlightColor
+                color: isVolumeBoosted ? negativeColor.negativeTextColor : theme.highlightColor
+                // onColorChanged: {
+                //     console.log('onColorChanged', color, '//', value, isVolumeBoosted, negativeColor.negativeTextColor, theme.highlightColor)
+                // }
     
                 visible: value > 0
+
+                PlasmaCore.ColorScope {
+                    id: negativeColor
+                }
             }
         }
 
@@ -65,7 +55,8 @@ PlasmaComponents.Slider {
             // width/height and x/y is reversed since it's Vertical
 
             id: repeater
-            model: 10 + 1 // 0 .. 100 by 10 = 11 ticks
+            model: (slider.isBoostable ? 15 : 10) + 1 // 0% .. 100% by 10 = 11 ticks (or ...150% = 16 ticks)
+            // model: slider.tickmarkModel
             width: control.height 
             height: control.width
 
@@ -75,7 +66,15 @@ PlasmaComponents.Slider {
                 // border.color: theme.backgroundColor
                 // width: 3
                 width: 1
-                height: index % 5 == 0 ? control.width/2 : control.width/5 // 0%, 50%, 100% have longer ticks
+                height: {
+                    if (index % 10 == 0) {
+                        return control.width*3/5; // 0%, 100% have longer ticks
+                    } else if (index % 5 == 0) {
+                        return control.width*2/5; // 50%, 150% have medium length ticks
+                    } else {
+                        return control.width*1/5; // 10%, 20%, ... have short ticks
+                    }
+                }
                 y: control.width - height
                 x: {
                     if (index == 0) { // Align tick at very bottom to it's bottom.
