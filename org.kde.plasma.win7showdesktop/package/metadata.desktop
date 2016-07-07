@@ -115,11 +115,11 @@ Type=Service
 Icon=user-desktop
 ServiceTypes=Plasma/Applet
 
-X-KDE-PluginInfo-Author=Petri Damstén
-X-KDE-PluginInfo-Email=damu@iki.fi
+X-KDE-PluginInfo-Author=Petri Damstén + Chris Holland
+X-KDE-PluginInfo-Email=zrenfire@gmail.com
 X-KDE-PluginInfo-Name=org.kde.plasma.win7showdesktop
-X-KDE-PluginInfo-Version=2
-X-KDE-PluginInfo-Website=http://plasma.kde.org/
+X-KDE-PluginInfo-Version=3
+X-KDE-PluginInfo-Website=https://github.com/Zren/plasma-applets/tree/master/org.kde.plasma.win7showdesktop
 X-KDE-PluginInfo-Category=Windows and Tasks
 X-KDE-PluginInfo-Depends=
 X-KDE-PluginInfo-License=GPL
