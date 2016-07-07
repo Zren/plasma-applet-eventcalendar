@@ -92,12 +92,24 @@ Item {
                     RadioButton {
                         exclusiveGroup: mousewheelGroup
                         checked: false
-                        text: 'Volume (UI) (xdotool) (sudo apt-get install xdotool)'
+                        text: 'Volume (UI) (qdbus)'
+                        property string upCommand:   'qdbus org.kde.kglobalaccel /component/kmix invokeShortcut "increase_volume"'
+                        property string downCommand: 'qdbus org.kde.kglobalaccel /component/kmix invokeShortcut "decrease_volume"'
                         onClicked: {
-                            setCommands('xdotool key XF86AudioRaiseVolume', 'xdotool key XF86AudioLowerVolume')
+                            setCommands(upCommand, downCommand)
                         }
                     }
 
+                    RadioButton {
+                        exclusiveGroup: mousewheelGroup
+                        checked: false
+                        text: 'Switch Desktop (qdbus)'
+                        property string upCommand:   'qdbus org.kde.kglobalaccel /component/kwin invokeShortcut "Switch One Desktop to the Left"'
+                        property string downCommand: 'qdbus org.kde.kglobalaccel /component/kwin invokeShortcut "Switch One Desktop to the Right"'
+                        onClicked: {
+                            setCommands(upCommand, downCommand)
+                        }
+                    }
                 }
             }
 
