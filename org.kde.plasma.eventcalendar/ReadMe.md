@@ -1,8 +1,8 @@
 # Event Calendar
 
-Plasmoid for a calendar+agenda with weather that synchs to Google Calendar.
-
 https://www.kde-look.org/p/998901/
+
+Plasmoid for a calendar+agenda with weather that synchs to Google Calendar.
 
 ## Screenshots
 
@@ -10,17 +10,16 @@ https://www.kde-look.org/p/998901/
 ![](https://i.imgur.com/mXT23zo.png)
 
 
-## Install via KDE
+## A) Install via KDE
 
-1. Right Click Panel > Panel Options > Unlock Widgets
-2. Right Click Panel > Panel Options > Add Widgets
-3. Get New Widgets > Download New Widgets
-4. Search: Event Calendar
-5. Install
-6. Right Click your current calendar widget > Alternatives
-7. Select Event Calendar
+1. Right Click Panel > Panel Options > Add Widgets
+2. Get New Widgets > Download New Widgets
+3. Search: Event Calendar
+4. Install
+5. Right Click your current calendar widget > Alternatives
+6. Select Event Calendar
 
-## Install via GitHub
+## B) Install via GitHub
 
 ```
 git clone https://github.com/Zren/plasma-applets.git
@@ -30,13 +29,12 @@ cd plasma-applets/org.kde.plasma.eventcalendar
 
 To update, run the `./update` script. It will run a `git pull` then reinstall the applet. Please note this script will restart plasmashell (so you don't have to relog)!
 
-## Install via Package Manager
+## C) Install via Package Manager
 
 Some awesome users seemed to have packaged this applet under `plasma5-applets-eventcalendar`.
 
-* https://aur.archlinux.org/packages/plasma5-applets-eventcalendar/
-* https://chakraos.org/ccr/packages.php?ID=7656
-
+* Arch: https://aur.archlinux.org/packages/plasma5-applets-eventcalendar/
+* Chakra: https://chakraos.org/ccr/packages.php?ID=7656
 
 ## Configure
 
