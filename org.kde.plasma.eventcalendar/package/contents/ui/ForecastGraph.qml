@@ -15,8 +15,14 @@ Item {
     width: 400
     height: 100
     property bool cfg_clock_24h: false
+    property int cfg_meteogram_hours: 9
+
     onCfg_clock_24hChanged: {
         graph.gridData = formatXAxisLabels(graph.gridData)
+        graph.update();
+    }
+
+    onCfg_meteogram_hoursChanged: {
         graph.update();
     }
 
@@ -53,7 +59,7 @@ Item {
         property color scaleColor: theme.buttonBackgroundColor
         property color labelColor: theme.textColor
         property color precipitationColor: "#acd"
-        property color precipitationTextOulineColor: "#134"
+        property color precipitationTextOulineColor: theme.backgroundColor //"#134"
         property color tempAbove0Color: "#900"
         property color tempBelow0Color: "#369"
 
@@ -179,6 +185,7 @@ Item {
 
                     // rain
                     graph.showYAxisRainMax = false
+                    var gridDataAreaWidth = 0;
                     for (var i = 1; i < graph.gridData.length; i++) {
                         var item = graph.gridData[i];
                         if (item.percipitation) {
@@ -186,9 +193,10 @@ Item {
                             var rainY = Math.min(item.percipitation, graph.yAxisRainMax) / graph.yAxisRainMax;
                             var a = graph.gridPoint(i-1, graph.yAxisMin);
                             var b = graph.gridPoint(i, graph.yAxisMin);
-                            var h = rainY * graph.gridHeight
+                            var h = rainY * graph.gridHeight;
+                            gridDataAreaWidth = b.x-a.x;
                             context.fillStyle = graph.precipitationColor
-                            context.fillRect(a.x, a.y, b.x-a.x, -h);
+                            context.fillRect(a.x, a.y, gridDataAreaWidth, -h);
                         }
                     }
 
@@ -261,10 +269,13 @@ Item {
 
 
                     // yAxis label: precipitation
+                    var lastLabelVisible = false;
+                    var lastLabelStaggered = false;
                     for (var i = 1; i < graph.gridData.length; i++) {
                         var item = graph.gridData[i];
                         if (item.percipitation && item.percipitation > 0.3) {
                             var p = graph.gridPoint(i, graph.yAxisMin);
+                            var pY = graph.gridY + 6;
 
                             context.fillStyle = graph.precipitationColor
                             context.font = "12px sans-serif"
@@ -272,8 +283,23 @@ Item {
                             var labelText = (item.percipitation >= 1 ? Math.round(item.percipitation) : item.percipitation.toFixed(1)) + 'mm';
                             context.strokeStyle = graph.precipitationTextOulineColor;
                             context.lineWidth = 3;
-                            context.strokeText(labelText, p.x, graph.gridY + 6)
-                            context.fillText(labelText, p.x, graph.gridY + 6)
+
+                            // Stagger the labels so they don't overlap.
+                            var labelWidth = context.measureText(labelText).width + 20; // 12px for padding-left
+                            if (gridDataAreaWidth < context.measureText(labelText).width && lastLabelVisible && !lastLabelStaggered) {
+                                pY += 12 // 12px
+                                lastLabelStaggered = true;
+                            } else {
+                                lastLabelStaggered = false;
+                            }
+                            lastLabelVisible = true;
+                            
+
+                            context.strokeText(labelText, p.x, pY);
+                            context.fillText(labelText, p.x, pY);
+                        } else {
+                            lastLabelVisible = false;
+                            lastLabelStaggered = false;
                         }
                     }
                     // if (graph.showYAxisRainMax) {
@@ -423,7 +449,7 @@ Item {
         // console.log(JSON.stringify(gData, null, '\t'));
 
         // Only forcast next 24 hours 
-        gData = gData.slice(0, Math.ceil(24 / 3));
+        gData = gData.slice(0, Math.ceil(meteogramView.cfg_meteogram_hours / 3));
 
         // Format xAxis Labels
         gData = formatXAxisLabels(gData);

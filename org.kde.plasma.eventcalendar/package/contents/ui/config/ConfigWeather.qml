@@ -17,6 +17,7 @@ Item {
     property alias cfg_weather_city_id: weather_city_id.text
     property string cfg_weather_units: 'metric'
     property alias cfg_events_pollinterval: weather_pollinterval.value // TODO
+    property alias cfg_meteogram_hours: meteogram_hours.value
     
 
     SystemPalette {
@@ -79,6 +80,26 @@ Item {
                     suffix: i18ncp("Polling interval in minutes", "min", "min", value)
                     minimumValue: 60
                     maximumValue: 90
+                }
+            }
+
+            RowLayout {
+                Label {
+                    text: i18n("Show next ")
+                }
+                
+                SpinBox {
+                    id: meteogram_hours
+                    enabled: true
+                    
+                    suffix: i18np(" hours", " hours", value)
+                    minimumValue: 9
+                    maximumValue: 48
+                    stepSize: 3
+                }
+
+                Label {
+                    text: i18n(" in the meteogram.")
                 }
             }
 

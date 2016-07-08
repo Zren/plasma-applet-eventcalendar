@@ -203,6 +203,7 @@ Item {
                 Layout.minimumHeight: popup.topRowHeight
                 Layout.preferredHeight: parent.height / 5
                 cfg_clock_24h: popup.cfg_clock_24h
+                cfg_meteogram_hours: popup.config.meteogram_hours
             }
 
             TimerView {
