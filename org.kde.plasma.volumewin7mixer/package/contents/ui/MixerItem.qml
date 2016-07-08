@@ -289,20 +289,21 @@ PlasmaComponents.ListItem {
             id: muteButton
         }
 
-
-        VolumeIcon {
+        PlasmaComponents.ToolButton {
             Layout.maximumWidth: mixerItem.volumeSliderWidth
             Layout.maximumHeight: mixerItem.volumeSliderWidth
             Layout.minimumWidth: Layout.maximumWidth
             Layout.minimumHeight: Layout.maximumHeight
-
             anchors.horizontalCenter: parent.horizontalCenter
 
-            volume: PulseObject.volume
-            muted: PulseObject.muted
-
-            MouseArea {
+            VolumeIcon {
                 anchors.fill: parent
+                
+                volume: PulseObject.volume
+                muted: PulseObject.muted
+            }
+            
+            onClicked: {
                 // onPressed: PulseObject.muted = !PulseObject.muted
                 onPressed: mixerItem.isVolumeBoosted = !mixerItem.isVolumeBoosted
             }
