@@ -92,6 +92,7 @@ PlasmaComponents.ListItem {
         }
         addLine('Name', PulseObject.name);
         addLine('Description', PulseObject.description);
+        addLine('Volume', Math.round(PulseObjectCommands.volumePercent(PulseObject.volume)) + "%");
         if (typeof PulseObject.activePortIndex !== 'undefined') {
             addLine('Port', '[' + PulseObject.activePortIndex +'] ' + PulseObject.ports[PulseObject.activePortIndex].description);
         }
