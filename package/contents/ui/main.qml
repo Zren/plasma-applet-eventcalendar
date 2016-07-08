@@ -170,6 +170,7 @@ Item {
             onWeather_app_idChanged: { updateWeather(true) }
             onWeather_city_idChanged: { updateWeather(true) }
             onWeather_unitsChanged: { updateWeather(true) }
+            onMeteogram_hoursChanged: { updateWeather() }
             onWidget_show_meteogramChanged: {
                 if (plasmoid.configuration.widget_show_meteogram) {
                     updateHourlyWeather();
