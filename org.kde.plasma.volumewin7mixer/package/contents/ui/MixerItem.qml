@@ -277,6 +277,10 @@ PlasmaComponents.ListItem {
                     acceptedButtons: Qt.NoButton
                     // onWheel: wheel.accepted = true
                 }
+
+                Component.onCompleted: {
+                    mixerItem.isVolumeBoosted = PulseObject.volume > 66000 // 100% is 65863.68, not 65536... Bleh. Just trigger at a round number.
+                }
             }
         }
 
