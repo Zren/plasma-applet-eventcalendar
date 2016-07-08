@@ -348,29 +348,28 @@ Item {
         // ]
         graph.update();
 
-        if (typeof popup === "undefined") {
-            updateWeatherData();
-        }
-    }
-
-    function updateWeatherData() {
-        if (false && typeof root === 'undefined') {
+        if (typeof popup === "undefined" || typeof root === 'undefined') {
             Utils.getJSON({
                 url: 'ForecastGraphData.json'
-            }, onWeatherData);
-        } else {
-            var app_id = '99e575d9aa8a8407bcee7693d5912c6a';
-            var city_id = 5983720;
-            var units = 'metric';
-            Shared.fetchHourlyWeatherForecast({
-                app_id: app_id,
-                city_id: city_id,
-                units: units,
             }, function(err, hourlyData, xhr) {
                 var currentWeatherData = hourlyData.list[0];
                 parseWeatherForecast(currentWeatherData, hourlyData)
             });
         }
+    }
+
+    function updateWeatherData() {
+        var app_id = '99e575d9aa8a8407bcee7693d5912c6a';
+        var city_id = 5983720;
+        var units = 'metric';
+        Shared.fetchHourlyWeatherForecast({
+            app_id: app_id,
+            city_id: city_id,
+            units: units,
+        }, function(err, hourlyData, xhr) {
+            var currentWeatherData = hourlyData.list[0];
+            parseWeatherForecast(currentWeatherData, hourlyData)
+        });
     }
 
     // function onWeatherData(err, data, xhr) {
