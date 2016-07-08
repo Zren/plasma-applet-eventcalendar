@@ -120,6 +120,7 @@ Item {
         cfg_widget_show_timer: plasmoid.configuration.widget_show_timer
         cfg_widget_show_agenda: plasmoid.configuration.widget_show_agenda
         cfg_widget_show_calendar: plasmoid.configuration.widget_show_calendar
+        cfg_timer_repeats: plasmoid.configuration.timer_repeats
         cfg_timer_sfx_enabled: plasmoid.configuration.timer_sfx_enabled
         cfg_timer_sfx_filepath: plasmoid.configuration.timer_sfx_filepath
         cfg_agenda_weather_show_icon: plasmoid.configuration.agenda_weather_show_icon
