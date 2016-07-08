@@ -312,11 +312,21 @@ Item {
                     color: "transparent"
 
                     PlasmaCore.ToolTipArea {
+                        id: tooltip
                         anchors.fill: parent
                         icon: modelData.gridItem.weatherIcon
                         mainText: modelData.gridItem.tooltipMainText
                         subText: modelData.gridItem.tooltipSubText
                         location: PlasmaCore.Types.BottomEdge
+                    }
+
+                    FontIcon {
+                        id: weatherIcon
+                        anchors.centerIn: parent
+                        color: PlasmaCore.ColorScope.textColor
+                        source: modelData.gridItem.weatherIcon
+                        height: 24
+                        opacity: tooltip.containsMouse ? 0.1 : 1
                     }
 
                     Component.onCompleted: {
