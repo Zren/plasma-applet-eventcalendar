@@ -56,6 +56,7 @@ Item {
     property bool cfg_widget_show_timer: true
     property bool cfg_widget_show_agenda: true
     property bool cfg_widget_show_calendar: true
+    property bool cfg_timer_repeats: false
     property bool cfg_timer_sfx_enabled: true
     property string cfg_timer_sfx_filepath: "/usr/share/sounds/freedesktop/stereo/complete.oga"
     property bool cfg_agenda_scroll_on_select: true
@@ -210,6 +211,7 @@ Item {
                 Layout.fillWidth: true
                 Layout.minimumHeight: popup.topRowHeight
                 Layout.preferredHeight: parent.height / 5
+                cfg_timer_repeats: popup.cfg_timer_repeats
                 cfg_timer_sfx_enabled: popup.cfg_timer_sfx_enabled
                 cfg_timer_sfx_filepath: popup.cfg_timer_sfx_filepath
             }

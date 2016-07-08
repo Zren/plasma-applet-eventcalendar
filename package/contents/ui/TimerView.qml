@@ -14,9 +14,9 @@ Item {
 
     property int timerSeconds: 0
     property int timerDuration: 0
-    property alias isRepeatingTimer: timerRepeat.checked
     property int defaultTimerWidth: 48
-    property bool cfg_timer_sfx_enabled: true
+    property alias cfg_timer_repeats: timerRepeat.isChecked
+    property alias cfg_timer_sfx_enabled: timerSfxEnabled.isChecked
     property string cfg_timer_sfx_filepath: "/usr/share/sounds/freedesktop/stereo/complete.oga"
 
     // width: 400
@@ -74,20 +74,26 @@ Item {
             ColumnLayout {
                 anchors.bottom: parent.bottom
                 
-                PlasmaComponents.Switch {
+                PlasmaComponents.ToolButton {
                     id: timerRepeat
+                    property bool isChecked: false // New property to avoid checked=pressed theming.
+                    iconSource: isChecked ? 'media-playlist-repeat' : 'gtk-stop'
                     text: i18n("Repeat")
-                    // height: parent.height / 2
+                    onClicked: {
+                        isChecked = !isChecked
+                        plasmoid.configuration.timer_repeats = isChecked
+                    }
                 }
 
-                PlasmaComponents.Switch {
+                PlasmaComponents.ToolButton {
                     id: timerSfxEnabled
+                    property bool isChecked: false // New property to avoid checked=pressed theming.
+                    iconSource: isChecked ? 'audio-volume-high' : 'dialog-cancel'
                     text: i18n("Sound")
-                    // checked: cfg_timer_sfx_enabled
                     onClicked: {
-                        cfg_timer_sfx_enabled = checked
+                        isChecked = !isChecked
+                        plasmoid.configuration.timer_sfx_enabled = isChecked
                     }
-                    // height: parent.height / 2
                 }
             }
             
@@ -146,7 +152,8 @@ Item {
         // Debug in qmlviewer
         if (typeof popup === 'undefined') {
             timerView.timerDuration = 3
-            isRepeatingTimer = true
+            cfg_timer_repeats = true
+            cfg_timer_sfx_enabled = true
             timerTicker.start()
         }
     }
@@ -209,7 +216,7 @@ Item {
             notificationSound.play()
         }
 
-        if (isRepeatingTimer) {
+        if (cfg_timer_repeats) {
             timerSeconds = timerDuration
             timerTicker.start()
         }
