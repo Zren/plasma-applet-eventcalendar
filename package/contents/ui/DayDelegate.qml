@@ -208,7 +208,9 @@ MouseArea {
             var lines = [];
             for (var i = 0; i < model.events.count; i++) {
                 var eventItem = model.events.get(i);
-                var line = '<b>' + eventItem.summary + ':</b> ';
+                var line = '';
+                line += '<font color="' + eventItem.backgroundColor + '">■</b> ';
+                line += '<b>' + eventItem.summary + ':</b> ';
                 line += Shared.formatEventDuration(eventItem, {
                     relativeDate: thisDate,
                     clock_24h: plasmoid && plasmoid.configuration && plasmoid.configuration.clock_24h,
