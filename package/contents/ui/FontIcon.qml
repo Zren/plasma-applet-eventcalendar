@@ -18,6 +18,8 @@ Item {
         id: iconText
         text: ''
         color: PlasmaCore.ColorScope.textColor
+        style: Text.Outline
+        styleColor: PlasmaCore.ColorScope.backgroundColor
 
         font.family: "weathericons"
         font.pointSize: -1
