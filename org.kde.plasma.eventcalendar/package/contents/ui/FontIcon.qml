@@ -39,6 +39,11 @@ Item {
 
             // Night
             'weather-clear-night': '\uf02e',
+            'weather-few-clouds-night': '\uf083',
+            'weather-clouds-night': '\uf031',
+            'weather-showers-scattered-night': '\uf037',
+            'weather-showers-night': '\uf036',
+            'weather-storm-night': '\uf03b',
         };
         return codeByName[name];
     }
