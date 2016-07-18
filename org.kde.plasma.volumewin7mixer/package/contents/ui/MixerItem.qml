@@ -310,4 +310,86 @@ PlasmaComponents.ListItem {
         }
     }
     
+    // https://github.com/KDE/plasma-framework/blob/master/src/declarativeimports/plasmacomponents/qmenu.cpp
+    // Example: https://github.com/KDE/plasma-desktop/blob/master/applets/taskmanager/package/contents/ui/ContextMenu.qml
+    PlasmaComponents.ContextMenu {
+        id: contextMenu
+
+        function newSeperator() {
+            return Qt.createQmlObject("import org.kde.plasma.components 2.0 as PlasmaComponents; PlasmaComponents.MenuItem { separator: true }", contextMenu);
+        }
+        function newMenuItem() {
+            return Qt.createQmlObject("import org.kde.plasma.components 2.0 as PlasmaComponents; PlasmaComponents.MenuItem {}", contextMenu);
+        }
+
+        function loadDynamicActions() {
+            console.log('loadDynamicActions')
+            contextMenu.clearMenuItems();
+
+            // Mute
+            var menuItem = newMenuItem();
+            menuItem.text = i18n("Mute");
+            menuItem.checkable = true;
+            menuItem.checked = i === PulseObject.activePortIndex;
+            menuItem.checked = PulseObject.muted;
+            menuItem.clicked.connect(function() {
+                PulseObject.muted = !PulseObject.muted
+            });
+            contextMenu.addMenuItem(menuItem);
+
+            // Volume Boost
+            var menuItem = newMenuItem();
+            menuItem.text = i18n("Enabled Volume Boost (150% Volume)");
+            menuItem.checkable = true;
+            menuItem.checked = mixerItem.isVolumeBoosted
+            menuItem.clicked.connect(function() {
+                mixerItem.isVolumeBoosted = !mixerItem.isVolumeBoosted
+            });
+            contextMenu.addMenuItem(menuItem);
+
+            // Default
+            if (typeof PulseObject.default === "boolean") {
+                var menuItem = newMenuItem();
+                menuItem.text = i18n("Default");
+                menuItem.checkable = true;
+                menuItem.checked = PulseObject.default
+                menuItem.clicked.connect(function() {
+                    PulseObject.default = true
+                });
+                contextMenu.addMenuItem(menuItem);
+            }
+
+            // Ports
+            if (PulseObject.ports && PulseObject.ports.length > 1) {
+                console.log('PulseObject.ports.length', PulseObject.ports.length)
+                contextMenu.addMenuItem(newSeperator());
+                for (var i = 0; i < PulseObject.ports.length; i++) {
+                    var port = PulseObject.ports[i];
+                    var menuItem = newMenuItem();
+                    menuItem.text = '[' + i + '] ' + port.description;
+                    menuItem.checkable = true;
+                    menuItem.checked = i === PulseObject.activePortIndex;
+                    var setActivePort = function(portIndex){
+                        return function() {
+                            PulseObject.activePortIndex = portIndex;
+                        };
+                    };
+                    menuItem.clicked.connect(setActivePort(i));
+                    contextMenu.addMenuItem(menuItem);
+                }
+            }
+        }
+
+        function show(x, y) {
+            loadDynamicActions();
+            open(x, y);
+        }
+    }
+
+    MouseArea {
+        acceptedButtons: Qt.RightButton
+        anchors.fill: parent
+
+        onClicked: contextMenu.show(mouse.x, mouse.y);
+    }
 }
