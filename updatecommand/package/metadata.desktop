@@ -1,0 +1,24 @@
+[Desktop Entry]
+Name=Updates (UpdateCommand)
+Comment=Helps you keep your system up to date
+Encoding=UTF-8
+
+Icon=update-none
+Type=Service
+
+X-KDE-ServiceTypes=Plasma/Applet
+X-KDE-PluginInfo-Author=The Plasma Team
+X-KDE-PluginInfo-Email=plasma-devel@kde.org
+X-KDE-PluginInfo-Name=org.kde.plasma.updatecommand
+X-KDE-PluginInfo-Version=4
+X-KDE-PluginInfo-Website=http://plasma.kde.org/
+X-KDE-PluginInfo-Category=Online Services
+X-KDE-PluginInfo-Depends=
+X-KDE-PluginInfo-License=GPL
+X-KDE-PluginInfo-EnabledByDefault=true
+
+X-Plasma-API=declarativeappletscript
+X-Plasma-MainScript=ui/main.qml
+X-Plasma-NotificationArea=true
+X-Plasma-Requires-FileDialog=Unused
+X-Plasma-Requires-LaunchApp=Required
