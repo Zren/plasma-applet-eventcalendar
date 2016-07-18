@@ -1,5 +1,0 @@
-#!/bin/bash
-# Version 1
-
-plasmapkg2 -u package
-plasmawindowed $(basename $PWD)

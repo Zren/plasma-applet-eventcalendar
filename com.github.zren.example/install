@@ -1,4 +1,0 @@
-#!/bin/bash
-# Version 1
-
-plasmapkg2 -i package
