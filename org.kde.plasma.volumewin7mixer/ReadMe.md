@@ -31,3 +31,10 @@ cd plasma-applets/org.kde.plasma.volumewin7mixer
 ```
 
 To update, run the `./update` script. It will run a `git pull` then reinstall the applet. Please note this script will restart plasmashell (so you don't have to relog)!
+
+## C) Install via Package Manager
+
+Some awesome users seemed to have packaged this applet under plasma5-applets-eventcalendar.
+
+* Arch: (Out of date!) https://aur.archlinux.org/packages/plasma5-applets-volumewin7mixer/
+* Chakra: https://chakralinux.org/ccr/packages.php?ID=7763

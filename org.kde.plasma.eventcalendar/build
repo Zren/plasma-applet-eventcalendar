@@ -5,3 +5,5 @@ cd package
 zip -r eventcalendar.plasmoid *
 mv eventcalendar.plasmoid ../eventcalendar.plasmoid
 cd ..
+echo "md5: $(md5sum eventcalendar.plasmoid | awk '{ print $1 }')"
+echo "sha256: $(sha256sum eventcalendar.plasmoid | awk '{ print $1 }')"

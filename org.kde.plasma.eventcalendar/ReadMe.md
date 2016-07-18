@@ -34,7 +34,7 @@ To update, run the `./update` script. It will run a `git pull` then reinstall th
 Some awesome users seemed to have packaged this applet under `plasma5-applets-eventcalendar`.
 
 * Arch: https://aur.archlinux.org/packages/plasma5-applets-eventcalendar/
-* Chakra: https://chakraos.org/ccr/packages.php?ID=7656
+* Chakra: https://chakralinux.org/ccr/packages.php?ID=7656
 
 ## Configure
 
