@@ -1,4 +1,5 @@
 #!/bin/bash
+# Version 2
 
 plasmapkg2 -u package
-plasmawindowed $(basename $PWD)
+plasmawindowed $(kreadconfig --file="$PWD/package/metadata.desktop" --group="Desktop Entry" --key="X-KDE-PluginInfo-Name")

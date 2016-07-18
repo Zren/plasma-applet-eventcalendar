@@ -1,7 +1,12 @@
 #!/bin/bash
+# Version 3
 
-rm win7showdesktop.plasmoid
+plasmoidName=$(kreadconfig --file="$PWD/package/metadata.desktop" --group="Desktop Entry" --key="X-KDE-PluginInfo-Name")
+plasmoidName="${plasmoidName##*.}" # Strip namespace (Eg: "org.kde.plasma.")
+rm ${plasmoidName}.plasmoid
 cd package
-zip -r win7showdesktop.plasmoid *
-mv win7showdesktop.plasmoid ../win7showdesktop.plasmoid
+zip -r ${plasmoidName}.plasmoid *
+mv ${plasmoidName}.plasmoid ../${plasmoidName}.plasmoid
 cd ..
+echo "md5: $(md5sum eventcalendar.plasmoid | awk '{ print $1 }')"
+echo "sha256: $(sha256sum eventcalendar.plasmoid | awk '{ print $1 }')"

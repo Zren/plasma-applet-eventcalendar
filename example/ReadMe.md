@@ -2,7 +2,7 @@
 
 This folder is useful for quickly writing a new plasmoid.
 
-* Note that parent folder must match the `X-KDE-PluginInfo-Name` in the file `package/metadata.desktop` for the build/install/reinstall/run scripts to work (Someday I might rewrite those scripts to `kreadconfig`).
+* The `build`/`run` commands require `kreadconfig`.
 * Do *not* run the `install`/`reinstall` scripts with sudo or the plasmoid will be placed in `/usr/share/` instead of your home directory.
 
 ## Locations

@@ -1,4 +1,5 @@
 #!/bin/bash
+# Version 1
 
 plasmapkg2 -u package
 killall plasmashell
