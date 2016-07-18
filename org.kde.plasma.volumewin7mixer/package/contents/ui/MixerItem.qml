@@ -304,8 +304,7 @@ PlasmaComponents.ListItem {
             }
             
             onClicked: {
-                // onPressed: PulseObject.muted = !PulseObject.muted
-                onPressed: mixerItem.isVolumeBoosted = !mixerItem.isVolumeBoosted
+                onPressed: PulseObject.muted = !PulseObject.muted
             }
         }
     }
@@ -323,7 +322,6 @@ PlasmaComponents.ListItem {
         }
 
         function loadDynamicActions() {
-            console.log('loadDynamicActions')
             contextMenu.clearMenuItems();
 
             // Mute
@@ -339,7 +337,7 @@ PlasmaComponents.ListItem {
 
             // Volume Boost
             var menuItem = newMenuItem();
-            menuItem.text = i18n("Enabled Volume Boost (150% Volume)");
+            menuItem.text = i18n("Volume Boost (150% Volume)");
             menuItem.checkable = true;
             menuItem.checked = mixerItem.isVolumeBoosted
             menuItem.clicked.connect(function() {
@@ -361,7 +359,6 @@ PlasmaComponents.ListItem {
 
             // Ports
             if (PulseObject.ports && PulseObject.ports.length > 1) {
-                console.log('PulseObject.ports.length', PulseObject.ports.length)
                 contextMenu.addMenuItem(newSeperator());
                 for (var i = 0; i < PulseObject.ports.length; i++) {
                     var port = PulseObject.ports[i];
