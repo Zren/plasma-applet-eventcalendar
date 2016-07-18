@@ -152,7 +152,7 @@ Item {
 
                 // http://stackoverflow.com/questions/7054272/how-to-draw-smooth-curve-through-n-points-using-javascript-html5-canvas
                 function drawCurve(path) {
-                    if (path.length < 2) return;
+                    if (path.length < 3) return;
 
                     var gridPath = [];
                     for (var i = 0; i < path.length; i++) {
@@ -449,7 +449,7 @@ Item {
         // console.log(JSON.stringify(gData, null, '\t'));
 
         // Only forcast next 24 hours 
-        gData = gData.slice(0, Math.ceil(meteogramView.cfg_meteogram_hours / 3));
+        gData = gData.slice(0, Math.max(3, Math.ceil(meteogramView.cfg_meteogram_hours / 3)));
 
         // Format xAxis Labels
         gData = formatXAxisLabels(gData);
