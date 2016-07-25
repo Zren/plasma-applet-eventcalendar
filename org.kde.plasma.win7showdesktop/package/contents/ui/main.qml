@@ -263,4 +263,18 @@ Item {
         //added because it is already in the list)
         executeSource.connectSource(cmd)
     }
+
+
+    Component.onCompleted: {
+        plasmoid.setAction("showdesktop", i18n("Show Desktop"), "user-desktop")
+        plasmoid.setAction("minimizeall", i18n("Minimize All Windows"), "user-desktop")
+    }
+
+    function action_showdesktop() {
+        showdesktop.showingDesktop = true
+    }
+
+    function action_minimizeall() {
+        showdesktop.minimizeAll()
+    }
 }
