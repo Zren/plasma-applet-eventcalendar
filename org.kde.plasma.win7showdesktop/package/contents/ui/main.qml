@@ -180,7 +180,13 @@ Item {
                         peekTimer.stop()
 
                         if (true) {
-                            showdesktop.showingDesktop = !showdesktop.showingDesktop
+                            if (plasmoid.configuration.click_action == 'minimizeall') {
+                                showdesktop.minimizeAll()
+                            } else if (plasmoid.configuration.click_action == 'run_command') {
+                                root.exec(plasmoid.configuration.click_command)
+                            } else { // Default: showdesktop
+                                showdesktop.showingDesktop = !showdesktop.showingDesktop
+                            }
                         } else {
                             showdesktop.showingDesktop = false
                             showdesktop.minimizeAll()

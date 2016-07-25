@@ -13,7 +13,10 @@ Item {
     implicitWidth: pageColumn.implicitWidth
     implicitHeight: pageColumn.implicitHeight
     
-    property string cfg_mousewheel: 'run_commands'
+    property string cfg_click_action: 'showdesktop'
+    property alias cfg_click_command: click_command.text
+    
+    property string cfg_mousewheel_action: 'run_commands'
     property alias cfg_mousewheel_up: mousewheel_up.text
     property alias cfg_mousewheel_down: mousewheel_down.text
 
@@ -23,8 +26,8 @@ Item {
         id: palette
     }
 
-    function setCommands(up, down) {
-        cfg_mousewheel = 'run_commands'
+    function setMouseWheelCommands(up, down) {
+        cfg_mousewheel_action = 'run_commands'
         mousewheelGroup_runcommands.checked = true
         cfg_mousewheel_up = up
         cfg_mousewheel_down = down
@@ -35,6 +38,58 @@ Item {
     ColumnLayout {
         id: pageColumn
         Layout.fillWidth: true
+
+        ColumnLayout {
+            PlasmaExtras.Heading {
+                level: 3
+                text: i18n("Click")
+                color: palette.text
+            }
+            GroupBox {
+                Layout.fillWidth: true
+
+                ColumnLayout {
+                    ExclusiveGroup { id: clickGroup }
+
+                    RadioButton {
+                        exclusiveGroup: clickGroup
+                        checked: cfg_click_action == 'showdesktop'
+                        text: 'Show Desktop'
+                        onClicked: {
+                            cfg_click_action = 'showdesktop'
+                        }
+                    }
+
+                    RadioButton {
+                        exclusiveGroup: clickGroup
+                        checked: cfg_click_action == 'minimizeall'
+                        text: 'Minimize All'
+                        onClicked: {
+                            cfg_click_action = 'minimizeall'
+                        }
+                    }
+
+                    RadioButton {
+                        id: clickGroup_runcommand
+                        exclusiveGroup: clickGroup
+                        checked: cfg_click_action == 'run_command'
+                        text: 'Run Command'
+                        onClicked: {
+                            cfg_click_action = 'run_command'
+                        }
+                    }
+                    RowLayout {
+                        Layout.fillWidth: true
+                        Text { width: indentWidth } // indent
+                        TextField {
+                            Layout.fillWidth: true
+                            id: click_command
+                        }
+                    }
+                }
+            }
+
+        }
 
         ColumnLayout {
             PlasmaExtras.Heading {
@@ -51,10 +106,10 @@ Item {
                     RadioButton {
                         id: mousewheelGroup_runcommands
                         exclusiveGroup: mousewheelGroup
-                        checked: cfg_mousewheel == 'run_commands'
+                        checked: cfg_mousewheel_action == 'run_commands'
                         text: 'Run Commands'
                         onClicked: {
-                            cfg_mousewheel = 'run_commands'
+                            cfg_mousewheel_action = 'run_commands'
                         }
                     }
                     RowLayout {
@@ -85,7 +140,7 @@ Item {
                         checked: false
                         text: 'Volume (No UI) (amixer)'
                         onClicked: {
-                            setCommands('amixer -q sset Master 10%+', 'amixer -q sset Master 10%-')
+                            setMouseWheelCommands('amixer -q sset Master 10%+', 'amixer -q sset Master 10%-')
                         }
                     }
 
@@ -96,7 +151,7 @@ Item {
                         property string upCommand:   'qdbus org.kde.kglobalaccel /component/kmix invokeShortcut "increase_volume"'
                         property string downCommand: 'qdbus org.kde.kglobalaccel /component/kmix invokeShortcut "decrease_volume"'
                         onClicked: {
-                            setCommands(upCommand, downCommand)
+                            setMouseWheelCommands(upCommand, downCommand)
                         }
                     }
 
@@ -107,7 +162,7 @@ Item {
                         property string upCommand:   'qdbus org.kde.kglobalaccel /component/kwin invokeShortcut "Switch One Desktop to the Left"'
                         property string downCommand: 'qdbus org.kde.kglobalaccel /component/kwin invokeShortcut "Switch One Desktop to the Right"'
                         onClicked: {
-                            setCommands(upCommand, downCommand)
+                            setMouseWheelCommands(upCommand, downCommand)
                         }
                     }
                 }

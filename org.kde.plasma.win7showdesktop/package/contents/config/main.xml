@@ -6,8 +6,14 @@
   <kcfgfile name=""/>
 
   <group name="General">
-    <entry name="icon" type="String">
-      <default>user-desktop</default>
+    <entry name="click_action" type="string">
+      <default>showdesktop</default>
+    </entry>
+    <entry name="click_command" type="string">
+      <default></default>
+    </entry>
+    <entry name="mousewheel_action" type="string">
+      <default>run_commands</default>
     </entry>
     <entry name="mousewheel_up" type="string">
       <default>qdbus org.kde.kglobalaccel /component/kmix invokeShortcut "increase_volume"</default>
