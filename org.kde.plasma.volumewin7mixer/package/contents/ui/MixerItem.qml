@@ -121,7 +121,7 @@ PlasmaComponents.ListItem {
             // logObj(main.draggedStream.properties)
             // logObj(PulseObject)
             // logObj(PulseObject.properties)
-            main.draggedStream.sinkIndex = PulseObject.index
+            main.draggedStream.deviceIndex = PulseObject.index
         }
     }
 
