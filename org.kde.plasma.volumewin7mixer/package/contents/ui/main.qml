@@ -251,6 +251,10 @@ Item {
         id: appsModel
         sourceModel: SinkInputModel {}
     }
+    PulseObjectFilterModel {
+        id: appOutputsModel
+        sourceModel: SourceOutputModel {}
+    }
     SourceModel {
         id: sourceModel
     }
@@ -264,6 +268,14 @@ Item {
         width: childrenRect.width
         height: parent.height
         spacing: 10
+
+        MixerItemGroup {
+            height: parent.height
+            title: 'Recording Apps'
+
+            model: appOutputsModel
+            mixerGroupType: 'SourceOutput'
+        }
 
         MixerItemGroup {
             height: parent.height
