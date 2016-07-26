@@ -330,6 +330,15 @@ Item {
 
     }
 
+    PlasmaComponents.ToolButton {
+        anchors.right: parent.right
+        width: Math.round(units.gridUnit * 1.25)
+        height: width
+        checkable: true
+        iconSource: "window-pin"
+        onCheckedChanged: plasmoid.hideOnWindowDeactivate = !checked
+    }
+
     // function updateActions() {
     //     if (plasmoid.configuration.showOpenKcmAudioVolume) {
     //         plasmoid.setAction("KCMAudioVolume", i18n("Audio Volume Settings..."), "configure");
