@@ -49,6 +49,10 @@ PlasmaComponents.ListItem {
             }
         } else if (mixerItemType == 'Sink') {
             // Speaker
+            var portDescription = PulseObject.ports[PulseObject.activePortIndex].description;
+            if (portDescription === 'Headphones') {
+                return 'audio-headphones';
+            }
             return 'speaker';
         } else if (mixerItemType == 'Source') {
             // Microphone
