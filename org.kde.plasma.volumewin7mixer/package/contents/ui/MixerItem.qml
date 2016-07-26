@@ -97,6 +97,15 @@ PlasmaComponents.ListItem {
         if (typeof PulseObject.activePortIndex !== 'undefined') {
             addLine('Port', '[' + PulseObject.activePortIndex +'] ' + PulseObject.ports[PulseObject.activePortIndex].description);
         }
+        if (typeof PulseObject.deviceIndex !== 'undefined') {
+            var isDefaultSink = false;
+            if (mixerItemType == 'SinkInput') {
+                isDefaultSink = PulseObject.deviceIndex === sinkModel.defaultSink.index;
+            }
+            if (!isDefaultSink) {
+                addLine('Device', '[' + PulseObject.deviceIndex + '] ');
+            }
+        }
         function addPropertyLine(key) {
             addLine(key, PulseObject.properties[key]);
         }
