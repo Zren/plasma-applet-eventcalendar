@@ -127,10 +127,8 @@ PlasmaComponents.ListItem {
         onDrop: {
             console.log('DropArea.onDrop')
             console.log(main.draggedStream, '=>', PulseObject)
-            // logObj(main.draggedStream)
-            // logObj(main.draggedStream.properties)
-            // logObj(PulseObject)
-            // logObj(PulseObject.properties)
+            // logPulseObj(main.draggedStream)
+            // logPulseObj(PulseObject)
             main.draggedStream.deviceIndex = PulseObject.index
         }
     }
@@ -139,6 +137,17 @@ PlasmaComponents.ListItem {
         for (var key in obj) {
             if (typeof obj[key] === 'function') continue;
             console.log(obj, key, obj[key])
+        }
+    }
+
+    function logPulseObj(obj) {
+        logObj(obj);
+        if (typeof obj.properties !== 'undefined') {
+            logObj(obj.properties);
+        }
+        if (typeof obj.client !== 'undefined') {
+            logObj(obj.client);
+            logObj(obj.client.properties);
         }
     }
 
@@ -314,7 +323,10 @@ PlasmaComponents.ListItem {
             }
             
             onClicked: {
-                onPressed: PulseObject.muted = !PulseObject.muted
+                onPressed: {
+                    // logPulseObj(PulseObject)
+                    PulseObject.muted = !PulseObject.muted
+                }
             }
         }
     }
