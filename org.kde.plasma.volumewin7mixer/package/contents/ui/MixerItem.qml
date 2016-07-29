@@ -193,162 +193,162 @@ PlasmaComponents.ListItem {
         spacing: 10
 
 
-    ColumnLayout {
-        // anchors.fill: parent
-        width: mixerItem.mixerItemWidth
-        height: parent.height
+        ColumnLayout {
+            // anchors.fill: parent
+            width: mixerItem.mixerItemWidth
+            height: parent.height
 
-        QIconItem {
-            id: clientIcon
-            icon: mixerItem.icon
-            // visible: false
-            anchors.horizontalCenter: parent.horizontalCenter
-            width: mixerItem.volumeSliderWidth
-            height: mixerItem.volumeSliderWidth
-
-            PlasmaCore.ToolTipArea {
-                anchors.fill: parent
-                mainText: mixerItem.label
-                subText: tooltipSubText
+            QIconItem {
+                id: clientIcon
                 icon: mixerItem.icon
-            }
-        }
-    
-        Label {
-            id: textLabel
-            text: mixerItem.label + '\n'
-            function updateLineCount() {
-                if (lineCount == 1) {
-                    textLabel.text = mixerItem.label + '\n'
-                } else if (truncated) {
-                    textLabel.text = mixerItem.label
-                }
-            }
-            onLineCountChanged: updateLineCount()
-            onTruncatedChanged: updateLineCount()
-
-            color: PlasmaCore.ColorScope.textColor
-            opacity: 0.6
-            wrapMode: Text.Wrap
-            elide: Text.ElideRight
-            maximumLineCount: 2
-            Layout.fillWidth: true
-            horizontalAlignment: Text.AlignHCenter
-
-            PlasmaCore.ToolTipArea {
-                anchors.fill: parent
-                mainText: mixerItem.label
-                subText: tooltipSubText
-                icon: mixerItem.icon
-            }
-        }
-
-        Item {
-            Layout.fillWidth: true
-            Layout.fillHeight: true
-            
-            VolumeSlider {
-                id: slider
-                orientation: Qt.Vertical
-                height: parent.height
-                width: mixerItem.volumeSliderWidth
+                // visible: false
                 anchors.horizontalCenter: parent.horizontalCenter
+                width: mixerItem.volumeSliderWidth
+                height: mixerItem.volumeSliderWidth
 
-                // Helper properties to allow async slider updates.
-                // While we are sliding we must not react to value updates
-                // as otherwise we can easily end up in a loop where value
-                // changes trigger volume changes trigger value changes.
-                property int volume: PulseObject.volume
-                property bool ignoreValueChange: false
-
-                Layout.fillWidth: true
-
-                minimumValue: 0
-                // FIXME: I do wonder if exposing max through the model would be useful at all
-                maximumValue: mixerItem.isVolumeBoosted ? 98304 : 65536
-                stepSize: maximumValue / 100
-                visible: PulseObject.hasVolume
-                enabled: typeof PulseObject.volumeWritable === 'undefined' || PulseObject.volumeWritable
-
-                opacity: {
-                    return enabled && PulseObject.muted ? 0.5 : 1
+                PlasmaCore.ToolTipArea {
+                    anchors.fill: parent
+                    mainText: mixerItem.label
+                    subText: tooltipSubText
+                    icon: mixerItem.icon
                 }
-
-                onVolumeChanged: {
-                    ignoreValueChange = true;
-                    if (!mixerItem.isVolumeBoosted && PulseObject.volume > maximumValue) {
-                        mixerItem.isVolumeBoosted = true;
+            }
+        
+            Label {
+                id: textLabel
+                text: mixerItem.label + '\n'
+                function updateLineCount() {
+                    if (lineCount == 1) {
+                        textLabel.text = mixerItem.label + '\n'
+                    } else if (truncated) {
+                        textLabel.text = mixerItem.label
                     }
-                    value = PulseObject.volume;
-                    ignoreValueChange = false;
                 }
+                onLineCountChanged: updateLineCount()
+                onTruncatedChanged: updateLineCount()
 
-                onValueChanged: {
-                    if (!ignoreValueChange) {
-                        PulseObjectCommands.setVolume(PulseObject, value);
+                color: PlasmaCore.ColorScope.textColor
+                opacity: 0.6
+                wrapMode: Text.Wrap
+                elide: Text.ElideRight
+                maximumLineCount: 2
+                Layout.fillWidth: true
+                horizontalAlignment: Text.AlignHCenter
 
+                PlasmaCore.ToolTipArea {
+                    anchors.fill: parent
+                    mainText: mixerItem.label
+                    subText: tooltipSubText
+                    icon: mixerItem.icon
+                }
+            }
+
+            Item {
+                Layout.fillWidth: true
+                Layout.fillHeight: true
+                
+                VolumeSlider {
+                    id: slider
+                    orientation: Qt.Vertical
+                    height: parent.height
+                    width: mixerItem.volumeSliderWidth
+                    anchors.horizontalCenter: parent.horizontalCenter
+
+                    // Helper properties to allow async slider updates.
+                    // While we are sliding we must not react to value updates
+                    // as otherwise we can easily end up in a loop where value
+                    // changes trigger volume changes trigger value changes.
+                    property int volume: PulseObject.volume
+                    property bool ignoreValueChange: false
+
+                    Layout.fillWidth: true
+
+                    minimumValue: 0
+                    // FIXME: I do wonder if exposing max through the model would be useful at all
+                    maximumValue: mixerItem.isVolumeBoosted ? 98304 : 65536
+                    stepSize: maximumValue / 100
+                    visible: PulseObject.hasVolume
+                    enabled: typeof PulseObject.volumeWritable === 'undefined' || PulseObject.volumeWritable
+
+                    opacity: {
+                        return enabled && PulseObject.muted ? 0.5 : 1
+                    }
+
+                    onVolumeChanged: {
+                        ignoreValueChange = true;
+                        if (!mixerItem.isVolumeBoosted && PulseObject.volume > maximumValue) {
+                            mixerItem.isVolumeBoosted = true;
+                        }
+                        value = PulseObject.volume;
+                        ignoreValueChange = false;
+                    }
+
+                    onValueChanged: {
+                        if (!ignoreValueChange) {
+                            PulseObjectCommands.setVolume(PulseObject, value);
+
+                            if (!pressed) {
+                                updateTimer.restart();
+                            }
+                        }
+                    }
+
+                    onPressedChanged: {
                         if (!pressed) {
+                            // Make sure to sync the volume once the button was
+                            // released.
+                            // Otherwise it might be that the slider is at v10
+                            // whereas PA rejected the volume change and is
+                            // still at v15 (e.g.).
                             updateTimer.restart();
                         }
                     }
-                }
 
-                onPressedChanged: {
-                    if (!pressed) {
-                        // Make sure to sync the volume once the button was
-                        // released.
-                        // Otherwise it might be that the slider is at v10
-                        // whereas PA rejected the volume change and is
-                        // still at v15 (e.g.).
-                        updateTimer.restart();
+                    Timer {
+                        id: updateTimer
+                        interval: 200
+                        onTriggered: slider.value = PulseObject.volume
+                    }
+
+                    // Block wheel events
+                    MouseArea {
+                        anchors.fill: parent
+                        acceptedButtons: Qt.NoButton
+                        // onWheel: wheel.accepted = true
+                    }
+
+                    Component.onCompleted: {
+                        mixerItem.isVolumeBoosted = PulseObject.volume > 66000 // 100% is 65863.68, not 65536... Bleh. Just trigger at a round number.
                     }
                 }
+            }
 
-                Timer {
-                    id: updateTimer
-                    interval: 200
-                    onTriggered: slider.value = PulseObject.volume
-                }
+            Item {
+                id: muteButton
+            }
 
-                // Block wheel events
-                MouseArea {
+            PlasmaComponents.ToolButton {
+                Layout.maximumWidth: mixerItem.volumeSliderWidth
+                Layout.maximumHeight: mixerItem.volumeSliderWidth
+                Layout.minimumWidth: Layout.maximumWidth
+                Layout.minimumHeight: Layout.maximumHeight
+                anchors.horizontalCenter: parent.horizontalCenter
+
+                VolumeIcon {
                     anchors.fill: parent
-                    acceptedButtons: Qt.NoButton
-                    // onWheel: wheel.accepted = true
+                    
+                    volume: PulseObject.volume
+                    muted: PulseObject.muted
                 }
-
-                Component.onCompleted: {
-                    mixerItem.isVolumeBoosted = PulseObject.volume > 66000 // 100% is 65863.68, not 65536... Bleh. Just trigger at a round number.
-                }
-            }
-        }
-
-        Item {
-            id: muteButton
-        }
-
-        PlasmaComponents.ToolButton {
-            Layout.maximumWidth: mixerItem.volumeSliderWidth
-            Layout.maximumHeight: mixerItem.volumeSliderWidth
-            Layout.minimumWidth: Layout.maximumWidth
-            Layout.minimumHeight: Layout.maximumHeight
-            anchors.horizontalCenter: parent.horizontalCenter
-
-            VolumeIcon {
-                anchors.fill: parent
                 
-                volume: PulseObject.volume
-                muted: PulseObject.muted
-            }
-            
-            onClicked: {
-                onPressed: {
-                    // logPulseObj(PulseObject)
-                    PulseObject.muted = !PulseObject.muted
+                onClicked: {
+                    onPressed: {
+                        // logPulseObj(PulseObject)
+                        PulseObject.muted = !PulseObject.muted
+                    }
                 }
             }
         }
-    }
 
 
         Repeater {
