@@ -21,6 +21,7 @@ Item {
     property alias cfg_mousewheel_down: mousewheel_down.text
 
     property bool showDebug: false
+    property int indentWidth: 24
 
     SystemPalette {
         id: palette
