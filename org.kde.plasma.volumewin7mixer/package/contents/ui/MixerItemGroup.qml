@@ -36,7 +36,8 @@ GroupBox {
         orientation: ListView.Horizontal
 
         delegate: MixerItem {
-            width: mixerItemWidth
+            // width: mixerItemWidth
+            mixerItemWidth: mixerItemWidth
             volumeSliderWidth: volumeSliderWidth
             mixerItemType: mixerGroupType
         }

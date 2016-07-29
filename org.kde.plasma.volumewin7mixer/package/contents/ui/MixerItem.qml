@@ -15,14 +15,19 @@ import "../code/sinkcommands.js" as PulseObjectCommands
 
 PlasmaComponents.ListItem {
     id: mixerItem
-    width: 50
+    width: mixerItemWidth + (showChannels ? numChannels * (channelSliderWidth + volumeSliderRow.spacing) : 0)
     height: parent.height
     checked: dropArea.containsDrag
     opacity: main.draggedStream && mixerItemType != 'Sink' ? 0.4 : 1
     separatorVisible: false
     property string mixerItemType: ''
+    property int mixerItemWidth: 100
     property int volumeSliderWidth: 50
+    property int channelSliderWidth: volumeSliderWidth
     property bool isVolumeBoosted: false
+    property bool hasChannels: typeof PulseObject.channels !== 'undefined'
+    property int numChannels: hasChannels ? PulseObject.channels.length : 0
+    property bool showChannels: false
 
     property string icon: {
         if (mixerItemType == 'SinkInput') {
@@ -180,8 +185,18 @@ PlasmaComponents.ListItem {
         }
     }
     
+    Row {
+        id: volumeSliderRow
+        // anchors.fill: parent
+        height: parent.height
+        width: parent.width
+        spacing: 10
+
+
     ColumnLayout {
-        anchors.fill: parent
+        // anchors.fill: parent
+        width: mixerItem.mixerItemWidth
+        height: parent.height
 
         QIconItem {
             id: clientIcon
@@ -334,6 +349,63 @@ PlasmaComponents.ListItem {
             }
         }
     }
+
+
+        Repeater {
+            model: showChannels && hasChannels ? PulseObject.channels : 0
+            ColumnLayout {
+                // anchors.fill: parent
+                width: mixerItem.channelSliderWidth
+                height: parent.height
+
+                Label {
+                    text: PulseObject.channels[index] + '\n'
+                    function updateLineCount() {
+                        if (lineCount == 1) {
+                            text = PulseObject.channels[index] + '\n'
+                        } else if (truncated) {
+                            text = PulseObject.channels[index]
+                        }
+                    }
+                    onLineCountChanged: updateLineCount()
+                    onTruncatedChanged: updateLineCount()
+
+                    color: PlasmaCore.ColorScope.textColor
+                    opacity: 0.6
+                    wrapMode: Text.Wrap
+                    elide: Text.ElideRight
+                    maximumLineCount: 2
+                    Layout.fillWidth: true
+                    horizontalAlignment: Text.AlignHCenter
+                }
+                Item {
+                    Layout.fillWidth: true
+                    Layout.fillHeight: true
+
+                    VolumeSlider {
+                        orientation: Qt.Vertical
+                        width: mixerItem.channelSliderWidth
+                        height: parent.height
+                        enabled: false
+                        // anchors.horizontalCenter: parent.horizontalCenter
+
+                        // value: PulseObject.channelVolumes.at(index)
+                        minimumValue: 0
+                        // FIXME: I do wonder if exposing max through the model would be useful at all
+                        maximumValue: 65536
+
+                        Component.onCompleted: {
+                            console.log(PulseObject.channels[index], model, index) // Front Left QQmlDMListAccessorData(0x1b33b40) 0
+                            console.log('channelVolumes', PulseObject.channelVolumes, typeof PulseObject.channelVolumes) // channelVolumes QVariant(QList<qlonglong>) object
+                        }
+                    }
+                }
+                
+            }
+        }
+    }
+
+
     
     // https://github.com/KDE/plasma-framework/blob/master/src/declarativeimports/plasmacomponents/qmenu.cpp
     // Example: https://github.com/KDE/plasma-desktop/blob/master/applets/taskmanager/package/contents/ui/ContextMenu.qml
@@ -379,6 +451,18 @@ PlasmaComponents.ListItem {
                 menuItem.checked = PulseObject.default
                 menuItem.clicked.connect(function() {
                     PulseObject.default = true
+                });
+                contextMenu.addMenuItem(menuItem);
+            }
+
+            // Channels
+            if (mixerItem.hasChannels) {
+                var menuItem = newMenuItem();
+                menuItem.text = i18n("Show Channels (Not Working)");
+                menuItem.checkable = true;
+                menuItem.checked = mixerItem.showChannels
+                menuItem.clicked.connect(function() {
+                    mixerItem.showChannels = !mixerItem.showChannels
                 });
                 contextMenu.addMenuItem(menuItem);
             }
