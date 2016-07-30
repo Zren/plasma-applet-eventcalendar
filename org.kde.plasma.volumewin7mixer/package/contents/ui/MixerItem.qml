@@ -426,7 +426,6 @@ PlasmaComponents.ListItem {
             var menuItem = newMenuItem();
             menuItem.text = i18n("Mute");
             menuItem.checkable = true;
-            menuItem.checked = i === PulseObject.activePortIndex;
             menuItem.checked = PulseObject.muted;
             menuItem.clicked.connect(function() {
                 PulseObject.muted = !PulseObject.muted
