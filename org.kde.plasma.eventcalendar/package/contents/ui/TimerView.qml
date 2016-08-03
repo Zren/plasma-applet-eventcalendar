@@ -38,19 +38,29 @@ Item {
             PlasmaComponents.ToolButton {
                 id: timerLabel
                 text: "0:00"
-                iconSource: timerTicker.running ? 'chronometer-pause' : 'chronometer-start'
-                // height: parent.height
+                iconSource: {
+                    if (timerSeconds == 0) {
+                        return 'chronometer';
+                    } else if (timerTicker.running) {
+                        return 'chronometer-pause';
+                    } else {
+                        return 'chronometer-start';
+                    }
+                }
                 font.pixelSize: 40
                 font.pointSize: -1
                 anchors.verticalCenter: parent.verticalCenter
                 tooltip: {
                     var s = "";
-                    if (timerTicker.running) {
-                        s += i18n("Pause Timer");
-                    } else {
-                        s += i18n("Start Timer");
+                    if (timerSeconds > 0) {
+                        if (timerTicker.running) {
+                            s += i18n("Pause Timer");
+                        } else {
+                            s += i18n("Start Timer");
+                        }
+                        s += "\n";
                     }
-                    s += "\n" + i18n("Scroll to add to duration");
+                    s += i18n("Scroll to add to duration");
                     return s;
                 }
 
