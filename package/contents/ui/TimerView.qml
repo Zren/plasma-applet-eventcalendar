@@ -35,14 +35,28 @@ Item {
         Row {
             spacing: 10
 
-            PlasmaExtras.Heading {
+            PlasmaComponents.ToolButton {
                 id: timerLabel
                 text: "0:00"
+                iconSource: timerTicker.running ? 'chronometer-pause' : 'chronometer-start'
+                // height: parent.height
                 font.pixelSize: 40
                 font.pointSize: -1
+                anchors.verticalCenter: parent.verticalCenter
+
+                onClicked: {
+                    if (timerTicker.running) {
+                        timerTicker.stop()
+                    } else if (timerSeconds > 0) {
+                        timerTicker.start()
+                    } else { // timerSeconds == 0
+                        // ignore
+                    }
+                }
 
                 MouseArea {
                     anchors.fill: parent
+                    acceptedButtons: Qt.MiddleButton
 
                     onWheel: {
                         var delta = wheel.angleDelta.y || wheel.angleDelta.x;
@@ -53,20 +67,6 @@ Item {
                             setDuration(timerDuration - 60)
                             timerTicker.stop()
                         }
-                    }
-                }
-            }
-            
-
-            PlasmaComponents.ToolButton {
-                iconSource: timerTicker.running ? 'media-playback-pause' : 'media-playback-start'
-                height: parent.height
-                enabled: timerSeconds > 0
-                onClicked: {
-                    if (timerTicker.running) {
-                        timerTicker.stop()
-                    } else {
-                        timerTicker.start()
                     }
                 }
             }
