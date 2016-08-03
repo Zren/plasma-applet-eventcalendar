@@ -43,6 +43,16 @@ Item {
                 font.pixelSize: 40
                 font.pointSize: -1
                 anchors.verticalCenter: parent.verticalCenter
+                tooltip: {
+                    var s = "";
+                    if (timerTicker.running) {
+                        s += i18n("Pause Timer");
+                    } else {
+                        s += i18n("Start Timer");
+                    }
+                    s += "\n" + i18n("Scroll to add to duration");
+                    return s;
+                }
 
                 onClicked: {
                     if (timerTicker.running) {
