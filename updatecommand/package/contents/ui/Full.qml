@@ -27,6 +27,7 @@ Item {
     Layout.minimumWidth: 300
     Layout.minimumHeight: 200
 
+
     PlasmaExtras.Heading {
         id: header
         anchors {
@@ -39,22 +40,31 @@ Item {
     }
 
     ColumnLayout {
-        visible: !DiscoverNotifier.isSystemUpToDate
         anchors {
             fill: parent
             topMargin: header.height
         }
         Label {
+            visible: !DiscoverNotifier.isSystemUpToDate
             Layout.fillWidth: true
             wrapMode: Text.WordWrap
             horizontalAlignment: Text.AlignHCenter
             text: DiscoverNotifier.extendedMessage
         }
         Button {
+            visible: !DiscoverNotifier.isSystemUpToDate
             anchors.horizontalCenter: parent.horizontalCenter
             text: i18n("Update")
             tooltip: i18n("Launches the software to perform the update")
             onClicked: root.action_update()
+        }
+
+        Button {
+            visible: DiscoverNotifier.isSystemUpToDate
+            anchors.horizontalCenter: parent.horizontalCenter
+            text: i18n("Check For Updates")
+            tooltip: i18n("Check for updates")
+            onClicked: root.action_checkForUpdates()
         }
     }
 }
