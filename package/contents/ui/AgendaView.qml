@@ -251,7 +251,6 @@ Item {
                     Repeater {
                         model: events
 
-                        // delegate: Rectangle {
                         delegate: LinkRect {
                             width: undefined
                             Layout.fillWidth: true
