@@ -52,9 +52,14 @@ Item {
 
     Component.onCompleted: {
         plasmoid.setAction("update", i18n("See Updates..."), "system-software-update");
+        plasmoid.setAction("checkForUpdates", i18n("Check For Updates"), "system-software-update");
     }
 
     function action_update() {
         exec('x-terminal-emulator -hold -e sh -c \'echo \"${PS1}apt list --upgradeable\";apt list --upgradeable;echo \"\\n${PS1}sudo apt upgrade\";sudo apt upgrade;echo \"\\n\\n[Update Finished] You may now close the terminal.\"\'')
+    }
+
+    function action_checkForUpdates() {
+        exec('x-terminal-emulator -e sh -c \'echo \"\\n${PS1}sudo apt update\";sudo apt update\'')
     }
 }
