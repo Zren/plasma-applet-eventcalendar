@@ -1,3 +1,10 @@
+[b]v36 - August 5 2016[/b]
+
+* Show the 3h weather forecast icons in the meteogram.
+* Show calendar colour in the calendar tooltip.
+* Number of hours shown in the meteogram is now configurable (default: 30 hours).
+* Use chronometer icons in the Timer. Also use toggle buttons instead of checkboxes.
+
 [b]v35 - July 3 2016[/b]
 
 * Tooltips for 3h periods for the Meteogram.
