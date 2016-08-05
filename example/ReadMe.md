@@ -29,6 +29,6 @@ Note that official KDE software is only mirrored on github, but github is much b
 
 * [QML documentation](http://doc.qt.io/qt-5/qtqml-syntax-basics.html)
 * plasma-framework (PlasmaCore, PlasmaComponents, etc) API Documentation  
-	http://api.kde.org/frameworks-api/apidox-frameworks/frameworks5-apidocs/plasma-framework/html/index.html
+	https://api.kde.org/frameworks/plasma-framework/html/index.html
 	* https://github.com/KDE/plasma-framework/tree/master/src/declarativeimports/
 * [plasmapkg2 source code](https://github.com/KDE/plasma-framework/blob/master/src/plasmapkg/plasmapkg.cpp)
