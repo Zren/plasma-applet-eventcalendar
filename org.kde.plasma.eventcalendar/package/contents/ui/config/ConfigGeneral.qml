@@ -72,7 +72,7 @@ Item {
         cfg_clock_show_seconds = combinedFormat.indexOf('s') >= 0
     }
 
-    function setCommands(up, down) {
+    function setMouseWheelCommands(up, down) {
         cfg_clock_mousewheel = 'run_commands'
         clock_mousewheelGroup_runcommands.checked = true
         cfg_clock_mousewheel_up = up
@@ -485,19 +485,20 @@ Item {
                         checked: false
                         text: 'Volume (No UI) (amixer)'
                         onClicked: {
-                            setCommands('amixer -q sset Master 10%+', 'amixer -q sset Master 10%-')
+                            setMouseWheelCommands('amixer -q sset Master 10%+', 'amixer -q sset Master 10%-')
                         }
                     }
-
+                    
                     RadioButton {
                         exclusiveGroup: clock_mousewheelGroup
                         checked: false
-                        text: 'Volume (UI) (xdotool) (sudo apt-get install xdotool)'
+                        text: 'Volume (UI) (qdbus)'
+                        property string upCommand:   'qdbus org.kde.kglobalaccel /component/kmix invokeShortcut "increase_volume"'
+                        property string downCommand: 'qdbus org.kde.kglobalaccel /component/kmix invokeShortcut "decrease_volume"'
                         onClicked: {
-                            setCommands('xdotool key XF86AudioRaiseVolume', 'xdotool key XF86AudioLowerVolume')
+                            setMouseWheelCommands(upCommand, downCommand)
                         }
                     }
-
                 }
             }
 
