@@ -39,7 +39,10 @@ Item {
     }
 
     function setCalendarList(calendarList) {
-        cfg_calendar_list = Qt.btoa(JSON.stringify(calendarList));
+        if (!calendarList || calendarList.length == 0) {
+            return; // 99% of the time it's an error loading the list.
+        }
+        plasmoid.configuration.calendar_list = Qt.btoa(JSON.stringify(calendarList));
     }
     function getCalendarList() {
         return cfg_calendar_list ? JSON.parse(Qt.atob(cfg_calendar_list)) : [];
