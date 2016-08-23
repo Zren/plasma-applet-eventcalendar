@@ -4,7 +4,7 @@ import org.kde.plasma.configuration 2.0
 ConfigModel {
     ConfigCategory {
         name: i18n("General")
-        icon: "preferences-desktop-color"
+        icon: "clock"
         source: "config/ConfigGeneral.qml"
     }
     // ConfigCategory {
@@ -14,7 +14,7 @@ ConfigModel {
     // }
     ConfigCategory {
         name: i18n("Calendar")
-        icon: "view-calendar"
+        icon: "view-calendar-month"
         source: "config/ConfigCalendar.qml"
     }
     ConfigCategory {

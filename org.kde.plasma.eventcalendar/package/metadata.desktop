@@ -3,7 +3,7 @@ Encoding=UTF-8
 Name=Event Calendar
 Comment=Plasmoid for a calendar+agenda with weather that syncs to Google Calendar.
 
-Icon=view-calendar
+Icon=view-calendar-month
 Type=Service
 
 X-KDE-ParentApp=
