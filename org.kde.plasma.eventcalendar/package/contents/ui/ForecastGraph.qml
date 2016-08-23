@@ -17,6 +17,7 @@ Item {
     property bool cfg_clock_24h: false
     property int cfg_meteogram_hours: 9
     property bool showIconOutline: false
+    property bool showGridlines: true
 
     onCfg_clock_24hChanged: {
         graph.gridData = formatXAxisLabels(graph.gridData)
@@ -57,7 +58,7 @@ Item {
         property int gridY2: height - xAxisLabelHeight
         property int gridHeight: gridY2 - gridY
 
-        property color scaleColor: theme.buttonBackgroundColor
+        property color scaleColor: "#11000000" // meteogramView.showGridlines ? theme.buttonBackgroundColor : "transparent"
         property color labelColor: theme.textColor
         property color precipitationColor: "#acd"
         property color precipitationTextOulineColor: meteogramView.showIconOutline ? theme.backgroundColor : "transparent"
