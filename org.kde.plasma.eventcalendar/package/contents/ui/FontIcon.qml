@@ -9,6 +9,7 @@ Item {
     height: 16
     property string source: ""
     property alias color: iconText.color
+    property bool showOutline: true
     
     // FontLoader {
     //     source: "../fonts/weathericons-regular-webfont.ttf"
@@ -18,7 +19,7 @@ Item {
         id: iconText
         text: ''
         color: PlasmaCore.ColorScope.textColor
-        style: Text.Outline
+        style: showOutline ? Text.Outline : Text.Normal
         styleColor: PlasmaCore.ColorScope.backgroundColor
 
         font.family: "weathericons"

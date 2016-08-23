@@ -204,6 +204,7 @@ Item {
                 Layout.preferredHeight: parent.height / 5
                 cfg_clock_24h: popup.cfg_clock_24h
                 cfg_meteogram_hours: popup.config.meteogram_hours
+                showIconOutline: plasmoid.configuration.show_outlines
             }
 
             TimerView {
@@ -284,7 +285,6 @@ Item {
                 }
                 PlasmaComponents.Button {
                     iconSource: 'view-refresh'
-                    width: 26
                     anchors.bottom: parent.bottom
                     anchors.right: parent.right
                     onClicked: {

@@ -16,6 +16,7 @@ ColumnLayout {
     property alias cfg_agenda_weather_show_text: agenda_weather_show_text.checked
     property bool cfg_agenda_breakup_multiday_events: false
     property alias cfg_agenda_newevent_remember_calendar: agenda_newevent_remember_calendar.checked
+    property alias cfg_show_outlines: show_outlines.checked
 
     SystemPalette {
         id: palette
@@ -55,10 +56,16 @@ ColumnLayout {
                 }
 
                 RowLayout {
+                    Text { width: 24 }
                     CheckBox {
-                        id: agenda_weather_show_text
-                        text: "Weather Text"
+                        id: show_outlines
+                        text: "Icon Outline"
                     }
+                }
+
+                CheckBox {
+                    id: agenda_weather_show_text
+                    text: "Weather Text"
                 }
 
                 RowLayout {
