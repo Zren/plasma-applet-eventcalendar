@@ -87,6 +87,7 @@ Item {
                         color: agendaItemIsToday ? inProgressColor : PlasmaCore.ColorScope.textColor
                         source: weatherIcon
                         height: cfg_agenda_weather_icon_height
+                        showOutline: plasmoid.configuration.show_outlines
                         anchors {
                             left: parent.left
                             right: parent.right

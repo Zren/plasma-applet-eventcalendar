@@ -13,8 +13,9 @@ Item {
     implicitWidth: pageColumn.implicitWidth
     implicitHeight: pageColumn.implicitHeight
 
-    property alias cfg_weather_app_id: weather_app_id.text
-    property alias cfg_weather_city_id: weather_city_id.text
+    property alias cfg_weather_service: cfg_weather_serviceComboBox.value
+    property alias cfg_weather_app_id: weather_app_id.text // OpenWeatherMap.com
+    property alias cfg_weather_city_id: weather_city_id.text // OpenWeatherMap.com
     property string cfg_weather_units: 'metric'
     property alias cfg_events_pollinterval: weather_pollinterval.value // TODO
     property alias cfg_meteogram_hours: meteogram_hours.value
@@ -31,117 +32,153 @@ Item {
         Layout.fillWidth: true
 
         HeaderText {
-            text: i18n("OpenWeatherMap")
+            text: i18n("Data")
         }
-        ColumnLayout {
-            spacing: units.smallSpacing * 2
+
+        ComboBoxProperty {
+            id: cfg_weather_serviceComboBox
+            // Layout.fillWidth: true
+            model: [
+                'OpenWeatherMap.com',
+                // 'weather.gc.ca',
+            ]
+            value: 'OpenWeatherMap.com'
+        }
+
+        GroupBox {
             Layout.fillWidth: true
+
             
-
-            RowLayout {
-                visible: showDebug
+            ColumnLayout {
+                spacing: units.smallSpacing * 2
                 Layout.fillWidth: true
-                Label {
-                    text: i18n("API App Id:")
-                }
-                TextField {
-                    id: weather_app_id
-                    Layout.fillWidth: true
-                }
-            }
-
-            LinkText {
-                text: 'Get your city\'s id at <a href="https://openweathermap.org/">https://openweathermap.org/</a>,'
-            }
-            LinkText {
-                text: 'or by searching google with `<a href="https://www.google.ca/search?q=site%3Aopenweathermap.org%2Fcity+toronto">site:openweathermap.org/city</a>`.'
-            }
-            RowLayout {
-                Layout.fillWidth: true
-                Label {
-                    text: i18n("City Id:")
-                }
-                TextField {
-                    id: weather_city_id
-                    Layout.fillWidth: true
-                    placeholderText: i18n("Eg: 5983720")
-                }
-            }
-
-            RowLayout {
-                Label {
-                    text: i18n("Update forecast every: ")
-                }
                 
-                SpinBox {
-                    id: weather_pollinterval
-                    enabled: false
-                    
-                    suffix: i18ncp("Polling interval in minutes", "min", "min", value)
-                    minimumValue: 60
-                    maximumValue: 90
+
+                RowLayout {
+                    visible: showDebug
+                    Layout.fillWidth: true
+                    Label {
+                        text: i18n("API App Id:")
+                    }
+                    TextField {
+                        id: weather_app_id
+                        Layout.fillWidth: true
+                    }
+                }
+
+                LinkText {
+                    text: 'Get your city\'s id at <a href="https://openweathermap.org/">https://openweathermap.org/</a>,'
+                }
+                LinkText {
+                    text: 'or by searching google with `<a href="https://www.google.ca/search?q=site%3Aopenweathermap.org%2Fcity+toronto">site:openweathermap.org/city</a>`.'
+                }
+                RowLayout {
+                    Layout.fillWidth: true
+                    Label {
+                        text: i18n("City Id:")
+                    }
+                    TextField {
+                        id: weather_city_id
+                        Layout.fillWidth: true
+                        placeholderText: i18n("Eg: 5983720")
+                    }
                 }
             }
+        }
 
-            RowLayout {
-                Label {
-                    text: i18n("Show next ")
-                }
-                
-                SpinBox {
-                    id: meteogram_hours
-                    enabled: true
+        HeaderText {
+            text: i18n("Settings")
+        }
+
+        GroupBox {
+            Layout.fillWidth: true
+            ColumnLayout {
+                RowLayout {
+                    Label {
+                        text: i18n("Update forecast every: ")
+                    }
                     
-                    suffix: i18np(" hours", " hours", value)
-                    minimumValue: 9
-                    maximumValue: 48
-                    stepSize: 3
-                }
-
-                Label {
-                    text: i18n(" in the meteogram.")
+                    SpinBox {
+                        id: weather_pollinterval
+                        enabled: false
+                        
+                        suffix: i18ncp("Polling interval in minutes", "min", "min", value)
+                        minimumValue: 60
+                        maximumValue: 90
+                    }
                 }
             }
+        }
 
-            GroupBox {
-                Layout.fillWidth: true
+        HeaderText {
+            text: i18n("Style")
+        }
+
+        GroupBox {
+            Layout.fillWidth: true
+            ColumnLayout {
 
                 RowLayout {
                     Label {
-                        text: "Units:"
-                        Layout.alignment: Qt.AlignTop | Qt.AlignLeft
+                        text: i18n("Show next ")
                     }
-                    ColumnLayout {
-                        ExclusiveGroup { id: weather_unitsGroup }
-                        RadioButton {
-                            text: "Celsius"
-                            checked: cfg_weather_units == 'metric'
-                            exclusiveGroup: weather_unitsGroup
-                            onClicked: {
-                                cfg_weather_units = 'metric'
-                            }
+                    
+                    SpinBox {
+                        id: meteogram_hours
+                        enabled: true
+                        
+                        suffix: i18np(" hours", " hours", value)
+                        minimumValue: 9
+                        maximumValue: 48
+                        stepSize: 3
+                    }
+
+                    Label {
+                        text: i18n(" in the meteogram.")
+                    }
+                }
+
+                
+            }
+
+        }
+        GroupBox {
+            Layout.fillWidth: true
+
+            RowLayout {
+                Label {
+                    text: "Units:"
+                    Layout.alignment: Qt.AlignTop | Qt.AlignLeft
+                }
+                ColumnLayout {
+                    ExclusiveGroup { id: weather_unitsGroup }
+                    RadioButton {
+                        text: "Celsius"
+                        checked: cfg_weather_units == 'metric'
+                        exclusiveGroup: weather_unitsGroup
+                        onClicked: {
+                            cfg_weather_units = 'metric'
                         }
-                        RadioButton {
-                            text: "Fahrenheit"
-                            checked: cfg_weather_units == 'imperial'
-                            exclusiveGroup: weather_unitsGroup
-                            onClicked: {
-                                cfg_weather_units = 'imperial'
-                            }
+                    }
+                    RadioButton {
+                        text: "Fahrenheit"
+                        checked: cfg_weather_units == 'imperial'
+                        exclusiveGroup: weather_unitsGroup
+                        onClicked: {
+                            cfg_weather_units = 'imperial'
                         }
-                        RadioButton {
-                            text: "Kelvin"
-                            checked: cfg_weather_units == 'kelvin'
-                            exclusiveGroup: weather_unitsGroup
-                            onClicked: {
-                                cfg_weather_units = 'kelvin'
-                            }
+                    }
+                    RadioButton {
+                        text: "Kelvin"
+                        checked: cfg_weather_units == 'kelvin'
+                        exclusiveGroup: weather_unitsGroup
+                        onClicked: {
+                            cfg_weather_units = 'kelvin'
                         }
                     }
                 }
             }
         }
-
 
 
     }

@@ -16,6 +16,7 @@ Item {
     height: 100
     property bool cfg_clock_24h: false
     property int cfg_meteogram_hours: 9
+    property bool showIconOutline: false
 
     onCfg_clock_24hChanged: {
         graph.gridData = formatXAxisLabels(graph.gridData)
@@ -59,7 +60,7 @@ Item {
         property color scaleColor: theme.buttonBackgroundColor
         property color labelColor: theme.textColor
         property color precipitationColor: "#acd"
-        property color precipitationTextOulineColor: theme.backgroundColor //"#134"
+        property color precipitationTextOulineColor: meteogramView.showIconOutline ? theme.backgroundColor : "transparent"
         property color tempAbove0Color: "#900"
         property color tempBelow0Color: "#369"
 
@@ -353,6 +354,7 @@ Item {
                         source: modelData.gridItem.weatherIcon
                         height: 24
                         opacity: tooltip.containsMouse ? 0.1 : 1
+                        showOutline: meteogramView.showIconOutline
                     }
 
                     Component.onCompleted: {

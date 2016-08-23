@@ -83,6 +83,9 @@
     <entry name="timer_ends_at" type="UInt">
       <default>0</default>
     </entry>
+    <entry name="show_outlines" type="bool">
+      <default>true</default>
+    </entry>
   </group>
   
   <group name="Calendar">
