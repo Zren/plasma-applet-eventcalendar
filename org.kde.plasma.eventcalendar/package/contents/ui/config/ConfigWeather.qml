@@ -66,12 +66,6 @@ Item {
                     }
                 }
 
-                LinkText {
-                    text: 'Get your city\'s id at <a href="https://openweathermap.org/">https://openweathermap.org/</a>,'
-                }
-                LinkText {
-                    text: 'or by searching google with `<a href="https://www.google.ca/search?q=site%3Aopenweathermap.org%2Fcity+toronto">site:openweathermap.org/city</a>`.'
-                }
                 RowLayout {
                     Layout.fillWidth: true
                     Label {
@@ -81,6 +75,17 @@ Item {
                         id: weather_city_id
                         Layout.fillWidth: true
                         placeholderText: i18n("Eg: 5983720")
+                    }
+                    Button {
+                        text: i18n('Find City')
+                        onClicked: chooseCityDialog.open()
+                    }
+
+                    OpenWeatherMapCityDialog {
+                        id: chooseCityDialog
+                        onAccepted: {
+                            page.cfg_weather_city_id = selectedCityId
+                        }
                     }
                 }
             }
