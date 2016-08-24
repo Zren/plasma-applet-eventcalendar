@@ -420,10 +420,10 @@ Item {
 
             // console.log(JSON.stringify(item))
             var tooltipSubText = item.weather[0].description;
-            tooltipSubText += '<br>' + item.main.temp + '°';
             if (mm) {
-                tooltipSubText += '<br>' + mm + 'mm';
+                tooltipSubText += ' (' + mm + 'mm)';
             }
+            tooltipSubText += '<br>' + item.main.temp + '°';
 
             return {
                 y: item.main.temp,
