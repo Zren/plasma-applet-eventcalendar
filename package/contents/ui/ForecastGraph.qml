@@ -18,6 +18,8 @@ Item {
     property int cfg_meteogram_hours: 9
     property bool showIconOutline: false
     property bool showGridlines: true
+    property alias xAxisScale: graph.xAxisScale
+    property int xAxisLabelEvery: 1
 
     onCfg_clock_24hChanged: {
         graph.gridData = formatXAxisLabels(graph.gridData)
@@ -41,7 +43,7 @@ Item {
         property int xAxisLabelHeight: 20
         property int xAxisMin: 0
         property int xAxisMax: 10
-        property double xAxisScale: 0.333333333333 // Line every 3 hours
+        property double xAxisScale: 0.333333333333 // 3 lines per data point
         property int yAxisLabelWidth: 30
         property int yAxisMin: -10
         property int yAxisMax: 20
@@ -58,7 +60,8 @@ Item {
         property int gridY2: height - xAxisLabelHeight
         property int gridHeight: gridY2 - gridY
 
-        property color scaleColor: "#11000000" // meteogramView.showGridlines ? theme.buttonBackgroundColor : "transparent"
+        // property color scaleColor: "#11000000" // meteogramView.showGridlines ? theme.buttonBackgroundColor : "transparent"
+        property color scaleColor: theme.buttonBackgroundColor
         property color labelColor: theme.textColor
         property color precipitationColor: "#acd"
         property color precipitationTextOulineColor: meteogramView.showIconOutline ? theme.backgroundColor : "transparent"
@@ -428,7 +431,7 @@ Item {
                 percipitation: mm,
                 tooltipMainText: new Date(item.dt * 1000),
                 tooltipSubText: tooltipSubText,
-                weatherIcon: Shared.weatherIconMap[item.weather[0].icon] || 'weather-severe-alert',
+                weatherIcon: item.weather[0].iconName || Shared.weatherIconMap[item.weather[0].icon] || 'weather-severe-alert',
             };
         }
 
@@ -451,8 +454,8 @@ Item {
 
         // console.log(JSON.stringify(gData, null, '\t'));
 
-        // Only forcast next 24 hours 
-        gData = gData.slice(0, Math.max(3, Math.ceil(meteogramView.cfg_meteogram_hours / 3)));
+        // Only forcast next _ hours
+        gData = gData.slice(0, Math.max(3, Math.ceil(meteogramView.cfg_meteogram_hours * meteogramView.xAxisScale) + 1));
 
         // Format xAxis Labels
         gData = formatXAxisLabels(gData);
@@ -463,7 +466,10 @@ Item {
 
     function formatXAxisLabels(gData) {
         for (var i = 0; i < gData.length; i++) {
-            if (i != 0 && i != gData.length-1) {
+            var firstOrLast = i == 0 || i == gData.length-1;
+            var labelSkipped = i % Math.ceil(meteogramView.xAxisLabelEvery) != 0;
+            // if (i != 0 && i != gData.length-1) {
+            if (!firstOrLast && !labelSkipped) {
                 var date = new Date(gData[i].xTimestamp);
                 var hour = date.getHours();
                 var label = '';
