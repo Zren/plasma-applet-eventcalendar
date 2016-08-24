@@ -68,7 +68,7 @@ Dialog {
 			id: cityNameInput
 			Layout.fillWidth: true
 			text: ''
-			placeholderText: 'Search'
+			placeholderText: i18n('Search')
 			onTextChanged: debouceApplyFilter.restart()
 		}
 		TableView {
@@ -79,20 +79,20 @@ Dialog {
 
 			TableViewColumn {
 				width: 240
-				role: "name"
-				title: "Name"
+				role: 'name'
+				title: i18n('Name')
 			}
 			TableViewColumn {
 				width: 100
-				role: "id"
-				title: "Id"
+				role: 'id'
+				title: i18n('Id')
 			}
 			TableViewColumn {
-				role: "id"
-				title: "Link"
 				width: 100
+				role: 'id'
+				title: i18n('City Webpage')
 				delegate: LinkText {
-					text: '<a href="http://openweathermap.org/city/' + styleData.value + '">' + i18n('City Webpage') + '</a>'
+					text: '<a href="http://openweathermap.org/city/' + styleData.value + '">' + i18n('Open Link') + '</a>'
 					linkColor: styleData.selected ? theme.textColor : theme.highlightColor
 				}
 			}
