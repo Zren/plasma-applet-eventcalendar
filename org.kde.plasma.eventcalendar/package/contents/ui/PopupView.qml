@@ -9,6 +9,7 @@ import org.kde.plasma.extras 2.0 as PlasmaExtras
 
 import "utils.js" as Utils
 import "shared.js" as Shared
+import "../code/WeatherApi.js" as WeatherApi
 import "debugfixtures.js" as DebugFixtures
 
 Item {
@@ -205,6 +206,8 @@ Item {
                 cfg_clock_24h: popup.cfg_clock_24h
                 cfg_meteogram_hours: popup.config.meteogram_hours
                 showIconOutline: plasmoid.configuration.show_outlines
+                xAxisScale: 1 / WeatherApi.dataPointDuration
+                xAxisLabelEvery: Math.ceil(3 / WeatherApi.dataPointDuration)
             }
 
             TimerView {
@@ -486,11 +489,7 @@ Item {
 
     function updateDailyWeather() {
         console.log('fetchDailyWeatherForecast', lastForecastAt, Date.now());
-        Shared.fetchDailyWeatherForecast({
-            app_id: config.weather_app_id,
-            city_id: config.weather_city_id,
-            units: config.weather_units,
-        }, function(err, data, xhr) {
+        WeatherApi.updateDailyWeather(function(err, data, xhr) {
             if (err) return console.log('fetchDailyWeatherForecast.err', err, xhr && xhr.status, data);
             console.log('fetchDailyWeatherForecast.response');
             // console.log('fetchDailyWeatherForecast.response', data);
@@ -503,11 +502,7 @@ Item {
 
     function updateHourlyWeather() {
         console.log('fetchHourlyWeatherForecast', lastForecastAt, Date.now());
-        Shared.fetchHourlyWeatherForecast({
-            app_id: config.weather_app_id,
-            city_id: config.weather_city_id,
-            units: config.weather_units,
-        }, function(err, data, xhr) {
+        WeatherApi.updateHourlyWeather(function(err, data, xhr) {
             if (err) return console.log('fetchHourlyWeatherForecast.err', err, xhr && xhr.status, data);
             console.log('fetchHourlyWeatherForecast.response');
             // console.log('fetchHourlyWeatherForecast.response', data);

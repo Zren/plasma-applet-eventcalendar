@@ -8,6 +8,7 @@ import org.kde.plasma.components 2.0 as PlasmaComponents
 import org.kde.plasma.extras 2.0 as PlasmaExtras
 
 import "shared.js" as Shared
+import "../code/WeatherApi.js" as WeatherApi
 import "debugfixtures.js" as DebugFixtures
 
 Item {
@@ -138,7 +139,7 @@ Item {
                     if (true) {
                         // cfg_agenda_weather_clicked == "browser_viewcityforecast"
                         if (config.weather_city_id) {
-                            Shared.openOpenWeatherMapCityUrl(config.weather_city_id);
+                            WeatherApi.openCityUrl();
                         }
                     }
                 }
