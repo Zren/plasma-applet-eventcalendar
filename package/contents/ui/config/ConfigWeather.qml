@@ -39,10 +39,10 @@ Item {
             id: cfg_weather_serviceComboBox
             // Layout.fillWidth: true
             model: [
-                'OpenWeatherMap.com',
+                'OpenWeatherMap.org',
                 // 'weather.gc.ca',
             ]
-            value: 'OpenWeatherMap.com'
+            value: 'OpenWeatherMap.org'
         }
 
         GroupBox {
