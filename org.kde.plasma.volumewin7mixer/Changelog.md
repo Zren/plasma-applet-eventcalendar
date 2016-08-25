@@ -1,3 +1,14 @@
+[b]v12 - August 24 2016[/b]
+
+* Use heaphones icon when port is set to Headphones.
+* Add context menu to quickly: Change the default speaker/microphone, Volume Boost the steam, Change the port (eg: headphones).
+* Mute button now mutes instead of volume boosts.
+* Fix drag and drop device selection.
+* Show output device id in app tooltip.
+* Add group for "Recording Apps" (eg: VirtualBox).
+* Add standard pin to keep mixer open.
+* Optionally move all app streams to the newly selected default device.
+
 [b]v11 - July 7 2016[/b]
 
 * This requires KDE 5.7+
