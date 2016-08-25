@@ -1,0 +1,14 @@
+#!/bin/bash
+# Version 4
+
+plasmoidName=$(kreadconfig --file="$PWD/package/metadata.desktop" --group="Desktop Entry" --key="X-KDE-PluginInfo-Name")
+plasmoidName="${plasmoidName##*.}" # Strip namespace (Eg: "org.kde.plasma.")
+plasmoidVersion=$(kreadconfig --file="$PWD/package/metadata.desktop" --group="Desktop Entry" --key="X-KDE-PluginInfo-Version")
+rm ${plasmoidName}-v*.plasmoid
+cd package
+filename=${plasmoidName}-v${plasmoidVersion}.plasmoid
+zip -r $filename *
+mv $filename ../$filename
+cd ..
+echo "md5: $(md5sum $filename | awk '{ print $1 }')"
+echo "sha256: $(sha256sum $filename | awk '{ print $1 }')"
