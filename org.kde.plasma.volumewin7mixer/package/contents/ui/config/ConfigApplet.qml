@@ -13,6 +13,7 @@ ColumnLayout {
     property alias cfg_showVolumeTickmarks: showVolumeTickmarks.checked
     // property alias cfg_showOpenKcmAudioVolume: showOpenKcmAudioVolume.checked
     // property alias cfg_showOpenPavucontrol: showOpenPavucontrol.checked
+    property alias cfg_moveAllAppsOnSetDefault: moveAllAppsOnSetDefault.checked
     
 
     ColumnLayout {
@@ -82,6 +83,21 @@ ColumnLayout {
 
         //     }
         // }
+
+        GroupBox {
+            Layout.fillWidth: true
+            title: 'Options'
+
+            ColumnLayout {
+
+                CheckBox {
+                    id: moveAllAppsOnSetDefault
+                    checked: true
+                    text: 'Move all Apps to device when setting default device (when set in with the context menu)'
+                }
+
+            }
+        }
 
     }
 }

@@ -450,6 +450,16 @@ PlasmaComponents.ListItem {
                 menuItem.checked = PulseObject.default
                 menuItem.clicked.connect(function() {
                     PulseObject.default = true
+                    if (plasmoid.configuration.moveAllAppsOnSetDefault) {
+                        console.log(appsModel, appsModel.count)
+                        for (var i = 0; i < appsModel.count; i++) {
+                            var stream = appsModel.get(i); 
+                            stream = stream.PulseObject;
+                            // console.log(i, stream, stream.name, stream.deviceIndex, PulseObject.index)
+                            stream.deviceIndex = PulseObject.index;
+                        }
+                        
+                    }
                 });
                 contextMenu.addMenuItem(menuItem);
             }
