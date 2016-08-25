@@ -198,19 +198,22 @@ PlasmaComponents.ListItem {
             width: mixerItem.mixerItemWidth
             height: parent.height
 
-            QIconItem {
-                id: clientIcon
-                icon: mixerItem.icon
-                // visible: false
+            Item {
                 anchors.horizontalCenter: parent.horizontalCenter
                 width: mixerItem.volumeSliderWidth
                 height: mixerItem.volumeSliderWidth
 
-                PlasmaCore.ToolTipArea {
+                PlasmaCore.IconItem {
+                    id: clientIcon
                     anchors.fill: parent
-                    mainText: mixerItem.label
-                    subText: tooltipSubText
-                    icon: mixerItem.icon
+                    source: mixerItem.icon
+
+                    PlasmaCore.ToolTipArea {
+                        anchors.fill: parent
+                        mainText: mixerItem.label
+                        subText: tooltipSubText
+                        icon: mixerItem.icon
+                    }
                 }
             }
         
