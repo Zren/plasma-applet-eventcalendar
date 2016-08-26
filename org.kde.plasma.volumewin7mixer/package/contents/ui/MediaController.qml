@@ -99,6 +99,7 @@ Item {
         anchors.right: parent.right
         height: 8
         enabled: mpris2Source.canSeek
+        z: 999
         // style: PlasmaStyles.SliderStyle {
         //     handle: Item {}
         // }
