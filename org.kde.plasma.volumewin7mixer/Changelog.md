@@ -1,3 +1,8 @@
+[b]v13 - August 26 2016[/b]
+
+* Add media controls based on the default widget + mediacontrollercompact. You can disable it in the settings.
+* Icons now follow the theme color.
+
 [b]v12 - August 24 2016[/b]
 
 * Use heaphones icon when port is set to Headphones.
