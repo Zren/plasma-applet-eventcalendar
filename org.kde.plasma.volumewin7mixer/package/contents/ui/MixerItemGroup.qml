@@ -21,7 +21,7 @@ GroupBox {
     visible: view.count > 0
 
     Text {
-        text: parent.title
+        text: parent.title || ''
         color: PlasmaCore.ColorScope.textColor
         Layout.fillWidth: true
         horizontalAlignment: Text.AlignHCenter

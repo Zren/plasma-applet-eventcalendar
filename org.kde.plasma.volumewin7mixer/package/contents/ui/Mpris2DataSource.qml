@@ -54,18 +54,18 @@ PlasmaCore.DataSource {
         return decodeURIComponent(lastUrlPart)
     }
     property string artist: currentMetadata ? currentMetadata["xesam:artist"] || "" : ""
-    onTrackChanged: {
-        function logObj(obj) {
-            for (var key in obj) {
-                if (typeof obj[key] === 'function') continue;
-                console.log(obj, key, obj[key])
-            }
-        }
-        logObj(currentMetadata)
-    }
+    // onTrackChanged: {
+    //     function logObj(obj) {
+    //         for (var key in obj) {
+    //             if (typeof obj[key] === 'function') continue;
+    //             console.log(obj, key, obj[key])
+    //         }
+    //     }
+    //     logObj(currentMetadata)
+    // }
 
     property int length: currentMetadata ? currentMetadata["mpris:length"] || 0 : 0
-    property int position: mpris2Source.data[mpris2Source.current].Position
+    property int position: hasPlayer ? mpris2Source.data[mpris2Source.current].Position : 0
 
 
     function retrievePosition() {

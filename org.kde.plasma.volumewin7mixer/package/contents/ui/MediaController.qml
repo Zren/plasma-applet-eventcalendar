@@ -124,7 +124,7 @@ Item {
             }
         }
         maximumValue: mpris2Source.length
-        onMaximumValueChanged: retrievePosition()
+        onMaximumValueChanged: mpris2Source.retrievePosition()
 
         Connections {
             target: mpris2Source

@@ -42,7 +42,7 @@ Item {
     Layout.minimumWidth: 10
     Layout.preferredWidth: mixerItemRow.width
     Layout.maximumWidth: plasmoid.screenGeometry.width
-    property int maxVolumePercent: Plasmoid.configuration.maximumVolume
+    property int maxVolumePercent: 100.0 // plasmoid.configuration.maximumVolume
     property int maxVolumeValue: Math.round(maxVolumePercent * PulseAudio.NormalVolume / 100.0)
     property int volumeStep: Math.round(Plasmoid.configuration.volumeStep * PulseAudio.NormalVolume / 100.0)
     property QtObject draggedStream: null
