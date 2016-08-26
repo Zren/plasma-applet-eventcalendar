@@ -270,75 +270,73 @@ Item {
     Column {
         anchors.fill: parent
 
+        Row {
+            id: mixerItemRow
+            anchors.right: parent.right
+            width: childrenRect.width
+            height: parent.height - (mediaControllerArea.visible ? mediaControllerArea.height : 0)
+            spacing: 10
+
+            MixerItemGroup {
+                height: parent.height
+                title: 'Recording Apps'
+
+                model: appOutputsModel
+                mixerGroupType: 'SourceOutput'
+            }
+
+            MixerItemGroup {
+                height: parent.height
+                title: 'Apps'
+
+                model: appsModel
+                mixerGroupType: 'SinkInput'
+            }
+
+            MixerItemGroup {
+                height: parent.height
+                title: 'Mics'
         
+                model: sourceModel
+                mixerGroupType: 'Source'
+            }
 
-    Row {
-        id: mixerItemRow
-        anchors.right: parent.right
-        width: childrenRect.width
-        height: parent.height - (mediaControllerArea.visible ? mediaControllerArea.height : 0)
-        spacing: 10
+            MixerItemGroup {
+                height: parent.height
+                title: 'Speakers'
+                
+                model: sinkModel
+                mixerGroupType: 'Sink'
+            }
 
-        MixerItemGroup {
-            height: parent.height
-            title: 'Recording Apps'
+            // GroupBox {
+            //     style: PlasmaStyles.GroupBoxStyle {}
 
-            model: appOutputsModel
-            mixerGroupType: 'SourceOutput'
+            //     Text {
+            //         text: parent.title
+            //         color: PlasmaCore.ColorScope.textColor
+            //         Layout.fillWidth: true
+            //         horizontalAlignment: Text.AlignHCenter
+            //     }
+                
+            //     ListView {
+            //         model: sinkModel
+            //         width: Math.max(childrenRect.width, mixerItemWidth)
+            //         // width: childrenRect.width
+            //         height: parent.height
+            //         spacing: 10
+            //         boundsBehavior: Flickable.StopAtBounds
+            //         orientation: ListView.Horizontal
+
+            //         delegate: MixerItem {
+            //             width: mixerItemWidth
+            //             volumeSliderWidth: volumeSliderWidth
+            //             icon: 'speaker'
+            //         }
+            //     }
+            // }
+
         }
-
-        MixerItemGroup {
-            height: parent.height
-            title: 'Apps'
-
-            model: appsModel
-            mixerGroupType: 'SinkInput'
-        }
-
-        MixerItemGroup {
-            height: parent.height
-            title: 'Mics'
-    
-            model: sourceModel
-            mixerGroupType: 'Source'
-        }
-
-        MixerItemGroup {
-            height: parent.height
-            title: 'Speakers'
-            
-            model: sinkModel
-            mixerGroupType: 'Sink'
-        }
-
-        // GroupBox {
-        //     style: PlasmaStyles.GroupBoxStyle {}
-
-        //     Text {
-        //         text: parent.title
-        //         color: PlasmaCore.ColorScope.textColor
-        //         Layout.fillWidth: true
-        //         horizontalAlignment: Text.AlignHCenter
-        //     }
-            
-        //     ListView {
-        //         model: sinkModel
-        //         width: Math.max(childrenRect.width, mixerItemWidth)
-        //         // width: childrenRect.width
-        //         height: parent.height
-        //         spacing: 10
-        //         boundsBehavior: Flickable.StopAtBounds
-        //         orientation: ListView.Horizontal
-
-        //         delegate: MixerItem {
-        //             width: mixerItemWidth
-        //             volumeSliderWidth: volumeSliderWidth
-        //             icon: 'speaker'
-        //         }
-        //     }
-        // }
-
-    }
 
         Item {
             id: mediaControllerArea
