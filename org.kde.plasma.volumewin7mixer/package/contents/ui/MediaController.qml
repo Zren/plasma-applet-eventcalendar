@@ -103,14 +103,15 @@ Item {
         //     handle: Item {}
         // }
 
-        MouseArea {
-            id: seekSliderArea
-            anchors.fill: parent
-            acceptedButtons: Qt.NoButton
-            hoverEnabled: true
-            propagateComposedEvents: true
-        }
-        opacity: seekSliderArea.containsMouse ? 1 : 0.75
+        // MouseArea {
+        //     id: seekSliderArea
+        //     anchors.fill: parent
+        //     hoverEnabled: true
+
+        //     acceptedButtons: Qt.NoButton
+        //     propagateComposedEvents: true
+        // }
+        opacity: hovered ? 1 : 0.75
         Behavior on opacity {
             NumberAnimation { duration: units.longDuration }
         }
