@@ -38,7 +38,7 @@ import "../code/sinkcommands.js" as PulseObjectCommands
 Item {
     id: main
     // Layout.minimumHeight: units.gridUnit * 12
-    Layout.preferredHeight: units.gridUnit * 24 + (mediaControllerArea.visible ? mediaControllerArea.height : 0)
+    Layout.preferredHeight: units.gridUnit * 24 + (mediaControllerVisible ? mediaControllerHeight : 0)
     Layout.minimumWidth: 10
     Layout.preferredWidth: mixerItemRow.width
     Layout.maximumWidth: plasmoid.screenGeometry.width
@@ -267,14 +267,26 @@ Item {
         id: sinkModel
     }
 
+    property bool showMediaController: true
+    property string mediaControllerLocation: 'bottom'
+    property bool mediaControllerVisible: showMediaController && mpris2Source.hasPlayer
+    property int mediaControllerHeight: 56 // = 48px albumArt + 8px seekbar
     Column {
         anchors.fill: parent
+
+
+        // MediaController {
+        //     id: mediaControllerTop
+        //     visible: mediaControllerVisible && mediaControllerLocation == 'top'
+        //     width: main.Layout.preferredWidth - pinButton.width - units.smallSpacing
+        //     height: mediaControllerHeight
+        // }
 
         Row {
             id: mixerItemRow
             anchors.right: parent.right
             width: childrenRect.width
-            height: parent.height - (mediaControllerArea.visible ? mediaControllerArea.height : 0)
+            height: parent.height - (mediaControllerVisible ? mediaControllerHeight : 0)
             spacing: 10
 
             MixerItemGroup {
@@ -338,20 +350,16 @@ Item {
 
         }
 
-        Item {
-            id: mediaControllerArea
-            visible: mpris2Source.hasPlayer
+        MediaController {
+            id: mediaControllerBottom
+            visible: mediaControllerVisible && mediaControllerLocation == 'bottom'
             width: main.Layout.preferredWidth
-            height: 56 // = 48 + 8
-
-            MediaController {
-                id: mediaController
-                anchors.fill: parent
-            }
+            height: mediaControllerHeight
         }
     }
 
     PlasmaComponents.ToolButton {
+        id: pinButton
         anchors.right: parent.right
         width: Math.round(units.gridUnit * 1.25)
         height: width
