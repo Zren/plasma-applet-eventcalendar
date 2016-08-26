@@ -14,6 +14,8 @@ ColumnLayout {
     // property alias cfg_showOpenKcmAudioVolume: showOpenKcmAudioVolume.checked
     // property alias cfg_showOpenPavucontrol: showOpenPavucontrol.checked
     property alias cfg_moveAllAppsOnSetDefault: moveAllAppsOnSetDefault.checked
+    property alias cfg_showMediaController: showMediaController.checked
+    property string cfg_mediaControllerLocation: 'bottom'
     
 
     ColumnLayout {
@@ -94,6 +96,26 @@ ColumnLayout {
                     id: moveAllAppsOnSetDefault
                     checked: true
                     text: 'Move all Apps to device when setting default device (when set in with the context menu)'
+                }
+
+            }
+        }
+
+        GroupBox {
+            Layout.fillWidth: true
+            title: 'Media Controller'
+
+            ColumnLayout {
+
+                CheckBox {
+                    id: showMediaController
+                    text: 'Show Media Controller'
+                }
+
+                ComboBox {
+                    id: mediaControllerLocationComboBox
+                    enabled: false
+                    model: [ 'Bottom' ]
                 }
 
             }

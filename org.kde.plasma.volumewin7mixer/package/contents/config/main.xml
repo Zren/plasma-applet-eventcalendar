@@ -21,5 +21,11 @@
     <entry name="moveAllAppsOnSetDefault" type="bool">
       <default>true</default>
     </entry>
+    <entry name="showMediaController" type="bool">
+      <default>true</default>
+    </entry>
+    <entry name="mediaControllerLocation" type="string">
+      <default></default>
+    </entry>
   </group>
 </kcfg>

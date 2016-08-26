@@ -267,8 +267,8 @@ Item {
         id: sinkModel
     }
 
-    property bool showMediaController: true
-    property string mediaControllerLocation: 'bottom'
+    property bool showMediaController: plasmoid.configuration.showMediaController
+    property string mediaControllerLocation: plasmoid.configuration.mediaControllerLocation || 'bottom'
     property bool mediaControllerVisible: showMediaController && mpris2Source.hasPlayer
     property int mediaControllerHeight: 56 // = 48px albumArt + 8px seekbar
     Column {
