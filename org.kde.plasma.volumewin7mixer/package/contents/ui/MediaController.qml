@@ -25,7 +25,7 @@ Item {
             asynchronous: true
             fillMode: Image.PreserveAspectCrop
             sourceSize: Qt.size(width, height)
-            visible: !!root.track && status === Image.Ready
+            visible: !!mpris2Source.track && status === Image.Ready
         }
 
         Column {
