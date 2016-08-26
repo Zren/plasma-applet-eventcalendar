@@ -38,7 +38,7 @@ import "../code/sinkcommands.js" as PulseObjectCommands
 Item {
     id: main
     // Layout.minimumHeight: units.gridUnit * 12
-    Layout.preferredHeight: units.gridUnit * 24
+    Layout.preferredHeight: units.gridUnit * 24 + (mediaControllerArea.visible ? mediaControllerArea.height : 0)
     Layout.minimumWidth: 10
     Layout.preferredWidth: mixerItemRow.width
     Layout.maximumWidth: plasmoid.screenGeometry.width
@@ -243,6 +243,11 @@ Item {
         id: osd
     }
 
+
+    Mpris2DataSource {
+        id: mpris2Source
+    }
+
     property int mixerItemWidth: 100
     property int volumeSliderWidth: 50
 
@@ -262,11 +267,16 @@ Item {
         id: sinkModel
     }
 
+    Column {
+        anchors.fill: parent
+
+        
+
     Row {
         id: mixerItemRow
         anchors.right: parent.right
         width: childrenRect.width
-        height: parent.height
+        height: parent.height - (mediaControllerArea.visible ? mediaControllerArea.height : 0)
         spacing: 10
 
         MixerItemGroup {
@@ -328,6 +338,19 @@ Item {
         //     }
         // }
 
+    }
+
+        Item {
+            id: mediaControllerArea
+            visible: mpris2Source.hasPlayer
+            width: main.Layout.preferredWidth
+            height: 56 // = 48 + 8
+
+            MediaController {
+                id: mediaController
+                anchors.fill: parent
+            }
+        }
     }
 
     PlasmaComponents.ToolButton {
