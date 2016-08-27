@@ -69,10 +69,10 @@
       <default>run_commands</default>
     </entry>
     <entry name="clock_mousewheel_up" type="string">
-      <default>amixer -q sset Master 10%+</default>
+      <default>qdbus org.kde.kglobalaccel /component/kmix invokeShortcut "increase_volume"</default>
     </entry>
     <entry name="clock_mousewheel_down" type="string">
-      <default>amixer -q sset Master 10%-</default>
+      <default>qdbus org.kde.kglobalaccel /component/kmix invokeShortcut "decrease_volume"</default>
     </entry>
     <entry name="timer_repeats" type="bool">
       <default>false</default>
