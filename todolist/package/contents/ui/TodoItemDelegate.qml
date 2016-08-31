@@ -19,22 +19,24 @@ RowLayout {
     function setComplete(completed) {
         var newStatus = completed ? 'completed' : 'needsAction'
         if (model.status != newStatus) {
-            model.status = newStatus
+            // model.status = newStatus // Not supported in KDE 5.5
+            todoModel.setProperty(index, 'status', newStatus)
             // console.log(completed, model.status)
             todoModel.update()
         }
     }
     function setTitle(title) {
         if (model.title != title) {
-            console.log('setTitle')
-            model.title = title
+            // console.log('setTitle')
+            // model.title = title // Not supported in KDE 5.5
+            todoModel.setProperty(index, 'title', title)
             todoModel.update()
         }
     }
     function setIndent(indent) {
-        // todoModel.setProperty(index, 'indent', Math.max(0, indent))
         if (model.indent != indent) {
-            model.indent =  Math.max(0, indent)
+            // model.indent = Math.max(0, indent) // Not supported in KDE 5.5
+            todoModel.setProperty(index, 'indent', Math.max(0, indent))
             // indentItem.width = checkbox.height * indent
             // console.log(indent, model.indent, indentItem.width)
             // console.log(model.title)
@@ -162,7 +164,7 @@ RowLayout {
                     setIndent(model.indent - 1);
                     event.accepted = true
                 } else if (event.key == Qt.Key_Return && event.modifiers == Qt.NoModifier) {
-                    console.log('returnPressed')
+                    // console.log('returnPressed')
                     event.accepted = true
                     // nextItemInFocusChain().nextItemInFocusChain().focus = true
                     listView.currentIndex = index + 1

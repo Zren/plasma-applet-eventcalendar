@@ -34,10 +34,10 @@ MouseArea {
     Connections {
         target: note
         onNoteTextChanged: {
-            console.log('note.onNoteTextChanged', note.noteText.length)
+            // console.log('note.onNoteTextChanged', note.noteText.length)
             // if (note.noteText != noteText) {
                 noteText = note.noteText
-                console.log('deserializeOnFileChange', deserializeOnFileChange, note.noteText.length)
+                // console.log('deserializeOnFileChange', deserializeOnFileChange, note.noteText.length)
                 if (deserializeOnFileChange) {
                     loadNote()
                 }
@@ -49,7 +49,7 @@ MouseArea {
         }
     }
     function saveNote(str) {
-        console.log('saveNote')
+        // console.log('saveNote')
         if (!str) {
             str = serializeTodoModel();
         }
@@ -59,7 +59,7 @@ MouseArea {
         deserializeOnFileChange = true
     }
     function loadNote() {
-        console.log('loadNote')
+        // console.log('loadNote')
         saveOnChange = false
         var todoData = deserializeTodoModel(note.noteText);
         todoModel.setData(todoData)
@@ -71,7 +71,7 @@ MouseArea {
         onTriggered: saveNote()
     }
     function deboucedSaveNote() {
-        console.log('deboucedSaveNote')
+        // console.log('deboucedSaveNote')
         deboucedSaveNoteTimer.restart()
     }
 
@@ -97,28 +97,34 @@ MouseArea {
         function addTemplateIfNeeded() {
             // console.log('addTemplateIfNeeded')
             if (filterModel.count == 0 || !isEmptyItem(filterModel.get(filterModel.count-1))) {
+                var lastItem = filterModel.get(filterModel.count-1);
+                // console.log('addTemplateIfNeeded', lastItem, lastItem.title)
+                // for (var key in lastItem) {
+                //     console.log(key, lastItem[key]);
+                // }
                 append(newTodoItem());
-                console.log('addTemplateIfNeeded', 'added')
+                // console.log('addTemplateIfNeeded', 'added')
             } else {
 
-                console.log('addTemplateIfNeeded', 'no')
+                // console.log('addTemplateIfNeeded', 'no')
             }
         }
 
         function removeItem(index) {
-            console.log('removeItem', index)
+            // console.log('removeItem', index)
             remove(index, 1)
-            addTemplateIfNeeded()
+            // addTemplateIfNeeded()
             update()
         }
 
         function setData(todoData) {
-            console.log('setData')
+            // console.log('setData')
             clear()
             for (var i = 0; i < todoData.length; i++) {
                 append(todoData[i]);
+                // console.log('setData', 'append', todoData[i])
             }
-            addTemplateIfNeeded()
+            // addTemplateIfNeeded()
             update()
         }
 
@@ -138,7 +144,7 @@ MouseArea {
         }
 
         onUpdate: {
-            console.log('update')
+            // console.log('update')
             updateVisibleItems()
             deboucedSaveNote()
         }
@@ -167,10 +173,10 @@ MouseArea {
 
     Component.onCompleted: {
         // console.log('noteText.onload', note.noteText)
-        console.log('Floating', PlasmaCore.Types.Floating)
-        console.log('Desktop', PlasmaCore.Types.Desktop)
-        console.log('containmentType', plasmoid.containmentType)
-        console.log('location', plasmoid.location)
+        // console.log('Floating', PlasmaCore.Types.Floating)
+        // console.log('Desktop', PlasmaCore.Types.Desktop)
+        // console.log('containmentType', plasmoid.containmentType)
+        // console.log('location', plasmoid.location)
         if (typeof parent === 'undefined') {
             width = Layout.preferredWidth
             height = Layout.preferredHeight
@@ -218,13 +224,13 @@ MouseArea {
             Connections {
                 target: filterModel
                 onCountChanged: {
-                    console.log('onCountChanged', filterModel.count)
+                    // console.log('onCountChanged', filterModel.count)
                     deboucedPositionViewAtEnd.restart()
                 }
             }
 
             onCurrentItemChanged: {
-                console.log('listView.onCurrentItemChanged', currentIndex)
+                // console.log('listView.onCurrentItemChanged', currentIndex)
             }
         }
 
@@ -331,7 +337,6 @@ MouseArea {
         }
         var lines = s.split('\n');
         var todoItem;
-        var indent = 0;
         for (var j = 0; j < lines.length; j++) {
             var line = lines[j];
             var newItem = isNewItem(line);
@@ -342,17 +347,31 @@ MouseArea {
                 todoItem = newTodoItem();
                 todoItem.indent = line.indexOf('*') / 4;
                 var checkboxIndex = line.indexOf('[');
-                todoItem.status = (line[checkboxIndex + 1] == 'x') ? 'completed' : 'needsAction'
-
-                indent = checkboxIndex + 'x] '.length
-                todoItem.title = line.substr(indent + 1);
+                
+                if (checkboxIndex >= 0) {
+                    todoItem.status = (line[checkboxIndex + 1] == 'x') ? 'completed' : 'needsAction';
+                    todoItem.title = line.substr(checkboxIndex + 'x] '.length + 1);
+                } else { // Does not have [x]
+                    todoItem.status = false;
+                    todoItem.title = line.substr(line.indexOf('*') + ' '.length + 1);
+                }
             } else if (todoItem) {
-                todoItem.title += '\n' + line.substr(indent + 1);
+                var startIndex = 0;
+                for (var i = 0; i < line.length; i++) {
+                    if (line[i] === ' ' || line[i] === '\t') {
+                        continue;
+                    } else {
+                        startIndex = i;
+                        break;
+                    }
+                }
+                todoItem.title += '\n' + line.substr(startIndex);
             }
         }
         if (todoItem) {
             out.push(todoItem);
         }
+        // console.log(JSON.stringify(out, null, '\t'))
         return out;
     }
 
