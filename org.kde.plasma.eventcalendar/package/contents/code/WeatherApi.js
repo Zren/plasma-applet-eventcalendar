@@ -30,3 +30,13 @@ function updateHourlyWeather(callback) {
 		WeatherCanada.updateHourlyWeather(callback);
 	}
 }
+
+function weatherIsSetup() {
+	if (weatherService == 'OpenWeatherMap.org') {
+		return !!plasmoid.configuration.weather_city_id;
+	} else if (weatherService == 'weather.gc.ca') {
+		return true;
+	} else {
+		return false;
+	}
+}
