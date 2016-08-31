@@ -208,6 +208,20 @@ Item {
                 showIconOutline: plasmoid.configuration.show_outlines
                 xAxisScale: 1 / WeatherApi.dataPointDuration
                 xAxisLabelEvery: Math.ceil(3 / WeatherApi.dataPointDuration)
+
+                Rectangle {
+                    anchors.fill: parent
+                    anchors.margins: 10
+                    color: "transparent"
+                    border.color: theme.buttonBackgroundColor
+                    border.width: 1
+                    visible: !WeatherApi.weatherIsSetup()
+
+                    PlasmaComponents.Label {
+                        anchors.centerIn: parent
+                        text: i18n("Weather not configured.\nGo to Weather in the config and set your city,\nand/or disable the meteogram to hide this area.")
+                    }
+                }
             }
 
             TimerView {
