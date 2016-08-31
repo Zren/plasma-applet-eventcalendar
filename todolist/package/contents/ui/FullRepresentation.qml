@@ -323,7 +323,7 @@ MouseArea {
             return false;
         }
         for (var i = 0; i < line.indexOf('*'); i++) {
-            if (line[i] != ' ') {
+            if (!(line[i] === ' ' || line[i] === '\t')) {
                 return false;
             }
         }
