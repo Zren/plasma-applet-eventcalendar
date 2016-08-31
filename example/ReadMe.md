@@ -21,6 +21,7 @@ Note that official KDE software is only mirrored on github, but github is much b
 * https://github.com/KDE/kdeplasma-addons/tree/master/applets
 * https://github.com/KDE/plasma-pa/tree/master/applet
 * https://github.com/KDE/plasma-nm/tree/master/applet
+* https://github.com/KDE/discover/tree/master/notifier
 * https://github.com/kotelnik/plasma-applet-weather-widget
 * https://github.com/kotelnik/plasma-applet-redshift-control
 
