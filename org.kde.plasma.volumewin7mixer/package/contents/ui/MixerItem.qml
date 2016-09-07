@@ -58,6 +58,10 @@ PlasmaComponents.ListItem {
             if (portDescription === 'Headphones') {
                 return 'audio-headphones';
             }
+            if (PulseObject.name.indexOf('alsa_output.') >= 0 && PulseObject.name.indexOf('.hdmi-') >= 0) {
+                // return Qt.resolvedUrl('../icons/hdmi.svg');
+                return 'video-television';
+            }
             return 'speaker';
         } else if (mixerItemType == 'Source') {
             // Microphone
