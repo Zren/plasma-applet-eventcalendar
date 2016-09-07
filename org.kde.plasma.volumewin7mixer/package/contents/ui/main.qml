@@ -48,17 +48,32 @@ Item {
     property QtObject draggedStream: null
 
     property string displayName: i18n("Audio Volume")
-    Plasmoid.icon: sinkModel.defaultSink ? Icon.name(sinkModel.defaultSink.volume, sinkModel.defaultSink.muted) : Icon.name(0, true)
-    // Plasmoid.switchWidth: units.gridUnit * 12
-    // Plasmoid.switchHeight: units.gridUnit * 12
-    Plasmoid.toolTipMainText: displayName
+    property string speakerIcon: sinkModel.defaultSink ? Icon.name(sinkModel.defaultSink.volume, sinkModel.defaultSink.muted) : Icon.name(0, true)
+    Plasmoid.icon: {
+        if (mpris2Source.hasPlayer && mpris2Source.albumArt) {
+            return mpris2Source.albumArt;
+        } else {
+            return speakerIcon;
+        }
+    }
+    Plasmoid.toolTipMainText: {
+        if (mpris2Source.hasPlayer && mpris2Source.track) {
+            return mpris2Source.track;
+        } else {
+            return displayName;
+        }
+    }
     Plasmoid.toolTipSubText: {
+        var lines = [];
+        if (mpris2Source.hasPlayer && mpris2Source.artist) {
+            lines.push(mpris2Source.artist ? i18nc("Artist of the song", "by %1 (paused)", mpris2Source.artist) : i18n("Paused"));
+        }
         if (sinkModel.defaultSink) {
             var sinkVolumePercent = Math.round(PulseObjectCommands.volumePercent(sinkModel.defaultSink.volume));
-            return i18n("Volume at %1%\n%2", sinkVolumePercent, sinkModel.defaultSink.description);
-        } else {
-            return "";
+            lines.push(i18n("Volume at %1%", sinkVolumePercent));
+            lines.push(sinkModel.defaultSink.description);
         }
+        return lines.join('\n');
     }
 
     function showOsd(volume) {
@@ -123,7 +138,7 @@ Item {
     }
 
     Plasmoid.compactRepresentation: PlasmaCore.IconItem {
-        source: sinkModel.defaultSink ? Icon.name(sinkModel.defaultSink.volume, sinkModel.defaultSink.muted) : Icon.name(0, true)
+        source: main.speakerIcon
         active: mouseArea.containsMouse
         colorGroup: PlasmaCore.ColorScope.colorGroup
 
