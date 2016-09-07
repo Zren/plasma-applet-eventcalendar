@@ -156,6 +156,11 @@ PlasmaComponents.ListItem {
 
     function logPulseObj(obj) {
         logObj(obj);
+        if (typeof obj.ports !== 'undefined') {
+            for (var i = 0; i < obj.ports.length; i++) {
+                logObj(obj.ports[i]);
+            }
+        }
         if (typeof obj.properties !== 'undefined') {
             logObj(obj.properties);
         }
