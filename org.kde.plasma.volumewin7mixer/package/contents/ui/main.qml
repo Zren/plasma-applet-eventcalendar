@@ -66,7 +66,11 @@ Item {
     Plasmoid.toolTipSubText: {
         var lines = [];
         if (mpris2Source.hasPlayer && mpris2Source.artist) {
-            lines.push(mpris2Source.artist ? i18nc("Artist of the song", "by %1 (paused)", mpris2Source.artist) : i18n("Paused"));
+            if (mpris2Source.isPaused) {
+                lines.push(mpris2Source.artist ? i18nc("Artist of the song", "by %1 (paused)", mpris2Source.artist) : i18n("Paused"));
+            } else if (mpris2Source.artist) {
+                lines.push(i18nc("Artist of the song", "by %1", mpris2Source.artist));
+            }
         }
         if (sinkModel.defaultSink) {
             var sinkVolumePercent = Math.round(PulseObjectCommands.volumePercent(sinkModel.defaultSink.volume));
