@@ -84,9 +84,14 @@ PlasmaComponents.ListItem {
                 return 'HDMI'
             }
         }
+
         var appName = PulseObject.properties['application.name'];
         if (appName) {
             return appName;
+        }
+
+        if (PulseObject.description) {
+            return PulseObject.description;
         }
 
         return name
