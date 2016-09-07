@@ -119,8 +119,8 @@ function updateDailyWeather(callback) {
 }
 
 function updateHourlyWeather(callback) {
-    var url = testCityUrl;
-    Utils.request(url, function(err, data, req) {
+    var url = getCityUrl(plasmoid.configuration.weather_canada_city_id);
+    Utils.request(url, function(err, data, xhr) {
         if (err) return console.log('fetchHourlyWeatherForecast.err', err, xhr && xhr.status, data);
         console.log('fetchHourlyWeatherForecast.response');
         
@@ -130,10 +130,30 @@ function updateHourlyWeather(callback) {
     });
 }
 
-function openOpenWeatherMapCityUrl(cityId) {
-    var url = 'http://openweathermap.org/city/';
-    url += cityId;
-    Qt.openUrlExternally(url);
+function getCityUrl(cityId) {
+    return 'https://weather.gc.ca/forecast/hourly/' + cityId + '_metric_e.html';
 }
 
-var testCityUrl = 'https://weather.gc.ca/forecast/hourly/on-143_metric_e.html';
+
+function parseCityList(html) {
+    var lines = html.split('\n');
+    var cityList = [];
+
+    for (var i = 0; i < lines.length; i++) {
+        var line = lines[i];
+        if (line.indexOf('<li><a href="') !== 0) {
+            continue; // <ul>/</ul>/...
+        }
+        var cityId = getInner(line, '<li><a href="/city/pages/', '_metric_e.html');
+        var cityName = getInner(line, '_metric_e.html">', '</a></li>');
+        cityList.push({
+            id: cityId,
+            name: cityName,
+        });
+    }
+    return cityList;
+}
+function parseProvincePage(html) {
+    html = getInner(html, '[Provincial Summary]</a>&nbsp;</p>\n<div class="well"><div class="row">', '</div></div>');
+    return parseCityList(html);
+}

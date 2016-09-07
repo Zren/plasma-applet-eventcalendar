@@ -168,11 +168,21 @@
   </group>
 
   <group name="Weather">
+    <!-- OpenWeatherMap -->
     <entry name="weather_app_id" type="string">
       <default>99e575d9aa8a8407bcee7693d5912c6a</default>
     </entry>
     <entry name="weather_city_id" type="UInt">
       <default>0</default>
+    </entry>
+    <!-- WeatherCanada -->
+    <entry name="weather_canada_city_id" type="string">
+      <default></default>
+    </entry>
+
+    <!-- Settings -->
+    <entry name="weather_service" type="string">
+      <default>OperWeatherMap</default>
     </entry>
     <entry name="weather_units" type="string">
       <default>metric</default>

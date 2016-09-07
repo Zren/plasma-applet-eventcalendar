@@ -9,6 +9,7 @@ import org.kde.plasma.extras 2.0 as PlasmaExtras
 
 import "utils.js" as Utils
 import "shared.js" as Shared
+import "../code/WeatherApi.js" as WeatherApi
 
 Item {
     id: meteogramView
@@ -103,6 +104,18 @@ Item {
             yAxisMax = Math.ceil(yDataMax)
         }
 
+        function iconsInRange(gData, s, e) {
+            var out = [];
+            for (var i = Math.max(0, s); i <= e && i < gData.length; i++) {
+                out.push(gData[i].weatherIcon);
+            }
+            return out;
+        }
+
+        function getAggregatedIcon(gData, s, e) {
+             return WeatherApi.getMostSevereIcon(iconsInRange(gData, s, e));
+        }
+
         function updateGridItemAreas() {
             var areas = [];
             // Skip the first gridItem since it's area starts at the edge of the grid.
@@ -116,6 +129,14 @@ Item {
                 area.areaHeight = graph.gridHeight
                 console.log(JSON.stringify(area));
                 area.gridItem = gridData[i];
+                if (area.areaWidth <= 32) { // weatherIcon.size = 32px (height = 24px but most icons are landscape)
+                    // Show icon representing 3 hours.
+                    area.showIcon = (i-1) % 3 === 1; // .X..X..X.
+                    area.aggregratedIcon = getAggregatedIcon(gridData, i-1, i+1);
+                } else {
+                    area.showIcon = true;
+                    area.aggregratedIcon = area.gridItem.weatherIcon;
+                }
                 areas.push(area);
             }
             console.log(JSON.stringify(areas));
@@ -353,9 +374,10 @@ Item {
 
                     FontIcon {
                         id: weatherIcon
+                        visible: modelData.showIcon
                         anchors.centerIn: parent
                         color: PlasmaCore.ColorScope.textColor
-                        source: modelData.gridItem.weatherIcon
+                        source: modelData.aggregratedIcon
                         height: 24
                         opacity: tooltip.containsMouse ? 0.1 : 1
                         showOutline: meteogramView.showIconOutline
@@ -431,7 +453,7 @@ Item {
                 percipitation: mm,
                 tooltipMainText: new Date(item.dt * 1000),
                 tooltipSubText: tooltipSubText,
-                weatherIcon: item.weather[0].iconName || Shared.weatherIconMap[item.weather[0].icon] || 'weather-severe-alert',
+                weatherIcon: item.weather[0].iconName || Shared.weatherIconMap[item.weather[0].icon] || 'question',
             };
         }
 
