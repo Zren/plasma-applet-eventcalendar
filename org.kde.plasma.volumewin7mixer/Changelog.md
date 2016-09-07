@@ -1,3 +1,9 @@
+[b]v14 - September 7 2016[/b]
+
+* Show current song in tooltip.
+* Use description instead of the internal name on mics/speakers.
+* Use the video-television icon for the hdmi speaker.
+
 [b]v13 - August 26 2016[/b]
 
 * Add media controls based on the default widget + mediacontrollercompact. You can disable it in the settings.
