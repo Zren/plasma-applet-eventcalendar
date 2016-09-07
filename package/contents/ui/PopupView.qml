@@ -103,6 +103,16 @@ Item {
         }
     }
 
+    Connections {
+        target: config
+        onWeather_serviceChanged: {
+            popup.dailyWeatherData = { "list": [] }
+            popup.hourlyWeatherData = { "list": [] }
+            popup.currentWeatherData = null
+            popup.updateUI()
+        }
+    }
+
     onMonthViewDateChanged: {
         console.log('onMonthViewDateChanged', monthViewDate)
         var startOfMonth = new Date(monthViewDate);
@@ -206,8 +216,9 @@ Item {
                 cfg_clock_24h: popup.cfg_clock_24h
                 cfg_meteogram_hours: popup.config.meteogram_hours
                 showIconOutline: plasmoid.configuration.show_outlines
-                xAxisScale: 1 / WeatherApi.dataPointDuration
-                xAxisLabelEvery: Math.ceil(3 / WeatherApi.dataPointDuration)
+                xAxisScale: 1 / hoursPerDataPoint
+                xAxisLabelEvery: Math.ceil(3 / hoursPerDataPoint)
+                property int hoursPerDataPoint: WeatherApi.getDataPointDuration()
 
                 Rectangle {
                     anchors.fill: parent

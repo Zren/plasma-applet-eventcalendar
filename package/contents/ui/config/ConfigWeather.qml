@@ -14,8 +14,10 @@ Item {
     implicitHeight: pageColumn.implicitHeight
 
     property alias cfg_weather_service: cfg_weather_serviceComboBox.value
-    property alias cfg_weather_app_id: weather_app_id.text // OpenWeatherMap.com
-    property alias cfg_weather_city_id: weather_city_id.text // OpenWeatherMap.com
+    property alias cfg_weather_app_id: weather_app_id.text // OpenWeatherMap
+    property alias cfg_weather_city_id: weather_city_id.text // OpenWeatherMap
+    property alias cfg_weather_canada_city_id: weather_canada_city_id.text // WeatherCanada
+    
     property string cfg_weather_units: 'metric'
     property alias cfg_events_pollinterval: weather_pollinterval.value // TODO
     property alias cfg_meteogram_hours: meteogram_hours.value
@@ -39,23 +41,22 @@ Item {
             id: cfg_weather_serviceComboBox
             // Layout.fillWidth: true
             model: [
-                'OpenWeatherMap.org',
-                // 'weather.gc.ca',
+                'OpenWeatherMap',
+                'WeatherCanada',
             ]
-            value: 'OpenWeatherMap.org'
+            value: 'OpenWeatherMap'
         }
 
         GroupBox {
             Layout.fillWidth: true
 
-            
             ColumnLayout {
                 spacing: units.smallSpacing * 2
                 Layout.fillWidth: true
                 
 
                 RowLayout {
-                    visible: showDebug
+                    visible: showDebug && page.cfg_weather_service === 'OpenWeatherMap'
                     Layout.fillWidth: true
                     Label {
                         text: i18n("API App Id:")
@@ -67,6 +68,7 @@ Item {
                 }
 
                 RowLayout {
+                    visible: page.cfg_weather_service === 'OpenWeatherMap'
                     Layout.fillWidth: true
                     Label {
                         text: i18n("City Id:")
@@ -78,13 +80,37 @@ Item {
                     }
                     Button {
                         text: i18n('Find City')
-                        onClicked: chooseCityDialog.open()
+                        onClicked: openWeatherMapCityDialog.open()
                     }
 
                     OpenWeatherMapCityDialog {
-                        id: chooseCityDialog
+                        id: openWeatherMapCityDialog
                         onAccepted: {
                             page.cfg_weather_city_id = selectedCityId
+                        }
+                    }
+                }
+
+                RowLayout {
+                    visible: page.cfg_weather_service === 'WeatherCanada'
+                    Layout.fillWidth: true
+                    Label {
+                        text: i18n("City Id:")
+                    }
+                    TextField {
+                        id: weather_canada_city_id
+                        Layout.fillWidth: true
+                        placeholderText: i18n("Eg: on-14")
+                    }
+                    Button {
+                        text: i18n('Find City')
+                        onClicked: weatherCanadaCityDialog.open()
+                    }
+
+                    WeatherCanadaCityDialog {
+                        id: weatherCanadaCityDialog
+                        onAccepted: {
+                            page.cfg_weather_canada_city_id = selectedCityId
                         }
                     }
                 }
