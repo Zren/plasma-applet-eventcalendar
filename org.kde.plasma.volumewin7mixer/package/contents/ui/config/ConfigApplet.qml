@@ -50,11 +50,28 @@ ColumnLayout {
             ColumnLayout {
 
                 CheckBox {
-                	enabled: false
-                	id: showVolumeTickmarks
-                	checked: true
-                	text: 'Show Ticks every 10%'
+                    enabled: false
+                    id: showVolumeTickmarks
+                    checked: true
+                    text: 'Show Ticks every 10%'
                 }
+
+                RowLayout {
+                    Label {
+                        text: 'Volume Boost'
+                    }
+                    SpinBox {
+                        enabled: false
+                        id: volumeBoostMaxVolume
+                        minimumValue: 100
+                        value: 150
+                        maximumValue: 1000
+                        stepSize: 10
+                        suffix: '%'
+                    }
+                }
+                
+
 
             }
         }
