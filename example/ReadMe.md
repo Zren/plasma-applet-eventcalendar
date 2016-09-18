@@ -24,6 +24,8 @@ Note that official KDE software is only mirrored on github, however github is mu
 * https://github.com/KDE/discover/tree/master/notifier
 * https://github.com/kotelnik/plasma-applet-weather-widget
 * https://github.com/kotelnik/plasma-applet-redshift-control
+* https://github.com/psifidotos/nowdock-plasmoid
+* https://github.com/psifidotos/nowdock-panel
 
 
 ## Documentation
