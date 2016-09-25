@@ -134,7 +134,7 @@ Item {
                     return lines.join('<br>');
                 }
 
-                onClicked: {
+                onLeftClicked: {
                     console.log('agendaItem.date.clicked', date)
                     if (true) {
                         // cfg_agenda_weather_clicked == "browser_viewcityforecast"
@@ -186,7 +186,7 @@ Item {
                     }
                 }
 
-                onClicked: {
+                onLeftClicked: {
                     console.log('agendaItem.date.clicked', date)
                     if (false) {
                         // cfg_agenda_date_clicked == "browser_newevent"
@@ -291,14 +291,24 @@ Item {
                                     }
                                 }
                             }
-
-                            onClicked: {
-                                console.log('agendaItem.event.clicked', start.date)
+                            
+                            onLeftClicked: {
+                                // console.log('agendaItem.event.leftClicked', start.date, mouse)
                                 if (true) {
                                     // cfg_agenda_event_clicked == "browser_viewevent"
                                     Qt.openUrlExternally(htmlLink)
                                 }
                             }
+
+                            onLoadContextMenu: {
+                                var menuItem = contextMenu.newMenuItem();
+                                menuItem.text = i18n("Edit in browser");
+                                menuItem.clicked.connect(function() {
+                                    Qt.openUrlExternally(model.htmlLink)
+                                });
+                                contextMenu.addMenuItem(menuItem);
+                            }
+
                         }
                     }
                 }
