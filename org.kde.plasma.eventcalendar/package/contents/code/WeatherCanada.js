@@ -28,7 +28,7 @@ var weatherIconMap = {
     '33': 'weather-clouds-night', // Mainly cloudy
     '34': 'weather-few-clouds-night', // Increasing cloudiness
     '': 'weather-overcast',
-    '': 'weather-showers-scattered-night',
+    '36': 'weather-showers-scattered-night', // Chance of showers
     '': 'weather-showers-night',
     '39': 'weather-storm-night', // Chance of showers. Risk of thunderstorms
     '': 'weather-snow',
@@ -135,7 +135,7 @@ function parseDailyHtml(html) {
             // TODO: check for 'kelvin' and subtract 273 from metric
             // TODO: Give a shit
             var high = getInner(innerHtml, 'wxo-metric-hide" title="high">', '&deg;<abbr title="Celsius">C</abbr>');
-            var low = getInner(innerHtml, 'wxo-metric-hide" title="high">', '&deg;<abbr title="Celsius">C</abbr>');
+            var low = getInner(innerHtml, 'wxo-metric-hide" title="low">', '&deg;<abbr title="Celsius">C</abbr>');
         }
         high = parseInt(high, 10);
         low = parseInt(low, 10);
