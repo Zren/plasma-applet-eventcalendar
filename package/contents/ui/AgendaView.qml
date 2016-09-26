@@ -125,17 +125,10 @@ Item {
                 }
 
                 tooltipMainText: weatherDescription
-                tooltipSubText: {
-                    var lines = [];
-                    lines.push('<b>Morning:</b> ' + weatherTempMorn + '°');
-                    lines.push('<b>Day:</b> ' + weatherTempDay + '°');
-                    lines.push('<b>Evening:</b> ' + weatherTempEve + '°');
-                    lines.push('<b>Night:</b> ' + weatherTempNight + '°');
-                    return lines.join('<br>');
-                }
+                tooltipSubText: weatherNotes
 
                 onLeftClicked: {
-                    console.log('agendaItem.date.clicked', date)
+                    // console.log('agendaItem.date.clicked', date)
                     if (true) {
                         // cfg_agenda_weather_clicked == "browser_viewcityforecast"
                         if (config.weather_city_id) {
@@ -187,7 +180,7 @@ Item {
                 }
 
                 onLeftClicked: {
-                    console.log('agendaItem.date.clicked', date)
+                    // console.log('agendaItem.date.leftClicked', date)
                     if (false) {
                         // cfg_agenda_date_clicked == "browser_newevent"
                         Shared.openGoogleCalendarNewEventUrl(date);
@@ -351,10 +344,7 @@ Item {
             weatherIcon: "",
             weatherText: "",
             weatherDescription: "",
-            weatherTempMorn: 0,
-            weatherTempDay: 0,
-            weatherTempEve: 0,
-            weatherTempNight: 0,
+            weatherNotes: "",
         };
     }
 
@@ -451,7 +441,7 @@ Item {
             for (var i = 0; i < agendaItemList.length; i++) {
                 var agendaItem = agendaItemList[i];
                 if (agendaItem.date < currentMonthMin || currentMonthMaxExclusive <= agendaItem.date && nextNumDaysEndExclusive <= agendaItem.date) {
-                    console.log('removed agendaItem:', agendaItem.date)
+                    // console.log('removed agendaItem:', agendaItem.date)
                     agendaItemList.splice(i, 1);
                     i--;
                 }
@@ -542,16 +532,11 @@ Item {
                     agendaItem.tempHigh = Math.ceil(forecastItem.temp.max);
                     agendaModel.setProperty(i, 'tempLow', Math.floor(forecastItem.temp.min));
                     agendaModel.setProperty(i, 'tempHigh', Math.ceil(forecastItem.temp.max));
-                    var weatherIcon = forecastItem.weather[0].iconName || Shared.weatherIconMap[forecastItem.weather[0].icon] || 'weather-severe-alert';
-                    agendaModel.setProperty(i, 'weatherIcon', weatherIcon);
-                    agendaModel.setProperty(i, 'weatherText', forecastItem.weather[0].main);
-                    agendaModel.setProperty(i, 'weatherDescription', forecastItem.weather[0].description);
-                    agendaModel.setProperty(i, 'weatherTempMorn', Math.round(forecastItem.temp.morn));
-                    agendaModel.setProperty(i, 'weatherTempDay', Math.round(forecastItem.temp.day));
-                    agendaModel.setProperty(i, 'weatherTempEve', Math.round(forecastItem.temp.eve));
-                    agendaModel.setProperty(i, 'weatherTempNight', Math.round(forecastItem.temp.night));
+                    agendaModel.setProperty(i, 'weatherIcon', forecastItem.iconName || 'weather-severe-alert');
+                    agendaModel.setProperty(i, 'weatherText', forecastItem.text || '');
+                    agendaModel.setProperty(i, 'weatherDescription', forecastItem.description || '');
+                    agendaModel.setProperty(i, 'weatherNotes', forecastItem.notes || '');
                     agendaModel.setProperty(i, 'showWeather', true);
-                    
                     break;
                 }
             }

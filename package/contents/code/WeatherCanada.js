@@ -35,9 +35,34 @@ var weatherIconMap = {
     '': 'weather-fog',
 };
 
+var weatherIconToTextMap = {
+    'weather-clear': i18n("Clear"),
+    'weather-few-clouds': i18n("Cloudy"),
+    'weather-clouds': i18n("Cloudy"),
+    'weather-overcast': i18n("Overcast"),
+    'weather-showers-scattered': i18n("Showers"),
+    'weather-showers': i18n("Rain"),
+    'weather-storm': i18n("Storm"),
+    'weather-snow': i18n("Snow"),
+    'weather-fog': i18n("Fog"),
+
+    'weather-clear-night': i18n("Clear"),
+    'weather-few-clouds-night': i18n("Cloudy"),
+    'weather-clouds-night': i18n("Cloudy"),
+    'weather-overcast': i18n("Overcast"),
+    'weather-showers-scattered-night': i18n("Showers"),
+    'weather-showers-night': i18n("Rain"),
+    'weather-storm-night': i18n("Storm"),
+    'weather-snow': i18n("Snow"),
+    'weather-fog': i18n("Fog"),
+}
+
 function getInner(html, a, b) {
-    var start = html.indexOf(a) + a.length;
+    var start = html.indexOf(a);
+    if (start == -1) return '';
+    start += a.length;
     var end = html.indexOf(b, start);
+    if (end == -1) return '';
     return html.substr(start, end-start);
 }
 
@@ -70,7 +95,10 @@ function parseFutureDate(day, month) {
 
 
 function parseDailyHtml(html) {
-    html = getInner(html, '<h3 class="wb-inv">Graphic forecast</h3>', '<h3 class="wb-inv">Detailed forecast</h3>');
+    var tableHtml = getInner(html, '<table class="table mrgn-bttm-md mrgn-tp-md textforecast hidden-xs">', '</table>');
+    // console.log('tableHtml', tableHtml)
+    
+    var forecastHtml = getInner(html, '<h3 class="wb-inv">Graphic forecast</h3>', '<h3 class="wb-inv">Detailed forecast</h3>');
 
 /*
             <div class="fcst brdr-rght brdr-bttm text-center">
@@ -106,11 +134,11 @@ function parseDailyHtml(html) {
               </p>
             </div>
 */
-
     var weatherData = {
         list: []
     };
-    loopInner(html, '<div class="fcst brdr-rght brdr-bttm text-center">', '</div>', function(innerHtml, innerIndex) {
+
+    loopInner(forecastHtml, '<div class="fcst brdr-rght brdr-bttm text-center">', '</div>', function(innerHtml, innerIndex) {
         var day = getInner(innerHtml, '<br>', '\u00A0<abbr '); // \u00A0 = No Break Space
         var month = getInner(innerHtml, 'abbr title="', '/abbr>')
         month = getInner(month, '">', '<')
@@ -139,24 +167,44 @@ function parseDailyHtml(html) {
         }
         high = parseInt(high, 10);
         low = parseInt(low, 10);
+
+        var text = weatherIconToTextMap[iconName] || description;
+        var notes = '';
+
+        var notesHtml = getInner(tableHtml, '\u00A0' + day + '\u00A0<abbr title="', '<strong>');
+        // console.log('notesHtml', notesHtml)
+        if (!notesHtml) { // Last item
+            notesHtml = getInner(tableHtml, '\u00A0' + day + '\u00A0<abbr title="', '</tbody>');
+            // console.log('notesHtml', notesHtml)
+        }
+        var dayNotes = getInner(notesHtml, '</td>\n              <td>', '</td>');
+        // console.log('dayNotes', dayNotes)
+        if (notesHtml.indexOf('night">Tonight</strong>') >= 0) {
+            notes = i18n("<b>Tonight:</b> %1", dayNotes);
+        } else {
+            var nightNotes = getInner(notesHtml, 'night"> Night\n</td>\n              <td>', '</td>');
+            // console.log('nightNotes', nightNotes)
+            if (nightNotes) {
+                notes = i18n("%1<br><b>Night:</b> %2", dayNotes, nightNotes);
+            } else { // Last item (w/ Tonight as first item)
+                notes = dayNotes;
+            }
+            
+        }
+        
+        // notes = dayNotes + '<br>' + nightNotes;
+
         
         weatherData.list.push({
             dt: dt,
             temp: {
                 max: high,
                 min: low,
-                morn: 0,
-                day: 0,
-                eve: 0,
-                night: 0,
             },
-            weather: [
-                {
-                    iconName: iconName,
-                    main: description,
-                    description: description,
-                }
-            ],
+            iconName: iconName,
+            text: text,
+            description: description,
+            notes: notes,
         });
     });
 
@@ -188,14 +236,14 @@ function parseHourlyTbody(html) {
         if (trHtml.indexOf('<th ') >= 0) {
             // Date heading
             dateStr = parseHourlyDate(trHtml);
-            console.log(dateStr);
+            // console.log(dateStr);
         } else {
             // Hourly forecast
             var timeStr = parseHourlyTime(trHtml);
             var temp = parseHourlyTemp(trHtml);
             var conditions = parseHourlyConditions(trHtml);
             var dt = Math.floor(new Date(dateStr + ' ' + timeStr).getTime() / 1000);
-            console.log(dt, timeStr, conditions.icon, conditions.id, conditions.description);
+            // console.log(dt, timeStr, conditions.icon, conditions.id, conditions.description);
 
             weatherData.list.push({
                 dt: dt,

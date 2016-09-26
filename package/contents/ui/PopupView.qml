@@ -89,7 +89,7 @@ Item {
     Connections {
         target: monthView
         onDateSelected: {
-            console.log('onDateSelected', selectedDate)
+            // console.log('onDateSelected', selectedDate)
             scrollToSelection()
         }   
     }
@@ -114,7 +114,7 @@ Item {
     }
 
     onMonthViewDateChanged: {
-        console.log('onMonthViewDateChanged', monthViewDate)
+        // console.log('onMonthViewDateChanged', monthViewDate)
         var startOfMonth = new Date(monthViewDate);
         startOfMonth.setDate(1);
         agendaView.currentMonth = new Date(startOfMonth);
@@ -133,7 +133,7 @@ Item {
     }
 
     onStateChanged: {
-        console.log(popup.state, widgetGrid.columns, widgetGrid.rows)
+        // console.log(popup.state, widgetGrid.columns, widgetGrid.rows)
     }
     states: [
         State {
@@ -199,10 +199,10 @@ Item {
             columnSpacing: popup.spacing
             rowSpacing: popup.spacing
             onColumnsChanged: {
-                console.log(popup.state, widgetGrid.columns, widgetGrid.rows)
+                // console.log(popup.state, widgetGrid.columns, widgetGrid.rows)
             }
             onRowsChanged: {
-                console.log(popup.state, widgetGrid.columns, widgetGrid.rows)
+                // console.log(popup.state, widgetGrid.columns, widgetGrid.rows)
             }
             Layout.margins: popup.padding
 
@@ -265,7 +265,7 @@ Item {
                 visibleDateMax: popup.visibleDateMax
 
                 onNewEventFormOpened: {
-                    console.log('onNewEventFormOpened')
+                    // console.log('onNewEventFormOpened')
                     if (config && config.access_token) {
                         var calendarIdList = plasmoid.configuration.calendar_id_list ? plasmoid.configuration.calendar_id_list.split(',') : ['primary'];
                         var calendarList = plasmoid.configuration.calendar_list ? JSON.parse(Qt.atob(plasmoid.configuration.calendar_list)) : [];
@@ -288,12 +288,12 @@ Item {
                     }
                 }
                 onSubmitNewEventForm: {
-                    console.log('onSubmitNewEventForm', calendarId)
+                    // console.log('onSubmitNewEventForm', calendarId)
                     if (config && config.access_token) {
                         var calendarId2 = calendarId.calendarId ? calendarId.calendarId : calendarId
                         var calendarList = plasmoid.configuration.calendar_list ? JSON.parse(Qt.atob(plasmoid.configuration.calendar_list)) : [];
                         var dateString = date.getFullYear() + '-' + (date.getMonth()+1) + '-' + date.getDate()
-                        console.log('text', dateString + ' ' + text)
+                        // console.log('text', dateString + ' ' + text)
                         if (popup.cfg_agenda_newevent_remember_calendar) {
                             plasmoid.configuration.agenda_newevent_last_calendar_id = calendarId2
                         }
@@ -377,7 +377,7 @@ Item {
 
                 onDayDoubleClicked: {
                     var date = new Date(dayData.yearNumber, dayData.monthNumber-1, dayData.dayNumber);
-                    console.log('Popup.monthView.onDoubleClicked', date);
+                    // console.log('Popup.monthView.onDoubleClicked', date);
                     if (true) {
                         // cfg_month_day_doubleclick == "browser_newevent"
                         Shared.openGoogleCalendarNewEventUrl(date);
@@ -428,7 +428,7 @@ Item {
     function updateEvents() {
         var dateMin = monthView.firstDisplayedDate();
         if (!dateMin) {
-            console.log('updateEvents', 'no dateMin');
+            // console.log('updateEvents', 'no dateMin');
             return;
         }
         var monthViewDateMax = monthView.lastDisplayedDate();
@@ -447,9 +447,9 @@ Item {
             var calendarIdList = plasmoid.configuration.calendar_id_list ? plasmoid.configuration.calendar_id_list.split(',') : ['primary'];
             var calendarList = plasmoid.configuration.calendar_list ? JSON.parse(Qt.atob(plasmoid.configuration.calendar_list)) : [];
 
-            console.log('updateEvents', dateMin, ' - ', dateMax);
-            console.log('calendarIdList', calendarIdList);
-            console.log('calendarList.length', calendarList.length);
+            // console.log('updateEvents', dateMin, ' - ', dateMax);
+            // console.log('calendarIdList', calendarIdList);
+            // console.log('calendarList.length', calendarList.length);
 
             eventsByCalendar = {};
             popup.visibleDateMin = dateMin
@@ -540,7 +540,7 @@ Item {
     }
 
     function updateUI() {
-        console.log('updateUI');
+        // console.log('updateUI');
         var now = new Date();
 
         if (monthViewDate.getYear() == now.getYear() && monthViewDate.getMonth() == now.getMonth()) {
@@ -564,7 +564,7 @@ Item {
             });
 
             eventsData.items = eventsData.items.concat(eventsByCalendar[calendarId].items);
-            console.log('updateUI', calendarId, eventsByCalendar[calendarId].items.length, eventsData.items.length);
+            // console.log('updateUI', calendarId, eventsByCalendar[calendarId].items.length, eventsData.items.length);
         }
 
         agendaView.cfg_clock_24h = config ? config.clock_24h : false;
@@ -599,9 +599,9 @@ Item {
     }
 
     function updateAccessToken() {
-        console.log('access_token_expires_at', config.access_token_expires_at);
-        console.log('                    now', Date.now());
-        console.log('refresh_token', config.refresh_token);
+        // console.log('access_token_expires_at', config.access_token_expires_at);
+        // console.log('                    now', Date.now());
+        // console.log('refresh_token', config.refresh_token);
         if (config.refresh_token) {
             console.log('fetchNewAccessToken');
             fetchNewAccessToken(function(err, data, xhr) {

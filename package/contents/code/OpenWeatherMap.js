@@ -51,6 +51,37 @@ var weatherIconMap = {
     '50n': 'weather-fog',
 };
 
+function parseDailyData(weatherData) {
+    for (var j = 0; j < weatherData.list.length; j++) {
+        var forecastItem = weatherData.list[j];
+
+        forecastItem.iconName = weatherIconMap[forecastItem.weather[0].icon];
+        forecastItem.text = forecastItem.weather[0].main;
+        forecastItem.description = forecastItem.weather[0].description;
+        
+        var lines = [];
+        lines.push('<b>Morning:</b> ' + Math.round(forecastItem.temp.morn) + '°');
+        lines.push('<b>Day:</b> ' + Math.round(forecastItem.temp.day) + '°');
+        lines.push('<b>Evening:</b> ' + Math.round(forecastItem.temp.eve) + '°');
+        lines.push('<b>Night:</b> ' + Math.round(forecastItem.temp.night) + '°');
+        forecastItem.notes = lines.join('<br>');
+    }
+
+    return weatherData;
+}
+
+function parseHourlyData(weatherData) {
+    for (var j = 0; j < weatherData.list.length; j++) {
+        var forecastItem = weatherData.list[j];
+        
+        forecastItem.iconName = weatherIconMap[forecastItem.weather[0].icon];
+        forecastItem.text = forecastItem.weather[0].main;
+        forecastItem.description = forecastItem.weather[0].description;
+    }
+
+    return weatherData;
+}
+
 function updateDailyWeather(callback) {
     // console.log('fetchDailyWeatherForecast', lastForecastAt, Date.now());
     fetchDailyWeatherForecast({
@@ -61,6 +92,8 @@ function updateDailyWeather(callback) {
         if (err) return console.log('fetchDailyWeatherForecast.err', err, xhr && xhr.status, data);
         console.log('fetchDailyWeatherForecast.response');
         // console.log('fetchDailyWeatherForecast.response', data);
+
+        data = parseDailyData(data);
 
         callback(err, data);
     });
@@ -76,6 +109,8 @@ function updateHourlyWeather(callback) {
         if (err) return console.log('fetchHourlyWeatherForecast.err', err, xhr && xhr.status, data);
         console.log('fetchHourlyWeatherForecast.response');
         // console.log('fetchHourlyWeatherForecast.response', data);
+
+        data = parseHourlyData(data);
 
         callback(err, data);
     });
