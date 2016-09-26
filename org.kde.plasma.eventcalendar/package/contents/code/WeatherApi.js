@@ -6,7 +6,7 @@
 // var weatherService = 'WeatherCanada';
 // var dataPointDuration = 1;
 
-
+/* How many hours each data point represents */
 function getDataPointDuration() {
 	var weatherService = plasmoid.configuration.weather_service;
 	if (weatherService == 'OpenWeatherMap') {
@@ -18,15 +18,41 @@ function getDataPointDuration() {
 	}
 }
 
+/* Open the city's webpage using Qt.openUrlExternally(url) */
 function openCityUrl() {
 	var weatherService = plasmoid.configuration.weather_service;
 	if (weatherService == 'OpenWeatherMap') {
 		OpenWeatherMap.openOpenWeatherMapCityUrl(plasmoid.configuration.weather_city_id);
 	} else if (weatherService == 'WeatherCanada') {
-		Qt.openUrlExternally(WeatherCanada.cityUrl(plasmoid.configuration.weather_canada_city_id));
+		Qt.openUrlExternally(WeatherCanada.getCityUrl(plasmoid.configuration.weather_canada_city_id));
 	}
 }
 
+/* Update the weather shown in the agenda. */
+/* @return { // Based on the OpenWeatherMap schema (for now)
+	list: [
+		{
+			dt: 1474831800, // seconds
+			temp: {
+				min: 14.5,
+				max: 14.5,
+				morn: 14.5,
+				day: 14.5,
+				eve: 14.5,
+				night: 14.5,
+			},
+			weather: [
+				{
+					iconName: 'weather-clear',
+					main: 'Clear', // Word/Short description (the "Weather Text" shown in the agenda)
+					description: 'clear sky',  // Sentence (shown in the tooltip)
+				}
+			],
+		},
+		...
+	]
+}
+*/
 function updateDailyWeather(callback) {
 	if (!weatherIsSetup()) {
 		return callback('Weather configuration not setup');
@@ -35,11 +61,29 @@ function updateDailyWeather(callback) {
 	if (weatherService == 'OpenWeatherMap') {
 		OpenWeatherMap.updateDailyWeather(callback);
 	} else if (weatherService == 'WeatherCanada') {
-
+		WeatherCanada.updateDailyWeather(callback);
 	}
 }
 
-
+/* Update the meteogram dataset. Will not be called if the meteogram isn't enabled. */
+/* @return { // Based on the OpenWeatherMap schema (for now)
+	list: [
+		{
+			dt: 1474831800, // seconds
+			main: {
+				temp: 14.5,
+			},
+			weather: [
+				{
+					iconName: 'weather-clear',
+					description: 'clear sky', // Sentence
+				}
+			],
+		},
+		...
+	]
+}
+*/
 function updateHourlyWeather(callback) {
 	if (!weatherIsSetup()) {
 		return callback('Weather configuration not setup');
@@ -52,6 +96,7 @@ function updateHourlyWeather(callback) {
 	}
 }
 
+/* Return true if all configuration has been setup. */
 function weatherIsSetup() {
 	var weatherService = plasmoid.configuration.weather_service;
 	if (weatherService == 'OpenWeatherMap') {

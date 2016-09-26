@@ -26,6 +26,7 @@ var weatherIconMap = {
     '31': 'weather-few-clouds-night', // A few clouds
     '32': 'weather-few-clouds-night', // Partly cloudy
     '33': 'weather-clouds-night', // Mainly cloudy
+    '34': 'weather-few-clouds-night', // Increasing cloudiness
     '': 'weather-overcast',
     '': 'weather-showers-scattered-night',
     '': 'weather-showers-night',
@@ -39,11 +40,136 @@ function getInner(html, a, b) {
     var end = html.indexOf(b, start);
     return html.substr(start, end-start);
 }
-function parseHtml(html) {
-    html = getInner(html, '<tbody>', '</tbody>');
-    return parseTbody(html);
+
+function loopInner(html, a, b, callback) {
+    var cursor = 0;
+    for (var i = 0; i < 1000; i++) { // Hard limit of 1000 iterations
+        var start = html.indexOf(a, cursor);
+        if (start == -1) {
+            break;
+        }
+        start += a.length;
+        var end = html.indexOf(b, cursor);
+        var innerHtml = html.substr(start, end-start);
+        callback(innerHtml, i);
+        cursor = end + b.length;
+    }
 }
-function parseTbody(html) {
+
+function parseFutureDate(day, month) {
+    // QML doesn't parse: new Date('25 Sep')
+    // So we need to specify the year
+    // Hardcode Jan == next year when in December
+    var date = new Date();
+    if (month == 'Jan' && date.getMonth() == 11) { // == December, getMonth() returns 0-11
+        return new Date(day + ' ' + month + ' ' + (date.getFullYear() + 1))
+    } else {
+        return new Date(day + ' ' + month + ' ' + date.getFullYear())
+    }
+}
+
+
+function parseDailyHtml(html) {
+    html = getInner(html, '<h3 class="wb-inv">Graphic forecast</h3>', '<h3 class="wb-inv">Detailed forecast</h3>');
+
+/*
+            <div class="fcst brdr-rght brdr-bttm text-center">
+              <p class="brdr-bttm">
+                <a href="/forecast/hourly/on-5_metric_e.html">
+                  <strong title="Sunday night">Sun</strong>
+                  <br>25 <abbr title="September">Sep</abbr>
+                </a>
+              </p>
+              <p class="mrgn-bttm-0"><img width="60" height="51" src="/weathericons/34.gif" alt="Increasing cloudiness" class="center-block" title="Increasing cloudiness"></p>
+              <p class="pop text-center mrgn-bttm-0" title="Chance of Precipitation">
+                <small> </small>
+              </p>
+              <p class="mrgn-bttm-0"><span class="high" title="high"> </span></p>
+              <p class="low mrgn-bttm-0"> </p>
+            </div>
+            <div class="fcst brdr-rght brdr-bttm text-center">
+              <p class="brdr-bttm">
+                <strong title="Monday">Mon</strong>
+                <br>26 <abbr title="September">Sep</abbr>
+              </p>
+              <p class="mrgn-bttm-0"><img width="60" height="51" src="/weathericons/12.gif" alt="Showers" class="center-block" title="Showers"></p>
+              <p class="pop text-center mrgn-bttm-0" title="Chance of Precipitation">
+                <small> </small>
+              </p>
+              <p class="mrgn-bttm-0"><span class="high wxo-metric-hide" title="high">18&deg;<abbr title="Celsius">C</abbr>
+                </span><span class="high wxo-imperial-hide wxo-city-hidden" title="high">64&deg;<abbr title="Fahrenheit">F</abbr>
+                </span>
+              </p>
+              <p class="fcstlow mrgn-bttm-0"><span class="low wxo-metric-hide" title="low">10&deg;<abbr title="Celsius">C</abbr>
+                </span><span class="low wxo-imperial-hide wxo-city-hidden" title="low">50&deg;<abbr title="Fahrenheit">F</abbr>
+                </span>
+              </p>
+            </div>
+*/
+
+    var weatherData = {
+        list: []
+    };
+    loopInner(html, '<div class="fcst brdr-rght brdr-bttm text-center">', '</div>', function(innerHtml, innerIndex) {
+        var day = getInner(innerHtml, '<br>', '\u00A0<abbr '); // \u00A0 = No Break Space
+        var month = getInner(innerHtml, 'abbr title="', '/abbr>')
+        month = getInner(month, '">', '<')
+        var date = parseFutureDate(day, month)
+        var dt = date.valueOf() / 1000
+
+        var imageId = getInner(innerHtml, 'src="/weathericons/', '.gif"');
+        var iconName = weatherIconMap[imageId];
+        var description = getInner(innerHtml, '.gif" alt="', '"');
+
+        // console.log(day, month, date, date.valueOf())
+        // console.log(dt, imageId, iconName, description)
+        
+        var high = 0;
+        var low = 0;
+        if (innerIndex == 0) {
+            // Today
+            // low and high aren't shown at the end of the day
+            // so use the current temp
+        } else {
+            // TODO: check plasmoid.configuration.weather_units == 'imperial' to use farenheit.
+            // TODO: check for 'kelvin' and subtract 273 from metric
+            // TODO: Give a shit
+            var high = getInner(innerHtml, 'wxo-metric-hide" title="high">', '&deg;<abbr title="Celsius">C</abbr>');
+            var low = getInner(innerHtml, 'wxo-metric-hide" title="high">', '&deg;<abbr title="Celsius">C</abbr>');
+        }
+        high = parseInt(high, 10);
+        low = parseInt(low, 10);
+        
+        weatherData.list.push({
+            dt: dt,
+            temp: {
+                max: high,
+                min: low,
+                morn: 0,
+                day: 0,
+                eve: 0,
+                night: 0,
+            },
+            weather: [
+                {
+                    iconName: iconName,
+                    main: description,
+                    description: description,
+                }
+            ],
+        });
+    });
+
+    return weatherData;
+}
+
+
+
+function parseHourlyHtml(html) {
+    html = getInner(html, '<tbody>', '</tbody>');
+    return parseHourlyTbody(html);
+}
+function parseHourlyTbody(html) {
     // Iterate all <tr>
     var cursor = 0;
     var dateStr;
@@ -61,13 +187,13 @@ function parseTbody(html) {
 
         if (trHtml.indexOf('<th ') >= 0) {
             // Date heading
-            dateStr = parseDate(trHtml);
+            dateStr = parseHourlyDate(trHtml);
             console.log(dateStr);
         } else {
             // Hourly forecast
-            var timeStr = parseTime(trHtml);
-            var temp = parseTemp(trHtml);
-            var conditions = parseConditions(trHtml);
+            var timeStr = parseHourlyTime(trHtml);
+            var temp = parseHourlyTemp(trHtml);
+            var conditions = parseHourlyConditions(trHtml);
             var dt = Math.floor(new Date(dateStr + ' ' + timeStr).getTime() / 1000);
             console.log(dt, timeStr, conditions.icon, conditions.id, conditions.description);
 
@@ -90,17 +216,17 @@ function parseTbody(html) {
     }
     return weatherData;
 }
-function parseDate(trHtml) {
+function parseHourlyDate(trHtml) {
     return getInner(trHtml, '>', '</');
 }
-function parseTime(trHtml) {
+function parseHourlyTime(trHtml) {
     return getInner(trHtml, '<td headers="header1" class="text-center">', '</td>');
 }
-function parseTemp(trHtml) {
+function parseHourlyTemp(trHtml) {
     var str = getInner(trHtml, '<td headers="header2" class="text-center">', '</td>');
     return parseInt(str, 10);
 }
-function parseConditions(trHtml) {
+function parseHourlyConditions(trHtml) {
     var td = getInner(trHtml, '<td headers="header3" class="media">', '</td>');
     var imageId = getInner(td, 'src="/weathericons/small/', '.png"');
     var text = getInner(td, '<p>', '</p>');
@@ -114,24 +240,36 @@ function parseConditions(trHtml) {
 
 
 
-function updateDailyWeather(callback) {
-    callback('not impletemented')
+function getCityUrl(cityId) {
+    return 'https://weather.gc.ca/city/pages/' + cityId + '_metric_e.html';
 }
 
-function updateHourlyWeather(callback) {
+function updateDailyWeather(callback) {
     var url = getCityUrl(plasmoid.configuration.weather_canada_city_id);
     Utils.request(url, function(err, data, xhr) {
-        if (err) return console.log('fetchHourlyWeatherForecast.err', err, xhr && xhr.status, data);
-        console.log('fetchHourlyWeatherForecast.response');
+        if (err) return console.log('fetchDailyWeatherForecast.err', err, xhr && xhr.status, data);
+        console.log('fetchDailyWeatherForecast.response');
         
-        var weatherData = parseHtml(data);
+        var weatherData = parseDailyHtml(data);
         // console.log(JSON.stringify(weatherData, null, '\t'));
         callback(err, weatherData);
     });
 }
 
-function getCityUrl(cityId) {
+function getCityHourlyUrl(cityId) {
     return 'https://weather.gc.ca/forecast/hourly/' + cityId + '_metric_e.html';
+}
+
+function updateHourlyWeather(callback) {
+    var url = getCityHourlyUrl(plasmoid.configuration.weather_canada_city_id);
+    Utils.request(url, function(err, data, xhr) {
+        if (err) return console.log('fetchHourlyWeatherForecast.err', err, xhr && xhr.status, data);
+        console.log('fetchHourlyWeatherForecast.response');
+        
+        var weatherData = parseHourlyHtml(data);
+        // console.log(JSON.stringify(weatherData, null, '\t'));
+        callback(err, weatherData);
+    });
 }
 
 

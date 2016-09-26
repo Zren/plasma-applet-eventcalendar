@@ -542,7 +542,7 @@ Item {
                     agendaItem.tempHigh = Math.ceil(forecastItem.temp.max);
                     agendaModel.setProperty(i, 'tempLow', Math.floor(forecastItem.temp.min));
                     agendaModel.setProperty(i, 'tempHigh', Math.ceil(forecastItem.temp.max));
-                    var weatherIcon = Shared.weatherIconMap[forecastItem.weather[0].icon] || 'weather-severe-alert';
+                    var weatherIcon = forecastItem.weather[0].iconName || Shared.weatherIconMap[forecastItem.weather[0].icon] || 'weather-severe-alert';
                     agendaModel.setProperty(i, 'weatherIcon', weatherIcon);
                     agendaModel.setProperty(i, 'weatherText', forecastItem.weather[0].main);
                     agendaModel.setProperty(i, 'weatherDescription', forecastItem.weather[0].description);

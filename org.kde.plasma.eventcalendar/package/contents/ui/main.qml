@@ -151,7 +151,7 @@ Item {
 
         property bool isExpanded: plasmoid.expanded
         onIsExpandedChanged: {
-            console.log('isExpanded', isExpanded);
+            // console.log('isExpanded', isExpanded);
             if (isExpanded) {
                 today = dataSource.data["Local"]["DateTime"] || new Date()
                 monthViewDate = today
