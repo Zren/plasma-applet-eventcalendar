@@ -1,6 +1,6 @@
 # Event Calendar
 
-https://www.kde-look.org/p/998901/
+https://store.kde.org/p/998901/
 
 Plasmoid for a calendar+agenda with weather that synchs to Google Calendar.
 

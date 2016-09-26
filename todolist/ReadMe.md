@@ -1,5 +1,7 @@
 # TodoList
 
+https://store.kde.org/p/1152230/
+
 Extension of the kdeplasma-applets notes widget, where it's organized as a list.
 
 ## Screenshots

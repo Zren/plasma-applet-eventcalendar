@@ -1,6 +1,6 @@
 # Show Desktop (Win7)
 
-https://www.kde-look.org/p/1100895/
+https://store.kde.org/p/1100895/
 
 A fork of the default plasmoid but removes the icon and looks like a flat thin button. Can be configured to minimize all windows instead of "peaking" at the desktop, or to run a command. Scrolling over the button changes the volume, switch desktop, or any other command.
 

@@ -1,6 +1,6 @@
 # Audio Volume (Win7 Mixer)
 
-https://www.kde-look.org/p/1100894/
+https://store.kde.org/p/1100894/
 
 A fork of the [default volume plasmoid](https://github.com/KDE/plasma-pa/tree/Plasma/5.5/applet) with a Windows 7 theme (vertical sliders).
 
