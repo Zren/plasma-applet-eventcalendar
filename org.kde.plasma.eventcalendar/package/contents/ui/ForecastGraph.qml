@@ -127,7 +127,7 @@ Item {
                 area.areaY = a.y
                 area.areaWidth = b.x - a.x
                 area.areaHeight = graph.gridHeight
-                console.log(JSON.stringify(area));
+                // console.log(JSON.stringify(area));
                 area.gridItem = gridData[i];
                 if (area.areaWidth <= 32) { // weatherIcon.size = 32px (height = 24px but most icons are landscape)
                     // Show icon representing 3 hours.
@@ -139,7 +139,7 @@ Item {
                 }
                 areas.push(area);
             }
-            console.log(JSON.stringify(areas));
+            // console.log(JSON.stringify(areas));
             gridDataAreas.model = areas;
         }
 
@@ -153,7 +153,7 @@ Item {
 
         function update() {
             gridCanvas.requestPaint()
-            console.log('updated');
+            // console.log('updated');
         }
 
         Item {
@@ -278,9 +278,9 @@ Item {
                     var pMinY = graph.gridPoint(0, pathMaxY).y; // y axis gets flipped
                     var height = pMaxY - pMinY;
                     var pZeroYRatio = (pZeroY-pMinY) / height;
-                    console.log(pMinY, pMaxY)
-                    console.log(height)
-                    console.log(pZeroY, pZeroYRatio)
+                    // console.log(pMinY, pMaxY)
+                    // console.log(height)
+                    // console.log(pZeroY, pZeroYRatio)
                     if (pZeroYRatio <= 0) {
                         context.strokeStyle = graph.tempBelow0Color;
                     } else if (pZeroYRatio >= 1) {
@@ -343,7 +343,7 @@ Item {
                     // Area
                     graph.updateGridItemAreas()
 
-                    console.log('painted');
+                    // console.log('painted');
                 }
 
             }
@@ -384,7 +384,7 @@ Item {
                     }
 
                     Component.onCompleted: {
-                        console.log(x, y)
+                        // console.log(x, y)
                     }
                 }
 
