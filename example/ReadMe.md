@@ -26,6 +26,9 @@ Note that official KDE software is only mirrored on github, however github is mu
 * https://github.com/kotelnik/plasma-applet-redshift-control
 * https://github.com/psifidotos/nowdock-plasmoid
 * https://github.com/psifidotos/nowdock-panel
+* https://github.com/dfaust/plasma-applet-netspeed-widget
+* https://github.com/dfaust/plasma-applet-popup-launcher
+* https://github.com/dfaust/plasma-applet-places-widget
 
 
 ## Documentation
