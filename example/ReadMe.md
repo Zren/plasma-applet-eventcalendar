@@ -33,6 +33,11 @@ Note that official KDE software is only mirrored on github, however github is mu
 
 ## Documentation
 
+* Plasma API Tutorials
+	* Getting Started  
+		https://techbase.kde.org/Development/Tutorials/Plasma5/QML2/GettingStarted
+	* API Reference / Overview  
+		https://techbase.kde.org/Development/Tutorials/Plasma2/QML2/API
 * [QML documentation](http://doc.qt.io/qt-5/qtqml-syntax-basics.html)
 * plasma-framework (PlasmaCore, PlasmaComponents, etc) API Documentation  
 	https://api.kde.org/frameworks/plasma-framework/html/index.html
