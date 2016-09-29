@@ -62,6 +62,9 @@ PlasmaComponents.ListItem {
                 // return Qt.resolvedUrl('../icons/hdmi.svg');
                 return 'video-television';
             }
+            if (PulseObject.name.indexOf('bluez_sink.') === 0) {
+                return 'preferences-system-bluetooth';
+            }
             return 'speaker';
         } else if (mixerItemType == 'Source') {
             // Microphone
