@@ -134,6 +134,6 @@ Window {
         // addPulseObjectEntry('name', 'Client')
 
         //
-        addPropertiesEntries(pulseObject.properties, 'PulseObject.properties')
+        addPropertiesEntries(pulseObject, 'PulseObject.properties')
     }
 }
