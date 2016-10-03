@@ -514,6 +514,15 @@ PlasmaComponents.ListItem {
                     contextMenu.addMenuItem(menuItem);
                 }
             }
+
+            // Properties
+            contextMenu.addMenuItem(newSeperator());
+            var menuItem = newMenuItem();
+            menuItem.text = i18n("Properties");
+            menuItem.clicked.connect(function() {
+                mixerItem.showPropertiesDialog();
+                plasmoid.expanded = false;
+            });
         }
 
         function show(x, y) {
@@ -527,5 +536,14 @@ PlasmaComponents.ListItem {
         anchors.fill: parent
 
         onClicked: contextMenu.show(mouse.x, mouse.y);
+    }
+
+    function showPropertiesDialog() {
+        var qml = 'import QtQuick 2.0; \
+        PulseObjectDialog { \
+            pulseObject: PulseObject \
+        } ';
+        var dialog = Qt.createQmlObject(qml, mixerItem);
+        dialog.visible = true;
     }
 }
