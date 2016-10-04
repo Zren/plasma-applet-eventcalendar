@@ -290,16 +290,8 @@ Item {
     property string mediaControllerLocation: plasmoid.configuration.mediaControllerLocation || 'bottom'
     property bool mediaControllerVisible: showMediaController && mpris2Source.hasPlayer
     property int mediaControllerHeight: 56 // = 48px albumArt + 8px seekbar
-    Column {
+    Item {
         anchors.fill: parent
-
-
-        // MediaController {
-        //     id: mediaControllerTop
-        //     visible: mediaControllerVisible && mediaControllerLocation == 'top'
-        //     width: main.Layout.preferredWidth - pinButton.width - units.smallSpacing
-        //     height: mediaControllerHeight
-        // }
 
         Row {
             id: mixerItemRow
@@ -370,11 +362,62 @@ Item {
         }
 
         MediaController {
-            id: mediaControllerBottom
-            visible: mediaControllerVisible && mediaControllerLocation == 'bottom'
+            id: mediaController
             width: main.Layout.preferredWidth
             height: mediaControllerHeight
         }
+
+        states: [
+            State {
+                name: "mediaControllerHidden"
+                when: !mediaControllerVisible
+                PropertyChanges {
+                    target: mixerItemRow
+                    anchors.top: mixerItemRow.parent.top
+                    anchors.bottom: mixerItemRow.parent.bottom
+                }
+                PropertyChanges {
+                    target: mediaController
+                    visible: false
+                }
+            },
+            State {
+                name: "mediaControllerTop"
+                when: mediaControllerVisible && mediaControllerLocation == 'top'
+                PropertyChanges {
+                    target: mixerItemRow
+                    // anchors.top: undefined
+                    anchors.topMargin: mediaControllerHeight
+                    anchors.bottom: mixerItemRow.parent.bottom
+                }
+                PropertyChanges {
+                    target: mediaController
+                    visible: true
+                    anchors.left: mediaController.parent.left
+                    anchors.top: mediaController.parent.top
+                    anchors.bottom: mixerItemRow.top
+                    width: main.Layout.preferredWidth - pinButton.width - units.smallSpacing // Don't cover the pin button
+                }
+            },
+            State {
+                name: "mediaControllerBottom"
+                when: mediaControllerVisible && mediaControllerLocation == 'bottom'
+                PropertyChanges {
+                    target: mixerItemRow
+                    anchors.top: mixerItemRow.parent.top
+                    // anchors.bottom: undefined
+                    anchors.bottomMargin: mediaControllerHeight
+                }
+                PropertyChanges {
+                    target: mediaController
+                    visible: true
+                    anchors.left: mediaController.parent.left
+                    anchors.top: mixerItemRow.bottom
+                    anchors.right: mediaController.parent.right
+                    anchors.bottom: mediaController.parent.bottom
+                }
+            }
+        ]
     }
 
     PlasmaComponents.ToolButton {
