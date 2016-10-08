@@ -111,8 +111,10 @@ Item {
 
                 font.family: clock.clock_fontfamily
                 font.weight: clock.cfg_clock_line_1_bold ? Font.Bold : Font.Normal
-                font.pointSize: 1024
-                minimumPointSize: 1
+                // font.pointSize: 1024
+                // minimumPointSize: 0
+                font.pixelSize: 1024
+                minimumPixelSize: 0
 
                 fontSizeMode: Text.VerticalFit
                 wrapMode: Text.NoWrap
@@ -142,8 +144,10 @@ Item {
 
                 font.family: clock.clock_fontfamily
                 font.weight: clock.cfg_clock_line_2_bold ? Font.Bold : Font.Normal
-                font.pointSize: 1024
-                minimumPointSize: 1
+                // font.pointSize: 1024
+                // minimumPointSize: 0
+                font.pixelSize: 1024
+                minimumPixelSize: 0
 
                 fontSizeMode: Text.VerticalFit
                 wrapMode: Text.NoWrap
