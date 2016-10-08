@@ -62,6 +62,11 @@ Item {
         }
     }
 
+    // Apply on change
+    onCfg_clock_line_2_height_ratioChanged: {
+        plasmoid.configuration.clock_line_2_height_ratio = cfg_clock_line_2_height_ratio
+    }
+
     function onClockFormatChange() {
         var combinedFormat = cfg_clock_timeformat;
         if (cfg_clock_line_2) {
@@ -415,7 +420,7 @@ Item {
                             id: clock_line_2_height_ratio
                             minimumValue: 0.3
                             maximumValue: 0.7
-                            stepSize: 0.05
+                            stepSize: 0.01
                             value: 0.4
                             Layout.fillWidth: true
                             // orientation: Qt.Vertical
