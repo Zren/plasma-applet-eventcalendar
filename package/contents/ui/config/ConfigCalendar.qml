@@ -106,11 +106,19 @@ ColumnLayout {
                             }
                         }
                         RadioButton {
-                            text: i18n("Bottom Bar")
+                            text: i18n("Bottom Bar (Highlight)")
                             exclusiveGroup: month_eventbadge_styleGroup
                             checked: cfg_month_eventbadge_type == 'bottomBar'
                             onClicked: {
                                 cfg_month_eventbadge_type = 'bottomBar'
+                            }
+                        }
+                        RadioButton {
+                            text: i18n("Count")
+                            exclusiveGroup: month_eventbadge_styleGroup
+                            checked: cfg_month_eventbadge_type == 'count'
+                            onClicked: {
+                                cfg_month_eventbadge_type = 'count'
                             }
                         }
                     }
