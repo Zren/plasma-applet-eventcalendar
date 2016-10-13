@@ -123,14 +123,36 @@ ColumnLayout {
                     ColumnLayout {
                         ExclusiveGroup { id: month_selected_styleGroup }
                         RadioButton {
+                            visible: false
                             enabled: false
                             text: i18n("Theme")
                             exclusiveGroup: month_selected_styleGroup
                         }
                         RadioButton {
-                            text: i18n("Solid Color")
+                            text: i18n("Solid Color (Highlight)")
                             checked: true
                             exclusiveGroup: month_selected_styleGroup
+                        }
+                    }
+                }
+
+                RowLayout {
+                    Label {
+                        text: i18n("Today:")
+                        Layout.alignment: Qt.AlignTop | Qt.AlignLeft
+                    }
+                    ColumnLayout {
+                        ExclusiveGroup { id: month_today_styleGroup }
+                        RadioButton {
+                            visible: false
+                            enabled: false
+                            text: i18n("Theme")
+                            exclusiveGroup: month_today_styleGroup
+                        }
+                        RadioButton {
+                            text: i18n("Solid Color (Inverted)")
+                            checked: true
+                            exclusiveGroup: month_today_styleGroup
                         }
                     }
                 }
