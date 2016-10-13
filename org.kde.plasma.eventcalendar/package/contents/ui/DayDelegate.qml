@@ -165,6 +165,38 @@ MouseArea {
             }
         }
 
+        Item {
+            id: eventBadgeCount
+            visible: parent.visible && dayStyle.eventBadgeType == 'count'
+            anchors.right: parent.right
+            anchors.bottom: parent.bottom
+            width: Math.max(eventBadgeCountText.paintedWidth, height)
+            height: parent.height / 3
+
+            Rectangle {
+                anchors.fill: parent
+                opacity: 0.6
+                color: theme.backgroundColor
+                visible: plasmoid.configuration.show_outlines
+            }
+
+            Components.Label {
+                id: eventBadgeCountText
+                anchors.fill: parent
+                color: theme.highlightColor
+                text: model.events.count
+                font.weight: Font.Bold
+                font.pixelSize: 1024
+                minimumPixelSize: 0
+                fontSizeMode: Text.VerticalFit
+                wrapMode: Text.NoWrap
+
+                horizontalAlignment: Text.AlignHCenter
+                verticalAlignment: Text.AlignVCenter
+                smooth: true
+            }
+        }
+
         Loader {
             id: eventBadgeTheme
             active: parent.visible && dayStyle.eventBadgeType == 'theme'
