@@ -106,7 +106,7 @@ Item {
                             left: parent.left
                             right: parent.right
                         }
-                        horizontalAlignment: Text.AlignHCenter
+                        horizontalAlignment: paintedWidth > parent.width ? Text.AlignLeft  : Text.AlignHCenter
                     }
 
                     Text {
