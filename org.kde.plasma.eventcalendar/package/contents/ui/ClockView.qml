@@ -30,7 +30,7 @@ Item {
     Layout.minimumWidth: labels.width
     // Layout.maximumWidth: timeLabel.width
     property variant formFactor: PlasmaCore.Types.Vertical
-    property int maxLineHeight: 24
+    property int maxLineHeight: cfg_clock_maxheight > 0 ? cfg_clock_maxheight : 24
 
 
     property date currentTime: {

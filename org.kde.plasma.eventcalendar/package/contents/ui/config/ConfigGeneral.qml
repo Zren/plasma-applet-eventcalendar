@@ -38,6 +38,7 @@ Item {
     property alias cfg_timer_repeats: timer_repeats.checked
     property alias cfg_timer_in_taskbar: timer_in_taskbar.checked
     property alias cfg_timer_ends_at: timer_ends_at.text
+    property alias cfg_clock_maxheight: clock_maxheight.value
 
     property string timeFormat24hour: 'hh:mm'
     property string timeFormat12hour: 'h:mm AP'
@@ -65,6 +66,9 @@ Item {
     // Apply on change
     onCfg_clock_line_2_height_ratioChanged: {
         plasmoid.configuration.clock_line_2_height_ratio = cfg_clock_line_2_height_ratio
+    }
+    onCfg_clock_maxheightChanged: {
+        plasmoid.configuration.clock_maxheight = cfg_clock_maxheight
     }
 
     function onClockFormatChange() {
@@ -272,6 +276,23 @@ Item {
                                     page.cfg_clock_fontfamily = current.value
                                 }
                             }
+                        }
+                    }
+
+                    RowLayout {
+                        Label {
+                            text: i18n("Fixed Clock Height: ")
+                        }
+                        
+                        SpinBox {
+                            id: clock_maxheight
+                            
+                            suffix: i18n("px")
+                            minimumValue: 0
+                        }
+
+                        Label {
+                            text: i18n(" (0px = scale to fit)")
                         }
                     }
                 }
