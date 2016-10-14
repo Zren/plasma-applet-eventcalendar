@@ -165,24 +165,21 @@ MouseArea {
             }
         }
 
-        Item {
+        Rectangle {
             id: eventBadgeCount
             visible: parent.visible && dayStyle.eventBadgeType == 'count'
             anchors.right: parent.right
             anchors.bottom: parent.bottom
-            width: Math.max(eventBadgeCountText.paintedWidth, height)
             height: parent.height / 3
-
-            Rectangle {
-                anchors.fill: parent
-                opacity: 0.6
-                color: theme.backgroundColor
-                visible: plasmoid.configuration.show_outlines
-            }
+            width: childrenRect.width
+            color: plasmoid.configuration.show_outlines ? theme.backgroundColor : "transparent"
 
             Components.Label {
                 id: eventBadgeCountText
-                anchors.fill: parent
+                height: parent.height
+                width: Math.max(paintedWidth, parent.height)
+                anchors.centerIn: parent
+
                 color: theme.highlightColor
                 text: model.events.count
                 font.weight: Font.Bold
