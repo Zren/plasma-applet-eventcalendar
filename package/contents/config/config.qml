@@ -14,7 +14,7 @@ ConfigModel {
     // }
     ConfigCategory {
         name: i18n("Calendar")
-        icon: "view-calendar-month"
+        icon: "view-calendar"
         source: "config/ConfigCalendar.qml"
     }
     ConfigCategory {
