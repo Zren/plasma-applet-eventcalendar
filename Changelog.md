@@ -1,3 +1,15 @@
+[b]v37 - October 15 2016[/b]
+
+* Default to using a qdbus command to change the volume (with the GUI).
+* Don't force user to hit apply after opening the "Google Calendar" tab in the config.
+* Option to toggle outlines of icons when the bg color set by the theme is ugly as sin.
+* Added a GUI for chosing your city.
+* Lots of work for using Weather Canada as as a data source (still unfinished).
+* Show a message to either hide or configure the weather when city is not set.
+* Ability to set a fixed clock height.
+* Jump by 1% instead of 5% when setting the clock's 2nd line height.
+* Added a new event badge with just the decimal number of events that day.
+
 [b]v36 - August 5 2016[/b]
 
 * Show the 3h weather forecast icons in the meteogram.
