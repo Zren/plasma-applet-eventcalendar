@@ -30,7 +30,8 @@ Item {
     Layout.minimumWidth: labels.width
     // Layout.maximumWidth: timeLabel.width
     property variant formFactor: PlasmaCore.Types.Vertical
-    property int maxLineHeight: cfg_clock_maxheight > 0 ? cfg_clock_maxheight : 24
+    property int verticalLineHeight: cfg_clock_maxheight > 0 ? cfg_clock_maxheight : 24
+    property int verticalDoubleLineHeight: cfg_clock_maxheight > 0 ? cfg_clock_maxheight : 24*2
 
 
     property date currentTime: {
@@ -239,30 +240,30 @@ Item {
             when: clock.formFactor == PlasmaCore.Types.Vertical
 
             PropertyChanges { target: clock
-                height: cfg_clock_line_2 ? maxLineHeight*2 : maxLineHeight
+                height: cfg_clock_line_2 ? verticalDoubleLineHeight : verticalLineHeight
                 // Layout.minimumHeight: 1
                 // Layout.preferredHeight: clock.height
                 // Layout.maximumHeight: clock.height
                 // Layout.fillHeight: false
                 // Layout.fillWidth: true
-                Layout.maximumHeight: cfg_clock_line_2 ? maxLineHeight*2 : maxLineHeight
+                Layout.maximumHeight: cfg_clock_line_2 ? verticalDoubleLineHeight : verticalLineHeight
                 Layout.minimumHeight: Layout.maximumHeight
             }
 
             PropertyChanges { target: sizehelper
                 width: clock.width
-                height: cfg_clock_line_2 ? maxLineHeight*2 : maxLineHeight
+                height: cfg_clock_line_2 ? verticalDoubleLineHeight : verticalLineHeight
                 fontSizeMode: Text.Fit
                 // horizontalAlignment: Text.AlignHCenter
             }
             PropertyChanges { target: timeLabel
                 width: clock.width
-                height: cfg_clock_line_2 ? maxLineHeight*2 - (maxLineHeight*2 * cfg_clock_line_2_height_ratio) : maxLineHeight
+                height: cfg_clock_line_2 ? verticalDoubleLineHeight - (verticalDoubleLineHeight * cfg_clock_line_2_height_ratio) : verticalLineHeight
                 fontSizeMode: Text.Fit
             }
             PropertyChanges { target: timeLabel2
                 width: clock.width
-                height: cfg_clock_line_2 ? maxLineHeight*2 * cfg_clock_line_2_height_ratio : 0
+                height: cfg_clock_line_2 ? verticalDoubleLineHeight * cfg_clock_line_2_height_ratio : 0
                 fontSizeMode: Text.Fit
             }
         }
