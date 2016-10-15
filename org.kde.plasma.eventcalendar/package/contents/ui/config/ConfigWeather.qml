@@ -39,6 +39,7 @@ Item {
 
         ComboBoxProperty {
             id: cfg_weather_serviceComboBox
+            enabled: false
             // Layout.fillWidth: true
             model: [
                 'OpenWeatherMap',
