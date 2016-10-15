@@ -172,7 +172,15 @@ MouseArea {
             anchors.bottom: parent.bottom
             height: parent.height / 3
             width: childrenRect.width
-            color: plasmoid.configuration.show_outlines ? theme.backgroundColor : "transparent"
+            color: {
+                if (plasmoid.configuration.show_outlines) {
+                    var c = Qt.darker(theme.backgroundColor, 1); // Cast to color
+                    c.a = 0.6; // 60%
+                    return c;
+                } else {
+                    return "transparent";
+                }
+            }
 
             Components.Label {
                 id: eventBadgeCountText
