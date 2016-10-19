@@ -18,41 +18,10 @@ ConfigPage {
     // }
 
 
-    ConfigSection {
-        label: i18n("SubHeading")
-
-        CheckBox {
-            id: exampleBool
-            text: i18n("Boolean")
-        }
-        SpinBox {
-            id: exampleInt
-            suffix: i18n(" units")
-        }
-
-    }
-
-    
-    ConfigSection {
-        label: i18n("SubHeading")
-
-        // RowLayout { // Crashes plasmashell on close... WHAT?
-        // ColumnLayout { // Crashes plasmashell on close... WHAT?
-            Text {
-                text: i18n("String")
-            }
-            TextField {
-                // id: exampleString
-                placeholderText: i18n("String")
-            }
-        // }
-    }
-
     GroupBox {
         Layout.fillWidth: true
 
         ColumnLayout {
-            id: content
             Layout.fillWidth: true
 
             Text {
@@ -60,9 +29,32 @@ ConfigPage {
                 font.bold: true
             }
 
-            RowLayout { // Does NOT crash plasmashell on close... WHAT? *headdesk*
+            CheckBox {
+                id: exampleBool
+                text: i18n("Boolean")
+            }
+            SpinBox {
+                id: exampleInt
+                suffix: i18n(" units")
+            }
+        }
+    }
+
+    
+    GroupBox {
+        Layout.fillWidth: true
+
+        ColumnLayout {
+            Layout.fillWidth: true
+
+            Text {
+                text: i18n("SubHeading")
+                font.bold: true
+            }
+
+            RowLayout {
                 Text {
-                    text: i18n("String")
+                    text: i18n("test")
                 }
                 TextField {
                     id: exampleString
