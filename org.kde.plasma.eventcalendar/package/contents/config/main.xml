@@ -182,7 +182,7 @@
 
     <!-- Settings -->
     <entry name="weather_service" type="string">
-      <default>OperWeatherMap</default>
+      <default>OpenWeatherMap</default>
     </entry>
     <entry name="weather_units" type="string">
       <default>metric</default>
