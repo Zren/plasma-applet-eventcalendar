@@ -1,3 +1,8 @@
+[b]v38 - October 21 2016[/b]
+
+* Fix inability to set the weather affecting new users.
+* Fix bug when viewing the weather config page in Kubuntu 16.04.
+
 [b]v37 - October 15 2016[/b]
 
 * Default to using a qdbus command to change the volume (with the GUI).
