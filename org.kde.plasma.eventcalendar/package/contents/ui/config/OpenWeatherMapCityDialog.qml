@@ -1,6 +1,6 @@
 import QtQuick 2.1
 import QtQuick.Dialogs 1.2
-import QtQuick.Layouts 1.3
+import QtQuick.Layouts 1.2
 import QtQuick.Controls 1.4
 import org.kde.plasma.core 2.0 as PlasmaCore
 
@@ -75,6 +75,7 @@ Dialog {
 			id: tableView
 			Layout.fillWidth: true
 			Layout.fillHeight: true
+			Layout.minimumHeight: 200
 			model: filteredCityListModel
 
 			TableViewColumn {
