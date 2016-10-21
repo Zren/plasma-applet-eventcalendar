@@ -43,7 +43,7 @@ PlasmaComponents.ListItem {
                     // or maybe appdata could be used?
                     // At any rate we need to attempt mapping binary to desktop file
                     // such that we could get the icon.
-                    if (binary === 'chrome' || binary === 'chromium') {
+                    if (binary === 'chrome' || binary === 'chromium' || binary === 'chrome (deleted)') {
                         return 'google-chrome';
                     }
                     return binary;
