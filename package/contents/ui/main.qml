@@ -72,41 +72,19 @@ Item {
                 }
             }
 
-            // http://dev.man-online.org/man1/xdotool/
-            // xmodmap -pke
-            // keycode 122 = XF86AudioLowerVolume NoSymbol XF86AudioLowerVolume
-            // keycode 123 = XF86AudioRaiseVolume NoSymbol XF86AudioRaiseVolume
             onWheel: {
                 var delta = wheel.angleDelta.y || wheel.angleDelta.x;
                 wheelDelta += delta;
                 
-                // if (delta > 0) {
-                //     topOverlap += 1
-                //     bottomOverlap += 1
-                // } else {
-                //     topOverlap -= 1
-                //     bottomOverlap -= 1
-                // }
-                // return;
-
-                if (plasmoid.configuration.clock_mousewheel == 'resize_clock') {
-                    if (delta > 0) {
-                        cfg_clock_maxheight += 1
-                    } else {
-                        cfg_clock_maxheight = Math.max(0, cfg_clock_maxheight - 1)
-                    }
-                // } else if (plasmoid.configuration.clock_mousewheel == 'run_commands') {
-                } else {
-                    // Magic number 120 for common "one click"
-                    // See: http://qt-project.org/doc/qt-5/qml-qtquick-wheelevent.html#angleDelta-prop
-                    while (wheelDelta >= 120) {
-                        wheelDelta -= 120;
-                        root.exec(plasmoid.configuration.clock_mousewheel_up)
-                    }
-                    while (wheelDelta <= -120) {
-                        wheelDelta += 120;
-                        root.exec(plasmoid.configuration.clock_mousewheel_down)
-                    }
+                // Magic number 120 for common "one click"
+                // See: http://qt-project.org/doc/qt-5/qml-qtquick-wheelevent.html#angleDelta-prop
+                while (wheelDelta >= 120) {
+                    wheelDelta -= 120;
+                    root.exec(plasmoid.configuration.clock_mousewheel_up)
+                }
+                while (wheelDelta <= -120) {
+                    wheelDelta += 120;
+                    root.exec(plasmoid.configuration.clock_mousewheel_down)
                 }
             }
         }
