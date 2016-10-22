@@ -170,8 +170,8 @@ Item {
     }
 
     // Plasmoid.backgroundHints: PlasmaCore.Types.NoBackground
-    
-    Plasmoid.preferredRepresentation: plasmoid.containmentType == PlasmaCore.ContainmentType.DesktopContainment ? Plasmoid.fullRepresentation : Plasmoid.compactRepresentation
+    property bool isDesktopContainment: plasmoid.location == PlasmaCore.Types.Floating
+    Plasmoid.preferredRepresentation: isDesktopContainment ? Plasmoid.fullRepresentation : Plasmoid.compactRepresentation
     Plasmoid.compactRepresentation: clockComponent
     Plasmoid.fullRepresentation: popupComponent
     
