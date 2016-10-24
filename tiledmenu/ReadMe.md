@@ -1,6 +1,6 @@
 # Tiled Menu
 
-Description
+A menu based on Windows 10's Start Menu.
 
 ## Screenshots
 
