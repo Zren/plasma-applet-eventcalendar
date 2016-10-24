@@ -19,61 +19,64 @@ PlasmaCore.Dialog {
 		height: 600
 		// anchors.fill: parent
 
-		// PlasmaComponents.Label {
-		// 	visible: false
-		// 	text: ""
-		// 	color: "#888"
-		// 	maximumLineCount: 1
-		// 	elide: Text.ElideRight
-		// }
-
 		GridLayout {
 			anchors.fill: parent
 			columns: 1
 
-			// Item {
-			// 	Layout.fillWidth: true
-			// 	Layout.fillHeight: true
-			// }
+			MenuList {
+				id: topMenu
+				visible: !appMenu.visible
+				Layout.fillWidth: true
+				// height: parent.height - parent.rowSpacing - bottomMenu.height
+				// Layout.fillHeight: true
 
-			ListView { // RunnerResultsList
-				id: appMenu
-				width: parent.width
-				Layout.fillHeight: true
-				clip: true
-				cacheBuffer: 1000 // Don't unload when scrolling (prevent stutter)
-
-				model: PlasmaCore.SortFilterModel {
-					sourceModel: runnerModel
-					sortRole: 'name'
-					// sortRole
+				model: ListModel {
+					ListElement { label: "Power" }
+					ListElement { label: "Power" }
 				}
-				delegate: Column {
-					visible: runner.count > 0
-					width: parent.width
-					height: visible ? childrenRect.height : 0
-					property var runner: runnerModel.modelForRow(appMenu.model.mapRowToSource(index))
-					property int index1: index
-					Component.onCompleted: {
-						console.log('runnerModel[' + index + ']', runner, runner.name, model, modelData)
-					}
 
-					spacing: 10
-
-					PlasmaComponents.Label {
-						text: runner.name || '?'
-						font.pixelSize: 22
-					}
-					Repeater { // ItemListView
-						width: parent.width
-						height: childrenRect.height
-						model: runner
-						delegate: MenuListItem {}
-					}
-				}
-				
+				keyNavDown: bottomMenu
 			}
-			
+			Item {
+				Layout.fillWidth: true
+				Layout.fillHeight: true
+			}
+			MenuList {
+				id: bottomMenu
+				visible: !appMenu.visible
+				Layout.fillWidth: true
+				height: childrenRect.height
+
+				model: ListModel {
+					ListElement { label: "Personal Folder" }
+					ListElement { label: "Settings" }
+					ListElement { label: "Power" }
+					ListElement { label: "All Apps" }
+				}
+
+				// KeyNavigation.up: topMenu
+				// KeyNavigation.down: panelSearchBox
+				keyNavUp: topMenu
+				keyNavDown: panelSearchBox
+			}
+			MenuList {
+				id: appMenu
+				visible: search.isSearching
+				// visible: false
+				Layout.fillWidth: true
+				// Layout.fillHeight: true
+
+				model: ListModel {
+					ListElement { label: "a" }
+					ListElement { label: "b" }
+					ListElement { label: "c" }
+					ListElement { label: "d" }
+				}
+
+				// KeyNavigation.up: topMenu
+				// KeyNavigation.down: panelSearchBox
+				keyNavDown: panelSearchBox
+			}
 
 			TextField {
 				id: panelSearchBox
@@ -93,6 +96,25 @@ PlasmaCore.Dialog {
 					target: search
 					onQueryChanged: panelSearchBox.text = search.query
 				}
+				onActiveFocusChanged: {
+					if (activeFocus) {
+						widget.expanded = true
+					}
+				}
+
+				// KeyNavigation.up: bottomMenu
+				Keys.onPressed: {
+					if (event.key == Qt.Key_Up) {
+						if (appMenu.visible) {
+							appMenu.navigateToBottom();
+						} else {
+							bottomMenu.navigateToBottom();
+						}
+						
+						event.accepted = true;
+					}
+				}
+				focus: true
 			}
 		}
 	}
