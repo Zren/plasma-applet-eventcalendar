@@ -20,5 +20,4 @@ ScrollView {
 		showItemUrl: false
 		largeFirstItem: false
 	}
-
 }

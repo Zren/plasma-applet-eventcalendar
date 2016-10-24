@@ -54,7 +54,7 @@ ListModel {
 	}
 
 	function parseModel(appList, model, path) {
-		console.log(path, model, model.description, model.count);
+		// console.log(path, model, model.description, model.count);
 		for (var i = 0; i < model.count; i++) {
 			var item = model.modelForRow(i);
 			if (!item) {
@@ -64,7 +64,7 @@ ListModel {
 			if (item && item.hasChildren) {
 				parseModel(appList, item, itemPath);
 			} else {
-				console.log(itemPath, item, item.description);
+				// console.log(itemPath, item, item.description);
 				appList.push(item);
 			}
 		}

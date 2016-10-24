@@ -13,9 +13,10 @@ PlasmaCore.Dialog {
 
 	// property var bottomItem: bottomMenu
 
-	FocusScope {
+	Row {
 		// width: 888
-		width: 60+430
+		// width: childrenRect.width
+		// height: childrenRect.height
 		height: 620
 		// anchors.fill: parent
 
@@ -28,7 +29,14 @@ PlasmaCore.Dialog {
 		// }
 
 		SearchView {
+			width: 60+430
+			height: parent.height
+		}
+
+		FavouritesView {
 			
 		}
+		
+		
 	}
 }

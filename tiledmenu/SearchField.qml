@@ -9,10 +9,14 @@ import org.kde.plasma.components 2.0 as PlasmaComponents
 TextField {
 	id: panelSearchBox
 	placeholderText: {
-		if (search.filters == search.defaultFilters) {
+		if (search.isDefaultFilter) {
 			return "Search"
-		} else if (search.filters == ['baloosearch']) {
+		} else if (search.isAppsFilter) {
+			return "Search Apps"
+		} else if (search.isFileFilter) {
 			return "Search Files"
+		} else if (search.isBookmarksFilter) {
+			return "Search Bookmarks"
 		} else {
 			return "Search " + search.filters
 		}

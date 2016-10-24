@@ -10,6 +10,7 @@ import QtQuick.Controls.Private 1.0 as QtQuickControlsPrivate
 import QtQuick.Controls.Styles.Plasma 2.0 as PlasmaStyles
 
 PlasmaComponents.ToolButton {
+	id: flatButton
 	width: parent.width
 	height: 60
 	iconName: ""
@@ -17,6 +18,7 @@ PlasmaComponents.ToolButton {
 	text: ""
 	property string label: expanded ? text : ""
 	property bool labelVisible: text != ""
+	property color backgroundColor: "transparent"
 
 	style: PlasmaStyles.ToolButtonStyle {
 		label: RowLayout {
@@ -52,7 +54,7 @@ PlasmaComponents.ToolButton {
 			Rectangle {
 				id: background
 				anchors.fill: parent
-				color: "transparent"
+				color: flatButton.backgroundColor
 			}
 
 			Rectangle {

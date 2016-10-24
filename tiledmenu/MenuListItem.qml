@@ -96,6 +96,6 @@ PlasmaComponents.ToolButton {
 
 	function trigger() {
 		runner.trigger(model.runnerItemIndex, "", null);
-		widget.expanded = false;
+		plasmoid.expanded = false;
 	}
 }

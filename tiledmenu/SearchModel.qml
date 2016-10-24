@@ -16,7 +16,6 @@ Item {
 	property string query: ""
 	property bool isSearching: query.length > 0
 	onQueryChanged: {
-		console.log(search.query)
 		runnerModel.query = search.query
 	}
 
@@ -28,7 +27,6 @@ Item {
 		runnerModel.deleteWhenEmpty = !runnerModel.deleteWhenEmpty // runnerModel.clear()
 		runnerModel.runners = filters
 		runnerModel.query = search.query
-		console.log(runnerModel.runners)
 	}
 
 	Kicker.RunnerModel {

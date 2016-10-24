@@ -13,6 +13,7 @@ Item {
 	property alias rootModel: rootModel
 	property alias allAppsModel: allAppsModel
 	property alias powerActionsModel: powerActionsModel
+	property alias favoritesModel: favoritesModel
 
 	signal refreshing()
 	signal refreshed()
@@ -51,6 +52,14 @@ Item {
 			// 	}
 			// }
 			allAppsModel.refresh()
+		}
+	}
+
+	Kicker.FavoritesModel {
+		id: favoritesModel
+
+		Component.onCompleted: {
+			favorites = 'systemsettings.desktop,sublime-text.desktop,clementine.desktop,hexchat.desktop,virtualbox.desktop'.split(',')
 		}
 	}
 
@@ -93,7 +102,7 @@ Item {
 				} else {
 					//--- filter
 					if (item.parentModel.toString().indexOf('SystemModel') >= 0) {
-						console.log(item.description, 'removed');
+						// console.log(item.description, 'removed');
 						powerActionsList.push(item);
 						return false;
 					} else {
@@ -101,7 +110,7 @@ Item {
 					}
 				}
 			});
-			powerActionsModel.list = powerActionsList;
+			powerActionsModel.list = powerActionsList; 
 
 			//---
 			// for (var i = 0; i < appList; i++) {
@@ -142,7 +151,7 @@ Item {
 }
 
 	function endsWidth(s, substr) {
-		console.log(s, s.indexOf(substr), s.length - substr.length - 1)
+		// console.log(s, s.indexOf(substr), s.length - substr.length - 1)
 		return s.indexOf(substr) == s.length - substr.length
 	}
 
