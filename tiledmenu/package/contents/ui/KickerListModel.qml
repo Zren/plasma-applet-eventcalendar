@@ -37,6 +37,7 @@ ListModel {
 			parentName: model.name,
 			name: model.data(modelIndex, Qt.DisplayRole),
 			description: model.data(modelIndex, DescriptionRole),
+			favoriteId: model.data(modelIndex, FavoriteIdRole),
 		};
 
 		// ListView.append() doesn't like it when we have { key: [object] }.

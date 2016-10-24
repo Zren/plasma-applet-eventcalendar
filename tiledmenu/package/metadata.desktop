@@ -16,3 +16,5 @@ X-KDE-PluginInfo-Version=1
 X-KDE-PluginInfo-Website=https://github.com/Zren/
 X-KDE-PluginInfo-Category=Application Launchers
 X-KDE-PluginInfo-Depends=
+
+X-Plasma-Provides=org.kde.plasma.launchermenu

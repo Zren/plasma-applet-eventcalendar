@@ -32,7 +32,7 @@ ListView {
 		width: parent.width
 		height: row.height
 
-		property var parentModel: modelList[index].parentModel
+		property var parentModel: modelList[index] ? modelList[index].parentModel : undefined
 		property string description: model.url ? model.description : '' // 
 		property string secondRowText: listView.showItemUrl && model.url ? model.url : model.description
 		property bool secondRowVisible: secondRowText
@@ -115,6 +115,40 @@ ListView {
 
 		function trigger() {
 			listView.model.triggerIndex(index)
+		}
+
+		MouseArea {
+			anchors.fill: parent
+			acceptedButtons: Qt.RightButton
+			onClicked: {
+
+				mouse.accepted = true;
+				if (mouse.button == Qt.RightButton) {
+					contextMenu.open(mouse.x, mouse.y)
+				}
+			}
+		}
+		AppContextMenu {
+			id: contextMenu
+			onPopulateMenu: {
+				// Pin to Menu
+				var menuItem = menu.newMenuItem();
+				if (appsModel.favoritesModel.isFavorite(model.favoriteId)) {
+					menuItem.text = i18n("Unpin from Menu")
+					menuItem.icon = "list-remove"
+					menuItem.clicked.connect(function() {
+						appsModel.favoritesModel.removeFavorite(model.favoriteId)
+					})
+				} else {
+					menuItem.text = i18n("Pin to Menu")
+					menuItem.icon = "bookmark-new"
+					menuItem.clicked.connect(function() {
+						console.log('model.favoriteId', model.favoriteId)
+						appsModel.favoritesModel.addFavorite(model.favoriteId)
+					})
+				}
+				menu.addMenuItem(menuItem)
+			}
 		}
 	}
 

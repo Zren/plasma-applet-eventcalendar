@@ -7,12 +7,12 @@ import org.kde.plasma.core 2.0 as PlasmaCore
 import org.kde.plasma.components 2.0 as PlasmaComponents
 
 import org.kde.plasma.private.kicker 0.1 as Kicker
+import "../code/KickerTools.js" as KickerTools
 
 Item {
 	id: appsModel
 	property alias rootModel: rootModel
 	property alias allAppsModel: allAppsModel
-	property alias recentAppsModel: recentAppsModel
 	property alias powerActionsModel: powerActionsModel
 	property alias favoritesModel: favoritesModel
 
@@ -44,7 +44,6 @@ Item {
 		}
 
 		onCountChanged: {
-			console.log('rootModel.onCountChanged')
 			// for (var i = 0; i < rootModel.count; i++) {
 			// 	var listModel = rootModel.modelForRow(i);
 			// 	if (listModel.description == 'KICKER_ALL_MODEL') {
@@ -53,24 +52,63 @@ Item {
 			// 		appsModel.refreshed()
 			// 	}
 			// }
-			recentAppsModel.refresh()
 			allAppsModel.refresh()
 		}
 			
 		onRefreshed: {
-			console.log('rootModel.onRefreshed')
+			//--- Power
+			var systemModel = rootModel.modelForRow(rootModel.count - 1)
+			var systemList = []
+			powerActionsModel.parseModel(systemList, systemModel)
+			powerActionsModel.list = systemList;
 
-			// for (var i = 0; i < runnerModel.count; i++){
-			// 	var runner = runnerModel.modelForRow(i);
-			// 	if (!runner.listenersBound) {
-			// 		runner.countChanged.connect(debouncedRefresh.logAndRestart)
-			// 		runner.dataChanged.connect(debouncedRefresh.logAndRestart)
-			// 		runner.listenersBound = true;
-			// 	}
-			// }
-			powerActionsModel.refresh()
-			recentAppsModel.refresh()
 			allAppsModel.refresh()
+		}
+	}
+
+	Item {
+		//--- Detect Changes
+		// Changes aren't bubbled up to the RootModel, so we need to detect changes somehow.
+		
+		// Recent Apps
+		Repeater {
+			model: rootModel.count >= 0 ? rootModel.modelForRow(0) : []
+			
+			Item {
+				Component.onCompleted: {
+					debouncedRefresh.restart()
+				}
+			}
+		}
+
+		// All Apps
+		Repeater { // A-Z
+			model: rootModel.count >= 2 ? rootModel.modelForRow(1) : []
+
+			Item {
+				property var parentModel: rootModel.modelForRow(1).modelForRow(index)
+
+				Repeater { // Aaa ... Azz (Apps)
+					model: parentModel.hasChildren ? parentModel : []
+
+					Item {
+						Component.onCompleted: {
+							// console.log('depth2', index, display, model)
+							debouncedRefresh.restart()
+						}
+					}
+				}
+
+				// Component.onCompleted: {
+				// 	console.log('depth1', index, display, model)
+				// }
+			}
+		}
+
+		Timer {
+			id: debouncedRefresh
+			interval: 100
+			onTriggered: allAppsModel.refresh()
 		}
 	}
 
@@ -78,8 +116,51 @@ Item {
 		id: favoritesModel
 
 		Component.onCompleted: {
-			favorites = 'systemsettings.desktop,sublime-text.desktop,clementine.desktop,hexchat.desktop,virtualbox.desktop'.split(',')
+			// favorites = 'systemsettings.desktop,sublime-text.desktop,clementine.desktop,hexchat.desktop,virtualbox.desktop'.split(',')
+			favorites = plasmoid.configuration.favoriteApps
 		}
+
+		onFavoritesChanged: {
+			plasmoid.configuration.favoriteApps = favorites
+		}
+
+		// Connections {
+		// 	target: plasmoid.configuration
+
+		// 	onFavoriteAppsChanged: {
+		// 		favoritesModel.favorites = plasmoid.configuration.favoriteApps
+		// 	}
+		// }
+
+		signal triggerIndex(int index)
+		onTriggerIndex: {
+			favoritesModel.trigger(index, "", null)
+		}
+
+		// signal aboutToShowActionMenu(string favoriteId, variant actionMenu)
+		// onAboutToShowActionMenu: {
+		// 	// var actionList = (model.hasActionList != null) ? model.actionList : [];
+		// 	KickerTools.fillActionMenu(actionMenu, [], favoritesModel, favoriteId);
+		// }
+
+		// signal actionTriggered(int index, string actionId, variant actionArgument)
+		// onActionTriggered: {
+		// 	KickerTools.triggerAction(favoritesModel, index, actionId, actionArgument);
+		// }
+
+		// function openActionMenu(visualParent, x, y) {
+		// 	aboutToShowActionMenu(actionMenu);
+		// 	actionMenu.visualParent = visualParent;
+		// 	actionMenu.open(x, y);
+		// }
+
+		// ActionMenu {
+		// 	id: actionMenu
+
+		// 	onActionClicked: {
+		// 		actionTriggered(actionId, actionArgument);
+		// 	}
+		// }
 	}
 
 
@@ -89,38 +170,20 @@ Item {
 			console.log('powerActionsModel.onItemTriggered')
 			plasmoid.expanded = false;
 		}
-
-		function refresh() {
-			refreshing()
-
-			var systemModel = rootModel.modelForRow(rootModel.count - 1)
-			var systemList = []
-			powerActionsModel.parseModel(systemList, systemModel)
-			powerActionsModel.list = systemList;
-
-			refreshed()
-		}
 	}
-
+	
 	KickerListModel {
-		id: recentAppsModel
-
+		id: allAppsModel
 		onItemTriggered: {
-			console.log('recentAppsModel.onItemTriggered')
+			console.log('allAppsModel.onItemTriggered')
 			plasmoid.expanded = false;
-		}
-
-		property var dataModel: []
-		onDataModelChanged: {
-			console.log('recentAppsModel.onDataModelChanged', dataModel)
 		}
 
 		function getRecentApps() {
 			var recentAppList = [];
 
 			//--- populate
-			dataModel = rootModel.modelForRow(0)
-			parseModel(recentAppList, dataModel);
+			parseModel(recentAppList, rootModel.modelForRow(0));
 
 			//--- filter
 			recentAppList = recentAppList.filter(function(item){
@@ -142,24 +205,6 @@ Item {
 			}
 
 			return recentAppList;
-		}
-
-		function refresh() {
-			refreshing()
-			
-			//--- apply model
-			recentAppsModel.list = getRecentApps();
-
-			refreshed()
-		}
-	}
-	
-	KickerListModel {
-		id: allAppsModel
-
-		onItemTriggered: {
-			console.log('allAppsModel.onItemTriggered')
-			plasmoid.expanded = false;
 		}
 
 		function refresh() {
@@ -223,8 +268,8 @@ Item {
 			})
 
 			//--- Recent Apps
-			// var recentAppList = getRecentApps();
-			// appList = recentAppList.concat(appList); // prepend
+			var recentAppList = getRecentApps();
+			appList = recentAppList.concat(appList); // prepend
 
 			//--- Power
 			// var systemModel = rootModel.modelForRow(rootModel.count - 1)
@@ -248,7 +293,7 @@ Item {
 
 			refreshed()
 		}
-	}
+}
 
 	function endsWidth(s, substr) {
 		// console.log(s, s.indexOf(substr), s.length - substr.length - 1)

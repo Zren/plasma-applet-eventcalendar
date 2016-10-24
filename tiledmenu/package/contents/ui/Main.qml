@@ -21,10 +21,6 @@ Item {
 	property alias rootModel: appsModel.rootModel
 	AppsModel {
 		id: appsModel
-
-		Component.onCompleted: {
-			
-		}
 	}
 
 	Item {
@@ -127,7 +123,6 @@ Item {
 			search.query = ""
 			search.applyDefaultFilters()
 			popup.searchView.searchField.forceActiveFocus()
-			// appsModel.allAppsModel.refresh()
 			popup.searchView.appsView.show()
 		}
 	}
@@ -139,11 +134,34 @@ Item {
 		id: popup
 		anchors.fill: parent
 	}
-	width: 888
-	height: 620
+	Layout.preferredWidth: plasmoid.configuration.width
+	Layout.preferredHeight: plasmoid.configuration.height
 
-	onWidthChanged: console.log('popup.size', width, height)
-	onHeightChanged: console.log('popup.size', width, height)
+	onWidthChanged: {
+		// console.log('popup.size', width, height, 'width')
+		// plasmoid.configuration.width = width
+		resizeToFit.restart()
+	}
+	onHeightChanged: {
+		// console.log('popup.size', width, height, 'height')
+		plasmoid.configuration.height = height
+	}
+	Timer {
+		id: resizeToFit
+		interval: 400
+		onTriggered: {
+			var colWidth = 132
+			var leftWidth = 60+430
+			var favWidth = Math.max(0, widget.width-leftWidth) // 398 // 888-60-430
+			var cols = Math.floor(favWidth / colWidth)
+			var newWidth = leftWidth + cols * colWidth
+			if (newWidth != widget.width) {
+				// widget.Layout.preferredWidth = newWidth
+				plasmoid.configuration.width = newWidth
+				// console.log('resizeToFit', cols, favWidth, newWidth - leftWidth)
+			}
+		}
+	}
 	// Layout.onPreferredWidthChanged: console.log('popup.size', width, height)
 	// Layout.onPreferredHeightChanged: console.log('popup.size', width, height)
 
@@ -152,5 +170,13 @@ Item {
 		if (focus) {
 			popup.searchView.searchField.forceActiveFocus()
 		}
+	}
+
+	function action_menuedit() {
+		processRunner.runMenuEditor();
+	}
+
+	Component.onCompleted: {
+		plasmoid.setAction("menuedit", i18n("Edit Applications..."));
 	}
 }

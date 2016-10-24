@@ -98,4 +98,40 @@ PlasmaComponents.ToolButton {
 		runner.trigger(model.runnerItemIndex, "", null);
 		plasmoid.expanded = false;
 	}
+
+	MouseArea {
+		anchors.fill: parent
+		acceptedButtons: Qt.RightButton
+		onClicked: {
+
+			mouse.accepted = true;
+			if (mouse.button == Qt.RightButton) {
+				contextMenu.open(mouse.x, mouse.y)
+			}
+		}
+	}
+	AppContextMenu {
+		id: contextMenu
+		onPopulateMenu: {
+			// Pin to Menu
+			var menuItem = menu.newMenuItem();
+			if (appsModel.favoritesModel.isFavorite(model.favoriteId)) {
+				menuItem.text = i18n("Unpin from Menu")
+				menuItem.icon = "list-remove"
+				menuItem.clicked.connect(function() {
+					appsModel.favoritesModel.removeFavorite(model.favoriteId)
+				})
+			} else {
+				menuItem.text = i18n("Pin to Menu")
+				menuItem.icon = "bookmark-new"
+				menuItem.clicked.connect(function() {
+					console.log('model.favoriteId', model.favoriteId)
+					console.log('model.url', model.url)
+					var launcher = model.favoriteId || model.url
+					appsModel.favoritesModel.addFavorite(launcher)
+				})
+			}
+			menu.addMenuItem(menuItem)
+		}
+	}
 }

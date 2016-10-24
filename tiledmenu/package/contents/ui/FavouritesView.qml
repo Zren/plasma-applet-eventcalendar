@@ -19,6 +19,7 @@ ScrollView {
 	property QtObject draggedItem: null
 	property int draggedIndex: -1
 
+	__wheelAreaScrollSpeed: 142
 	style: ScrollViewStyle {
 		transientScrollBars: true
 	}
@@ -31,13 +32,14 @@ ScrollView {
 		GridView {
 			id: favouritesGridView
 			// anchors.fill: parent
-			cellWidth: 60 + cellPadding * 2
-			cellHeight: 60 + cellPadding * 2
+			cellWidth: (60 + cellPadding * 2) * 2 // Medium
+			cellHeight: (60 + cellPadding * 2) * 2 // Medium
 			property int cellPadding: 3
 			property int columns: Math.floor(favouritesView.width / cellWidth)
-			property int rows: Math.ceil(model.length / columns)
+			property int rows: Math.ceil(model.count / columns)
 			width: cellWidth * columns
 			height: cellHeight * rows
+			interactive: false // Disable drag to scroll (ScrollView handles it)
 
 			delegate: Item {
 				id: item
@@ -45,52 +47,22 @@ ScrollView {
 				property int rowSpan: 1
 				width: favouritesGridView.cellWidth * colSpan
 				height: favouritesGridView.cellHeight * rowSpan
-				z: modelData.placeholder ? -1 : 0 // Don't select placeholders (but cancel when dragging).
 
-				// state: 'medium'
-				property string size: modelData.size || 'small'
+				// Medium (until we can make this configurable)
+				property string size: 'medium'
 				states: [
-					State {
-						when: item.size == 'small'
-						PropertyChanges {
-							target: item
-							colSpan: 1
-							rowSpan: 1
-						}
-						PropertyChanges { target: label; visible: false }
-						PropertyChanges { target: icon; size: 32 }
-					},
 					State {
 						when: item.size == 'medium'
 						PropertyChanges {
 							target: item
-							colSpan: 2
-							rowSpan: 2
 						}
 						PropertyChanges { target: icon; size: 72 }
-					},
-					State {
-						when: item.size == 'wide'
-						PropertyChanges {
-							target: item
-							colSpan: 4
-							rowSpan: 2
-						}
-						PropertyChanges { target: icon; size: 72 }
-					},
-					State {
-						when: item.size == 'large'
-						PropertyChanges {
-							target: item
-							colSpan: 4
-							rowSpan: 4
-						}
-						PropertyChanges { target: icon; size: 92 }
 					}
 				]
 
 				Rectangle {
 					// z: 5
+					anchors.centerIn: parent
 					width: favouritesView.draggedItem ? favouritesView.draggedItem.width : 0
 					height: favouritesView.draggedItem ? favouritesView.draggedItem.height : 0
 					color: dropArea.containsDrag ? theme.highlightColor : "transparent"
@@ -107,7 +79,6 @@ ScrollView {
 
 					Rectangle {
 						id: itemButton
-						visible: !modelData.placeholder
 						anchors.fill: parent // Blocks drag
 						// width: parent.width - anchors.margins * 2
 						// height: parent.height - anchors.margins * 2
@@ -117,7 +88,7 @@ ScrollView {
 
 						PlasmaCore.IconItem {
 							id: icon
-							source: modelData.decoration
+							source: model.decoration
 							anchors.centerIn: parent
 							property int size: 72
 							width: size
@@ -126,7 +97,7 @@ ScrollView {
 
 						PlasmaComponents.Label {
 							id: label
-							text: modelData.display || ''
+							text: model.display || ''
 							anchors.leftMargin: 4
 							anchors.left: parent.left
 							anchors.bottom: parent.bottom
@@ -142,7 +113,6 @@ ScrollView {
 				DragAndDrop.DragArea {
 					id: dragArea
 					anchors.fill: parent
-					enabled: !modelData.placeholder
 					delegate: parent
 
 					// mimeData {
@@ -150,7 +120,7 @@ ScrollView {
 					// }
 
 					onDragStarted: {
-						favouritesGridView.previousState = JSON.parse(JSON.stringify(favouritesGridView.model)) // Copy
+						// favouritesGridView.previousState = JSON.parse(JSON.stringify(favouritesGridView.model)) // Copy
 						favouritesView.draggedItem = itemButton;
 						favouritesView.draggedIndex = index;
 					}
@@ -160,7 +130,7 @@ ScrollView {
 						if (action == Qt.MoveAction) {
 							
 						} else { // Qt.IgnoreAction
-							favouritesGridView.model = favouritesGridView.previousState
+							// favouritesGridView.model = favouritesGridView.previousState
 						}
 						favouritesView.draggedItem = null;
 						favouritesView.draggedIndex = -1;
@@ -171,10 +141,54 @@ ScrollView {
 						id: mouseArea
 						anchors.fill: parent
 
+						acceptedButtons: Qt.LeftButton | Qt.RightButton
 						cursorShape: favouritesView.editing ? Qt.ClosedHandCursor : Qt.ArrowCursor
 						onClicked: {
 							console.log('click')
+							console.log('mouse', mouse)
+							console.log('button', mouse.button, Qt.RightButton)
+							console.log('buttons', mouse.buttons, Qt.RightButton)
+							mouse.accepted = true;
+							if (mouse.button == Qt.RightButton) {
+								contextMenu.open(mouse.x, mouse.y)
+							} else if (mouse.button == Qt.LeftButton) {
+								favouritesGridView.model.triggerIndex(index)
+							}
 						}
+					}
+				}
+
+				AppContextMenu {
+					id: contextMenu
+					onPopulateMenu: {
+						// Pin to Menu
+						var menuItem = menu.newMenuItem();
+						if (appsModel.favoritesModel.isFavorite(model.favoriteId)) {
+							menuItem.text = i18n("Unpin from Menu")
+							menuItem.icon = "list-remove"
+							menuItem.clicked.connect(function() {
+								appsModel.favoritesModel.removeFavorite(model.favoriteId)
+							})
+						} else {
+							menuItem.text = i18n("Pin to Menu")
+							menuItem.icon = "bookmark-new"
+							menuItem.clicked.connect(function() {
+								appsModel.favoritesModel.addFavorite(model.favoriteId)
+							})
+						}
+						menu.addMenuItem(menuItem)
+
+						// Pin to Taskbar
+						// console.log('nullcheck', model.favoriteId, model.favoriteId != null, "hasActionList" in model)
+						// console.log('model.hasActionList', model.hasActionList) // true
+						// console.log('model.actionList.length', model.actionList.length) // crashes plasmoidviewer...
+						// var action = model.actionList[0];
+						// console.log('action', action)
+						// console.log('action.name', action.name)
+						// var menuItem = menu.newMenuItem();
+						// menuItem.text = action.name() //i18n("Pin to Menu")
+						// menuItem.icon = "bookmark-new"
+						// menu.addMenuItem(menuItem)
 					}
 				}
 
@@ -183,11 +197,28 @@ ScrollView {
 					// anchors.fill: parent
 					width: favouritesGridView.cellWidth
 					height: favouritesGridView.cellHeight
-					z: modelData.placeholder ? 1000 : 0
+
+					// function nameOf(i) {
+					// 	return favouritesGridView.model.data(favouritesGridView.model.index(i, 0), Qt.DisplayRole)
+					// }
+					
+					function moveTo(a, b) {
+						// console.log(nameOf(a), '=>', b)
+						favouritesGridView.model.moveRow(a, b)
+					}
+
+					function swap(a, b) {
+						moveTo(favouritesView.draggedIndex, index)
+						if (b < a) { // Dropped before (so the item it was dropped on is to the right)
+							moveTo(b+1, a)
+						} else if (b > a) { // Dropped after (so the item it was dropped on is to the left)
+							moveTo(b-1, a)
+						}
+					}
 
 					onDrop: {
-						console.log('dropArea.onDrop', index)
-						favouritesGridView.previewDrop(favouritesView.draggedIndex, index)
+						console.log('dropArea.onDrop', favouritesView.draggedIndex, index)
+						swap(favouritesView.draggedIndex, index)
 					}
 
 					onDragEnter: {
@@ -198,79 +229,8 @@ ScrollView {
 			
 			property var previousState: null
 
-			// systemsettings.desktop,sublime-text.desktop,clementine.desktop,hexchat.desktop,virtualbox.desktop
-			model: [
-				{ display: 'System Settings', decoration: 'systemsettings', size: 'medium' },
-				{ placeholder: true },
-				{ display: 'Sublime Text', decoration: 'sublime-text', size: 'wide' },
-				{ placeholder: true },
-				{ placeholder: true },
-				{ placeholder: true },
-
-				{ placeholder: true },
-				{ placeholder: true },
-				{ placeholder: true },
-				{ placeholder: true },
-				{ placeholder: true },
-				{ placeholder: true },
-
-				{ display: 'System Settings', decoration: 'systemsettings', size: 'small' },
-				{ display: 'Comix', decoration: 'comix', size: 'small' },
-				{ display: 'System Settings', decoration: 'systemsettings', size: 'large' },
-				{ placeholder: true },
-				{ placeholder: true },
-				{ placeholder: true },
-
-				{ display: 'VirtualBox', decoration: 'virtualbox', size: 'medium' },
-				{ placeholder: true },
-				{ placeholder: true },
-				{ placeholder: true },
-				{ placeholder: true },
-				{ placeholder: true },
-
-				{ placeholder: true },
-				{ placeholder: true },
-				{ placeholder: true },
-				{ placeholder: true },
-				{ placeholder: true },
-				{ placeholder: true },
-
-				{ placeholder: true },
-				{ placeholder: true },
-				{ placeholder: true },
-				{ placeholder: true },
-				{ placeholder: true },
-				{ placeholder: true },
-
-				{ display: 'VirtualBox', decoration: 'virtualbox', size: 'large' },
-				{ placeholder: true },
-				{ placeholder: true },
-				{ placeholder: true },
-				{ placeholder: true },
-				{ placeholder: true },
-
-				{ placeholder: true },
-				{ placeholder: true },
-				{ placeholder: true },
-				{ placeholder: true },
-				{ placeholder: true },
-				{ placeholder: true },
-
-				{ placeholder: true },
-				{ placeholder: true },
-				{ placeholder: true },
-				{ placeholder: true },
-				{ placeholder: true },
-				{ placeholder: true },
-
-				{ placeholder: true },
-				{ placeholder: true },
-				{ placeholder: true },
-				{ placeholder: true },
-				{ placeholder: true },
-				{ placeholder: true },
-
-			]
+			model: appsModel.favoritesModel
+			onCountChanged: console.log('favouritesView.model.count', count, model)
 
 			function previewDrop(indexA, indexB) {
 				var newState = JSON.parse(JSON.stringify(favouritesGridView.previousState))

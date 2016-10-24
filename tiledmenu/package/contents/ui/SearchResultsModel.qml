@@ -39,12 +39,14 @@ ListModel {
 				var ActionListRole = DescriptionRole + 8;
 				var UrlRole = DescriptionRole + 9;
 
+				var modelIndex = runner.index(j, 0);
+
 				// ListView.append() doesn't like it when we have { key: [object] }.
-				var url = runner.data(runner.index(j, 0), UrlRole);
+				var url = runner.data(modelIndex, UrlRole);
 				if (typeof url === 'object') {
 					url = url.toString();
 				}
-				var icon = runner.data(runner.index(j, 0), Qt.DecorationRole);
+				var icon = runner.data(modelIndex, Qt.DecorationRole);
 				if (typeof icon === 'object') {
 					icon = icon.toString();
 				}
@@ -53,10 +55,11 @@ ListModel {
 					runnerIndex: i,
 					runnerName: runner.name,
 					runnerItemIndex: j,
-					name: runner.data(runner.index(j, 0), Qt.DisplayRole),
-					description: runner.data(runner.index(j, 0), DescriptionRole),
+					name: runner.data(modelIndex, Qt.DisplayRole),
+					description: runner.data(modelIndex, DescriptionRole),
 					icon: icon,
 					url: url,
+					favoriteId: runner.data(modelIndex, FavoriteIdRole),
 				};
 
 				// console.log(resultItem.name, resultItem.url);
