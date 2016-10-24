@@ -4,44 +4,97 @@ import org.kde.plasma.core 2.0 as PlasmaCore
 import org.kde.plasma.components 2.0 as PlasmaComponents
 
 PlasmaComponents.ToolButton {
-	id: menuListItem
-	Layout.fillWidth: true
-	height: 32
-	property alias iconSource: launcherIcon.iconSource
-	property alias iconBackgroundColor: launcherIcon.backgroundColor
-	property bool circleIcon: false
-	property alias description: label.text
-	property alias showHasChildrenArrow: hasChildrenArrow.visible
+	id: itemDelegate
+	// https://github.com/KDE/plasma-desktop/blob/a84f78f7df0fcee4153b7ef515e89d443592fd62/applets/kicker/plugin/abstractmodel.cpp#L33
+	// model.display
+	// model.description
+	// model.url
 
-	Rectangle {
-		anchors.fill: parent
-		visible: false
-		color: "#111"
-		opacity: 0.6
-		border.width: menuListItem.circleIcon ? width/2 : 0
+	// width: itemDelegate.width
+	width: parent.width
+	height: row.height
+
+	property string description: model.url ? model.description : '' // 
+	property string secondRowText: model.url ? '' : model.description
+	property bool secondRowVisible: secondRowText
+	Component.onCompleted: {
+		console.log('runnerModel[' + index1 + '][' + index + ']', model, model.display)
+	}
+	
+	RowLayout { // ItemListDelegate
+		id: row
+		width: parent.width
+		// height: 36 // 2 lines
+		height: index == 0 ? 64 : 36
+
+		Item {
+			height: parent.height
+			width: parent.height
+			// width: itemIcon.width
+			Layout.fillHeight: true
+
+			PlasmaCore.IconItem {
+				id: itemIcon
+				anchors.centerIn: parent
+				height: parent.height
+				width: height
+				// height: 48
+				
+
+				// height: parent.height
+				// width: height
+
+				// visible: iconsEnabled
+
+				animated: false
+				// usesPlasmaTheme: false
+				source: model.decoration
+			}
+		}
+
+		ColumnLayout {
+			Layout.fillWidth: true
+			// Layout.fillHeight: true
+			anchors.verticalCenter: parent.verticalCenter
+			spacing: 0
+
+			RowLayout {
+				Layout.fillWidth: true
+				// height: itemLabel.height
+
+				PlasmaComponents.Label {
+					id: itemLabel
+					text: model.display
+					maximumLineCount: 1
+					// elide: Text.ElideMiddle
+					height: implicitHeight
+				}
+
+				PlasmaComponents.Label {
+					Layout.fillWidth: true
+					text: !itemDelegate.secondRowVisible ? itemDelegate.description : ''
+					color: "#888"
+					maximumLineCount: 1
+					elide: Text.ElideRight
+					height: implicitHeight // ElideRight causes some top padding for some reason
+				}
+			}
+
+			PlasmaComponents.Label {
+				visible: itemDelegate.secondRowVisible
+				Layout.fillWidth: true
+				// Layout.fillHeight: true
+				text: itemDelegate.secondRowText
+				color: "#888"
+				maximumLineCount: 1
+				elide: Text.ElideMiddle
+				height: implicitHeight
+			}
+		}
 	}
 
-	RowLayout {
-		anchors.fill: parent
-		visible: false
-
-		LauncherIcon {
-			id: launcherIcon
-			iconSource: "view-calendar"
-			iconSize: menuListItem.height
-		}
-
-		PlasmaComponents.Label {
-			id: label
-			text: "Description"
-			Layout.fillWidth: true
-		}
-
-		PlasmaCore.IconItem {
-			id: hasChildrenArrow
-			visible: false
-			source: 'arrow-right'
-			height: menuListItem.height
-		}
+	onClicked: {
+		runner.trigger(index, "", null);
+		widget.expanded = false;
 	}
 }
