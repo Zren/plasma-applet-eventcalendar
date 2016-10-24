@@ -14,13 +14,10 @@ PlasmaComponents.ToolButton {
 	width: parent.width
 	height: row.height
 
-	property var runner: runnerModel.modelForRow(model.runnerIndex)
+	property var runner: search.runnerModel.modelForRow(model.runnerIndex)
 	property string description: model.url ? model.description : '' // 
-	property string secondRowText: model.url ? '' : model.description
+	property string secondRowText: model.url ? model.url : model.description
 	property bool secondRowVisible: secondRowText
-	Component.onCompleted: {
-		// console.log('runnerModel[' + index1 + '][' + index + ']', model, model.display)
-	}
 	
 	RowLayout { // ItemListDelegate
 		id: row
@@ -95,7 +92,9 @@ PlasmaComponents.ToolButton {
 		}
 	}
 
-	onClicked: {
+	onClicked: trigger()
+
+	function trigger() {
 		runner.trigger(model.runnerItemIndex, "", null);
 		widget.expanded = false;
 	}

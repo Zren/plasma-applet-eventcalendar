@@ -15,8 +15,8 @@ PlasmaCore.Dialog {
 
 	Item {
 		// width: 888
-		width: 360
-		height: 600
+		width: 60+430
+		height: 620
 		// anchors.fill: parent
 
 		// PlasmaComponents.Label {
@@ -27,67 +27,8 @@ PlasmaCore.Dialog {
 		// 	elide: Text.ElideRight
 		// }
 
-		GridLayout {
-			anchors.fill: parent
-			columns: 1
-
-			// Item {
-			// 	Layout.fillWidth: true
-			// 	Layout.fillHeight: true
-			// }
-
-			ListView { // RunnerResultsList
-				id: searchMenu
-				width: parent.width
-				Layout.fillHeight: true
-				clip: true
-				cacheBuffer: 1000 // Don't unload when scrolling (prevent stutter)
-
-				model: resultModel
-				delegate: MenuListItem {}
-				
-				section.property: 'runnerName'
-				section.criteria: ViewSection.FullString
-				section.delegate: PlasmaComponents.Label {
-					text: section
-				}
-
-				Connections {
-					target: resultModel
-					onRefreshed: {
-						console.log('resultModel.onRefreshed')
-						searchMenu.currentIndex = 0
-					}
-				}
-
-				highlight: PlasmaComponents.Highlight {
-					anchors.fill: searchMenu.currentItem;
-
-					visible: searchMenu.currentItem && !searchMenu.currentItem.isSeparator
-				}
-
-			}
+		SearchView {
 			
-
-			TextField {
-				id: panelSearchBox
-				placeholderText: "Search"
-				Layout.fillWidth: true
-				Layout.preferredHeight: 38
-				// font.pixelSize: 38
-				style: TextFieldStyle {
-					background: Rectangle {
-						color: "#eee"
-					}
-				}
-				onTextChanged: {
-					search.query = text
-				}
-				Connections {
-					target: search
-					onQueryChanged: panelSearchBox.text = search.query
-				}
-			}
 		}
 	}
 }
