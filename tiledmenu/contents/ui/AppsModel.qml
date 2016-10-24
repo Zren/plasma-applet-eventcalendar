@@ -53,6 +53,16 @@ Item {
 			// }
 			allAppsModel.refresh()
 		}
+			
+		onRefreshed: {
+			//--- Power
+			var systemModel = rootModel.modelForRow(rootModel.count - 1)
+			var systemList = []
+			powerActionsModel.parseModel(systemList, systemModel)
+			powerActionsModel.list = systemList;
+
+			allAppsModel.refresh()
+		}
 	}
 
 	Kicker.FavoritesModel {
@@ -172,10 +182,10 @@ Item {
 			appList = recentAppList.concat(appList); // prepend
 
 			//--- Power
-			var systemModel = rootModel.modelForRow(rootModel.count - 1)
-			var systemList = []
-			parseModel(systemList, systemModel)
-			powerActionsModel.list = systemList;
+			// var systemModel = rootModel.modelForRow(rootModel.count - 1)
+			// var systemList = []
+			// parseModel(systemList, systemModel)
+			// powerActionsModel.list = systemList;
 
 			//--- apply model
 			allAppsModel.list = appList;
