@@ -8,6 +8,7 @@ Main
 			SearchResultsView
 				SearchResultsList
 			SearchField
+		FavouritesView
 
 
 krunner_id (filename)
