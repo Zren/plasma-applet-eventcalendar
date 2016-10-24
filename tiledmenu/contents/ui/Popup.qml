@@ -6,19 +6,22 @@ import QtQuick.Window 2.1
 import org.kde.plasma.core 2.0 as PlasmaCore
 import org.kde.plasma.components 2.0 as PlasmaComponents
 
-PlasmaCore.Dialog {
-	id: popup
-	visible: true
-	y: widget.y - height
+Item {
+	// Layout.preferredWidth: 888
+	// Layout.preferredHeight: 620
 
-	// property var bottomItem: bottomMenu
+	// width: childrenRect.width
+	// height: childrenRect.height
+
+	property alias searchView: searchView
+	property alias favouritesView: favouritesView
 
 	Row {
 		// width: 888
 		// width: childrenRect.width
 		// height: childrenRect.height
-		height: 620
-		// anchors.fill: parent
+		// height: 620
+		anchors.fill: parent
 
 		// PlasmaComponents.Label {
 		// 	visible: false
@@ -29,14 +32,16 @@ PlasmaCore.Dialog {
 		// }
 
 		SearchView {
+			id: searchView
 			width: 60+430
 			height: parent.height
 		}
 
 		FavouritesView {
-			
+			id: favouritesView
+			width: parent.width - searchView.width
+			height: parent.height
 		}
-		
 		
 	}
 }

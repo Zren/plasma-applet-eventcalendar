@@ -62,6 +62,7 @@ ListModel {
 			}
 			var itemPath = (path || []).concat(i);
 			if (item && item.hasChildren) {
+				// console.log(item)
 				parseModel(appList, item, itemPath);
 			} else {
 				// console.log(itemPath, item, item.description);

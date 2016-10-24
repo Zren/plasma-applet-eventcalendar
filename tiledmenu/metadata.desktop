@@ -1,0 +1,18 @@
+[Desktop Entry]
+Name=kickstart
+Comment=
+
+Type=Service
+Icon=start-here-kde
+X-KDE-ServiceTypes=Plasma/Applet
+
+X-Plasma-API=declarativeappletscript
+X-Plasma-MainScript=ui/Main.qml
+
+X-KDE-PluginInfo-Author=Chris Holland
+X-KDE-PluginInfo-Email=zrenfire@gmail.com
+X-KDE-PluginInfo-Name=com.github.zren.kickstart
+X-KDE-PluginInfo-Version=1
+X-KDE-PluginInfo-Website=https://github.com/Zren/
+X-KDE-PluginInfo-Category=Application Launchers
+X-KDE-PluginInfo-Depends=

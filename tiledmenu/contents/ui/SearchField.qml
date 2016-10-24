@@ -7,7 +7,7 @@ import org.kde.plasma.core 2.0 as PlasmaCore
 import org.kde.plasma.components 2.0 as PlasmaComponents
 
 TextField {
-	id: panelSearchBox
+	id: searchField
 	placeholderText: {
 		if (search.isDefaultFilter) {
 			return "Search"
@@ -34,7 +34,7 @@ TextField {
 	}
 	Connections {
 		target: search
-		onQueryChanged: panelSearchBox.text = search.query
+		onQueryChanged: searchField.text = search.query
 	}
 
 	property var listView: searchResultsView.listView

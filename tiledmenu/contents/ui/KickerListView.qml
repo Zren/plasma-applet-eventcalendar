@@ -15,8 +15,8 @@ ListView {
 
 	// snapMode: ListView.SnapToItem
 	keyNavigationWraps: true
-	// highlightMoveDuration: 100
-	highlightMoveVelocity: -1
+	highlightMoveDuration: 0
+	highlightResizeDuration: 0
 
 	property bool showItemUrl: true
 	property bool largeFirstItem: true

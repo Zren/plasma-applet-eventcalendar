@@ -9,10 +9,14 @@ import org.kde.plasma.components 2.0 as PlasmaComponents
 import org.kde.kquickcontrolsaddons 2.0 // KCMShell
 
 Item {
+	id: searchView
 	// width: 888
 	width: 60 + 430
 	height: 620
 	// anchors.fill: parent
+	property alias searchResultsView: searchResultsView
+	property alias appsView: appsView
+	property alias searchField: searchField
 
 	// width: 60
 	// width: 430
@@ -90,7 +94,7 @@ Item {
 
 	Item {
 		anchors.fill: parent
-		anchors.bottomMargin: panelSearchBox.height
+		anchors.bottomMargin: searchField.height
 
 		SearchResultsView {
 			id: searchResultsView
@@ -151,6 +155,7 @@ Item {
 				if (stackView.currentItem != appsView) {
 					stackView.push(appsView, true)
 				}
+				appsView.scrollToTop()
 			}
 		}
 
@@ -188,12 +193,14 @@ Item {
 
 
 	SearchField {
-		id: panelSearchBox
+		id: searchField
 		// width: 430
 		height: 50
 		anchors.leftMargin: 60
 		anchors.left: parent.left
 		anchors.right: parent.right
 		anchors.bottom: parent.bottom
+
+		listView: stackView.currentItem ? stackView.currentItem.listView : []
 	}
 }

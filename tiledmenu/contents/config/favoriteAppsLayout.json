@@ -1,0 +1,26 @@
+{
+	"items": [
+		{
+			"launcher": "preferred://browser",
+			"x": 0,
+			"y": 0,
+			"colSpan": 2,
+			"rowSpan": 2
+		},
+		{
+			"launcher": "org.kde.gwenview.desktop",
+			"x": 2,
+			"y": 0,
+			"colSpan": 2,
+			"rowSpan": 2
+		},
+
+		{
+			"launcher": "org.kde.discover",
+			"x": 4,
+			"y": 0,
+			"colSpan": 2,
+			"rowSpan": 2
+		},
+	]
+}

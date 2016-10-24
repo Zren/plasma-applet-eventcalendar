@@ -8,16 +8,21 @@ import org.kde.plasma.components 2.0 as PlasmaComponents
 
 ScrollView {
 	id: appsView
+	property alias listView: appsListView
 
 	KickerListView {
 		id: appsListView
 		
-		section.property: 'name'
-		section.criteria: ViewSection.FirstCharacter
+		section.property: 'sectionKey'
+		// section.criteria: ViewSection.FirstCharacter
 
 		model: appsModel.allAppsModel // Should be populated by the time this is created
 
 		showItemUrl: false
 		largeFirstItem: false
+	}
+
+	function scrollToTop() {
+		appsListView.positionViewAtBeginning()
 	}
 }

@@ -21,12 +21,12 @@ Item {
 	Kicker.RootModel {
 		id: rootModel
 		appNameFormat: 0 // plasmoid.configuration.appNameFormat
-		flat: false // isDash ? true : plasmoid.configuration.limitDepth
+		flat: true // isDash ? true : plasmoid.configuration.limitDepth
 		showSeparators: false // !isDash
 		appletInterface: plasmoid
 
-		showAllSubtree: false //isDash
-		showRecentApps: false //plasmoid.configuration.showRecentApps
+		showAllSubtree: true //isDash
+		showRecentApps: true //plasmoid.configuration.showRecentApps
 		showRecentDocs: false //plasmoid.configuration.showRecentDocs
 		showRecentContacts: false //plasmoid.configuration.showRecentContacts
 
@@ -68,7 +68,7 @@ Item {
 		id: powerActionsModel
 		onItemTriggered: {
 			console.log('powerActionsModel.onItemTriggered')
-			widget.expanded = false;
+			plasmoid.expanded = false;
 		}
 	}
 	
@@ -76,7 +76,35 @@ Item {
 		id: allAppsModel
 		onItemTriggered: {
 			console.log('allAppsModel.onItemTriggered')
-			widget.expanded = false;
+			plasmoid.expanded = false;
+		}
+
+		function getRecentApps() {
+			var recentAppList = [];
+
+			//--- populate
+			parseModel(recentAppList, rootModel.modelForRow(0));
+
+			//--- filter
+			recentAppList = recentAppList.filter(function(item){
+				//--- filter kcmshell5 applications since they show up blank (undefined)
+				if (typeof item.name === 'undefined') {
+					return false;
+				} else {
+					return true;
+				}
+			});
+
+			//--- first 5 items
+			recentAppList = recentAppList.slice(0, 5);
+
+			//--- section
+			for (var i = 0; i < recentAppList.length; i++) {
+				var item = recentAppList[i];
+				item.sectionKey = i18n('Recent Apps');
+			}
+
+			return recentAppList;
 		}
 
 		function refresh() {
@@ -85,7 +113,7 @@ Item {
 			// console.log('resultModel.refresh')
 			//--- populate list
 			var appList = [];
-			parseModel(appList, rootModel);
+			parseModel(appList, rootModel.modelForRow(1));
 
 			//--- filter
 			var powerActionsList = [];
@@ -100,37 +128,54 @@ Item {
 						return true;
 					}
 				} else {
+					return true;
 					//--- filter
-					if (item.parentModel.toString().indexOf('SystemModel') >= 0) {
-						// console.log(item.description, 'removed');
-						powerActionsList.push(item);
-						return false;
-					} else {
-						return true;
-					}
+					// if (item.parentModel.toString().indexOf('SystemModel') >= 0) {
+					// 	// console.log(item.description, 'removed');
+					// 	powerActionsList.push(item);
+					// 	return false;
+					// } else {
+					// 	return true;
+					// }
 				}
 			});
-			powerActionsModel.list = powerActionsList; 
+			// powerActionsModel.list = powerActionsList; 
 
 			//---
-			// for (var i = 0; i < appList; i++) {
-			// 	var item = appList[i];
-			// 	if (item.name) {
-			// 		var firstCharCode = item.name.charCodeAt(0);
-			// 		if (48 <= firstCharCode && firstCharCode <= 57) { // isDigit
-			// 			item.section = '0-9';
-			// 		} else {
-			// 			item.section = item.name.charAt(0).toUpperCase();
-			// 		}
-			// 	} else {
-			// 		item.section = '?';
-			// 	}
-			// }
+			for (var i = 0; i < appList.length; i++) {
+				var item = appList[i];
+				if (item.name) {
+					var firstCharCode = item.name.charCodeAt(0);
+					if (48 <= firstCharCode && firstCharCode <= 57) { // isDigit
+						item.sectionKey = '0-9';
+					} else {
+						item.sectionKey = item.name.charAt(0).toUpperCase();
+					}
+				} else {
+					item.sectionKey = '?';
+				}
+				// console.log(item.sectionKey, item.name)
+			}
 
 			//--- sort
 			appList = appList.sort(function(a,b) {
-				return a.name.toLowerCase().localeCompare(b.name.toLowerCase());
+				if (a.name && b.name) {
+					return a.name.toLowerCase().localeCompare(b.name.toLowerCase());
+				} else {
+					// console.log(a, b);
+					return 0;
+				}
 			})
+
+			//--- Recent Apps
+			var recentAppList = getRecentApps();
+			appList = recentAppList.concat(appList); // prepend
+
+			//--- Power
+			var systemModel = rootModel.modelForRow(rootModel.count - 1)
+			var systemList = []
+			parseModel(systemList, systemModel)
+			powerActionsModel.list = systemList;
 
 			//--- apply model
 			allAppsModel.list = appList;
