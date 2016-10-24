@@ -32,7 +32,7 @@ PlasmaCore.Dialog {
 			id: plasmoid
 			property var configuration: Item {}
 		}
-		
+
 		Kicker.RootModel {
 			id: rootModel
 			appNameFormat: 0 // plasmoid.configuration.appNameFormat
@@ -44,7 +44,8 @@ PlasmaCore.Dialog {
 			showRecentApps: false //plasmoid.configuration.showRecentApps
 			showRecentDocs: false //plasmoid.configuration.showRecentDocs
 			showRecentContacts: false //plasmoid.configuration.showRecentContacts
-	
+
+
 			function log() {
 				// logListModel(rootModel);
 				var listModel = rootModel;
@@ -76,7 +77,11 @@ PlasmaCore.Dialog {
 				for (var key in obj) {
 					var val = obj[key];
 					if (typeof val !== 'function') {
-						console.log(label + '.' + key, typeof val, val);
+						var itemLabel = label + '.' + key;
+						console.log(itemLabel, typeof val, val);
+						if (('' + val).indexOf('Model') >= 0) {
+							logListModel(itemLabel, val);
+						}
 					}
 				}
 				
@@ -158,7 +163,7 @@ PlasmaCore.Dialog {
 	}
 
 	Component.onCompleted: {
-		rootModel.refresh();
+		// rootModel.refresh();
 		rootModel.log();
 	}
 }
