@@ -154,6 +154,11 @@ Item {
             repeat: true
             running: mpris2Source.isPlaying && plasmoid.expanded && !mediaController.keyPressed
             onTriggered: {
+                // console.log(seekSlider.value, seekSlider.maximumValue,
+                //     seekSlider.pressed ? 'pressed' : '',
+                //     mediaController.disablePositionUpdate ? 'disablePositionUpdate' : '',
+                //     mpris2Source.canSeek ? 'canSeek': '')
+                
                 // some players don't continuously update the seek slider position via mpris
                 // add one second; value in microseconds
                 if (!seekSlider.pressed) {
