@@ -14,7 +14,7 @@ FlatButton {
 	height: 60
 	property var sidebarMenu: parent.parent // Column.SidebarMenu
 	property bool expanded: sidebarMenu.open
-	labelVisible: sidebarMenu.open
+	labelVisible: expanded
 	property bool closeOnClick: true
 
 	onClicked: {

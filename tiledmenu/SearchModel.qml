@@ -20,12 +20,15 @@ Item {
 		runnerModel.query = search.query
 	}
 
+	// KRunner runners are defined in /usr/share/kservices5/plasma-runner-*.desktop
+	// To list the runner ids, use:
+	//     find /usr/share/kservices5/ -iname "plasma-runner-*.desktop" -print0 | xargs -0 grep "PluginInfo-Name" | sort
 	property var filters: []
 	onFiltersChanged: {
 		runnerModel.deleteWhenEmpty = !runnerModel.deleteWhenEmpty // runnerModel.clear()
 		runnerModel.runners = filters
 		runnerModel.query = search.query
-		// debouncedRefresh.restart()
+		console.log(runnerModel.runners)
 	}
 
 	Kicker.RunnerModel {
@@ -58,5 +61,28 @@ Item {
 
 	SearchResultsModel {
 		id: resultModel
+	}
+
+	property var defaultFilters: [
+		'services',
+		'calculator',
+		'shell',
+		'baloosearch',
+		// 'bookmarks',
+		'locations',
+		'unitconverter',
+		'org.kde.datetime',
+	]
+
+	function isFilter(runnerId) {
+		return filters.length == 1 && filters[0] == runnerId
+	}
+	property bool isDefaultFilter: filters == defaultFilters
+	property bool isAppsFilter: isFilter('services')
+	property bool isFileFilter: isFilter('baloosearch')
+	property bool isBookmarksFilter: isFilter('bookmarks')
+
+	function applyDefaultFilters() {
+		filters = defaultFilters
 	}
 }

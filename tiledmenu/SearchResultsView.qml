@@ -23,8 +23,8 @@ ColumnLayout {
 			// height: parent.height
 			// width: height
 			width: 20
-			onClicked: search.filters = []
-			checked: search.filters.length == 0
+			onClicked: search.applyDefaultFilters()
+			checked: search.isDefaultFilter
 		}
 		FlatButton {
 			iconName: "window"
@@ -32,28 +32,21 @@ ColumnLayout {
 			// width: height
 			width: 30
 			onClicked: search.filters = ['services']
-			checked: search.filters[0] == 'services'
+			checked: search.isAppsFilter
 		}
 		FlatButton {
 			iconName: "document-new"
 			height: parent.height
 			width: height
 			onClicked: search.filters = ['baloosearch']
-			checked: search.filters[0] == 'baloosearch'
+			checked: search.isFileFilter
 		}
 		FlatButton {
 			iconName: "globe"
 			height: parent.height
 			width: height
 			onClicked: search.filters = ['bookmarks']
-			checked: search.filters[0] == 'bookmarks'
-		}
-		FlatButton {
-			iconName: "system-run-symbolic"
-			height: parent.height
-			width: height
-			onClicked: search.filters = ['shell']
-			checked: search.filters[0] == 'shell'
+			checked: search.isBookmarksFilter
 		}
 
 		Item { Layout.fillWidth: true }
@@ -72,9 +65,13 @@ ColumnLayout {
 		// anchors.bottom: searchFiltersRow.bottom - 1
 	}
 
-	SearchResultsList {
-		id: searchResultsList
-		width: parent.width
+	ScrollView {
+		Layout.fillWidth: true
+		Layout.fillHeight: true
+
+		SearchResultsList {
+			id: searchResultsList
+			anchors.fill: parent
+		}
 	}
-	
 }

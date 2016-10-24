@@ -13,7 +13,7 @@ PlasmaCore.Dialog {
 
 	// property var bottomItem: bottomMenu
 
-	Item {
+	FocusScope {
 		// width: 888
 		width: 60+430
 		height: 620

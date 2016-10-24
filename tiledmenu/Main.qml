@@ -7,6 +7,7 @@ import org.kde.plasma.core 2.0 as PlasmaCore
 import org.kde.plasma.components 2.0 as PlasmaComponents
 
 import org.kde.plasma.private.kicker 0.1 as Kicker
+import org.kde.kcoreaddons 1.0 as KCoreAddons
 
 PlasmaCore.Dialog {
 	id: widget
@@ -17,8 +18,47 @@ PlasmaCore.Dialog {
 
 	property bool expanded: true //false
 
+
+	Item {
+		id: plasmoid
+		property var configuration: Item {}
+	}
+
 	SearchModel {
 		id: search
+		Component.onCompleted: {
+			search.applyDefaultFilters()
+		}
+	}
+
+	property alias rootModel: appsModel.rootModel
+	AppsModel {
+		id: appsModel
+	}
+
+	Item {
+		KCoreAddons.KUser {
+			id: kuser
+		}
+		
+		Kicker.SystemSettings {
+			id: systemSettings
+		}
+
+		Kicker.DragHelper {
+			id: dragHelper
+
+			dragIconSize: units.iconSizes.medium
+		}
+
+		Kicker.ProcessRunner {
+			id: processRunner
+			// .runMenuEditor() to run kmenuedit
+		}
+
+		Kicker.WindowSystem {
+			id: windowSystem
+		}
 	}
 
 
@@ -49,58 +89,6 @@ PlasmaCore.Dialog {
 					logListModel(itemLabel, val);
 				}
 			}
-		}
-	}
-
-	Item {
-		Item {
-			id: plasmoid
-			property var configuration: Item {}
-		}
-
-		Kicker.RootModel {
-			id: rootModel
-			appNameFormat: 1 // plasmoid.configuration.appNameFormat
-			flat: false // isDash ? true : plasmoid.configuration.limitDepth
-			showSeparators: false // !isDash
-			appletInterface: plasmoid
-
-			showAllSubtree: false //isDash
-			showRecentApps: false //plasmoid.configuration.showRecentApps
-			showRecentDocs: false //plasmoid.configuration.showRecentDocs
-			showRecentContacts: false //plasmoid.configuration.showRecentContacts
-
-
-			function log() {
-				// logListModel('rootModel', rootModel);
-				var listModel = rootModel;
-				for (var i = 0; i < listModel.count; i++) {
-					var item = listModel.modelForRow(i);
-					// console.log(listModel, i, item);
-					logObj('rootModel[' + i + ']', item)
-					// logListModel('rootModel[' + i + ']', item);
-				}
-			}
-
-			onDataChanged: {
-				if (count >= 2) {
-					
-				}
-			}
-		}
-
-		Kicker.DragHelper {
-			id: dragHelper
-
-			dragIconSize: units.iconSizes.medium
-		}
-
-		Kicker.ProcessRunner {
-			id: processRunner
-		}
-
-		Kicker.WindowSystem {
-			id: windowSystem
 		}
 	}
 

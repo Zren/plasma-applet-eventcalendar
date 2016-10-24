@@ -68,7 +68,7 @@ ListModel {
 			}
 		}
 
-		//--- sort: runner relevance
+		//--- sort: runner relevance (English only)
 
 		// We have to sort by .name instead of .runnerId because the later isn't exposed... anywhere. :/
 		var runnerOrder = [
@@ -120,13 +120,31 @@ ListModel {
 		});
 
 		//--- sort: exact match
-		// Scan in reverse so we preserve runnerOrder with multiple matches
-		for (var i = resultList.length-1; i >= 0; i--) {
-			var resultItem = resultList[i];
-			if (resultItem.name.toLowerCase() == search.query.toLowerCase()) {
-				resultList.splice(i, 1); // remove at index
-				resultList.splice(0, 0, resultItem); // add to beginning
+		function moveToTop(queryLower) {
+			// Scan in reverse so we preserve runnerOrder with multiple matches
+			for (var i = resultList.length-1; i >= 0; i--) {
+				var resultItem = resultList[i];
+				if (queryLower == resultItem.name.toLowerCase()) {
+					resultList.splice(i, 1); // remove at index
+					resultList.splice(0, 0, resultItem); // add to beginning
+				}
 			}
+		}
+		var queryLower = search.query.toLowerCase();
+		moveToTop(queryLower)
+
+		// sort: clementine (English only)
+		// /usr/share/applications/clementine.desktop
+		if (queryLower == 'play') {
+			moveToTop('Play - Clementine'.toLowerCase())
+		} else if (queryLower == 'play') {
+			moveToTop('Pause - Clementine'.toLowerCase())
+		} else if (queryLower == 'play') {
+			moveToTop('Stop - Clementine'.toLowerCase())
+		} else if (queryLower.indexOf('prev') == 0) { // Matches previous as well
+			moveToTop('Previous - Clementine'.toLowerCase())
+		} else if (queryLower == 'next') {
+			moveToTop('Next - Clementine'.toLowerCase())
 		}
 
 		//--- apply model

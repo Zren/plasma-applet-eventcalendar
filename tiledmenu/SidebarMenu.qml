@@ -6,6 +6,10 @@ import QtQuick.Window 2.1
 import org.kde.plasma.core 2.0 as PlasmaCore
 import org.kde.plasma.components 2.0 as PlasmaComponents
 
-Item {
-	
+MouseArea {
+	hoverEnabled: true
+	z: 1
+	// clip: true
+	width: open ? 200 : 60
+	property bool open: false
 }

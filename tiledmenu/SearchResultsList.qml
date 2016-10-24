@@ -44,8 +44,6 @@ ListView { // RunnerResultsList
 	}
 
 	highlight: PlasmaComponents.Highlight {
-		// anchors.fill: searchResults.currentItem;
-
 		visible: searchResultsList.currentItem && !searchResultsList.currentItem.isSeparator
 	}
 

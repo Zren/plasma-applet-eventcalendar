@@ -8,9 +8,17 @@ import org.kde.plasma.components 2.0 as PlasmaComponents
 
 TextField {
 	id: panelSearchBox
-	placeholderText: "Search " + search.filters
-	Layout.fillWidth: true
-	Layout.preferredHeight: 50
+	placeholderText: {
+		if (search.filters == search.defaultFilters) {
+			return "Search"
+		} else if (search.filters == ['baloosearch']) {
+			return "Search Files"
+		} else {
+			return "Search " + search.filters
+		}
+	}
+	// Layout.fillWidth: true
+	// Layout.preferredHeight: 50
 	font.pixelSize: 16
 	style: TextFieldStyle {
 		background: Rectangle {
@@ -42,5 +50,9 @@ TextField {
 		} else if (event.modifiers & Qt.MetaModifier && event.key == Qt.Key_R) {
 			event.accepted = true; search.filters = ['shell']
 		}
+	}
+
+	Component.onCompleted: {
+		forceActiveFocus()
 	}
 }
