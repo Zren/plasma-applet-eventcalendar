@@ -28,7 +28,8 @@ PlasmaCore.DataSource {
     property bool canRaise: hasPlayer && mpris2Source.data[mpris2Source.current].CanRaise
 
     // if there's no "mpris:length" in teh metadata, we cannot seek, so hide it in that case (org.kde.plasma.mediacontroller)
-    property bool canSeek: hasPlayer && track && currentMetadata && currentMetadata["mpris:length"] && mpris2Source.data[mpris2Source.current].CanSeek
+    property bool canSeekMpris: hasPlayer && mpris2Source.data[mpris2Source.current].CanSeek
+    property bool canSeek: canSeekMpris && track && currentMetadata && currentMetadata["mpris:length"]
 
 
     property var currentMetadata: mpris2Source.data[mpris2Source.current] ? mpris2Source.data[mpris2Source.current].Metadata : undefined
