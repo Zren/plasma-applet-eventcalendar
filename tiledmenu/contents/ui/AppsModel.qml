@@ -12,6 +12,7 @@ Item {
 	id: appsModel
 	property alias rootModel: rootModel
 	property alias allAppsModel: allAppsModel
+	property alias recentAppsModel: recentAppsModel
 	property alias powerActionsModel: powerActionsModel
 	property alias favoritesModel: favoritesModel
 
@@ -43,6 +44,7 @@ Item {
 		}
 
 		onCountChanged: {
+			console.log('rootModel.onCountChanged')
 			// for (var i = 0; i < rootModel.count; i++) {
 			// 	var listModel = rootModel.modelForRow(i);
 			// 	if (listModel.description == 'KICKER_ALL_MODEL') {
@@ -51,16 +53,23 @@ Item {
 			// 		appsModel.refreshed()
 			// 	}
 			// }
+			recentAppsModel.refresh()
 			allAppsModel.refresh()
 		}
 			
 		onRefreshed: {
-			//--- Power
-			var systemModel = rootModel.modelForRow(rootModel.count - 1)
-			var systemList = []
-			powerActionsModel.parseModel(systemList, systemModel)
-			powerActionsModel.list = systemList;
+			console.log('rootModel.onRefreshed')
 
+			// for (var i = 0; i < runnerModel.count; i++){
+			// 	var runner = runnerModel.modelForRow(i);
+			// 	if (!runner.listenersBound) {
+			// 		runner.countChanged.connect(debouncedRefresh.logAndRestart)
+			// 		runner.dataChanged.connect(debouncedRefresh.logAndRestart)
+			// 		runner.listenersBound = true;
+			// 	}
+			// }
+			powerActionsModel.refresh()
+			recentAppsModel.refresh()
 			allAppsModel.refresh()
 		}
 	}
@@ -80,20 +89,38 @@ Item {
 			console.log('powerActionsModel.onItemTriggered')
 			plasmoid.expanded = false;
 		}
+
+		function refresh() {
+			refreshing()
+
+			var systemModel = rootModel.modelForRow(rootModel.count - 1)
+			var systemList = []
+			powerActionsModel.parseModel(systemList, systemModel)
+			powerActionsModel.list = systemList;
+
+			refreshed()
+		}
 	}
-	
+
 	KickerListModel {
-		id: allAppsModel
+		id: recentAppsModel
+
 		onItemTriggered: {
-			console.log('allAppsModel.onItemTriggered')
+			console.log('recentAppsModel.onItemTriggered')
 			plasmoid.expanded = false;
+		}
+
+		property var dataModel: []
+		onDataModelChanged: {
+			console.log('recentAppsModel.onDataModelChanged', dataModel)
 		}
 
 		function getRecentApps() {
 			var recentAppList = [];
 
 			//--- populate
-			parseModel(recentAppList, rootModel.modelForRow(0));
+			dataModel = rootModel.modelForRow(0)
+			parseModel(recentAppList, dataModel);
 
 			//--- filter
 			recentAppList = recentAppList.filter(function(item){
@@ -120,35 +147,53 @@ Item {
 		function refresh() {
 			refreshing()
 			
+			//--- apply model
+			recentAppsModel.list = getRecentApps();
+
+			refreshed()
+		}
+	}
+	
+	KickerListModel {
+		id: allAppsModel
+
+		onItemTriggered: {
+			console.log('allAppsModel.onItemTriggered')
+			plasmoid.expanded = false;
+		}
+
+		function refresh() {
+			refreshing()
+			
 			// console.log('resultModel.refresh')
 			//--- populate list
 			var appList = [];
 			parseModel(appList, rootModel.modelForRow(1));
 
 			//--- filter
-			var powerActionsList = [];
-			var sceneUrls = [];
-			appList = appList.filter(function(item){
-				//--- filter multiples
-				if (item.url) {
-					if (sceneUrls.indexOf(item.url) >= 0) {
-						return false;
-					} else {
-						sceneUrls.push(item.url);
-						return true;
-					}
-				} else {
-					return true;
-					//--- filter
-					// if (item.parentModel.toString().indexOf('SystemModel') >= 0) {
-					// 	// console.log(item.description, 'removed');
-					// 	powerActionsList.push(item);
-					// 	return false;
-					// } else {
-					// 	return true;
-					// }
-				}
-			});
+			// var powerActionsList = [];
+			// var sceneUrls = [];
+			// appList = appList.filter(function(item){
+			// 	//--- filter multiples
+			// 	if (item.url) {
+			// 		if (sceneUrls.indexOf(item.url) >= 0) {
+			// 			return false;
+			// 		} else {
+			// 			sceneUrls.push(item.url);
+			// 			return true;
+			// 		}
+			// 	} else {
+			// 		return true;
+			// 		//--- filter
+			// 		// if (item.parentModel.toString().indexOf('SystemModel') >= 0) {
+			// 		// 	// console.log(item.description, 'removed');
+			// 		// 	powerActionsList.push(item);
+			// 		// 	return false;
+			// 		// } else {
+			// 		// 	return true;
+			// 		// }
+			// 	}
+			// });
 			// powerActionsModel.list = powerActionsList; 
 
 			//---
@@ -178,8 +223,8 @@ Item {
 			})
 
 			//--- Recent Apps
-			var recentAppList = getRecentApps();
-			appList = recentAppList.concat(appList); // prepend
+			// var recentAppList = getRecentApps();
+			// appList = recentAppList.concat(appList); // prepend
 
 			//--- Power
 			// var systemModel = rootModel.modelForRow(rootModel.count - 1)
@@ -203,7 +248,7 @@ Item {
 
 			refreshed()
 		}
-}
+	}
 
 	function endsWidth(s, substr) {
 		// console.log(s, s.indexOf(substr), s.length - substr.length - 1)

@@ -16,7 +16,43 @@ ScrollView {
 		section.property: 'sectionKey'
 		// section.criteria: ViewSection.FirstCharacter
 
-		model: appsModel.allAppsModel // Should be populated by the time this is created
+		// model: appsModel.allAppsModel // Should be populated by the time this is created
+		model: KickerListModel {
+			id: appsViewModel
+
+			onItemTriggered: {
+				console.log('appsViewModel.onItemTriggered')
+				plasmoid.expanded = false;
+			}
+
+			function refresh() {
+				refreshing()
+				
+				// console.log('resultModel.refresh')
+				//--- populate list
+				var appList = [];
+
+				//--- Recent Apps
+				appList = appList.concat(appsModel.recentAppsModel.list);
+
+				//--- Apps A-Z
+				appList = appList.concat(appsModel.allAppsModel.list);
+
+				//--- apply model
+				appsViewModel.list = appList;
+				// appsViewModel.log();
+
+				refreshed()
+			}
+		}
+		Connections {
+			target: appsModel.recentAppsModel
+			onRefreshed: appsViewModel.refresh()
+		}
+		Connections {
+			target: appsModel.allAppsModel
+			onRefreshed: appsViewModel.refresh()
+		}
 
 		showItemUrl: false
 		largeFirstItem: false

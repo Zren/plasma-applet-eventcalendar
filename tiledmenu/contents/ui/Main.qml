@@ -21,6 +21,10 @@ Item {
 	property alias rootModel: appsModel.rootModel
 	AppsModel {
 		id: appsModel
+
+		Component.onCompleted: {
+			
+		}
 	}
 
 	Item {
@@ -123,6 +127,7 @@ Item {
 			search.query = ""
 			search.applyDefaultFilters()
 			popup.searchView.searchField.forceActiveFocus()
+			// appsModel.allAppsModel.refresh()
 			popup.searchView.appsView.show()
 		}
 	}
