@@ -12,8 +12,19 @@ PlasmaCore.Dialog {
 	width: 360
 	height: 48
 
-	Item {
+	property bool expanded: true //false
 
+	Item {
+		id: search
+		property string query: ""
+		property bool isSearching: query.length > 0
+		// onQueryChanged: {
+		// 	console.log(search.query)
+		// 	searchQueryLabel.text = search.query
+		// }
+	}
+
+	Item {
 		anchors.margins: 10
 		width: 360
 		height: 38
@@ -26,32 +37,13 @@ PlasmaCore.Dialog {
 				iconSize: 24
 				width: 48
 				Layout.fillHeight: true
-				// backgroundColor: "#222"
+				onClicked: widget.expanded = !widget.expanded
 			}
-
-			// TextField {
-			// 	placeholderText: "Search"
-			// 	Layout.fillWidth: true
-			// 	Layout.fillHeight: true
-			// 	style: TextFieldStyle {
-			// 		background: Rectangle {
-			// 			color: "#eee"
-			// 		}
-			// 	}
-			// }
 		}
-
 		
-		PlasmaCore.Dialog {
+		Popup {
 			id: popup
-			visible: true
-			y: widget.y - height
-
-			Menu1 {
-				width: 888
-				height: 600
-				// anchors.fill: parent
-			}
+			visible: widget.expanded
 		}
 	}
 }
