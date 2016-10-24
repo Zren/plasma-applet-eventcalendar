@@ -6,9 +6,6 @@
   <kcfgfile name=""/>
 
   <group name="General">
-    <entry name="favoriteAppsLayout" type="String">
-      <default>{"items":[{"launcher":"preferred://browser","x":0,"y":0,"colSpan":2,"rowSpan":2},{"launcher":"org.kde.gwenview.desktop","x":2,"y":0,"colSpan":2,"rowSpan":2},{"launcher":"org.kde.discover","x":4,"y":0,"colSpan":2,"rowSpan":2}]}</default>
-    </entry>
     <entry name="favoriteApps" type="StringList">
       <label>List of general favorites. Supported values are menu id's (usually .desktop file names), special URLs that expand into default applications (e.g. preferred://browser), document URLs and KPeople contact URIs.</label>
       <default>preferred://browser,kontact.desktop,systemsettings.desktop,org.kde.dolphin.desktop,ktp-contactlist.desktop,org.kde.kate.desktop,org.kde.discover</default>
