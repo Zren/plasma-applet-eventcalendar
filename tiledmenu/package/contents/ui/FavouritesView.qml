@@ -115,9 +115,9 @@ ScrollView {
 					anchors.fill: parent
 					delegate: parent
 
-					// mimeData {
-					// 	source: item
-					// }
+					mimeData {
+						url: model.url
+					}
 
 					onDragStarted: {
 						// favouritesGridView.previousState = JSON.parse(JSON.stringify(favouritesGridView.model)) // Copy
