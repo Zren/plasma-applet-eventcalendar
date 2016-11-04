@@ -15,15 +15,13 @@ RowLayout {
 	id: configColor
 	spacing: 2
 	// Layout.fillWidth: true
+	Layout.maximumWidth: 300
 
 	property alias label: label.text
 
 	property string configKey: ''
 	property string value: configKey ? plasmoid.configuration[configKey] : "#000"
 	onValueChanged: {
-		if (!dialog.focus) {
-			dialog.color = configColor.value
-		}
 		if (!textField.activeFocus) {
 			textField.text = configColor.value
 		}
@@ -37,6 +35,7 @@ RowLayout {
 		id: label
 		text: "Label"
 		Layout.fillWidth: true
+		horizontalAlignment: Text.AlignRight
 	}
 
 	MouseArea {

@@ -20,120 +20,122 @@ ConfigPage {
 	}
 
 
-	GroupBox {
-		Layout.fillWidth: true
+	ConfigSection {
+		label: i18n("Panel Icon")
 
-		ColumnLayout {
+		RowLayout {
+			Layout.fillWidth: true
 
-			RowLayout {
-				Layout.fillWidth: true
+			// org.kde.plasma.kickoff
+			Button {
+				id: iconButton
+				Layout.minimumWidth: previewFrame.width + units.smallSpacing * 2
+				Layout.maximumWidth: Layout.minimumWidth
+				Layout.minimumHeight: previewFrame.height + units.smallSpacing * 2
+				Layout.maximumHeight: Layout.minimumWidth
 
-				// org.kde.plasma.kickoff
-				Button {
-					id: iconButton
-					Layout.minimumWidth: previewFrame.width + units.smallSpacing * 2
-					Layout.maximumWidth: Layout.minimumWidth
-					Layout.minimumHeight: previewFrame.height + units.smallSpacing * 2
-					Layout.maximumHeight: Layout.minimumWidth
+				KQuickAddons.IconDialog {
+					id: iconDialog
+					onIconNameChanged: cfg_icon = iconName || "start-here-kde" // TODO use actual default
+				}
 
-					KQuickAddons.IconDialog {
-						id: iconDialog
-						onIconNameChanged: cfg_icon = iconName || "start-here-kde" // TODO use actual default
-					}
+				// just to provide some visual feedback, cannot have checked without checkable enabled
+				checkable: true
+				onClicked: {
+					checked = Qt.binding(function() { // never actually allow it being checked
+						return iconMenu.status === PlasmaComponents.DialogStatus.Open
+					})
 
-					// just to provide some visual feedback, cannot have checked without checkable enabled
-					checkable: true
-					onClicked: {
-						checked = Qt.binding(function() { // never actually allow it being checked
-							return iconMenu.status === PlasmaComponents.DialogStatus.Open
-						})
+					iconMenu.open(0, height)
+				}
 
-						iconMenu.open(0, height)
-					}
+				PlasmaCore.FrameSvgItem {
+					id: previewFrame
+					anchors.centerIn: parent
+					imagePath: plasmoid.location === PlasmaCore.Types.Vertical || plasmoid.location === PlasmaCore.Types.Horizontal
+							 ? "widgets/panel-background" : "widgets/background"
+					width: units.iconSizes.large + fixedMargins.left + fixedMargins.right
+					height: units.iconSizes.large + fixedMargins.top + fixedMargins.bottom
 
-					PlasmaCore.FrameSvgItem {
-						id: previewFrame
+					PlasmaCore.IconItem {
 						anchors.centerIn: parent
-						imagePath: plasmoid.location === PlasmaCore.Types.Vertical || plasmoid.location === PlasmaCore.Types.Horizontal
-								 ? "widgets/panel-background" : "widgets/background"
-						width: units.iconSizes.large + fixedMargins.left + fixedMargins.right
-						height: units.iconSizes.large + fixedMargins.top + fixedMargins.bottom
-
-						PlasmaCore.IconItem {
-							anchors.centerIn: parent
-							width: units.iconSizes.large
-							height: width
-							source: cfg_icon
-						}
-					}
-
-					// QQC Menu can only be opened at cursor position, not a random one
-					PlasmaComponents.ContextMenu {
-						id: iconMenu
-						visualParent: iconButton
-
-						PlasmaComponents.MenuItem {
-							text: i18nc("@item:inmenu Open icon chooser dialog", "Choose...")
-							icon: "document-open-folder"
-							onClicked: iconDialog.open()
-						}
-						PlasmaComponents.MenuItem {
-							text: i18nc("@item:inmenu Reset icon to default", "Clear Icon")
-							icon: "edit-clear"
-							onClicked: cfg_icon = "start-here-kde" // TODO reset to actual default
-						}
+						width: units.iconSizes.large
+						height: width
+						source: cfg_icon
 					}
 				}
 
-				TextField {
-					id: icon
-					Layout.fillWidth: true
-				}
+				// QQC Menu can only be opened at cursor position, not a random one
+				PlasmaComponents.ContextMenu {
+					id: iconMenu
+					visualParent: iconButton
 
-				// org.kde.plasma.kicker
-				Button {
-					iconName: "document-open"
-
-					enabled: useCustomButtonImage.checked
-
-					onClicked: {
-						imagePicker.folder = systemSettings.picturesLocation();
-						imagePicker.open();
+					PlasmaComponents.MenuItem {
+						text: i18nc("@item:inmenu Open icon chooser dialog", "Choose...")
+						icon: "document-open-folder"
+						onClicked: iconDialog.open()
 					}
-
-					Kicker.SystemSettings {
-						id: systemSettings
-					}
-				}
-
-				FileDialog {
-					id: imagePicker
-
-					title: i18n("Choose an image")
-
-					selectFolder: false
-					selectMultiple: false
-
-					nameFilters: [ i18n("Image Files (*.png *.jpg *.jpeg *.bmp *.svg *.svgz)") ]
-
-					onFileUrlChanged: {
-						cfg_icon = fileUrl
+					PlasmaComponents.MenuItem {
+						text: i18nc("@item:inmenu Reset icon to default", "Clear Icon")
+						icon: "edit-clear"
+						onClicked: cfg_icon = "start-here-kde" // TODO reset to actual default
 					}
 				}
 			}
 
+			TextField {
+				id: icon
+				Layout.fillWidth: true
+			}
 
+			// org.kde.plasma.kicker
+			Button {
+				iconName: "document-open"
+
+				enabled: useCustomButtonImage.checked
+
+				onClicked: {
+					imagePicker.folder = systemSettings.picturesLocation();
+					imagePicker.open();
+				}
+
+				Kicker.SystemSettings {
+					id: systemSettings
+				}
+			}
+
+			FileDialog {
+				id: imagePicker
+
+				title: i18n("Choose an image")
+
+				selectFolder: false
+				selectMultiple: false
+
+				nameFilters: [ i18n("Image Files (*.png *.jpg *.jpeg *.bmp *.svg *.svgz)") ]
+
+				onFileUrlChanged: {
+					cfg_icon = fileUrl
+				}
+			}
 		}
 	}
 
 	ConfigSection {
-		ConfigColor {
-			label: 'Tiles'
-			configKey: 'defaultTileColor'
+		label: i18n("Colors")
+		
+		GridLayout {
+			columns: 2
+			
+			ConfigColor {
+				label: 'Tiles'
+				configKey: 'defaultTileColor'
+			}
+			ConfigColor {
+				label: 'Sidebar'
+				configKey: 'sidebarBackgroundColor'
+			}
 		}
-		ConfigColor {
-			label: 'Sidebar'
-			configKey: 'sidebarBackgroundColor'
-		}
+		
 	}
 }
