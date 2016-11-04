@@ -83,7 +83,7 @@ ScrollView {
 						// width: parent.width - anchors.margins * 2
 						// height: parent.height - anchors.margins * 2
 						anchors.margins: favouritesGridView.cellPadding
-						color: theme.buttonBackgroundColor
+						color: config.defaultTileColor
 
 
 						PlasmaCore.IconItem {
@@ -106,7 +106,7 @@ ScrollView {
 							font.pointSize: 10
 							renderType: Text.QtRendering // Fix pixelation when scaling. Plasma.Label uses NativeRendering.
 							style: Text.Outline
-							styleColor: theme.buttonBackgroundColor
+							styleColor: config.defaultTileColor
 						}
 					}
 				}

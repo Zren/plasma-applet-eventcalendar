@@ -49,6 +49,9 @@ Item {
 		}
 	}
 
+	AppletConfig {
+		id: config
+	}
 
 	function logListModel(label, listModel) {
 		console.log(label + '.count', listModel.count);

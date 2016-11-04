@@ -20,6 +20,15 @@
       <label>The name of the icon used in the compact representation (e.g. on a small panel).</label>
       <default>start-here-kde</default>
     </entry>
+
+    <!-- Colors -->
+    <!-- Use empty string instead of color type so that we can use default colors from the color scheme. -->
+    <entry name="defaultTileColor" type="string">
+      <default></default>
+    </entry>
+    <entry name="sidebarBackgroundColor" type="string">
+      <default></default>
+    </entry>
   </group>
 
 </kcfg>

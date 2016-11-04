@@ -10,17 +10,20 @@ import org.kde.plasma.private.kicker 0.1 as Kicker
 
 import ".."
 
-Item {
+ConfigPage {
 	id: page
 
 	property alias cfg_icon: icon.text
+
+	AppletConfig {
+		id: config
+	}
+
 
 	GroupBox {
 		Layout.fillWidth: true
 
 		ColumnLayout {
-			id: content
-			
 
 			RowLayout {
 				Layout.fillWidth: true
@@ -118,7 +121,19 @@ Item {
 					}
 				}
 			}
+
+
 		}
 	}
 
+	ConfigSection {
+		ConfigColor {
+			label: 'Tiles'
+			configKey: 'defaultTileColor'
+		}
+		ConfigColor {
+			label: 'Sidebar'
+			configKey: 'sidebarBackgroundColor'
+		}
+	}
 }

@@ -106,6 +106,7 @@ AppToolButton {
 	acceptedButtons: Qt.LeftButton | Qt.RightButton
 	onClicked: {
 		mouse.accepted = true
+		console.log('onClicked', mouse.button, Qt.LeftButton, Qt.RightButton)
 		if (mouse.button == Qt.LeftButton) {
 			trigger()
 		} else if (mouse.button == Qt.RightButton) {
