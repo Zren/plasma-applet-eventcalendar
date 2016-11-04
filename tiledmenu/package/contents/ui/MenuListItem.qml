@@ -2,28 +2,39 @@ import QtQuick 2.0
 import QtQuick.Layouts 1.1
 import org.kde.plasma.core 2.0 as PlasmaCore
 import org.kde.plasma.components 2.0 as PlasmaComponents
+import org.kde.draganddrop 2.0 as DragAndDrop
 
-PlasmaComponents.ToolButton {
+AppToolButton {
 	id: itemDelegate
-	// https://github.com/KDE/plasma-desktop/blob/a84f78f7df0fcee4153b7ef515e89d443592fd62/applets/kicker/plugin/abstractmodel.cpp#L33
-	// model.display
-	// model.description
-	// model.url
 
-	// width: itemDelegate.width
 	width: parent.width
 	height: row.height
 
-	property var runner: search.runnerModel.modelForRow(model.runnerIndex)
+	property var parentModel: modelList[index] ? modelList[index].parentModel : undefined
 	property string description: model.url ? model.description : '' // 
-	property string secondRowText: model.url ? model.url : model.description
+	property string secondRowText: listView.showItemUrl && model.url ? model.url : model.description
 	property bool secondRowVisible: secondRowText
-	
+	property string launcherUrl: model.favoriteId || model.url
+	property alias iconSource: itemIcon.source
+
+	DragAndDrop.DragArea {
+		id: dragArea
+		anchors.fill: parent
+		
+		delegate: itemDelegate
+		supportedActions: Qt.CopyAction
+		enabled: launcherUrl
+
+		mimeData {
+			url: launcherUrl
+		}
+	}
+
 	RowLayout { // ItemListDelegate
 		id: row
 		width: parent.width
 		// height: 36 // 2 lines
-		height: index == 0 ? 64 : 36
+		height: listView.largeFirstItem && index == 0 ? 64 : 36
 
 		Item {
 			height: parent.height
@@ -46,8 +57,7 @@ PlasmaComponents.ToolButton {
 
 				animated: false
 				// usesPlasmaTheme: false
-				// source: model.decoration
-				source: runner && runner.data(runner.index(model.runnerItemIndex, 0), Qt.DecorationRole)
+				source: listView.model.list[index].icon
 			}
 		}
 
@@ -90,48 +100,46 @@ PlasmaComponents.ToolButton {
 				height: implicitHeight
 			}
 		}
+
 	}
 
-	onClicked: trigger()
-
-	function trigger() {
-		runner.trigger(model.runnerItemIndex, "", null);
-		plasmoid.expanded = false;
-	}
-
-	MouseArea {
-		anchors.fill: parent
-		acceptedButtons: Qt.RightButton
-		onClicked: {
-
-			mouse.accepted = true;
-			if (mouse.button == Qt.RightButton) {
-				contextMenu.open(mouse.x, mouse.y)
-			}
+	acceptedButtons: Qt.LeftButton | Qt.RightButton
+	onClicked: {
+		mouse.accepted = true
+		if (mouse.button == Qt.LeftButton) {
+			trigger()
+		} else if (mouse.button == Qt.RightButton) {
+			contextMenu.open(mouse.x, mouse.y)
 		}
 	}
+
+	function trigger() {
+		listView.model.triggerIndex(index)
+	}
+
 	AppContextMenu {
 		id: contextMenu
 		onPopulateMenu: {
 			// Pin to Menu
+			if (launcherUrl) {
 			var menuItem = menu.newMenuItem();
-			if (appsModel.favoritesModel.isFavorite(model.favoriteId)) {
-				menuItem.text = i18n("Unpin from Menu")
-				menuItem.icon = "list-remove"
-				menuItem.clicked.connect(function() {
-					appsModel.favoritesModel.removeFavorite(model.favoriteId)
-				})
-			} else {
-				menuItem.text = i18n("Pin to Menu")
-				menuItem.icon = "bookmark-new"
-				menuItem.clicked.connect(function() {
-					console.log('model.favoriteId', model.favoriteId)
-					console.log('model.url', model.url)
-					var launcher = model.favoriteId || model.url
-					appsModel.favoritesModel.addFavorite(launcher)
-				})
+				if (appsModel.favoritesModel.isFavorite(launcherUrl)) {
+					menuItem.text = i18n("Unpin from Menu")
+					menuItem.icon = "list-remove"
+					menuItem.clicked.connect(function() {
+						appsModel.favoritesModel.removeFavorite(launcherUrl)
+					})
+				} else {
+					menuItem.text = i18n("Pin to Menu")
+					menuItem.icon = "bookmark-new"
+					menuItem.clicked.connect(function() {
+						// console.log('launcherUrl', launcherUrl)
+						appsModel.favoritesModel.addFavorite(launcherUrl)
+					})
+				}
+				menu.addMenuItem(menuItem)
 			}
-			menu.addMenuItem(menuItem)
 		}
 	}
-}
+
+} // delegate: AppToolButton

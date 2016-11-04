@@ -21,6 +21,10 @@ Item {
     function open(x, y) {
         refreshMenu()
 
+        if (menu.content.length === 0) {
+            return;
+        }
+
         if (x && y) {
             menu.open(x, y);
         } else {

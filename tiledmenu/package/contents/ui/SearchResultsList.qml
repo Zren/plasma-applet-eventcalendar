@@ -6,28 +6,17 @@ import QtQuick.Window 2.1
 import org.kde.plasma.core 2.0 as PlasmaCore
 import org.kde.plasma.components 2.0 as PlasmaComponents
 
-ListView { // RunnerResultsList
+KickerListView { // RunnerResultsList
 	id: searchResultsList
-	width: parent.width
-	Layout.fillHeight: true
-	clip: true
-	cacheBuffer: 1000 // Don't unload when scrolling (prevent stutter)
-
-	// snapMode: ListView.SnapToItem
-	keyNavigationWraps: true
-	// highlightMoveDuration: 100
-	highlightMoveVelocity: -1
 
 	model: []
-	delegate: MenuListItem {}
+	delegate: MenuListItem {
+		property var runner: search.runnerModel.modelForRow(model.runnerIndex)
+		iconSource: runner && runner.data(runner.index(model.runnerItemIndex, 0), Qt.DecorationRole)
+	}
 	
 	section.property: 'runnerName'
 	section.criteria: ViewSection.FullString
-	section.delegate: PlasmaComponents.Label {
-		text: section
-		font.bold: true
-		font.pixelSize: 14
-	}
 
 	Connections {
 		target: search.results
@@ -41,10 +30,6 @@ ListView { // RunnerResultsList
 			searchResultsList.model = search.results
 			searchResultsList.currentIndex = 0
 		}
-	}
-
-	highlight: PlasmaComponents.Highlight {
-		visible: searchResultsList.currentItem && !searchResultsList.currentItem.isSeparator
 	}
 
 }
