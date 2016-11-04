@@ -16,6 +16,10 @@
     <entry name="height" type="int">
       <default>620</default>
     </entry>
+    <entry name="icon" type="String">
+      <label>The name of the icon used in the compact representation (e.g. on a small panel).</label>
+      <default>start-here-kde</default>
+    </entry>
   </group>
 
 </kcfg>

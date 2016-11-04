@@ -109,7 +109,7 @@ Item {
 		]
 
 		LauncherIcon {
-			iconSource: "start-here-kde"
+			iconSource: plasmoid.configuration.icon || "start-here-kde"
 			iconSize: 24
 			anchors.fill: parent
 			onClicked: {
