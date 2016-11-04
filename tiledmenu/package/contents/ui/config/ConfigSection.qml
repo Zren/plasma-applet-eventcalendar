@@ -9,7 +9,7 @@ Rectangle {
 	default property alias _contentChildren: content.children
 	property string label: ""
 
-	color: "#08000000"
+	color: "#0c000000"
 	border.width: 2
 	border.color: "#10000000"
 	// radius: 5
@@ -17,7 +17,7 @@ Rectangle {
 	height: childrenRect.height + padding + padding
 	property alias spacing: content.spacing
 
-	Text {
+	Label {
 		id: title
 		visible: control.label
 		text: control.label
