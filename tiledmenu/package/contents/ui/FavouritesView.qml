@@ -228,7 +228,7 @@ ScrollView {
 							if (event.mimeData.url) {
 								// console.log('event.mimeData.url', event.mimeData.url)
 								var url = event.mimeData.url.toString()
-								var isDesktopUrl = url.indexOf('.desktop') === url.length - '.desktop'.length
+								var isDesktopUrl = (url.indexOf('file://') === 0) && (url.indexOf('.desktop') === url.length - '.desktop'.length)
 								if (isDesktopUrl) {
 									// Remove the path because .favoriteId is just the file name.
 									// However passing the favoriteId in mimeData.url will prefix the current QML path because it's a QUrl.
