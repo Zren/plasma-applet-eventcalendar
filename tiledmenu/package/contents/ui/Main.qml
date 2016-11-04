@@ -200,5 +200,6 @@ Item {
 
 	Component.onCompleted: {
 		plasmoid.setAction("menuedit", i18n("Edit Applications..."));
+		// plasmoid.action('configure').trigger()
 	}
 }
