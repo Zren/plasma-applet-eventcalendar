@@ -133,7 +133,7 @@ Item {
 
 			Timer {
 				id: activateOnDrag
-				interval: 1000
+				interval: 250 // Same as taskmanager's activationTimer in MouseHandler.qml
 				onTriggered: plasmoid.expanded = true
 			}
 		}
