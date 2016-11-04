@@ -12,4 +12,10 @@ MouseArea {
 	// clip: true
 	width: open ? 200 : 60
 	property bool open: false
+
+	onOpenChanged: {
+		if (open) {
+			forceActiveFocus()
+		}
+	}
 }

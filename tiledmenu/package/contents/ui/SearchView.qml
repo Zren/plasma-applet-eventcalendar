@@ -81,12 +81,19 @@ Item {
 			SidebarItem {
 				iconName: 'system-shutdown-symbolic'
 				text: "Power"
-				onClicked: powerMenu.visible = !powerMenu.visible
+				onClicked: powerMenu.open = !powerMenu.open
 
 				SidebarContextMenu {
 					id: powerMenu
 					model: appsModel.powerActionsModel
 				}
+			}
+		}
+
+		onFocusChanged: {
+			console.log('onFocusChanged', focus)
+			if (!focus) {
+				open = false
 			}
 		}
 	}

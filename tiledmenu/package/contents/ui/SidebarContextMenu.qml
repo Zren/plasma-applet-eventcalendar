@@ -8,8 +8,8 @@ import org.kde.plasma.components 2.0 as PlasmaComponents
 
 SidebarMenu {
 	id: sidebarContextMenu
-	visible: false
-	open: true
+	visible: open
+	open: false
 	anchors.left: parent.right
 	anchors.bottom: parent.bottom
 	width: 200
@@ -34,12 +34,32 @@ SidebarMenu {
 				iconName: model.iconName
 				text: model.name
 				onClicked: {
-					sidebarContextMenu.visible = false
+					sidebarContextMenu.open = false
 					repeater.model.triggerIndex(index)
 				}
 				
 			}
 		}
 		
+	}
+
+	// onVisibleChanged: {
+	// 	if (sidebarContextMenu.visible) {
+	// 		sidebarContextMenu.focus = true
+	// 	}
+	// }
+
+	onFocusChanged: {
+		console.log('sidebarContextMenu.onFocusChanged', focus)
+		if (!sidebarContextMenu.focus) {
+			sidebarContextMenu.open = false
+		}
+	}
+
+	onActiveFocusChanged: {
+		console.log('sidebarContextMenu.onActiveFocusChanged', activeFocus)
+		if (!sidebarContextMenu.activeFocus) {
+			sidebarContextMenu.open = false
+		}
 	}
 }
