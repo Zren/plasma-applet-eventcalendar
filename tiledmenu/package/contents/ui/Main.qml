@@ -6,6 +6,7 @@ import org.kde.plasma.core 2.0 as PlasmaCore
 import org.kde.plasma.plasmoid 2.0
 import org.kde.plasma.private.kicker 0.1 as Kicker
 import org.kde.kcoreaddons 1.0 as KCoreAddons
+import org.kde.draganddrop 2.0 as DragAndDrop
 
 
 Item {
@@ -113,6 +114,27 @@ Item {
 			anchors.fill: parent
 			onClicked: {
 				plasmoid.expanded = !plasmoid.expanded
+			}
+
+			DragAndDrop.DropArea {
+				id: dropArea
+				anchors.fill: parent
+
+				onDragEnter: {
+					activateOnDrag.restart()
+				}
+			}
+
+			onContainsMouseChanged: {
+				if (!containsMouse) {
+					activateOnDrag.stop()
+				}
+			}
+
+			Timer {
+				id: activateOnDrag
+				interval: 1000
+				onTriggered: plasmoid.expanded = true
 			}
 		}
 	}
