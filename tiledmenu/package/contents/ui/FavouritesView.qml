@@ -217,12 +217,33 @@ ScrollView {
 					}
 
 					onDrop: {
-						console.log('dropArea.onDrop', favouritesView.draggedIndex, index)
-						swap(favouritesView.draggedIndex, index)
+						// console.log('dropArea.onDrop', favouritesView.draggedIndex, index)
+						// console.log('possibleActions', event.possibleActions)
+						// console.log('proposedAction', event.proposedAction)
+
+						if (favouritesView.draggedIndex >= 0) { // Moving favorite around.
+							// console.log('model.favoriteId', model.favoriteId)
+							swap(favouritesView.draggedIndex, index)
+						} else { // Add new favorite from dolphin/desktop/taskbar.
+							if (event.mimeData.url) {
+								// console.log('event.mimeData.url', event.mimeData.url)
+								var url = event.mimeData.url.toString()
+								var isDesktopUrl = url.indexOf('.desktop') === url.length - '.desktop'.length
+								if (isDesktopUrl) {
+									// Remove the path because .favoriteId is just the file name.
+									// However passing the favoriteId in mimeData.url will prefix the current QML path because it's a QUrl.
+									var tokens = event.mimeData.url.toString().split('/')
+									var favoriteId = tokens[tokens.length-1]
+									appsModel.favoritesModel.addFavorite(favoriteId)
+								} else {
+									appsModel.favoritesModel.addFavorite(event.mimeData.url)
+								}
+							}
+						}
 					}
 
 					onDragEnter: {
-						console.log('dropArea.onDragEnter', index)
+						// console.log('dropArea.onDragEnter', index)
 					}
 				}
 			}
