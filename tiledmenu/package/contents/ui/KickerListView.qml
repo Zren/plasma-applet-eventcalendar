@@ -5,6 +5,7 @@ import QtQuick.Layouts 1.1
 import QtQuick.Window 2.1
 import org.kde.plasma.core 2.0 as PlasmaCore
 import org.kde.plasma.components 2.0 as PlasmaComponents
+import org.kde.draganddrop 2.0 as DragAndDrop
 
 ListView {
 	id: listView
@@ -27,8 +28,9 @@ ListView {
 		font.pointSize: 14
 	}
 
-	delegate: PlasmaComponents.ToolButton {
+	delegate: AppToolButton {
 		id: itemDelegate
+
 		width: parent.width
 		height: row.height
 
@@ -36,6 +38,19 @@ ListView {
 		property string description: model.url ? model.description : '' // 
 		property string secondRowText: listView.showItemUrl && model.url ? model.url : model.description
 		property bool secondRowVisible: secondRowText
+
+		DragAndDrop.DragArea {
+			id: dragArea
+			anchors.fill: parent
+			
+			delegate: itemDelegate
+			enabled: model.url
+			supportedActions: Qt.CopyAction
+
+			mimeData {
+				url: model.url
+			}
+		}
 
 		RowLayout { // ItemListDelegate
 			id: row
@@ -111,23 +126,20 @@ ListView {
 
 		}
 
-		onClicked: trigger()
+		acceptedButtons: Qt.LeftButton | Qt.RightButton
+		onClicked: {
+			mouse.accepted = true
+			if (mouse.button == Qt.LeftButton) {
+				trigger()
+			} else if (mouse.button == Qt.RightButton) {
+				contextMenu.open(mouse.x, mouse.y)
+			}
+		}
 
 		function trigger() {
 			listView.model.triggerIndex(index)
 		}
 
-		MouseArea {
-			anchors.fill: parent
-			acceptedButtons: Qt.RightButton
-			onClicked: {
-
-				mouse.accepted = true;
-				if (mouse.button == Qt.RightButton) {
-					contextMenu.open(mouse.x, mouse.y)
-				}
-			}
-		}
 		AppContextMenu {
 			id: contextMenu
 			onPopulateMenu: {
@@ -150,7 +162,8 @@ ListView {
 				menu.addMenuItem(menuItem)
 			}
 		}
-	}
+
+	} // delegate: AppToolButton
 
 	property var modelList: model ? model.list : []
 	
