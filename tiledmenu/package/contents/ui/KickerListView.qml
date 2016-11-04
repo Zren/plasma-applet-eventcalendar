@@ -44,12 +44,10 @@ ListView {
 			anchors.fill: parent
 			
 			delegate: itemDelegate
-			// enabled: model.url
 			supportedActions: Qt.CopyAction
 
 			mimeData {
-				text: model.favoriteId 
-				url: model.favoriteId // ? model.favoriteId : model.url
+				url: model.favoriteId
 			}
 		}
 
