@@ -97,14 +97,16 @@ ScrollView {
 
 						PlasmaComponents.Label {
 							id: label
-							text: model.display || ''
+							text: model.display || model.url || ''
 							anchors.leftMargin: 4
 							anchors.left: parent.left
 							anchors.bottom: parent.bottom
 							wrapMode: Text.Wrap
 							width: parent.width
-							font.pointSize: 11
+							font.pointSize: 10
 							renderType: Text.QtRendering // Fix pixelation when scaling. Plasma.Label uses NativeRendering.
+							style: Text.Outline
+							styleColor: theme.buttonBackgroundColor
 						}
 					}
 				}
