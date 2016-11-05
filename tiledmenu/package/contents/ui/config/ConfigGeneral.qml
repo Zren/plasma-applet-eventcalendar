@@ -137,5 +137,10 @@ ConfigPage {
 			}
 		}
 		
+		CheckBox {
+			text: 'SearchBox follows Desktop Theme'
+			checked: plasmoid.configuration.searchFieldFollowsTheme
+			onClicked: plasmoid.configuration.searchFieldFollowsTheme = checked
+		}
 	}
 }

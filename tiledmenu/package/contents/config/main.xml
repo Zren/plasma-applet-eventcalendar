@@ -29,6 +29,11 @@
     <entry name="sidebarBackgroundColor" type="string">
       <default></default>
     </entry>
+
+    <!-- Style -->
+    <entry name="searchFieldFollowsTheme" type="bool">
+      <default>false</default>
+    </entry>
   </group>
 
 </kcfg>

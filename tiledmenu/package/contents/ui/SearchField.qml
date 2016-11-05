@@ -6,6 +6,8 @@ import QtQuick.Window 2.1
 import org.kde.plasma.core 2.0 as PlasmaCore
 import org.kde.plasma.components 2.0 as PlasmaComponents
 
+import QtQuick.Controls.Styles.Plasma 2.0 as PlasmaStyles
+
 TextField {
 	id: searchField
 	placeholderText: {
@@ -24,11 +26,26 @@ TextField {
 	// Layout.fillWidth: true
 	// Layout.preferredHeight: 50
 	font.pixelSize: 16
-	style: TextFieldStyle {
-		background: Rectangle {
-			color: "#eee"
+
+	style: plasmoid.configuration.searchFieldFollowsTheme ? plasmaStyle : redmondStyle
+	Component {
+		id: plasmaStyle
+		// Creates the following warning when not in use:
+		//   file:///usr/lib/x86_64-linux-gnu/qt5/qml/QtQuick/Controls/Styles/Plasma/TextFieldStyle.qml:74: ReferenceError: textField is not defined
+		// Caused by:
+		//   var actionIconSize = Math.max(textField.height * 0.8, units.iconSizes.small);
+		PlasmaStyles.TextFieldStyle {}
+	}
+	Component {
+		id: redmondStyle
+
+		TextFieldStyle {
+			background: Rectangle {
+				color: "#eee"
+			}
 		}
 	}
+
 	onTextChanged: {
 		search.query = text
 	}
