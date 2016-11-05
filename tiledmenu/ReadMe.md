@@ -5,6 +5,7 @@ A menu based on Windows 10's Start Menu.
 * Supports:
     * Pin/Favourite apps/files through the context menu (or by dragging them from dolphin).
     * Resizing (permanently) the size of the menu with Alt+Clicking and dragging.
+    * Panel Icon scales to a maximum of 60px width/height so it can be used on thick panels without scaling too big.
 * Does not support (KDE):
     * Draging and dropping apps in the A-Z/Search list to the desktop/panel.
     * Pin to taskbar
