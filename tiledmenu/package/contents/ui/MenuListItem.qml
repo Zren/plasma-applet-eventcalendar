@@ -10,7 +10,7 @@ AppToolButton {
 	width: parent.width
 	height: row.height
 
-	property var parentModel: modelList[index] ? modelList[index].parentModel : undefined
+	property var parentModel: modelList && modelList[index] ? modelList[index].parentModel : undefined
 	property string description: model.url ? model.description : '' // 
 	property string secondRowText: listView.showItemUrl && model.url ? model.url : model.description
 	property bool secondRowVisible: secondRowText
