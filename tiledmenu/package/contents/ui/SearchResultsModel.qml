@@ -170,4 +170,13 @@ ListModel {
 
 		refreshed()
 	}
+
+	function triggerIndex(index) {
+		var model = resultModel.get(index)
+		var runner = runnerModel.modelForRow(model.runnerIndex)
+		runner.trigger(model.runnerItemIndex, "", null)
+		itemTriggered()
+	}
+	
+	signal itemTriggered()
 }
