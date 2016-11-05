@@ -17,18 +17,18 @@ AppToolButton {
 	property string launcherUrl: model.favoriteId || model.url
 	property alias iconSource: itemIcon.source
 
-	DragAndDrop.DragArea {
-		id: dragArea
-		anchors.fill: parent
+	// DragAndDrop.DragArea {
+	// 	id: dragArea
+	// 	anchors.fill: parent
 		
-		delegate: itemDelegate
-		supportedActions: Qt.CopyAction
-		enabled: launcherUrl
+	// 	delegate: itemDelegate
+	// 	supportedActions: Qt.CopyAction
+	// 	enabled: launcherUrl
 
-		mimeData {
-			url: launcherUrl
-		}
-	}
+	// 	mimeData {
+	// 		url: launcherUrl
+	// 	}
+	// }
 
 	RowLayout { // ItemListDelegate
 		id: row
