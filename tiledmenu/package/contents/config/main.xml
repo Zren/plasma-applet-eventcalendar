@@ -34,6 +34,10 @@
     <entry name="searchFieldFollowsTheme" type="bool">
       <default>false</default>
     </entry>
+    <entry name="tileLabelAlignment" type="string">
+      <!-- enum: left, center, right -->
+      <default>left</default>
+    </entry>
   </group>
 
 </kcfg>

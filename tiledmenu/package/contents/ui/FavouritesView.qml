@@ -101,7 +101,10 @@ ScrollView {
 							anchors.leftMargin: 4
 							anchors.left: parent.left
 							anchors.bottom: parent.bottom
+							anchors.right: parent.right
+							anchors.rightMargin: 4
 							wrapMode: Text.Wrap
+							horizontalAlignment: config.tileLabelAlignment
 							width: parent.width
 							font.pointSize: 10
 							renderType: Text.QtRendering // Fix pixelation when scaling. Plasma.Label uses NativeRendering.
