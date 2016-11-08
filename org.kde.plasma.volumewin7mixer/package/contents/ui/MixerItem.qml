@@ -11,6 +11,7 @@ import org.kde.plasma.extras 2.0 as PlasmaExtras
 
 import org.kde.plasma.private.volume 0.1
 
+import "../code/icon.js" as Icon
 import "../code/sinkcommands.js" as PulseObjectCommands
 
 PlasmaComponents.ListItem {
@@ -68,11 +69,10 @@ PlasmaComponents.ListItem {
             return 'speaker';
         } else if (mixerItemType == 'Source') {
             // Microphone
-            if (PulseObject.volume > 0 && !PulseObject.muted) {
-                return 'mic-on';
-            } else {
-                return 'mic-off';
-            }
+            return 'mic-on';
+        } else if (mixerItemType == 'SourceOutput') {
+            // Recording Apps
+            return 'mic-on';
         } else {
             return 'unknown';
         }
@@ -354,11 +354,11 @@ PlasmaComponents.ListItem {
                 Layout.minimumHeight: Layout.maximumHeight
                 anchors.horizontalCenter: parent.horizontalCenter
 
-                VolumeIcon {
+                PlasmaCore.IconItem {
                     anchors.fill: parent
-                    
-                    volume: PulseObject.volume
-                    muted: PulseObject.muted
+                    readonly property bool isMic: mixerItemType == 'Source'
+                    readonly property string prefix: isMic ? 'microphone-sensitivity' : 'audio-volume'
+                    source: Icon.name(PulseObject.volume, PulseObject.muted, prefix)
                 }
                 
                 onClicked: {
