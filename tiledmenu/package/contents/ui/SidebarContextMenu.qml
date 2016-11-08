@@ -20,7 +20,7 @@ SidebarMenu {
 
 	Rectangle {
 		anchors.fill: parent
-		color: "#000"
+		color: config.sidebarBackgroundColor
 	}
 
 	Column {
