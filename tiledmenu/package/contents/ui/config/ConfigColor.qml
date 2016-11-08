@@ -59,8 +59,12 @@ RowLayout {
 		id: textField
 		placeholderText: "#AARRGGBB"
 		onTextChanged: {
-			// Make sure the text is #123 or #112233 or #11223344 before applying the color.
-			if (text.indexOf('#') === 0 && (text.length == 4 || text.length == 7 || text.length == 9)) {
+			// Make sure the text is:
+			//   Empty (use default)
+			//   or #123 or #112233 or #11223344 before applying the color.
+			if (text.length === 0
+				|| (text.indexOf('#') === 0 && (text.length == 4 || text.length == 7 || text.length == 9))
+			) {
 				configColor.value = text
 			}
 		}
@@ -72,8 +76,11 @@ RowLayout {
 		modality: Qt.WindowModal
 		title: configColor.label
 		showAlphaChannel: true
+		color: configColor.value
 		onCurrentColorChanged: {
-			configColor.value = currentColor
+			if (visible && color != currentColor) {
+				configColor.value = currentColor
+			}
 		}
 	}
 }
