@@ -82,7 +82,7 @@ AppToolButton {
 				PlasmaComponents.Label {
 					Layout.fillWidth: true
 					text: !itemDelegate.secondRowVisible ? itemDelegate.description : ''
-					color: "#888"
+					color: config.menuItemTextColor2
 					maximumLineCount: 1
 					elide: Text.ElideRight
 					height: implicitHeight // ElideRight causes some top padding for some reason
@@ -94,7 +94,7 @@ AppToolButton {
 				Layout.fillWidth: true
 				// Layout.fillHeight: true
 				text: itemDelegate.secondRowText
-				color: "#888"
+				color: config.menuItemTextColor2
 				maximumLineCount: 1
 				elide: Text.ElideMiddle
 				height: implicitHeight
