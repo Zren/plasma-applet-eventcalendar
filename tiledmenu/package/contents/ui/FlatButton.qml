@@ -35,7 +35,7 @@ PlasmaComponents.ToolButton {
 					width: 30
 					height: 30
 					anchors.centerIn: parent
-					colorGroup: PlasmaCore.Theme.ButtonColorGroup
+					// colorGroup: PlasmaCore.Theme.ButtonColorGroup
 				}
 			}
 
