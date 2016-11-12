@@ -28,13 +28,6 @@ Item {
 		anchors.top: parent.top
 		anchors.bottom: parent.bottom
 
-		Rectangle {
-			anchors.fill: parent
-			color: config.sidebarBackgroundColor
-			// color: sidebarMenu.open ? "#000" : "transparent"
-			opacity: sidebarMenu.open ? 1 : 0.5
-		}
-
 		Column {
 			width: parent.width
 			height: childrenRect.height

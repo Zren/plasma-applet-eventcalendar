@@ -18,11 +18,6 @@ SidebarMenu {
 
 	property alias model: repeater.model
 
-	Rectangle {
-		anchors.fill: parent
-		color: config.sidebarBackgroundColor
-	}
-
 	Column {
 		width: parent.width
 		height: childrenRect.height

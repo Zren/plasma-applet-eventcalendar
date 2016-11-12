@@ -18,4 +18,21 @@ MouseArea {
 			forceActiveFocus()
 		}
 	}
+
+	Rectangle {
+		anchors.fill: parent
+		color: config.sidebarBackgroundColor
+		opacity: parent.open ? 1 : 0.5
+	}
+
+	// Rectangle {
+	// 	anchors.fill: parent
+	// 	color: theme.backgroundColor
+	// 	opacity: sidebarContextMenu.open ? 1 : 0
+	// }
+	// PlasmaCore.FrameSvgItem {
+	// 	anchors.fill: parent
+	// 	imagePath: "widgets/frame"
+	// 	prefix: "plain"
+	// }
 }
