@@ -1,8 +1,8 @@
-[b]v4 - November 12 2016[/b]
+## v4 - November 12 2016
 
 * Fix a number of scaling issues when using a non default DPI.
 
-[b]v3 - November 11 2016[/b]
+## v3 - November 11 2016
 
 * Fix tile/sidebar colors reseting to black when configuring.
 * Use sidebar color in power menu.
@@ -11,7 +11,7 @@
 * Assign the description color based on the text color.
 * Use the icon hover effect from taskmanager instead of a solid rectangle for the panel icon.
 
-[b]v2 - November 5 2016[/b]
+## v2 - November 5 2016
 
 * Configurable tile color (for when the desktop theme uses a weird background color).
 * Configurable sidebar color (because black isn't always best).
@@ -22,7 +22,7 @@
 * Hovering the panel icon while dragging opens the menu.
 * Use custom config style.
 
-[b]v1 - October 23 2016[/b]
+## v1 - October 23 2016
 
 * First release posted on reddit (under the name kickstart).
 * No configuration.
