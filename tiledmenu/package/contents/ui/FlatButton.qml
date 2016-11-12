@@ -27,7 +27,7 @@ PlasmaComponents.ToolButton {
 			Item {
 				Layout.fillHeight: true
 				Layout.preferredWidth: height
-				visible: icon.valid
+				visible: control.iconName
 
 				PlasmaCore.IconItem {
 					id: icon
