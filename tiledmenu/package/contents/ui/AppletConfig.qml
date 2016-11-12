@@ -8,6 +8,8 @@ Item {
 	}
 
 	//--- Sizes
+
+	readonly property int panelIconSize: 24 * units.devicePixelRatio
 	readonly property int flatButtonSize: 60 * units.devicePixelRatio
 	readonly property int flatButtonIconSize: 30 * units.devicePixelRatio
 	readonly property int sidebarWidth: flatButtonSize
