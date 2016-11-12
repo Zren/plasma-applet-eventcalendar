@@ -16,9 +16,9 @@ Item {
 
 	readonly property int favCellWidth: 60 * units.devicePixelRatio
 	readonly property int favCellPadding: 3 * units.devicePixelRatio
-	readonly property int favColWidth: ((favCellWidth + favCellPadding * 2) * 2) * units.devicePixelRatio // = 132 (Medium Size)
+	readonly property int favColWidth: ((favCellWidth + favCellPadding * 2) * 2) // = 132 (Medium Size)
 	readonly property int favViewDefaultWidth: (favColWidth * 3) * units.devicePixelRatio
-	readonly property int favMediumIconSize: favColWidth - (60 * units.devicePixelRatio) // = 72
+	readonly property int favMediumIconSize: 72 * units.devicePixelRatio // = 72
 
 
 	readonly property int defaultHeight: 620 * units.devicePixelRatio
