@@ -7,8 +7,20 @@ Item {
 		return c2
 	}
 
-	//--- Sizes
+	function getBase64Json(key) {
+		var val = plasmoid.configuration[key]
+		val = Qt.atob(val) // decode base64
+		val = JSON.parse(val)
+		return val
+	}
 
+	function setBase64Json(key, data) {
+		var val = JSON.stringify(data)
+		val = Qt.btoa(val)
+		plasmoid.configuration[key] = val
+	}
+
+	//--- Sizes
 	readonly property int panelIconSize: 24 * units.devicePixelRatio
 	readonly property int flatButtonSize: 60 * units.devicePixelRatio
 	readonly property int flatButtonIconSize: 30 * units.devicePixelRatio

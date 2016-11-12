@@ -19,7 +19,7 @@ ColumnLayout {
 		width: parent.width
 
 		FlatButton {
-			iconName: "system-search"
+			iconName: "system-search-symbolic"
 			// height: parent.height
 			// width: height
 			width: 20

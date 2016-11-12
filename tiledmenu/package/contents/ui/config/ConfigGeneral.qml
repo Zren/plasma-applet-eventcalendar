@@ -121,26 +121,69 @@ ConfigPage {
 		}
 	}
 
+	ExclusiveGroup { id: tilesThemeGroup }
 	ConfigSection {
-		label: i18n("Colors")
-		
-		GridLayout {
-			columns: 2
-			
-			ConfigColor {
-				label: 'Tiles'
-				configKey: 'defaultTileColor'
+		label: i18n("Tiles")
+
+		RadioButton {
+			text: i18n('Desktop Theme (%1)', theme.themeName)
+			exclusiveGroup: tilesThemeGroup
+			checked: false
+			enabled: false
+		}
+		RowLayout {
+			RadioButton {
+				text: i18n('Custom Color')
+				exclusiveGroup: tilesThemeGroup
+				checked: true
 			}
 			ConfigColor {
-				label: 'Sidebar'
+				label: ""
+				configKey: 'defaultTileColor'
+			}
+		}
+		
+	}
+
+	ExclusiveGroup { id: sidebarThemeGroup }
+	ConfigSection {
+		label: i18n("Sidebar")
+
+		RadioButton {
+			text: i18n('Desktop Theme (%1)', theme.themeName)
+			exclusiveGroup: sidebarThemeGroup
+			checked: false
+			enabled: false
+		}
+		RowLayout {
+			RadioButton {
+				text: i18n('Custom Color')
+				exclusiveGroup: sidebarThemeGroup
+				checked: true
+			}
+			ConfigColor {
+				label: ""
 				configKey: 'sidebarBackgroundColor'
 			}
 		}
 		
-		CheckBox {
-			text: 'SearchBox follows Desktop Theme'
+	}
+
+	ExclusiveGroup { id: searchBoxThemeGroup }
+	ConfigSection {
+		label: i18n("Search Box")
+		
+		RadioButton {
+			text: i18n('Desktop Theme (%1)', theme.themeName)
+			exclusiveGroup: searchBoxThemeGroup
 			checked: plasmoid.configuration.searchFieldFollowsTheme
-			onClicked: plasmoid.configuration.searchFieldFollowsTheme = checked
+			onClicked: plasmoid.configuration.searchFieldFollowsTheme = true
+		}
+		RadioButton {
+			text: i18n('Windows (White)')
+			exclusiveGroup: searchBoxThemeGroup
+			checked: !plasmoid.configuration.searchFieldFollowsTheme
+			onClicked: plasmoid.configuration.searchFieldFollowsTheme = false
 		}
 	}
 }

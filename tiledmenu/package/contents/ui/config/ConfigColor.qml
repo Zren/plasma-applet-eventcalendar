@@ -18,6 +18,7 @@ RowLayout {
 	Layout.maximumWidth: 300
 
 	property alias label: label.text
+	property alias horizontalAlignment: label.horizontalAlignment
 
 	property string configKey: ''
 	property string value: configKey ? plasmoid.configuration[configKey] : "#000"
@@ -30,12 +31,11 @@ RowLayout {
 		}
 	}
 
-
 	Label {
 		id: label
 		text: "Label"
-		Layout.fillWidth: true
-		horizontalAlignment: Text.AlignRight
+		Layout.fillWidth: horizontalAlignment == Text.AlignRight
+		horizontalAlignment: Text.AlignLeft
 	}
 
 	MouseArea {
@@ -58,6 +58,7 @@ RowLayout {
 	TextField {
 		id: textField
 		placeholderText: "#AARRGGBB"
+		Layout.fillWidth: label.horizontalAlignment == Text.AlignLeft
 		onTextChanged: {
 			// Make sure the text is:
 			//   Empty (use default)

@@ -201,6 +201,6 @@ Item {
 
 	Component.onCompleted: {
 		plasmoid.setAction("menuedit", i18n("Edit Applications..."));
-		// plasmoid.action('configure').trigger()
+		// plasmoid.action('configure').trigger() // Uncomment to open the config window on load.
 	}
 }

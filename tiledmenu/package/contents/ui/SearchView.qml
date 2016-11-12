@@ -38,7 +38,7 @@ Item {
 				onClicked: appsView.show()
 			}
 			SidebarItem {
-				iconName: 'search'
+				iconName: 'system-search-symbolic'
 				text: "Search"
 				onClicked: searchResultsView.showDefaultSearch()
 			}
