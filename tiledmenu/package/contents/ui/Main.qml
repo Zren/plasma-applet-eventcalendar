@@ -94,7 +94,7 @@ Item {
 				when: plasmoid.formFactor == PlasmaCore.Types.Horizontal
 				PropertyChanges {
 					target: panelItem
-					Layout.minimumWidth: config.panelIconSize
+					Layout.minimumWidth: 24
 					Layout.preferredWidth: panelItem.height
 					Layout.maximumWidth: config.flatButtonSize
 				}
@@ -104,7 +104,7 @@ Item {
 				when: plasmoid.formFactor == PlasmaCore.Types.Vertical
 				PropertyChanges {
 					target: panelItem
-					Layout.minimumHeight: config.panelIconSize
+					Layout.minimumHeight: 24
 					Layout.preferredHeight: panelItem.width
 					Layout.maximumHeight: config.flatButtonSize
 				}
@@ -113,7 +113,7 @@ Item {
 
 		LauncherIcon {
 			iconSource: plasmoid.configuration.icon || "start-here-kde"
-			iconSize: config.panelIconSize
+			iconSize: Math.min(config.panelIconSize, panelItem.width, panelItem.height)
 			anchors.fill: parent
 			onClicked: {
 				plasmoid.expanded = !plasmoid.expanded
