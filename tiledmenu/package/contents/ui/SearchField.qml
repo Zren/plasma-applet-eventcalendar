@@ -25,7 +25,7 @@ TextField {
 	}
 	// Layout.fillWidth: true
 	// Layout.preferredHeight: 50
-	font.pixelSize: 16
+	font.pixelSize: 16 * units.devicePixelRatio // Not the same as pointSize=16
 
 	style: plasmoid.configuration.searchFieldFollowsTheme ? plasmaStyle : redmondStyle
 	Component {
