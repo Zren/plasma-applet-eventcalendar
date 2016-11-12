@@ -1,3 +1,12 @@
+[b]v3 - November 11 2016[/b]
+
+* Fix tile/sidebar colors reseting to black when configuring.
+* Use sidebar color in power menu.
+* Changed the color scheme for sidebar icons.
+* Padding to the section headings.
+* Assign the description color based on the text color.
+* Use the icon hover effect from taskmanager instead of a solid rectangle for the panel icon.
+
 [b]v2 - November 5 2016[/b]
 
 * Configurable tile color (for when the desktop theme uses a weird background color).
