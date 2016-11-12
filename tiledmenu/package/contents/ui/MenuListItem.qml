@@ -34,7 +34,7 @@ AppToolButton {
 		id: row
 		width: parent.width
 		// height: 36 // 2 lines
-		height: listView.largeFirstItem && index == 0 ? 64 : 36
+		height: (listView.largeFirstItem && index == 0 ? 64 : 36) * units.devicePixelRatio	
 
 		Item {
 			height: parent.height

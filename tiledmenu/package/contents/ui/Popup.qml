@@ -33,7 +33,7 @@ Item {
 
 		SearchView {
 			id: searchView
-			width: 60+430
+			width: config.leftSectionWidth
 			height: parent.height
 		}
 

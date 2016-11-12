@@ -8,15 +8,15 @@ import org.kde.plasma.components 2.0 as PlasmaComponents
 
 ColumnLayout {
 	id: searchResultsView
-	width: 430
-	height: 620 - 50
+	width: config.appListWidth
+	height: config.defaultHeight - config.searchFieldHeight
 	spacing: 0
 	property alias listView: searchResultsList
 	
 	RowLayout {
 		id: searchFiltersRow
-		height: 59
-		width: 430
+		height: config.flatButtonSize - 1 // -1px is for the underline seperator
+		width: parent.width
 
 		FlatButton {
 			iconName: "system-search"
@@ -61,7 +61,7 @@ ColumnLayout {
 	Rectangle {
 		color: "#111"
 		height: 1
-		width: 430
+		width: parent.width
 		// anchors.bottom: searchFiltersRow.bottom - 1
 	}
 

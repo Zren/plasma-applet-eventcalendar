@@ -7,6 +7,23 @@ Item {
 		return c2
 	}
 
+	//--- Sizes
+	readonly property int flatButtonSize: 60 * units.devicePixelRatio
+	readonly property int sidebarWidth: flatButtonSize
+	readonly property int sidebarOpenWidth: 200 * units.devicePixelRatio
+	readonly property int appListWidth: 430 * units.devicePixelRatio
+	readonly property int leftSectionWidth: sidebarWidth + appListWidth
+
+	readonly property int favCellWidth: 60 * units.devicePixelRatio
+	readonly property int favCellPadding: 3 * units.devicePixelRatio
+	readonly property int favColWidth: ((favCellWidth + favCellPadding * 2) * 2) * units.devicePixelRatio // = 132 (Medium Size)
+	readonly property int favViewDefaultWidth: (favColWidth * 3) * units.devicePixelRatio
+	readonly property int favMediumIconSize: favColWidth - (60 * units.devicePixelRatio) // = 72
+
+
+	readonly property int defaultHeight: 620 * units.devicePixelRatio
+	readonly property int searchFieldHeight: 50 * units.devicePixelRatio
+
 	//--- Colors
 	readonly property color defaultTileColor: plasmoid.configuration.defaultTileColor || theme.buttonBackgroundColor
 	readonly property color sidebarBackgroundColor: plasmoid.configuration.sidebarBackgroundColor || '#000'

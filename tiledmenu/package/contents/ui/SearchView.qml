@@ -10,17 +10,11 @@ import org.kde.kquickcontrolsaddons 2.0 // KCMShell
 
 Item {
 	id: searchView
-	// width: 888
-	width: 60 + 430
-	height: 620
-	// anchors.fill: parent
+	width: config.leftSectionWidth
+	height: config.defaultHeight
 	property alias searchResultsView: searchResultsView
 	property alias appsView: appsView
 	property alias searchField: searchField
-
-	// width: 60
-	// width: 430
-	// height: 620
 
 	SidebarMenu {
 		id: sidebarMenu
@@ -99,10 +93,6 @@ Item {
 		SearchResultsView {
 			id: searchResultsView
 			visible: false
-			// width: 430
-			// anchors.top: parent.top
-			// anchors.right: parent.right
-			// anchors.bottom: parent.bottom
 
 			Connections {
 				target: search
@@ -126,26 +116,6 @@ Item {
 				search.applyDefaultFilters()
 			}
 		}
-
-		// Item {
-		// 	id: appListView
-		// 	visible: false
-		// 	// Rectangle {
-		// 	// 	anchors.fill: parent
-		// 	// 	anchors.margins: units.largeSpacing
-		// 	// 	color: "transparent"
-		// 	// 	border.color: "#111"
-
-		// 	// 	PlasmaComponents.Label {
-		// 	// 		anchors.centerIn: parent
-		// 	// 		text: "App List View"
-		// 	// 		// wrapMode: Text.Wrap
-		// 	// 		// width: implicitWidth
-		// 	// 	}
-		// 	// }
-
-
-		// }
 		
 		AppsView {
 			id: appsView
@@ -161,7 +131,7 @@ Item {
 
 		StackView {
 			id: stackView
-			width: 430
+			width: config.appListWidth
 			clip: true
 			anchors.top: parent.top
 			anchors.right: parent.right
@@ -195,8 +165,8 @@ Item {
 	SearchField {
 		id: searchField
 		// width: 430
-		height: 50
-		anchors.leftMargin: 60
+		height: config.searchFieldHeight
+		anchors.leftMargin: config.sidebarWidth
 		anchors.left: parent.left
 		anchors.right: parent.right
 		anchors.bottom: parent.bottom

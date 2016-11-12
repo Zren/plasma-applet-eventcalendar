@@ -12,8 +12,8 @@ ScrollView {
 	// width: (favouritesGridView.cellWidth * favouritesGridView.columns) // 380
 	// height: parent.height
 
-	width: 888-60-430
-	height: 620
+	width: config.favViewDefaultWidth
+	height: config.defaultHeight
 
 	property bool editing: draggedItem
 	property QtObject draggedItem: null
@@ -32,9 +32,9 @@ ScrollView {
 		GridView {
 			id: favouritesGridView
 			// anchors.fill: parent
-			cellWidth: (60 + cellPadding * 2) * 2 // Medium
-			cellHeight: (60 + cellPadding * 2) * 2 // Medium
-			property int cellPadding: 3
+			cellWidth: config.favColWidth
+			cellHeight: config.favColWidth
+			property int cellPadding: config.favCellPadding
 			property int columns: Math.floor(favouritesView.width / cellWidth)
 			property int rows: Math.ceil(model.count / columns)
 			width: cellWidth * columns
@@ -56,7 +56,7 @@ ScrollView {
 						PropertyChanges {
 							target: item
 						}
-						PropertyChanges { target: icon; size: 72 }
+						PropertyChanges { target: icon; size: config.favMediumIconSize }
 					}
 				]
 
@@ -90,9 +90,12 @@ ScrollView {
 							id: icon
 							source: model.decoration
 							anchors.centerIn: parent
-							property int size: 72
+							property int size: 72 // Just a default, overriden in State change
 							width: size
 							height: size
+							onSizeChanged: {
+								console.log('icon', size, config.favMediumIconSize, units.devicePixelRatio)
+							}
 						}
 
 						PlasmaComponents.Label {

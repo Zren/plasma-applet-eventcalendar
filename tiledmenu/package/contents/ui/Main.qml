@@ -175,15 +175,13 @@ Item {
 		id: resizeToFit
 		interval: 400
 		onTriggered: {
-			var colWidth = 132
-			var leftWidth = 60+430
-			var favWidth = Math.max(0, widget.width-leftWidth) // 398 // 888-60-430
-			var cols = Math.floor(favWidth / colWidth)
-			var newWidth = leftWidth + cols * colWidth
+			var favWidth = Math.max(0, widget.width - config.leftSectionWidth) // 398 // 888-60-430
+			var cols = Math.floor(favWidth / config.favColWidth)
+			var newWidth = config.leftSectionWidth + cols * config.favColWidth
 			if (newWidth != widget.width) {
 				// widget.Layout.preferredWidth = newWidth
 				plasmoid.configuration.width = newWidth
-				// console.log('resizeToFit', cols, favWidth, newWidth - leftWidth)
+				// console.log('resizeToFit', cols, favWidth, newWidth - config.favColWidth)
 			}
 		}
 	}
