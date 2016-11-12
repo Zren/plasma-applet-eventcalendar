@@ -21,18 +21,21 @@ MouseArea {
 
 	Rectangle {
 		anchors.fill: parent
+		visible: !plasmoid.configuration.sidebarFollowsTheme
 		color: config.sidebarBackgroundColor
 		opacity: parent.open ? 1 : 0.5
 	}
 
-	// Rectangle {
-	// 	anchors.fill: parent
-	// 	color: theme.backgroundColor
-	// 	opacity: sidebarContextMenu.open ? 1 : 0
-	// }
-	// PlasmaCore.FrameSvgItem {
-	// 	anchors.fill: parent
-	// 	imagePath: "widgets/frame"
-	// 	prefix: "plain"
-	// }
+	Rectangle {
+		anchors.fill: parent
+		visible: plasmoid.configuration.sidebarFollowsTheme
+		color: theme.backgroundColor
+		opacity: parent.open ? 1 : 0
+	}
+	PlasmaCore.FrameSvgItem {
+		anchors.fill: parent
+		visible: plasmoid.configuration.sidebarFollowsTheme
+		imagePath: "widgets/frame"
+		prefix: "raised"
+	}
 }

@@ -92,8 +92,6 @@ ConfigPage {
 			Button {
 				iconName: "document-open"
 
-				enabled: useCustomButtonImage.checked
-
 				onClicked: {
 					imagePicker.folder = systemSettings.picturesLocation();
 					imagePicker.open();
@@ -152,14 +150,15 @@ ConfigPage {
 		RadioButton {
 			text: i18n('Desktop Theme (%1)', theme.themeName)
 			exclusiveGroup: sidebarThemeGroup
-			checked: false
-			enabled: false
+			checked: plasmoid.configuration.sidebarFollowsTheme
+			onClicked: plasmoid.configuration.sidebarFollowsTheme = true
 		}
 		RowLayout {
 			RadioButton {
 				text: i18n('Custom Color')
 				exclusiveGroup: sidebarThemeGroup
-				checked: true
+				checked: !plasmoid.configuration.sidebarFollowsTheme
+				onClicked: plasmoid.configuration.sidebarFollowsTheme = false
 			}
 			ConfigColor {
 				label: ""

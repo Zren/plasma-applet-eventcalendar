@@ -34,6 +34,9 @@
     <entry name="searchFieldFollowsTheme" type="bool">
       <default>false</default>
     </entry>
+    <entry name="sidebarFollowsTheme" type="bool">
+      <default>true</default>
+    </entry>
     <entry name="tileLabelAlignment" type="string">
       <!-- enum: left, center, right -->
       <default>left</default>
