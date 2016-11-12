@@ -159,8 +159,8 @@ Item {
 		id: popup
 		anchors.fill: parent
 	}
-	Layout.preferredWidth: plasmoid.configuration.width
-	Layout.preferredHeight: plasmoid.configuration.height
+	Layout.preferredWidth: config.popupWidth
+	Layout.preferredHeight: config.popupHeight
 
 	onWidthChanged: {
 		// console.log('popup.size', width, height, 'width')

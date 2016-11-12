@@ -17,12 +17,15 @@ Item {
 	readonly property int favCellWidth: 60 * units.devicePixelRatio
 	readonly property int favCellPadding: 3 * units.devicePixelRatio
 	readonly property int favColWidth: ((favCellWidth + favCellPadding * 2) * 2) // = 132 (Medium Size)
-	readonly property int favViewDefaultWidth: (favColWidth * 3) * units.devicePixelRatio
+	readonly property int favViewDefaultWidth: (favColWidth * 3) * units.devicePixelRatio + 2
 	readonly property int favMediumIconSize: 72 * units.devicePixelRatio // = 72
 
-
-	readonly property int defaultHeight: 620 * units.devicePixelRatio
 	readonly property int searchFieldHeight: 50 * units.devicePixelRatio
+
+	readonly property int defaultWidth: 886 * units.devicePixelRatio // sidebarWidth + appListWidth + favViewDefaultWidth
+	readonly property int defaultHeight: 620 * units.devicePixelRatio
+	readonly property int popupWidth: plasmoid.configuration.width > 0 ? plasmoid.configuration.width : defaultWidth
+	readonly property int popupHeight: plasmoid.configuration.height > 0 ? plasmoid.configuration.height : defaultHeight
 
 	//--- Colors
 	readonly property color defaultTileColor: plasmoid.configuration.defaultTileColor || theme.buttonBackgroundColor
