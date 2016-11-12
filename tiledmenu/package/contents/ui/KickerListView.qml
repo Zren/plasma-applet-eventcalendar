@@ -22,10 +22,23 @@ ListView {
 	property bool showItemUrl: true
 	property bool largeFirstItem: true
 
-	section.delegate: PlasmaComponents.Label {
-		text: section
-		font.bold: true
-		font.pointSize: 14
+	section.delegate: Item {
+		id: sectionDelegate
+
+		width: parent.width
+		height: childrenRect.height
+
+		PlasmaComponents.Label {
+			id: sectionHeading
+			anchors {
+				left: parent.left
+				right: parent.right
+				leftMargin: units.smallSpacing
+			}
+			text: section
+			font.bold: true
+			font.pointSize: 14
+		}
 	}
 
 	delegate: MenuListItem {}
