@@ -1,3 +1,7 @@
+[b]v4 - November 12 2016[/b]
+
+* Fix a number of scaling issues when using a non default DPI.
+
 [b]v3 - November 11 2016[/b]
 
 * Fix tile/sidebar colors reseting to black when configuring.
