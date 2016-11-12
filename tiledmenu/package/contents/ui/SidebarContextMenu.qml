@@ -12,7 +12,7 @@ SidebarMenu {
 	open: false
 	anchors.left: parent.right
 	anchors.bottom: parent.bottom
-	width: 200
+	width: config.sidebarOpenWidth
 	height: childrenRect.height
 	z: 2
 

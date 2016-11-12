@@ -12,7 +12,7 @@ import QtQuick.Controls.Styles.Plasma 2.0 as PlasmaStyles
 PlasmaComponents.ToolButton {
 	id: flatButton
 	width: parent.width
-	height: 60
+	height: config.flatButtonSize
 	iconName: ""
 	property bool expanded: true
 	text: ""
@@ -32,8 +32,8 @@ PlasmaComponents.ToolButton {
 				PlasmaCore.IconItem {
 					id: icon
 					source: control.iconName || control.iconSource
-					width: 30
-					height: 30
+					width: config.flatButtonIconSize
+					height: config.flatButtonIconSize
 					anchors.centerIn: parent
 					// colorGroup: PlasmaCore.Theme.ButtonColorGroup
 				}

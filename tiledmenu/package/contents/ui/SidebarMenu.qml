@@ -10,7 +10,7 @@ MouseArea {
 	hoverEnabled: true
 	z: 1
 	// clip: true
-	width: open ? 200 : 60
+	width: open ? config.sidebarOpenWidth : config.sidebarWidth
 	property bool open: false
 
 	onOpenChanged: {
