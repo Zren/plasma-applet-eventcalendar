@@ -35,7 +35,7 @@
       <default>false</default>
     </entry>
     <entry name="sidebarFollowsTheme" type="bool">
-      <default>true</default>
+      <default>false</default>
     </entry>
     <entry name="tileLabelAlignment" type="string">
       <!-- enum: left, center, right -->
