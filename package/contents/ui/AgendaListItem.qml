@@ -207,7 +207,6 @@ RowLayout {
                         target: timeModel
                         onMinuteChanged: {
                             eventListItem.eventItemInProgress = start && currentTime && end ? start.dateTime <= currentTime && currentTime <= end.dateTime : false
-                            console.log('eventListItem.onMinuteChanged', eventListItem.eventItemInProgress)
                         }
                     }
 
