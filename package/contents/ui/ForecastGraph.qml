@@ -15,14 +15,14 @@ Item {
     id: meteogramView
     width: 400
     height: 100
-    property bool cfg_clock_24h: false
+    property bool clock_24h: plasmoid.configuration.clock_24h
     property int cfg_meteogram_hours: 9
     property bool showIconOutline: false
     property bool showGridlines: true
     property alias xAxisScale: graph.xAxisScale
     property int xAxisLabelEvery: 1
 
-    onCfg_clock_24hChanged: {
+    onClock_24hChanged: {
         graph.gridData = formatXAxisLabels(graph.gridData)
         graph.update();
     }
@@ -495,7 +495,7 @@ Item {
                 var date = new Date(gData[i].xTimestamp);
                 var hour = date.getHours();
                 var label = '';
-                if (meteogramView.cfg_clock_24h) {
+                if (plasmoid.configuration.clock_24h) {
                     label += hour
                 } else {
                     // 12 hour clock

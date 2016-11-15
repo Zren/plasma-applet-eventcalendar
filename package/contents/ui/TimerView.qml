@@ -15,19 +15,8 @@ Item {
     property int timerSeconds: 0
     property int timerDuration: 0
     property int defaultTimerWidth: 48
-    property alias cfg_timer_repeats: timerRepeat.isChecked
-    property alias cfg_timer_sfx_enabled: timerSfxEnabled.isChecked
-    property string cfg_timer_sfx_filepath: "/usr/share/sounds/freedesktop/stereo/complete.oga"
-
-    // width: 400
-    // height: 100
-
-    // Testing with qmlview
-    Rectangle {
-        visible: typeof popup === 'undefined'
-        color: PlasmaCore.ColorScope.backgroundColor
-        anchors.fill: parent
-    }
+    property alias timerRepeats: timerRepeatsButton.isChecked
+    property alias timerSfxEnabled: timerSfxEnabledButton.isChecked
 
     Column {
         spacing: 4
@@ -95,8 +84,8 @@ Item {
                 anchors.bottom: parent.bottom
                 
                 PlasmaComponents.ToolButton {
-                    id: timerRepeat
-                    property bool isChecked: false // New property to avoid checked=pressed theming.
+                    id: timerRepeatsButton
+                    property bool isChecked: plasmoid.configuration.timer_repeats // New property to avoid checked=pressed theming.
                     iconSource: isChecked ? 'media-playlist-repeat' : 'gtk-stop'
                     text: i18n("Repeat")
                     onClicked: {
@@ -106,8 +95,8 @@ Item {
                 }
 
                 PlasmaComponents.ToolButton {
-                    id: timerSfxEnabled
-                    property bool isChecked: false // New property to avoid checked=pressed theming.
+                    id: timerSfxEnabledButton
+                    property bool isChecked: plasmoid.configuration.timer_sfx_enabled // New property to avoid checked=pressed theming.
                     iconSource: isChecked ? 'audio-volume-high' : 'dialog-cancel'
                     text: i18n("Sound")
                     onClicked: {
@@ -172,8 +161,8 @@ Item {
         // Debug in qmlviewer
         if (typeof popup === 'undefined') {
             timerView.timerDuration = 3
-            cfg_timer_repeats = true
-            cfg_timer_sfx_enabled = true
+            timerRepeats = true
+            sfxEnabled = true
             timerTicker.start()
         }
     }
@@ -231,12 +220,12 @@ Item {
     function onTimerFinished() {
         timerTicker.stop()
         createNotification()
-        if (cfg_timer_sfx_enabled) {
-            notificationSound.source = cfg_timer_sfx_filepath
+        if (timerSfxEnabled) {
+            notificationSound.source = plasmoid.configuration.timer_sfx_filepath
             notificationSound.play()
         }
 
-        if (cfg_timer_repeats) {
+        if (timerRepeats) {
             timerSeconds = timerDuration
             timerTicker.start()
         }

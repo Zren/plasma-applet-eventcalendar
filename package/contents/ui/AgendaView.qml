@@ -9,14 +9,14 @@ import org.kde.plasma.extras 2.0 as PlasmaExtras
 
 import "shared.js" as Shared
 import "../code/WeatherApi.js" as WeatherApi
-import "debugfixtures.js" as DebugFixtures
+import "../code/DebugFixtures.js" as DebugFixtures
 
 Item {
     id: agendaView
 
     //anchors.margins: units.largeSpacing
     property int spacing: units.largeSpacing
-    property alias agendaListView: agenda
+    property alias agendaListView: agendaListView
 
     property int showNextNumDays: 14
     property bool clipPastEvents: false
@@ -26,13 +26,7 @@ Item {
     property date visibleDateMin: new Date()
     property date visibleDateMax: new Date()
     property date currentMonth: new Date()
-    property date currentTime: new Date()
-
-    property bool cfg_clock_24h: false
-    property bool cfg_agenda_weather_show_icon: false
-    property int cfg_agenda_weather_icon_height: 24
-    property bool cfg_agenda_weather_show_text: false
-    property bool cfg_agenda_breakup_multiday_events: true
+    property date currentTime: root.currentTime
 
     property color inProgressColor: theme.highlightColor
     property int inProgressFontWeight: Font.Bold
@@ -40,9 +34,7 @@ Item {
     signal newEventFormOpened(variant agendaItem, variant newEventCalendarId)
     signal submitNewEventForm(variant calendarId, variant date, string text)
 
-    ListModel {
-        id: agendaModel
-    }
+    property alias agendaModel: agendaListView.model
 
     // width: 400
     // height: 400
@@ -55,8 +47,9 @@ Item {
     }
     
     ListView {
-        id: agenda
-        model: agendaModel
+        id: agendaListView
+        // model: ListModel {}
+        model: root.agendaModel
         anchors.fill: parent
         clip: true
         spacing: 10
@@ -66,248 +59,7 @@ Item {
         // GC or Reloading the weather images is very slow.
         cacheBuffer: 10000000 
 
-        delegate: RowLayout {
-            Layout.fillWidth: true
-            anchors.left: parent.left
-            anchors.right: parent.right
-            spacing: 10
-            property date agendaItemDate: model.date
-            property bool agendaItemIsToday: currentTime && model.date ? Shared.isSameDate(currentTime, model.date) : false
-            property bool agendaItemInProgress: agendaItemIsToday
-
-            LinkRect {
-                Layout.alignment: Qt.AlignTop
-
-                Column {
-                    id: itemWeatherColumn
-                    width: 50
-                    Layout.alignment: Qt.AlignTop
-
-                    FontIcon {
-                        visible: showWeather && cfg_agenda_weather_show_icon
-                        color: agendaItemIsToday ? inProgressColor : PlasmaCore.ColorScope.textColor
-                        source: weatherIcon
-                        height: cfg_agenda_weather_icon_height
-                        showOutline: plasmoid.configuration.show_outlines
-                        anchors {
-                            left: parent.left
-                            right: parent.right
-                        }
-                    }
-
-                    Text {
-                        id: itemWeatherText
-                        visible: showWeather && cfg_agenda_weather_show_text
-                        text: weatherText
-                        color: agendaItemIsToday ? inProgressColor : PlasmaCore.ColorScope.textColor
-                        opacity: agendaItemIsToday ? 1 : 0.75
-                        font.weight: agendaItemIsToday ? inProgressFontWeight : Font.Normal
-                        anchors {
-                            left: parent.left
-                            right: parent.right
-                        }
-                        horizontalAlignment: paintedWidth > parent.width ? Text.AlignLeft  : Text.AlignHCenter
-                    }
-
-                    Text {
-                        id: itemWeatherTemps
-                        visible: showWeather
-                        text: tempHigh + '° | ' + tempLow + '°'
-                        color: agendaItemIsToday ? inProgressColor : PlasmaCore.ColorScope.textColor
-                        opacity: agendaItemIsToday ? 1 : 0.75
-                        font.weight: agendaItemIsToday ? inProgressFontWeight : Font.Normal
-                        anchors {
-                            left: parent.left
-                            right: parent.right
-                        }
-                        horizontalAlignment: paintedWidth > parent.width ? Text.AlignLeft  : Text.AlignHCenter
-                    }
-                }
-
-                tooltipMainText: weatherDescription
-                tooltipSubText: weatherNotes
-
-                onLeftClicked: {
-                    // console.log('agendaItem.date.clicked', date)
-                    if (true) {
-                        // cfg_agenda_weather_clicked == "browser_viewcityforecast"
-                        if (config.weather_city_id) {
-                            WeatherApi.openCityUrl();
-                        }
-                    }
-                }
-            }
-
-            LinkRect {
-                Layout.alignment: Qt.AlignTop
-
-                Column {
-                    id: itemDateColumn
-                    width: 50
-
-                    Text {
-                        id: itemDate
-                        text: Qt.formatDateTime(date, "MMM d")
-                        color: agendaItemIsToday ? inProgressColor : PlasmaCore.ColorScope.textColor
-                        opacity: agendaItemIsToday ? 1 : 0.75
-                        font.weight: agendaItemIsToday ? inProgressFontWeight : Font.Normal
-                        anchors {
-                            left: parent.left
-                            right: parent.right
-                        }
-                        horizontalAlignment: Text.AlignRight
-
-                        // MouseArea {
-                        //     anchors.fill: itemDateColumn
-                        //     onClicked: {
-                        //         newEventInput.forceActiveFocus()
-                        //     }
-                        // }
-                    }
-
-                    Text {
-                        id: itemDay
-                        text: Qt.formatDateTime(date, "ddd")
-                        color: agendaItemIsToday ? inProgressColor : PlasmaCore.ColorScope.textColor
-                        opacity: agendaItemIsToday ? 1 : 0.5
-                        font.weight: agendaItemIsToday ? inProgressFontWeight : Font.Normal
-                        anchors {
-                            left: parent.left
-                            right: parent.right
-                        }
-                        horizontalAlignment: Text.AlignRight
-                    }
-                }
-
-                onLeftClicked: {
-                    // console.log('agendaItem.date.leftClicked', date)
-                    if (false) {
-                        // cfg_agenda_date_clicked == "browser_newevent"
-                        Shared.openGoogleCalendarNewEventUrl(date);
-                    } else if (true) {
-                        // cfg_agenda_date_clicked == "agenda_newevent"
-                        newEventForm.active = !newEventForm.active
-                    }
-                }
-            }
-
-            ColumnLayout {
-                Layout.alignment: Qt.AlignTop | Qt.AlignLeft
-                spacing: 0
-                Item {
-                    Layout.fillWidth: true
-                }
-
-                Loader {
-                    id: newEventForm
-                    active: false
-                    visible: active
-
-                    Layout.fillWidth: true
-                    sourceComponent: Component {
-
-                        ColumnLayout {
-                            Component.onCompleted: {
-                                newEventText.forceActiveFocus()
-                                newEventFormOpened(model, newEventCalendarId)
-                            }
-                            PlasmaComponents.ComboBox {
-                                id: newEventCalendarId
-                                Layout.fillWidth: true
-                                model: ['asdf']
-                            }
-
-                            RowLayout {
-                                PlasmaComponents.TextField {
-                                    id: newEventText
-                                    Layout.fillWidth: true
-                                    placeholderText: "Eg: 9am-5pm Work"
-                                    onAccepted: {
-                                        var calendarId = newEventCalendarId.model[newEventCalendarId.currentIndex]
-                                        submitNewEventForm(calendarId, date, text)
-                                        text = ''
-                                    }
-                                }
-                            }
-
-                            Item {
-                                Layout.fillWidth: true
-                                height: 10
-                            }
-                        }
-                    }
-                }
-                
-
-                ColumnLayout {
-                    spacing: 10
-                    Layout.fillWidth: true
-
-                    Repeater {
-                        model: events
-
-                        delegate: LinkRect {
-                            width: undefined
-                            Layout.fillWidth: true
-                            height: eventColumn.height
-                            property bool eventItemInProgress: start && currentTime && end ? start.dateTime <= currentTime && currentTime <= end.dateTime : false
-
-                            RowLayout {
-                                Rectangle {
-                                    width: 2
-                                    height: eventColumn.height
-                                    color: model.backgroundColor
-                                }
-
-                                ColumnLayout {
-                                    id: eventColumn
-                                    // Layout.fillWidth: true
-
-                                    Text {
-                                        id: eventSummary
-                                        text: summary
-                                        color: eventItemInProgress ? inProgressColor : PlasmaCore.ColorScope.textColor
-                                        font.weight: eventItemInProgress ? inProgressFontWeight : Font.Normal
-                                    }
-
-                                    Text {
-                                        id: eventDateTime
-                                        text: {
-                                            Shared.formatEventDuration(model, {
-                                                relativeDate: agendaItemDate,
-                                                clock_24h: agendaView.cfg_clock_24h
-                                            })
-                                        }
-                                        color: eventItemInProgress ? inProgressColor : PlasmaCore.ColorScope.textColor
-                                        opacity: eventItemInProgress ? 1 : 0.75
-                                        font.weight: eventItemInProgress ? inProgressFontWeight : Font.Normal
-                                    }
-                                }
-                            }
-                            
-                            onLeftClicked: {
-                                // console.log('agendaItem.event.leftClicked', start.date, mouse)
-                                if (true) {
-                                    // cfg_agenda_event_clicked == "browser_viewevent"
-                                    Qt.openUrlExternally(htmlLink)
-                                }
-                            }
-
-                            onLoadContextMenu: {
-                                var menuItem = contextMenu.newMenuItem();
-                                menuItem.text = i18n("Edit in browser");
-                                menuItem.clicked.connect(function() {
-                                    Qt.openUrlExternally(model.htmlLink)
-                                });
-                                contextMenu.addMenuItem(menuItem);
-                            }
-
-                        }
-                    }
-                }
-
-            }
-        }
+        delegate: AgendaListItem {}
     }
 
     function scrollToTop() {
@@ -350,7 +102,7 @@ Item {
 
     function parseGCalEvents(data) {
         agendaModel.clear();
-        currentTime = new Date();
+        // currentTime = new Date();
 
         if (!(data && data.items))
             return;
@@ -404,7 +156,7 @@ Item {
         }
         for (var i = 0; i < data.items.length; i++) {
             var eventItem = data.items[i];
-            if (cfg_agenda_breakup_multiday_events) {
+            if (plasmoid.configuration.agenda_breakup_multiday_events) {
                 // for Max(start, visibleMin) .. Min(end, visibleMax)
                 var lowerLimitDate = agendaView.clipEventsOutsideLimits && eventItem.start.dateTime < agendaView.visibleDateMin ? agendaView.visibleDateMin : eventItem.start.dateTime;
                 var upperLimitDate = eventItem.end.dateTime;
@@ -420,7 +172,7 @@ Item {
                     insertEventAtDate(eventItemDate, eventItem);
                 }
             } else {
-                var now = new Date();
+                var now = new Date(agendaView.currentTime);
                 var inProgress = eventItem.start.dateTime <= now && now <= eventItem.end.dateTime;
                 if (inProgress) {
                     insertEventAtDate(now, eventItem);
@@ -430,7 +182,7 @@ Item {
             }
         }
 
-        var today = new Date();
+        var today = new Date(agendaView.currentTime);
         var nextNumDaysEndExclusive = new Date(currentMonth.getFullYear(), currentMonth.getMonth(), today.getDate() + showNextNumDays);
 
         if (clipEventsFromOtherMonths) {
@@ -548,23 +300,13 @@ Item {
         parseWeatherForecast({ "list": [], });
 
         if (typeof root === 'undefined') {
+            console.log('[AgendaView] now = new Date()')
             var now = new Date()
             visibleDateMin = new Date(now.getFullYear(), now.getMonth(), 1)
             visibleDateMax = new Date(now.getFullYear(), now.getMonth()+1, 0)
             clipPastEvents = false
             parseGCalEvents(DebugFixtures.getEventData());
             parseWeatherForecast(DebugFixtures.getDailyWeatherData());
-        }
-    }
-
-    Timer {
-        running: true
-        repeat: true
-        interval: (60 * 1000) - (Date.now() % (60 * 1000)) // Align to minute
-        onTriggered: {
-            // console.log('onTriggered', interval)
-            currentTime = new Date()
-            interval = 60 * 1000
         }
     }
 }
