@@ -141,6 +141,15 @@ ConfigPage {
 			}
 		}
 		
+		ConfigComboBox {
+			configKey: "tileLabelAlignment"
+			label: i18n("Text Alignment")
+			model: [
+				{ value: "left", text: i18n("Left") },
+				{ value: "center", text: i18n("Center") },
+				{ value: "right", text: i18n("Right") },
+			]
+		}
 	}
 
 	ExclusiveGroup { id: sidebarThemeGroup }
@@ -183,6 +192,20 @@ ConfigPage {
 			exclusiveGroup: searchBoxThemeGroup
 			checked: !plasmoid.configuration.searchFieldFollowsTheme
 			onClicked: plasmoid.configuration.searchFieldFollowsTheme = false
+		}
+	}
+
+	ConfigSection {
+		label: i18n("App List")
+		
+		ConfigComboBox {
+			configKey: "appDescription"
+			label: i18n("App Description")
+			model: [
+				{ value: "hidden", text: i18n("Hidden") },
+				{ value: "after", text: i18n("After") },
+				{ value: "below", text: i18n("Below") },
+			]
 		}
 	}
 }
