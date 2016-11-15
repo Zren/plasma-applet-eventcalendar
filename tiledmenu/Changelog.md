@@ -1,3 +1,11 @@
+## v5 - November 14 2016
+
+* Tile text can now be center or right aligned.
+* App description can now be after the app name, or hidden altogether.
+* Use the system-search-symbolic icon instead of search and system-search.
+* Optionally use the "widget/frame.svg" #raised from the desktop theme for the sidebar. The background color is drawn underneath when the power menu is open (since most themes have the svg transparent).
+* Fix the sidebar when an icon doesn't exist in the icon theme.
+
 ## v4 - November 12 2016
 
 * Fix a number of scaling issues when using a non default DPI.
