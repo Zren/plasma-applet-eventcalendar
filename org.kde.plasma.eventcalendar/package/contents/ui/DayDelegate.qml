@@ -171,7 +171,7 @@ MouseArea {
             anchors.right: parent.right
             anchors.bottom: parent.bottom
             height: parent.height / 3
-            width: childrenRect.width
+            width: eventBadgeCountText.paintedWidth //childrenRect.width
             color: {
                 if (plasmoid.configuration.show_outlines) {
                     var c = Qt.darker(theme.backgroundColor, 1); // Cast to color
@@ -185,14 +185,13 @@ MouseArea {
             Components.Label {
                 id: eventBadgeCountText
                 height: parent.height
-                width: Math.max(paintedWidth, parent.height)
+                width: paintedWidth // Math.max(paintedWidth, parent.height)
                 anchors.centerIn: parent
 
                 color: theme.highlightColor
                 text: model.events.count
                 font.weight: Font.Bold
-                font.pixelSize: 1024
-                minimumPixelSize: 0
+                font.pointSize: 1024
                 fontSizeMode: Text.VerticalFit
                 wrapMode: Text.NoWrap
 
@@ -242,6 +241,9 @@ MouseArea {
         mainText: Qt.formatDate(thisDate, Locale.LongFormat)
         
         subText: {
+            if (!model.events) {
+                return '';
+            }
             var lines = [];
             for (var i = 0; i < model.events.count; i++) {
                 var eventItem = model.events.get(i);

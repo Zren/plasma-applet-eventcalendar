@@ -28,8 +28,6 @@ import org.kde.plasma.extras 2.0 as PlasmaExtras
 PinchArea {
     id: root
 
-    // anchors.fill: parent
-
     property alias selectedMonth: calendarBackend.monthName
     property alias selectedYear: calendarBackend.year
     property alias displayedDate: calendarBackend.displayedDate
@@ -46,11 +44,10 @@ PinchArea {
     property int rows: calendarBackend.weeks
 
     property Item selectedItem
-    property int week;
+    property int week
     property int firstDay: new Date(showDate.getFullYear(), showDate.getMonth(), 1).getDay()
     property alias today: calendarBackend.today
     property bool showWeekNumbers: false
-    property string eventBadgeType: 'theme'
 
     property alias cellHeight: mainDaysCalendar.cellHeight
     // property QtObject daysModel: calendarBackend.daysModel
@@ -221,6 +218,11 @@ PinchArea {
             // daysModel.setPluginsManager(EventPluginsManager);
         }
 
+        onTodayChanged: {
+            console.log('onTodayChanged', displayedDate, today)
+            displayedDate = today
+        }
+
         onDisplayedDateChanged: {
             updateMonthOverview()
         }
@@ -354,7 +356,7 @@ PinchArea {
             rows: calendarBackend.weeks
 
             showWeekNumbers: root.showWeekNumbers
-            eventBadgeType: root.eventBadgeType
+            eventBadgeType: plasmoid.configuration.month_eventbadge_type
 
             headerModel: calendarBackend.days
             // gridModel: calendarBackend.daysModel

@@ -90,6 +90,7 @@ var weatherIconMap = {
 };
 
 function isSameDate(a, b) {
+    // console.log('isSameDate', a, b)
     return a.getFullYear() == b.getFullYear() && a.getMonth() == b.getMonth() && a.getDate() == b.getDate();
 }
 function isDateEarlier(a, b) {

@@ -18,7 +18,6 @@ Item {
     implicitWidth: pageColumn.implicitWidth
     implicitHeight: pageColumn.implicitHeight
 
-    // property alias cfg_widget_show_pin: widget_show_pin.checked
     property alias cfg_widget_show_meteogram: widget_show_meteogram.checked
     property alias cfg_widget_show_timer: widget_show_timer.checked
     property alias cfg_timer_sfx_enabled: timer_sfx_enabled.checked

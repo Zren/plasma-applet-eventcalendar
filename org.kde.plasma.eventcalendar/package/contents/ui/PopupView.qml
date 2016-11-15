@@ -10,7 +10,7 @@ import org.kde.plasma.extras 2.0 as PlasmaExtras
 import "utils.js" as Utils
 import "shared.js" as Shared
 import "../code/WeatherApi.js" as WeatherApi
-import "debugfixtures.js" as DebugFixtures
+import "../code/DebugFixtures.js" as DebugFixtures
 
 Item {
     id: popup
@@ -24,14 +24,14 @@ Item {
     property int padding: 0
 
     Layout.minimumWidth: {
-        if (cfg_widget_show_agenda && cfg_widget_show_calendar) {
+        if (showAgenda && showCalendar) {
             return (400 + 10 + 400) * units.devicePixelRatio
         } else {
             return 400 * units.devicePixelRatio
         }
     }
     Layout.preferredWidth: {
-        if (cfg_widget_show_agenda && cfg_widget_show_calendar) {
+        if (showAgenda && showCalendar) {
             return (400 + 10 + 400) * units.devicePixelRatio + padding * 2
         } else {
             return 400 * units.devicePixelRatio + padding * 2
@@ -41,7 +41,7 @@ Item {
 
     Layout.minimumHeight: 400 * units.devicePixelRatio
     Layout.preferredHeight: {
-        if ((cfg_widget_show_meteogram || cfg_widget_show_timer) && (cfg_widget_show_agenda || cfg_widget_show_calendar)) {
+        if ((showMeteogram || showTimer) && (showAgenda || showCalendar)) {
             return (400 + 10 + 100) * units.devicePixelRatio + padding * 2
         } else {
             return 400 * units.devicePixelRatio + padding * 2
@@ -49,29 +49,18 @@ Item {
     }
     Layout.maximumHeight: plasmoid.screenGeometry.height
 
+    property var eventModel
+    property var weatherModel
+    // property alias agendaModel: agendaView.agendaModel
+
     // Overload with config: plasmoid.configuration
     property variant config: { }
-    property bool cfg_clock_24h: false
-    property bool cfg_widget_show_pin: false
-    property bool cfg_widget_show_meteogram: true
-    property bool cfg_widget_show_timer: true
-    property bool cfg_widget_show_agenda: true
-    property bool cfg_widget_show_calendar: true
-    property bool cfg_timer_repeats: false
-    property bool cfg_timer_sfx_enabled: true
-    property string cfg_timer_sfx_filepath: "/usr/share/sounds/freedesktop/stereo/complete.oga"
-    property bool cfg_agenda_scroll_on_select: true
+    property bool showMeteogram: plasmoid.configuration.widget_show_meteogram
+    property bool showTimer: plasmoid.configuration.widget_show_timer
+    property bool showAgenda: plasmoid.configuration.widget_show_agenda
+    property bool showCalendar: plasmoid.configuration.widget_show_calendar
+    property bool agendaScrollOnSelect: true
     property bool cfg_agenda_scroll_on_monthchange: false
-    property bool cfg_agenda_weather_show_icon: false
-    property int cfg_agenda_weather_icon_height: 24
-    property bool cfg_agenda_weather_show_text: false
-    property bool cfg_agenda_breakup_multiday_events: true
-    property bool cfg_month_show_border: true
-    property bool cfg_month_show_weeknumbers: true
-    property string cfg_month_eventbadge_type: 'theme'
-    property bool cfg_agenda_newevent_remember_calendar: true
-    property string cfg_agenda_newevent_last_calendar_id: ''
-    property int cfg_events_pollinterval: 20
     
     property alias agendaListView: agendaView.agendaListView
     property alias today: monthView.today
@@ -79,8 +68,6 @@ Item {
     property alias monthViewDate: monthView.displayedDate
     property date visibleDateMin: new Date()
     property date visibleDateMax: new Date()
-    property variant eventsData: { "items": [] }
-    property variant eventsByCalendar: { "": { "items": [] } }
     property variant dailyWeatherData: { "list": [] }
     property variant hourlyWeatherData: { "list": [] }
     property variant currentWeatherData: null
@@ -94,7 +81,7 @@ Item {
         }   
     }
     function scrollToSelection() {
-        if (!cfg_agenda_scroll_on_select)
+        if (!agendaScrollOnSelect)
             return;
         if (true) {
             agendaView.scrollToDate(selectedDate)
@@ -104,7 +91,7 @@ Item {
     }
 
     Connections {
-        target: config
+        target: plasmoid.configuration
         onWeather_serviceChanged: {
             popup.dailyWeatherData = { "list": [] }
             popup.hourlyWeatherData = { "list": [] }
@@ -124,21 +111,13 @@ Item {
         updateEvents();
     }
 
-
-    // Debugging
-    Rectangle {
-        visible: typeof root === 'undefined'
-        color: PlasmaCore.ColorScope.backgroundColor
-        anchors.fill: parent
-    }
-
     onStateChanged: {
         // console.log(popup.state, widgetGrid.columns, widgetGrid.rows)
     }
     states: [
         State {
             name: "agenda+month"
-            when: popup.cfg_widget_show_agenda && popup.cfg_widget_show_calendar && !popup.cfg_widget_show_meteogram && !popup.cfg_widget_show_timer
+            when: popup.showAgenda && popup.showCalendar && !popup.showMeteogram && !popup.showTimer
 
             PropertyChanges { target: widgetGrid
                 columns: 2
@@ -147,7 +126,7 @@ Item {
         },
         State {
             name: "meteogram+agenda+month"
-            when: popup.cfg_widget_show_agenda && popup.cfg_widget_show_calendar && popup.cfg_widget_show_meteogram && !popup.cfg_widget_show_timer
+            when: popup.showAgenda && popup.showCalendar && popup.showMeteogram && !popup.showTimer
 
             PropertyChanges { target: widgetGrid
                 columns: 2
@@ -159,7 +138,7 @@ Item {
         },
         State {
             name: "timer+agenda+month"
-            when: popup.cfg_widget_show_agenda && popup.cfg_widget_show_calendar && !popup.cfg_widget_show_meteogram && popup.cfg_widget_show_timer
+            when: popup.showAgenda && popup.showCalendar && !popup.showMeteogram && popup.showTimer
 
             PropertyChanges { target: widgetGrid
                 columns: 2
@@ -171,7 +150,7 @@ Item {
         },
         State {
             name: "meteogram+timer+agenda+month"
-            when: popup.cfg_widget_show_agenda && popup.cfg_widget_show_calendar && popup.cfg_widget_show_meteogram && popup.cfg_widget_show_timer
+            when: popup.showAgenda && popup.showCalendar && popup.showMeteogram && popup.showTimer
 
             PropertyChanges { target: widgetGrid
                 columns: 2
@@ -180,7 +159,7 @@ Item {
         },
         State {
             name: "singleColumn"
-            when: !(popup.cfg_widget_show_agenda && popup.cfg_widget_show_calendar)
+            when: !(popup.showAgenda && popup.showCalendar)
 
             PropertyChanges { target: widgetGrid
                 columns: 1
@@ -209,12 +188,11 @@ Item {
 
             ForecastGraph {
                 id: meteogramView
-                visible: cfg_widget_show_meteogram
+                visible: showMeteogram
                 Layout.fillWidth: true
                 Layout.minimumHeight: popup.topRowHeight
                 Layout.preferredHeight: parent.height / 5
-                cfg_clock_24h: popup.cfg_clock_24h
-                cfg_meteogram_hours: popup.config.meteogram_hours
+                cfg_meteogram_hours: plasmoid.configuration.meteogram_hours
                 showIconOutline: plasmoid.configuration.show_outlines
                 xAxisScale: 1 / hoursPerDataPoint
                 xAxisLabelEvery: Math.ceil(3 / hoursPerDataPoint)
@@ -237,36 +215,26 @@ Item {
 
             TimerView {
                 id: timerView
-                visible: cfg_widget_show_timer
+                visible: showTimer
                 Layout.fillWidth: true
                 Layout.minimumHeight: popup.topRowHeight
                 Layout.preferredHeight: parent.height / 5
-                cfg_timer_repeats: popup.cfg_timer_repeats
-                cfg_timer_sfx_enabled: popup.cfg_timer_sfx_enabled
-                cfg_timer_sfx_filepath: popup.cfg_timer_sfx_filepath
             }
 
             AgendaView {
                 id: agendaView
-                visible: cfg_widget_show_agenda
+                visible: showAgenda
 
                 Layout.preferredWidth: parent.width / 2
                 Layout.fillWidth: true
                 Layout.fillHeight: true
-
-                cfg_agenda_breakup_multiday_events: popup.cfg_agenda_breakup_multiday_events
-                cfg_agenda_weather_show_icon: popup.cfg_agenda_weather_show_icon
-                cfg_agenda_weather_icon_height: popup.cfg_agenda_weather_icon_height
-                cfg_agenda_weather_show_text: popup.cfg_agenda_weather_show_text
-
-                currentTime: today
 
                 visibleDateMin: popup.visibleDateMin
                 visibleDateMax: popup.visibleDateMax
 
                 onNewEventFormOpened: {
                     // console.log('onNewEventFormOpened')
-                    if (config && config.access_token) {
+                    if (plasmoid.configuration.access_token) {
                         var calendarIdList = plasmoid.configuration.calendar_id_list ? plasmoid.configuration.calendar_id_list.split(',') : ['primary'];
                         var calendarList = plasmoid.configuration.calendar_list ? JSON.parse(Qt.atob(plasmoid.configuration.calendar_list)) : [];
                         // console.log('calendarList', JSON.stringify(calendarList, null, '\t'))
@@ -274,7 +242,7 @@ Item {
                         var selectedIndex = 0;
                         calendarList.forEach(function(calendar){
                             if (calendar.accessRole == 'owner') {
-                                if (popup.cfg_agenda_newevent_remember_calendar && calendar.id === popup.cfg_agenda_newevent_last_calendar_id) {
+                                if (plasmoid.configuration.agenda_newevent_remember_calendar && calendar.id === plasmoid.configuration.agenda_newevent_last_calendar_id) {
                                     selectedIndex = list.length; // index after insertion
                                 }
                                 list.push({
@@ -289,23 +257,23 @@ Item {
                 }
                 onSubmitNewEventForm: {
                     // console.log('onSubmitNewEventForm', calendarId)
-                    if (config && config.access_token) {
+                    if (plasmoid.configuration.access_token) {
                         var calendarId2 = calendarId.calendarId ? calendarId.calendarId : calendarId
                         var calendarList = plasmoid.configuration.calendar_list ? JSON.parse(Qt.atob(plasmoid.configuration.calendar_list)) : [];
                         var dateString = date.getFullYear() + '-' + (date.getMonth()+1) + '-' + date.getDate()
                         // console.log('text', dateString + ' ' + text)
-                        if (popup.cfg_agenda_newevent_remember_calendar) {
+                        if (plasmoid.configuration.agenda_newevent_remember_calendar) {
                             plasmoid.configuration.agenda_newevent_last_calendar_id = calendarId2
                         }
                         Shared.createGCalEvent({
-                            access_token: config.access_token,
+                            access_token: plasmoid.configuration.access_token,
                             calendarId: calendarId2,
                             text: dateString + ' ' + text,
                         }, function(err, data) {
                             // console.log(err, JSON.stringify(data, null, '\t'));
                             var calendarIdList = plasmoid.configuration.calendar_id_list ? plasmoid.configuration.calendar_id_list.split(',') : ['primary'];
                             if (calendarIdList.indexOf(calendarId2) >= 0) {
-                                eventsByCalendar[calendarId2].items.push(data);
+                                eventModel.eventsByCalendar[calendarId2].items.push(data);
                                 updateUI()
                             }
                         })
@@ -324,10 +292,9 @@ Item {
 
             MonthView {
                 id: monthView
-                visible: cfg_widget_show_calendar
-                borderOpacity: cfg_month_show_border ? 0.25 : 0
-                showWeekNumbers: cfg_month_show_weeknumbers
-                eventBadgeType: cfg_month_eventbadge_type
+                visible: showCalendar
+                borderOpacity: plasmoid.configuration.month_show_border ? 0.25 : 0
+                showWeekNumbers: plasmoid.configuration.month_show_weeknumbers
 
                 Layout.preferredWidth: parent.width/2
                 Layout.fillWidth: true
@@ -382,7 +349,6 @@ Item {
                         // cfg_month_day_doubleclick == "browser_newevent"
                         Shared.openGoogleCalendarNewEventUrl(date);
                     }
-                    
                 }
             }
 
@@ -391,14 +357,14 @@ Item {
     }
 
     Component.onCompleted: {
-        delete eventsByCalendar[''] // Is there really no way to initialize an empty JSON object?
         if (typeof root === 'undefined') {
+            console.log('today = new Date()')
             today = new Date();
         }
         update();
         if (typeof root === 'undefined') {
-            // eventsByCalendar['debug'] = DebugFixtures.getEventData();
-            eventsData = DebugFixtures.getEventData();
+            // eventModel.eventsByCalendar['debug'] = DebugFixtures.getEventData();
+            eventModel.eventsData = DebugFixtures.getEventData();
             // updateUI();
             // agendaView.parseGCalEvents(eventsData);
             // monthView.parseGCalEvents(eventsData);
@@ -411,7 +377,7 @@ Item {
         
         repeat: true
         triggeredOnStart: true
-        interval: cfg_events_pollinterval * 60000
+        interval: plasmoid.configuration.events_pollinterval * 60000
         onTriggered: update()
     }
 
@@ -443,7 +409,7 @@ Item {
         // console.log(dateMin);
         // console.log(dateMax);
 
-        if (config && config.access_token) {
+        if (plasmoid.configuration.access_token) {
             var calendarIdList = plasmoid.configuration.calendar_id_list ? plasmoid.configuration.calendar_id_list.split(',') : ['primary'];
             var calendarList = plasmoid.configuration.calendar_list ? JSON.parse(Qt.atob(plasmoid.configuration.calendar_list)) : [];
 
@@ -451,7 +417,7 @@ Item {
             // console.log('calendarIdList', calendarIdList);
             // console.log('calendarList.length', calendarList.length);
 
-            eventsByCalendar = {};
+            eventModel.eventsByCalendar = {};
             popup.visibleDateMin = dateMin
             popup.visibleDateMax = dateMax
 
@@ -461,7 +427,7 @@ Item {
                         calendarId: calendarId,
                         start: dateMin.toISOString(),
                         end: dateMax.toISOString(),
-                        access_token: config.access_token,
+                        access_token: plasmoid.configuration.access_token,
                     }, function(err, data, xhr) {
                         if (err) {
                             if (typeof err === 'object') {
@@ -477,7 +443,7 @@ Item {
                         // console.log('onGCalEvents', JSON.stringify(data, null, '\t'))
 
                         
-                        eventsByCalendar[calendarId] = data;
+                        eventModel.eventsByCalendar[calendarId] = data;
                         updateUI();
                     });
                 })(calendarIdList[i]);
@@ -487,7 +453,7 @@ Item {
     }
 
     function updateWeather(force) {
-        if (config && config.weather_city_id) {
+        if (plasmoid.configuration.weather_city_id) {
             // update every hour
             var shouldUpdate = false;
             if (lastForecastAt) {
@@ -505,7 +471,7 @@ Item {
             if (force || shouldUpdate) {
                 updateDailyWeather();
 
-                if (popup.cfg_widget_show_meteogram) {
+                if (popup.showMeteogram) {
                     updateHourlyWeather();
                 }
             }
@@ -551,26 +517,25 @@ Item {
             agendaView.clipPastEvents = false;
         }
 
-        var calendarList = config && config.calendar_list ? JSON.parse(Qt.atob(config.calendar_list)) : [];
+        var calendarList = plasmoid.configuration.calendar_list ? JSON.parse(Qt.atob(plasmoid.configuration.calendar_list)) : [];
 
-        eventsData = { items: [] }
-        for (var calendarId in eventsByCalendar) {
+        eventModel.eventsData = { items: [] }
+        for (var calendarId in eventModel.eventsByCalendar) {
             calendarList.forEach(function(calendar){
                 if (calendarId == calendar.id) {
-                    eventsByCalendar[calendarId].items.forEach(function(event){
+                    eventModel.eventsByCalendar[calendarId].items.forEach(function(event){
                         event.backgroundColor = event.backgroundColor || calendar.backgroundColor;
                     });
                 }
             });
 
-            eventsData.items = eventsData.items.concat(eventsByCalendar[calendarId].items);
-            // console.log('updateUI', calendarId, eventsByCalendar[calendarId].items.length, eventsData.items.length);
+            eventModel.eventsData.items = eventModel.eventsData.items.concat(eventModel.eventsByCalendar[calendarId].items);
+            // console.log('updateUI', calendarId, eventModel.eventsByCalendar[calendarId].items.length, eventsData.items.length);
         }
 
-        agendaView.cfg_clock_24h = config ? config.clock_24h : false;
-        agendaView.parseGCalEvents(eventsData);
+        agendaView.parseGCalEvents(eventModel.eventsData);
         agendaView.parseWeatherForecast(dailyWeatherData);
-        monthView.parseGCalEvents(eventsData);
+        monthView.parseGCalEvents(eventModel.eventsData);
         scrollToSelection();
     }
 
@@ -590,19 +555,19 @@ Item {
         Utils.post({
             url: url,
             data: {
-                client_id: config.client_id,
-                client_secret: config.client_secret,
-                refresh_token: config.refresh_token,
+                client_id: plasmoid.configuration.client_id,
+                client_secret: plasmoid.configuration.client_secret,
+                refresh_token: plasmoid.configuration.refresh_token,
                 grant_type: 'refresh_token',
             },
         }, callback);
     }
 
     function updateAccessToken() {
-        // console.log('access_token_expires_at', config.access_token_expires_at);
+        // console.log('access_token_expires_at', plasmoid.configuration.access_token_expires_at);
         // console.log('                    now', Date.now());
-        // console.log('refresh_token', config.refresh_token);
-        if (config.refresh_token) {
+        // console.log('refresh_token', plasmoid.configuration.refresh_token);
+        if (plasmoid.configuration.refresh_token) {
             console.log('fetchNewAccessToken');
             fetchNewAccessToken(function(err, data, xhr) {
                 if (err || (!err && data && data.error)) {
@@ -611,9 +576,9 @@ Item {
                 console.log('onAccessToken', data);
                 data = JSON.parse(data);
 
-                config.access_token = data.access_token;
-                config.access_token_type = data.token_type;
-                config.access_token_expires_at = Date.now() + data.expires_in * 1000;
+                plasmoid.configuration.access_token = data.access_token;
+                plasmoid.configuration.access_token_type = data.token_type;
+                plasmoid.configuration.access_token_expires_at = Date.now() + data.expires_in * 1000;
 
                 update();
             });

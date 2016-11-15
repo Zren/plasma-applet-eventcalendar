@@ -12,52 +12,44 @@ import org.kde.kquickcontrolsaddons 2.0 // KCMShell
 Item {
     id: root
 
-    PlasmaCore.DataSource {
-        id: dataSource
-        engine: "time"
-        connectedSources: ["Local"]
-        interval: plasmoid.configuration.clock_show_seconds ? 1000 : 60000
-        intervalAlignment: plasmoid.configuration.clock_show_seconds ? PlasmaCore.Types.NoAlignment : PlasmaCore.Types.AlignToMinute
+    property alias dataSource: timeModel.dataSource
+    property alias currentTime: timeModel.currentTime
+    property alias eventModel: eventModel
+    property alias weatherModel: weatherModel
+    property alias agendaModel: agendaModel
+
+    TimeModel { id: timeModel }
+    EventModel { id: eventModel }
+    WeatherModel { id: weatherModel }
+    AgendaModel {
+        id: agendaModel
+        eventModel: eventModel
+        weatherModel: weatherModel
+        Component.onCompleted: console.log('AgendaModel.onCompleted')
     }
-    
-    Plasmoid.toolTipMainText: Qt.formatTime(dataSource.data["Local"]["DateTime"])
-    Plasmoid.toolTipSubText: Qt.formatDate(dataSource.data["Local"]["DateTime"], Qt.locale().dateFormat(Locale.LongFormat))
-    
+
     FontLoader {
         source: "../fonts/weathericons-regular-webfont.ttf"
     }
 
+    Plasmoid.toolTipMainText: Qt.formatTime(currentTime, Qt.locale().timeFormat(Locale.LongFormat))
+    Plasmoid.toolTipSubText: Qt.formatDate(currentTime, Qt.locale().dateFormat(Locale.LongFormat))
+    
     // org.kde.plasma.mediacontrollercompact
     PlasmaCore.DataSource {
-        id: executeSource
+        id: executable
         engine: "executable"
         connectedSources: []
-        onNewData: {
-            //we get new data when the process finished, so we can remove it
-            disconnectSource(sourceName)
+        onNewData: disconnectSource(sourceName) // cmd finished
+        function exec(cmd) {
+            connectSource(cmd)
         }
-    }
-    function exec(cmd) {
-        //Note: we assume that 'cmd' is executed quickly so that a previous call
-        //with the same 'cmd' has already finished (otherwise no new cmd will be
-        //added because it is already in the list)
-        executeSource.connectSource(cmd)
     }
 
     property Component clockComponent: ClockView {
         id: clock
 
-        formFactor: plasmoid.formFactor
-        cfg_clock_24h: plasmoid.configuration.clock_24h
-        cfg_clock_fontfamily: plasmoid.configuration.clock_fontfamily
-        cfg_clock_timeformat: plasmoid.configuration.clock_timeformat
-        cfg_clock_timeformat_2: plasmoid.configuration.clock_timeformat_2
-        cfg_clock_line_2: plasmoid.configuration.clock_line_2
-        cfg_clock_line_2_height_ratio: plasmoid.configuration.clock_line_2_height_ratio
-        cfg_clock_line_1_bold: plasmoid.configuration.clock_line_1_bold
-        cfg_clock_line_2_bold: plasmoid.configuration.clock_line_2_bold
-        cfg_clock_maxheight: plasmoid.configuration.clock_maxheight
-        
+        currentTime: timeModel.currentTime
 
         // org.kde.plasma.volume
         MouseArea {
@@ -80,11 +72,11 @@ Item {
                 // See: http://qt-project.org/doc/qt-5/qml-qtquick-wheelevent.html#angleDelta-prop
                 while (wheelDelta >= 120) {
                     wheelDelta -= 120;
-                    root.exec(plasmoid.configuration.clock_mousewheel_up)
+                    executable.exec(plasmoid.configuration.clock_mousewheel_up)
                 }
                 while (wheelDelta <= -120) {
                     wheelDelta += 120;
-                    root.exec(plasmoid.configuration.clock_mousewheel_down)
+                    executable.exec(plasmoid.configuration.clock_mousewheel_down)
                 }
             }
         }
@@ -92,25 +84,10 @@ Item {
 
     property Component popupComponent: PopupView {
         id: popup
-        config: plasmoid.configuration
-        cfg_clock_24h: plasmoid.configuration.clock_24h
-        cfg_widget_show_meteogram: plasmoid.configuration.widget_show_meteogram
-        cfg_widget_show_timer: plasmoid.configuration.widget_show_timer
-        cfg_widget_show_agenda: plasmoid.configuration.widget_show_agenda
-        cfg_widget_show_calendar: plasmoid.configuration.widget_show_calendar
-        cfg_timer_repeats: plasmoid.configuration.timer_repeats
-        cfg_timer_sfx_enabled: plasmoid.configuration.timer_sfx_enabled
-        cfg_timer_sfx_filepath: plasmoid.configuration.timer_sfx_filepath
-        cfg_agenda_weather_show_icon: plasmoid.configuration.agenda_weather_show_icon
-        cfg_agenda_weather_icon_height: plasmoid.configuration.agenda_weather_icon_height
-        cfg_agenda_weather_show_text: plasmoid.configuration.agenda_weather_show_text
-        cfg_agenda_breakup_multiday_events: plasmoid.configuration.agenda_breakup_multiday_events
-        cfg_agenda_newevent_remember_calendar: plasmoid.configuration.agenda_newevent_remember_calendar
-        cfg_agenda_newevent_last_calendar_id: plasmoid.configuration.agenda_newevent_last_calendar_id
-        cfg_month_show_border: plasmoid.configuration.month_show_border
-        cfg_month_show_weeknumbers: plasmoid.configuration.month_show_weeknumbers
-        cfg_month_eventbadge_type: plasmoid.configuration.month_eventbadge_type
-        cfg_events_pollinterval: plasmoid.configuration.events_pollinterval
+
+        eventModel: root.eventModel
+        weatherModel: root.weatherModel
+        // agendaModel: root.agendaModel
 
         // If pin is enabled, we need to add some padding around the popup unless
         // * we're a desktop widget (no need)
@@ -129,14 +106,25 @@ Item {
 
         property bool isExpanded: plasmoid.expanded
         onIsExpandedChanged: {
-            // console.log('isExpanded', isExpanded);
+            console.log('isExpanded', isExpanded);
             if (isExpanded) {
-                today = dataSource.data["Local"]["DateTime"] || new Date()
-                monthViewDate = today
-                selectedDate = today
-                scrollToSelection()
-                updateWeather();
+                updateToday()
+                updateWeather()
             }
+        }
+
+        function updateToday() {
+            setToday(root.currentTime)
+        }
+
+        function setToday(d) {
+            console.log('setToday', d)
+            today = d
+            // console.log(root.timezone, dataSource.data[root.timezone]["DateTime"])
+            console.log('currentTime', root.currentTime)
+            monthViewDate = today
+            selectedDate = today
+            scrollToSelection()
         }
 
         Connections {
@@ -156,6 +144,14 @@ Item {
             }
         }
 
+        Connections {
+            target: timeModel
+            onDateChanged: {
+                popup.updateToday()
+                console.log('root.onDateChanged', root.currentTime, popup.today)
+            }
+        }
+
         // Allows the user to keep the calendar open for reference
         PlasmaComponents.ToolButton {
             visible: isPinVisible
@@ -172,6 +168,8 @@ Item {
     // Plasmoid.backgroundHints: PlasmaCore.Types.NoBackground
     property bool isDesktopContainment: plasmoid.location == PlasmaCore.Types.Floating
     Plasmoid.preferredRepresentation: isDesktopContainment ? Plasmoid.fullRepresentation : Plasmoid.compactRepresentation
+    // Plasmoid.preferredRepresentation: Plasmoid.compactRepresentation
+    // Plasmoid.preferredRepresentation: Plasmoid.fullRepresentation
     Plasmoid.compactRepresentation: clockComponent
     Plasmoid.fullRepresentation: popupComponent
     
@@ -187,5 +185,11 @@ Item {
     Component.onCompleted: {
         plasmoid.setAction("KCMClock", i18n("Adjust Date and Time..."), "preferences-system-time");
         plasmoid.setAction("KCMFormats", i18n("Set Locale..."), "preferences-desktop-locale");
+    }
+
+    Timer {
+        interval: 400
+        running: true
+        // onTriggered: plasmoid.expanded = true
     }
 }
