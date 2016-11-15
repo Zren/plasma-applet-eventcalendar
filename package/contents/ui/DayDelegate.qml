@@ -171,7 +171,7 @@ MouseArea {
             anchors.right: parent.right
             anchors.bottom: parent.bottom
             height: parent.height / 3
-            width: eventBadgeCountText.paintedWidth //childrenRect.width
+            width: eventBadgeCountText.width
             color: {
                 if (plasmoid.configuration.show_outlines) {
                     var c = Qt.darker(theme.backgroundColor, 1); // Cast to color
@@ -185,7 +185,7 @@ MouseArea {
             Components.Label {
                 id: eventBadgeCountText
                 height: parent.height
-                width: paintedWidth // Math.max(paintedWidth, parent.height)
+                width: Math.max(paintedWidth, height)
                 anchors.centerIn: parent
 
                 color: theme.highlightColor
