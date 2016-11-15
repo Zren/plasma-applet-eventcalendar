@@ -17,6 +17,11 @@ ScrollView {
 		// section.criteria: ViewSection.FirstCharacter
 
 		model: appsModel.allAppsModel // Should be populated by the time this is created
+		
+		delegate: MenuListItem {
+			secondRowVisible: config.appDescriptionBelow
+			description: config.appDescriptionVisible ? model.description : ''
+		}
 
 		showItemUrl: false
 		largeFirstItem: false

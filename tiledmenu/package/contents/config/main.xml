@@ -41,6 +41,10 @@
       <!-- enum: left, center, right -->
       <default>left</default>
     </entry>
+    <entry name="appDescription" type="string">
+      <!-- enum: hidden, after, below -->
+      <default>below</default>
+    </entry>
   </group>
 
 </kcfg>

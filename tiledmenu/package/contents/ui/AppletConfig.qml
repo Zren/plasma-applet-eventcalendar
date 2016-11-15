@@ -59,5 +59,8 @@ Item {
 			return Text.AlignLeft
 		}
 	}
+	// App Description Enum (hidden, after, below)
+	readonly property bool appDescriptionVisible: plasmoid.configuration.appDescription !== 'hidden'
+	readonly property bool appDescriptionBelow: plasmoid.configuration.appDescription == 'below'
 	
 }
