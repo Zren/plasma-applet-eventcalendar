@@ -356,7 +356,7 @@ PlasmaComponents.ListItem {
 
                 PlasmaCore.IconItem {
                     anchors.fill: parent
-                    readonly property bool isMic: mixerItemType == 'Source'
+                    readonly property bool isMic: mixerItemType == 'Source' || mixerItemType == 'SourceOutput'
                     readonly property string prefix: isMic ? 'microphone-sensitivity' : 'audio-volume'
                     source: Icon.name(PulseObject.volume, PulseObject.muted, prefix)
                 }
