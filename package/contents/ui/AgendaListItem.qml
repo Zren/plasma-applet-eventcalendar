@@ -18,13 +18,16 @@ RowLayout {
     anchors.right: parent.right
     spacing: 10
     property date agendaItemDate: model.date
-    property bool agendaItemIsToday: false 
+    property bool agendaItemIsToday: false
+    function checkIfToday() {
+        agendaItemIsToday = timeModel.currentTime && model.date ? Shared.isSameDate(timeModel.currentTime, model.date) : false
+        // console.log('agendaListItem.onDateChanged', agendaListItem.agendaItemIsToday, timeModel.currentTime, model.date)
+    }
+    Component.onCompleted: agendaListItem.checkIfToday()
     Connections {
         target: timeModel
-        onDateChanged: {
-            agendaListItem.agendaItemIsToday = currentTime && model.date ? Shared.isSameDate(currentTime, model.date) : false
-            // console.log('agendaListItem.onDateChanged', agendaListItem.agendaItemIsToday, currentTime, model.date)
-        }
+        onLoaded: agendaListItem.checkIfToday()
+        onDateChanged: agendaListItem.checkIfToday()
     }
     property bool agendaItemInProgress: agendaItemIsToday
 
