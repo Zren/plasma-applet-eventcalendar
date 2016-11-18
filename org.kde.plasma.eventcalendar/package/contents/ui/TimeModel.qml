@@ -12,6 +12,8 @@ Item {
 	signal secondChanged()
 	signal minuteChanged()
 	signal dateChanged()
+	signal loaded()
+	onLoaded: console.log('onLoaded')
 
 	PlasmaCore.DataSource {
 		id: dataSource
@@ -24,9 +26,14 @@ Item {
 		}
 	}
 
+	property bool ready: false
 	property int lastMinute: -1
 	property int lastDate: -1
 	function tick() {
+		if (!ready) {
+			ready = true
+			loaded()
+		}
 		secondChanged()
 		var currentMinute = currentTime.getMinutes()
 		if (currentMinute != lastMinute) {
@@ -45,6 +52,7 @@ Item {
 	Component.onCompleted: {
 		if (testing) {
 			currentTime = new Date(2016, 1, 1, 23, 59, 55)
+			timeModel.loaded()
 		}
 	}
 
