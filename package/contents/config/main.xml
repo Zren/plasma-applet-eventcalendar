@@ -98,6 +98,9 @@
     <entry name="month_eventbadge_type" type="string">
       <default>theme</default>
     </entry>
+    <entry name="month_today_style" type="string">
+      <default>theme</default>
+    </entry>
   </group>
 
   <group name="Agenda">

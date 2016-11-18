@@ -30,6 +30,7 @@ MouseArea {
 
     hoverEnabled: true
     property string eventBadgeType: "bottomBar"
+    property string todayStyle: "theme"
 
     signal activated
 
@@ -67,12 +68,13 @@ MouseArea {
         // this is needed here as the text is first rendered, counting with the default root.cellHeight
         // then root.cellHeight actually changes to whatever it should be, but the Label does not pick
         // it up after that, so we need to change it explicitly after the cell size changes
-        label.font.pixelSize = Math.max(theme.smallestFont.pixelSize, Math.floor(daysCalendar.cellHeight / 3))
+        // label.font.pixelSize = Math.max(theme.smallestFont.pixelSize, Math.floor(daysCalendar.cellHeight / 3))
     }
 
     Rectangle {
         id: todayRect
         anchors.fill: parent
+        visible: todayStyle == "theme"
         opacity: {
             if (selected && today) {
                 0.6
@@ -88,7 +90,7 @@ MouseArea {
 
     Rectangle {
         id: highlightDate
-        anchors.fill: todayRect
+        anchors.fill: parent
         opacity: {
             if (selected) {
                 0.6
@@ -98,7 +100,7 @@ MouseArea {
                 0
             }
         }
-        visible: !today
+        // visible: !today
         Behavior on opacity { NumberAnimation { duration: units.shortDuration*2 } }
         color: theme.highlightColor
         z: todayRect.z - 1
@@ -212,10 +214,10 @@ MouseArea {
         }
     }
 
-    Components.Label {
+    Text {
         id: label
         anchors {
-            fill: todayRect
+            fill: parent
             margins: units.smallSpacing
         }
         horizontalAlignment: Text.AlignHCenter
@@ -225,11 +227,31 @@ MouseArea {
         wrapMode: Text.NoWrap
         elide: Text.ElideRight
         fontSizeMode: Text.HorizontalFit
-        font.pixelSize: Math.max(theme.smallestFont.pixelSize, Math.floor(daysCalendar.cellHeight / 3))
+        font.pixelSize: {
+            if (today && todayStyle == "bigNumber") {
+                return Math.max(theme.smallestFont.pixelSize, Math.floor(dayStyle.height / 2))
+            } else {
+                return Math.max(theme.smallestFont.pixelSize, Math.floor(dayStyle.height / 3))
+            }
+        }
         // This is to avoid the "Both point size and
         // pixel size set. Using pixel size" warnings
         font.pointSize: -1
-        color: today ? theme.backgroundColor : theme.textColor
+        color: {
+            if (today) {
+                if (todayStyle == "bigNumber") {
+                    if (dayStyle.containsMouse || dayStyle.selected) {
+                        return theme.textColor
+                    } else {
+                        return theme.highlightColor
+                    }
+                } else { // todayStyle == "theme"
+                    return theme.backgroundColor
+                }
+            } else {
+                return theme.textColor
+            }
+        }
         Behavior on color {
             ColorAnimation { duration: units.shortDuration * 2 }
         }

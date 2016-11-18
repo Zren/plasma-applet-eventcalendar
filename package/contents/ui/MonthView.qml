@@ -357,6 +357,7 @@ PinchArea {
 
             showWeekNumbers: root.showWeekNumbers
             eventBadgeType: plasmoid.configuration.month_eventbadge_type
+            todayStyle: plasmoid.configuration.month_today_style
 
             headerModel: calendarBackend.days
             // gridModel: calendarBackend.daysModel
