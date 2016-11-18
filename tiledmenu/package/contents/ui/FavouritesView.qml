@@ -71,8 +71,9 @@ ScrollView {
 				Item {
 					anchors.fill: parent
 
-					opacity: favouritesView.editing ? 0.75 : 1
-					scale: favouritesView.editing ? (item.width-5) / item.width : 1
+					property bool faded: favouritesView.editing || (mouseArea.pressedButtons & Qt.LeftButton)
+					opacity: faded ? 0.75 : 1
+					scale: faded ? (item.width-5) / item.width : 1
 					Behavior on opacity { NumberAnimation { duration: 200 } }
 					Behavior on scale { NumberAnimation { duration: 200 } }
 
