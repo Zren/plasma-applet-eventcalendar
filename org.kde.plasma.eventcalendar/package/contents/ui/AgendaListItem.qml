@@ -21,7 +21,7 @@ RowLayout {
     property bool agendaItemIsToday: false
     function checkIfToday() {
         agendaItemIsToday = timeModel.currentTime && model.date ? Shared.isSameDate(timeModel.currentTime, model.date) : false
-        // console.log('agendaListItem.onDateChanged', agendaListItem.agendaItemIsToday, timeModel.currentTime, model.date)
+        // console.log('checkIfToday()', agendaListItem.agendaItemIsToday, timeModel.currentTime, model.date)
     }
     Component.onCompleted: agendaListItem.checkIfToday()
     Connections {
@@ -206,12 +206,16 @@ RowLayout {
                     Layout.fillWidth: true
                     height: eventColumn.height
                     property bool eventItemInProgress: false
+                    function checkIfInProgress() {
+                        eventItemInProgress = start && currentTime && end ? start.dateTime <= currentTime && currentTime <= end.dateTime : false
+                        // console.log('checkIfInProgress()', start, currentTime, end)
+                    }
                     Connections {
                         target: timeModel
-                        onMinuteChanged: {
-                            eventListItem.eventItemInProgress = start && currentTime && end ? start.dateTime <= currentTime && currentTime <= end.dateTime : false
-                        }
+                        onLoaded: eventListItem.checkIfInProgress()
+                        onMinuteChanged: eventListItem.checkIfInProgress()
                     }
+                    Component.onCompleted: eventListItem.checkIfInProgress()
 
                     RowLayout {
                         Rectangle {
