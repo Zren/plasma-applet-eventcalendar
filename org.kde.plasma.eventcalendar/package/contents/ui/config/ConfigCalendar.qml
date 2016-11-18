@@ -14,6 +14,7 @@ ColumnLayout {
     property alias cfg_month_show_border: month_show_border.checked
     property alias cfg_month_show_weeknumbers: month_show_weeknumbers.checked
     property string cfg_month_eventbadge_type: 'bottomBar'
+    property string cfg_month_today_style: 'theme'
 
     SystemPalette {
         id: palette
@@ -159,8 +160,15 @@ ColumnLayout {
                         }
                         RadioButton {
                             text: i18n("Solid Color (Inverted)")
-                            checked: true
                             exclusiveGroup: month_today_styleGroup
+                            checked: cfg_month_today_style == 'theme'
+                            onClicked: cfg_month_today_style = 'theme'
+                        }
+                        RadioButton {
+                            text: i18n("Big Number")
+                            exclusiveGroup: month_today_styleGroup
+                            checked: cfg_month_today_style == 'bigNumber'
+                            onClicked: cfg_month_today_style = 'bigNumber'
                         }
                     }
                 }

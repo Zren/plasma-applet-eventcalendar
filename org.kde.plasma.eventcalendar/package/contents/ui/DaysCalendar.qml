@@ -49,6 +49,7 @@ Item {
 
     property bool showWeekNumbers
     property string eventBadgeType: "theme"
+    property string todayStyle: "theme"
 
     onShowWeekNumbersChanged: canvas.requestPaint()
 
@@ -350,6 +351,17 @@ Item {
                             } else {
                                 return 'bottomBar'
                             }
+                    }
+                }
+
+                todayStyle: {
+                    switch (daysCalendar.todayStyle) {
+                        case 'bigNumber':
+                            return daysCalendar.todayStyle
+
+                        case 'theme':
+                        default:
+                            return 'theme'
                     }
                 }
 
