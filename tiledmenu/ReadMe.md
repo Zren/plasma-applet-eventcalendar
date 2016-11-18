@@ -1,5 +1,7 @@
 # Tiled Menu
 
+https://store.kde.org/p/1160672/
+
 A menu based on Windows 10's Start Menu.
 
 * Supports:
