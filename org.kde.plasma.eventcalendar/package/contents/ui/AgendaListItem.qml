@@ -175,7 +175,7 @@ RowLayout {
                         PlasmaComponents.TextField {
                             id: newEventText
                             Layout.fillWidth: true
-                            placeholderText: "Eg: 9am-5pm Work"
+                            placeholderText: i18n("Eg: 9am-5pm Work")
                             onAccepted: {
                                 var calendarId = newEventCalendarId.model[newEventCalendarId.currentIndex]
                                 submitNewEventForm(calendarId, date, text)
@@ -204,7 +204,8 @@ RowLayout {
                     id: eventListItem
                     width: undefined
                     Layout.fillWidth: true
-                    height: eventColumn.height
+                    Layout.preferredHeight: eventColumn.height
+                    // height: eventColumn.height
                     property bool eventItemInProgress: false
                     function checkIfInProgress() {
                         eventItemInProgress = start && currentTime && end ? start.dateTime <= currentTime && currentTime <= end.dateTime : false
@@ -218,21 +219,47 @@ RowLayout {
                     Component.onCompleted: eventListItem.checkIfInProgress()
 
                     RowLayout {
+                        width: parent.width
+
                         Rectangle {
-                            width: 2
-                            height: eventColumn.height
+                            Layout.preferredWidth: 2 * units.devicePixelRatio
+                            Layout.preferredHeight: eventColumn.height
                             color: model.backgroundColor
                         }
 
                         ColumnLayout {
                             id: eventColumn
-                            // Layout.fillWidth: true
+                            Layout.fillWidth: true
 
                             Text {
                                 id: eventSummary
                                 text: summary
                                 color: eventItemInProgress ? inProgressColor : PlasmaCore.ColorScope.textColor
                                 font.weight: eventItemInProgress ? inProgressFontWeight : Font.Normal
+                                visible: !editSummaryForm.active
+                                Layout.fillWidth: true
+                            }
+
+                            Loader {
+                                id: editSummaryForm
+                                active: false
+                                visible: active
+                                Layout.fillWidth: true
+                                sourceComponent: Component {
+                                    PlasmaComponents.TextField {
+                                        id: editEventText
+                                        placeholderText: i18n("Event Summary")
+                                        text: summary
+                                        onAccepted: {
+                                            console.log('editEventText.onAccepted', text)
+                                        }
+                                        Component.onCompleted: {
+                                            forceActiveFocus()
+                                        }
+
+                                        Keys.onEscapePressed: editSummaryForm.active = false
+                                    }
+                                }
                             }
 
                             Text {
@@ -259,7 +286,16 @@ RowLayout {
                     }
 
                     onLoadContextMenu: {
-                        var menuItem = contextMenu.newMenuItem();
+                        var menuItem;
+
+                        menuItem = contextMenu.newMenuItem();
+                        menuItem.text = i18n("Edit description");
+                        menuItem.clicked.connect(function() {
+                            editSummaryForm.active = !editSummaryForm.active
+                        });
+                        contextMenu.addMenuItem(menuItem);
+
+                        menuItem = contextMenu.newMenuItem();
                         menuItem.text = i18n("Edit in browser");
                         menuItem.clicked.connect(function() {
                             Qt.openUrlExternally(model.htmlLink)
