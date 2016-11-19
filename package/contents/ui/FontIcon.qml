@@ -28,6 +28,7 @@ Item {
         anchors.centerIn: parent
     }
 
+    // https://erikflowers.github.io/weather-icons/
     function getIconCode(name) {
         var codeByName = {
             'weather-clear': '\uf00d',
@@ -38,7 +39,9 @@ Item {
             'weather-showers': '\uf019',
             'weather-storm': '\uf01e',
             'weather-snow': '\uf01b',
-            'weather-fog': '\uf014',
+            'weather-snow-rain': '\uf006', // wi-day-rain-mix
+            'weather-fog': '\uf014', // wi-fog
+            'weather-snow-scattered-day': '\uf00a', // wi-day-snow
 
             // Night
             'weather-clear-night': '\uf02e',
@@ -47,6 +50,11 @@ Item {
             'weather-showers-scattered-night': '\uf029',
             'weather-showers-night': '\uf019',
             'weather-storm-night': '\uf025',
+            'weather-snow-rain-night': '\uf034', // wi-night-rain-mix
+            'weather-snow-scattered-night': '\uf038', // wi-night-snow
+
+            //
+            'question': '?',
         };
         return codeByName[name];
     }
@@ -56,6 +64,9 @@ Item {
         
         var code = getIconCode(source);
         iconText.text = code ? code : '';
+        if (!code) {
+            console.log('missing fontIcon', source)
+        }
     }
 
     onSourceChanged: {

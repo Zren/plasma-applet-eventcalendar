@@ -121,7 +121,11 @@ var weatherIconBySeverity = [
 	'weather-overcast',
 	'weather-showers-scattered-night',
 	'weather-showers-scattered',
+	'weather-snow-scattered-night',
+	'weather-snow-scattered-day',
 	'weather-snow',
+	'weather-snow-rain-night',
+	'weather-snow-rain',
 	'weather-showers-night',
 	'weather-showers',
 	'weather-storm-night',
@@ -135,6 +139,9 @@ function getMostSevereIcon(weatherIconList) {
 	for (var i = 1; i < weatherIconList.length; i++) {
 		var index = weatherIconBySeverity.indexOf(weatherIconList[i]);
 		mostSevereIndex = Math.max(mostSevereIndex, index);
+	}
+	if (mostSevereIndex === -1) {
+		return weatherIconList[0];
 	}
 	return weatherIconBySeverity[mostSevereIndex];
 }
