@@ -453,7 +453,7 @@ Item {
     }
 
     function updateWeather(force) {
-        if (plasmoid.configuration.weather_city_id) {
+        if (WeatherApi.weatherIsSetup()) {
             // update every hour
             var shouldUpdate = false;
             if (lastForecastAt) {

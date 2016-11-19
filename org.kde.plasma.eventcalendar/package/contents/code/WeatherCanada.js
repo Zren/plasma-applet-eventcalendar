@@ -8,6 +8,10 @@ var weatherIconMap = {
     '03': 'weather-clouds', // Mainly cloudy
     '': 'weather-overcast',
     '06': 'weather-showers-scattered', // Chance of showers
+    '07': 'weather-snow-rain',
+        // Chance of flurries or rain showers [Sun]
+        // Rain showers or flurries [Sun]
+    '08': 'weather-snow-scattered-day', // Chance of flurries [Sun]
     '09': 'weather-storm', // Chance of thunderstorms. Risk of severe thunderstorms
         // Chance of thunderstorms
     '10': 'weather-clouds', // Cloudy
@@ -15,11 +19,11 @@ var weatherIconMap = {
     '12': 'weather-showers', // Showers
         // Rain
         // Chance of showers
-    '15': '', // Chance of flurries or rain showers
-    '16': '', // Chance of flurries
-
+    '15': 'weather-snow-rain', // Chance of flurries or rain showers [Cloud]
+    '16': 'weather-snow',
+        // Chance of flurries [Cloud]
+        // Flurries [Cloud]
     '19': 'weather-storm', // Chance of showers. Risk of thundershowers
-    '': 'weather-snow',
     '': 'weather-fog',
 
     '30': 'weather-clear-night', // Clear
@@ -29,9 +33,9 @@ var weatherIconMap = {
     '34': 'weather-few-clouds-night', // Increasing cloudiness
     '': 'weather-overcast',
     '36': 'weather-showers-scattered-night', // Chance of showers
-    '': 'weather-showers-night',
+    '37': 'weather-snow-rain-night', // Chance of flurries or rain showers [Moon]
+    '38': 'weather-snow', // Chance of flurries [Moon]
     '39': 'weather-storm-night', // Chance of showers. Risk of thunderstorms
-    '': 'weather-snow',
     '': 'weather-fog',
 };
 
@@ -42,6 +46,7 @@ var weatherIconToTextMap = {
     'weather-overcast': i18n("Overcast"),
     'weather-showers-scattered': i18n("Showers"),
     'weather-showers': i18n("Rain"),
+    'weather-snow-rain': i18n("Snow/Rain"),
     'weather-storm': i18n("Storm"),
     'weather-snow': i18n("Snow"),
     'weather-fog': i18n("Fog"),
@@ -52,6 +57,7 @@ var weatherIconToTextMap = {
     'weather-overcast': i18n("Overcast"),
     'weather-showers-scattered-night': i18n("Showers"),
     'weather-showers-night': i18n("Rain"),
+    'weather-snow-rain-night': i18n("Snow/Rain"),
     'weather-storm-night': i18n("Storm"),
     'weather-snow': i18n("Snow"),
     'weather-fog': i18n("Fog"),
