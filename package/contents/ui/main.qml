@@ -135,6 +135,8 @@ Item {
             onAccess_tokenChanged: { updateEvents() }
             onWeather_app_idChanged: { updateWeather(true) }
             onWeather_city_idChanged: { updateWeather(true) }
+            onWeather_canada_city_idChanged: { updateWeather(true) }
+            onWeather_serviceChanged: { updateWeather(true) }
             onWeather_unitsChanged: { updateWeather(true) }
             onMeteogram_hoursChanged: { updateWeather() }
             onWidget_show_meteogramChanged: {
