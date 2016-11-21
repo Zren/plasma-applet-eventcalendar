@@ -1,5 +1,15 @@
 .import "../ui/utils.js" as Utils
 
+/* Note, dd.weatheroffice.ec.gc.ca does exist, but it doesn't contain the hourly forecast,
+nor does the city id match the one used on the website, so it's easier to just parse the html.
+
+http://dd.weatheroffice.ec.gc.ca/citypage_weather/docs/README_citypage_weather.txt
+http://dd.weatheroffice.ec.gc.ca/citypage_weather/xml/siteList.xml
+http://dd.weatheroffice.ec.gc.ca/citypage_weather/xml/ON/s0000001_e.xml
+*/
+
+// http://dd.weather.gc.ca/citypage_weather/docs/current_conditions_icon_code_descriptions_e.csv
+// http://dd.weather.gc.ca/citypage_weather/docs/forecast_conditions_icon_code_descriptions_e.csv
 var weatherIconMap = {
     '00': 'weather-clear', // Sunny
     '01': 'weather-clear', // Mainly sunny
@@ -82,10 +92,13 @@ function loopInner(html, a, b, callback) {
             break;
         }
         start += a.length;
-        var end = html.indexOf(b, cursor);
+        console.log('loop', i, 'with', start, cursor)
+        var end = html.indexOf(b, start);
         var innerHtml = html.substr(start, end-start);
+        console.log(i, start, end, innerHtml)
         callback(innerHtml, i);
         cursor = end + b.length;
+        console.log('cursor', cursor)
     }
 }
 
@@ -103,118 +116,121 @@ function parseFutureDate(day, month) {
 
 
 function parseDailyHtml(html) {
-    var tableHtml = getInner(html, '<table class="table mrgn-bttm-md mrgn-tp-md textforecast hidden-xs">', '</table>');
+    // var tableHtml = getInner(html, '<table class="table mrgn-bttm-md mrgn-tp-md textforecast hidden-xs">', '</table>');
     // console.log('tableHtml', tableHtml)
-    
-    var forecastHtml = getInner(html, '<h3 class="wb-inv">Graphic forecast</h3>', '<h3 class="wb-inv">Detailed forecast</h3>');
 
-/*
-            <div class="fcst brdr-rght brdr-bttm text-center">
-              <p class="brdr-bttm">
-                <a href="/forecast/hourly/on-5_metric_e.html">
-                  <strong title="Sunday night">Sun</strong>
-                  <br>25 <abbr title="September">Sep</abbr>
-                </a>
-              </p>
-              <p class="mrgn-bttm-0"><img width="60" height="51" src="/weathericons/34.gif" alt="Increasing cloudiness" class="center-block" title="Increasing cloudiness"></p>
-              <p class="pop text-center mrgn-bttm-0" title="Chance of Precipitation">
-                <small> </small>
-              </p>
-              <p class="mrgn-bttm-0"><span class="high" title="high"> </span></p>
-              <p class="low mrgn-bttm-0"> </p>
-            </div>
-            <div class="fcst brdr-rght brdr-bttm text-center">
-              <p class="brdr-bttm">
-                <strong title="Monday">Mon</strong>
-                <br>26 <abbr title="September">Sep</abbr>
-              </p>
-              <p class="mrgn-bttm-0"><img width="60" height="51" src="/weathericons/12.gif" alt="Showers" class="center-block" title="Showers"></p>
-              <p class="pop text-center mrgn-bttm-0" title="Chance of Precipitation">
-                <small> </small>
-              </p>
-              <p class="mrgn-bttm-0"><span class="high wxo-metric-hide" title="high">18&deg;<abbr title="Celsius">C</abbr>
-                </span><span class="high wxo-imperial-hide wxo-city-hidden" title="high">64&deg;<abbr title="Fahrenheit">F</abbr>
-                </span>
-              </p>
-              <p class="fcstlow mrgn-bttm-0"><span class="low wxo-metric-hide" title="low">10&deg;<abbr title="Celsius">C</abbr>
-                </span><span class="low wxo-imperial-hide wxo-city-hidden" title="low">50&deg;<abbr title="Fahrenheit">F</abbr>
-                </span>
-              </p>
-            </div>
-*/
     var weatherData = {
         list: []
     };
 
-    loopInner(forecastHtml, '<div class="fcst brdr-rght brdr-bttm text-center">', '</div>', function(innerHtml, innerIndex) {
-        var day = getInner(innerHtml, '<br>', '\u00A0<abbr '); // \u00A0 = No Break Space
-        var month = getInner(innerHtml, 'abbr title="', '/abbr>')
-        month = getInner(month, '">', '<')
-        var date = parseFutureDate(day, month)
-        var dt = date.valueOf() / 1000
+    
 
-        var imageId = getInner(innerHtml, 'src="/weathericons/', '.gif"');
-        var iconName = weatherIconMap[imageId];
-        var description = getInner(innerHtml, '.gif" alt="', '"');
+    // Daily forcast is a 7x4 table
+    // <th> Today | Mon 21 Nov | Tue 22 Nov | ...
+    // <td> Icon -1*C 60% Desc | ... (high temp)
+    // <th> Tonight | Night | Night | ...
+    // <td> Icon -6*C 60% Desc | ... (low temp)
+    var forecastHtml = getInner(html, '<table class="table table-condensed mrgn-bttm-0 wxo-iconfore hidden-xs">', '</table>');
 
-        // console.log(day, month, date, date.valueOf())
-        // console.log(dt, imageId, iconName, description)
-        
-        var high = 0;
-        var low = 0;
-        if (innerIndex == 0) {
-            // Today
-            // low and high aren't shown at the end of the day
-            // so use the current temp
+    var todayHtml = getInner(html, '<span class="small visible-print-inline-block pull-right">Issued: ', '</span>'); // 3:30 PM EST Sunday 20 November 2016
+    // Skip Time by looking for T which doesn't exist in the hours/minutes/AM/PM,
+    // but exists at the end of the time zone: PST, MST, CST, EST, AST, NST
+    var todayStr = todayHtml.substr(todayHtml.indexOf('T') + 'T '.length);
+    // Skip day name (Sunday, Monday, ...) since Qt doesn't like it.
+    todayStr = todayStr.substr(todayStr.indexOf(' ') + ' '.length);
+    var today = new Date(todayStr);
+    console.log('today', todayHtml, todayStr, today);
+
+    var weeklyData = [] // 7 day forecast
+    for (var i = 0; i < 7; i++) {
+        weeklyData.push({
+            dt: 0,
+            temp: {
+                max: 0,
+                min: 0,
+            },
+            iconName: '',
+            text: '',
+            description: '',
+            notes: '',
+        })
+    }
+    var evening = false // Did we skip Today's daytime?
+
+    // Loop the two rows of 7 <td>.
+    console.log('forecastHtml', forecastHtml)
+    loopInner(forecastHtml, '<td', '</td>', function(innerHtml, innerIndex) {
+        var date = new Date(today)
+        var dateIndex = innerIndex % 7 // 7 columns represent 7 days
+        date.setDate(date.getDate() + dateIndex)
+        console.log(innerIndex, date)
+
+        var dateData = weeklyData[dateIndex]
+
+        dateData.dt = date.valueOf() / 1000
+
+        if (innerHtml.indexOf('class="greybkgrd"') >= 0) {
+            // Today (daytime) is over, we'll use nighttime data
+            evening = true
         } else {
+            if (innerIndex < 7 || (evening && innerIndex == 8)) {
+                // Use daytime weather
+                var imageId = getInner(innerHtml, 'src="/weathericons/', '.gif"')
+                dateData.iconName = weatherIconMap[imageId]
+                dateData.description = getInner(innerHtml, '.gif" alt="', '"')
+                dateData.text = weatherIconToTextMap[dateData.iconName] || dateData.description
+            }
+
+            // Temps
             // TODO: check plasmoid.configuration.weather_units == 'imperial' to use farenheit.
             // TODO: check for 'kelvin' and subtract 273 from metric
             // TODO: Give a shit
-            var high = getInner(innerHtml, 'wxo-metric-hide" title="high">', '&deg;<abbr title="Celsius">C</abbr>');
-            var low = getInner(innerHtml, 'wxo-metric-hide" title="low">', '&deg;<abbr title="Celsius">C</abbr>');
-        }
-        high = parseInt(high, 10);
-        low = parseInt(low, 10);
+            if (innerIndex < 7) {
+                // high
+                var high = getInner(innerHtml, 'wxo-metric-hide" title="max">', '&deg;<abbr title="Celsius">C</abbr>');
+                high = parseInt(high, 10);
+                dateData.temp.max = high
+            } else {
+                // low
+                var low = getInner(innerHtml, 'wxo-metric-hide" title="min">', '&deg;<abbr title="Celsius">C</abbr>');
+                low = parseInt(low, 10);
+                dateData.temp.min = low
 
-        var text = weatherIconToTextMap[iconName] || description;
-        var notes = '';
-
-        var notesHtml = getInner(tableHtml, '\u00A0' + day + '\u00A0<abbr title="', '<strong>');
-        // console.log('notesHtml', notesHtml)
-        if (!notesHtml) { // Last item
-            notesHtml = getInner(tableHtml, '\u00A0' + day + '\u00A0<abbr title="', '</tbody>');
-            // console.log('notesHtml', notesHtml)
-        }
-        var dayNotes = getInner(notesHtml, '</td>\n              <td>', '</td>');
-        // console.log('dayNotes', dayNotes)
-        if (notesHtml.indexOf('night">Tonight</strong>') >= 0) {
-            notes = i18n("<b>Tonight:</b> %1", dayNotes);
-        } else {
-            var nightNotes = getInner(notesHtml, 'night"> Night\n</td>\n              <td>', '</td>');
-            // console.log('nightNotes', nightNotes)
-            if (nightNotes) {
-                notes = i18n("%1<br><b>Night:</b> %2", dayNotes, nightNotes);
-            } else { // Last item (w/ Tonight as first item)
-                notes = dayNotes;
+                if (evening && dateIndex == 8) {
+                    // For now, use the low as the current temperature for "Tonight".
+                    // TODO: look at current conditions.
+                    dateData.temp.max = low
+                }
             }
-            
         }
+
+        // var notesHtml = getInner(tableHtml, '\u00A0' + day + '\u00A0<abbr title="', '<strong>');
+        // console.log('notesHtml', notesHtml)
+        // if (!notesHtml) { // Last item
+        //     notesHtml = getInner(tableHtml, '\u00A0' + day + '\u00A0<abbr title="', '</tbody>');
+        //     console.log('notesHtml', notesHtml)
+        // }
+        // var dayNotes = getInner(notesHtml, '</td>\n              <td>', '</td>');
+        // console.log('dayNotes', dayNotes)
+        // if (notesHtml.indexOf('night">Tonight</strong>') >= 0) {
+        //     notes = i18n("<b>Tonight:</b> %1", dayNotes);
+        // } else {
+        //     var nightNotes = getInner(notesHtml, 'night"> Night\n</td>\n              <td>', '</td>');
+        //     // console.log('nightNotes', nightNotes)
+        //     if (nightNotes) {
+        //         notes = i18n("%1<br><b>Night:</b> %2", dayNotes, nightNotes);
+        //     } else { // Last item (w/ Tonight as first item)
+        //         notes = dayNotes;
+        //     }
+            
+        // }
         
         // notes = dayNotes + '<br>' + nightNotes;
-
         
-        weatherData.list.push({
-            dt: dt,
-            temp: {
-                max: high,
-                min: low,
-            },
-            iconName: iconName,
-            text: text,
-            description: description,
-            notes: notes,
-        });
+        console.log(dateIndex, JSON.stringify(dateData, null, "\t"))
     });
+
+    weatherData.list = weeklyData
 
     return weatherData;
 }
