@@ -173,7 +173,7 @@ function parseDailyHtml(html) {
             // Today (daytime) is over, we'll use nighttime data
             evening = true
         } else {
-            if (innerIndex < 7 || (evening && innerIndex == 8)) {
+            if (innerIndex < 7 || (evening && innerIndex == 7)) {
                 // Use daytime weather
                 var imageId = getInner(innerHtml, 'src="/weathericons/', '.gif"')
                 dateData.iconName = weatherIconMap[imageId]
