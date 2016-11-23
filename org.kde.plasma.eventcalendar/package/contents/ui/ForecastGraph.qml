@@ -53,6 +53,7 @@ Item {
         property double yAxisRainMinScale: 2
         property double yAxisRainMax: 2
         property bool showYAxisRainMax: true
+        property string rainUnits: '%'
 
         property int gridX: yAxisLabelWidth
         property int gridX2: width
@@ -94,9 +95,14 @@ Item {
                 if (i == 0 || y > yDataMax) {
                     yDataMax = y
                 }
-                if (gridData[i].percipitation > yAxisRainMax) {
-                    yAxisRainMax = Math.ceil(gridData[i].percipitation)
+                if (rainUnits == 'mm') {
+                    if (gridData[i].precipitation > yAxisRainMax) {
+                        yAxisRainMax = Math.ceil(gridData[i].precipitation)
+                    }
                 }
+            }
+            if (rainUnits == '%') {
+                yAxisRainMax = 100
             }
 
             yAxisScale = Math.ceil((yDataMax-yDataMin) / (yAxisScaleCount))
@@ -214,9 +220,11 @@ Item {
                     var gridDataAreaWidth = 0;
                     for (var i = 1; i < graph.gridData.length; i++) {
                         var item = graph.gridData[i];
-                        if (item.percipitation) {
+                        console.log(i, item, item.precipitation, graph.yAxisRainMax)
+                        if (item.precipitation) {
                             graph.showYAxisRainMax = true
-                            var rainY = Math.min(item.percipitation, graph.yAxisRainMax) / graph.yAxisRainMax;
+                            var rainY = Math.min(item.precipitation, graph.yAxisRainMax) / graph.yAxisRainMax;
+                            console.log('rainY', i, rainY)
                             var a = graph.gridPoint(i-1, graph.yAxisMin);
                             var b = graph.gridPoint(i, graph.yAxisMin);
                             var h = rainY * graph.gridHeight;
@@ -299,14 +307,23 @@ Item {
                     var lastLabelStaggered = false;
                     for (var i = 1; i < graph.gridData.length; i++) {
                         var item = graph.gridData[i];
-                        if (item.percipitation && item.percipitation > 0.3) {
+                        if (item.precipitation && (
+                            (meteogramView.rainUnits == 'mm' && item.precipitation > 0.3)
+                            || (meteogramView.rainUnits == '%')
+                        )) {
                             var p = graph.gridPoint(i, graph.yAxisMin);
                             var pY = graph.gridY + 6;
 
                             context.fillStyle = graph.precipitationColor
                             context.font = "12px sans-serif"
                             context.textAlign = 'end'
-                            var labelText = (item.percipitation >= 1 ? Math.round(item.percipitation) : item.percipitation.toFixed(1)) + 'mm';
+                            var labelValue = item.precipitation >= 1 ? Math.round(item.precipitation) : item.precipitation.toFixed(1)
+                            var labelText;
+                            if (meteogramView.rainUnits == 'mm') {
+                                labelText = i18n('%1mm', labelValue);
+                            } else { // rainUnits == '%'
+                                labelText = i18n('%1%%', labelValue);
+                            }
                             context.strokeStyle = graph.precipitationTextOulineColor;
                             context.lineWidth = 3;
 
@@ -450,7 +467,7 @@ Item {
             return {
                 y: item.main.temp,
                 xTimestamp: item.dt * 1000,
-                percipitation: mm,
+                precipitation: mm || item.precipitation,
                 tooltipMainText: new Date(item.dt * 1000),
                 tooltipSubText: tooltipSubText,
                 weatherIcon: item.weather[0].iconName || Shared.weatherIconMap[item.weather[0].icon] || 'question',
@@ -464,7 +481,7 @@ Item {
                 gData.push({
                     y: data.list[0].main.temp,
                     xTimestamp: Date.now(),
-                    percipitation: 0,
+                    precipitation: 0,
                 });
             }
         }
