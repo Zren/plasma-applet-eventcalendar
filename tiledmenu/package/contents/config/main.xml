@@ -43,7 +43,7 @@
     </entry>
     <entry name="appDescription" type="string">
       <!-- enum: hidden, after, below -->
-      <default>below</default>
+      <default>after</default>
     </entry>
   </group>
 
