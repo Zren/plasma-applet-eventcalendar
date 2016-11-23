@@ -16,7 +16,8 @@ var weatherIconMap = {
     '02': 'weather-few-clouds', // Partly Cloudy
         // A mix of sun and cloud
     '03': 'weather-clouds', // Mainly cloudy
-    '': 'weather-overcast',
+    '04': 'weather-few-clouds', // Increasing cloudiness
+    '05': 'weather-few-clouds', // Clearing
     '06': 'weather-showers-scattered', // Chance of showers
     '07': 'weather-snow-rain',
         // Chance of flurries or rain showers [Sun]
@@ -26,53 +27,86 @@ var weatherIconMap = {
         // Chance of thunderstorms
     '10': 'weather-clouds', // Cloudy
         // Overcast
+    '11': 'weather-showers',
+        // Squalls
+        // Light Precipitation
+        // Heavy Precipitation
     '12': 'weather-showers', // Showers
-        // Rain
-        // Chance of showers
+    '13': 'weather-showers', // Rain
+    '14': 'weather-freezing-rain', // Freezing Rain
     '15': 'weather-snow-rain', // Chance of flurries or rain showers [Cloud]
     '16': 'weather-snow',
         // Chance of flurries [Cloud]
         // Flurries [Cloud]
+    '17': 'weather-snow', // Snow [Cloud]
+    '18': 'weather-snow', // Blizzard
     '19': 'weather-storm', // Chance of showers. Risk of thundershowers
-    '': 'weather-fog',
+    '20': 'question', // [? Same icon as 24 (fog)]
+    '21': 'question', // [? Same icon as 24 (fog)]
+    '22': 'weather-few-clouds', // A mix of sun and cloud
+    '23': 'weather-fog', // Haze
+    '24': 'weather-fog',
+        // Fog
+        // Fog Patches
+        // Ice fog
+    '25': 'weather-snow', // Drifting Snow
+    '26': 'weather-snow', // Ice Crystals
+    '27': 'weather-hail', // Hail
+    '28': 'weather-freezing-rain',
+        // Drizzle
+        // Freezing drizzle
+
+    '29': 'question', // Not available
 
     '30': 'weather-clear-night', // Clear
     '31': 'weather-few-clouds-night', // A few clouds
     '32': 'weather-few-clouds-night', // Partly cloudy
     '33': 'weather-clouds-night', // Mainly cloudy
     '34': 'weather-few-clouds-night', // Increasing cloudiness
-    '': 'weather-overcast',
+    '35': 'weather-few-clouds-night', // Clearing [Moon]
     '36': 'weather-showers-scattered-night', // Chance of showers
     '37': 'weather-snow-rain-night', // Chance of flurries or rain showers [Moon]
     '38': 'weather-snow', // Chance of flurries [Moon]
     '39': 'weather-storm-night', // Chance of showers. Risk of thunderstorms
-    '': 'weather-fog',
+
+    '40': 'weather-snow', // Blowing Snow
+    '41': 'wi-tornado', // Funnel Cloud
+    '42': 'wi-tornado', // Tornado
+    '43': 'wi-windy', // Windy
+    '44': 'wi-smoke', // Smoke
+    '45': 'wi-sandstorm', // Sandstorm
+    '46': 'weather-storm', // Thunderstorm with Hail
+    '47': 'weather-storm', // Thunderstorm with Dust Storm
+    '48': 'wi-tornado', // Waterspout
 };
 
 var weatherIconToTextMap = {
     'weather-clear': i18n("Clear"),
-    'weather-clouds': i18n("Cloudy"),
-    'weather-few-clouds': i18n("Cloudy"),
-    'weather-fog': i18n("Fog"),
-    'weather-overcast': i18n("Overcast"),
-    'weather-showers': i18n("Rain"),
-    'weather-showers-scattered': i18n("Showers"),
-    'weather-snow': i18n("Snow"),
-    'weather-snow-rain': i18n("Snow/Rain"),
-    'weather-snow-scattered-day': i18n("Snow"),
-    'weather-storm': i18n("Storm"),
-
     'weather-clear-night': i18n("Clear"),
+    'weather-clouds': i18n("Cloudy"),
     'weather-clouds-night': i18n("Cloudy"),
+    'weather-few-clouds': i18n("Cloudy"),
     'weather-few-clouds-night': i18n("Cloudy"),
     'weather-fog': i18n("Fog"),
+    'weather-freezing-rain': i18n("Freezing Rain"),
+    'weather-hail': i18n("Hail"),
     'weather-overcast': i18n("Overcast"),
+    'weather-showers': i18n("Rain"),
     'weather-showers-night': i18n("Rain"),
+    'weather-showers-scattered': i18n("Showers"),
     'weather-showers-scattered-night': i18n("Showers"),
     'weather-snow': i18n("Snow"),
+    'weather-snow-rain': i18n("Snow/Rain"),
     'weather-snow-rain-night': i18n("Snow/Rain"),
+    'weather-snow-scattered-day': i18n("Snow"),
     'weather-snow-scattered-night': i18n("Snow"),
+    'weather-storm': i18n("Storm"),
     'weather-storm-night': i18n("Storm"),
+    'wi-dust': i18n("Dust"),
+    'wi-sandstorm': i18n("Sandstorm"),
+    'wi-smoke': i18n("Smoke"),
+    'wi-tornado': i18n("Tornado"),
+    'wi-windy': i18n("Windy"),
 }
 
 function getInner(html, a, b) {
