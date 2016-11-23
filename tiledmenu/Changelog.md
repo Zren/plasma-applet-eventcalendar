@@ -1,3 +1,11 @@
+## v6 - November 23 2016
+
+* Add a push down effect when clicking a favourite.
+* Bind Esc to close the menu.
+* Support closing the menu with Meta.
+* Focus on the search box when clicking the menu background (and dismiss the power/sidebar menu).
+* Show the app description after the name by default instead of below it.
+
 ## v5 - November 14 2016
 
 * Tile text can now be center or right aligned.
