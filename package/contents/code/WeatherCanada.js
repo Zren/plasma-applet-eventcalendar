@@ -126,13 +126,13 @@ function loopInner(html, a, b, callback) {
             break;
         }
         start += a.length;
-        console.log('loop', i, 'with', start, cursor)
+        // console.log('loop', i, 'with', start, cursor)
         var end = html.indexOf(b, start);
         var innerHtml = html.substr(start, end-start);
-        console.log(i, start, end, innerHtml)
+        // console.log(i, start, end, innerHtml)
         callback(innerHtml, i);
         cursor = end + b.length;
-        console.log('cursor', cursor)
+        // console.log('cursor', cursor)
     }
 }
 
@@ -173,7 +173,7 @@ function parseDailyHtml(html) {
     // Skip day name (Sunday, Monday, ...) since Qt doesn't like it.
     todayStr = todayStr.substr(todayStr.indexOf(' ') + ' '.length);
     var today = new Date(todayStr);
-    console.log('today', todayHtml, todayStr, today);
+    // console.log('today', todayHtml, todayStr, today);
 
     var weeklyData = [] // 7 day forecast
     for (var i = 0; i < 7; i++) {
@@ -192,12 +192,12 @@ function parseDailyHtml(html) {
     var evening = false // Did we skip Today's daytime?
 
     // Loop the two rows of 7 <td>.
-    console.log('forecastHtml', forecastHtml)
+    // console.log('forecastHtml', forecastHtml)
     loopInner(forecastHtml, '<td', '</td>', function(innerHtml, innerIndex) {
         var date = new Date(today)
         var dateIndex = innerIndex % 7 // 7 columns represent 7 days
         date.setDate(date.getDate() + dateIndex)
-        console.log(innerIndex, date)
+        // console.log(innerIndex, date)
 
         var dateData = weeklyData[dateIndex]
 
@@ -261,7 +261,7 @@ function parseDailyHtml(html) {
         
         // notes = dayNotes + '<br>' + nightNotes;
         
-        console.log(dateIndex, JSON.stringify(dateData, null, "\t"))
+        // console.log(dateIndex, JSON.stringify(dateData, null, "\t"))
     });
 
     weatherData.list = weeklyData
@@ -301,7 +301,8 @@ function parseHourlyTbody(html) {
             var temp = parseHourlyTemp(trHtml);
             var conditions = parseHourlyConditions(trHtml);
             var dt = Math.floor(new Date(dateStr + ' ' + timeStr).getTime() / 1000);
-            // console.log(dt, timeStr, conditions.icon, conditions.id, conditions.description);
+            var precipitation = parseHourlyPrecipitation(trHtml);
+            console.log(dt, timeStr, conditions.icon, conditions.id, conditions.description, precipitation);
 
             weatherData.list.push({
                 dt: dt,
@@ -315,6 +316,7 @@ function parseHourlyTbody(html) {
                         description: conditions.description,
                     }
                 ],
+                precipitation: precipitation,
             });
         }
 
@@ -342,6 +344,20 @@ function parseHourlyConditions(trHtml) {
         icon: weatherIconMap[imageId],
         description: text,
     };
+}
+function parseHourlyPrecipitation(trHtml) {
+    var text = getInner(trHtml, '<td headers="header4" class="text-center">', '</td>');
+    // This page doesn't list the exact values unfortunately,
+    // so we'll go with the minimum the threshold represents.
+    if (text == 'Low') { // 1 - 40%
+        return 20 // %
+    } else if (text == 'Medium') { // 60 - 70%
+        return 60 // %
+    } else if (text == 'High') { // 70% +
+        return 70 // %
+    } else { // == 'Nil'
+        return 0
+    }
 }
 
 
