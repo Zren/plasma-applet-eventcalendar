@@ -6,7 +6,7 @@ import QtQuick.Window 2.1
 import org.kde.plasma.core 2.0 as PlasmaCore
 import org.kde.plasma.components 2.0 as PlasmaComponents
 
-Item {
+MouseArea {
 	// Layout.preferredWidth: 888
 	// Layout.preferredHeight: 620
 
@@ -60,5 +60,5 @@ Item {
 		}
 	}
 
-
+	onClicked: searchView.searchField.forceActiveFocus()
 }
