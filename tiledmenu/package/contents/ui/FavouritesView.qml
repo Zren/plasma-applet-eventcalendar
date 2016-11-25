@@ -7,13 +7,33 @@ import org.kde.plasma.core 2.0 as PlasmaCore
 import org.kde.plasma.components 2.0 as PlasmaComponents
 import org.kde.draganddrop 2.0 as DragAndDrop
 
-ScrollView {
-	id: favouritesView
-	// width: (favouritesGridView.cellWidth * favouritesGridView.columns) // 380
-	// height: parent.height
+// appendDropArea needs to wrap the entire scrollview.
+// It cannot be a sibling since it will steal focus from
+// the gridview DropAreas since it's not a parent and will not detect
+// that it needs to "leave" the appendDropArea.
+// See: https://github.com/KDE/kdeclarative/blob/master/src/qmlcontrols/draganddrop/DeclarativeDropArea.cpp#L42
+DragAndDrop.DropArea {
+	id: appendDropArea
 
 	width: config.favViewDefaultWidth
 	height: config.defaultHeight
+
+	onDrop: {
+		if (favouritesView.draggedIndex >= 0) { // Moving favorite around (to the end).
+			favouritesGridView.swap(favouritesView.draggedIndex, favouritesGridView.model.count - 1)
+		} else { // Add new favorite from dolphin/desktop/taskbar (to the end).
+			var favoriteId = favouritesGridView.parseDropUrl(event)
+			favouritesGridView.append(favoriteId)
+		}
+	}
+
+	onDragEnter: {
+		// console.log('appendDropArea.onDragEnter')
+	}
+
+ScrollView {
+	id: favouritesView
+	anchors.fill: parent
 
 	property bool editing: draggedItem
 	property QtObject draggedItem: null
@@ -22,24 +42,6 @@ ScrollView {
 	__wheelAreaScrollSpeed: 142
 	style: ScrollViewStyle {
 		transientScrollBars: true
-	}
-
-	DragAndDrop.DropArea {
-		id: appendDropArea
-		anchors.fill: parent
-
-		onDrop: {
-			if (favouritesView.draggedIndex >= 0) { // Moving favorite around (to the end).
-				favouritesGridView.swap(favouritesView.draggedIndex, favouritesGridView.model.count - 1)
-			} else { // Add new favorite from dolphin/desktop/taskbar (to the end).
-				var favoriteId = favouritesGridView.parseDropUrl(event)
-				favouritesGridView.append(favoriteId)
-			}
-		}
-
-		onDragEnter: {
-			// console.log('appendDropArea.onDragEnter')
-		}
 	}
 
 	Item {
@@ -373,4 +375,6 @@ ScrollView {
 			}
 		}
 	}
-}
+} // ScrollView
+
+} // DropArea
