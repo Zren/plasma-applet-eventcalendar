@@ -24,6 +24,24 @@ ScrollView {
 		transientScrollBars: true
 	}
 
+	DragAndDrop.DropArea {
+		id: appendDropArea
+		anchors.fill: parent
+
+		onDrop: {
+			if (favouritesView.draggedIndex >= 0) { // Moving favorite around (to the end).
+				favouritesGridView.swap(favouritesView.draggedIndex, favouritesGridView.model.count - 1)
+			} else { // Add new favorite from dolphin/desktop/taskbar (to the end).
+				var favoriteId = favouritesGridView.parseDropUrl(event)
+				favouritesGridView.append(favoriteId)
+			}
+		}
+
+		onDragEnter: {
+			// console.log('appendDropArea.onDragEnter')
+		}
+	}
+
 	Item {
 		// Wrap the gridview so items with a rowSpan >= 2 are drawn when the first row is cut off.
 		width: favouritesGridView.width
@@ -203,27 +221,7 @@ ScrollView {
 
 				DragAndDrop.DropArea {
 					id: dropArea
-					// anchors.fill: parent
-					width: favouritesGridView.cellWidth
-					height: favouritesGridView.cellHeight
-
-					// function nameOf(i) {
-					// 	return favouritesGridView.model.data(favouritesGridView.model.index(i, 0), Qt.DisplayRole)
-					// }
-					
-					function moveTo(a, b) {
-						// console.log(nameOf(a), '=>', b)
-						favouritesGridView.model.moveRow(a, b)
-					}
-
-					function swap(a, b) {
-						moveTo(favouritesView.draggedIndex, index)
-						if (b < a) { // Dropped before (so the item it was dropped on is to the right)
-							moveTo(b+1, a)
-						} else if (b > a) { // Dropped after (so the item it was dropped on is to the left)
-							moveTo(b-1, a)
-						}
-					}
+					anchors.fill: parent
 
 					onDrop: {
 						// console.log('dropArea.onDrop', favouritesView.draggedIndex, index)
@@ -232,22 +230,10 @@ ScrollView {
 
 						if (favouritesView.draggedIndex >= 0) { // Moving favorite around.
 							// console.log('model.favoriteId', model.favoriteId)
-							swap(favouritesView.draggedIndex, index)
+							favouritesGridView.swap(favouritesView.draggedIndex, index)
 						} else { // Add new favorite from dolphin/desktop/taskbar.
-							if (event.mimeData.url) {
-								// console.log('event.mimeData.url', event.mimeData.url)
-								var url = event.mimeData.url.toString()
-								var isDesktopUrl = (url.indexOf('file://') === 0) && (url.indexOf('.desktop') === url.length - '.desktop'.length)
-								if (isDesktopUrl) {
-									// Remove the path because .favoriteId is just the file name.
-									// However passing the favoriteId in mimeData.url will prefix the current QML path because it's a QUrl.
-									var tokens = event.mimeData.url.toString().split('/')
-									var favoriteId = tokens[tokens.length-1]
-									appsModel.favoritesModel.addFavorite(favoriteId)
-								} else {
-									appsModel.favoritesModel.addFavorite(event.mimeData.url)
-								}
-							}
+							var favoriteId = favouritesGridView.parseDropUrl(event)
+							favouritesGridView.insert(index, favoriteId)
 						}
 					}
 
@@ -261,6 +247,55 @@ ScrollView {
 
 			model: appsModel.favoritesModel
 			onCountChanged: console.log('favouritesView.model.count', count, model)
+
+			// function nameOf(i) {
+			// 	return favouritesGridView.model.data(favouritesGridView.model.index(i, 0), Qt.DisplayRole)
+			// }
+
+			function parseDropEvent(event) {
+
+			}
+
+			function parseDropUrl(event) {
+				if (event.mimeData.url) {
+					// console.log('event.mimeData.url', event.mimeData.url)
+					var url = event.mimeData.url.toString()
+					var isDesktopUrl = (url.indexOf('file://') === 0) && (url.indexOf('.desktop') === url.length - '.desktop'.length)
+					if (isDesktopUrl) {
+						// Remove the path because .favoriteId is just the file name.
+						// However passing the favoriteId in mimeData.url will prefix the current QML path because it's a QUrl.
+						var tokens = event.mimeData.url.toString().split('/')
+						var favoriteId = tokens[tokens.length-1]
+						return favoriteId
+					} else {
+						return event.mimeData.url
+					}
+				} else {
+					return "" // Will be ignored when added
+				}
+			}
+
+			function append(favoriteId) {
+				appsModel.favoritesModel.addFavorite(favoriteId)
+			}
+
+			function insert(index, favoriteId) {
+				append(favoriteId) // TODO: For now just append.
+			}
+
+			function moveTo(a, b) {
+				// console.log(nameOf(a), '=>', b)
+				favouritesGridView.model.moveRow(a, b)
+			}
+
+			function swap(a, b) {
+				moveTo(a, b)
+				if (b < a) { // Dropped before (so the item it was dropped on is to the right)
+					moveTo(b+1, a)
+				} else if (b > a) { // Dropped after (so the item it was dropped on is to the left)
+					moveTo(b-1, a)
+				}
+			}
 
 			function previewDrop(indexA, indexB) {
 				var newState = JSON.parse(JSON.stringify(favouritesGridView.previousState))
