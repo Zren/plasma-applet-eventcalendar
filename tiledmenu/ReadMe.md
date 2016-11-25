@@ -23,3 +23,7 @@ A menu based on Windows 10's Start Menu.
 
 ![](https://i.imgur.com/CFBEkIh.jpg)
 
+## Theming
+
+Read the [theming guide](Theming.md) to develop Desktop/Icon Themes for this widget.
+
