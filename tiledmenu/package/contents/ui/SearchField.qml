@@ -43,6 +43,7 @@ TextField {
 			background: Rectangle {
 				color: "#eee"
 			}
+			textColor: "#111"
 		}
 	}
 
