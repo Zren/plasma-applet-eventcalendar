@@ -204,15 +204,26 @@ Item {
 		}
 	}
 
-	function action_menuedit() {
-		processRunner.runMenuEditor();
-	}
+	function action_kinfocenter() { appsModel.launch('org.kde.kinfocenter') }
+	function action_konsole() { appsModel.launch('org.kde.konsole') }
+	function action_ksysguard() { appsModel.launch('org.kde.ksysguard') }
+	function action_systemsettings() { appsModel.launch('systemsettings') }
+	function action_filemanager() { appsModel.launch('org.kde.dolphin') }
+	function action_menuedit() { processRunner.runMenuEditor(); }
 
 	Component.onCompleted: {
 		if (plasmoid.hasOwnProperty("activationTogglesExpanded")) {
 			plasmoid.activationTogglesExpanded = true
 		}
-		plasmoid.setAction("menuedit", i18n("Edit Applications..."));
+		plasmoid.setAction("kinfocenter", i18n("System Info"), "hwinfo");
+		plasmoid.setAction("konsole", i18n("Terminal"), "utilities-terminal");
+		plasmoid.setActionSeparator("systemAppsSection")
+		plasmoid.setAction("ksysguard", i18n("Task Manager"), "ksysguardd");
+		plasmoid.setAction("systemsettings", i18n("System Settings"), "systemsettings");
+		plasmoid.setAction("filemanager", i18n("File Manager"), "folder");
+		plasmoid.setActionSeparator("configSection")
+		plasmoid.setAction("menuedit", i18n("Edit Applications..."), "kmenuedit");
+
 		// plasmoid.action('configure').trigger() // Uncomment to open the config window on load.
 	}
 }
