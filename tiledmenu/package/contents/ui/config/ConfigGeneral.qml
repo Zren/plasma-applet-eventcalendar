@@ -83,24 +83,40 @@ ConfigPage {
 				}
 			}
 
-			TextField {
-				id: icon
+			ColumnLayout {
 				Layout.fillWidth: true
-			}
 
-			// org.kde.plasma.kicker
-			Button {
-				iconName: "document-open"
+				RowLayout {
+					TextField {
+						id: icon
+						Layout.fillWidth: true
+					}
 
-				onClicked: {
-					imagePicker.folder = systemSettings.picturesLocation();
-					imagePicker.open();
+					// org.kde.plasma.kicker
+					Button {
+						iconName: "document-open"
+
+						onClicked: {
+							imagePicker.folder = systemSettings.picturesLocation();
+							imagePicker.open();
+						}
+
+						Kicker.SystemSettings {
+							id: systemSettings
+						}
+					}
 				}
 
-				Kicker.SystemSettings {
-					id: systemSettings
+				CheckBox {
+					text: i18n("Fixed Size")
+					checked: plasmoid.configuration.fixedPanelIcon
+					onClicked: {
+						plasmoid.configuration.fixedPanelIcon = !plasmoid.configuration.fixedPanelIcon
+						console.log(checked, plasmoid.configuration.fixedPanelIcon)
+					}
 				}
 			}
+			
 
 			FileDialog {
 				id: imagePicker

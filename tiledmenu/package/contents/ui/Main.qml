@@ -91,7 +91,7 @@ Item {
 		states: [
 			State {
 				name: "horizontal"
-				when: plasmoid.formFactor == PlasmaCore.Types.Horizontal
+				when: plasmoid.configuration.fixedPanelIcon && plasmoid.formFactor == PlasmaCore.Types.Horizontal
 				PropertyChanges {
 					target: panelItem
 					Layout.minimumWidth: 24
@@ -101,17 +101,26 @@ Item {
 			},
 			State {
 				name: "vertical"
-				when: plasmoid.formFactor == PlasmaCore.Types.Vertical
+				when: plasmoid.configuration.fixedPanelIcon && plasmoid.formFactor == PlasmaCore.Types.Vertical
 				PropertyChanges {
 					target: panelItem
 					Layout.minimumHeight: 24
 					Layout.preferredHeight: panelItem.width
 					Layout.maximumHeight: config.flatButtonSize
 				}
+			},
+			State {
+				name: "scaled"
+				when: !config.fixedPanelIcon
+				PropertyChanges {
+					target: launcherIcon
+					iconSize: Math.min(panelItem.width, panelItem.height)
+				}
 			}
 		]
 
 		LauncherIcon {
+			id: launcherIcon
 			iconSource: plasmoid.configuration.icon || "start-here-kde"
 			iconSize: Math.min(config.panelIconSize, panelItem.width, panelItem.height)
 			anchors.fill: parent
