@@ -34,7 +34,7 @@ Item {
 
 		appletInterface: plasmoid
 		favoritesModel: rootModel.favoritesModel
-		// mergeResults: true
+		mergeResults: config.searchResultsMerged
 
 		runners: [] // Empty = All runners.
 

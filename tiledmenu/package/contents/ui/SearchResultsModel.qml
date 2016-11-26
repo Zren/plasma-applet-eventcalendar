@@ -71,83 +71,104 @@ ListModel {
 			}
 		}
 
-		//--- sort: runner relevance (English only)
+		if (config.searchResultsCustomSort) {
+			//--- sort: runner relevance (English only)
 
-		// We have to sort by .name instead of .runnerId because the later isn't exposed... anywhere. :/
-		var runnerOrder = [
-			//--- Single line action
-			"Desktop Sessions", // sessions
-			"Command Line", // shell
-			"Locations", // locations (Open website)
+			// We have to sort by .name instead of .runnerId because the later isn't exposed... anywhere. :/
+			var runnerOrder = [
+				//--- Single line action
+				"Desktop Sessions", // sessions
+				"Command Line", // shell
+				"Locations", // locations (Open website)
 
-			//--- Single line
-			"Calculator", // calculator
-			"Date and Time", // datetime
+				//--- Single line
+				"Calculator", // calculator
+				"Date and Time", // datetime
 
-			//--- Small Lists
-			"Control Audio Player", // audioplayercontrol
-			"Unit Converter", // converter
-			"Dictionary", // dictionary
-			"Terminate Applications", // kill
+				//--- Small Lists
+				"Control Audio Player", // audioplayercontrol
+				"Unit Converter", // converter
+				"Dictionary", // dictionary
+				"Terminate Applications", // kill
 
-			//--- Large Lists
-			"Applications", // services
-			"System Settings",
-			"Places", // places
-			"Windows", // windows
-			"Bookmarks", // bookmarks
-			"Recent Documents", // ? baloosearch ?
-			"Windowed widgets", // windowedwidgets
+				//--- Large Lists
+				"Applications", // services
+				"System Settings",
+				"Places", // places
+				"Windows", // windows
+				"Bookmarks", // bookmarks
+				"Recent Documents", // ? baloosearch ?
+				"Windowed widgets", // windowedwidgets
 
-			//--- ?
-			"Desktop Search", // baloosearch
-			"KWin", // kwin
-			"Plasma Desktop Shell", // plasma-desktop
-			"Power", // powerdevil
-			"Spell Checker", // spellchecker
-			"Web Shortcuts", // webshortcuts
-		];
+				//--- ?
+				"Desktop Search", // baloosearch
+				"KWin", // kwin
+				"Plasma Desktop Shell", // plasma-desktop
+				"Power", // powerdevil
+				"Spell Checker", // spellchecker
+				"Web Shortcuts", // webshortcuts
+			];
 
-		resultList = resultList.sort(function(a, b) {
-			var aOrder = runnerOrder.indexOf(a.runnerName);
-			var bOrder = runnerOrder.indexOf(b.runnerName);
-			if (aOrder == -1 && bOrder == -1) { // Neither really matters
-				return 0;
-			} else if (aOrder == -1) { // a doesn't matter
-				return 1; // a should be placed after b
-			} else if (bOrder == -1) { // b doesn't matter
-				return -1; // a should be placed before b
-			} else {
-				return aOrder - bOrder;
-			}
-		});
+			resultList = resultList.sort(function(a, b) {
+				var aOrder = runnerOrder.indexOf(a.runnerName);
+				var bOrder = runnerOrder.indexOf(b.runnerName);
+				if (aOrder == -1 && bOrder == -1) { // Neither really matters
+					return 0;
+				} else if (aOrder == -1) { // a doesn't matter
+					return 1; // a should be placed after b
+				} else if (bOrder == -1) { // b doesn't matter
+					return -1; // a should be placed before b
+				} else {
+					return aOrder - bOrder;
+				}
+			});
 
-		//--- sort: exact match
-		function moveToTop(queryLower) {
-			// Scan in reverse so we preserve runnerOrder with multiple matches
-			for (var i = resultList.length-1; i >= 0; i--) {
-				var resultItem = resultList[i];
-				if (queryLower == resultItem.name.toLowerCase()) {
-					resultList.splice(i, 1); // remove at index
-					resultList.splice(0, 0, resultItem); // add to beginning
+			//--- sort: matches start
+			function moveToTopOfRunner(queryLower) {
+				// Scan in reverse so we preserve runnerOrder with multiple matches
+				for (var i = resultList.length-1; i >= 0; i--) {
+					var resultItem = resultList[i];
+					if (resultItem.name.toLowerCase().indexOf(queryLower) == 0) {
+						for (var j = i-1; j >= 0; j--) {
+							// Scan (in reverse) for insertion point.
+							if (resultList[j].runnerName != resultItem.runnerName) {
+								resultList.splice(i, 1); // remove from old index
+								resultList.splice(j, 0, resultItem); // insert at new index
+								break;
+							}
+						}
+						
+					}
 				}
 			}
-		}
-		var queryLower = search.query.toLowerCase();
-		moveToTop(queryLower)
+			var queryLower = search.query.toLowerCase();
+			moveToTopOfRunner(queryLower)
+			
+			//--- sort: exact match
+			function moveToTop(queryLower) {
+				// Scan in reverse so we preserve runnerOrder with multiple matches
+				for (var i = resultList.length-1; i >= 0; i--) {
+					var resultItem = resultList[i];
+					if (queryLower == resultItem.name.toLowerCase()) {
+						resultList.splice(i, 1); // remove at index
+						resultList.splice(0, 0, resultItem); // add to beginning
+					}
+				}
+			}
 
-		// sort: clementine (English only)
-		// /usr/share/applications/clementine.desktop
-		if (queryLower == 'play') {
-			moveToTop('Play - Clementine'.toLowerCase())
-		} else if (queryLower == 'play') {
-			moveToTop('Pause - Clementine'.toLowerCase())
-		} else if (queryLower == 'play') {
-			moveToTop('Stop - Clementine'.toLowerCase())
-		} else if (queryLower.indexOf('prev') == 0) { // Matches previous as well
-			moveToTop('Previous - Clementine'.toLowerCase())
-		} else if (queryLower == 'next') {
-			moveToTop('Next - Clementine'.toLowerCase())
+			// sort: clementine (English only)
+			// /usr/share/applications/clementine.desktop
+			if (queryLower == 'play') {
+				moveToTop('Play - Clementine'.toLowerCase())
+			} else if (queryLower == 'play') {
+				moveToTop('Pause - Clementine'.toLowerCase())
+			} else if (queryLower == 'play') {
+				moveToTop('Stop - Clementine'.toLowerCase())
+			} else if (queryLower.indexOf('prev') == 0) { // Matches previous as well
+				moveToTop('Previous - Clementine'.toLowerCase())
+			} else if (queryLower == 'next') {
+				moveToTop('Next - Clementine'.toLowerCase())
+			}
 		}
 
 		//--- apply model
