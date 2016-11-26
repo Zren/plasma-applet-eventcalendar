@@ -29,7 +29,10 @@
     <entry name="searchResultsCustomSort" type="bool">
       <default>false</default>
     </entry>
-
+    <entry name="showRecentApps" type="bool">
+      <label>Whether to show the "Recent Applications" category.</label>
+      <default>true</default>
+    </entry>
 
     <!-- Colors -->
     <!-- Use empty string instead of color type so that we can use default colors from the color scheme. -->

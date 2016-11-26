@@ -110,7 +110,13 @@ Item {
 			interval: 100
 			onTriggered: allAppsModel.refresh()
 		}
+		
+		Connections {
+			target: plasmoid.configuration
+			onShowRecentAppsChanged: debouncedRefresh.restart()
+		}
 	}
+
 
 	Kicker.FavoritesModel {
 		id: favoritesModel
@@ -268,8 +274,10 @@ Item {
 			})
 
 			//--- Recent Apps
-			var recentAppList = getRecentApps();
-			appList = recentAppList.concat(appList); // prepend
+			if (plasmoid.configuration.showRecentApps) {
+				var recentAppList = getRecentApps();
+				appList = recentAppList.concat(appList); // prepend
+			}
 
 			//--- Power
 			// var systemModel = rootModel.modelForRow(rootModel.count - 1)
@@ -293,7 +301,7 @@ Item {
 
 			refreshed()
 		}
-}
+	}
 
 	function endsWidth(s, substr) {
 		// console.log(s, s.indexOf(substr), s.length - substr.length - 1)

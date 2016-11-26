@@ -219,6 +219,11 @@ ConfigPage {
 				{ value: "below", text: i18n("Below") },
 			]
 		}
+
+		ConfigCheckBox {
+			text: i18n("Show recent applications")
+			configKey: 'showRecentApps'
+		}
 	}
 
 	ExclusiveGroup { id: searchResultsMergedGroup }
@@ -246,5 +251,5 @@ ConfigPage {
 		// 	configKey: 'searchResultsCustomSort'
 		// }
 	}
-	
+
 }
