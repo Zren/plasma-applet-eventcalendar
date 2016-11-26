@@ -1,3 +1,13 @@
+## v7 - November 26 2016
+
+* Fix the white text on white bg in the "white" searchbox when using breeze dark.
+* Support dropping on the empty area below the current favourites.
+* Dropping a new favourite item will insert at that location instead of adding to the end of the list.
+* Changed the search results to use the same ordering as Application Launcher (Merged) by default. You can also choose to use categorized sorting like Application Menu, but the order might not be ideal as the custom full text sorting was disabled.
+* The panel icon now scales by default. A toggle was added to make it a fixed size (for thick panels).
+* Added shortcuts to the KSysGuard, Dolphin, SystemSettings, Konsole, and System Info in the context menu.
+* Added ability to toggle the Recent Apps.
+
 ## v6 - November 23 2016
 
 * Add a push down effect when clicking a favourite.
