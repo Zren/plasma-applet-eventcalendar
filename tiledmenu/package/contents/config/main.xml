@@ -34,6 +34,12 @@
       <default>true</default>
     </entry>
 
+    <!-- Base64 encoded JSON -->
+    <entry name="tileData" type="string">
+      <!-- Schema: { "konsole.desktop": { size: "1x1", x: 3, y: 0, label: "Terminal" }, ...} -->
+      <default></default>
+    </entry>
+
     <!-- Colors -->
     <!-- Use empty string instead of color type so that we can use default colors from the color scheme. -->
     <entry name="defaultTileColor" type="string">

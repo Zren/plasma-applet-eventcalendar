@@ -7,8 +7,11 @@ Item {
 		return c2
 	}
 
-	function getBase64Json(key) {
+	function getBase64Json(key, defaultValue) {
 		var val = plasmoid.configuration[key]
+		if (val === '') {
+			return defaultValue
+		}
 		val = Qt.atob(val) // decode base64
 		val = JSON.parse(val)
 		return val
@@ -33,7 +36,8 @@ Item {
 	readonly property int favCellPadding: 3 * units.devicePixelRatio
 	readonly property int favColWidth: ((favCellWidth + favCellPadding * 2) * 2) // = 132 (Medium Size)
 	readonly property int favViewDefaultWidth: (favColWidth * 3) * units.devicePixelRatio + 2
-	readonly property int favMediumIconSize: 72 * units.devicePixelRatio // = 72
+	readonly property int favSmallIconSize: 32 * units.devicePixelRatio
+	readonly property int favMediumIconSize: 72 * units.devicePixelRatio
 
 	readonly property int searchFieldHeight: 50 * units.devicePixelRatio
 
@@ -68,4 +72,21 @@ Item {
 	readonly property bool searchResultsMerged: plasmoid.configuration.searchResultsMerged
 	readonly property bool searchResultsCustomSort: plasmoid.configuration.searchResultsCustomSort
 	
+	//--- Tile Data
+	property alias tileData: tileData
+	TileDataModel {
+		id: tileData
+		
+		defaultValue: {
+			// "org.kde.dolphin.desktop": {
+			// 	"x": "2",
+			// 	"y": "0",
+			// 	"size": "small",
+			// 	"label": "File Manager"
+			// }
+			"simplescreenrecorder.desktop": {
+				"label": "Screen Recorder"
+			}
+		}
+	}
 }

@@ -70,11 +70,25 @@ DragAndDrop.DropArea {
 					width: favouritesGridView.cellWidth * colSpan
 					height: favouritesGridView.cellHeight * rowSpan
 
-					// Medium (until we can make this configurable)
-					property string size: 'medium'
+					property variant tileData: config.tileData.value[model.favoriteId]
+					property string tileDataLabel: tileData && tileData.label ? tileData.label : ""
+					property string tileDataSize: tileData && tileData.size ? tileData.size : "medium"
+					// onTileDataChanged: console.log('onTileDataChanged', index, model.favoriteId, tileData)
+					// onTileDataLabelChanged: console.log('onTileDataLabelChanged', index, model.favoriteId, tileDataLabel)
+
 					states: [
 						State {
-							when: item.size == 'medium'
+							when: item.tileDataSize == 'small'
+							PropertyChanges {
+								target: item
+								width: favouritesGridView.cellWidth / 2
+								height: favouritesGridView.cellHeight / 2
+							}
+							PropertyChanges { target: label; visible: false }
+							PropertyChanges { target: icon; size: config.favSmallIconSize }
+						},
+						State {
+							when: item.tileDataSize == 'medium'
 							PropertyChanges {
 								target: item
 							}
@@ -123,7 +137,7 @@ DragAndDrop.DropArea {
 
 							PlasmaComponents.Label {
 								id: label
-								text: model.display || model.url || ''
+								text: item.tileDataLabel || model.display || model.url || ''
 								anchors.leftMargin: 4
 								anchors.left: parent.left
 								anchors.bottom: parent.bottom
