@@ -107,13 +107,9 @@ ConfigPage {
 					}
 				}
 
-				CheckBox {
+				ConfigCheckBox {
 					text: i18n("Fixed Size")
-					checked: plasmoid.configuration.fixedPanelIcon
-					onClicked: {
-						plasmoid.configuration.fixedPanelIcon = !plasmoid.configuration.fixedPanelIcon
-						console.log(checked, plasmoid.configuration.fixedPanelIcon)
-					}
+					configKey: 'fixedPanelIcon'
 				}
 			}
 			
@@ -224,4 +220,31 @@ ConfigPage {
 			]
 		}
 	}
+
+	ExclusiveGroup { id: searchResultsMergedGroup }
+	ConfigSection {
+		label: i18n("Search Results")
+
+		RadioButton {
+			exclusiveGroup: searchResultsMergedGroup
+			text: i18n("Merged (Application Launcher)")
+			checked: plasmoid.configuration.searchResultsMerged
+			onClicked: {
+				plasmoid.configuration.searchResultsMerged = true
+				plasmoid.configuration.searchResultsCustomSort = false
+			}
+		}
+		RadioButton {
+			exclusiveGroup: searchResultsMergedGroup
+			text: i18n("Split into Categories (Application Menu / Dashboard)")
+			checked: !plasmoid.configuration.searchResultsMerged
+			onClicked: plasmoid.configuration.searchResultsMerged = false
+		}
+		// ConfigCheckBox {
+		// 	enabled: !plasmoid.configuration.searchResultsMerged
+		// 	text: i18n("Custom Sort (Prefer partial matches)")
+		// 	configKey: 'searchResultsCustomSort'
+		// }
+	}
+	
 }

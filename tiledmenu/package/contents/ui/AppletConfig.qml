@@ -65,7 +65,7 @@ Item {
 
 	//--- Settings
 	// Search
-	readonly property bool searchResultsMerged: true
-	readonly property bool searchResultsCustomSort: false
+	readonly property bool searchResultsMerged: plasmoid.configuration.searchResultsMerged
+	readonly property bool searchResultsCustomSort: plasmoid.configuration.searchResultsCustomSort
 	
 }

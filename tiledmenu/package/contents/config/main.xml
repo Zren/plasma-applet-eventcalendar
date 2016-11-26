@@ -23,6 +23,13 @@
     <entry name="fixedPanelIcon" type="bool">
       <default>true</default>
     </entry>
+    <entry name="searchResultsMerged" type="bool">
+      <default>true</default>
+    </entry>
+    <entry name="searchResultsCustomSort" type="bool">
+      <default>false</default>
+    </entry>
+
 
     <!-- Colors -->
     <!-- Use empty string instead of color type so that we can use default colors from the color scheme. -->
