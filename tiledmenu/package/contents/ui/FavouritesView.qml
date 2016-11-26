@@ -21,9 +21,11 @@ DragAndDrop.DropArea {
 	onDrop: {
 		if (favouritesView.draggedIndex >= 0) { // Moving favorite around (to the end).
 			favouritesGridView.swap(favouritesView.draggedIndex, favouritesGridView.model.count - 1)
+			event.accept(Qt.MoveAction)
 		} else { // Add new favorite from dolphin/desktop/taskbar (to the end).
 			var favoriteId = favouritesGridView.parseDropUrl(event)
 			favouritesGridView.append(favoriteId)
+			event.accept(Qt.CopyAction)
 		}
 	}
 
@@ -233,9 +235,11 @@ DragAndDrop.DropArea {
 							if (favouritesView.draggedIndex >= 0) { // Moving favorite around.
 								// console.log('model.favoriteId', model.favoriteId)
 								favouritesGridView.swap(favouritesView.draggedIndex, index)
+								event.accept(Qt.MoveAction)
 							} else { // Add new favorite from dolphin/desktop/taskbar.
 								var favoriteId = favouritesGridView.parseDropUrl(event)
 								favouritesGridView.insert(index, favoriteId)
+								event.accept(Qt.CopyAction)
 							}
 						}
 
@@ -253,10 +257,6 @@ DragAndDrop.DropArea {
 				// function nameOf(i) {
 				// 	return favouritesGridView.model.data(favouritesGridView.model.index(i, 0), Qt.DisplayRole)
 				// }
-
-				function parseDropEvent(event) {
-
-				}
 
 				function parseDropUrl(event) {
 					if (event.mimeData.url) {
@@ -282,7 +282,7 @@ DragAndDrop.DropArea {
 				}
 
 				function insert(index, favoriteId) {
-					append(favoriteId) // TODO: For now just append.
+					appsModel.favoritesModel.addFavorite(favoriteId, index)
 				}
 
 				function moveTo(a, b) {
