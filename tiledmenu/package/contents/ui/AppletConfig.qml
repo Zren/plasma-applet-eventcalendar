@@ -71,6 +71,7 @@ Item {
 	// Search
 	readonly property bool searchResultsMerged: plasmoid.configuration.searchResultsMerged
 	readonly property bool searchResultsCustomSort: plasmoid.configuration.searchResultsCustomSort
+	readonly property int searchResultsDirection: plasmoid.configuration.searchResultsReversed ? ListView.BottomToTop : ListView.TopToBottom
 	
 	//--- Tile Data
 	property alias tileData: tileData

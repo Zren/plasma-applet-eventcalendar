@@ -58,13 +58,13 @@ TextField {
 	property var listView: searchResultsView.listView
 	Keys.onPressed: {
 		if (event.key == Qt.Key_Up) {
-			event.accepted = true; listView.decrementCurrentIndex()
+			event.accepted = true; listView.goUp()
 		} else if (event.key == Qt.Key_Down) {
-			event.accepted = true; listView.incrementCurrentIndex()
+			event.accepted = true; listView.goDown()
 		} else if (event.key == Qt.Key_PageUp) {
-			event.accepted = true; listView.currentIndex = Math.max(0, listView.currentIndex - 10)
+			event.accepted = true; listView.pageUp()
 		} else if (event.key == Qt.Key_PageDown) {
-			event.accepted = true; listView.currentIndex = Math.min(listView.currentIndex + 10, listView.count-1)
+			event.accepted = true; listView.pageDown()
 		} else if (event.key == Qt.Key_Return) {
 			event.accepted = true; listView.currentItem.trigger()
 		} else if (event.modifiers & Qt.MetaModifier && event.key == Qt.Key_R) {

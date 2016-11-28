@@ -29,6 +29,9 @@
     <entry name="searchResultsCustomSort" type="bool">
       <default>false</default>
     </entry>
+    <entry name="searchResultsReversed" type="bool">
+      <default>false</default>
+    </entry>
     <entry name="showRecentApps" type="bool">
       <label>Whether to show the "Recent Applications" category.</label>
       <default>true</default>

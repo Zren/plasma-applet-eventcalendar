@@ -70,4 +70,44 @@ ListView {
 	// function triggerIndex(index) {
 	// 	model.triggerIndex(index)
 	// }
+
+	function goUp() {
+		if (verticalLayoutDirection == ListView.TopToBottom) {
+			decrementCurrentIndex()
+		} else { // ListView.BottomToTop
+			incrementCurrentIndex()
+		}
+	}
+
+	function goDown() {
+		if (verticalLayoutDirection == ListView.TopToBottom) {
+			incrementCurrentIndex()
+		} else { // ListView.BottomToTop
+			decrementCurrentIndex()
+		}
+	}
+
+	function skipToMin() {
+		currentIndex = Math.max(0, currentIndex - 10)
+	}
+
+	function skipToMax() {
+		currentIndex = Math.min(currentIndex + 10, count-1)
+	}
+
+	function pageUp() {
+		if (verticalLayoutDirection == ListView.TopToBottom) {
+			skipToMin()
+		} else { // ListView.BottomToTop
+			skipToMax()
+		}
+	}
+
+	function pageDown() {
+		if (verticalLayoutDirection == ListView.TopToBottom) {
+			skipToMax()
+		} else { // ListView.BottomToTop
+			skipToMin()
+		}
+	}
 }

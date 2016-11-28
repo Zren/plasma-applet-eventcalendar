@@ -17,6 +17,7 @@ KickerListView { // RunnerResultsList
 	
 	section.property: 'runnerName'
 	section.criteria: ViewSection.FullString
+	verticalLayoutDirection: config.searchResultsDirection
 
 	Connections {
 		target: search.results
