@@ -17,6 +17,7 @@ ColumnLayout {
     property bool cfg_agenda_breakup_multiday_events: false
     property alias cfg_agenda_newevent_remember_calendar: agenda_newevent_remember_calendar.checked
     property alias cfg_show_outlines: show_outlines.checked
+    property bool cfg_twoColumns: true
 
     SystemPalette {
         id: palette
@@ -29,6 +30,27 @@ ColumnLayout {
             Layout.fillWidth: true
             id: widget_show_agenda
             text: "Show agenda"
+        }
+
+        GroupBox {
+            Layout.fillWidth: true
+            ColumnLayout {
+                ExclusiveGroup { id: layoutGroup }
+                RadioButton {
+                    text: i18n("Agenda above the month (Single Column)")
+                    exclusiveGroup: layoutGroup
+                    enabled: cfg_widget_show_agenda
+                    checked: !cfg_twoColumns
+                    onClicked: cfg_twoColumns = false
+                }
+                RadioButton {
+                    text: i18n("Agenda to the left (Two Columns)")
+                    exclusiveGroup: layoutGroup
+                    enabled: cfg_widget_show_agenda
+                    checked: cfg_twoColumns
+                    onClicked: cfg_twoColumns = true
+                }
+            }
         }
 
         GroupBox {
