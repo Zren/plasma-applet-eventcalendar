@@ -218,7 +218,7 @@ Item {
                     var gridDataAreaWidth = 0;
                     for (var i = 1; i < graph.gridData.length; i++) {
                         var item = graph.gridData[i];
-                        console.log(i, item, item.precipitation, graph.yAxisRainMax)
+                        // console.log(i, item, item.precipitation, graph.yAxisRainMax)
                         if (item.precipitation) {
                             graph.showYAxisRainMax = true
                             var rainY = Math.min(item.precipitation, graph.yAxisRainMax) / graph.yAxisRainMax;
@@ -305,7 +305,7 @@ Item {
                     var lastLabelStaggered = false;
                     for (var i = 1; i < graph.gridData.length; i++) {
                         var item = graph.gridData[i];
-                        console.log('label', graph.rainUnits, i, item.precipitation)
+                        // console.log('label', graph.rainUnits, i, item.precipitation)
                         if (item.precipitation && (
                             (graph.rainUnits == 'mm' && item.precipitation > 0.3)
                             || (graph.rainUnits == '%')
