@@ -12,6 +12,8 @@ import org.kde.kquickcontrolsaddons 2.0 // KCMShell
 Item {
     id: root
 
+    AppletConfig { id: appletConfig }
+
     property alias dataSource: timeModel.dataSource
     property alias currentTime: timeModel.currentTime
     property alias eventModel: eventModel
