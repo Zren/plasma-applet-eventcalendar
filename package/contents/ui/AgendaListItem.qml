@@ -290,6 +290,7 @@ RowLayout {
 
                         menuItem = contextMenu.newMenuItem();
                         menuItem.text = i18n("Edit description");
+                        menuItem.enabled = false;
                         menuItem.clicked.connect(function() {
                             editSummaryForm.active = !editSummaryForm.active
                         });
