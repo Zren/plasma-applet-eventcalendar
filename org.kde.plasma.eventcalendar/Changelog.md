@@ -1,3 +1,14 @@
+[b]v39 - November 30 2016[/b]
+
+* Fixed clock height is no longer limited to a max of 99px.
+* Fix current date not advancing when used as a desktop widget.
+* Fix weather/events being spam fetched XX times when first loaded (using the deferred pattern). This caused the tooltip to jitter for a bit as all the responses came in and caused updates.
+* Panel tooltip now shows the seconds + timezone (still follows the locale instead of your 12h/24h setting though).
+* Added "Big Number" style for the current date.
+* Added a full height single column layout where the agenda is placed above the calendar.
+* Refactor cached weather/event models so it's stored at the widget scope rather than the popup scope.
+* Refactor most configurable code to not pass config values but look at a global object.
+
 [b]v38 - October 21 2016[/b]
 
 * Fix inability to set the weather affecting new users.
