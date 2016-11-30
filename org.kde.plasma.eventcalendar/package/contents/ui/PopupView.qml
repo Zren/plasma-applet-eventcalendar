@@ -22,6 +22,8 @@ Item {
     property int bottomRowHeight: 400 * units.devicePixelRatio
     property int columnWidth: width / 2
     property int padding: 0
+    property bool singleColumn: !showAgenda || !showCalendar
+    property bool singleColumnFullHeight: !plasmoid.configuration.twoColumns && showAgenda && showCalendar
     property bool twoColumns: plasmoid.configuration.twoColumns && showAgenda && showCalendar
 
     Layout.minimumWidth: {
@@ -42,12 +44,23 @@ Item {
 
     Layout.minimumHeight: 400 * units.devicePixelRatio
     Layout.preferredHeight: {
-        if (!twoColumns) {
+        if (singleColumnFullHeight) {
             return plasmoid.screenGeometry.height
-        } else if ((showMeteogram || showTimer) && (showAgenda || showCalendar)) {
-            return (400 + 10 + 100) * units.devicePixelRatio + padding * 2
-        } else {
-            return 400 * units.devicePixelRatio + padding * 2
+        } else if (singleColumn) {
+            var h = 400 // showAgenda || showCalendar
+            if (showMeteogram) {
+                h += 10 + 100
+            }
+            if (showTimer) {
+                h += 10 + 100
+            }
+            return h * units.devicePixelRatio + padding * 2
+        } else { // twoColumns
+            var h = 400 // showAgenda || showCalendar
+            if (showMeteogram || showTimer) {
+                h += 10 + 100
+            }
+            return h * units.devicePixelRatio + padding * 2
         }
     }
     Layout.maximumHeight: plasmoid.screenGeometry.height
@@ -185,10 +198,16 @@ Item {
         },
         State {
             name: "singleColumn"
-            when: !popup.twoColumns && !(popup.showAgenda && popup.showCalendar)
+            when: !popup.showAgenda || !popup.showCalendar
 
             PropertyChanges { target: widgetGrid
                 columns: 1
+            }
+            PropertyChanges { target: meteogramView
+                Layout.maximumHeight: popup.topRowHeight * 1.5 // 150%
+            }
+            PropertyChanges { target: timerView
+                Layout.maximumHeight: popup.topRowHeight
             }
         }
     ]
