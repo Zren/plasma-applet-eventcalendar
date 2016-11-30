@@ -288,6 +288,7 @@ Item {
                             
                             suffix: i18n("px")
                             minimumValue: 0
+                            maximumValue: 1000000
                         }
 
                         Label {
