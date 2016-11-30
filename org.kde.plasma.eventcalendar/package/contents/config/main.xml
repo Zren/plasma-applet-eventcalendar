@@ -104,6 +104,9 @@
   </group>
 
   <group name="Agenda">
+    <entry name="twoColumns" type="bool">
+      <default>true</default>
+    </entry>
     <entry name="agenda_weather_show_icon" type="bool">
       <default>true</default>
     </entry>
@@ -185,6 +188,7 @@
 
     <!-- Settings -->
     <entry name="weather_service" type="string">
+      <!-- enum: OpenWeatherMap, WeatherCanada -->
       <default>OpenWeatherMap</default>
     </entry>
     <entry name="weather_units" type="string">

@@ -53,7 +53,7 @@ Item {
         property double yAxisRainMinScale: 2
         property double yAxisRainMax: 2
         property bool showYAxisRainMax: true
-        property string rainUnits: '%'
+        property string rainUnits: 'mm'
 
         property int gridX: yAxisLabelWidth
         property int gridX2: width
@@ -65,8 +65,6 @@ Item {
         // property color scaleColor: "#11000000" // meteogramView.showGridlines ? theme.buttonBackgroundColor : "transparent"
         property color scaleColor: theme.buttonBackgroundColor
         property color labelColor: theme.textColor
-        property color precipitationColor: "#acd"
-        property color precipitationTextOulineColor: meteogramView.showIconOutline ? theme.backgroundColor : "transparent"
         property color tempAbove0Color: "#900"
         property color tempBelow0Color: "#369"
 
@@ -224,12 +222,12 @@ Item {
                         if (item.precipitation) {
                             graph.showYAxisRainMax = true
                             var rainY = Math.min(item.precipitation, graph.yAxisRainMax) / graph.yAxisRainMax;
-                            console.log('rainY', i, rainY)
+                            // console.log('rainY', i, rainY)
                             var a = graph.gridPoint(i-1, graph.yAxisMin);
                             var b = graph.gridPoint(i, graph.yAxisMin);
                             var h = rainY * graph.gridHeight;
                             gridDataAreaWidth = b.x-a.x;
-                            context.fillStyle = graph.precipitationColor
+                            context.fillStyle = appletConfig.meteogramPrecipitationColor
                             context.fillRect(a.x, a.y, gridDataAreaWidth, -h);
                         }
                     }
@@ -307,24 +305,25 @@ Item {
                     var lastLabelStaggered = false;
                     for (var i = 1; i < graph.gridData.length; i++) {
                         var item = graph.gridData[i];
+                        console.log('label', graph.rainUnits, i, item.precipitation)
                         if (item.precipitation && (
-                            (meteogramView.rainUnits == 'mm' && item.precipitation > 0.3)
-                            || (meteogramView.rainUnits == '%')
+                            (graph.rainUnits == 'mm' && item.precipitation > 0.3)
+                            || (graph.rainUnits == '%')
                         )) {
                             var p = graph.gridPoint(i, graph.yAxisMin);
                             var pY = graph.gridY + 6;
 
-                            context.fillStyle = graph.precipitationColor
+                            context.fillStyle = appletConfig.meteogramPrecipitationTextColor
                             context.font = "12px sans-serif"
                             context.textAlign = 'end'
                             var labelValue = item.precipitation >= 1 ? Math.round(item.precipitation) : item.precipitation.toFixed(1)
                             var labelText;
-                            if (meteogramView.rainUnits == 'mm') {
+                            if (graph.rainUnits == 'mm') {
                                 labelText = i18n('%1mm', labelValue);
                             } else { // rainUnits == '%'
                                 labelText = i18n('%1%%', labelValue);
                             }
-                            context.strokeStyle = graph.precipitationTextOulineColor;
+                            context.strokeStyle = appletConfig.meteogramPrecipitationTextOutlineColor
                             context.lineWidth = 3;
 
                             // Stagger the labels so they don't overlap.

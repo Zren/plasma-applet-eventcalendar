@@ -22,16 +22,17 @@ Item {
     property int bottomRowHeight: 400 * units.devicePixelRatio
     property int columnWidth: width / 2
     property int padding: 0
+    property bool twoColumns: plasmoid.configuration.twoColumns && showAgenda && showCalendar
 
     Layout.minimumWidth: {
-        if (showAgenda && showCalendar) {
+        if (twoColumns) {
             return (400 + 10 + 400) * units.devicePixelRatio
         } else {
             return 400 * units.devicePixelRatio
         }
     }
     Layout.preferredWidth: {
-        if (showAgenda && showCalendar) {
+        if (twoColumns) {
             return (400 + 10 + 400) * units.devicePixelRatio + padding * 2
         } else {
             return 400 * units.devicePixelRatio + padding * 2
@@ -41,7 +42,9 @@ Item {
 
     Layout.minimumHeight: 400 * units.devicePixelRatio
     Layout.preferredHeight: {
-        if ((showMeteogram || showTimer) && (showAgenda || showCalendar)) {
+        if (!twoColumns) {
+            return plasmoid.screenGeometry.height
+        } else if ((showMeteogram || showTimer) && (showAgenda || showCalendar)) {
             return (400 + 10 + 100) * units.devicePixelRatio + padding * 2
         } else {
             return 400 * units.devicePixelRatio + padding * 2
@@ -116,8 +119,8 @@ Item {
     }
     states: [
         State {
-            name: "agenda+month"
-            when: popup.showAgenda && popup.showCalendar && !popup.showMeteogram && !popup.showTimer
+            name: "twoColumns+agenda+month"
+            when: popup.twoColumns && popup.showAgenda && popup.showCalendar && !popup.showMeteogram && !popup.showTimer
 
             PropertyChanges { target: widgetGrid
                 columns: 2
@@ -125,8 +128,8 @@ Item {
             }
         },
         State {
-            name: "meteogram+agenda+month"
-            when: popup.showAgenda && popup.showCalendar && popup.showMeteogram && !popup.showTimer
+            name: "twoColumns+meteogram+agenda+month"
+            when: popup.twoColumns && popup.showAgenda && popup.showCalendar && popup.showMeteogram && !popup.showTimer
 
             PropertyChanges { target: widgetGrid
                 columns: 2
@@ -137,8 +140,8 @@ Item {
             }
         },
         State {
-            name: "timer+agenda+month"
-            when: popup.showAgenda && popup.showCalendar && !popup.showMeteogram && popup.showTimer
+            name: "twoColumns+timer+agenda+month"
+            when: popup.twoColumns && popup.showAgenda && popup.showCalendar && !popup.showMeteogram && popup.showTimer
 
             PropertyChanges { target: widgetGrid
                 columns: 2
@@ -149,8 +152,8 @@ Item {
             }
         },
         State {
-            name: "meteogram+timer+agenda+month"
-            when: popup.showAgenda && popup.showCalendar && popup.showMeteogram && popup.showTimer
+            name: "twoColumns+meteogram+timer+agenda+month"
+            when: popup.twoColumns && popup.showAgenda && popup.showCalendar && popup.showMeteogram && popup.showTimer
 
             PropertyChanges { target: widgetGrid
                 columns: 2
@@ -158,8 +161,31 @@ Item {
             }
         },
         State {
+            name: "singleColumnFullHeight"
+            when: !popup.twoColumns && popup.showAgenda && popup.showCalendar
+
+            PropertyChanges { target: widgetGrid
+                columns: 1
+            }
+            PropertyChanges { target: meteogramView
+                Layout.maximumHeight: popup.topRowHeight * 1.5 // 150%
+            }
+            PropertyChanges { target: timerView
+                Layout.maximumHeight: popup.topRowHeight
+            }
+            PropertyChanges { target: agendaView
+                // Layout.minimumHeight: popup.bottomRowHeight
+                Layout.preferredHeight: popup.bottomRowHeight
+            }
+            PropertyChanges { target: monthView
+                Layout.minimumHeight: popup.bottomRowHeight
+                Layout.preferredHeight: popup.bottomRowHeight
+                Layout.maximumHeight: popup.bottomRowHeight
+            }
+        },
+        State {
             name: "singleColumn"
-            when: !(popup.showAgenda && popup.showCalendar)
+            when: !popup.twoColumns && !(popup.showAgenda && popup.showCalendar)
 
             PropertyChanges { target: widgetGrid
                 columns: 1
@@ -168,8 +194,7 @@ Item {
     ]
 
     ColumnLayout {
-        width: parent.width
-        height: parent.height
+        anchors.fill: parent
 
         GridLayout {
             id: widgetGrid
@@ -390,8 +415,15 @@ Item {
         updateWeather();
     }
 
-
     function updateEvents() {
+        updateEventsTimer.restart()
+    }
+    Timer {
+        id: updateEventsTimer
+        interval: 100
+        onTriggered: defferedUpdateEvents()
+    }
+    function defferedUpdateEvents() {
         var dateMin = monthView.firstDisplayedDate();
         if (!dateMin) {
             // console.log('updateEvents', 'no dateMin');
@@ -469,12 +501,20 @@ Item {
             }
             
             if (force || shouldUpdate) {
-                updateDailyWeather();
-
-                if (popup.showMeteogram) {
-                    updateHourlyWeather();
-                }
+                updateWeatherTimer.restart()
             }
+        }
+    }
+    Timer {
+        id: updateWeatherTimer
+        interval: 100
+        onTriggered: defferedUpdateWeather()
+    }
+    function defferedUpdateWeather() {
+        updateDailyWeather();
+
+        if (popup.showMeteogram) {
+            updateHourlyWeather();
         }
     }
 
@@ -601,7 +641,7 @@ Item {
                 "Authorization": "Bearer " + args.access_token,
             }
         }, function(err, data, xhr) {
-            console.log('fetchGCalEvents.response', err, data, xhr.status);
+            console.log('fetchGCalEvents.response', args.calendarId, err, data, xhr.status);
             if (!err && data && data.error) {
                 return callback(data, null, xhr);
             }

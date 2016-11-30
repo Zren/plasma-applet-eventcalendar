@@ -392,7 +392,7 @@ Item {
                 "Authorization": "Bearer " + args.access_token,
             }
         }, function(err, data, xhr) {
-            console.log('fetchGCalEvents.response', err, data, xhr.status);
+            console.log('fetchGCalCalendars.response', err, data, xhr.status);
             if (!err && data && data.error) {
                 return callback(data, null, xhr);
             }
