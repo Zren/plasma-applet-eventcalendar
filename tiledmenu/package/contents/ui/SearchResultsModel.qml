@@ -200,4 +200,26 @@ ListModel {
 	}
 	
 	signal itemTriggered()
+
+	function getActionList(index) {
+		var DescriptionRole = Qt.UserRole + 1;
+		var HasActionListRole = DescriptionRole + 7;
+		var ActionListRole = DescriptionRole + 8;
+
+		var model = resultModel.get(index)
+		var runner = runnerModel.modelForRow(model.runnerIndex)
+		var modelIndex = runner.index(model.runnerItemIndex, 0)
+		return runner.data(modelIndex, ActionListRole)
+	}
+
+	function triggerIndexAction(index, actionId, actionArgument) {
+		// kicker/code/tools.js triggerAction()
+		var model = resultModel.get(index)
+		var runner = runnerModel.modelForRow(model.runnerIndex)
+		runner.trigger(model.runnerItemIndex, actionId, actionArgument)
+		itemTriggered()
+
+		// Note that Recent Documents actions do not work (in the search results) as of Plasma 5.8.4
+		// https://bugs.kde.org/show_bug.cgi?id=373173
+	}
 }

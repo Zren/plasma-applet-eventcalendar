@@ -94,6 +94,24 @@ ListModel {
 		item.parentModel.trigger(item.indexInParent, "", null);
 		itemTriggered()
 	}
-	
+
 	signal itemTriggered()
+
+	function getActionList(index) {
+		var DescriptionRole = Qt.UserRole + 1;
+		var HasActionListRole = DescriptionRole + 7;
+		var ActionListRole = DescriptionRole + 8;
+
+		var item = list[index]
+		var modelIndex = item.parentModel.index(item.indexInParent, 0)
+		return item.parentModel.data(modelIndex, ActionListRole)
+	}
+
+	function triggerIndexAction(index, actionId, actionArgument) {
+		// kicker/code/tools.js triggerAction()
+
+		var item = list[index]
+		item.parentModel.trigger(item.indexInParent, actionId, actionArgument)
+		itemTriggered()
+	}
 }

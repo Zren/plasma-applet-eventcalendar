@@ -121,9 +121,9 @@ AppToolButton {
 	AppContextMenu {
 		id: contextMenu
 		onPopulateMenu: {
-			// Pin to Menu
 			if (launcherUrl) {
-			var menuItem = menu.newMenuItem();
+				// Pin to Menu
+				var menuItem = menu.newMenuItem();
 				if (appsModel.favoritesModel.isFavorite(launcherUrl)) {
 					menuItem.text = i18n("Unpin from Menu")
 					menuItem.icon = "list-remove"
@@ -140,7 +140,20 @@ AppToolButton {
 				}
 				menu.addMenuItem(menuItem)
 			}
+
+				// .desktop file Exec actions
+				// ------
+				// Pin to Taskbar / Desktop / Panel
+				// ------
+				// Recent Documents
+				// ------
+				// ...
+				// ------
+				// Edit Application
+				var actionList = listView.model.getActionList(index)
+				menu.addActionList(actionList)
 		}
+		property url lUrl: ""
 	}
 
 } // delegate: AppToolButton
