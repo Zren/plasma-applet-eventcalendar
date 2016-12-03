@@ -64,6 +64,35 @@ Item {
 
 			allAppsModel.refresh()
 		}
+
+		favoritesModel: Kicker.FavoritesModel {
+			// Kicker.FavoritesModel must be a child object of RootModel.
+			// appEntry.actions() looks at the parent object for parent.appletInterface and will crash plasma if it can't find it.
+			// https://github.com/KDE/plasma-desktop/blob/master/applets/kicker/plugin/appentry.cpp#L151
+			id: favoritesModel
+
+			Component.onCompleted: {
+				// favorites = 'systemsettings.desktop,sublime-text.desktop,clementine.desktop,hexchat.desktop,virtualbox.desktop'.split(',')
+				favorites = plasmoid.configuration.favoriteApps
+			}
+
+			onFavoritesChanged: {
+				plasmoid.configuration.favoriteApps = favorites
+			}
+
+			// Connections {
+			// 	target: plasmoid.configuration
+
+			// 	onFavoriteAppsChanged: {
+			// 		favoritesModel.favorites = plasmoid.configuration.favoriteApps
+			// 	}
+			// }
+
+			signal triggerIndex(int index)
+			onTriggerIndex: {
+				favoritesModel.trigger(index, "", null)
+			}
+		}
 	}
 
 	Item {
@@ -115,58 +144,6 @@ Item {
 			target: plasmoid.configuration
 			onShowRecentAppsChanged: debouncedRefresh.restart()
 		}
-	}
-
-
-	Kicker.FavoritesModel {
-		id: favoritesModel
-
-		Component.onCompleted: {
-			// favorites = 'systemsettings.desktop,sublime-text.desktop,clementine.desktop,hexchat.desktop,virtualbox.desktop'.split(',')
-			favorites = plasmoid.configuration.favoriteApps
-		}
-
-		onFavoritesChanged: {
-			plasmoid.configuration.favoriteApps = favorites
-		}
-
-		// Connections {
-		// 	target: plasmoid.configuration
-
-		// 	onFavoriteAppsChanged: {
-		// 		favoritesModel.favorites = plasmoid.configuration.favoriteApps
-		// 	}
-		// }
-
-		signal triggerIndex(int index)
-		onTriggerIndex: {
-			favoritesModel.trigger(index, "", null)
-		}
-
-		// signal aboutToShowActionMenu(string favoriteId, variant actionMenu)
-		// onAboutToShowActionMenu: {
-		// 	// var actionList = (model.hasActionList != null) ? model.actionList : [];
-		// 	KickerTools.fillActionMenu(actionMenu, [], favoritesModel, favoriteId);
-		// }
-
-		// signal actionTriggered(int index, string actionId, variant actionArgument)
-		// onActionTriggered: {
-		// 	KickerTools.triggerAction(favoritesModel, index, actionId, actionArgument);
-		// }
-
-		// function openActionMenu(visualParent, x, y) {
-		// 	aboutToShowActionMenu(actionMenu);
-		// 	actionMenu.visualParent = visualParent;
-		// 	actionMenu.open(x, y);
-		// }
-
-		// ActionMenu {
-		// 	id: actionMenu
-
-		// 	onActionClicked: {
-		// 		actionTriggered(actionId, actionArgument);
-		// 	}
-		// }
 	}
 
 
