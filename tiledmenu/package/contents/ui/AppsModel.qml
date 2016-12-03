@@ -303,7 +303,7 @@ Item {
 		}
 	}
 
-	function endsWidth(s, substr) {
+	function endsWith(s, substr) {
 		// console.log(s, s.indexOf(substr), s.length - substr.length - 1)
 		return s.indexOf(substr) == s.length - substr.length
 	}
@@ -311,7 +311,7 @@ Item {
 	function launch(launcherName) {
 		for (var i = 0; i < allAppsModel.count; i++) {
 			var item = allAppsModel.get(i);
-			if (item.url && endsWidth(item.url, '/' + launcherName + '.desktop')) {
+			if (item.url && endsWith(item.url, '/' + launcherName + '.desktop')) {
 				item.parentModel.trigger(item.indexInParent, "", null);
 				break;
 			}
