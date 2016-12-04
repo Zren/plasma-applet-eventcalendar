@@ -25,6 +25,7 @@ ColumnLayout {
 			width: 20
 			onClicked: search.applyDefaultFilters()
 			checked: search.isDefaultFilter
+			checkedEdge: Qt.BottomEdge
 		}
 		FlatButton {
 			iconName: "window"
@@ -33,6 +34,7 @@ ColumnLayout {
 			width: 30
 			onClicked: search.filters = ['services']
 			checked: search.isAppsFilter
+			checkedEdge: Qt.BottomEdge
 		}
 		FlatButton {
 			iconName: "document-new"
@@ -40,6 +42,7 @@ ColumnLayout {
 			width: height
 			onClicked: search.filters = ['baloosearch']
 			checked: search.isFileFilter
+			checkedEdge: Qt.BottomEdge
 		}
 		FlatButton {
 			iconName: "globe"
@@ -47,6 +50,7 @@ ColumnLayout {
 			width: height
 			onClicked: search.filters = ['bookmarks']
 			checked: search.isBookmarksFilter
+			checkedEdge: Qt.BottomEdge
 		}
 
 		Item { Layout.fillWidth: true }

@@ -20,6 +20,10 @@ PlasmaComponents.ToolButton {
 	property bool labelVisible: text != ""
 	property color backgroundColor: "transparent"
 
+	// http://doc.qt.io/qt-5/qt.html#Edge-enum
+	property int checkedEdge: 0 // 0 = all edges
+	property int checkedEdgeWidth: 2 * units.devicePixelRatio
+
 	style: PlasmaStyles.ToolButtonStyle {
 		label: RowLayout {
 			spacing: units.smallSpacing
@@ -59,10 +63,56 @@ PlasmaComponents.ToolButton {
 
 			Rectangle {
 				id: checkedOutline
-				anchors.fill: parent
-				color: "transparent"
-				border.color: theme.highlightColor
+				color: theme.highlightColor
 				visible: control.checked
+				anchors.left: parent.left
+				anchors.top: parent.top
+				anchors.right: parent.right
+				anchors.bottom: parent.bottom
+
+				states: [
+					State {
+						when: control.checkedEdge === 0
+						PropertyChanges {
+							target: checkedOutline
+							anchors.fill: checkedOutline.parent
+							color: "transparent"
+							border.color: theme.highlightColor
+						}
+					},
+					State {
+						when: control.checkedEdge == Qt.TopEdge
+						PropertyChanges {
+							target: checkedOutline
+							anchors.bottom: undefined
+							height: control.checkedEdgeWidth
+						}
+					},
+					State {
+						when: control.checkedEdge == Qt.LeftEdge
+						PropertyChanges {
+							target: checkedOutline
+							anchors.right: undefined
+							width: control.checkedEdgeWidth
+						}
+					},
+					State {
+						when: control.checkedEdge == Qt.RightEdge
+						PropertyChanges {
+							target: checkedOutline
+							anchors.left: undefined
+							width: control.checkedEdgeWidth
+						}
+					},
+					State {
+						when: control.checkedEdge == Qt.BottomEdge
+						PropertyChanges {
+							target: checkedOutline
+							anchors.top: undefined
+							height: control.checkedEdgeWidth
+						}
+					}
+				]
 			}
 
 			states: [
