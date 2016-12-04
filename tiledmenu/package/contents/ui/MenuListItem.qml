@@ -17,19 +17,6 @@ AppToolButton {
 	property string launcherUrl: model.favoriteId || model.url
 	property alias iconSource: itemIcon.source
 
-	// DragAndDrop.DragArea {
-	// 	id: dragArea
-	// 	anchors.fill: parent
-		
-	// 	delegate: itemDelegate
-	// 	supportedActions: Qt.CopyAction
-	// 	enabled: launcherUrl
-
-	// 	mimeData {
-	// 		url: launcherUrl
-	// 	}
-	// }
-
 	RowLayout { // ItemListDelegate
 		id: row
 		width: parent.width
@@ -58,6 +45,25 @@ AppToolButton {
 				animated: false
 				// usesPlasmaTheme: false
 				source: listView.model.list[index].icon
+
+				DragAndDrop.DragArea {
+					id: dragArea
+					anchors.fill: parent
+					
+					delegate: itemDelegate
+					supportedActions: Qt.CopyAction
+					enabled: launcherUrl
+
+					mimeData {
+						url: launcherUrl
+					}
+
+					MouseArea {
+						anchors.fill: parent
+						cursorShape: containsMouse ? pressed ? Qt.ClosedHandCursor : Qt.OpenHandCursor : Qt.ArrowCursor
+						hoverEnabled: true
+					}
+				}
 			}
 		}
 
