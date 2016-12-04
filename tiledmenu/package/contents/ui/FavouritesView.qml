@@ -206,34 +206,11 @@ DragAndDrop.DropArea {
 					AppContextMenu {
 						id: contextMenu
 						onPopulateMenu: {
-							// Pin to Menu
-							var menuItem = menu.newMenuItem();
-							if (appsModel.favoritesModel.isFavorite(model.favoriteId)) {
-								menuItem.text = i18n("Unpin from Menu")
-								menuItem.icon = "list-remove"
-								menuItem.clicked.connect(function() {
-									appsModel.favoritesModel.removeFavorite(model.favoriteId)
-								})
-							} else {
-								menuItem.text = i18n("Pin to Menu")
-								menuItem.icon = "bookmark-new"
-								menuItem.clicked.connect(function() {
-									appsModel.favoritesModel.addFavorite(model.favoriteId)
-								})
-							}
-							menu.addMenuItem(menuItem)
-
-							// Pin to Taskbar
-							// console.log('nullcheck', model.favoriteId, model.favoriteId != null, "hasActionList" in model)
-							// console.log('model.hasActionList', model.hasActionList) // true
-							// console.log('model.actionList.length', model.actionList.length) // crashes plasmoidviewer...
-							// var action = model.actionList[0];
-							// console.log('action', action)
-							// console.log('action.name', action.name)
-							// var menuItem = menu.newMenuItem();
-							// menuItem.text = action.name() //i18n("Pin to Menu")
-							// menuItem.icon = "bookmark-new"
-							// menu.addMenuItem(menuItem)
+							menu.addPinToMenuAction(model.favoriteId)
+							// var actionList = favouritesGridView.model.getActionList(index)
+							// console.log('model.hasActionList', model.hasActionList)
+							// console.log('model.actionList', model.actionList)
+							menu.addActionList(model.actionList, favouritesGridView.model)
 						}
 					}
 

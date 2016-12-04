@@ -122,38 +122,11 @@ AppToolButton {
 		id: contextMenu
 		onPopulateMenu: {
 			if (launcherUrl) {
-				// Pin to Menu
-				var menuItem = menu.newMenuItem();
-				if (appsModel.favoritesModel.isFavorite(launcherUrl)) {
-					menuItem.text = i18n("Unpin from Menu")
-					menuItem.icon = "list-remove"
-					menuItem.clicked.connect(function() {
-						appsModel.favoritesModel.removeFavorite(launcherUrl)
-					})
-				} else {
-					menuItem.text = i18n("Pin to Menu")
-					menuItem.icon = "bookmark-new"
-					menuItem.clicked.connect(function() {
-						// console.log('launcherUrl', launcherUrl)
-						appsModel.favoritesModel.addFavorite(launcherUrl)
-					})
-				}
-				menu.addMenuItem(menuItem)
+				menu.addPinToMenuAction(launcherUrl)
 			}
-
-				// .desktop file Exec actions
-				// ------
-				// Pin to Taskbar / Desktop / Panel
-				// ------
-				// Recent Documents
-				// ------
-				// ...
-				// ------
-				// Edit Application
-				var actionList = listView.model.getActionList(index)
-				menu.addActionList(actionList)
+			var actionList = listView.model.getActionList(index)
+			menu.addActionList(actionList, listView.model)
 		}
-		property url lUrl: ""
 	}
 
 } // delegate: AppToolButton

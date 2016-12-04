@@ -90,8 +90,20 @@ Item {
 
 			signal triggerIndex(int index)
 			onTriggerIndex: {
-				favoritesModel.trigger(index, "", null)
+				var closeRequested = favoritesModel.trigger(index, "", null)
+				if (closeRequested) {
+					plasmoid.expanded = false
+				}
 			}
+
+			signal triggerIndexAction(int index, string actionId, string actionArgument)
+			onTriggerIndexAction: {
+				var closeRequested = favoritesModel.trigger(index, actionId, actionArgument)
+				if (closeRequested) {
+					plasmoid.expanded = false
+				}
+			}
+
 		}
 	}
 

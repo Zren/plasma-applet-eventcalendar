@@ -54,11 +54,38 @@ Item {
             function newMenuItem() {
                 return Qt.createQmlObject("import org.kde.plasma.components 2.0 as PlasmaComponents; PlasmaComponents.MenuItem {}", contextMenu);
             }
+
+            function addPinToMenuAction(favoriteId) {
+                var menuItem = menu.newMenuItem();
+                if (appsModel.favoritesModel.isFavorite(favoriteId)) {
+                    menuItem.text = i18n("Unpin from Menu")
+                    menuItem.icon = "list-remove"
+                    menuItem.clicked.connect(function() {
+                        appsModel.favoritesModel.removeFavorite(favoriteId)
+                    })
+                } else {
+                    menuItem.text = i18n("Pin to Menu")
+                    menuItem.icon = "bookmark-new"
+                    menuItem.clicked.connect(function() {
+                        appsModel.favoritesModel.addFavorite(favoriteId)
+                    })
+                }
+                menu.addMenuItem(menuItem)
+            }
     
             // // https://github.com/KDE/plasma-desktop/blob/master/applets/taskmanager/package/contents/ui/ContextMenu.qml#L75
-            function addActionList(actionList) {
+            function addActionList(actionList, listModel) {
+                // .desktop file Exec actions
+                // ------
+                // Pin to Taskbar / Desktop / Panel
+                // ------
+                // Recent Documents
+                // ------
+                // ...
+                // ------
+                // Edit Application
                 actionList.forEach(function(actionItem) {
-                    console.log(index, actionItem.actionId, actionItem.actionArgument, actionItem.text)
+                    // console.log(index, actionItem.actionId, actionItem.actionArgument, actionItem.text)
                     var menuItem = menu.newMenuItem()
                     menuItem.text = actionItem.text ? actionItem.text : ""
                     menuItem.enabled = actionItem.type != "title" && ("enabled" in actionItem ? actionItem.enabled : true)
@@ -66,7 +93,7 @@ Item {
                     menuItem.section = actionItem.type == "title"
                     menuItem.icon = actionItem.icon ? actionItem.icon : null
                     menuItem.clicked.connect(function() {
-                        listView.model.triggerIndexAction(index, actionItem.actionId, actionItem.actionArgument)
+                        listModel.triggerIndexAction(index, actionItem.actionId, actionItem.actionArgument)
                     });
 
                     //--- Overrides
