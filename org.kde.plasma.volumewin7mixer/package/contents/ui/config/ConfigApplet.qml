@@ -15,6 +15,7 @@ ColumnLayout {
     // property alias cfg_showOpenPavucontrol: showOpenPavucontrol.checked
     property alias cfg_moveAllAppsOnSetDefault: moveAllAppsOnSetDefault.checked
     property alias cfg_showMediaController: showMediaController.checked
+    property alias cfg_showOsd: showOsd.checked
     property string cfg_mediaControllerLocation: 'bottom'
     
 
@@ -111,8 +112,12 @@ ColumnLayout {
 
                 CheckBox {
                     id: moveAllAppsOnSetDefault
-                    checked: true
                     text: 'Move all Apps to device when setting default device (when set in with the context menu)'
+                }
+
+                CheckBox {
+                    id: showOsd
+                    text: 'Show OSD on when changing the volume.'
                 }
 
             }

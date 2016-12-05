@@ -27,5 +27,8 @@
     <entry name="mediaControllerLocation" type="string">
       <default></default>
     </entry>
+    <entry name="showOsd" type="bool">
+      <default>true</default>
+    </entry>
   </group>
 </kcfg>

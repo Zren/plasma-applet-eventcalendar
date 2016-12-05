@@ -81,7 +81,9 @@ Item {
     }
 
     function showOsd(volume) {
-        osd.show(PulseObjectCommands.volumePercent(volume));
+        if (plasmoid.configuration.showOsd) {
+            osd.show(PulseObjectCommands.volumePercent(volume));
+        }
     }
 
     function increaseDefaultSinkVolume() {
@@ -111,11 +113,12 @@ Item {
     }
 
     function showMicrophoneOsd(volume) {
-        osd.showMicrophone(PulseObjectCommands.volumePercent(volume));
+        if (plasmoid.configuration.showOsd) {
+            osd.showMicrophone(PulseObjectCommands.volumePercent(volume));
+        }
     }
 
     function increaseDefaultSourceVolume() {
-        console.log
         if (!sourceModel.defaultSource) {
             return;
         }
