@@ -16,7 +16,7 @@ function toggleMute(pulseObject) {
 
 function setVolume(pulseObject, volume) {
     console.log('setVolume', pulseObject.volume, '=>', volume);
-    if (volume > 0 && pulseObject.muted) {
+    if ((volume > 0 && pulseObject.muted) || (volume == 0 && !pulseObject.muted)) {
         toggleMute(pulseObject);
     }
     pulseObject.volume = volume
