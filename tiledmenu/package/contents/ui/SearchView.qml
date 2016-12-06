@@ -36,17 +36,17 @@ Item {
 				iconName: 'view-sort-ascending-symbolic'
 				text: "Apps"
 				onClicked: appsView.show()
-				checked: stackView.currentItem == appsView
-				checkedEdge: Qt.LeftEdge
-				checkedEdgeWidth: 4 * units.devicePixelRatio // Twice as thick as normal
+				// checked: stackView.currentItem == appsView
+				// checkedEdge: Qt.RightEdge
+				// checkedEdgeWidth: 4 * units.devicePixelRatio // Twice as thick as normal
 			}
 			SidebarItem {
 				iconName: 'system-search-symbolic'
 				text: "Search"
 				onClicked: searchResultsView.showDefaultSearch()
-				checked: stackView.currentItem == searchResultsView
-				checkedEdge: Qt.LeftEdge
-				checkedEdgeWidth: 4 * units.devicePixelRatio // Twice as thick as normal
+				// checked: stackView.currentItem == searchResultsView
+				// checkedEdge: Qt.RightEdge
+				// checkedEdgeWidth: 4 * units.devicePixelRatio // Twice as thick as normal
 			}
 		}
 		Column {
