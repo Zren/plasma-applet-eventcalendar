@@ -21,6 +21,7 @@ ListView {
 
 	property bool showItemUrl: true
 	property bool largeFirstItem: true
+	property int iconSize: 36 * units.devicePixelRatio
 
 	section.delegate: Item {
 		id: sectionDelegate
@@ -32,12 +33,15 @@ ListView {
 			id: sectionHeading
 			anchors {
 				left: parent.left
-				right: parent.right
 				leftMargin: units.smallSpacing
 			}
 			text: section
 			font.bold: true
 			font.pointSize: 14
+
+			property bool centerOverIcon: sectionHeading.contentWidth <= listView.iconSize
+			width: centerOverIcon ? listView.iconSize : parent.width
+			horizontalAlignment: centerOverIcon ? Text.AlignHCenter : Text.AlignLeft
 		}
 	}
 
