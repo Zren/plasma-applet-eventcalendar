@@ -19,9 +19,13 @@ AppToolButton {
 
 	RowLayout { // ItemListDelegate
 		id: row
-		width: parent.width
+		anchors.left: parent.left
+		anchors.leftMargin: units.smallSpacing
+		anchors.right: parent.right
+		anchors.rightMargin: units.smallSpacing
+		// width: parent.width
 		// height: 36 // 2 lines
-		height: (listView.largeFirstItem && index == 0 ? 64 : 36) * units.devicePixelRatio	
+		height: (model.largeIcon ? 64 : 36) * units.devicePixelRatio
 
 		Item {
 			height: parent.height

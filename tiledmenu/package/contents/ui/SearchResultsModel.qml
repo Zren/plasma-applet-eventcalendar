@@ -60,6 +60,7 @@ ListModel {
 					icon: icon,
 					url: url,
 					favoriteId: runner.data(modelIndex, FavoriteIdRole),
+					largeIcon: false, // for KickerListView
 				};
 
 				// console.log(resultItem.name, resultItem.url);
@@ -169,6 +170,16 @@ ListModel {
 			} else if (queryLower == 'next') {
 				moveToTop('Next - Clementine'.toLowerCase())
 			}
+		}
+
+		//--- Make the (selected) first item bigger.
+		if (resultList.length > 0) {
+			resultList[0].largeIcon = true
+		}
+
+		//--- Reverse the model?
+		if (plasmoid.configuration.searchResultsReversed) {
+			resultList.reverse()
 		}
 
 		//--- apply model

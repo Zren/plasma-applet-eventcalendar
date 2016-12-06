@@ -17,7 +17,7 @@ KickerListView { // RunnerResultsList
 	
 	section.property: 'runnerName'
 	section.criteria: ViewSection.FullString
-	verticalLayoutDirection: config.searchResultsDirection
+	// verticalLayoutDirection: config.searchResultsDirection
 
 	Connections {
 		target: search.results
@@ -29,7 +29,12 @@ KickerListView { // RunnerResultsList
 		onRefreshed: {
 			// console.log('search.results.onRefreshed')
 			searchResultsList.model = search.results
-			searchResultsList.currentIndex = 0
+			// if (searchResultsList.verticalLayoutDirection == Qt.BottomToTop) {
+			if (plasmoid.configuration.searchResultsReversed) {
+				searchResultsList.currentIndex = searchResultsList.model.count - 1
+			} else { // TopToBottom (normal)
+				searchResultsList.currentIndex = 0
+			}
 		}
 	}
 

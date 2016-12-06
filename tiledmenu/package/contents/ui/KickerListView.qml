@@ -20,7 +20,6 @@ ListView {
 	highlightResizeDuration: 0
 
 	property bool showItemUrl: true
-	property bool largeFirstItem: true
 	property int iconSize: 36 * units.devicePixelRatio
 
 	section.delegate: Item {

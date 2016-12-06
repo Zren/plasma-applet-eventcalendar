@@ -24,7 +24,6 @@ ScrollView {
 		}
 
 		showItemUrl: false
-		largeFirstItem: false
 	}
 
 	function scrollToTop() {

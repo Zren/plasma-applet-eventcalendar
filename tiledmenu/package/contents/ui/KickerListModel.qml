@@ -38,6 +38,7 @@ ListModel {
 			name: model.data(modelIndex, Qt.DisplayRole),
 			description: model.data(modelIndex, DescriptionRole),
 			favoriteId: model.data(modelIndex, FavoriteIdRole),
+			largeIcon: false, // for KickerListView
 		};
 
 		// ListView.append() doesn't like it when we have { key: [object] }.
