@@ -1,0 +1,213 @@
+# Translation of tiledmenu in pl
+# Copyright (C) 2016
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: https://github.com/Zren/plasma-applets/tree/master/tiledmenu\n"
+"POT-Creation-Date: 2016-12-10 15:49-0500\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: pl\n"
+"Language: pl\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../contents/config/config.qml:26
+msgid "General"
+msgstr ""
+
+#: ../contents/ui/AppContextMenu.qml:61
+msgid "Unpin from Menu"
+msgstr ""
+
+#: ../contents/ui/AppContextMenu.qml:67
+msgid "Pin to Menu"
+msgstr ""
+
+#: ../contents/ui/AppContextMenu.qml:108
+msgid "Pin to Taskbar"
+msgstr ""
+
+#: ../contents/ui/config/ConfigGeneral.qml:24
+msgid "Panel Icon"
+msgstr ""
+
+#: ../contents/ui/config/ConfigGeneral.qml:74
+msgctxt "@item:inmenu Open icon chooser dialog"
+msgid "Choose..."
+msgstr ""
+
+#: ../contents/ui/config/ConfigGeneral.qml:79
+msgctxt "@item:inmenu Reset icon to default"
+msgid "Clear Icon"
+msgstr ""
+
+#: ../contents/ui/config/ConfigGeneral.qml:111
+msgid "Fixed Size"
+msgstr ""
+
+#: ../contents/ui/config/ConfigGeneral.qml:120
+msgid "Choose an image"
+msgstr ""
+
+#: ../contents/ui/config/ConfigGeneral.qml:125
+msgid "Image Files (*.png *.jpg *.jpeg *.bmp *.svg *.svgz)"
+msgstr ""
+
+#: ../contents/ui/config/ConfigGeneral.qml:136
+msgid "Tiles"
+msgstr ""
+
+#: ../contents/ui/config/ConfigGeneral.qml:158
+msgid "Text Alignment"
+msgstr ""
+
+#: ../contents/ui/config/ConfigGeneral.qml:160
+msgid "Left"
+msgstr ""
+
+#: ../contents/ui/config/ConfigGeneral.qml:161
+msgid "Center"
+msgstr ""
+
+#: ../contents/ui/config/ConfigGeneral.qml:162
+msgid "Right"
+msgstr ""
+
+#: ../contents/ui/config/ConfigGeneral.qml:169
+msgid "Sidebar"
+msgstr ""
+
+#: ../contents/ui/config/ConfigGeneral.qml:194
+msgid "Search Box"
+msgstr ""
+
+#: ../contents/ui/config/ConfigGeneral.qml:211
+msgid "App List"
+msgstr ""
+
+#: ../contents/ui/config/ConfigGeneral.qml:215
+msgid "App Description"
+msgstr ""
+
+#: ../contents/ui/config/ConfigGeneral.qml:217
+msgid "Hidden"
+msgstr ""
+
+#: ../contents/ui/config/ConfigGeneral.qml:218
+msgid "After"
+msgstr ""
+
+#: ../contents/ui/config/ConfigGeneral.qml:219
+msgid "Below"
+msgstr ""
+
+#: ../contents/ui/config/ConfigGeneral.qml:224
+msgid "Show recent applications"
+msgstr ""
+
+#: ../contents/ui/config/ConfigGeneral.qml:231
+msgid "Search Results"
+msgstr ""
+
+#: ../contents/ui/config/ConfigGeneral.qml:235
+msgid "Merged (Application Launcher)"
+msgstr ""
+
+#: ../contents/ui/config/ConfigGeneral.qml:244
+msgid "Split into Categories (Application Menu / Dashboard)"
+msgstr ""
+
+#: ../contents/ui/Main.qml:218
+msgid "System Info"
+msgstr ""
+
+#: ../contents/ui/Main.qml:219
+msgid "Terminal"
+msgstr ""
+
+#: ../contents/ui/Main.qml:221
+msgid "Task Manager"
+msgstr ""
+
+#: ../contents/ui/Main.qml:222
+msgid "System Settings"
+msgstr ""
+
+#: ../contents/ui/Main.qml:223 ../contents/ui/SearchView.qml:65
+msgid "File Manager"
+msgstr ""
+
+#: ../contents/ui/Main.qml:225
+msgid "Edit Applications..."
+msgstr ""
+
+#: ../contents/ui/Popup.qml:58
+msgid "Resize?"
+msgstr ""
+
+#: ../contents/ui/Popup.qml:59
+msgid "Alt + Right Click to resize the menu."
+msgstr ""
+
+#: ../contents/ui/SearchField.qml:15 ../contents/ui/SearchView.qml:45
+msgid "Search"
+msgstr ""
+
+#: ../contents/ui/SearchField.qml:17
+msgid "Search Apps"
+msgstr ""
+
+#: ../contents/ui/SearchField.qml:19
+msgid "Search Files"
+msgstr ""
+
+#: ../contents/ui/SearchField.qml:21
+msgid "Search Bookmarks"
+msgstr ""
+
+#: ../contents/ui/SearchField.qml:23
+msgctxt "Search [krunnerName, krunnerName, ...], "
+msgid "Search %1"
+msgstr ""
+
+#: ../contents/ui/SearchResultsView.qml:60
+msgid "More"
+msgstr ""
+
+#: ../contents/ui/SearchView.qml:31
+msgid "Menu"
+msgstr ""
+
+#: ../contents/ui/SearchView.qml:37
+msgid "Apps"
+msgstr ""
+
+#: ../contents/ui/SearchView.qml:70
+msgid "Settings"
+msgstr ""
+
+#: ../contents/ui/SearchView.qml:76
+msgid "Power"
+msgstr ""
+
+#: ../contents/ui/TileEditor.qml:35
+msgid "Size"
+msgstr ""
+
+#: ../contents/ui/TileEditor.qml:39
+msgid "Small"
+msgstr ""
+
+#: ../contents/ui/TileEditor.qml:45
+msgid "Medium"
+msgstr ""
+
+#: ../contents/ui/TileEditor.qml:51
+msgid "Label"
+msgstr ""
