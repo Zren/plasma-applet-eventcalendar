@@ -1,0 +1,41 @@
+#!/bin/sh
+# Version: 1
+
+# TODO: Call a CMakeLists.txt ...
+# OR just find out what env variables it looks at to determine the "/usr/share" dir.
+# TODO: check if run as root, and if so, install to /usr/share instead of ~/.local/share
+
+DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+plasmoidName=`kreadconfig --file="$DIR/../metadata.desktop" --group="Desktop Entry" --key="X-KDE-PluginInfo-Name"`
+website=`kreadconfig --file="$DIR/../metadata.desktop" --group="Desktop Entry" --key="X-KDE-PluginInfo-Website"`
+bugAddress="$website"
+packageRoot=".." # Root of translatable sources
+projectName="plasma_applet_${plasmoidName}" # project name
+
+#---
+echo "[install] Installing messages"
+
+catalogs=`find . -name '*.po'`
+for cat in $catalogs; do
+	echo "$cat"
+	catLocale=`basename ${cat%.*}`
+	msgfmt -o "${catLocale}.mo" "$cat"
+
+	# installPath="/usr/share/locale/${catLocale}/LC_MESSAGES/${projectName}.mo"
+	installPath="${HOME}/.local/share/locale/${catLocale}/LC_MESSAGES/${projectName}.mo"
+
+	mkdir -p "$(dirname "$installPath")"
+
+	echo "[install] Install to ${installPath}"
+	
+	# sudo mv "${catLocale}.mo" "${installPath}"
+	# sudo chown root "${installPath}"
+	mv "${catLocale}.mo" "${installPath}"
+done
+
+echo "[install] Done installing messages (will take effect after restarting plasmashell)"
+
+echo "[install] Restarting plasmashell"
+killall plasmashell
+nohup plasmashell >/dev/null 2>&1 &
+echo "[install] Done restarting plasmashell"
