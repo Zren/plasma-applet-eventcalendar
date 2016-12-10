@@ -26,5 +26,5 @@ Go to `~/.local/share/plasma/plasmoids/.../locale/` and run `sh ./install`.
 ## Status
 |Locale | Lines | % Done|
 |-------|-------|-------|
-|Template	|38	|	|
-|fr	|0/38	|0%	|
+|Template	|48	|	|
+|fr	|0/48	|0%	|

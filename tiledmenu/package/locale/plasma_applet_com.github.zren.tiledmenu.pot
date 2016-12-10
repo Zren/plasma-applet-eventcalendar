@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tiledmenu \n"
 "Report-Msgid-Bugs-To: https://github.com/Zren/plasma-applets/tree/master/tiledmenu\n"
-"POT-Creation-Date: 2016-12-10 14:01-0500\n"
+"POT-Creation-Date: 2016-12-10 15:40-0500\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -139,7 +139,7 @@ msgstr ""
 msgid "System Settings"
 msgstr ""
 
-#: ../contents/ui/Main.qml:223
+#: ../contents/ui/Main.qml:223 ../contents/ui/SearchView.qml:65
 msgid "File Manager"
 msgstr ""
 
@@ -153,6 +153,47 @@ msgstr ""
 
 #: ../contents/ui/Popup.qml:59
 msgid "Alt + Right Click to resize the menu."
+msgstr ""
+
+#: ../contents/ui/SearchField.qml:15 ../contents/ui/SearchView.qml:45
+msgid "Search"
+msgstr ""
+
+#: ../contents/ui/SearchField.qml:17
+msgid "Search Apps"
+msgstr ""
+
+#: ../contents/ui/SearchField.qml:19
+msgid "Search Files"
+msgstr ""
+
+#: ../contents/ui/SearchField.qml:21
+msgid "Search Bookmarks"
+msgstr ""
+
+#: ../contents/ui/SearchField.qml:23
+msgctxt "Search [krunnerName, krunnerName, ...], "
+msgid "Search %1"
+msgstr ""
+
+#: ../contents/ui/SearchResultsView.qml:60
+msgid "More"
+msgstr ""
+
+#: ../contents/ui/SearchView.qml:31
+msgid "Menu"
+msgstr ""
+
+#: ../contents/ui/SearchView.qml:37
+msgid "Apps"
+msgstr ""
+
+#: ../contents/ui/SearchView.qml:70
+msgid "Settings"
+msgstr ""
+
+#: ../contents/ui/SearchView.qml:76
+msgid "Power"
 msgstr ""
 
 #: ../contents/ui/TileEditor.qml:35

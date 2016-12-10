@@ -28,13 +28,13 @@ Item {
 
 			SidebarItem {
 				iconName: 'open-menu-symbolic'
-				text: "Menu"
+				text: i18n("Menu")
 				closeOnClick: false
 				onClicked: sidebarMenu.open = !sidebarMenu.open
 			}
 			SidebarItem {
 				iconName: 'view-sort-ascending-symbolic'
-				text: "Apps"
+				text: i18n("Apps")
 				onClicked: appsView.show()
 				// checked: stackView.currentItem == appsView
 				// checkedEdge: Qt.RightEdge
@@ -42,7 +42,7 @@ Item {
 			}
 			SidebarItem {
 				iconName: 'system-search-symbolic'
-				text: "Search"
+				text: i18n("Search")
 				onClicked: searchResultsView.showDefaultSearch()
 				// checked: stackView.currentItem == searchResultsView
 				// checkedEdge: Qt.RightEdge
@@ -62,18 +62,18 @@ Item {
 			}
 			SidebarItem {
 				iconName: 'folder-open-symbolic'
-				text: "File Manager"
+				text: i18n("File Manager")
 				onClicked: appsModel.launch('org.kde.dolphin')
 			}
 			SidebarItem {
 				iconName: 'configure'
-				text: "Settings"
+				text: i18n("Settings")
 				onClicked: appsModel.launch('systemsettings')
 			}
 
 			SidebarItem {
 				iconName: 'system-shutdown-symbolic'
-				text: "Power"
+				text: i18n("Power")
 				onClicked: powerMenu.open = !powerMenu.open
 
 				SidebarContextMenu {

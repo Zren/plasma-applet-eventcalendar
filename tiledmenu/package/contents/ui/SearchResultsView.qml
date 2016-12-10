@@ -57,7 +57,7 @@ ColumnLayout {
 
 		PlasmaComponents.ToolButton {
 			height: parent.height
-			text: "More"
+			text: i18n("More")
 			enabled: false
 		}
 	}

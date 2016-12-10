@@ -12,15 +12,15 @@ TextField {
 	id: searchField
 	placeholderText: {
 		if (search.isDefaultFilter) {
-			return "Search"
+			return i18n("Search")
 		} else if (search.isAppsFilter) {
-			return "Search Apps"
+			return i18n("Search Apps")
 		} else if (search.isFileFilter) {
-			return "Search Files"
+			return i18n("Search Files")
 		} else if (search.isBookmarksFilter) {
-			return "Search Bookmarks"
+			return i18n("Search Bookmarks")
 		} else {
-			return "Search " + search.filters
+			return i18nc("Search [krunnerName, krunnerName, ...], ", "Search %1", search.filters)
 		}
 	}
 	// Layout.fillWidth: true
