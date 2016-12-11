@@ -22,6 +22,8 @@ Item {
 		anchors.top: parent.top
 		anchors.bottom: parent.bottom
 
+		Behavior on width { NumberAnimation { duration: 100 } }
+
 		Column {
 			width: parent.width
 			height: childrenRect.height
