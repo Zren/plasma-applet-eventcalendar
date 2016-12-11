@@ -250,7 +250,22 @@ DragAndDrop.DropArea {
 				// }
 
 				function parseDropUrl(event) {
-					if (event.mimeData.url) {
+					// console.log('[tiledmenu] onUrlDropped', 'mimeData', event.mimeData)
+					// console.log('[tiledmenu] onUrlDropped', 'mimeData', Object.keys(event.mimeData))
+					// console.log('[tiledmenu] onUrlDropped', 'mimeData.mimeData', event.mimeData.mimeData)
+					// console.log('[tiledmenu] onUrlDropped', 'mimeData', event.mimeData)
+					// console.log('[tiledmenu] onUrlDropped', 'widget.draggedFavoriteId', widget.draggedFavoriteId)
+					if (widget.draggedFavoriteId) {
+						var favoriteId = widget.draggedFavoriteId
+						console.log('[tiledmenu] onWidgetDraggedFavoriteIdDropped', 'favoriteId', favoriteId)
+						return favoriteId
+					} else if (event.mimeData.mimeData && event.mimeData.mimeData.favoriteId) {
+						// Eventually we should be able to get the favoriteId from the MimeData, but right now we can't access non-default MimeData keys.
+						// https://github.com/KDE/kdeclarative/blob/0e47f91b3a2c93655f25f85150faadad0d65d2c1/src/qmlcontrols/draganddrop/DeclarativeDragDropEvent.cpp#L66
+						var favoriteId = event.mimeData.mimeData.favoriteId
+						console.log('[tiledmenu] onFavoriteIdDropped', 'favoriteId', favoriteId)
+						return favoriteId
+					} else if (event.mimeData.url) {
 						// console.log('event.mimeData.url', event.mimeData.url)
 						var url = event.mimeData.url.toString()
 						var workingDir = Qt.resolvedUrl('.')

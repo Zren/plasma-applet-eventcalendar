@@ -34,10 +34,15 @@ AppToolButton {
 			&& dragHelper.isDrag(pressX, pressY, mouse.x, mouse.y) // Mouse moved far enough?
 	}
 	function startDrag() {
-		dragHelper.startDrag(widget, launcherUrl, iconInstance)
-		resetDrag()
+		widget.draggedFavoriteId = model.favoriteId
+
+		// Requires Plasma 5.9 (probably) https://github.com/KDE/plasma-desktop/commit/85d946b206f6e8a12cf0a03b2386279ff2b0ff1a
+		// dragHelper.startDrag(widget, model.url, iconInstance, "favoriteId", model.favoriteId)
+		dragHelper.startDrag(widget, model.url, iconInstance)
+
+		resetDragState()
 	}
-	function resetDrag() {
+	function resetDragState() {
 		pressX = -1
 		pressY = -1
 	}
@@ -48,7 +53,7 @@ AppToolButton {
 	}
 	onContainsMouseChanged: {
 		if (!containsMouse) {
-			resetDrag()
+			resetDragState()
 		}
 	}
 	onPositionChanged: {
