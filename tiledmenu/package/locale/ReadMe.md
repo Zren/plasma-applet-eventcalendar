@@ -1,6 +1,8 @@
+> Version 1 of Zren's i18n scripts.
+
 ## Install Translations
 
-Go to `~/.local/share/plasma/plasmoids/.../locale/` and run `sh ./install`.
+Go to `~/.local/share/plasma/plasmoids/{{plasmoidName}}/locale/` and run `sh ./install`.
 
 ## New Translations
 
@@ -18,10 +20,9 @@ Go to `~/.local/share/plasma/plasmoids/.../locale/` and run `sh ./install`.
 
 ## Examples
 
+* https://websvn.kde.org/trunk/l10n-kf5/fr/messages/kde-workspace/
 * https://github.com/psifidotos/nowdock-plasmoid/tree/master/po
-
-
-> Version 1 of Zren's i18n scripts.
+* https://github.com/kotelnik/plasma-applet-redshift-control/tree/master/translations
 
 ## Status
 |Locale | Lines | % Done|
