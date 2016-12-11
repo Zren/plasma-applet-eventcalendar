@@ -6,7 +6,7 @@ Go to `~/.local/share/plasma/plasmoids/{{plasmoidName}}/locale/` and run `sh ./i
 
 ## New Translations
 
-1. Go to `packages/locale` and copy the `template.pot` file and name it your locale's code (Eg: `en`/`de`/`fr`) with the extension `.po`. Then fill out all the `msgstr ""`.
+1. Copy the `template.pot` file and name it your locale's code (Eg: `en`/`de`/`fr`) with the extension `.po`. Then fill out all the `msgstr ""`.
 
 ## Scripts
 
