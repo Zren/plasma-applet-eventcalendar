@@ -1,7 +1,8 @@
 #!/bin/bash
-# Version 3
+# Version 4
 
 # plasmapkg2 -u package
 # plasmawindowed $(kreadconfig --file="$PWD/package/metadata.desktop" --group="Desktop Entry" --key="X-KDE-PluginInfo-Name")
 
+killall plasmoidviewer
 plasmoidviewer -a package -l bottomedge -f horizontal
