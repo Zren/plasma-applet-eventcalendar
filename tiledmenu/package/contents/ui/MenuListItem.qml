@@ -16,6 +16,46 @@ AppToolButton {
 	property bool secondRowVisible: secondRowText
 	property string launcherUrl: model.favoriteId || model.url
 	property alias iconSource: itemIcon.source
+	property var iconInstance: listView.model.list[index].icon
+
+	// Drag (based on kicker)
+	// https://github.com/KDE/plasma-desktop/blob/4aad3fdf16bc5fd25035d3d59bb6968e06f86ec6/applets/kicker/package/contents/ui/ItemListDelegate.qml#L96
+	// https://github.com/KDE/plasma-desktop/blob/master/applets/kicker/plugin/draghelper.cpp
+	property int pressX: -1
+	property int pressY: -1
+	property bool dragEnabled: launcherUrl
+	function initDrag(mouse) {
+		pressX = mouse.x
+		pressY = mouse.y
+	}
+	function shouldStartDrag(mouse) {
+		return dragEnabled
+			&& pressX != -1 // Drag initialized?
+			&& dragHelper.isDrag(pressX, pressY, mouse.x, mouse.y) // Mouse moved far enough?
+	}
+	function startDrag() {
+		dragHelper.startDrag(widget, launcherUrl, iconInstance)
+		resetDrag()
+	}
+	function resetDrag() {
+		pressX = -1
+		pressY = -1
+	}
+	onPressed: {
+		if (mouse.buttons & Qt.LeftButton) {
+			initDrag(mouse)
+		}
+	}
+	onContainsMouseChanged: {
+		if (!containsMouse) {
+			resetDrag()
+		}
+	}
+	onPositionChanged: {
+		if (shouldStartDrag(mouse)) {
+			startDrag()
+		}
+	}
 
 	RowLayout { // ItemListDelegate
 		id: row
@@ -49,25 +89,6 @@ AppToolButton {
 				animated: false
 				// usesPlasmaTheme: false
 				source: listView.model.list[index].icon
-
-				DragAndDrop.DragArea {
-					id: dragArea
-					anchors.fill: parent
-					
-					delegate: itemDelegate
-					supportedActions: Qt.CopyAction
-					enabled: launcherUrl
-
-					mimeData {
-						url: launcherUrl
-					}
-
-					MouseArea {
-						anchors.fill: parent
-						cursorShape: containsMouse ? pressed ? Qt.ClosedHandCursor : Qt.OpenHandCursor : Qt.ArrowCursor
-						hoverEnabled: true
-					}
-				}
 			}
 		}
 
