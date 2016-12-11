@@ -19,6 +19,7 @@ PlasmaComponents.ToolButton {
 	property string label: expanded ? text : ""
 	property bool labelVisible: text != ""
 	property color backgroundColor: "transparent"
+	property bool zoomOnPush: true
 
 	// http://doc.qt.io/qt-5/qt.html#Edge-enum
 	property int checkedEdge: 0 // 0 = all edges
@@ -27,6 +28,8 @@ PlasmaComponents.ToolButton {
 	style: PlasmaStyles.ToolButtonStyle {
 		label: RowLayout {
 			spacing: units.smallSpacing
+			scale: control.zoomOnPush && control.pressed ? (width-5) / width : 1
+			Behavior on scale { NumberAnimation { duration: 200 } }
 
 			Item {
 				Layout.fillHeight: true
