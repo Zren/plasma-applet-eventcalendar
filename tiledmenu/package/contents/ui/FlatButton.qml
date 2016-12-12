@@ -28,7 +28,7 @@ PlasmaComponents.ToolButton {
 	style: PlasmaStyles.ToolButtonStyle {
 		label: RowLayout {
 			spacing: units.smallSpacing
-			scale: control.zoomOnPush && control.pressed ? (width-5) / width : 1
+			scale: control.zoomOnPush && control.pressed ? (height-5) / height : 1
 			Behavior on scale { NumberAnimation { duration: 200 } }
 
 			Item {

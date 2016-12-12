@@ -33,6 +33,7 @@ Item {
 				text: i18n("Menu")
 				closeOnClick: false
 				onClicked: sidebarMenu.open = !sidebarMenu.open
+				zoomOnPush: expanded
 			}
 			SidebarItem {
 				iconName: 'view-sort-ascending-symbolic'
