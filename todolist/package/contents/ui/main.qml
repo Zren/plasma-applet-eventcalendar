@@ -7,10 +7,29 @@ import org.kde.plasma.components 2.0 as PlasmaComponents
 Item {
     id: main
 
-    Plasmoid.icon: 'view-list-symbolic'
+    // Plasmoid.icon: 'view-list-symbolic'
+
+    NoteItem { id: noteItem }
+    property alias todoModel: noteItem.todoModel
+    property alias filterModel: noteItem.filterModel
+
+    Plasmoid.compactRepresentation: MouseArea {
+        PlasmaCore.IconItem {
+            id: icon
+            anchors.fill: parent
+            source: 'view-list-symbolic'
+        }
+            
+        IconCounterOverlay {
+            anchors.fill: parent
+            text: noteItem.todoModel.incompleteCount
+        }
+
+        onClicked: plasmoid.expanded = !plasmoid.expanded
+    }
 
     Plasmoid.fullRepresentation: FullRepresentation {
-        Plasmoid.backgroundHints: isDesktopContainment ? PlasmaCore.Types.NoBackground : undefined
+        Plasmoid.backgroundHints: isDesktopContainment ? PlasmaCore.Types.NoBackground : PlasmaCore.Types.DefaultBackground
         isDesktopContainment: plasmoid.location == PlasmaCore.Types.Floating
 
         // Connections {
