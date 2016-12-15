@@ -18,8 +18,7 @@ MouseArea {
     Layout.minimumWidth: units.gridUnit * 10
     Layout.minimumHeight: units.gridUnit * 10
     Layout.preferredWidth: units.gridUnit * 20
-    property int listViewHeight: listView.model.count * 30 +  (listView.model.count-1) * listView.spacing
-    Layout.preferredHeight: Math.min(Math.max(units.gridUnit * 20, listViewHeight), Screen.desktopAvailableHeight)
+    Layout.preferredHeight: Math.min(Math.max(units.gridUnit * 20, listView.contentHeight), Screen.desktopAvailableHeight) // Binding loop warning (meh).
     // Layout.maximumWidth: plasmoid.screenGeometry.width
     // Layout.maximumHeight: plasmoid.screenGeometry.height
 
