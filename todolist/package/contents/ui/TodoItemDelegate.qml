@@ -20,27 +20,27 @@ RowLayout {
         var newStatus = completed ? 'completed' : 'needsAction'
         if (model.status != newStatus) {
             // model.status = newStatus // Not supported in KDE 5.5
-            todoModel.setProperty(index, 'status', newStatus)
+            filterModel.setProperty(index, 'status', newStatus)
             // console.log(completed, model.status)
-            todoModel.update()
+            filterModel.update()
         }
     }
     function setTitle(title) {
         if (model.title != title) {
             // console.log('setTitle')
             // model.title = title // Not supported in KDE 5.5
-            todoModel.setProperty(index, 'title', title)
-            todoModel.update()
+            filterModel.setProperty(index, 'title', title)
+            filterModel.update()
         }
     }
     function setIndent(indent) {
         if (model.indent != indent) {
             // model.indent = Math.max(0, indent) // Not supported in KDE 5.5
-            todoModel.setProperty(index, 'indent', Math.max(0, indent))
+            filterModel.setProperty(index, 'indent', Math.max(0, indent))
             // indentItem.width = checkbox.height * indent
             // console.log(indent, model.indent, indentItem.width)
             // console.log(model.title)
-            todoModel.update()
+            filterModel.update()
         }
     }
 
@@ -182,7 +182,6 @@ RowLayout {
         
         onClicked: {
             filterModel.removeItem(index)
-            // todoModel.removeItem(filterModel.mapToSource(index))
         }
     }
 }
