@@ -78,7 +78,7 @@ Item {
 
     Component.onCompleted: {
         plasmoid.setAction("openInTextEditor", i18n("Open in Text Editor"), "accessories-text-editor");
-        plasmoid.setAction("toggleShowChecked", i18n("Toggle Show Completed"), "checkmark");
+        updateContextMenu() // plasmoid.setAction("toggleShowChecked", ...)
         console.log('main.isDesktopContainment', plasmoid.location == PlasmaCore.Types.Desktop)
     }
 }
