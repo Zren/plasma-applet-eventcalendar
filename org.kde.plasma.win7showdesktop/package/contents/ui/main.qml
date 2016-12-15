@@ -29,6 +29,7 @@ import org.kde.plasma.extras 2.0 as PlasmaExtras
 
 import org.kde.plasma.private.showdesktop 0.1
 
+import org.kde.draganddrop 2.0 as DragAndDrop
 import org.kde.kquickcontrolsaddons 2.0
 
 Item {
@@ -93,7 +94,23 @@ Item {
         property bool isPeeking: false
         onIsPeekingChanged: {
             if (isPeeking) {
-                showdesktop.showingDesktop = true
+                showingDesktop = true
+            }
+        }
+
+        function initPeeking() {
+            if (!showingDesktop) {
+                if (false) {
+                    peekTimer.restart()
+                }
+            }
+        }
+
+        function cancelPeek() {
+            peekTimer.stop()
+            if (isPeeking) {
+                isPeeking = false
+                showingDesktop = false
             }
         }
     }
@@ -194,18 +211,10 @@ Item {
                     }
                 }
                 onEntered: {
-                    if (!showdesktop.showingDesktop) {
-                        if (false) {
-                            peekTimer.restart()
-                        }
-                    }
+                    showdesktop.initPeeking()
                 }
                 onExited: {
-                    peekTimer.stop()
-                    if (showdesktop.isPeeking) {
-                        showdesktop.isPeeking = false
-                        showdesktop.showingDesktop = false
-                    }
+                    showdesktop.cancelPeek()
                 }
 
 
@@ -230,6 +239,15 @@ Item {
                         root.exec(plasmoid.configuration.mousewheel_down)
                     }
                     wheel.accepted = true
+                }
+            }
+
+            DragAndDrop.DropArea {
+                anchors.fill: parent
+                onDragEnter: {
+                    // console.log('showDesktopDropArea.onDragEnter')
+                    // showdesktop.initPeeking()
+                    showdesktop.showingDesktop = true
                 }
             }
         }
