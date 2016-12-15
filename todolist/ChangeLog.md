@@ -1,3 +1,7 @@
+## v4 - December 14 2016
+
+* Fix bug overwriting the wrong index when hiding completed items.
+
 ## v3 - December 14 2016
 
 * Show the number of incomplete icons in the panel icon using the same badge as the taskmanager (file transfer / downloads).
