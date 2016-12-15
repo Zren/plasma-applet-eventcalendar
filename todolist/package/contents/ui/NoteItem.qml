@@ -215,7 +215,8 @@ Item {
                 var wasVisible = todoItem.isVisible
                 var incomplete = todoItem.status == 'needsAction'
                 var shouldBeVisible = plasmoid.configuration.showCompletedItems || incomplete
-                if (incomplete) {
+                var isPlaceholder = !todoItem.title
+                if (incomplete && !isPlaceholder) {
                     incompleteCount += 1
                 }
                 // if (wasVisible != shouldBeVisible) {

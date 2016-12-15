@@ -28,6 +28,9 @@ Item {
     id: overlay
     readonly property int iconWidthDelta: (icon.width - icon.paintedWidth) / 2
     property alias text: badgeLabel.text
+    property color backgroundColor: theme.highlightColor
+    property color textColor: theme.backgroundColor
+    property real heightRatio: 0.4
 
     Item {
         id: badgeMask
@@ -47,7 +50,7 @@ Item {
         anchors.fill: parent
         property var source: ShaderEffectSource {
             sourceItem: icon
-            hideSource: true
+            hideSource: overlay.visible
         }
         property var mask: ShaderEffectSource {
             sourceItem: badgeMask
@@ -75,8 +78,8 @@ Item {
         id: badgeRect
         x: Qt.application.layoutDirection === Qt.RightToLeft ? iconWidthDelta : parent.width - width - iconWidthDelta
         width: height
-        height: Math.round(parent.height * 0.4)
-        color: theme.highlightColor
+        height: Math.round(parent.height * overlay.heightRatio)
+        color: overlay.backgroundColor
         radius: width
 
         PlasmaComponents.Label {
@@ -87,9 +90,11 @@ Item {
             horizontalAlignment: Text.AlignHCenter
             verticalAlignment: Text.AlignVCenter
             fontSizeMode: Text.Fit
-            font.pointSize: 1024
-            minimumPointSize: 5
-            color: theme.backgroundColor
+            font.pointSize: -1
+            font.pixelSize: 1024
+            minimumPixelSize: 5
+            color: overlay.textColor
+            font.weight: Font.Black
         }
     }
 }

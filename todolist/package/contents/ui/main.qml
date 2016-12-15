@@ -23,6 +23,8 @@ Item {
         IconCounterOverlay {
             anchors.fill: parent
             text: noteItem.todoModel.incompleteCount
+            visible: noteItem.todoModel.incompleteCount > 0
+            heightRatio: 0.5
         }
 
         onClicked: plasmoid.expanded = !plasmoid.expanded
