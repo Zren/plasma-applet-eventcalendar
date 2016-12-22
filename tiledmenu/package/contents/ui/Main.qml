@@ -8,7 +8,6 @@ import org.kde.plasma.private.kicker 0.1 as Kicker
 import org.kde.kcoreaddons 1.0 as KCoreAddons
 import org.kde.draganddrop 2.0 as DragAndDrop
 
-
 Item {
 	id: widget
 
@@ -91,8 +90,6 @@ Item {
 			}
 		}
 	}
-
-
 
 	Plasmoid.compactRepresentation: Item {
 		id: panelItem

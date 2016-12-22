@@ -62,3 +62,4 @@ MouseArea {
 
 	onClicked: searchView.searchField.forceActiveFocus()
 }
+// }
