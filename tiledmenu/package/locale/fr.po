@@ -2,7 +2,7 @@
 # Copyright (C) 2016
 # This file is distributed under the same license as the PACKAGE package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-# 
+#
 # Various translations taken from:
 # https://websvn.kde.org/trunk/l10n-kf5/fr/messages/kde-workspace/
 #
@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: https://github.com/Zren/plasma-applets/tree/master/tiledmenu\n"
-"POT-Creation-Date: 2016-12-10 15:40-0500\n"
+"POT-Creation-Date: 2016-12-21 22:30-0500\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: fr\n"
@@ -126,27 +126,27 @@ msgstr ""
 msgid "Split into Categories (Application Menu / Dashboard)"
 msgstr ""
 
-#: ../contents/ui/Main.qml:218
+#: ../contents/ui/Main.qml:224
 msgid "System Info"
 msgstr "Centre d'informations"
 
-#: ../contents/ui/Main.qml:219
+#: ../contents/ui/Main.qml:225
 msgid "Terminal"
 msgstr "Terminal"
 
-#: ../contents/ui/Main.qml:221
+#: ../contents/ui/Main.qml:227
 msgid "Task Manager"
 msgstr "Surveillance du système"
 
-#: ../contents/ui/Main.qml:222
+#: ../contents/ui/Main.qml:228
 msgid "System Settings"
 msgstr "Configuration du système"
 
-#: ../contents/ui/Main.qml:223 ../contents/ui/SearchView.qml:65
+#: ../contents/ui/Main.qml:229 ../contents/ui/SearchView.qml:68
 msgid "File Manager"
 msgstr "Gestionnaire de fichiers"
 
-#: ../contents/ui/Main.qml:225
+#: ../contents/ui/Main.qml:231
 msgid "Edit Applications..."
 msgstr "Éditer les applications…"
 
@@ -158,7 +158,7 @@ msgstr ""
 msgid "Alt + Right Click to resize the menu."
 msgstr ""
 
-#: ../contents/ui/SearchField.qml:15 ../contents/ui/SearchView.qml:45
+#: ../contents/ui/SearchField.qml:15 ../contents/ui/SearchView.qml:48
 msgid "Search"
 msgstr "Chercher"
 
@@ -183,34 +183,34 @@ msgstr ""
 msgid "More"
 msgstr "Plus"
 
-#: ../contents/ui/SearchView.qml:31
+#: ../contents/ui/SearchView.qml:33
 msgid "Menu"
 msgstr "Menu"
 
-#: ../contents/ui/SearchView.qml:37
+#: ../contents/ui/SearchView.qml:40
 msgid "Apps"
 msgstr "Applications"
 
-#: ../contents/ui/SearchView.qml:70
+#: ../contents/ui/SearchView.qml:73
 msgid "Settings"
 msgstr ""
 
-#: ../contents/ui/SearchView.qml:76
+#: ../contents/ui/SearchView.qml:79
 msgid "Power"
 msgstr "Énergie"
 
-#: ../contents/ui/TileEditor.qml:35
+#: ../contents/ui/TileEditor.qml:30
 msgid "Size"
 msgstr "Taille"
 
-#: ../contents/ui/TileEditor.qml:39
+#: ../contents/ui/TileEditor.qml:34
 msgid "Small"
 msgstr "Petit"
 
-#: ../contents/ui/TileEditor.qml:45
+#: ../contents/ui/TileEditor.qml:40
 msgid "Medium"
 msgstr "Moyen"
 
-#: ../contents/ui/TileEditor.qml:51
+#: ../contents/ui/TileEditor.qml:46
 msgid "Label"
 msgstr ""
