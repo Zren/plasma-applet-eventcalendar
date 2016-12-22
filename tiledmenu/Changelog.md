@@ -1,3 +1,14 @@
+## v8 - December 21 2016
+
+* Misc work for editing tiles.
+* Support linking to user created custom .desktop files. Note that the label will be the filename, but the icon will work.
+* You can now drag an app anywhere in the app list (not just the icon).
+* Implement the context menu (right click menues) actions that are in the default menues (recent apps/actions/pin to taskbar). I filtered out "Add to Panel" and "Add to Desktop" since it isn't obvious that the user will want "Add as Launcher". The user can always drag the app to where they want as well.
+* Make the current search filter button highlighted with a simple line instead of a box.
+* Fuss with the A-Z header positioning.
+* Expanding the sidebar now has a short transition. Pushing a button also has an effect.
+* Prepare the utils for translating this and other widgets.
+
 ## v7 - November 26 2016
 
 * Fix the white text on white bg in the "white" searchbox when using breeze dark.

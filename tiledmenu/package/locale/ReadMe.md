@@ -6,7 +6,7 @@ Go to `~/.local/share/plasma/plasmoids/{{plasmoidName}}/locale/` and run `sh ./i
 
 ## New Translations
 
-1. Fill out [`template.pot`](template.pot) with your translations and open a [new issue](https://github.com/Zren/plasma-applets/issues/new).
+1. Fill out [`template.pot`](template.pot) with your translations then open a [new issue](https://github.com/Zren/plasma-applets/issues/new).
 
 Or if you know how to make a pull request
 
