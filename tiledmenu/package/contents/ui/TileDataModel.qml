@@ -45,4 +45,12 @@ Item {
 	// 	tile.label = tile.label || ""
 	// 	return tile
 	// }
+
+	function setItemProperty(itemKey, key, value) {
+		var item = value[itemKey] || {}
+		item[key] = value
+		value[itemKey] = item
+		set(value)
+		valueChanged()
+	}
 }
