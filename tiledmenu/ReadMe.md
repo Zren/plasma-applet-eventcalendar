@@ -22,3 +22,6 @@ A menu based on Windows 10's Start Menu.
 
 Read the [theming guide](Theming.md) to develop Desktop/Icon Themes for this widget.
 
+## Translating
+
+See the [package/locale](package/locale) folder for instructions on translating.
