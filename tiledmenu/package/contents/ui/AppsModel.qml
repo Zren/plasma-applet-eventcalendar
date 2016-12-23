@@ -52,7 +52,7 @@ Item {
 			// 		appsModel.refreshed()
 			// 	}
 			// }
-			allAppsModel.refresh()
+			debouncedRefresh.restart()
 		}
 			
 		onRefreshed: {
@@ -62,7 +62,7 @@ Item {
 			powerActionsModel.parseModel(systemList, systemModel)
 			powerActionsModel.list = systemList;
 
-			allAppsModel.refresh()
+			debouncedRefresh.restart()
 		}
 
 		favoritesModel: Kicker.FavoritesModel {
@@ -204,6 +204,7 @@ Item {
 
 		function refresh() {
 			refreshing()
+			// console.log("allAppsModel.refresh()")
 			
 			// console.log('resultModel.refresh')
 			//--- populate list
