@@ -62,14 +62,16 @@ Item {
 	}
 
 	property var defaultFilters: [
+		'Dictionary',
 		'services',
 		'calculator',
 		'shell',
+		'org.kde.windowedwidgets',
+		'org.kde.datetime',
 		'baloosearch',
 		// 'bookmarks',
 		'locations',
 		'unitconverter',
-		'org.kde.datetime',
 	]
 
 	function isFilter(runnerId) {
