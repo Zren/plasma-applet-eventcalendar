@@ -219,6 +219,13 @@ ConfigPage {
 				{ value: "after", text: i18n("After") },
 				{ value: "below", text: i18n("Below") },
 			]
+			onValueChanged: {
+				if (value == "below") {
+					if (menuItemHeightControl.value <= 36) { // Smaller than 2 lines of text
+						menuItemHeightControl.value = 36
+					}
+				}
+			}
 		}
 
 		ConfigCheckBox {
@@ -227,14 +234,14 @@ ConfigPage {
 		}
 
 		ConfigSpinBox {
-			// label: i18n("")
+			id: menuItemHeightControl
 			configKey: 'menuItemHeight'
 			before: i18n("Icon Size")
 			suffix: i18n("px")
 			minimumValue: 18 // 1 line of text
 			maximumValue: 128
 			onValueChanged: {
-				if (value <= 36) { // Smaller than 2 lines of text
+				if (value < 36) { // Smaller than 2 lines of text
 					if (appDescriptionControl.value == "below") {
 						appDescriptionControl.setValue("after")
 					}
