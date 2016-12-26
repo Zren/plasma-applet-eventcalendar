@@ -6,6 +6,7 @@ https://techbase.kde.org/Development/Tutorials/Plasma5/ThemeDetails
 
 * Sidebar / Power Menu
 	* Background
+		* Defaults to drawing `theme.backgroundColor` at 50% transparency when closed, and 0% transparency when open. It used to be black (`#000`) in older versions.
 		* `widgets/frame.svg` prefix: `raised` Background
 		* Note that `theme.backgroundColor` is drawn undrneath the svg when the sidebar is open since 90% of themes have a transparent image.
 * App List
