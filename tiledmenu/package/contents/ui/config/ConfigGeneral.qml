@@ -229,6 +229,7 @@ ConfigPage {
 		ConfigSpinBox {
 			// label: i18n("")
 			configKey: 'menuItemHeight'
+			before: i18n("Icon Size")
 			suffix: i18n("px")
 			minimumValue: 18 // 1 line of text
 			maximumValue: 128
