@@ -70,13 +70,14 @@ AppToolButton {
 		anchors.rightMargin: units.smallSpacing
 		// width: parent.width
 		// height: 36 // 2 lines
-		height: (model.largeIcon ? 64 : 36) * units.devicePixelRatio
+		height: model.largeIcon ? listView.iconSize * 2 : listView.iconSize
 
 		Item {
 			height: parent.height
 			width: parent.height
 			// width: itemIcon.width
 			Layout.fillHeight: true
+			Layout.preferredWidth: parent.height
 
 			PlasmaCore.IconItem {
 				id: itemIcon

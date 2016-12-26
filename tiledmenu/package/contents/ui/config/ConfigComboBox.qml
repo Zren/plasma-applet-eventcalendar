@@ -31,6 +31,7 @@ RowLayout {
 	property string configKey: ''
 	readonly property string value: configKey ? plasmoid.configuration[configKey] : ""
 	onValueChanged: comboBox.selectValue(value)
+	function setValue(val) { comboBox.selectValue(val) }
 
 	property alias model: comboBox.model
 

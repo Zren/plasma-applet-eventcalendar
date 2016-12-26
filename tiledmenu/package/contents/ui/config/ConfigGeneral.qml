@@ -211,6 +211,7 @@ ConfigPage {
 		label: i18n("App List")
 		
 		ConfigComboBox {
+			id: appDescriptionControl
 			configKey: "appDescription"
 			label: i18n("App Description")
 			model: [
@@ -223,6 +224,21 @@ ConfigPage {
 		ConfigCheckBox {
 			text: i18n("Show recent applications")
 			configKey: 'showRecentApps'
+		}
+
+		ConfigSpinBox {
+			// label: i18n("")
+			configKey: 'menuItemHeight'
+			suffix: i18n("px")
+			minimumValue: 18 // 1 line of text
+			maximumValue: 128
+			onValueChanged: {
+				if (value <= 36) { // Smaller than 2 lines of text
+					if (appDescriptionControl.value == "below") {
+						appDescriptionControl.setValue("after")
+					}
+				}
+			}
 		}
 	}
 

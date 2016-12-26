@@ -50,6 +50,7 @@ Item {
 	readonly property color defaultTileColor: plasmoid.configuration.defaultTileColor || theme.buttonBackgroundColor
 	readonly property color sidebarBackgroundColor: plasmoid.configuration.sidebarBackgroundColor || theme.backgroundColor
 	readonly property color menuItemTextColor2: setAlpha(theme.textColor, 0.6)
+	readonly property int menuItemHeight: plasmoid.configuration.menuItemHeight * units.devicePixelRatio
 
 	//--- Style
 	// Tiles

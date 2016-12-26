@@ -67,6 +67,9 @@
       <!-- enum: hidden, after, below -->
       <default>after</default>
     </entry>
+    <entry name="menuItemHeight" type="int">
+      <default>36</default>
+    </entry>
   </group>
 
 </kcfg>
