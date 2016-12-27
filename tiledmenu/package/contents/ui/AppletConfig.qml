@@ -45,12 +45,13 @@ Item {
 	readonly property int defaultHeight: 620 * units.devicePixelRatio
 	readonly property int popupWidth: plasmoid.configuration.width > 0 ? plasmoid.configuration.width : defaultWidth
 	readonly property int popupHeight: plasmoid.configuration.height > 0 ? plasmoid.configuration.height : defaultHeight
+	
+	readonly property int menuItemHeight: plasmoid.configuration.menuItemHeight * units.devicePixelRatio
 
 	//--- Colors
 	readonly property color defaultTileColor: plasmoid.configuration.defaultTileColor || theme.buttonBackgroundColor
 	readonly property color sidebarBackgroundColor: plasmoid.configuration.sidebarBackgroundColor || theme.backgroundColor
 	readonly property color menuItemTextColor2: setAlpha(theme.textColor, 0.6)
-	readonly property int menuItemHeight: plasmoid.configuration.menuItemHeight * units.devicePixelRatio
 
 	//--- Style
 	// Tiles
