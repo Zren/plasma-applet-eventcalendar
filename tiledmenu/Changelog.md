@@ -1,3 +1,9 @@
+## v9 - December 27 2016
+
+* Use the theme's background color for the sidebar instead of black.
+* The app list icon size is now configurable.
+* Add dictionary and windowsed widgets (eg: Calculator) to search results.
+
 ## v8 - December 21 2016
 
 * Misc work for editing tiles.
