@@ -115,4 +115,14 @@ ListModel {
 		item.parentModel.trigger(item.indexInParent, actionId, actionArgument)
 		itemTriggered()
 	}
+
+	function getByValue(key, value) {
+		for (var i = 0; i < count; i++) {
+			var item = get(i)
+			if (item[key] == value) {
+				return item
+			}
+		}
+		return null
+	}
 }

@@ -158,12 +158,34 @@ Item {
 		}
 	}
 
-
 	KickerListModel {
 		id: powerActionsModel
 		onItemTriggered: {
 			console.log('powerActionsModel.onItemTriggered')
-			plasmoid.expanded = false;
+			plasmoid.expanded = false
+		}
+		
+		function nameByIconName(iconName) {
+			var item = getByValue('iconName', iconName)
+			if (item) {
+				return item.name
+			} else {
+				return iconName
+			}
+		}
+
+		function triggerByIconName(iconName) {
+			var item = getByValue('iconName', iconName)
+			item.parentModel.trigger(item.indexInParent, "", null)
+		}
+	}
+
+	// powerActionsModel filtered to logout/lock/switch user
+	KickerListModel {
+		id: sessionActionsModel
+		onItemTriggered: {
+			console.log('sessionActionsModel.onItemTriggered')
+			plasmoid.expanded = false
 		}
 	}
 	
@@ -171,7 +193,7 @@ Item {
 		id: allAppsModel
 		onItemTriggered: {
 			console.log('allAppsModel.onItemTriggered')
-			plasmoid.expanded = false;
+			plasmoid.expanded = false
 		}
 
 		function getRecentApps() {
