@@ -47,7 +47,7 @@ for cat in $catalogs; do
 	sed -i 's/# Translation of '"${widgetName}"' in LANGUAGE/'"# Translation of ${widgetName} in ${catLocale}"'/' "$cat.new"
 	sed -i 's/# Copyright (C) YEAR THE PACKAGE'"'"'S COPYRIGHT HOLDER/'"# Copyright (C) $(date +%Y)"'/' "$cat.new"
 
-	poEmptyMessageCount=`expr $(grep -c 'msgstr ""' "template.pot") - 1`
+	poEmptyMessageCount=`expr $(grep -c 'msgstr ""' "$cat.new") - 1`
 	poMessagesDoneCount=`expr $potMessageCount - $poEmptyMessageCount`
 	poCompletion=`expr $poMessagesDoneCount / $potMessageCount`
 	echo "|${catLocale}\t|${poMessagesDoneCount}/${potMessageCount}\t|${poCompletion}%\t|" >> "./Status.md"
