@@ -1,0 +1,213 @@
+# Translation of tiledmenu in zh_CN
+# Copyright (C) 2016
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: https://github.com/Zren/plasma-applets/tree/master/tiledmenu\n"
+"POT-Creation-Date: 2016-12-29 15:50+0800\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: Lin Mu <linmu789632@gmail.com>\n"
+"Language-Team: Chinese <kde-i18n-doc@kde.org>\n"
+"Language: zh_CN\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../contents/config/config.qml:26
+msgid "General"
+msgstr "常规"
+
+#: ../contents/ui/AppContextMenu.qml:61
+msgid "Unpin from Menu"
+msgstr "从菜单上移除"
+
+#: ../contents/ui/AppContextMenu.qml:67
+msgid "Pin to Menu"
+msgstr "添加到菜单"
+
+#: ../contents/ui/AppContextMenu.qml:108
+msgid "Pin to Taskbar"
+msgstr "添加到任务栏"
+
+#: ../contents/ui/config/ConfigGeneral.qml:24
+msgid "Panel Icon"
+msgstr "面板图标"
+
+#: ../contents/ui/config/ConfigGeneral.qml:74
+msgctxt "@item:inmenu Open icon chooser dialog"
+msgid "Choose..."
+msgstr "选择"
+
+#: ../contents/ui/config/ConfigGeneral.qml:79
+msgctxt "@item:inmenu Reset icon to default"
+msgid "Clear Icon"
+msgstr "清除图标"
+
+#: ../contents/ui/config/ConfigGeneral.qml:111
+msgid "Fixed Size"
+msgstr "修复尺寸"
+
+#: ../contents/ui/config/ConfigGeneral.qml:120
+msgid "Choose an image"
+msgstr "选择一张图片"
+
+#: ../contents/ui/config/ConfigGeneral.qml:125
+msgid "Image Files (*.png *.jpg *.jpeg *.bmp *.svg *.svgz)"
+msgstr "图片文件 (*.png *.jpg *.jpeg *.bmp *.svg *.svgz)"
+
+#: ../contents/ui/config/ConfigGeneral.qml:136
+msgid "Tiles"
+msgstr "磁贴"
+
+#: ../contents/ui/config/ConfigGeneral.qml:158
+msgid "Text Alignment"
+msgstr "文字对齐"
+
+#: ../contents/ui/config/ConfigGeneral.qml:160
+msgid "Left"
+msgstr "左"
+
+#: ../contents/ui/config/ConfigGeneral.qml:161
+msgid "Center"
+msgstr "中"
+
+#: ../contents/ui/config/ConfigGeneral.qml:162
+msgid "Right"
+msgstr "右"
+
+#: ../contents/ui/config/ConfigGeneral.qml:169
+msgid "Sidebar"
+msgstr "侧栏"
+
+#: ../contents/ui/config/ConfigGeneral.qml:194
+msgid "Search Box"
+msgstr "搜索框"
+
+#: ../contents/ui/config/ConfigGeneral.qml:211
+msgid "App List"
+msgstr "软件列表"
+
+#: ../contents/ui/config/ConfigGeneral.qml:215
+msgid "App Description"
+msgstr "软件描述"
+
+#: ../contents/ui/config/ConfigGeneral.qml:217
+msgid "Hidden"
+msgstr "隐藏"
+
+#: ../contents/ui/config/ConfigGeneral.qml:218
+msgid "After"
+msgstr "后方"
+
+#: ../contents/ui/config/ConfigGeneral.qml:219
+msgid "Below"
+msgstr "下方"
+
+#: ../contents/ui/config/ConfigGeneral.qml:224
+msgid "Show recent applications"
+msgstr "显示最近运行软件"
+
+#: ../contents/ui/config/ConfigGeneral.qml:231
+msgid "Search Results"
+msgstr "搜索结果"
+
+#: ../contents/ui/config/ConfigGeneral.qml:235
+msgid "Merged (Application Launcher)"
+msgstr "合并（软件启动器）"
+
+#: ../contents/ui/config/ConfigGeneral.qml:244
+msgid "Split into Categories (Application Menu / Dashboard)"
+msgstr "分类（软件菜单/仪表板）"
+
+#: ../contents/ui/Main.qml:224
+msgid "System Info"
+msgstr "系统信息"
+
+#: ../contents/ui/Main.qml:225
+msgid "Terminal"
+msgstr "终端"
+
+#: ../contents/ui/Main.qml:227
+msgid "Task Manager"
+msgstr "任务管理器"
+
+#: ../contents/ui/Main.qml:228
+msgid "System Settings"
+msgstr "系统设置"
+
+#: ../contents/ui/Main.qml:229 ../contents/ui/SearchView.qml:68
+msgid "File Manager"
+msgstr "文件管理器"
+
+#: ../contents/ui/Main.qml:231
+msgid "Edit Applications..."
+msgstr "编辑软件列表"
+
+#: ../contents/ui/Popup.qml:58
+msgid "Resize?"
+msgstr "调整大小？"
+
+#: ../contents/ui/Popup.qml:59
+msgid "Alt + Right Click to resize the menu."
+msgstr "Alt + 右键调整菜单大小"
+
+#: ../contents/ui/SearchField.qml:15 ../contents/ui/SearchView.qml:48
+msgid "Search"
+msgstr "搜索"
+
+#: ../contents/ui/SearchField.qml:17
+msgid "Search Apps"
+msgstr "搜索软件"
+
+#: ../contents/ui/SearchField.qml:19
+msgid "Search Files"
+msgstr "搜索文件"
+
+#: ../contents/ui/SearchField.qml:21
+msgid "Search Bookmarks"
+msgstr "搜索书签"
+
+#: ../contents/ui/SearchField.qml:23
+msgctxt "Search [krunnerName, krunnerName, ...], "
+msgid "Search %1"
+msgstr "搜索 %1"
+
+#: ../contents/ui/SearchResultsView.qml:60
+msgid "More"
+msgstr "更多"
+
+#: ../contents/ui/SearchView.qml:33
+msgid "Menu"
+msgstr "菜单"
+
+#: ../contents/ui/SearchView.qml:40
+msgid "Apps"
+msgstr "软件"
+
+#: ../contents/ui/SearchView.qml:73
+msgid "Settings"
+msgstr "设置"
+
+#: ../contents/ui/SearchView.qml:79
+msgid "Power"
+msgstr "电源"
+
+#: ../contents/ui/TileEditor.qml:30
+msgid "Size"
+msgstr "尺寸"
+
+#: ../contents/ui/TileEditor.qml:34
+msgid "Small"
+msgstr "小号"
+
+#: ../contents/ui/TileEditor.qml:40
+msgid "Medium"
+msgstr "中等"
+
+#: ../contents/ui/TileEditor.qml:46
+msgid "Label"
+msgstr "标签"
