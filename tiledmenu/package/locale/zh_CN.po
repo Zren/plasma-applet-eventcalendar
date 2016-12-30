@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: https://github.com/Zren/plasma-applets/tree/master/tiledmenu\n"
-"POT-Creation-Date: 2016-12-29 15:50+0800\n"
+"POT-Creation-Date: 2016-12-29 22:34-0500\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: Lin Mu <linmu789632@gmail.com>\n"
 "Language-Team: Chinese <kde-i18n-doc@kde.org>\n"
@@ -91,35 +91,43 @@ msgstr "搜索框"
 msgid "App List"
 msgstr "软件列表"
 
-#: ../contents/ui/config/ConfigGeneral.qml:215
+#: ../contents/ui/config/ConfigGeneral.qml:216
 msgid "App Description"
 msgstr "软件描述"
 
-#: ../contents/ui/config/ConfigGeneral.qml:217
+#: ../contents/ui/config/ConfigGeneral.qml:218
 msgid "Hidden"
 msgstr "隐藏"
 
-#: ../contents/ui/config/ConfigGeneral.qml:218
+#: ../contents/ui/config/ConfigGeneral.qml:219
 msgid "After"
 msgstr "后方"
 
-#: ../contents/ui/config/ConfigGeneral.qml:219
+#: ../contents/ui/config/ConfigGeneral.qml:220
 msgid "Below"
 msgstr "下方"
 
-#: ../contents/ui/config/ConfigGeneral.qml:224
+#: ../contents/ui/config/ConfigGeneral.qml:232
 msgid "Show recent applications"
 msgstr "显示最近运行软件"
 
-#: ../contents/ui/config/ConfigGeneral.qml:231
+#: ../contents/ui/config/ConfigGeneral.qml:239
+msgid "Icon Size"
+msgstr ""
+
+#: ../contents/ui/config/ConfigGeneral.qml:240
+msgid "px"
+msgstr ""
+
+#: ../contents/ui/config/ConfigGeneral.qml:255
 msgid "Search Results"
 msgstr "搜索结果"
 
-#: ../contents/ui/config/ConfigGeneral.qml:235
+#: ../contents/ui/config/ConfigGeneral.qml:259
 msgid "Merged (Application Launcher)"
 msgstr "合并（软件启动器）"
 
-#: ../contents/ui/config/ConfigGeneral.qml:244
+#: ../contents/ui/config/ConfigGeneral.qml:268
 msgid "Split into Categories (Application Menu / Dashboard)"
 msgstr "分类（软件菜单/仪表板）"
 
@@ -139,7 +147,7 @@ msgstr "任务管理器"
 msgid "System Settings"
 msgstr "系统设置"
 
-#: ../contents/ui/Main.qml:229 ../contents/ui/SearchView.qml:68
+#: ../contents/ui/Main.qml:229 ../contents/ui/SearchView.qml:78
 msgid "File Manager"
 msgstr "文件管理器"
 
@@ -188,11 +196,11 @@ msgstr "菜单"
 msgid "Apps"
 msgstr "软件"
 
-#: ../contents/ui/SearchView.qml:73
+#: ../contents/ui/SearchView.qml:83
 msgid "Settings"
 msgstr "设置"
 
-#: ../contents/ui/SearchView.qml:79
+#: ../contents/ui/SearchView.qml:89
 msgid "Power"
 msgstr "电源"
 

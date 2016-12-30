@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: https://github.com/Zren/plasma-applets/tree/master/tiledmenu\n"
-"POT-Creation-Date: 2016-12-21 22:30-0500\n"
+"POT-Creation-Date: 2016-12-29 22:34-0500\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: fr\n"
@@ -94,35 +94,44 @@ msgstr ""
 msgid "App List"
 msgstr ""
 
-#: ../contents/ui/config/ConfigGeneral.qml:215
+#: ../contents/ui/config/ConfigGeneral.qml:216
 msgid "App Description"
 msgstr ""
 
-#: ../contents/ui/config/ConfigGeneral.qml:217
+#: ../contents/ui/config/ConfigGeneral.qml:218
 msgid "Hidden"
 msgstr "Masqué"
 
-#: ../contents/ui/config/ConfigGeneral.qml:218
+#: ../contents/ui/config/ConfigGeneral.qml:219
 msgid "After"
 msgstr "Après"
 
-#: ../contents/ui/config/ConfigGeneral.qml:219
+#: ../contents/ui/config/ConfigGeneral.qml:220
 msgid "Below"
 msgstr "En-dessous"
 
-#: ../contents/ui/config/ConfigGeneral.qml:224
+#: ../contents/ui/config/ConfigGeneral.qml:232
 msgid "Show recent applications"
 msgstr "Afficher les applications récentes"
 
-#: ../contents/ui/config/ConfigGeneral.qml:231
+#: ../contents/ui/config/ConfigGeneral.qml:239
+#, fuzzy
+msgid "Icon Size"
+msgstr ""
+
+#: ../contents/ui/config/ConfigGeneral.qml:240
+msgid "px"
+msgstr ""
+
+#: ../contents/ui/config/ConfigGeneral.qml:255
 msgid "Search Results"
 msgstr "Résultats de la recherche"
 
-#: ../contents/ui/config/ConfigGeneral.qml:235
+#: ../contents/ui/config/ConfigGeneral.qml:259
 msgid "Merged (Application Launcher)"
 msgstr ""
 
-#: ../contents/ui/config/ConfigGeneral.qml:244
+#: ../contents/ui/config/ConfigGeneral.qml:268
 msgid "Split into Categories (Application Menu / Dashboard)"
 msgstr ""
 
@@ -142,7 +151,7 @@ msgstr "Surveillance du système"
 msgid "System Settings"
 msgstr "Configuration du système"
 
-#: ../contents/ui/Main.qml:229 ../contents/ui/SearchView.qml:68
+#: ../contents/ui/Main.qml:229 ../contents/ui/SearchView.qml:78
 msgid "File Manager"
 msgstr "Gestionnaire de fichiers"
 
@@ -191,11 +200,11 @@ msgstr "Menu"
 msgid "Apps"
 msgstr "Applications"
 
-#: ../contents/ui/SearchView.qml:73
+#: ../contents/ui/SearchView.qml:83
 msgid "Settings"
 msgstr ""
 
-#: ../contents/ui/SearchView.qml:79
+#: ../contents/ui/SearchView.qml:89
 msgid "Power"
 msgstr "Énergie"
 
