@@ -71,34 +71,9 @@ Item {
 						onClicked: KCMShell.open('user_manager')
 						visible: KCMShell.authorize('user_manager.desktop').length > 0
 					}
-					
-					// https://github.com/KDE/plasma-desktop/blob/master/applets/kicker/plugin/systementry.cpp#L130
-					SidebarItem {
-						iconName: 'system-lock-screen'
-						text: appsModel.powerActionsModel.nameByIconName(iconName)
-						onClicked: appsModel.powerActionsModel.triggerByIconName(iconName)
-						visible: appsModel.powerActionsModel.getByValue('iconName', iconName) // != null
-					}
 
-					SidebarItem {
-						iconName: 'system-log-out'
-						text: appsModel.powerActionsModel.nameByIconName(iconName)
-						onClicked: appsModel.powerActionsModel.triggerByIconName(iconName)
-						visible: appsModel.powerActionsModel.getByValue('iconName', iconName) // != null
-					}
-
-					SidebarItem {
-						iconName: 'system-save-session'
-						text: appsModel.powerActionsModel.nameByIconName(iconName)
-						onClicked: appsModel.powerActionsModel.triggerByIconName(iconName)
-						visible: appsModel.powerActionsModel.getByValue('iconName', iconName) // != null
-					}
-
-					SidebarItem {
-						iconName: 'system-switch-user'
-						text: appsModel.powerActionsModel.nameByIconName(iconName)
-						onClicked: appsModel.powerActionsModel.triggerByIconName(iconName)
-						visible: appsModel.powerActionsModel.getByValue('iconName', iconName) // != null
+					SidebarItemRepeater {
+						model: appsModel.sessionActionsModel
 					}
 				}
 			}
@@ -120,7 +95,10 @@ Item {
 
 				SidebarContextMenu {
 					id: powerMenu
-					model: appsModel.powerActionsModel
+					
+					SidebarItemRepeater {
+						model: appsModel.powerActionsModel
+					}
 				}
 			}
 		}

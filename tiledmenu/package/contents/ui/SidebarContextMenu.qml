@@ -17,26 +17,11 @@ SidebarMenu {
 	z: 2
 
 	default property alias _contentChildren: content.data
-	property alias model: repeater.model
 
 	Column {
 		id: content
 		width: parent.width
 		height: childrenRect.height
-		Repeater {
-			id: repeater
-			delegate: SidebarItem {
-				expanded: true
-				labelVisible: true
-				iconName: model.iconName
-				text: model.name
-				onClicked: {
-					sidebarContextMenu.open = false
-					repeater.model.triggerIndex(index)
-				}
-				
-			}
-		}
 
 		// We're using Column instead of ColumnLayout, so this isn't needed.
 		// Keeping it here in case Layout is used in the future.

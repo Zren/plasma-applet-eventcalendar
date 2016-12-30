@@ -60,7 +60,8 @@ Item {
 			var systemModel = rootModel.modelForRow(rootModel.count - 1)
 			var systemList = []
 			powerActionsModel.parseModel(systemList, systemModel)
-			powerActionsModel.list = systemList;
+			powerActionsModel.list = systemList
+			sessionActionsModel.parseSourceModel(powerActionsModel)
 
 			debouncedRefresh.restart()
 		}
@@ -181,11 +182,26 @@ Item {
 	}
 
 	// powerActionsModel filtered to logout/lock/switch user
+	property alias sessionActionsModel: sessionActionsModel
 	KickerListModel {
 		id: sessionActionsModel
 		onItemTriggered: {
 			console.log('sessionActionsModel.onItemTriggered')
 			plasmoid.expanded = false
+		}
+
+		function parseSourceModel(powerActionsModel) {
+			// Filter by iconName
+			var sessionActionsList = []
+			var sessionIconNames = ['system-lock-screen', 'system-log-out', 'system-save-session', 'system-switch-user']
+			for (var i = 0; i < powerActionsModel.list.length; i++) {
+				var item = powerActionsModel.list[i];
+				console.log(item, item.iconName, sessionIconNames.indexOf(item.iconName) >= 0)
+				if (sessionIconNames.indexOf(item.iconName) >= 0) {
+					sessionActionsList.push(item)
+				}
+			}
+			sessionActionsModel.list = sessionActionsList
 		}
 	}
 	
