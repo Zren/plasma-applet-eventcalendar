@@ -2,7 +2,7 @@
 
 This folder is useful for quickly writing a new plasmoid.
 
-* The `build`/`run` commands require `kreadconfig`.
+* The `build`/`run` commands require `kreadconfig5`.
 * Do *not* run the `install`/`reinstall` scripts with `sudo` or the plasmoid will be placed in `/usr/share/` instead of your home directory.
 
 ## Locations
