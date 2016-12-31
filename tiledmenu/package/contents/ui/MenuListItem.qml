@@ -16,7 +16,17 @@ AppToolButton {
 	property bool secondRowVisible: secondRowText
 	property string launcherUrl: model.favoriteId || model.url
 	property alias iconSource: itemIcon.source
+
+	// We need to look at the js list since ListModel doesn't support item's with non primitive propeties (like an Image).
 	property var iconInstance: listView.model.list[index].icon
+	Connections {
+		target: listView.model
+		onRefreshed: {
+			// We need to manually trigger an update when we update the model without replacing the list.
+			// Otherwise the icon won't be in sync.
+			itemDelegate.iconInstance = listView.model.list[index].icon
+		}
+	}
 
 	// Drag (based on kicker)
 	// https://github.com/KDE/plasma-desktop/blob/4aad3fdf16bc5fd25035d3d59bb6968e06f86ec6/applets/kicker/package/contents/ui/ItemListDelegate.qml#L96
@@ -94,7 +104,7 @@ AppToolButton {
 
 				animated: false
 				// usesPlasmaTheme: false
-				source: listView.model.list[index].icon
+				source: itemDelegate.iconInstance
 			}
 		}
 

@@ -118,7 +118,9 @@ Item {
 			
 			Item {
 				Component.onCompleted: {
-					debouncedRefresh.restart()
+					if (plasmoid.configuration.showRecentApps) {
+						debouncedRefreshRecentApps.restart()
+					}
 				}
 			}
 		}
@@ -151,6 +153,12 @@ Item {
 			id: debouncedRefresh
 			interval: 100
 			onTriggered: allAppsModel.refresh()
+		}
+
+		Timer {
+			id: debouncedRefreshRecentApps
+			interval: debouncedRefresh.interval
+			onTriggered: allAppsModel.refreshRecentApps()
 		}
 		
 		Connections {
@@ -238,6 +246,32 @@ Item {
 			}
 
 			return recentAppList;
+		}
+
+		function refreshRecentApps() {
+			console.log('refreshRecentApps')
+			if (debouncedRefresh.running) {
+				// We're about to do a full refresh so don't bother doing a partial update.
+				return
+			}
+			var recentAppList = getRecentApps();
+			var recentAppCount = 5
+			if (recentAppCount == recentAppList.length) {
+				// Do a partial update since we're only updating properties.
+				refreshing()
+
+				// Overwrite the exisiting items.
+				for (var i = 0; i < recentAppList.length; i++) {
+					var item = recentAppList[i]
+					list[i] = item
+					set(i, item)
+				}
+
+				refreshed()
+			} else {
+				// We'll be removing items, so just replace the entire list.
+				refresh()
+			}
 		}
 
 		function refresh() {
