@@ -12,6 +12,18 @@ bugAddress="$website"
 packageRoot=".." # Root of translatable sources
 projectName="plasma_applet_${plasmoidName}" # project name
 
+if [[ ! -z "$plasmoidName" ]]; then
+	echo "[install] Error: Couldn't read plasmoidName."
+	exit
+fi
+
+if [[ ! -z "$(which msgfmt)" ]]; then
+	echo "[install] Error: msgfmt command not found. Need to install gettext"
+	echo "[install] Running 'sudo apt install gettext'"
+	sudo apt install gettext
+	echo "[install] gettext installation should be finished. Going back to installing translations."
+fi
+
 #---
 echo "[install] Installing messages"
 
