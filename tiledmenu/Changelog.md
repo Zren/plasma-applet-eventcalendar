@@ -1,3 +1,9 @@
+## v10 - December 30 2016
+
+* Chinese translations by https://github.com/lm789632
+* Optimize updating the recent app list so it doesn't lag opening the menu.
+* Clicking the user icon will now open a submenu with user manager/lock/logout/change user similar to Win10.
+
 ## v9 - December 27 2016
 
 * Use the theme's background color for the sidebar instead of black.
