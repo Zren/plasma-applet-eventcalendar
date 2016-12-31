@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: https://github.com/Zren/plasma-applets/tree/master/tiledmenu\n"
-"POT-Creation-Date: 2016-12-29 22:34-0500\n"
+"POT-Creation-Date: 2016-12-30 20:09-0500\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: Lin Mu <linmu789632@gmail.com>\n"
 "Language-Team: Chinese <kde-i18n-doc@kde.org>\n"
@@ -113,11 +113,11 @@ msgstr "显示最近运行软件"
 
 #: ../contents/ui/config/ConfigGeneral.qml:239
 msgid "Icon Size"
-msgstr ""
+msgstr "图标尺寸"
 
 #: ../contents/ui/config/ConfigGeneral.qml:240
 msgid "px"
-msgstr ""
+msgstr "像素"
 
 #: ../contents/ui/config/ConfigGeneral.qml:255
 msgid "Search Results"
@@ -147,7 +147,7 @@ msgstr "任务管理器"
 msgid "System Settings"
 msgstr "系统设置"
 
-#: ../contents/ui/Main.qml:229 ../contents/ui/SearchView.qml:78
+#: ../contents/ui/Main.qml:229 ../contents/ui/SearchView.qml:82
 msgid "File Manager"
 msgstr "文件管理器"
 
@@ -196,11 +196,16 @@ msgstr "菜单"
 msgid "Apps"
 msgstr "软件"
 
-#: ../contents/ui/SearchView.qml:83
+#: ../contents/ui/SearchView.qml:70
+#, fuzzy
+msgid "User Manager"
+msgstr "用户管理程序"
+
+#: ../contents/ui/SearchView.qml:87
 msgid "Settings"
 msgstr "设置"
 
-#: ../contents/ui/SearchView.qml:89
+#: ../contents/ui/SearchView.qml:93
 msgid "Power"
 msgstr "电源"
 

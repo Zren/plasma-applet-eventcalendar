@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tiledmenu \n"
 "Report-Msgid-Bugs-To: https://github.com/Zren/plasma-applets/tree/master/tiledmenu\n"
-"POT-Creation-Date: 2016-12-29 22:34-0500\n"
+"POT-Creation-Date: 2016-12-30 20:09-0500\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -147,7 +147,7 @@ msgstr ""
 msgid "System Settings"
 msgstr ""
 
-#: ../contents/ui/Main.qml:229 ../contents/ui/SearchView.qml:78
+#: ../contents/ui/Main.qml:229 ../contents/ui/SearchView.qml:82
 msgid "File Manager"
 msgstr ""
 
@@ -196,11 +196,15 @@ msgstr ""
 msgid "Apps"
 msgstr ""
 
-#: ../contents/ui/SearchView.qml:83
+#: ../contents/ui/SearchView.qml:70
+msgid "User Manager"
+msgstr ""
+
+#: ../contents/ui/SearchView.qml:87
 msgid "Settings"
 msgstr ""
 
-#: ../contents/ui/SearchView.qml:89
+#: ../contents/ui/SearchView.qml:93
 msgid "Power"
 msgstr ""
 
