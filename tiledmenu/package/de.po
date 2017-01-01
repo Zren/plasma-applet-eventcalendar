@@ -1,0 +1,225 @@
+# Translation of tiledmenu in LANGUAGE
+# Copyright (C) 2016
+# This file is distributed under the same license as the tiledmenu package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: tiledmenu \n"
+"Report-Msgid-Bugs-To: https://github.com/Zren/plasma-applets/tree/master/tiledmenu\n"
+"POT-Creation-Date: 2016-12-30 20:09-0500\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: Ruman Gerst <rumangerst@gmail.com>\n"
+"Language-Team: German <LL@li.org>\n"
+"Language: de\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../contents/config/config.qml:26
+msgid "General"
+msgstr "Allgemein"
+
+#: ../contents/ui/AppContextMenu.qml:61
+msgid "Unpin from Menu"
+msgstr "Von Menü loslösen"
+
+#: ../contents/ui/AppContextMenu.qml:67
+msgid "Pin to Menu"
+msgstr "An Menü anheften"
+
+#: ../contents/ui/AppContextMenu.qml:108
+msgid "Pin to Taskbar"
+msgstr "An Anwendungsleiste anheften"
+
+#: ../contents/ui/config/ConfigGeneral.qml:24
+msgid "Panel Icon"
+msgstr "Symbol"
+
+#: ../contents/ui/config/ConfigGeneral.qml:74
+msgctxt "@item:inmenu Open icon chooser dialog"
+msgid "Choose..."
+msgstr "Auswählen..."
+
+#: ../contents/ui/config/ConfigGeneral.qml:79
+msgctxt "@item:inmenu Reset icon to default"
+msgid "Clear Icon"
+msgstr "Symbol zurücksetzen"
+
+#: ../contents/ui/config/ConfigGeneral.qml:111
+msgid "Fixed Size"
+msgstr "Feste Größe"
+
+#: ../contents/ui/config/ConfigGeneral.qml:120
+msgid "Choose an image"
+msgstr "Bild auswählen"
+
+#: ../contents/ui/config/ConfigGeneral.qml:125
+msgid "Image Files (*.png *.jpg *.jpeg *.bmp *.svg *.svgz)"
+msgstr "Bilder (*.png *.jpg *.jpeg *.bmp *.svg *.svgz)"
+
+#: ../contents/ui/config/ConfigGeneral.qml:136
+msgid "Tiles"
+msgstr "Kacheln"
+
+#: ../contents/ui/config/ConfigGeneral.qml:158
+msgid "Text Alignment"
+msgstr "Textausrichtung"
+
+#: ../contents/ui/config/ConfigGeneral.qml:160
+msgid "Left"
+msgstr "Links"
+
+#: ../contents/ui/config/ConfigGeneral.qml:161
+msgid "Center"
+msgstr "Mitte"
+
+#: ../contents/ui/config/ConfigGeneral.qml:162
+msgid "Right"
+msgstr "Rechts"
+
+#: ../contents/ui/config/ConfigGeneral.qml:169
+msgid "Sidebar"
+msgstr "Seitenleiste"
+
+#: ../contents/ui/config/ConfigGeneral.qml:194
+msgid "Search Box"
+msgstr "Suchleiste"
+
+#: ../contents/ui/config/ConfigGeneral.qml:211
+msgid "App List"
+msgstr "Anwendungsliste"
+
+#: ../contents/ui/config/ConfigGeneral.qml:216
+msgid "App Description"
+msgstr "Anwendungsbeschreibung"
+
+#: ../contents/ui/config/ConfigGeneral.qml:218
+msgid "Hidden"
+msgstr "Versteckt"
+
+#: ../contents/ui/config/ConfigGeneral.qml:219
+msgid "After"
+msgstr "Danach"
+
+#: ../contents/ui/config/ConfigGeneral.qml:220
+msgid "Below"
+msgstr "Darunter"
+
+#: ../contents/ui/config/ConfigGeneral.qml:232
+msgid "Show recent applications"
+msgstr "Letzte Anwendungen anzeigen"
+
+#: ../contents/ui/config/ConfigGeneral.qml:239
+msgid "Icon Size"
+msgstr "Symbolgröße"
+
+#: ../contents/ui/config/ConfigGeneral.qml:240
+msgid "px"
+msgstr "px"
+
+#: ../contents/ui/config/ConfigGeneral.qml:255
+msgid "Search Results"
+msgstr "Suchergebnisse"
+
+#: ../contents/ui/config/ConfigGeneral.qml:259
+msgid "Merged (Application Launcher)"
+msgstr "Vereinigt (Anwendungsstarter)"
+
+#: ../contents/ui/config/ConfigGeneral.qml:268
+msgid "Split into Categories (Application Menu / Dashboard)"
+msgstr "In Kategorien unterteilen (Anwendungsmenü / Dashboard)"
+
+#: ../contents/ui/Main.qml:224
+msgid "System Info"
+msgstr "Systeminformationen"
+
+#: ../contents/ui/Main.qml:225
+msgid "Terminal"
+msgstr "Terminal"
+
+#: ../contents/ui/Main.qml:227
+msgid "Task Manager"
+msgstr "Taskmanager"
+
+#: ../contents/ui/Main.qml:228
+msgid "System Settings"
+msgstr "Systemeinstellungen"
+
+#: ../contents/ui/Main.qml:229 ../contents/ui/SearchView.qml:82
+msgid "File Manager"
+msgstr "Dateiverwaltung"
+
+#: ../contents/ui/Main.qml:231
+msgid "Edit Applications..."
+msgstr "Anwendungen bearbeiten..."
+
+#: ../contents/ui/Popup.qml:58
+msgid "Resize?"
+msgstr "Größe ändern?"
+
+#: ../contents/ui/Popup.qml:59
+msgid "Alt + Right Click to resize the menu."
+msgstr "Alt + Rechtsklick um Menügröße zu ändern."
+
+#: ../contents/ui/SearchField.qml:15 ../contents/ui/SearchView.qml:48
+msgid "Search"
+msgstr "Suchen"
+
+#: ../contents/ui/SearchField.qml:17
+msgid "Search Apps"
+msgstr "Suche Anwendungen"
+
+#: ../contents/ui/SearchField.qml:19
+msgid "Search Files"
+msgstr "Suche Dateien"
+
+#: ../contents/ui/SearchField.qml:21
+msgid "Search Bookmarks"
+msgstr "Suche Lesezeichen"
+
+#: ../contents/ui/SearchField.qml:23
+msgctxt "Search [krunnerName, krunnerName, ...], "
+msgid "Search %1"
+msgstr "Suche %1"
+
+#: ../contents/ui/SearchResultsView.qml:60
+msgid "More"
+msgstr "Mehr"
+
+#: ../contents/ui/SearchView.qml:33
+msgid "Menu"
+msgstr "Menü"
+
+#: ../contents/ui/SearchView.qml:40
+msgid "Apps"
+msgstr "Anwendungen"
+
+#: ../contents/ui/SearchView.qml:70
+msgid "User Manager"
+msgstr "Benutzerverwaltung"
+
+#: ../contents/ui/SearchView.qml:87
+msgid "Settings"
+msgstr "Einstellungen"
+
+#: ../contents/ui/SearchView.qml:93
+msgid "Power"
+msgstr "Ein/Aus"
+
+#: ../contents/ui/TileEditor.qml:30
+msgid "Size"
+msgstr "Größe"
+
+#: ../contents/ui/TileEditor.qml:34
+msgid "Small"
+msgstr "Klein"
+
+#: ../contents/ui/TileEditor.qml:40
+msgid "Medium"
+msgstr "Mittel"
+
+#: ../contents/ui/TileEditor.qml:46
+msgid "Label"
+msgstr "Beschriftung"
