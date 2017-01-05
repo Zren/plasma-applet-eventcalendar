@@ -42,6 +42,7 @@ for cat in $catalogs; do
 	catLocale=`basename ${cat%.*}`
 	msgmerge \
 		--width=200 \
+		--no-fuzzy-matching \
 		-o "$cat.new" "$cat" "${DIR}/template.pot"
 	sed -i 's/# SOME DESCRIPTIVE TITLE./'"# Translation of ${widgetName} in ${catLocale}"'/' "$cat.new"
 	sed -i 's/# Translation of '"${widgetName}"' in LANGUAGE/'"# Translation of ${widgetName} in ${catLocale}"'/' "$cat.new"
