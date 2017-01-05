@@ -39,11 +39,14 @@ TextField {
 	Component {
 		id: redmondStyle
 
+		// https://github.com/qt/qtquickcontrols/blob/dev/src/controls/Styles/Base/TextFieldStyle.qml
+		// https://github.com/qt/qtquickcontrols/blob/dev/src/controls/Styles/Desktop/TextFieldStyle.qml
 		TextFieldStyle {
 			background: Rectangle {
 				color: "#eee"
 			}
 			textColor: "#111"
+			placeholderTextColor: "#777"
 		}
 	}
 
