@@ -20,11 +20,29 @@ xgettext --from-code=UTF-8 -C -kde -ci18n -ki18n:1 -ki18nc:1c,2 -ki18np:1,2 -ki1
 	-ktr2i18n:1 -kI18N_NOOP:1 -kI18N_NOOP2:1c,2  -kN_:1 -kaliasLocale -kki18n:1 -kki18nc:1c,2 \
 	-kki18np:1,2 -kki18ncp:1c,2,3 --msgid-bugs-address="${bugAddress}" --files-from=infiles.list \
 	--width=200 --package-name="${widgetName}" --package-version="" \
-	-D "${packageRoot}" -D "${DIR}" -o "template.pot" || \
+	-D "${packageRoot}" -D "${DIR}" -o "template.pot.new" || \
 	{ echo "[merge] error while calling xgettext. aborting."; exit 1; }
 
-sed -i 's/# SOME DESCRIPTIVE TITLE./'"# Translation of ${widgetName} in LANGUAGE"'/' "template.pot"
-sed -i 's/# Copyright (C) YEAR THE PACKAGE'"'"'S COPYRIGHT HOLDER/'"# Copyright (C) $(date +%Y)"'/' "template.pot"
+sed -i 's/# SOME DESCRIPTIVE TITLE./'"# Translation of ${widgetName} in LANGUAGE"'/' "template.pot.new"
+sed -i 's/# Copyright (C) YEAR THE PACKAGE'"'"'S COPYRIGHT HOLDER/'"# Copyright (C) $(date +%Y)"'/' "template.pot.new"
+
+if [ -f "template.pot" ]; then
+	newPotDate=`grep "POT-Creation-Date:" template.pot.new | sed 's/.\{3\}$//'`
+	oldPotDate=`grep "POT-Creation-Date:" template.pot | sed 's/.\{3\}$//'`
+	sed -i 's/'"${newPotDate}"'/'"${oldPotDate}"'/' "template.pot.new"
+	changes=`diff "template.pot" "template.pot.new"`
+	if [ ! -z "$changes" ]; then
+		# There's been changes
+		sed -i 's/'"${oldPotDate}"'/'"${newPotDate}"'/' "template.pot.new"
+		mv "template.pot.new" "template.pot"
+	else
+		# No changes
+		rm "template.pot.new"
+	fi
+else
+	# template.pot didn't already exist
+	mv "template.pot.new" "template.pot"
+fi
 
 potMessageCount=`expr $(grep -c 'msgstr ""' "template.pot") - 1`
 echo "|Locale | Lines | % Done|" > "./Status.md"
