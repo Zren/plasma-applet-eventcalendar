@@ -67,10 +67,14 @@ PlasmaComponents.Slider {
                 // width: 3
                 width: 1
                 height: {
-                    if (index % 10 == 0) {
-                        return control.width*3/5; // 0%, 100% have longer ticks
+                    if (index == 0) {
+                        return 0; // 0% has no tick
+                    } else if (index % 15 == 0) {
+                        return control.width*4/5; // 150%
+                    } else if (index % 10 == 0) {
+                        return control.width*3/5; // 100%
                     } else if (index % 5 == 0) {
-                        return control.width*2/5; // 50%, 150% have medium length ticks
+                        return control.width*2/5; // 50%
                     } else {
                         return control.width*1/5; // 10%, 20%, ... have short ticks
                     }
