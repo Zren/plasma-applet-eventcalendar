@@ -25,7 +25,7 @@
       <default>true</default>
     </entry>
     <entry name="mediaControllerLocation" type="string">
-      <default></default>
+      <default>bottom</default>
     </entry>
     <entry name="showOsd" type="bool">
       <default>true</default>

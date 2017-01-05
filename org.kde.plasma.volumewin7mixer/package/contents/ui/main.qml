@@ -399,7 +399,10 @@ Item {
                     anchors.left: mediaController.parent.left
                     anchors.top: mediaController.parent.top
                     anchors.bottom: mixerItemRow.top
-                    width: main.Layout.preferredWidth - pinButton.width - units.smallSpacing // Don't cover the pin button
+                }
+                PropertyChanges {
+                    target: pinButton
+                    anchors.topMargin: mediaControllerHeight
                 }
             },
             State {
@@ -425,6 +428,7 @@ Item {
 
     PlasmaComponents.ToolButton {
         id: pinButton
+        anchors.top: parent.top
         anchors.right: parent.right
         width: Math.round(units.gridUnit * 1.25)
         height: width

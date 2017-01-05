@@ -16,8 +16,6 @@ ColumnLayout {
     property alias cfg_moveAllAppsOnSetDefault: moveAllAppsOnSetDefault.checked
     property alias cfg_showMediaController: showMediaController.checked
     property alias cfg_showOsd: showOsd.checked
-    property string cfg_mediaControllerLocation: 'bottom'
-    
 
     ColumnLayout {
         Layout.alignment: Qt.AlignTop | Qt.AlignLeft
@@ -131,13 +129,17 @@ ColumnLayout {
 
                 CheckBox {
                     id: showMediaController
-                    text: 'Show Media Controller'
+                    text: i18n("Show Media Controller")
                 }
 
-                ComboBox {
-                    id: mediaControllerLocationComboBox
-                    enabled: false
-                    model: [ 'Bottom' ]
+                ConfigComboBox {
+                    id: appDescriptionControl
+                    configKey: "mediaControllerLocation"
+                    label: i18n("Position")
+                    model: [
+                        { value: "top", text: i18n("Top") },
+                        { value: "bottom", text: i18n("Bottom") },
+                    ]
                 }
 
             }
