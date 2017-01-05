@@ -1,5 +1,5 @@
 # Translation of tiledmenu in LANGUAGE
-# Copyright (C) 2016
+# Copyright (C) 2017
 # This file is distributed under the same license as the tiledmenu package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
