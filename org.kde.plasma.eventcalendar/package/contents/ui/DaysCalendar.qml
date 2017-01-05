@@ -280,6 +280,7 @@ Item {
                 opacity: 0.4
                 text: modelData
                 font.pixelSize: Math.max(theme.smallestFont.pixelSize, daysCalendar.cellHeight / 3)
+                font.pointSize: -1 // Ignore pixelSize warning
             }
         }
     }
