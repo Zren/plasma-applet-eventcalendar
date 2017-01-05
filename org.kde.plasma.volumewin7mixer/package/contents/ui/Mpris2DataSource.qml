@@ -108,6 +108,10 @@ PlasmaCore.DataSource {
         serviceOp(mpris2Source.current, "Stop");
     }
 
+    function raise() {
+        serviceOp(mpris2Source.current, "Raise");
+    }
+
     function setShuffle(value) {
         var service = mpris2Source.serviceForSource(mpris2Source.current)
         var operation = service.operationDescription("SetShuffle")

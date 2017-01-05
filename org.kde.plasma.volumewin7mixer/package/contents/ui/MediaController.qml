@@ -16,45 +16,58 @@ Item {
         anchors.fill: parent
         anchors.topMargin: seekSlider.height
 
-        Image {
-            id: albumArt
-            anchors.left: parent.left
-            width: height
-            height: parent.height
-            source: mpris2Source.albumArt
-            asynchronous: true
-            fillMode: Image.PreserveAspectCrop
-            sourceSize: Qt.size(width, height)
-            visible: !!mpris2Source.track && status === Image.Ready
-        }
-
-        Column {
-            id: leftSide
+        PlasmaComponents.ToolButton {
             anchors.fill: parent
-            anchors.leftMargin: albumArt.width + 4
             anchors.rightMargin: rightSide.width
-
-            // MediaControllerCompact's style
-            PlasmaComponents.Label {
-                id: track
-                width: parent.width
-                opacity: 0.9
-                height: parent.height / 2
-
-                elide: Text.ElideRight
-                text: mpris2Source.track
+            enabled: mpris2Source.canRaise
+            onClicked: {
+                mpris2Source.raise()
+                if (plasmoid.hideOnWindowDeactivate) {
+                    plasmoid.expanded = false
+                }
             }
 
-            PlasmaComponents.Label {
-                id: artist
-                width: parent.width
-                opacity: 0.7
-                height: parent.height / 2
+            Image {
+                id: albumArt
+                anchors.left: parent.left
+                width: height
+                height: parent.height
+                source: mpris2Source.albumArt
+                asynchronous: true
+                fillMode: Image.PreserveAspectCrop
+                sourceSize: Qt.size(width, height)
+                visible: !!mpris2Source.track && status === Image.Ready
+            }
 
-                elide: Text.ElideRight
-                text: mpris2Source.artist
+            Column {
+                id: leftSide
+                anchors.fill: parent
+                anchors.leftMargin: albumArt.width + 4
+                // anchors.rightMargin: rightSide.width
+
+                // MediaControllerCompact's style
+                PlasmaComponents.Label {
+                    id: track
+                    width: parent.width
+                    opacity: 0.9
+                    height: parent.height / 2
+
+                    elide: Text.ElideRight
+                    text: mpris2Source.track
+                }
+
+                PlasmaComponents.Label {
+                    id: artist
+                    width: parent.width
+                    opacity: 0.7
+                    height: parent.height / 2
+
+                    elide: Text.ElideRight
+                    text: mpris2Source.artist
+                }
             }
         }
+
         Row {
             id: rightSide
             width: childrenRect.width
