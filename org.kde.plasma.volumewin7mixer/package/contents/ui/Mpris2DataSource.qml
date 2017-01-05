@@ -1,6 +1,7 @@
 import QtQuick 2.0
 import org.kde.plasma.core 2.0 as PlasmaCore
 
+// https://github.com/KDE/plasma-workspace/tree/master/dataengines/mpris2
 PlasmaCore.DataSource {
     id: mpris2Source
 
@@ -21,11 +22,18 @@ PlasmaCore.DataSource {
     property string playbackState: hasPlayer && mpris2Source.data[mpris2Source.current].PlaybackStatus
     property bool isPlaying: playbackState == "Playing"
     property bool isPaused: playbackState == "Paused"
+    property bool isShuffling: canControl && mpris2Source.data[mpris2Source.current].Shuffle
+    property string loopState: canControl && mpris2Source.data[mpris2Source.current].LoopStatus
+    property bool isNotLooping: loopState == "None"
+    property bool isLoopingTrack: loopState == "Track"
+    property bool isLoopingPlaylist: loopState == "Playlist"
 
     property bool canControl: hasPlayer && mpris2Source.data[mpris2Source.current].CanControl
     property bool canGoPrevious: canControl && mpris2Source.data[mpris2Source.current].CanGoPrevious
     property bool canGoNext: canControl && mpris2Source.data[mpris2Source.current].CanGoNext
     property bool canRaise: hasPlayer && mpris2Source.data[mpris2Source.current].CanRaise
+    property bool canShuffle: canControl
+    property bool canLoop: canControl
 
     // if there's no "mpris:length" in teh metadata, we cannot seek, so hide it in that case (org.kde.plasma.mediacontroller)
     property bool canSeekMpris: hasPlayer && mpris2Source.data[mpris2Source.current].CanSeek
@@ -98,6 +106,34 @@ PlasmaCore.DataSource {
 
     function stop() {
         serviceOp(mpris2Source.current, "Stop");
+    }
+
+    function setShuffle(value) {
+        var service = mpris2Source.serviceForSource(mpris2Source.current)
+        var operation = service.operationDescription("SetShuffle")
+        operation.on = value
+        service.startOperationCall(operation)
+    }
+
+    function toggleShuffle() {
+        setShuffle(!isShuffling)
+    }
+
+    function setLoopState(value) {
+        var service = mpris2Source.serviceForSource(mpris2Source.current)
+        var operation = service.operationDescription("SetLoopStatus")
+        operation.status = value
+        service.startOperationCall(operation)
+    }
+
+    function toggleLoopState() {
+        if (isNotLooping) {
+            setLoopState("Track")
+        } else if (isLoopingTrack) {
+            setLoopState("Playlist")
+        } else {
+            setLoopState("None")
+        }
     }
 
     function serviceOp(src, op) {

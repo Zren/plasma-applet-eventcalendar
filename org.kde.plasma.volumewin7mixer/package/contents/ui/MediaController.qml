@@ -62,6 +62,37 @@ Item {
             anchors.right: parent.right
             anchors.verticalCenter: parent.verticalCenter
 
+            // Column {
+            //     width: height
+            //     height: parent.height
+            //     visible: mpris2Source.canGoNext
+
+            //     IconToolButton {
+            //         width: parent.height
+            //         height: parent.height / 2
+            //         enabled: mpris2Source.canLoop
+            //         source: {
+            //             if (mpris2Source.isLoopingTrack) {
+            //                 return "media-repeat-single"
+            //             } else if (mpris2Source.isLoopingPlaylist) {
+            //                 return "media-repeat-all"
+            //             } else {
+            //                 return "media-repeat-none"
+            //             }
+            //         }
+            //         onClicked: mpris2Source.toggleLoopState()
+            //     }
+            //      IconToolButton {
+            //         width: parent.height
+            //         height: parent.height / 2
+                    
+            //         enabled: mpris2Source.canShuffle
+            //         source: "shuffle"
+            //         iconOpacity: mpris2Source.isShuffling ? 1 : 0.5
+            //         onClicked: mpris2Source.toggleShuffle()
+            //     }
+            // }
+            
             PlasmaComponents.ToolButton {
                 iconSource: "media-skip-backward"
                 width: height
