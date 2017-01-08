@@ -87,7 +87,25 @@ Item {
     ]
 
     Plasmoid.preferredRepresentation: Plasmoid.fullRepresentation
-    // Plasmoid.onActivated: control.click()
+    Plasmoid.onActivated: root.performClick()
+
+    function performClick() {
+        if (plasmoid.configuration.click_action == 'minimizeall') {
+            showdesktop.minimizeAll()
+        } else if (plasmoid.configuration.click_action == 'run_command') {
+            root.exec(plasmoid.configuration.click_command)
+        } else { // Default: showdesktop
+            showdesktop.showingDesktop = !showdesktop.showingDesktop
+        }
+    }
+
+    function performMouseWheelUp() {
+        root.exec(plasmoid.configuration.mousewheel_up)
+    }
+
+    function performMouseWheelDown() {
+        root.exec(plasmoid.configuration.mousewheel_down)
+    }
 
     ShowDesktop {
         id: showdesktop
@@ -197,13 +215,7 @@ Item {
                         peekTimer.stop()
 
                         if (true) {
-                            if (plasmoid.configuration.click_action == 'minimizeall') {
-                                showdesktop.minimizeAll()
-                            } else if (plasmoid.configuration.click_action == 'run_command') {
-                                root.exec(plasmoid.configuration.click_command)
-                            } else { // Default: showdesktop
-                                showdesktop.showingDesktop = !showdesktop.showingDesktop
-                            }
+                            root.performClick()
                         } else {
                             showdesktop.showingDesktop = false
                             showdesktop.minimizeAll()
@@ -220,23 +232,18 @@ Item {
 
                 // org.kde.plasma.volume
                 property int wheelDelta: 0
-
-                // http://dev.man-online.org/man1/xdotool/
-                // xmodmap -pke
-                // keycode 122 = XF86AudioLowerVolume NoSymbol XF86AudioLowerVolume
-                // keycode 123 = XF86AudioRaiseVolume NoSymbol XF86AudioRaiseVolume
                 onWheel: {
-                    var delta = wheel.angleDelta.y || wheel.angleDelta.x;
-                    wheelDelta += delta;
+                    var delta = wheel.angleDelta.y || wheel.angleDelta.x
+                    wheelDelta += delta
                     // Magic number 120 for common "one click"
                     // See: http://qt-project.org/doc/qt-5/qml-qtquick-wheelevent.html#angleDelta-prop
                     while (wheelDelta >= 120) {
-                        wheelDelta -= 120;
-                        root.exec(plasmoid.configuration.mousewheel_up)
+                        wheelDelta -= 120
+                        root.performMouseWheelUp()
                     }
                     while (wheelDelta <= -120) {
-                        wheelDelta += 120;
-                        root.exec(plasmoid.configuration.mousewheel_down)
+                        wheelDelta += 120
+                        root.performMouseWheelDown()
                     }
                     wheel.accepted = true
                 }
