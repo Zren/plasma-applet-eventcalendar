@@ -284,11 +284,31 @@ Item {
 			}
 		}
 
-		function refresh() {
-			refreshing()
-			// console.log("allAppsModel.refresh()")
-			
-			// console.log('resultModel.refresh')
+		property int categoryStartIndex: 2 // Skip Recent Apps, All Apps
+		property int categoryEndIndex: rootModel.count - 1 // Skip Power
+
+		function getCategory(rootIndex) {
+			var modelIndex = rootModel.index(rootIndex, 0)
+			var categoryLabel = rootModel.data(modelIndex, Qt.DisplayRole)
+			var categoryModel = rootModel.modelForRow(rootIndex)
+			var appList = []
+			parseModel(appList, categoryModel)
+			for (var i = 0; i < appList.length; i++) {
+				var item = appList[i];
+				item.sectionKey = categoryLabel
+			}
+			return appList
+		}
+		function getAllCategories() {
+			var appList = [];
+			for (var i = categoryStartIndex; i < categoryEndIndex; i++) { // Skip Recent Apps, All Apps, ... and Power
+			// for (var i = 0; i < rootModel.count; i++) {
+				appList = appList.concat(getCategory(i))
+			}
+			return appList
+		}
+
+		function getAllApps() {
 			//--- populate list
 			var appList = [];
 			parseModel(appList, rootModel.modelForRow(1));
@@ -344,6 +364,22 @@ Item {
 					return 0;
 				}
 			})
+
+
+			return appList
+		}
+
+		function refresh() {
+			refreshing()
+			// console.log("allAppsModel.refresh()")
+			
+			//--- Apps
+			var appList = []
+			if (false) {
+				appList = getAllCategories()
+			} else {
+				appList = getAllApps()
+			}
 
 			//--- Recent Apps
 			if (plasmoid.configuration.showRecentApps) {
