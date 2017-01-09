@@ -43,14 +43,14 @@ SidebarMenu {
 	// }
 
 	onFocusChanged: {
-		console.log('sidebarContextMenu.onFocusChanged', focus)
+		// console.log('sidebarContextMenu.onFocusChanged', focus)
 		if (!sidebarContextMenu.focus) {
 			sidebarContextMenu.open = false
 		}
 	}
 
 	onActiveFocusChanged: {
-		console.log('sidebarContextMenu.onActiveFocusChanged', activeFocus)
+		// console.log('sidebarContextMenu.onActiveFocusChanged', activeFocus)
 		if (!sidebarContextMenu.activeFocus) {
 			sidebarContextMenu.open = false
 		}

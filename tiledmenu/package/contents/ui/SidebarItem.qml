@@ -13,7 +13,7 @@ FlatButton {
 	width: parent.width
 	height: config.flatButtonSize
 	property var sidebarMenu: parent.parent // Column.SidebarMenu
-	property bool expanded: sidebarMenu.open
+	property bool expanded: sidebarMenu ? sidebarMenu.open : false
 	labelVisible: expanded
 	property bool closeOnClick: true
 

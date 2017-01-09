@@ -8,7 +8,7 @@ Repeater {
 		iconName: model.iconName
 		text: model.name
 		onClicked: {
-			console.log(repeater, repeater.parent)
+			// console.log(repeater, repeater.parent)
 			repeater.parent.parent.open = false // SidebarContextMenu { Column { Repeater{} } }
 			repeater.model.triggerIndex(index)
 		}

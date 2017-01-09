@@ -106,6 +106,16 @@ Item {
 			}
 
 		}
+
+		property var openModel: Kicker.FavoritesModel {
+			id: openModel
+
+			onFavoritesChanged: {
+				if (count > 0) {
+					openModel.trigger(0, "", null)
+				}
+			}
+		}
 	}
 
 	Item {
@@ -170,7 +180,7 @@ Item {
 	KickerListModel {
 		id: powerActionsModel
 		onItemTriggered: {
-			console.log('powerActionsModel.onItemTriggered')
+			// console.log('powerActionsModel.onItemTriggered')
 			plasmoid.expanded = false
 		}
 		
@@ -194,7 +204,7 @@ Item {
 	KickerListModel {
 		id: sessionActionsModel
 		onItemTriggered: {
-			console.log('sessionActionsModel.onItemTriggered')
+			// console.log('sessionActionsModel.onItemTriggered')
 			plasmoid.expanded = false
 		}
 
@@ -204,7 +214,7 @@ Item {
 			var sessionIconNames = ['system-lock-screen', 'system-log-out', 'system-save-session', 'system-switch-user']
 			for (var i = 0; i < powerActionsModel.list.length; i++) {
 				var item = powerActionsModel.list[i];
-				console.log(item, item.iconName, sessionIconNames.indexOf(item.iconName) >= 0)
+				// console.log(item, item.iconName, sessionIconNames.indexOf(item.iconName) >= 0)
 				if (sessionIconNames.indexOf(item.iconName) >= 0) {
 					sessionActionsList.push(item)
 				}
@@ -216,7 +226,7 @@ Item {
 	KickerListModel {
 		id: allAppsModel
 		onItemTriggered: {
-			console.log('allAppsModel.onItemTriggered')
+			// console.log('allAppsModel.onItemTriggered')
 			plasmoid.expanded = false
 		}
 
@@ -249,7 +259,7 @@ Item {
 		}
 
 		function refreshRecentApps() {
-			console.log('refreshRecentApps')
+			// console.log('refreshRecentApps')
 			if (debouncedRefresh.running) {
 				// We're about to do a full refresh so don't bother doing a partial update.
 				return
@@ -378,5 +388,22 @@ Item {
 				break;
 			}
 		}
+	}
+
+	function open(filepath) {
+		if (filepath.indexOf('~/') == 0) {
+			if (kuser.loginName) {
+				filepath = '/home/' + kuser.loginName + filepath.substr(1)
+			} else {
+				console.log('kuser.loginName', kuser.loginName, 'is empty and can\'t be used to expand the ~ tilde to open a home path.')
+				// Can't open the right filepath
+				return
+			}
+		}
+		if (filepath.indexOf('file://') != 0) {
+			filepath = 'file://' + filepath
+		}
+		// console.log('open', filepath)
+		openModel.favorites = [filepath]
 	}
 }
