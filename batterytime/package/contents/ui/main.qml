@@ -3,6 +3,7 @@ import QtQuick.Layouts 1.3
 import org.kde.plasma.plasmoid 2.0
 import org.kde.plasma.core 2.0 as PlasmaCore
 import org.kde.plasma.components 2.0 as PlasmaComponent
+import org.kde.kcoreaddons 1.0 as KCoreAddons
 
 Item {
 	id: widget
@@ -154,6 +155,14 @@ Item {
 					target: batteryIconContainer
 					height: gridLayout.height
 				}
+				PropertyChanges {
+					target: percentText
+					height: gridLayout.height
+				}
+				PropertyChanges {
+					target: timeLeftText
+					height: gridLayout.height
+				}
 			},
 			State {
 				name: "vertical"
@@ -167,7 +176,6 @@ Item {
 				PropertyChanges {
 					target: gridLayout
 					columns: 1
-					rowSpacing: 0
 				}
 				PropertyChanges {
 					target: batteryIconContainer
@@ -203,11 +211,13 @@ Item {
 					target: percentText
 					anchors.left: gridLayout.left
 					anchors.right: gridLayout.right
+					height: gridLayout.height
 				}
 				PropertyChanges {
 					target: timeLeftText
 					anchors.left: gridLayout.left
 					anchors.right: gridLayout.right
+					height: gridLayout.height
 				}
 			}
 		]
@@ -215,6 +225,8 @@ Item {
 		GridLayout {
 			id: gridLayout
 			anchors.fill: parent
+			columnSpacing: 0
+			rowSpacing: 0
 
 			Item {
 				id: batteryIconContainer
@@ -254,11 +266,15 @@ Item {
 			PlasmaComponent.Label {
 				id: timeLeftText
 				// Layout.fillWidth: true
-				visible: currentBatteryRemainingTime > 0
+				visible: true
+				// visible: currentBatteryRemainingTime > 0
 				text: {
 					if (currentBatteryRemainingTime > 0) {
-						// return KCoreAddons.Format.formatDuration(remainingTime, KCoreAddons.FormatTypes.HideSeconds);
-						return '' + Math.floor(currentBatteryRemainingTime / (60 * 1000)) + 'm'
+						if (true) {
+							return '' + Math.floor(currentBatteryRemainingTime / (60 * 1000)) + 'm'
+						} else {
+							return KCoreAddons.Format.formatDuration(currentBatteryRemainingTime, KCoreAddons.FormatTypes.HideSeconds)
+						}
 					} else {
 						return '∞';
 					}
