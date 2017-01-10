@@ -6,15 +6,16 @@ import QtQuick.Window 2.1
 import org.kde.plasma.core 2.0 as PlasmaCore
 import org.kde.plasma.components 2.0 as PlasmaComponents
 
-ColumnLayout {
+GridLayout {
 	id: searchResultsView
 	width: config.appListWidth
 	height: config.defaultHeight - config.searchFieldHeight
-	spacing: 0
+	rowSpacing: 0
 	property alias listView: searchResultsList
 	
 	RowLayout {
 		id: searchFiltersRow
+		Layout.row: searchView.searchOnTop ? 2 : 0
 		height: config.flatButtonSize - 1 // -1px is for the underline seperator
 		width: parent.width
 
@@ -25,7 +26,7 @@ ColumnLayout {
 			width: 20
 			onClicked: search.applyDefaultFilters()
 			checked: search.isDefaultFilter
-			checkedEdge: Qt.BottomEdge
+			checkedEdge: searchView.searchOnTop ?  Qt.TopEdge : Qt.BottomEdge
 		}
 		FlatButton {
 			iconName: "window"
@@ -34,7 +35,7 @@ ColumnLayout {
 			width: 30
 			onClicked: search.filters = ['services']
 			checked: search.isAppsFilter
-			checkedEdge: Qt.BottomEdge
+			checkedEdge: searchView.searchOnTop ?  Qt.TopEdge : Qt.BottomEdge
 		}
 		FlatButton {
 			iconName: "document-new"
@@ -42,7 +43,7 @@ ColumnLayout {
 			width: height
 			onClicked: search.filters = ['baloosearch']
 			checked: search.isFileFilter
-			checkedEdge: Qt.BottomEdge
+			checkedEdge: searchView.searchOnTop ?  Qt.TopEdge : Qt.BottomEdge
 		}
 		FlatButton {
 			iconName: "globe"
@@ -50,7 +51,7 @@ ColumnLayout {
 			width: height
 			onClicked: search.filters = ['bookmarks']
 			checked: search.isBookmarksFilter
-			checkedEdge: Qt.BottomEdge
+			checkedEdge: searchView.searchOnTop ?  Qt.TopEdge : Qt.BottomEdge
 		}
 
 		Item { Layout.fillWidth: true }
@@ -70,6 +71,7 @@ ColumnLayout {
 	}
 
 	ScrollView {
+		Layout.row: searchView.searchOnTop ? 0 : 2
 		Layout.fillWidth: true
 		Layout.fillHeight: true
 

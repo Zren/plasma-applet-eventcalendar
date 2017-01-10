@@ -16,6 +16,35 @@ Item {
 	property alias appsView: appsView
 	property alias searchField: searchField
 
+	property bool searchOnTop: false
+
+	states: [
+		State {
+			name: "searchOnTop"
+			when: searchOnTop
+			PropertyChanges {
+				target: stackViewContainer
+				anchors.topMargin: searchField.height
+			}
+			PropertyChanges {
+				target: searchField
+				anchors.top: searchField.parent.top
+			}
+		},
+		State {
+			name: "searchOnBottom"
+			when: !searchOnTop
+			PropertyChanges {
+				target: stackViewContainer
+				anchors.bottomMargin: searchField.height
+			}
+			PropertyChanges {
+				target: searchField
+				anchors.bottom: searchField.parent.bottom
+			}
+		}
+	]
+
 	SidebarMenu {
 		id: sidebarMenu
 		anchors.left: parent.left
@@ -113,8 +142,8 @@ Item {
 
 
 	Item {
+		id: stackViewContainer
 		anchors.fill: parent
-		anchors.bottomMargin: searchField.height
 
 		SearchResultsView {
 			id: searchResultsView
@@ -169,7 +198,7 @@ Item {
 					PropertyAnimation {
 						target: enterItem
 						property: "y"
-						from: stackView.height
+						from: stackView.height * (searchView.searchOnTop ? -1 : 1)
 						to: 0
 					}
 					PropertyAnimation {
@@ -195,7 +224,6 @@ Item {
 		anchors.leftMargin: config.sidebarWidth
 		anchors.left: parent.left
 		anchors.right: parent.right
-		anchors.bottom: parent.bottom
 
 		listView: stackView.currentItem ? stackView.currentItem.listView : []
 	}
