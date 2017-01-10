@@ -135,6 +135,9 @@ Item {
 	Plasmoid.compactRepresentation: Item {
 		id: panelItem
 
+		Layout.minimumWidth: 4 * units.devicePixelRatio
+		Layout.minimumHeight: 4 * units.devicePixelRatio
+		
 		property int textHeight: Math.max(6, Math.min(panelItem.height, 16 * units.devicePixelRatio))
 		// onTextHeightChanged: console.log('textHeight', textHeight)
 
@@ -230,6 +233,7 @@ Item {
 
 			Item {
 				id: batteryIconContainer
+				visible: plasmoid.configuration.showBatteryIcon
 				width: 22
 				height: 12
 
@@ -246,6 +250,7 @@ Item {
 
 			PlasmaComponent.Label {
 				id: percentText
+				visible: plasmoid.configuration.showPercentage
 				// Layout.fillWidth: true
 				text: {
 					if (currentBatteryPercent > 0) {
@@ -266,7 +271,7 @@ Item {
 			PlasmaComponent.Label {
 				id: timeLeftText
 				// Layout.fillWidth: true
-				visible: true
+				visible: plasmoid.configuration.showTimeLeft
 				// visible: currentBatteryRemainingTime > 0
 				text: {
 					if (currentBatteryRemainingTime > 0) {

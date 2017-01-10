@@ -14,6 +14,7 @@ ConfigPage {
 
 		ConfigCheckBox {
 			text: i18n("Enabled")
+			configKey: 'showBatteryIcon'
 		}
 
 		ConfigColor {
@@ -33,6 +34,7 @@ ConfigPage {
 
 		ConfigCheckBox {
 			text: i18n("Enabled")
+			configKey: 'showPercentage'
 		}
 	}
 
@@ -42,6 +44,7 @@ ConfigPage {
 
 		ConfigCheckBox {
 			text: i18n("Enabled")
+			configKey: 'showTimeLeft'
 		}
 
 		RadioButton {

@@ -6,7 +6,15 @@
   <kcfgfile name=""/>
 
   <group name="General">
-    
+    <entry name="showBatteryIcon" type="bool">
+      <default>true</default>
+    </entry>
+    <entry name="showPercentage" type="bool">
+      <default>true</default>
+    </entry>
+    <entry name="showTimeLeft" type="bool">
+      <default>true</default>
+    </entry>
   </group>
 
 </kcfg>
