@@ -11,6 +11,6 @@ CheckBox {
 	id: configCheckBox
 
 	property string configKey: ''
-	checked: plasmoid.configuration[configKey]
+	checked: configKey ? plasmoid.configuration[configKey] : false
 	onClicked: plasmoid.configuration[configKey] = !plasmoid.configuration[configKey]
 }
