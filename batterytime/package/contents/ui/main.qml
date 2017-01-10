@@ -137,7 +137,7 @@ Item {
 
 		Layout.minimumWidth: 4 * units.devicePixelRatio
 		Layout.minimumHeight: 4 * units.devicePixelRatio
-		
+
 		property int textHeight: Math.max(6, Math.min(panelItem.height, 16 * units.devicePixelRatio))
 		// onTextHeightChanged: console.log('textHeight', textHeight)
 
@@ -153,6 +153,7 @@ Item {
 				PropertyChanges {
 					target: gridLayout
 					rows: 1
+					columnSpacing: 4 * units.devicePixelRatio
 				}
 				PropertyChanges {
 					target: batteryIconContainer
