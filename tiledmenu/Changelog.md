@@ -1,3 +1,14 @@
+## v12 - January 13 2016
+
+* Support Plasma 5.9
+* Break compatibility with Plasma 5.8 and below.
+
+## v11 - January 13 2016
+
+* Misc work on locale install scripts. Use kreadconfig5 which should be preinstalled.
+* Add german translation by rumangerst.
+* Lay groundwork for future features: reversing search results (align to bottom), category view, and moving the searchbox to the top.
+
 ## v10 - December 30 2016
 
 * Chinese translations by https://github.com/lm789632
