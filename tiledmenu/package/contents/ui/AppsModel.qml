@@ -26,7 +26,7 @@ Item {
 		showSeparators: false // !isDash
 		appletInterface: plasmoid
 
-		showAllSubtree: true //isDash
+		showAllApps: true //isDash
 		showRecentApps: true //plasmoid.configuration.showRecentApps
 		showRecentDocs: false //plasmoid.configuration.showRecentDocs
 		showRecentContacts: false //plasmoid.configuration.showRecentContacts
