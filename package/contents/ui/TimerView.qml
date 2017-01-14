@@ -14,7 +14,6 @@ Item {
 
     property int timerSeconds: 0
     property int timerDuration: 0
-    property int defaultTimerWidth: 48
     property alias timerRepeats: timerRepeatsButton.isChecked
     property alias timerSfxEnabled: timerSfxEnabledButton.isChecked
 
@@ -36,7 +35,7 @@ Item {
                         return 'chronometer-start';
                     }
                 }
-                font.pixelSize: 40
+                font.pixelSize: appletConfig.timerClockFontHeight
                 font.pointSize: -1
                 anchors.verticalCenter: parent.verticalCenter
                 tooltip: {
@@ -113,42 +112,42 @@ Item {
 
             PlasmaComponents.Button {
                 text: i18n("30s")
-                width: defaultTimerWidth
+                width: appletConfig.timerButtonWidth
                 onClicked: setDurationAndStart(30)
             }
             PlasmaComponents.Button {
                 text: i18n("1m")
-                width: defaultTimerWidth
+                width: appletConfig.timerButtonWidth
                 onClicked: setDurationAndStart(60)
             }
             PlasmaComponents.Button {
                 text: i18n("5m")
-                width: defaultTimerWidth
+                width: appletConfig.timerButtonWidth
                 onClicked: setDurationAndStart(5 * 60)
             }
             PlasmaComponents.Button {
                 text: i18n("10m")
-                width: defaultTimerWidth
+                width: appletConfig.timerButtonWidth
                 onClicked: setDurationAndStart(10 * 60)
             }
             PlasmaComponents.Button {
                 text: i18n("15m")
-                width: defaultTimerWidth
+                width: appletConfig.timerButtonWidth
                 onClicked: setDurationAndStart(15 * 60)
             }
             PlasmaComponents.Button {
                 text: i18n("30m")
-                width: defaultTimerWidth
+                width: appletConfig.timerButtonWidth
                 onClicked: setDurationAndStart(30 * 60)
             }
             PlasmaComponents.Button {
                 text: i18n("45m")
-                width: defaultTimerWidth
+                width: appletConfig.timerButtonWidth
                 onClicked: setDurationAndStart(45 * 60)
             }
             PlasmaComponents.Button {
                 text: i18n("1h")
-                width: defaultTimerWidth
+                width: appletConfig.timerButtonWidth
                 onClicked: setDurationAndStart(60 * 60)
             }
         }
