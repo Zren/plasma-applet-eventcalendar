@@ -36,7 +36,7 @@ RowLayout {
 
         Column {
             id: itemWeatherColumn
-            width: 50
+            width: appletConfig.agendaWeatherColumnWidth
             Layout.alignment: Qt.AlignTop
 
             FontIcon {
@@ -97,7 +97,7 @@ RowLayout {
 
         Column {
             id: itemDateColumn
-            width: 50
+            width: appletConfig.agendaDateColumnWidth
 
             Text {
                 id: itemDate
