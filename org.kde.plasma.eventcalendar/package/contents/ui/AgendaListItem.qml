@@ -224,7 +224,7 @@ RowLayout {
                         Rectangle {
                             Layout.preferredWidth: 2 * units.devicePixelRatio
                             Layout.preferredHeight: eventColumn.height
-                            color: model.backgroundColor
+                            color: model.backgroundColor || theme.textColor
                         }
 
                         ColumnLayout {
