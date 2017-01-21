@@ -117,7 +117,7 @@ Item {
     }
 
     onMonthViewDateChanged: {
-        // console.log('onMonthViewDateChanged', monthViewDate)
+        console.log('onMonthViewDateChanged', monthViewDate)
         var startOfMonth = new Date(monthViewDate);
         startOfMonth.setDate(1);
         agendaView.currentMonth = new Date(startOfMonth);
@@ -426,10 +426,12 @@ Item {
     }
 
     function update() {
+        console.log('update')
         updateData();
     }
 
     function updateData() {
+        console.log('updateData')
         updateEvents();
         updateWeather();
     }
@@ -439,8 +441,17 @@ Item {
     }
     Timer {
         id: updateEventsTimer
-        interval: 100
+        interval: 200
         onTriggered: defferedUpdateEvents()
+    }
+
+    Connections {
+        target: eventModel
+        onCalendarFetched: {
+            console.log('onCalendarFetched', calendarId)
+            // console.log(JSON.stringify(data))
+            popup.updateUI()
+        }
     }
     function defferedUpdateEvents() {
         var dateMin = monthView.firstDisplayedDate();
@@ -457,9 +468,15 @@ Item {
             dateMax = monthViewDateMax;
         }
 
+
+        popup.visibleDateMin = dateMin
+        popup.visibleDateMax = dateMax
+        eventModel.fetchAllEvents(dateMin, dateMax)
+
         // console.log(dateMin);
         // console.log(dateMax);
 
+        /*
         if (plasmoid.configuration.access_token) {
             var calendarIdList = plasmoid.configuration.calendar_id_list ? plasmoid.configuration.calendar_id_list.split(',') : ['primary'];
             var calendarList = plasmoid.configuration.calendar_list ? JSON.parse(Qt.atob(plasmoid.configuration.calendar_list)) : [];
@@ -501,6 +518,7 @@ Item {
                 
             }
         }
+        */
     }
 
     function updateWeather(force) {

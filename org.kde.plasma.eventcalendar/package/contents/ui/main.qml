@@ -172,11 +172,8 @@ Item {
     // Plasmoid.backgroundHints: PlasmaCore.Types.NoBackground
     property bool isDesktopContainment: plasmoid.location == PlasmaCore.Types.Floating
     Plasmoid.preferredRepresentation: isDesktopContainment ? Plasmoid.fullRepresentation : Plasmoid.compactRepresentation
-    // Plasmoid.preferredRepresentation: Plasmoid.compactRepresentation
-    // Plasmoid.preferredRepresentation: Plasmoid.fullRepresentation
     Plasmoid.compactRepresentation: clockComponent
     Plasmoid.fullRepresentation: popupComponent
-    
 
     function action_KCMClock() {
         KCMShell.open("clock");
@@ -191,9 +188,9 @@ Item {
         plasmoid.setAction("KCMFormats", i18n("Set Locale..."), "preferences-desktop-locale");
     }
 
-    Timer {
-        interval: 400
-        running: true
-        // onTriggered: plasmoid.expanded = true
-    }
+    // Timer {
+    //     interval: 400
+    //     running: true
+    //     onTriggered: plasmoid.expanded = true
+    // }
 }
