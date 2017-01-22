@@ -178,6 +178,7 @@ RowLayout {
                             placeholderText: i18n("Eg: 9am-5pm Work")
                             onAccepted: {
                                 var calendarId = newEventCalendarId.model[newEventCalendarId.currentIndex]
+                                // calendarId = calendarId.calendarId ? calendarId.calendarId : calendarId
                                 submitNewEventForm(calendarId, date, text)
                                 text = ''
                             }
@@ -290,7 +291,7 @@ RowLayout {
 
                         menuItem = contextMenu.newMenuItem();
                         menuItem.text = i18n("Edit description");
-                        menuItem.enabled = false;
+                        // menuItem.enabled = false;
                         menuItem.clicked.connect(function() {
                             editSummaryForm.active = !editSummaryForm.active
                         });

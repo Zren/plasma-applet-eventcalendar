@@ -40,6 +40,11 @@ Item {
 		calendarFetched(calendarId, data)
 	}
 
+	Timer {
+		id: deferredUpdate
+		interval: 200
+		onTriggered: eventModel.update()
+	}
 	function update() {
 		fetchAllEvents(dateMin, dateMax)
 	}
@@ -67,12 +72,14 @@ Item {
 	}
 
 	function fetchDebugGoogleSession() {
+		if (plasmoid.configuration.access_token) {
+			return
+		}
 		// Steal access_token from our current user's config.
 		fetchCurrentUserConfig(function(err, metadata) {
-			var accessToken = metadata['access_token']
-			var calendarIdList = metadata['calendar_id_list'].split(',')
-			console.log('fetchDebugGoogleSession', accessToken, calendarIdList)
-			fetchGoogleAccountEvents(accessToken, calendarIdList)
+			plasmoid.configuration.refresh_token = metadata['refresh_token']
+			plasmoid.configuration.access_token = metadata['access_token']
+			plasmoid.configuration.calendar_id_list = metadata['calendar_id_list']
 		})
 	}
 
@@ -141,7 +148,7 @@ Item {
 			console.log('onGCalError: ', err);
 		}
 		
-		// updateAccessToken();
+		deferredUpdateAccessToken.restart()
 	}
 
 	function fetchNewAccessToken(callback) {
@@ -158,12 +165,18 @@ Item {
 		}, callback);
 	}
 
+	Timer {
+		id: deferredUpdateAccessToken
+		interval: 200
+		onTriggered: eventModel.updateAccessToken()
+	}
+
 	function updateAccessToken() {
 		// console.log('access_token_expires_at', plasmoid.configuration.access_token_expires_at);
 		// console.log('                    now', Date.now());
 		// console.log('refresh_token', plasmoid.configuration.refresh_token);
 		if (plasmoid.configuration.refresh_token) {
-			console.log('fetchNewAccessToken');
+			console.log('updateAccessToken');
 			fetchNewAccessToken(function(err, data, xhr) {
 				if (err || (!err && data && data.error)) {
 					return console.log('Error when using refreshToken:', err, data);
@@ -175,7 +188,7 @@ Item {
 				plasmoid.configuration.access_token_type = data.token_type;
 				plasmoid.configuration.access_token_expires_at = Date.now() + data.expires_in * 1000;
 
-				// eventModel.update()
+				deferredUpdate.restart()
 			});
 		}
 	}
@@ -202,5 +215,41 @@ Item {
 			}
 			callback(err, data, xhr);
 		});
+	}
+
+
+	function createEvent(calendarId, date, text) {
+		if (plasmoid.configuration.agenda_newevent_remember_calendar) {
+			plasmoid.configuration.agenda_newevent_last_calendar_id = calendarId
+		}
+
+		if (calendarId == "debug") {
+
+		} else if (true) { // Google Calendar
+			if (plasmoid.configuration.access_token) {
+				
+			}
+		} else {
+			console.log('cannot create an new event for the calendar', calendarId)
+		}
+	}
+
+	function createGoogleCalendarEvent(accessToken, calendarId, date, text) {
+		if (accessToken) {
+			var dateString = date.getFullYear() + '-' + (date.getMonth()+1) + '-' + date.getDate()
+			var eventText = dateString + ' ' + text
+			Shared.createGCalEvent({
+				access_token: accessToken,
+				calendarId: calendarId,
+				text: eventText,
+			}, function(err, data) {
+				// console.log(err, JSON.stringify(data, null, '\t'));
+				var calendarIdList = plasmoid.configuration.calendar_id_list ? plasmoid.configuration.calendar_id_list.split(',') : ['primary'];
+				if (calendarIdList.indexOf(calendarId) >= 0) {
+					eventModel.eventsByCalendar[calendarId].items.push(data)
+					updateUI()
+				}
+			})
+		}
 	}
 }
