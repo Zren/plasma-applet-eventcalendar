@@ -13,6 +13,7 @@ Item {
 	property variant eventsByCalendar: { "": { "items": [] } }
 	property date dateMin: new Date()
 	property date dateMax: new Date()
+	property variant calendarIdList: plasmoid.configuration.calendar_id_list ? plasmoid.configuration.calendar_id_list.split(',') : ['primary']
 
 	property int asyncRequests: 0
 	property int asyncRequestsDone: 0
@@ -20,6 +21,8 @@ Item {
 	signal fetchingData()
 	signal calendarFetched(string calendarId, var data)
 	signal allDataFetched()
+	signal eventCreated(string calendarId, var data)
+	signal eventUpdated(string calendarId, var data)
 
 	onAsyncRequestsDoneChanged: checkIfDone()
 
@@ -37,8 +40,47 @@ Item {
 
 	function setCalendarData(calendarId, data) {
 		eventModel.eventsByCalendar[calendarId] = data
+		// eventModel.eventsData.items = eventModel.eventsData.items.concat(eventModel.eventsByCalendar[calendarId].items)
 		calendarFetched(calendarId, data)
 	}
+
+	function parseGoogleCalendarEvent(calendarId, event) {
+		event.calendarId = calendarId
+
+		var calendarList = plasmoid.configuration.calendar_list ? JSON.parse(Qt.atob(plasmoid.configuration.calendar_list)) : [];
+		calendarList.forEach(function(calendar){
+			if (calendarId == calendar.id) {
+				event.backgroundColor = event.backgroundColor || calendar.backgroundColor
+			}
+		})
+	}
+
+
+	function parseGoogleCalendarEvents(calendarId, data) {
+		data.items.forEach(function(event){
+			event.calendarId = calendarId
+		})
+
+		var calendarList = plasmoid.configuration.calendar_list ? JSON.parse(Qt.atob(plasmoid.configuration.calendar_list)) : [];
+		calendarList.forEach(function(calendar){
+			if (calendarId == calendar.id) {
+				data.items.forEach(function(event){
+					event.backgroundColor = event.backgroundColor || calendar.backgroundColor
+				})
+			}
+		})
+	}
+
+	function parseGCalEvents() {
+		var calendarList = plasmoid.configuration.calendar_list ? JSON.parse(Qt.atob(plasmoid.configuration.calendar_list)) : [];
+		eventModel.eventsData = { items: [] }
+		for (var calendarId in eventModel.eventsByCalendar) {
+			parseGoogleCalendarEvents(calendarId, eventModel.eventsByCalendar[calendarId])
+			eventModel.eventsData.items = eventModel.eventsData.items.concat(eventModel.eventsByCalendar[calendarId].items)
+			// console.log('updateUI', calendarId, eventModel.eventsByCalendar[calendarId].items.length, eventsData.items.length);
+		}
+	}
+	
 
 	Timer {
 		id: deferredUpdate
@@ -55,8 +97,8 @@ Item {
 		clear()
 		eventModel.dateMin = dateMin
 		eventModel.dateMax = dateMax
-		// fetchDebugEvents()
 		fetchGoogleAccountData()
+		fetchDebugEvents()
 		checkIfDone()
 	}
 
@@ -80,6 +122,7 @@ Item {
 			plasmoid.configuration.refresh_token = metadata['refresh_token']
 			plasmoid.configuration.access_token = metadata['access_token']
 			plasmoid.configuration.calendar_id_list = metadata['calendar_id_list']
+			plasmoid.configuration.calendar_list = metadata['calendar_list']
 		})
 	}
 
@@ -97,8 +140,7 @@ Item {
 
 	function fetchGoogleAccountData() {
 		if (plasmoid.configuration.access_token) {
-			var calendarIdList = plasmoid.configuration.calendar_id_list ? plasmoid.configuration.calendar_id_list.split(',') : ['primary']
-			fetchGoogleAccountEvents(plasmoid.configuration.access_token, calendarIdList)
+			fetchGoogleAccountEvents(plasmoid.configuration.access_token, eventModel.calendarIdList)
 		}
 	}
 
@@ -227,7 +269,9 @@ Item {
 
 		} else if (true) { // Google Calendar
 			if (plasmoid.configuration.access_token) {
-				
+				createGoogleCalendarEvent(plasmoid.configuration.access_token, calendarId, date, text)
+			} else {
+				console.log('attempting to create an event without an access token set')
 			}
 		} else {
 			console.log('cannot create an new event for the calendar', calendarId)
@@ -244,12 +288,84 @@ Item {
 				text: eventText,
 			}, function(err, data) {
 				// console.log(err, JSON.stringify(data, null, '\t'));
-				var calendarIdList = plasmoid.configuration.calendar_id_list ? plasmoid.configuration.calendar_id_list.split(',') : ['primary'];
-				if (calendarIdList.indexOf(calendarId) >= 0) {
+				if (eventModel.calendarIdList.indexOf(calendarId) >= 0) {
 					eventModel.eventsByCalendar[calendarId].items.push(data)
-					updateUI()
+					eventCreated(calendarId, data)
 				}
 			})
 		}
+	}
+
+	function patchGCalEvent(args, callback) {
+		// PATCH https://www.googleapis.com/calendar/v3/calendars/calendarId/events/eventId
+		var url = 'https://www.googleapis.com/calendar/v3';
+		url += '/calendars/'
+		url += encodeURIComponent(args.calendarId);
+		url += '/events/';
+		url += encodeURIComponent(args.eventId);
+		Utils.postJSON({
+			// method: 'PATCH', // Note: Qt 5.7+ still doesn't support the PATCH method type
+			method: 'PUT',
+			url: url,
+			headers: {
+				"Authorization": "Bearer " + args.accessToken,
+			},
+			data: args.data,
+		}, function(err, data, xhr) {
+			console.log('patchGCalEvent.response', err, data, xhr.status);
+			if (!err && data && data.error) {
+				return callback(data, null, xhr);
+			}
+			callback(err, data, xhr);
+		})
+	}
+
+	function getEvent(calendarId, eventId) {
+		var events = eventModel.eventsByCalendar[calendarId].items
+		for (var i = 0; i < events.length; i++) {
+			if (events[i].id == eventId) {
+				return events[i];
+			}
+		}
+	}
+
+
+	function setGoogleCalendarEventSummary(accessToken, calendarId, eventId, summary) {
+		var event = getEvent(calendarId, eventId);
+		if (!event) {
+			console.log('error, trying to set summary for event that doesn\'t exist')
+			return;
+		}
+		
+		// Clone the event data and clean up the extra stuff we added in parseGCalEvents()
+		var data = JSON.parse(JSON.stringify(event)) // clone
+		console.log(JSON.stringify(data, null, '\t'))
+		if (data.start.date) delete data.start.dateTime;
+		if (data.end.date) delete data.end.dateTime;
+		if (data.end.calendarId) delete data.end.calendarId;
+
+		data.summary = summary
+		console.log(JSON.stringify(data, null, '\t'))
+		
+		patchGCalEvent({
+			accessToken: accessToken,
+			calendarId: calendarId,
+			eventId: eventId,
+			// data: {
+			// 	summary: summary,
+			// },
+			data: data,
+		}, function(err, data, xhr) {
+			console.log('setGoogleCalendarEventSummary.response', err, data, xhr.status);
+			console.log('setGoogleCalendarEventSummary.response', JSON.stringify(data, null, '\t'))
+			if (data.summary) {
+				event.summary = data.summary
+			}
+			eventUpdated(calendarId, event)
+		})
+	}
+
+	function setEventSummary(calendarId, eventId, summary) {
+		setGoogleCalendarEventSummary(plasmoid.configuration.access_token, calendarId, eventId, summary)
 	}
 }

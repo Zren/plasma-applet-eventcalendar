@@ -61,7 +61,7 @@ function postJSON(opt, callback) {
     if (typeof opt === 'string') {
         opt = {url: opt};
     }
-    opt.method = 'POST';
+    opt.method = opt.method || 'POST';
     opt.headers = opt.headers || {};
     opt.headers['Content-Type'] = 'application/json';
     if (opt.data) {
