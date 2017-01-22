@@ -18,7 +18,7 @@ function openGoogleCalendarNewEventUrl(date) {
 }
 
 function createGCalEvent(args, callback) {
-    https://www.googleapis.com/calendar/v3/calendars/calendarId/events/quickAdd
+    // https://www.googleapis.com/calendar/v3/calendars/calendarId/events/quickAdd
     var url = 'https://www.googleapis.com/calendar/v3';
     url += '/calendars/'
     url += encodeURIComponent(args.calendarId);

@@ -253,6 +253,10 @@ RowLayout {
                                         text: summary
                                         onAccepted: {
                                             console.log('editEventText.onAccepted', text)
+                                            var event = events.get(index)
+                                            console.log(event)
+                                            console.log(JSON.stringify(event))
+                                            eventModel.setEventSummary(event.calendarId, event.id, text)
                                         }
                                         Component.onCompleted: {
                                             forceActiveFocus()

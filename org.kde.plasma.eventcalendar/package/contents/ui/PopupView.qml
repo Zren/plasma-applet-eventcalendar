@@ -302,25 +302,9 @@ Item {
                 onSubmitNewEventForm: {
                     // console.log('onSubmitNewEventForm', calendarId)
                     if (plasmoid.configuration.access_token) {
-                        var calendarId2 = calendarId.calendarId ? calendarId.calendarId : calendarId
-                        var calendarList = plasmoid.configuration.calendar_list ? JSON.parse(Qt.atob(plasmoid.configuration.calendar_list)) : [];
-                        var dateString = date.getFullYear() + '-' + (date.getMonth()+1) + '-' + date.getDate()
-                        // console.log('text', dateString + ' ' + text)
-                        if (plasmoid.configuration.agenda_newevent_remember_calendar) {
-                            plasmoid.configuration.agenda_newevent_last_calendar_id = calendarId2
-                        }
-                        Shared.createGCalEvent({
-                            access_token: plasmoid.configuration.access_token,
-                            calendarId: calendarId2,
-                            text: dateString + ' ' + text,
-                        }, function(err, data) {
-                            // console.log(err, JSON.stringify(data, null, '\t'));
-                            var calendarIdList = plasmoid.configuration.calendar_id_list ? plasmoid.configuration.calendar_id_list.split(',') : ['primary'];
-                            if (calendarIdList.indexOf(calendarId2) >= 0) {
-                                eventModel.eventsByCalendar[calendarId2].items.push(data);
-                                updateUI()
-                            }
-                        })
+                        console.log(calendarId, calendarId.calendarId)
+                        calendarId = calendarId.calendarId ? calendarId.calendarId : calendarId
+                        eventModel.createEvent(calendarId, date, text)
                     }
                 }
                 PlasmaComponents.Button {
@@ -449,7 +433,15 @@ Item {
         target: eventModel
         onCalendarFetched: {
             console.log('onCalendarFetched', calendarId)
-            // console.log(JSON.stringify(data))
+            // console.log('onCalendarFetched', calendarId, JSON.stringify(data, null, '\t'))
+            popup.updateUI()
+        }
+        onEventCreated: {
+            console.log('onEventCreated', calendarId, JSON.stringify(data, null, '\t'))
+            popup.updateUI()
+        }
+        onEventUpdated: {
+            console.log('onEventUpdated', calendarId, JSON.stringify(data, null, '\t'))
             popup.updateUI()
         }
     }
@@ -594,22 +586,7 @@ Item {
             agendaView.clipPastEvents = false;
         }
 
-        var calendarList = plasmoid.configuration.calendar_list ? JSON.parse(Qt.atob(plasmoid.configuration.calendar_list)) : [];
-
-        eventModel.eventsData = { items: [] }
-        for (var calendarId in eventModel.eventsByCalendar) {
-            calendarList.forEach(function(calendar){
-                if (calendarId == calendar.id) {
-                    eventModel.eventsByCalendar[calendarId].items.forEach(function(event){
-                        event.backgroundColor = event.backgroundColor || calendar.backgroundColor;
-                    });
-                }
-            });
-
-            eventModel.eventsData.items = eventModel.eventsData.items.concat(eventModel.eventsByCalendar[calendarId].items);
-            // console.log('updateUI', calendarId, eventModel.eventsByCalendar[calendarId].items.length, eventsData.items.length);
-        }
-
+        eventModel.parseGCalEvents()
         agendaView.parseGCalEvents(eventModel.eventsData);
         agendaView.parseWeatherForecast(dailyWeatherData);
         monthView.parseGCalEvents(eventModel.eventsData);
