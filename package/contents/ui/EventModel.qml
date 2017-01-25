@@ -368,4 +368,20 @@ Item {
 	function setEventSummary(calendarId, eventId, summary) {
 		setGoogleCalendarEventSummary(plasmoid.configuration.access_token, calendarId, eventId, summary)
 	}
+
+	function getCalendarList() {
+		var calendarList = plasmoid.configuration.calendar_list ? JSON.parse(Qt.atob(plasmoid.configuration.calendar_list)) : [];
+		return calendarList;
+	}
+
+	function getCalendar(calendarId) {
+		var calendarList = getCalendarList()
+		for (var i = 0; i < calendarList.length; i++) {
+			var calendar = calendarList[i]
+			if (calendarId == calendar.id) {
+				return calendar
+			}
+		}
+		return null
+	}
 }
