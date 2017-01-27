@@ -297,10 +297,11 @@ RowLayout {
 
                     onLoadContextMenu: {
                         var menuItem;
+                        var event = events.get(index)
 
                         menuItem = contextMenu.newMenuItem();
                         menuItem.text = i18n("Edit description");
-                        // menuItem.enabled = false;
+                        menuItem.enabled = event.canEdit
                         menuItem.clicked.connect(function() {
                             editSummaryForm.active = !editSummaryForm.active
                         });
