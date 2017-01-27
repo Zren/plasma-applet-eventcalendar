@@ -98,7 +98,7 @@ Item {
 		eventModel.dateMin = dateMin
 		eventModel.dateMax = dateMax
 		fetchGoogleAccountData()
-		fetchDebugEvents()
+		// fetchDebugEvents()
 		checkIfDone()
 	}
 
