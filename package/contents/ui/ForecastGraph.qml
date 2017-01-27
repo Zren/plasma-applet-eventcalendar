@@ -209,6 +209,7 @@ Item {
 
                 onPaint: {
                     // var ctx = canvas.getContext("2d");
+                    if (!context) return;
                     context.reset();
                     if (graph.gridData.length < 2) return;
                     if (graph.yAxisMin == graph.yAxisMax) return;
