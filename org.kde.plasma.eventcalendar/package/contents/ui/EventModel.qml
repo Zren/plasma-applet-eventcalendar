@@ -44,13 +44,18 @@ Item {
 		calendarFetched(calendarId, data)
 	}
 
+	function parseEvent(calendar, event) {
+		event.backgroundColor = event.backgroundColor || calendar.backgroundColor
+		event.canEdit = calendar.accessRole == 'owner' && !event.recurringEventId // We cannot currently edit repeating events.
+	}
+
 	function parseGoogleCalendarEvent(calendarId, event) {
 		event.calendarId = calendarId
 
 		var calendarList = plasmoid.configuration.calendar_list ? JSON.parse(Qt.atob(plasmoid.configuration.calendar_list)) : [];
 		calendarList.forEach(function(calendar){
 			if (calendarId == calendar.id) {
-				event.backgroundColor = event.backgroundColor || calendar.backgroundColor
+				parseEvent(calendar, event)
 			}
 		})
 	}
@@ -65,7 +70,7 @@ Item {
 		calendarList.forEach(function(calendar){
 			if (calendarId == calendar.id) {
 				data.items.forEach(function(event){
-					event.backgroundColor = event.backgroundColor || calendar.backgroundColor
+					parseEvent(calendar, event)
 				})
 			}
 		})
@@ -343,6 +348,7 @@ Item {
 		if (data.start.date) delete data.start.dateTime;
 		if (data.end.date) delete data.end.dateTime;
 		if (data.end.calendarId) delete data.end.calendarId;
+		delete data.canEdit;
 
 		data.summary = summary
 		console.log(JSON.stringify(data, null, '\t'))
