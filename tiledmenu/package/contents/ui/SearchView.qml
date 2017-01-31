@@ -54,6 +54,7 @@ Item {
 		Behavior on width { NumberAnimation { duration: 100 } }
 
 		Column {
+			id: sidebarMenuTop
 			width: parent.width
 			height: childrenRect.height
 
@@ -120,16 +121,31 @@ Item {
 					}
 				}
 			}
-			SidebarItem {
-				iconName: 'folder-open-symbolic'
-				text: i18n("File Manager")
-				onClicked: appsModel.launch('org.kde.dolphin')
+
+			// Repeater {
+			// 	model: appsModel.sidebarModel
+			// 	onCountChanged: console.log(count, 'appsModel.sidebarModel', appsModel.sidebarModel)
+
+			// 	delegate: SidebarItem {
+
+			// 	}
+
+			// }
+			SidebarFavouritesView {
+				model: appsModel.sidebarModel
+				maxHeight: sidebarMenu.height - sidebarMenuTop.height - 2 * config.flatButtonSize
 			}
-			SidebarItem {
-				iconName: 'configure'
-				text: i18n("Settings")
-				onClicked: appsModel.launch('systemsettings')
-			}
+
+			// SidebarItem {
+			// 	iconName: 'folder-open-symbolic'
+			// 	text: i18n("File Manager")
+			// 	onClicked: appsModel.launch('org.kde.dolphin')
+			// }
+			// SidebarItem {
+			// 	iconName: 'configure'
+			// 	text: i18n("Settings")
+			// 	onClicked: appsModel.launch('systemsettings')
+			// }
 
 			SidebarItem {
 				iconName: 'system-shutdown-symbolic'

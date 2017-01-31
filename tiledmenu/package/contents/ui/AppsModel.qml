@@ -15,6 +15,7 @@ Item {
 	property alias allAppsModel: allAppsModel
 	property alias powerActionsModel: powerActionsModel
 	property alias favoritesModel: favoritesModel
+	property alias sidebarModel: sidebarModel
 
 	property string order: "alphabetical"
 	onOrderChanged: allAppsModel.refresh()
@@ -104,6 +105,52 @@ Item {
 			signal triggerIndexAction(int index, string actionId, string actionArgument)
 			onTriggerIndexAction: {
 				var closeRequested = favoritesModel.trigger(index, actionId, actionArgument)
+				if (closeRequested) {
+					plasmoid.expanded = false
+				}
+			}
+
+		}
+
+		property var sidebarModel: Kicker.FavoritesModel {
+			// Kicker.FavoritesModel must be a child object of RootModel.
+			// appEntry.actions() looks at the parent object for parent.appletInterface and will crash plasma if it can't find it.
+			// https://github.com/KDE/plasma-desktop/blob/master/applets/kicker/plugin/appentry.cpp#L151
+			id: sidebarModel
+
+			Component.onCompleted: {
+				var list = []
+				if (kuser.loginName) { // Was set for me in testing.
+					var userDirs = [
+						'file:///home/' + kuser.loginName + '/Documents',
+						'file:///home/' + kuser.loginName + '/Downloads',
+						'file:///home/' + kuser.loginName + '/Music',
+						'file:///home/' + kuser.loginName + '/Pictures',
+						'file:///home/' + kuser.loginName + '/Videos',
+						// 'file:///home/' + kuser.loginName, // Not neaded in practice since dolphin opens the homedir.
+					]
+					list = list.concat(userDirs)
+				}
+
+				var sidebarApps = [
+					'org.kde.dolphin.desktop',
+					'systemsettings.desktop',
+				]
+				list = list.concat(sidebarApps)
+				favorites = list
+			}
+
+			signal triggerIndex(int index)
+			onTriggerIndex: {
+				var closeRequested = sidebarModel.trigger(index, "", null)
+				if (closeRequested) {
+					plasmoid.expanded = false
+				}
+			}
+
+			signal triggerIndexAction(int index, string actionId, string actionArgument)
+			onTriggerIndexAction: {
+				var closeRequested = sidebarModel.trigger(index, actionId, actionArgument)
 				if (closeRequested) {
 					plasmoid.expanded = false
 				}
