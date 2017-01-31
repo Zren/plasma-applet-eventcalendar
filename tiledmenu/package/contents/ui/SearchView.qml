@@ -67,19 +67,33 @@ Item {
 			SidebarItem {
 				iconName: 'view-sort-ascending-symbolic'
 				text: i18n("Apps")
-				onClicked: appsView.show()
+				onClicked: {
+					appsModel.order = "alphabetical"
+					appsView.show()
+				}
 				// checked: stackView.currentItem == appsView
 				// checkedEdge: Qt.RightEdge
 				// checkedEdgeWidth: 4 * units.devicePixelRatio // Twice as thick as normal
 			}
 			SidebarItem {
-				iconName: 'system-search-symbolic'
-				text: i18n("Search")
-				onClicked: searchResultsView.showDefaultSearch()
-				// checked: stackView.currentItem == searchResultsView
+				iconName: 'view-list-tree'
+				text: i18n("Categories")
+				onClicked: {
+					appsModel.order = "categories"
+					appsView.show()
+				}
+				// checked: stackView.currentItem == appsView
 				// checkedEdge: Qt.RightEdge
 				// checkedEdgeWidth: 4 * units.devicePixelRatio // Twice as thick as normal
 			}
+			// SidebarItem {
+			// 	iconName: 'system-search-symbolic'
+			// 	text: i18n("Search")
+			// 	onClicked: searchResultsView.showDefaultSearch()
+			// 	// checked: stackView.currentItem == searchResultsView
+			// 	// checkedEdge: Qt.RightEdge
+			// 	// checkedEdgeWidth: 4 * units.devicePixelRatio // Twice as thick as normal
+			// }
 		}
 		Column {
 			width: parent.width

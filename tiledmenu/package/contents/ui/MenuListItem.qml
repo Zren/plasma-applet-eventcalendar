@@ -18,13 +18,13 @@ AppToolButton {
 	property alias iconSource: itemIcon.source
 
 	// We need to look at the js list since ListModel doesn't support item's with non primitive propeties (like an Image).
-	property var iconInstance: listView.model.list[index].icon
+	property var iconInstance: listView.model.list[index] ? listView.model.list[index].icon : ""
 	Connections {
 		target: listView.model
 		onRefreshed: {
 			// We need to manually trigger an update when we update the model without replacing the list.
 			// Otherwise the icon won't be in sync.
-			itemDelegate.iconInstance = listView.model.list[index].icon
+			itemDelegate.iconInstance = listView.model.list[index] ? listView.model.list[index].icon : ""
 		}
 	}
 

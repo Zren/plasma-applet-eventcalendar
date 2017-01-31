@@ -16,6 +16,9 @@ Item {
 	property alias powerActionsModel: powerActionsModel
 	property alias favoritesModel: favoritesModel
 
+	property string order: "alphabetical"
+	onOrderChanged: allAppsModel.refresh()
+
 	signal refreshing()
 	signal refreshed()
 
@@ -26,7 +29,8 @@ Item {
 		showSeparators: false // !isDash
 		appletInterface: plasmoid
 
-		showAllApps: true //isDash
+		showAllSubtree: true //isDash (KDE 5.8 and below)
+		// showAllApps: true //isDash (KDE 5.9+)
 		showRecentApps: true //plasmoid.configuration.showRecentApps
 		showRecentDocs: false //plasmoid.configuration.showRecentDocs
 		showRecentContacts: false //plasmoid.configuration.showRecentContacts
@@ -375,7 +379,7 @@ Item {
 			
 			//--- Apps
 			var appList = []
-			if (false) {
+			if (appsModel.order == "categories") {
 				appList = getAllCategories()
 			} else {
 				appList = getAllApps()
