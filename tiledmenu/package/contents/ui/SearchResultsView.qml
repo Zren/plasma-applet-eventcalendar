@@ -8,8 +8,6 @@ import org.kde.plasma.components 2.0 as PlasmaComponents
 
 GridLayout {
 	id: searchResultsView
-	width: config.appListWidth
-	height: config.defaultHeight - config.searchFieldHeight
 	rowSpacing: 0
 	property alias listView: searchResultsList
 	
