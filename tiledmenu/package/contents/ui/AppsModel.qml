@@ -30,8 +30,8 @@ Item {
 		showSeparators: false // !isDash
 		appletInterface: plasmoid
 
-		showAllSubtree: true //isDash (KDE 5.8 and below)
-		// showAllApps: true //isDash (KDE 5.9+)
+		// showAllSubtree: true //isDash (KDE 5.8 and below)
+		showAllApps: true //isDash (KDE 5.9+)
 		showRecentApps: true //plasmoid.configuration.showRecentApps
 		showRecentDocs: false //plasmoid.configuration.showRecentDocs
 		showRecentContacts: false //plasmoid.configuration.showRecentContacts
