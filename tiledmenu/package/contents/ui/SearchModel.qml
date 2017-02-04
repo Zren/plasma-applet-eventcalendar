@@ -64,7 +64,7 @@ Item {
 	property var defaultFilters: [
 		'Dictionary',
 		'services',
-		'calculator',
+		// 'calculator',
 		'shell',
 		'org.kde.windowedwidgets',
 		'org.kde.datetime',
