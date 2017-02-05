@@ -74,6 +74,10 @@ MouseArea {
     Rectangle {
         id: todayRect
         anchors.fill: parent
+        // anchors.centerIn: parent
+        // width: Math.min(parent.width, parent.height)
+        // height: width
+        // radius: width / 2
         visible: todayStyle == "theme"
         opacity: {
             if (selected && today) {
@@ -91,6 +95,10 @@ MouseArea {
     Rectangle {
         id: highlightDate
         anchors.fill: parent
+        // anchors.centerIn: parent
+        // width: Math.min(parent.width, parent.height)
+        // height: width
+        // radius: width / 2
         opacity: {
             if (selected) {
                 0.6
