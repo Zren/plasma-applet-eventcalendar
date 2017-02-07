@@ -15,8 +15,11 @@ Item {
 	property variant tileData: config.tileData.value[model.favoriteId]
 	property string tileDataLabel: tileData && tileData.label ? tileData.label : ""
 	property string tileDataSize: tileData && tileData.size ? tileData.size : "medium"
-	// onTileDataChanged: console.log('onTileDataChanged', index, model.favoriteId, tileData)
-	// onTileDataLabelChanged: console.log('onTileDataLabelChanged', index, model.favoriteId, tileDataLabel)
+	onTileDataChanged: console.log('onTileDataChanged', index, model.favoriteId, tileData)
+	onTileDataLabelChanged: console.log('onTileDataLabelChanged', index, model.favoriteId, tileDataLabel)
+
+	property string modelLabel: model.display // Used by TileEditor
+	property string labelText: item.tileDataLabel || model.display || model.url || ''
 
 	states: [
 		State {
@@ -150,15 +153,16 @@ Item {
 		onPopulateMenu: {
 			menu.addPinToMenuAction(model.favoriteId)
 			// var actionList = favouritesGridView.model.getActionList(index)
-			// console.log('model.hasActionList', model.hasActionList)
-			// console.log('model.actionList', model.actionList)
+			console.log('model.hasActionList', model.hasActionList)
+			console.log('model.actionList', model.actionList)
 			menu.addActionList(model.actionList, favouritesGridView.model)
 
-			// var menuItem = menu.newMenuItem()
-			// menuItem.text = i18n("Edit Tile")
-			// menuItem.onClicked.connect(function(){
-			// 	item.openTileEditor()
-			// })
+			var menuItem = menu.newMenuItem()
+			menuItem.text = i18n("Edit Tile")
+			menuItem.icon = 'rectangle-shape'
+			menuItem.onClicked.connect(function(){
+				item.openTileEditor()
+			})
 		}
 	}
 
@@ -187,36 +191,11 @@ Item {
 		}
 	}
 
-	// property var editor: null
-	// function openTileEditor() {
-	// 	// editorLoader.active = true
-	// 	// if (editor) {
-	// 	// 	closeTileEditor()
-	// 	// }
-	// 	var component = Qt.createComponent("TileEditor.qml" + "?t=" + Date.now(), item)
-	// 	if (component.status == Component.Ready) {
-	// 		editor = component.createObject(item, {
-	// 			// model: model
-	// 			config: config,
-	// 			item: item,
-	// 			model: model,
-	// 			visible: true,
-	// 		})
-	// 		// editor.visible = true
+	property var editor: null
+	function openTileEditor() {
+		favouritesView.editTile(model.favoriteId, item)
+	}
+	function closeTileEditor() {
 
-	// 	} else {
-	// 		console.log('openTileEditor', 'errorString', component.errorString())
-	// 	}
-	// 	// var qml = 'import QtQuick 2.0; \
-	// 	// TileEditor { \
-	// 	// 	config: config; \
-	// 	// 	item: item; \
-	// 	// 	model: model; \
-	// 	// } ';
-	// 	// editor = Qt.createQmlObject(qml, item)
-	// 	// editor.visible = true
-	// }
-	// function closeTileEditor() {
-
-	// }
+	}
 }

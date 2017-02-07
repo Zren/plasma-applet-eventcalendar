@@ -164,6 +164,7 @@ Item {
 			search.applyDefaultFilters()
 			popup.searchView.searchField.forceActiveFocus()
 			popup.searchView.appsView.show()
+			// popup.searchView.tileEditorView.open('preferred://browser')
 		}
 	}
 

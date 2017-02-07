@@ -14,6 +14,7 @@ Item {
 	height: config.defaultHeight
 	property alias searchResultsView: searchResultsView
 	property alias appsView: appsView
+	property alias tileEditorView: tileEditorView
 	property alias searchField: searchField
 
 	property bool searchOnTop: false
@@ -211,6 +212,29 @@ Item {
 					stackView.push(appsView, true)
 				}
 				appsView.scrollToTop()
+			}
+		}
+
+		TileEditorView {
+			id: tileEditorView
+			visible: false
+
+			function show() {
+				if (stackView.currentItem != tileEditorView) {
+					stackView.push(tileEditorView, true)
+				}
+			}
+
+			function open(favoriteId, favouritesItem) {
+				reset()
+				tileEditorView.favoriteId = favoriteId
+				tileEditorView.item = favouritesItem
+				show()
+			}
+
+			function close() {
+				reset()
+				appsView.show()
 			}
 		}
 

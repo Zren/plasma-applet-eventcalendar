@@ -13,10 +13,23 @@ import org.kde.draganddrop 2.0 as DragAndDrop
 // that it needs to "leave" the appendDropArea.
 // See: https://github.com/KDE/kdeclarative/blob/master/src/qmlcontrols/draganddrop/DeclarativeDropArea.cpp#L42
 DragAndDrop.DropArea {
-	id: appendDropArea
+	// id: appendDropArea
+	id: favouritesView
 
 	width: config.favViewDefaultWidth
 	height: config.defaultHeight
+
+	property bool editing: draggedItem
+	property QtObject draggedItem: null
+	property int draggedIndex: -1
+
+	function editTile(favoriteId, favouritesItem) {
+		searchView.tileEditorView.open(favoriteId, favouritesItem)
+	}
+
+	function closeTileEditor() {
+		searchView.tileEditorView.close()
+	}
 
 	onDrop: {
 		if (favouritesView.draggedIndex >= 0) { // Moving favorite around (to the end).
@@ -34,12 +47,8 @@ DragAndDrop.DropArea {
 	}
 
 	ScrollView {
-		id: favouritesView
+		id: favouritesScrollView
 		anchors.fill: parent
-
-		property bool editing: draggedItem
-		property QtObject draggedItem: null
-		property int draggedIndex: -1
 
 		__wheelAreaScrollSpeed: 142
 		style: ScrollViewStyle {
