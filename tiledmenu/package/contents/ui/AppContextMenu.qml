@@ -14,9 +14,11 @@ Item {
 
     onOpenedChanged: {
         if (!opened) {
-            closed();
+            closed()
         }
     }
+
+    onClosed: destroyMenu()
 
     function open(x, y) {
         refreshMenu()
@@ -32,11 +34,16 @@ Item {
         }
     }
 
-    function refreshMenu() {
+    function destroyMenu() {
         if (menu) {
-            menu.destroy();
+            menu.destroy()
+            // menu = null // Don't null here. Binding loop: onOpended=false => closed() => destroyMenu() => menu=null => opened=false
+            console.log('destroyMenu', menu)
         }
+    }
 
+    function refreshMenu() {
+        destroyMenu()
         menu = contextMenuComponent.createObject(root);
         populateMenu(menu)
     }
