@@ -36,6 +36,15 @@ Item {
 		showRecentDocs: false //plasmoid.configuration.showRecentDocs
 		showRecentContacts: false //plasmoid.configuration.showRecentContacts
 
+		autoPopulate: false // (KDE 5.9+) defaulted to true
+		// paginate: false // (KDE 5.9+)
+
+		Component.onCompleted: {
+			if (!autoPopulate) {
+				rootModel.refresh()
+			}
+		}
+
 
 		function log() {
 			// logListModel('rootModel', rootModel);
