@@ -20,7 +20,7 @@ Item {
 	property color meteogramTempBelow0Color: "#369"
 
 	property int agendaWeatherColumnWidth: 60 * units.devicePixelRatio
-	property int agendaDateColumnWidth: 50 * units.devicePixelRatio
+	property int agendaDateColumnWidth: 70 * units.devicePixelRatio
 
 	property int timerClockFontHeight: 40 * units.devicePixelRatio
 	property int timerButtonWidth: 48 * units.devicePixelRatio
