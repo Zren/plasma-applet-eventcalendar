@@ -202,7 +202,7 @@ msgstr "软件"
 
 #: ../contents/ui/SearchView.qml:82
 msgid "Categories"
-msgstr ""
+msgstr "分组"
 
 #: ../contents/ui/SearchView.qml:115
 #, fuzzy

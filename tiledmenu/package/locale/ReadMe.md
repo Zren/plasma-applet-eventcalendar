@@ -32,7 +32,7 @@ Or if you know how to make a pull request
 |Locale | Lines | % Done|
 |-------|-------|-------|
 |Template	|53	|	|
-|zh_CN	|50/53	|0%	|
+|zh_CN	|51/53	|0%	|
 |pl	|0/53	|0%	|
 |fr	|31/53	|0%	|
 |de	|50/53	|0%	|
