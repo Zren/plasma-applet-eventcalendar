@@ -3,7 +3,7 @@ Name=Command Output
 Comment=Run a command periodically and render it's output.
 
 Type=Service
-Icon=battery
+Icon=utilities-terminal
 X-KDE-ServiceTypes=Plasma/Applet
 
 X-Plasma-API=declarativeappletscript
