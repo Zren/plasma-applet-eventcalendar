@@ -16,7 +16,7 @@ RowLayout {
     Layout.fillWidth: true
     anchors.left: parent.left
     anchors.right: parent.right
-    spacing: 10
+    spacing: 0
     property date agendaItemDate: model.date
     property bool agendaItemIsToday: false
     function checkIfToday() {
@@ -94,10 +94,13 @@ RowLayout {
 
     LinkRect {
         Layout.alignment: Qt.AlignTop
-
+        width: appletConfig.agendaDateColumnWidth
         Column {
             id: itemDateColumn
-            width: appletConfig.agendaDateColumnWidth
+            anchors.left: parent.left
+            anchors.right: parent.right
+            anchors.leftMargin: 10
+            anchors.rightMargin: 10
 
             Text {
                 id: itemDate
