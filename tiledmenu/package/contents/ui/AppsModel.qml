@@ -73,7 +73,11 @@ Item {
 			//--- Power
 			var systemModel = rootModel.modelForRow(rootModel.count - 1)
 			var systemList = []
-			powerActionsModel.parseModel(systemList, systemModel)
+			if (systemModel) {
+				powerActionsModel.parseModel(systemList, systemModel)
+			} else {
+				console.log('systemModel is null')
+			}
 			powerActionsModel.list = systemList
 			sessionActionsModel.parseSourceModel(powerActionsModel)
 
@@ -294,7 +298,12 @@ Item {
 			var recentAppList = [];
 
 			//--- populate
-			parseModel(recentAppList, rootModel.modelForRow(0));
+			var model = rootModel.modelForRow(0)
+			if (model) {
+				parseModel(recentAppList, model)
+			} else {
+				console.log('getRecentApps() recent apps model is null')
+			}
 
 			//--- filter
 			recentAppList = recentAppList.filter(function(item){
@@ -352,7 +361,12 @@ Item {
 			var categoryLabel = rootModel.data(modelIndex, Qt.DisplayRole)
 			var categoryModel = rootModel.modelForRow(rootIndex)
 			var appList = []
-			parseModel(appList, categoryModel)
+			if (categoryModel) {
+				parseModel(appList, categoryModel)
+			} else {
+				console.log('allAppsModel.getCategory', rootIndex, categoryModel, 'is null')
+			}
+			
 			for (var i = 0; i < appList.length; i++) {
 				var item = appList[i];
 				item.sectionKey = categoryLabel
@@ -371,7 +385,12 @@ Item {
 		function getAllApps() {
 			//--- populate list
 			var appList = [];
-			parseModel(appList, rootModel.modelForRow(1));
+			var model = rootModel.modelForRow(1)
+			if (model) {
+				parseModel(appList, model)
+			} else {
+				console.log('getAllApps() all apps model is null')
+			}
 
 			//--- filter
 			// var powerActionsList = [];
