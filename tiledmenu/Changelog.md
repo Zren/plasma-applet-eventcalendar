@@ -3,8 +3,8 @@
 * Only support Plasma 5.9+
 * Disable the calculator runner in the search. It crashes plasmashell under a certain condition (opening the context menu then searching for anything).
 * Add ability to edit the text in tiles. Changing the size of the tile is still a work in progress.
-* Sidebar buttons to open ~/Documents ~/Downloads  ~/Music ~/Pictures ~/Videos have been added depending on how much vertical space there is available. In the future, they will not appear by default and need to be configured in the settings once the UI has been drawn up.
-* Replace the sidebar search button (which was faily useless) with a button to list apps by category. Switching between A-Z and category view is a bit slow atm.
+* Add sidebar buttons to open ~/Documents ~/Downloads  ~/Music ~/Pictures ~/Videos have been added depending on how much vertical space there is available. In the future, they will not appear by default and need to be configured in the settings once the UI has been drawn up.
+* Replace the sidebar search button (which was fairly useless) with a button to list apps by category. Switching between A-Z and category view is a bit slow atm.
 * Follow the default menu widget's (kicker) app list loading pattern.
 
 ## v12 - January 13 2016
