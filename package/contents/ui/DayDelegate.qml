@@ -199,7 +199,7 @@ MouseArea {
                 anchors.centerIn: parent
 
                 color: theme.highlightColor
-                text: model.events.count
+                text: parent.visible ? model.events.count : 0
                 font.weight: Font.Bold
                 font.pointSize: 1024
                 fontSizeMode: Text.VerticalFit
