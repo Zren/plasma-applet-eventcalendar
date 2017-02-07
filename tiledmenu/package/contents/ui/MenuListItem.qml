@@ -165,14 +165,18 @@ AppToolButton {
 		listView.model.triggerIndex(index)
 	}
 
+	// property bool hasActionList: listView.model.hasActionList(index)
+	// property var actionList: hasActionList ? listView.model.getActionList(index) : []
 	AppContextMenu {
 		id: contextMenu
 		onPopulateMenu: {
 			if (launcherUrl) {
 				menu.addPinToMenuAction(launcherUrl)
 			}
-			var actionList = listView.model.getActionList(index)
-			menu.addActionList(actionList, listView.model)
+			if (listView.model.hasActionList(index)) {
+				var actionList = listView.model.getActionList(index)
+				menu.addActionList(actionList, listView.model)
+			}
 		}
 	}
 

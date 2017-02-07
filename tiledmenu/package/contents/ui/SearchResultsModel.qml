@@ -212,9 +212,18 @@ ListModel {
 	
 	signal itemTriggered()
 
-	function getActionList(index) {
+	function hasActionList(index) {
 		var DescriptionRole = Qt.UserRole + 1;
 		var HasActionListRole = DescriptionRole + 7;
+
+		var model = resultModel.get(index)
+		var runner = runnerModel.modelForRow(model.runnerIndex)
+		var modelIndex = runner.index(model.runnerItemIndex, 0)
+		return runner.data(modelIndex, HasActionListRole)
+	}
+
+	function getActionList(index) {
+		var DescriptionRole = Qt.UserRole + 1;
 		var ActionListRole = DescriptionRole + 8;
 
 		var model = resultModel.get(index)
