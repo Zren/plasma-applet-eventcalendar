@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tiledmenu \n"
 "Report-Msgid-Bugs-To: https://github.com/Zren/plasma-applets/tree/master/tiledmenu\n"
-"POT-Creation-Date: 2016-12-30 20:09-0500\n"
+"POT-Creation-Date: 2017-02-06 23:47-0500\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -21,15 +21,15 @@ msgstr ""
 msgid "General"
 msgstr ""
 
-#: ../contents/ui/AppContextMenu.qml:61
+#: ../contents/ui/AppContextMenu.qml:68
 msgid "Unpin from Menu"
 msgstr ""
 
-#: ../contents/ui/AppContextMenu.qml:67
+#: ../contents/ui/AppContextMenu.qml:74
 msgid "Pin to Menu"
 msgstr ""
 
-#: ../contents/ui/AppContextMenu.qml:108
+#: ../contents/ui/AppContextMenu.qml:115
 msgid "Pin to Taskbar"
 msgstr ""
 
@@ -131,27 +131,31 @@ msgstr ""
 msgid "Split into Categories (Application Menu / Dashboard)"
 msgstr ""
 
-#: ../contents/ui/Main.qml:224
-msgid "System Info"
+#: ../contents/ui/FavouriteItem.qml:161
+msgid "Edit Tile"
 msgstr ""
 
 #: ../contents/ui/Main.qml:225
+msgid "System Info"
+msgstr ""
+
+#: ../contents/ui/Main.qml:226
 msgid "Terminal"
 msgstr ""
 
-#: ../contents/ui/Main.qml:227
+#: ../contents/ui/Main.qml:228
 msgid "Task Manager"
 msgstr ""
 
-#: ../contents/ui/Main.qml:228
+#: ../contents/ui/Main.qml:229
 msgid "System Settings"
 msgstr ""
 
-#: ../contents/ui/Main.qml:229 ../contents/ui/SearchView.qml:82
+#: ../contents/ui/Main.qml:230
 msgid "File Manager"
 msgstr ""
 
-#: ../contents/ui/Main.qml:231
+#: ../contents/ui/Main.qml:232
 msgid "Edit Applications..."
 msgstr ""
 
@@ -163,7 +167,7 @@ msgstr ""
 msgid "Alt + Right Click to resize the menu."
 msgstr ""
 
-#: ../contents/ui/SearchField.qml:15 ../contents/ui/SearchView.qml:48
+#: ../contents/ui/SearchField.qml:15
 msgid "Search"
 msgstr ""
 
@@ -184,42 +188,46 @@ msgctxt "Search [krunnerName, krunnerName, ...], "
 msgid "Search %1"
 msgstr ""
 
-#: ../contents/ui/SearchResultsView.qml:60
+#: ../contents/ui/SearchResultsView.qml:59
 msgid "More"
 msgstr ""
 
-#: ../contents/ui/SearchView.qml:33
+#: ../contents/ui/SearchView.qml:64
 msgid "Menu"
 msgstr ""
 
-#: ../contents/ui/SearchView.qml:40
+#: ../contents/ui/SearchView.qml:71
 msgid "Apps"
 msgstr ""
 
-#: ../contents/ui/SearchView.qml:70
+#: ../contents/ui/SearchView.qml:82
+msgid "Categories"
+msgstr ""
+
+#: ../contents/ui/SearchView.qml:115
 msgid "User Manager"
 msgstr ""
 
-#: ../contents/ui/SearchView.qml:87
-msgid "Settings"
-msgstr ""
-
-#: ../contents/ui/SearchView.qml:93
+#: ../contents/ui/SearchView.qml:153
 msgid "Power"
 msgstr ""
 
-#: ../contents/ui/TileEditor.qml:30
+#: ../contents/ui/TileEditorView.qml:63
+msgid "Save"
+msgstr ""
+
+#: ../contents/ui/TileEditorView.qml:72 ../contents/ui/TileEditorWindow.qml:30
 msgid "Size"
 msgstr ""
 
-#: ../contents/ui/TileEditor.qml:34
+#: ../contents/ui/TileEditorView.qml:81 ../contents/ui/TileEditorWindow.qml:34
 msgid "Small"
 msgstr ""
 
-#: ../contents/ui/TileEditor.qml:40
+#: ../contents/ui/TileEditorView.qml:91 ../contents/ui/TileEditorWindow.qml:40
 msgid "Medium"
 msgstr ""
 
-#: ../contents/ui/TileEditor.qml:46
+#: ../contents/ui/TileEditorView.qml:102 ../contents/ui/TileEditorWindow.qml:46
 msgid "Label"
 msgstr ""

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: https://github.com/Zren/plasma-applets/tree/master/tiledmenu\n"
-"POT-Creation-Date: 2016-12-30 20:09-0500\n"
+"POT-Creation-Date: 2017-02-06 23:47-0500\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: Lin Mu <linmu789632@gmail.com>\n"
 "Language-Team: Chinese <kde-i18n-doc@kde.org>\n"
@@ -21,15 +21,15 @@ msgstr ""
 msgid "General"
 msgstr "常规"
 
-#: ../contents/ui/AppContextMenu.qml:61
+#: ../contents/ui/AppContextMenu.qml:68
 msgid "Unpin from Menu"
 msgstr "从菜单上移除"
 
-#: ../contents/ui/AppContextMenu.qml:67
+#: ../contents/ui/AppContextMenu.qml:74
 msgid "Pin to Menu"
 msgstr "添加到菜单"
 
-#: ../contents/ui/AppContextMenu.qml:108
+#: ../contents/ui/AppContextMenu.qml:115
 msgid "Pin to Taskbar"
 msgstr "添加到任务栏"
 
@@ -131,27 +131,31 @@ msgstr "合并（软件启动器）"
 msgid "Split into Categories (Application Menu / Dashboard)"
 msgstr "分类（软件菜单/仪表板）"
 
-#: ../contents/ui/Main.qml:224
+#: ../contents/ui/FavouriteItem.qml:161
+msgid "Edit Tile"
+msgstr ""
+
+#: ../contents/ui/Main.qml:225
 msgid "System Info"
 msgstr "系统信息"
 
-#: ../contents/ui/Main.qml:225
+#: ../contents/ui/Main.qml:226
 msgid "Terminal"
 msgstr "终端"
 
-#: ../contents/ui/Main.qml:227
+#: ../contents/ui/Main.qml:228
 msgid "Task Manager"
 msgstr "任务管理器"
 
-#: ../contents/ui/Main.qml:228
+#: ../contents/ui/Main.qml:229
 msgid "System Settings"
 msgstr "系统设置"
 
-#: ../contents/ui/Main.qml:229 ../contents/ui/SearchView.qml:82
+#: ../contents/ui/Main.qml:230
 msgid "File Manager"
 msgstr "文件管理器"
 
-#: ../contents/ui/Main.qml:231
+#: ../contents/ui/Main.qml:232
 msgid "Edit Applications..."
 msgstr "编辑软件列表"
 
@@ -163,7 +167,7 @@ msgstr "调整大小？"
 msgid "Alt + Right Click to resize the menu."
 msgstr "Alt + 右键调整菜单大小"
 
-#: ../contents/ui/SearchField.qml:15 ../contents/ui/SearchView.qml:48
+#: ../contents/ui/SearchField.qml:15
 msgid "Search"
 msgstr "搜索"
 
@@ -184,43 +188,50 @@ msgctxt "Search [krunnerName, krunnerName, ...], "
 msgid "Search %1"
 msgstr "搜索 %1"
 
-#: ../contents/ui/SearchResultsView.qml:60
+#: ../contents/ui/SearchResultsView.qml:59
 msgid "More"
 msgstr "更多"
 
-#: ../contents/ui/SearchView.qml:33
+#: ../contents/ui/SearchView.qml:64
 msgid "Menu"
 msgstr "菜单"
 
-#: ../contents/ui/SearchView.qml:40
+#: ../contents/ui/SearchView.qml:71
 msgid "Apps"
 msgstr "软件"
 
-#: ../contents/ui/SearchView.qml:70
+#: ../contents/ui/SearchView.qml:82
+msgid "Categories"
+msgstr ""
+
+#: ../contents/ui/SearchView.qml:115
 #, fuzzy
 msgid "User Manager"
 msgstr "用户管理程序"
 
-#: ../contents/ui/SearchView.qml:87
-msgid "Settings"
-msgstr "设置"
-
-#: ../contents/ui/SearchView.qml:93
+#: ../contents/ui/SearchView.qml:153
 msgid "Power"
 msgstr "电源"
 
-#: ../contents/ui/TileEditor.qml:30
+#: ../contents/ui/TileEditorView.qml:63
+msgid "Save"
+msgstr ""
+
+#: ../contents/ui/TileEditorView.qml:72 ../contents/ui/TileEditorWindow.qml:30
 msgid "Size"
 msgstr "尺寸"
 
-#: ../contents/ui/TileEditor.qml:34
+#: ../contents/ui/TileEditorView.qml:81 ../contents/ui/TileEditorWindow.qml:34
 msgid "Small"
 msgstr "小号"
 
-#: ../contents/ui/TileEditor.qml:40
+#: ../contents/ui/TileEditorView.qml:91 ../contents/ui/TileEditorWindow.qml:40
 msgid "Medium"
 msgstr "中等"
 
-#: ../contents/ui/TileEditor.qml:46
+#: ../contents/ui/TileEditorView.qml:102 ../contents/ui/TileEditorWindow.qml:46
 msgid "Label"
 msgstr "标签"
+
+#~ msgid "Settings"
+#~ msgstr "设置"
