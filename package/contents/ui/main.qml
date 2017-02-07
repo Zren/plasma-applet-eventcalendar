@@ -12,6 +12,12 @@ import org.kde.kquickcontrolsaddons 2.0 // KCMShell
 Item {
     id: root
 
+    Logger {
+        id: logger
+        name: 'eventcalendar'
+        showDebug: false
+    }
+
     AppletConfig { id: appletConfig }
 
     property alias dataSource: timeModel.dataSource

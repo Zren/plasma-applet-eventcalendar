@@ -31,7 +31,7 @@ Item {
 	}
 
 	function clear() {
-		console.log('eventModel.clear()')
+		logger.debug('eventModel.clear()')
 		asyncRequests = 0
 		asyncRequestsDone = 0
 		eventModel.eventsByCalendar = {}
@@ -82,7 +82,7 @@ Item {
 		for (var calendarId in eventModel.eventsByCalendar) {
 			parseGoogleCalendarEvents(calendarId, eventModel.eventsByCalendar[calendarId])
 			eventModel.eventsData.items = eventModel.eventsData.items.concat(eventModel.eventsByCalendar[calendarId].items)
-			// console.log('updateUI', calendarId, eventModel.eventsByCalendar[calendarId].items.length, eventsData.items.length);
+			// logger.debug('updateUI', calendarId, eventModel.eventsByCalendar[calendarId].items.length, eventsData.items.length);
 		}
 	}
 	
@@ -97,7 +97,7 @@ Item {
 	}
 
 	function fetchAllEvents(dateMin, dateMax) {
-		console.log('fetchAllEvents', dateMin, dateMax)
+		logger.debug('fetchAllEvents', dateMin, dateMax)
 		fetchingData()
 		clear()
 		eventModel.dateMin = dateMin
@@ -162,7 +162,7 @@ Item {
 	// @param dateMin Date
 	// @param dateMax Date
 	function fetchGoogleCalendarEvents(accessToken, calendarId) {
-		console.log('fetchGoogleCalendarEvents', calendarId)
+		logger.debug('fetchGoogleCalendarEvents', calendarId)
 		eventModel.asyncRequests += 1
 		fetchGCalEvents({
 			calendarId: calendarId,
@@ -172,9 +172,9 @@ Item {
 		}, function(err, data, xhr) {
 			if (err) {
 				if (typeof err === 'object') {
-					console.log('err: ', JSON.stringify(err, null, '\t'));
+					logger.log('err: ', JSON.stringify(err, null, '\t'));
 				} else {
-					console.log('err: ', err);
+					logger.log('err: ', err);
 				}
 				if (xhr.status === 404) {
 					return;
@@ -190,16 +190,16 @@ Item {
 
 	function onGCalError(err) {
 		if (typeof err === 'object') {
-			console.log('onGCalError: ', JSON.stringify(err, null, '\t'));
+			logger.log('onGCalError: ', JSON.stringify(err, null, '\t'));
 		} else {
-			console.log('onGCalError: ', err);
+			logger.log('onGCalError: ', err);
 		}
 		
 		deferredUpdateAccessToken.restart()
 	}
 
 	function fetchNewAccessToken(callback) {
-		console.log('fetchNewAccessToken');
+		logger.debug('fetchNewAccessToken');
 		var url = 'https://www.googleapis.com/oauth2/v4/token';
 		Utils.post({
 			url: url,
@@ -219,16 +219,16 @@ Item {
 	}
 
 	function updateAccessToken() {
-		// console.log('access_token_expires_at', plasmoid.configuration.access_token_expires_at);
-		// console.log('                    now', Date.now());
-		// console.log('refresh_token', plasmoid.configuration.refresh_token);
+		// logger.debug('access_token_expires_at', plasmoid.configuration.access_token_expires_at);
+		// logger.debug('                    now', Date.now());
+		// logger.debug('refresh_token', plasmoid.configuration.refresh_token);
 		if (plasmoid.configuration.refresh_token) {
-			console.log('updateAccessToken');
+			logger.debug('updateAccessToken');
 			fetchNewAccessToken(function(err, data, xhr) {
 				if (err || (!err && data && data.error)) {
-					return console.log('Error when using refreshToken:', err, data);
+					return logger.log('Error when using refreshToken:', err, data);
 				}
-				console.log('onAccessToken', data);
+				logger.debug('onAccessToken', data);
 				data = JSON.parse(data);
 
 				plasmoid.configuration.access_token = data.access_token;
@@ -241,7 +241,7 @@ Item {
 	}
 
 	function fetchGCalEvents(args, callback) {
-		console.log('fetchGCalEvents', args.calendarId);
+		logger.debug('fetchGCalEvents', args.calendarId);
 		var url = 'https://www.googleapis.com/calendar/v3';
 		url += '/calendars/'
 		url += encodeURIComponent(args.calendarId);
@@ -256,7 +256,7 @@ Item {
 				"Authorization": "Bearer " + args.access_token,
 			}
 		}, function(err, data, xhr) {
-			console.log('fetchGCalEvents.response', args.calendarId, err, data, xhr.status);
+			logger.debug('fetchGCalEvents.response', args.calendarId, err, data, xhr.status);
 			if (!err && data && data.error) {
 				return callback(data, null, xhr);
 			}
@@ -276,10 +276,10 @@ Item {
 			if (plasmoid.configuration.access_token) {
 				createGoogleCalendarEvent(plasmoid.configuration.access_token, calendarId, date, text)
 			} else {
-				console.log('attempting to create an event without an access token set')
+				logger.log('attempting to create an event without an access token set')
 			}
 		} else {
-			console.log('cannot create an new event for the calendar', calendarId)
+			logger.log('cannot create an new event for the calendar', calendarId)
 		}
 	}
 
@@ -292,7 +292,7 @@ Item {
 				calendarId: calendarId,
 				text: eventText,
 			}, function(err, data) {
-				// console.log(err, JSON.stringify(data, null, '\t'));
+				// logger.debug(err, JSON.stringify(data, null, '\t'));
 				if (eventModel.calendarIdList.indexOf(calendarId) >= 0) {
 					eventModel.eventsByCalendar[calendarId].items.push(data)
 					eventCreated(calendarId, data)
@@ -317,7 +317,7 @@ Item {
 			},
 			data: args.data,
 		}, function(err, data, xhr) {
-			console.log('patchGCalEvent.response', err, data, xhr.status);
+			logger.debug('patchGCalEvent.response', err, data, xhr.status);
 			if (!err && data && data.error) {
 				return callback(data, null, xhr);
 			}
@@ -338,20 +338,20 @@ Item {
 	function setGoogleCalendarEventSummary(accessToken, calendarId, eventId, summary) {
 		var event = getEvent(calendarId, eventId);
 		if (!event) {
-			console.log('error, trying to set summary for event that doesn\'t exist')
+			logger.log('error, trying to set summary for event that doesn\'t exist')
 			return;
 		}
 		
 		// Clone the event data and clean up the extra stuff we added in parseGCalEvents()
 		var data = JSON.parse(JSON.stringify(event)) // clone
-		console.log(JSON.stringify(data, null, '\t'))
+		logger.debug(JSON.stringify(data, null, '\t'))
 		if (data.start.date) delete data.start.dateTime;
 		if (data.end.date) delete data.end.dateTime;
 		if (data.end.calendarId) delete data.end.calendarId;
 		delete data.canEdit;
 
 		data.summary = summary
-		console.log(JSON.stringify(data, null, '\t'))
+		logger.debug(JSON.stringify(data, null, '\t'))
 		
 		patchGCalEvent({
 			accessToken: accessToken,
@@ -362,8 +362,8 @@ Item {
 			// },
 			data: data,
 		}, function(err, data, xhr) {
-			console.log('setGoogleCalendarEventSummary.response', err, data, xhr.status);
-			console.log('setGoogleCalendarEventSummary.response', JSON.stringify(data, null, '\t'))
+			logger.debug('setGoogleCalendarEventSummary.response', err, data, xhr.status);
+			logger.debug('setGoogleCalendarEventSummary.response', JSON.stringify(data, null, '\t'))
 			if (data.summary) {
 				event.summary = data.summary
 			}
