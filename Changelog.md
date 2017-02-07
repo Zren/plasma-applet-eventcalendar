@@ -1,3 +1,12 @@
+## v40 - February 6 2017
+
+* Can now edit the event summary (except for repeating events) from the right click menu.
+* A few HiDPI fixes from @vcucek. Begin testing with 2x DPI.
+* [upstream fix] Fix "title" button's height in the calendar.
+* Refactor the event fetching code so it's not cluttering UI files.
+* Cleanup some debug logging + warnings.
+* Change whitespace between weather/date/events in the agenda to padding inside the button.
+
 ## v39 - November 30 2016
 
 * Fixed clock height is no longer limited to a max of 99px.
