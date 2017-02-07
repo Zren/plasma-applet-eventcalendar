@@ -10,7 +10,8 @@ ConfigPage {
 	
 	property alias cfg_command: command.text
 	property alias cfg_waitForCompletion: waitForCompletion.checked
-
+	property alias cfg_interval: interval.value
+	
 	ConfigSection {
 		label: i18n("Command")
 		
