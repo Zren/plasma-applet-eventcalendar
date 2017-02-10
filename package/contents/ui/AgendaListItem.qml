@@ -32,6 +32,7 @@ RowLayout {
     property bool agendaItemInProgress: agendaItemIsToday
 
     LinkRect {
+        visible: agendaModel.showDailyWeather
         Layout.alignment: Qt.AlignTop
 
         Column {

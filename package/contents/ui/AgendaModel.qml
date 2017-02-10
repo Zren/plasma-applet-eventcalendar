@@ -7,4 +7,5 @@ ListModel {
 	id: agendaModel
 	property var eventModel
 	property var weatherModel
+	property bool showDailyWeather: false
 }
