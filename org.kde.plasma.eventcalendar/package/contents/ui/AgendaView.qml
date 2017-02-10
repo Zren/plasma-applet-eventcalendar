@@ -272,6 +272,7 @@ Item {
         if (!(data && data.list))
             return;
 
+        var showWeatherColumn = false
         for (var j = 0; j < data.list.length; j++) {
             var forecastItem = data.list[j];
             var day = new Date(forecastItem.dt * 1000);
@@ -289,10 +290,12 @@ Item {
                     agendaModel.setProperty(i, 'weatherDescription', forecastItem.description || '');
                     agendaModel.setProperty(i, 'weatherNotes', forecastItem.notes || '');
                     agendaModel.setProperty(i, 'showWeather', true);
+                    showWeatherColumn = true
                     break;
                 }
             }
         }
+        agendaModel.showDailyWeather = showWeatherColumn
     }
 
     Component.onCompleted: {
