@@ -219,7 +219,7 @@ PinchArea {
         }
 
         onTodayChanged: {
-            console.log('onTodayChanged', displayedDate, today)
+            logger.debug('onTodayChanged', displayedDate, today)
             displayedDate = today
         }
 

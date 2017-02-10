@@ -33,7 +33,7 @@ Item {
         id: agendaModel
         eventModel: eventModel
         weatherModel: weatherModel
-        Component.onCompleted: console.log('AgendaModel.onCompleted')
+        Component.onCompleted: logger.debug('AgendaModel.onCompleted')
     }
 
     FontLoader {
@@ -114,7 +114,7 @@ Item {
 
         property bool isExpanded: plasmoid.expanded
         onIsExpandedChanged: {
-            console.log('isExpanded', isExpanded);
+            logger.debug('isExpanded', isExpanded);
             if (isExpanded) {
                 updateToday()
                 updateWeather()
@@ -126,10 +126,10 @@ Item {
         }
 
         function setToday(d) {
-            console.log('setToday', d)
+            logger.debug('setToday', d)
             today = d
             // console.log(root.timezone, dataSource.data[root.timezone]["DateTime"])
-            console.log('currentTime', root.currentTime)
+            logger.debug('currentTime', root.currentTime)
             monthViewDate = today
             selectedDate = today
             scrollToSelection()
@@ -158,7 +158,7 @@ Item {
             target: timeModel
             onDateChanged: {
                 popup.updateToday()
-                console.log('root.onDateChanged', root.currentTime, popup.today)
+                logger.debug('root.onDateChanged', root.currentTime, popup.today)
             }
         }
 

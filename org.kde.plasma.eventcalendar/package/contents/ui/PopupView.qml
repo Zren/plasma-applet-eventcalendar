@@ -92,7 +92,7 @@ Item {
     Connections {
         target: monthView
         onDateSelected: {
-            // console.log('onDateSelected', selectedDate)
+            // logger.debug('onDateSelected', selectedDate)
             scrollToSelection()
         }   
     }
@@ -117,7 +117,7 @@ Item {
     }
 
     onMonthViewDateChanged: {
-        console.log('onMonthViewDateChanged', monthViewDate)
+        logger.debug('onMonthViewDateChanged', monthViewDate)
         var startOfMonth = new Date(monthViewDate);
         startOfMonth.setDate(1);
         agendaView.currentMonth = new Date(startOfMonth);
@@ -128,7 +128,7 @@ Item {
     }
 
     onStateChanged: {
-        // console.log(popup.state, widgetGrid.columns, widgetGrid.rows)
+        // logger.debug(popup.state, widgetGrid.columns, widgetGrid.rows)
     }
     states: [
         State {
@@ -222,10 +222,10 @@ Item {
             columnSpacing: popup.spacing
             rowSpacing: popup.spacing
             onColumnsChanged: {
-                // console.log(popup.state, widgetGrid.columns, widgetGrid.rows)
+                // logger.debug(popup.state, widgetGrid.columns, widgetGrid.rows)
             }
             onRowsChanged: {
-                // console.log(popup.state, widgetGrid.columns, widgetGrid.rows)
+                // logger.debug(popup.state, widgetGrid.columns, widgetGrid.rows)
             }
             Layout.margins: popup.padding
 
@@ -277,11 +277,11 @@ Item {
                 visibleDateMax: popup.visibleDateMax
 
                 onNewEventFormOpened: {
-                    // console.log('onNewEventFormOpened')
+                    // logger.debug('onNewEventFormOpened')
                     if (plasmoid.configuration.access_token) {
                         var calendarIdList = plasmoid.configuration.calendar_id_list ? plasmoid.configuration.calendar_id_list.split(',') : ['primary'];
                         var calendarList = plasmoid.configuration.calendar_list ? JSON.parse(Qt.atob(plasmoid.configuration.calendar_list)) : [];
-                        // console.log('calendarList', JSON.stringify(calendarList, null, '\t'))
+                        // logger.debug('calendarList', JSON.stringify(calendarList, null, '\t'))
                         var list = []
                         var selectedIndex = 0;
                         calendarList.forEach(function(calendar){
@@ -300,9 +300,9 @@ Item {
                     }
                 }
                 onSubmitNewEventForm: {
-                    // console.log('onSubmitNewEventForm', calendarId)
+                    // logger.debug('onSubmitNewEventForm', calendarId)
                     if (plasmoid.configuration.access_token) {
-                        console.log(calendarId, calendarId.calendarId)
+                        logger.debug(calendarId, calendarId.calendarId)
                         calendarId = calendarId.calendarId ? calendarId.calendarId : calendarId
                         eventModel.createEvent(calendarId, date, text)
                     }
@@ -353,12 +353,12 @@ Item {
                             // All day events end at midnight which is technically the next day.
                             eventItemEndDate.setDate(eventItemEndDate.getDate() - 1);
                         }
-                        // console.log(eventItemStartDate, eventItemEndDate)
+                        // logger.debug(eventItemStartDate, eventItemEndDate)
                         for (var i = 0; i < monthView.daysModel.count; i++) {
                             var dayData = monthView.daysModel.get(i);
                             var dayDataDate = new Date(dayData.yearNumber, dayData.monthNumber - 1, dayData.dayNumber);
                             if (eventItemStartDate <= dayDataDate && dayDataDate <= eventItemEndDate) {
-                                // console.log('\t', dayDataDate)
+                                // logger.debug('\t', dayDataDate)
                                 monthView.daysModel.setProperty(i, 'showEventBadge', true);
                                 var events = dayData.events || [];
                                 events.append(eventItem);
@@ -372,7 +372,7 @@ Item {
 
                 onDayDoubleClicked: {
                     var date = new Date(dayData.yearNumber, dayData.monthNumber-1, dayData.dayNumber);
-                    // console.log('Popup.monthView.onDoubleClicked', date);
+                    // logger.debug('Popup.monthView.onDoubleClicked', date);
                     if (true) {
                         // cfg_month_day_doubleclick == "browser_newevent"
                         Shared.openGoogleCalendarNewEventUrl(date);
@@ -386,7 +386,7 @@ Item {
 
     Component.onCompleted: {
         if (typeof root === 'undefined') {
-            console.log('today = new Date()')
+            logger.debug('today = new Date()')
             today = new Date();
         }
         update();
@@ -410,12 +410,12 @@ Item {
     }
 
     function update() {
-        console.log('update')
+        logger.debug('update')
         updateData();
     }
 
     function updateData() {
-        console.log('updateData')
+        logger.debug('updateData')
         updateEvents();
         updateWeather();
     }
@@ -432,23 +432,23 @@ Item {
     Connections {
         target: eventModel
         onCalendarFetched: {
-            console.log('onCalendarFetched', calendarId)
-            // console.log('onCalendarFetched', calendarId, JSON.stringify(data, null, '\t'))
+            logger.log('onCalendarFetched', calendarId)
+            // logger.debug('onCalendarFetched', calendarId, JSON.stringify(data, null, '\t'))
             popup.updateUI()
         }
         onEventCreated: {
-            console.log('onEventCreated', calendarId, JSON.stringify(data, null, '\t'))
+            logger.log('onEventCreated', calendarId, JSON.stringify(data, null, '\t'))
             popup.updateUI()
         }
         onEventUpdated: {
-            console.log('onEventUpdated', calendarId, JSON.stringify(data, null, '\t'))
+            logger.log('onEventUpdated', calendarId, JSON.stringify(data, null, '\t'))
             popup.updateUI()
         }
     }
     function defferedUpdateEvents() {
         var dateMin = monthView.firstDisplayedDate();
         if (!dateMin) {
-            // console.log('updateEvents', 'no dateMin');
+            // logger.log('updateEvents', 'no dateMin');
             return;
         }
         var monthViewDateMax = monthView.lastDisplayedDate();
@@ -465,17 +465,17 @@ Item {
         popup.visibleDateMax = dateMax
         eventModel.fetchAllEvents(dateMin, dateMax)
 
-        // console.log(dateMin);
-        // console.log(dateMax);
+        // logger.debug(dateMin);
+        // logger.debug(dateMax);
 
         /*
         if (plasmoid.configuration.access_token) {
             var calendarIdList = plasmoid.configuration.calendar_id_list ? plasmoid.configuration.calendar_id_list.split(',') : ['primary'];
             var calendarList = plasmoid.configuration.calendar_list ? JSON.parse(Qt.atob(plasmoid.configuration.calendar_list)) : [];
 
-            // console.log('updateEvents', dateMin, ' - ', dateMax);
-            // console.log('calendarIdList', calendarIdList);
-            // console.log('calendarList.length', calendarList.length);
+            // logger.debug('updateEvents', dateMin, ' - ', dateMax);
+            // logger.debug('calendarIdList', calendarIdList);
+            // logger.debug('calendarList.length', calendarList.length);
 
             eventModel.eventsByCalendar = {};
             popup.visibleDateMin = dateMin
@@ -491,16 +491,16 @@ Item {
                     }, function(err, data, xhr) {
                         if (err) {
                             if (typeof err === 'object') {
-                                console.log('err: ', JSON.stringify(err, null, '\t'));
+                                logger.debug('err: ', JSON.stringify(err, null, '\t'));
                             } else {
-                                console.log('err: ', err);
+                                logger.debug('err: ', err);
                             }
                             if (xhr.status === 404) {
                                 return;
                             }
                             return onGCalError(err);
                         }
-                        // console.log('onGCalEvents', JSON.stringify(data, null, '\t'))
+                        // logger.debug('onGCalEvents', JSON.stringify(data, null, '\t'))
 
                         
                         eventModel.eventsByCalendar[calendarId] = data;
@@ -548,11 +548,11 @@ Item {
     }
 
     function updateDailyWeather() {
-        console.log('fetchDailyWeatherForecast', lastForecastAt, Date.now());
+        logger.debug('fetchDailyWeatherForecast', lastForecastAt, Date.now());
         WeatherApi.updateDailyWeather(function(err, data, xhr) {
-            if (err) return console.log('fetchDailyWeatherForecast.err', err, xhr && xhr.status, data);
-            console.log('fetchDailyWeatherForecast.response');
-            // console.log('fetchDailyWeatherForecast.response', data);
+            if (err) return logger.log('fetchDailyWeatherForecast.err', err, xhr && xhr.status, data);
+            logger.debug('fetchDailyWeatherForecast.response');
+            // logger.debug('fetchDailyWeatherForecast.response', data);
 
             lastForecastAt = Date.now();
             dailyWeatherData = data;
@@ -561,11 +561,11 @@ Item {
     }
 
     function updateHourlyWeather() {
-        console.log('fetchHourlyWeatherForecast', lastForecastAt, Date.now());
+        logger.debug('fetchHourlyWeatherForecast', lastForecastAt, Date.now());
         WeatherApi.updateHourlyWeather(function(err, data, xhr) {
-            if (err) return console.log('fetchHourlyWeatherForecast.err', err, xhr && xhr.status, data);
-            console.log('fetchHourlyWeatherForecast.response');
-            // console.log('fetchHourlyWeatherForecast.response', data);
+            if (err) return logger.log('fetchHourlyWeatherForecast.err', err, xhr && xhr.status, data);
+            logger.debug('fetchHourlyWeatherForecast.response');
+            // logger.debug('fetchHourlyWeatherForecast.response', data);
 
             lastForecastAt = Date.now();
             hourlyWeatherData = data;
@@ -575,7 +575,7 @@ Item {
     }
 
     function updateUI() {
-        // console.log('updateUI');
+        // logger.debug('updateUI');
         var now = new Date();
 
         if (monthViewDate.getYear() == now.getYear() && monthViewDate.getMonth() == now.getMonth()) {
@@ -595,16 +595,16 @@ Item {
 
     function onGCalError(err) {
         if (typeof err === 'object') {
-            console.log('onGCalError: ', JSON.stringify(err, null, '\t'));
+            logger.log('onGCalError: ', JSON.stringify(err, null, '\t'));
         } else {
-            console.log('onGCalError: ', err);
+            logger.log('onGCalError: ', err);
         }
         
         updateAccessToken();
     }
 
     function fetchNewAccessToken(callback) {
-        console.log('fetchNewAccessToken');
+        logger.debug('fetchNewAccessToken');
         var url = 'https://www.googleapis.com/oauth2/v4/token';
         Utils.post({
             url: url,
@@ -618,16 +618,16 @@ Item {
     }
 
     function updateAccessToken() {
-        // console.log('access_token_expires_at', plasmoid.configuration.access_token_expires_at);
-        // console.log('                    now', Date.now());
-        // console.log('refresh_token', plasmoid.configuration.refresh_token);
+        // logger.debug('access_token_expires_at', plasmoid.configuration.access_token_expires_at);
+        // logger.debug('                    now', Date.now());
+        // logger.debug('refresh_token', plasmoid.configuration.refresh_token);
         if (plasmoid.configuration.refresh_token) {
-            console.log('fetchNewAccessToken');
+            logger.debug('fetchNewAccessToken');
             fetchNewAccessToken(function(err, data, xhr) {
                 if (err || (!err && data && data.error)) {
-                    return console.log('Error when using refreshToken:', err, data);
+                    return logger.log('Error when using refreshToken:', err, data);
                 }
-                console.log('onAccessToken', data);
+                logger.debug('onAccessToken', data);
                 data = JSON.parse(data);
 
                 plasmoid.configuration.access_token = data.access_token;
@@ -640,7 +640,7 @@ Item {
     }
 
     function fetchGCalEvents(args, callback) {
-        console.log('fetchGCalEvents', args.calendarId);
+        logger.debug('fetchGCalEvents', args.calendarId);
         var url = 'https://www.googleapis.com/calendar/v3';
         url += '/calendars/'
         url += encodeURIComponent(args.calendarId);
@@ -655,7 +655,7 @@ Item {
                 "Authorization": "Bearer " + args.access_token,
             }
         }, function(err, data, xhr) {
-            console.log('fetchGCalEvents.response', args.calendarId, err, data, xhr.status);
+            logger.debug('fetchGCalEvents.response', args.calendarId, err, data, xhr.status);
             if (!err && data && data.error) {
                 return callback(data, null, xhr);
             }
