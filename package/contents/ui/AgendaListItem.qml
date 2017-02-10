@@ -100,8 +100,8 @@ RowLayout {
             id: itemDateColumn
             anchors.left: parent.left
             anchors.right: parent.right
-            anchors.leftMargin: 10
-            anchors.rightMargin: 10
+            anchors.leftMargin: appletConfig.agendaColumnSpacing
+            anchors.rightMargin: appletConfig.agendaColumnSpacing
 
             Text {
                 id: itemDate
@@ -165,6 +165,8 @@ RowLayout {
             sourceComponent: Component {
 
                 ColumnLayout {
+                    spacing: appletConfig.agendaRowSpacing
+
                     Component.onCompleted: {
                         newEventText.forceActiveFocus()
                         newEventFormOpened(model, newEventCalendarId)
@@ -191,7 +193,7 @@ RowLayout {
 
                     Item {
                         Layout.fillWidth: true
-                        height: 10
+                        height: appletConfig.agendaRowSpacing // Effectively twice the padding below the form.
                     }
                 }
             }
@@ -199,7 +201,7 @@ RowLayout {
         
 
         ColumnLayout {
-            spacing: 10
+            spacing: appletConfig.agendaRowSpacing
             Layout.fillWidth: true
 
             Repeater {
@@ -227,7 +229,7 @@ RowLayout {
                         width: parent.width
 
                         Rectangle {
-                            Layout.preferredWidth: 2 * units.devicePixelRatio
+                            Layout.preferredWidth: appletConfig.eventIndicatorWidth
                             Layout.preferredHeight: eventColumn.height
                             color: model.backgroundColor || theme.textColor
                         }
