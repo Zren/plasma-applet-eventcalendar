@@ -15,7 +15,7 @@ Item {
     Logger {
         id: logger
         name: 'eventcalendar'
-        showDebug: false
+        // showDebug: true
     }
 
     AppletConfig { id: appletConfig }
