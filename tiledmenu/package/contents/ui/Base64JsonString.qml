@@ -35,17 +35,17 @@ QtObject {
 		writing = false
 	}
 
-	function setItemProperty(itemKey, key, val) {
-		var item = value[itemKey] || {}
-		item[key] = val
-		value[itemKey] = item
+	function setItemProperty(key1, key2, val) {
+		var item = value[key1] || {}
+		item[key2] = val
+		value[key1] = item
 		set(value)
 		valueChanged()
 	}
 
-	function getItemProperty(itemKey, key, def) {
-		var item = value[itemKey] || {}
-		return typeof item[key] === undefined ? item[key] : def
+	function getItemProperty(key1, key2, def) {
+		var item = value[key1] || {}
+		return typeof item[key2] !== undefined ? item[key2] : def
 	}
 
 	function load() {
