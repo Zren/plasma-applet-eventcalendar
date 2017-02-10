@@ -109,11 +109,21 @@ ColumnLayout {
 				id: labelTextField
 				Layout.fillWidth: true
 				placeholderText: modelLabel
-				onTextChanged: setTileDataLabel(text)
+				property bool updateOnChange: false
+				onTextChanged: {
+					if (updateOnChange) {
+						setTileDataLabel(text)
+					}
+				}
 
 				Connections {
 					target: tileEditorView
-					onFavoriteIdChanged: labelTextField.text = get('label', '')
+
+					onFavoriteIdChanged: {
+						labelTextField.updateOnChange = false
+						labelTextField.text = get('label', '')
+						labelTextField.updateOnChange = true
+					}
 				}
 			}
 		}
