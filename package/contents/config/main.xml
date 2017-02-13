@@ -7,6 +7,9 @@
 
 
   <group name="General">
+    <entry name="debugging" type="bool">
+      <default>false</default>
+    </entry>
     <!-- Removed in: v33
     <entry name="widget_show_spacer" type="bool">
       <default>false</default>
