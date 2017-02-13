@@ -260,6 +260,9 @@ Item {
 			if (!err && data && data.error) {
 				return callback(data, null, xhr);
 			}
+			if (logger.showDebug) { // JSON.stringify is probably slow.
+				logger.debug('fetchGCalEvents.response', args.calendarId, JSON.stringify(data, null, '\t'))
+			}
 			callback(err, data, xhr);
 		});
 	}
