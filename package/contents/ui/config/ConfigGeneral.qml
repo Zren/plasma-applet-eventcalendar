@@ -1,4 +1,3 @@
-
 import QtQuick 2.0
 import QtQuick.Controls 1.0
 import QtQuick.Controls.Styles 1.0
@@ -14,9 +13,6 @@ import ".."
 
 Item {
     id: page
-
-    implicitWidth: pageColumn.implicitWidth
-    implicitHeight: pageColumn.implicitHeight
 
     property alias cfg_widget_show_meteogram: widget_show_meteogram.checked
     property alias cfg_widget_show_timer: widget_show_timer.checked
@@ -42,8 +38,6 @@ Item {
     property bool showDebug: plasmoid.configuration.debugging
     property int indentWidth: 24
     property string appletVersion: ''
-
-    Layout.fillWidth: true
 
     // populate
     onCfg_clock_fontfamilyChanged: {
@@ -342,8 +336,23 @@ Item {
                             text: Qt.formatDateTime(new Date(), dateFormat)
                             onClicked: cfg_clock_timeformat = dateFormat
                         }
+                    }
+
+                    RowLayout {
+                        Layout.fillWidth: true
+                        Text { width: indentWidth } // indent
+                        Label {
+                            text: "Preset:"
+                            color: "transparent"
+                        }
                         Button {
                             property string dateFormat: '\'<font color="#3daee9">\'MMM d\'</font>\' ' + Qt.locale().timeFormat(Locale.ShortFormat);
+                            text: Qt.formatDateTime(new Date(), dateFormat.replace())
+                            onClicked: cfg_clock_timeformat = dateFormat
+                            style: ButtonStyle {}
+                        }
+                        Button {
+                            property string dateFormat: '\'<font color="#888">\'ddd<>d\'</font>\' h:mm\'<font color="#888">\'AP\'</font>\'';
                             text: Qt.formatDateTime(new Date(), dateFormat.replace())
                             onClicked: cfg_clock_timeformat = dateFormat
                             style: ButtonStyle {}
