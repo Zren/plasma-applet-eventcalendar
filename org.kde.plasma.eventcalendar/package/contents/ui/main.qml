@@ -15,6 +15,7 @@ Item {
     Logger {
         id: logger
         name: 'eventcalendar'
+        showDebug: plasmoid.configuration.debugging
         // showDebug: true
     }
 

@@ -34,15 +34,12 @@ Item {
     property string cfg_clock_mousewheel: "runcommand"
     property alias cfg_clock_mousewheel_up: clock_mousewheel_up.text
     property alias cfg_clock_mousewheel_down: clock_mousewheel_down.text
-    property alias cfg_timer_repeats: timer_repeats.checked
-    property alias cfg_timer_in_taskbar: timer_in_taskbar.checked
-    property alias cfg_timer_ends_at: timer_ends_at.text
     property alias cfg_clock_maxheight: clock_maxheight.value
 
     property string timeFormat24hour: 'hh:mm'
     property string timeFormat12hour: 'h:mm AP'
 
-    property bool showDebug: false
+    property bool showDebug: plasmoid.configuration.debugging
     property int indentWidth: 24
     property string appletVersion: ''
 
@@ -212,24 +209,6 @@ Item {
                 text: '<a href="http://doc.qt.io/qt-5/qml-qtqml-qt.html#formatDateTime-method">Time Format Documentation</a>'
             }
 
-            CheckBox {
-                visible: showDebug
-                Layout.fillWidth: true
-                id: clock_24h
-                text: i18n("24 hour clock")
-
-                onClicked: {
-                    cfg_clock_timeformat = cfg_clock_24h ? timeFormat24hour : timeFormat12hour
-                }
-            }
-            CheckBox {
-                visible: showDebug
-                Layout.fillWidth: true
-                id: clock_show_seconds
-                text: i18n("Show Seconds")
-            }
-
-
             Label {
                 Layout.maximumWidth: page.width
                 wrapMode: Text.Wrap
@@ -294,6 +273,25 @@ Item {
                         Label {
                             text: i18n(" (0px = scale to fit)")
                         }
+                    }
+
+                    CheckBox {
+                        visible: showDebug
+                        id: clock_24h
+                        Layout.fillWidth: true
+                        text: i18n("24 hour clock")
+                        enabled: false
+
+                        onClicked: {
+                            cfg_clock_timeformat = cfg_clock_24h ? timeFormat24hour : timeFormat12hour
+                        }
+                    }
+                    CheckBox {
+                        visible: showDebug
+                        id: clock_show_seconds
+                        Layout.fillWidth: true
+                        text: i18n("Show Seconds")
+                        enabled: false
                     }
                 }
             }
@@ -531,33 +529,23 @@ Item {
         }
 
         HeaderText {
-            visible: showDebug
-            text: i18n("Timer")
+            text: i18n("Debugging")
         }
         ColumnLayout {
-            visible: showDebug
-
             CheckBox {
-                id: timer_repeats
+                id: debugging
                 Layout.fillWidth: true
-                text: i18n("timer_repeats")
+                text: i18n("Enable Debugging")
+                checked: plasmoid.configuration.debugging
+                onClicked: {
+                    plasmoid.configuration.debugging = !plasmoid.configuration.debugging
+                }
             }
 
-            CheckBox {
-                id: timer_in_taskbar
-                Layout.fillWidth: true
-                text: i18n("timer_in_taskbar")
-            }
-
-            RowLayout {
-                Layout.fillWidth: true
-                Label {
-                    text: i18n("timer_ends_at:")
-                }
-                TextField {
-                    id: timer_ends_at
-                    Layout.fillWidth: true
-                }
+            Label {
+                visible: showDebug
+                text: i18n("You can view debug output by running: <pre>tail -f ~/.xsession-errors</pre>")
+                textFormat: Text.RichText
             }
         }
     }
