@@ -1,3 +1,9 @@
+## v41 - February 13 2017
+
+* Hide the daily weather column if there's no data.
+* Add new clock preset.
+* Add debugging mode.
+
 ## v40 - February 6 2017
 
 * Can now edit the event summary (except for repeating events) from the right click menu.
