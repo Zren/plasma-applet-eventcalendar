@@ -1,3 +1,7 @@
+## v42 - February 14 2017
+
+* Possible fix for emojis in the event summary crashing plasmashell.
+
 ## v41 - February 13 2017
 
 * Hide the daily weather column if there's no data.
