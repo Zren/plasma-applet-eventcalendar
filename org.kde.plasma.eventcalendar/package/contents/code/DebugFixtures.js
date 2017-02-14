@@ -64,6 +64,7 @@ function getEventData() {
 
     // This test is known to crash plasmashell.
     // See https://github.com/Zren/plasma-applets/issues/60
+    // Note: Emoji's do not show up in plasmoidviewer.
     addAllDayTestEvent("Emoji Test 1: '🤑'", 0, 1); // Pasted
     addAllDayTestEvent("Emoji Test 2: '\uD83E\uDD11'", 0, 1); // UTF-16 (hex)
 
