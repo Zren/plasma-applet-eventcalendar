@@ -116,6 +116,7 @@ Item {
 	function fetchDebugEvents() {
 		setCalendarData('debug', DebugFixtures.getEventData())
 		fetchDebugGoogleSession()
+		// fetchJsonEventsFile(plasmoid.file('', 'testevents.json'), 'testevents@gmail.com') // .../contents/testevents.json
 	}
 
 	function fetchDebugGoogleSession() {
@@ -140,6 +141,21 @@ Item {
 
 			var metadata = Utils.parseMetadata(data)
 			callback(null, metadata);
+		});
+	}
+
+	// Used to load dumped json events found in debug logs from file.
+	function fetchJsonEventsFile(filename, calendarId) {
+		logger.debug('fetchJsonEventsFile', calendarId)
+		eventModel.asyncRequests += 1
+		Utils.getFile(filename, function(err, data) {
+			if (err) {
+				return callback(err);
+			}
+
+			var obj = JSON.parse(data);
+			setCalendarData(calendarId, obj)
+			eventModel.asyncRequestsDone += 1
 		});
 	}
 
