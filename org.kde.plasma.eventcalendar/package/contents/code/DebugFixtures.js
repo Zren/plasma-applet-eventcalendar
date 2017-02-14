@@ -59,6 +59,11 @@ function getEventData() {
     for (var i = 0; i < 5; i++) {
         addMinuteTestEvent("Minute Event " + i, i);
     }
+
+    // This test is known to crash plasmashell.
+    // See https://github.com/Zren/plasma-applets/issues/60
+    addAllDayTestEvent("🤑 Emoji Test!!! 🤑", 0, 1);
+    
     return debugEventData;
 }
 
