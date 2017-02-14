@@ -26,7 +26,9 @@ function getEventData() {
             },
 
             // Optional
-            "backgroundColor": "#9a9cff" // We apply the calendar.backgroundColor
+            // Probably should run events through EventModel.parseEvent()
+            "backgroundColor": "#9a9cff", // We apply the calendar.backgroundColor
+            "canEdit": false,
         });
     }
 
@@ -62,7 +64,11 @@ function getEventData() {
 
     // This test is known to crash plasmashell.
     // See https://github.com/Zren/plasma-applets/issues/60
-    addAllDayTestEvent("🤑 Emoji Test!!! 🤑", 0, 1);
+    addAllDayTestEvent("Emoji Test 1: '🤑'", 0, 1); // Pasted
+    addAllDayTestEvent("Emoji Test 2: '\uD83E\uDD11'", 0, 1); // UTF-16 (hex)
+
+    // Unicode / Foreign Characters
+    addAllDayTestEvent("Unicode Test 1: 'ひらがな'", 0, 1); // Japenese (Hiragana)
     
     return debugEventData;
 }
