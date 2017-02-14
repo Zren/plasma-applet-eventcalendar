@@ -238,7 +238,7 @@ RowLayout {
                             id: eventColumn
                             Layout.fillWidth: true
 
-                            Text {
+                            PlasmaComponents.Label {
                                 id: eventSummary
                                 text: summary
                                 color: eventItemInProgress ? inProgressColor : PlasmaCore.ColorScope.textColor
