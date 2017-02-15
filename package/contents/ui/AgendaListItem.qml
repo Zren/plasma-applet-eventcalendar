@@ -225,6 +225,9 @@ RowLayout {
                     }
                     Component.onCompleted: eventListItem.checkIfInProgress()
 
+                    property bool isEditing: editSummaryForm.active || editDateTimeForm.active
+                    enabled: !isEditing
+
                     RowLayout {
                         width: parent.width
 
@@ -284,8 +287,89 @@ RowLayout {
                                 color: eventItemInProgress ? inProgressColor : PlasmaCore.ColorScope.textColor
                                 opacity: eventItemInProgress ? 1 : 0.75
                                 font.weight: eventItemInProgress ? inProgressFontWeight : Font.Normal
+                                visible: !editDateTimeForm.active
                             }
-                        }
+
+                            Loader {
+                                id: editDateTimeForm
+                                active: false
+                                visible: active
+                                Layout.fillWidth: true
+                                sourceComponent: Component {
+                                    RowLayout {
+                                        ColumnLayout {
+                                            Layout.fillWidth: true
+                                            RowLayout {
+                                                PlasmaComponents.TextField {
+                                                    id: editStartDate
+                                                    placeholderText: '31/12/2017' // Note that US/Canada is 12/31/2017
+                                                    text: Qt.formatDate(model.start.dateTime)
+
+                                                    Component.onCompleted: {
+                                                        forceActiveFocus()
+                                                    }
+
+                                                    Layout.fillWidth: true
+                                                    Keys.onEscapePressed: editDateTimeForm.active = false
+                                                }
+
+                                                PlasmaComponents.TextField {
+                                                    id: editStartTime
+                                                    placeholderText: '9:00am'
+                                                    text: Qt.formatTime(model.start.dateTime)
+
+                                                    Layout.fillWidth: true
+                                                    Keys.onEscapePressed: editDateTimeForm.active = false
+                                                }
+                                            }
+                                            PlasmaComponents.Label {
+                                                text: i18n("to")
+                                            }
+                                            RowLayout {
+                                                PlasmaComponents.TextField {
+                                                    id: editEndDate
+                                                    placeholderText: '31/12/2017' // Note that US/Canada is 12/31/2017
+                                                    text: Qt.formatDate(model.end.dateTime)
+
+                                                    Layout.fillWidth: true
+                                                    Keys.onEscapePressed: editDateTimeForm.active = false
+                                                }
+
+                                                PlasmaComponents.TextField {
+                                                    id: editEndTime
+                                                    placeholderText: '10:00am'
+                                                    text: Qt.formatTime(model.end.dateTime)
+
+                                                    Layout.fillWidth: true
+                                                    Keys.onEscapePressed: editDateTimeForm.active = false
+                                                }
+                                            }
+                                        }
+
+                                        ColumnLayout {
+                                            Layout.alignment: Qt.AlignTop
+                                            PlasmaComponents.CheckBox {
+                                                text: i18n("All Day")
+                                                Layout.minimumWidth: 0
+                                            }
+                                            PlasmaComponents.Button {
+                                                text: i18n("Save")
+                                                Layout.minimumWidth: 0
+                                                onClicked: {
+                                                    // ...
+                                                    editDateTimeForm.active = false
+                                                }
+                                            }
+                                            PlasmaComponents.Button {
+                                                text: i18n("Discard")
+                                                Layout.minimumWidth: 0
+                                                onClicked: editDateTimeForm.active = false
+                                            }
+                                        }
+                                    } // RowLayout
+                                } // Component
+                            } // Loader
+                        } // eventColumn
                     }
                     
                     onLeftClicked: {
@@ -312,6 +396,14 @@ RowLayout {
                             editSummaryForm.active = !editSummaryForm.active
                         });
                         contextMenu.addMenuItem(menuItem);
+
+                        // menuItem = contextMenu.newMenuItem();
+                        // menuItem.text = i18n("Edit date/time");
+                        // menuItem.enabled = event.canEdit
+                        // menuItem.clicked.connect(function() {
+                        //     editDateTimeForm.active = !editDateTimeForm.active
+                        // });
+                        // contextMenu.addMenuItem(menuItem);
 
                         menuItem = contextMenu.newMenuItem();
                         menuItem.text = i18n("Edit in browser");
