@@ -9,10 +9,11 @@ Rectangle {
     height: childrenRect.height
     property color backgroundColor: "transparent"
     property color backgroundHoverColor: theme.buttonBackgroundColor
-    color: mouseArea.containsMouse ? backgroundHoverColor : backgroundColor
+    color: enabled && mouseArea.containsMouse ? backgroundHoverColor : backgroundColor
     property string tooltipMainText
     property string tooltipSubText
     property alias acceptedButtons: mouseArea.acceptedButtons
+    property bool enabled: true
 
     signal clicked(var mouse)
     signal leftClicked(var mouse)
@@ -30,7 +31,8 @@ Rectangle {
             anchors.fill: parent
             hoverEnabled: true
             acceptedButtons: Qt.LeftButton | Qt.RightButton
-            cursorShape: containsMouse ? Qt.PointingHandCursor : Qt.ArrowCursor
+            cursorShape: linkRect.enabled && containsMouse ? Qt.PointingHandCursor : Qt.ArrowCursor
+            enabled: linkRect.enabled
             onClicked: {
                 mouse.accepted = false
                 linkRect.clicked(mouse)
