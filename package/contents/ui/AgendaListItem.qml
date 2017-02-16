@@ -188,6 +188,7 @@ RowLayout {
                                 submitNewEventForm(calendarId, date, text)
                                 text = ''
                             }
+                            Keys.onEscapePressed: newEventForm.active = false
                         }
                     }
 
