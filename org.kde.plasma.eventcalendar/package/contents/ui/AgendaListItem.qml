@@ -174,7 +174,7 @@ RowLayout {
                     PlasmaComponents.ComboBox {
                         id: newEventCalendarId
                         Layout.fillWidth: true
-                        model: ['asdf']
+                        model: [i18n("[No Calendars]")]
                     }
 
                     RowLayout {
