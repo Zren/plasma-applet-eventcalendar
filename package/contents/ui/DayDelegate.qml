@@ -278,7 +278,7 @@ MouseArea {
             for (var i = 0; i < model.events.count; i++) {
                 var eventItem = model.events.get(i);
                 var line = '';
-                line += '<font color="' + eventItem.backgroundColor + '">■</b> ';
+                line += '<font color="' + eventItem.backgroundColor + '">■</font> ';
                 line += '<b>' + eventItem.summary + ':</b> ';
                 line += Shared.formatEventDuration(eventItem, {
                     relativeDate: thisDate,
