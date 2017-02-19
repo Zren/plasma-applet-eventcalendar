@@ -1,3 +1,10 @@
+function getCalendar() {
+    return {
+        "backgroundColor": "#9a9cff",
+        "accessRole": "owner",
+    }
+}
+
 function getEventData() {
     var debugEventData = {
         "items": []
@@ -6,7 +13,7 @@ function getEventData() {
         debugEventData.items.push({
             "kind": "calendar#event",
             "etag": "\"2561779720126000\"",
-            "id": "a1a1a1a1a1a1a1a1a1a1a1a1a1_20160325",
+            "id": "debug_" + start.dateTime.getTime() + "_" + end.dateTime.getTime(),
             "status": "confirmed",
             "htmlLink": "https://www.google.com/calendar/event?eid=aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa&ctz=Etc/UTC",
             "created": "2008-03-24T22:34:26.000Z",
@@ -24,11 +31,6 @@ function getEventData() {
             "reminders": {
                 "useDefault": false
             },
-
-            // Optional
-            // Probably should run events through EventModel.parseEvent()
-            "backgroundColor": "#9a9cff", // We apply the calendar.backgroundColor
-            "canEdit": false,
         });
     }
 
@@ -36,14 +38,21 @@ function getEventData() {
         return d.toISOString().substr(0, 10)
     }
     function nowPlus(n) {
-        var d = new Date();
-        d.setDate(d.getDate() + n);
-        return d;
+        var now = new Date()
+        var d = new Date(now.getFullYear(), now.getMonth(), now.getDate() + n, 0, 0, 0)
+        return d
     }
+
     function addAllDayTestEvent(summary, startDaysFromNow, endDaysFromNow) {
-        var start = dateString(nowPlus(startDaysFromNow));
-        var end = dateString(nowPlus(endDaysFromNow));
-        addEvent(summary, {date: start }, {date: end });
+        var start = nowPlus(startDaysFromNow)
+        var end = nowPlus(endDaysFromNow)
+        addEvent(summary, {
+            date: dateString(start),
+            dateTime: start,
+        }, {
+            date: dateString(end),
+            dateTime: end,
+        })
     }
     function addMinuteTestEvent(summary, startMinutesFromNow) {
         var start = new Date()
@@ -54,10 +63,9 @@ function getEventData() {
         addEvent(summary, {dateTime: start }, {dateTime: end });
     }
 
-    addEvent("Multiday Event", {date: "2016-05-10"}, {date: "2016-05-30"});
     addAllDayTestEvent("Dude's Birthday", 0, 1);
     addAllDayTestEvent("Dudette's Birthday", 1, 2);
-    addAllDayTestEvent("Multiday Event", 3, 5);
+    addAllDayTestEvent("Multiday Event", 3, 7);
     for (var i = 0; i < 5; i++) {
         addMinuteTestEvent("Minute Event " + i, i);
     }
