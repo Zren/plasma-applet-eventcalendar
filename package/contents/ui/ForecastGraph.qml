@@ -55,6 +55,16 @@ Item {
         property bool showYAxisRainMax: true
         property string rainUnits: 'mm'
 
+        property double freezingPoint: {
+            if (plasmoid.configuration.weather_units == "kelvin") {
+                return 273.15 // https://en.wikipedia.org/wiki/Kelvin
+            } else if (plasmoid.configuration.weather_units == "imperial") {
+                return 32 // https://en.wikipedia.org/wiki/Fahrenheit
+            } else { // "metric"
+                return 0
+            }
+        }
+
         property int gridX: yAxisLabelWidth
         property int gridX2: width
         property int gridWidth: gridX2 - gridX
@@ -280,7 +290,8 @@ Item {
                         if (i == 0 || item.y < pathMinY) pathMinY = item.y;
                         if (i == 0 || item.y > pathMaxY) pathMaxY = item.y;
                     }
-                    var pZeroY = graph.gridPoint(0, 0).y;
+                    
+                    var pZeroY = graph.gridPoint(0, graph.freezingPoint).y;
                     var pMaxY = graph.gridPoint(0, pathMinY).y; // y axis gets flipped
                     var pMinY = graph.gridPoint(0, pathMaxY).y; // y axis gets flipped
                     var height = pMaxY - pMinY;
