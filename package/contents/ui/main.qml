@@ -20,6 +20,7 @@ Item {
     }
 
     AppletConfig { id: appletConfig }
+    NotificationManager { id: notificationManager }
 
     property alias dataSource: timeModel.dataSource
     property alias currentTime: timeModel.currentTime
