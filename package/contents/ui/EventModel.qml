@@ -49,6 +49,12 @@ Item {
 		event.canEdit = calendar.accessRole == 'owner' && !event.recurringEventId // We cannot currently edit repeating events.
 	}
 
+	function parseEventList(calendar, eventList) {
+		eventList.forEach(function(event){
+			parseEvent(calendar, event)
+		})
+	}
+
 	function parseGoogleCalendarEvent(calendarId, event) {
 		event.calendarId = calendarId
 
@@ -69,9 +75,7 @@ Item {
 		var calendarList = plasmoid.configuration.calendar_list ? JSON.parse(Qt.atob(plasmoid.configuration.calendar_list)) : [];
 		calendarList.forEach(function(calendar){
 			if (calendarId == calendar.id) {
-				data.items.forEach(function(event){
-					parseEvent(calendar, event)
-				})
+				parseEventList(calendar, data.items)
 			}
 		})
 	}
@@ -87,7 +91,7 @@ Item {
 	}
 	
 
-	Timer {
+	property var deferredUpdate: Timer {
 		id: deferredUpdate
 		interval: 200
 		onTriggered: eventModel.update()
@@ -114,7 +118,11 @@ Item {
 	}
 
 	function fetchDebugEvents() {
-		setCalendarData('debug', DebugFixtures.getEventData())
+		var debugCalendar = DebugFixtures.getCalendar()
+		var debugEventData = DebugFixtures.getEventData()
+		parseEventList(debugCalendar, debugEventData.items)
+		setCalendarData('debug', debugEventData)
+
 		fetchDebugGoogleSession()
 		// fetchJsonEventsFile(plasmoid.file('', 'testevents.json'), 'testevents@gmail.com') // .../contents/testevents.json
 	}
