@@ -36,6 +36,7 @@ Item {
 	readonly property color defaultTileColor: plasmoid.configuration.defaultTileColor || theme.buttonBackgroundColor
 	readonly property color sidebarBackgroundColor: plasmoid.configuration.sidebarBackgroundColor || theme.backgroundColor
 	readonly property color menuItemTextColor2: setAlpha(theme.textColor, 0.6)
+	readonly property color favHoverOutlineColor: setAlpha(theme.textColor, 0.8)
 
 	//--- Style
 	// Tiles
