@@ -49,6 +49,16 @@ Item {
 		color: dropArea.containsDrag ? theme.highlightColor : "transparent"
 		// color: "#ee0"
 	}
+
+	// Rectangle {
+	// 	id: hoverOutline
+	// 	visible: hoverMouseArea.containsMouse && !dropArea.containsDrag
+	// 	anchors.fill: parent
+	// 	border.width: config.favCellPadding
+	// 	border.color: config.favHoverOutlineColor
+	// 	color: "transparent"
+	// }
+
 	Item {
 		anchors.fill: parent
 
@@ -147,6 +157,14 @@ Item {
 			}
 		}
 	}
+
+	// MouseArea {
+	// 	id: hoverMouseArea
+	// 	anchors.fill: parent
+	// 	hoverEnabled: true
+	// 	acceptedButtons: Qt.NoButton
+	// 	z: 1
+	// }
 
 	AppContextMenu {
 		id: contextMenu
