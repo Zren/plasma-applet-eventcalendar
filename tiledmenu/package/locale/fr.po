@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: https://github.com/Zren/plasma-applets/tree/master/tiledmenu\n"
-"POT-Creation-Date: 2017-02-06 23:47-0500\n"
+"POT-Creation-Date: 2017-02-20 23:08-0500\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: fr\n"
@@ -135,7 +135,7 @@ msgstr ""
 msgid "Split into Categories (Application Menu / Dashboard)"
 msgstr ""
 
-#: ../contents/ui/FavouriteItem.qml:161
+#: ../contents/ui/FavouriteItem.qml:179
 msgid "Edit Tile"
 msgstr ""
 

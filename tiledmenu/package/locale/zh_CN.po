@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: https://github.com/Zren/plasma-applets/tree/master/tiledmenu\n"
-"POT-Creation-Date: 2017-02-06 23:47-0500\n"
+"POT-Creation-Date: 2017-02-20 23:08-0500\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: Lin Mu <linmu789632@gmail.com>\n"
 "Language-Team: Chinese <kde-i18n-doc@kde.org>\n"
@@ -131,9 +131,9 @@ msgstr "合并（软件启动器）"
 msgid "Split into Categories (Application Menu / Dashboard)"
 msgstr "分类（软件菜单/仪表板）"
 
-#: ../contents/ui/FavouriteItem.qml:161
+#: ../contents/ui/FavouriteItem.qml:179
 msgid "Edit Tile"
-msgstr ""
+msgstr "编辑磁贴"
 
 #: ../contents/ui/Main.qml:225
 msgid "System Info"
@@ -215,7 +215,7 @@ msgstr "电源"
 
 #: ../contents/ui/TileEditorView.qml:63
 msgid "Save"
-msgstr ""
+msgstr "保存"
 
 #: ../contents/ui/TileEditorView.qml:72 ../contents/ui/TileEditorWindow.qml:30
 msgid "Size"
