@@ -3,6 +3,8 @@ import QtQuick.Layouts 1.0
 import org.kde.plasma.core 2.0 as PlasmaCore
 import org.kde.plasma.components 2.0 as PlasmaComponents
 
+import "lib"
+
 Rectangle {
     id: linkRect
     width: childrenRect.width
@@ -49,26 +51,8 @@ Rectangle {
         }
     }
 
-    PlasmaComponents.ContextMenu {
+    ContextMenu {
         id: contextMenu
-
-        function newSeperator() {
-            return Qt.createQmlObject("import org.kde.plasma.components 2.0 as PlasmaComponents; PlasmaComponents.MenuItem { separator: true }", contextMenu);
-        }
-        function newMenuItem() {
-            return Qt.createQmlObject("import org.kde.plasma.components 2.0 as PlasmaComponents; PlasmaComponents.MenuItem {}", contextMenu);
-        }
-
-        function loadMenu() {
-            contextMenu.clearMenuItems();
-            linkRect.loadContextMenu(contextMenu)
-        }
-
-        function show(x, y) {
-            loadMenu();
-            if (content.length > 0) {
-                open(x, y);
-            }
-        }
+        onPopulate: linkRect.loadContextMenu(contextMenu)
     }
 }
