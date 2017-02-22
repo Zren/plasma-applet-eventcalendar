@@ -441,7 +441,11 @@ Item {
             popup.updateUI()
         }
         onEventUpdated: {
-            logger.log('onEventUpdated', calendarId, JSON.stringify(data, null, '\t'))
+            logger.log('onEventUpdated', calendarId, eventId, JSON.stringify(data, null, '\t'))
+            popup.updateUI()
+        }
+        onEventDeleted: {
+            logger.log('onEventDeleted', calendarId, eventId, JSON.stringify(data, null, '\t'))
             popup.updateUI()
         }
     }
