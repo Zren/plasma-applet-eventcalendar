@@ -206,7 +206,7 @@ Item {
             Label {
                 Layout.maximumWidth: page.width
                 wrapMode: Text.Wrap
-                text: i18n("The default font for the Breeze theme is Noto Sans which hard to read with small text. Try using the Sans Serif font if you find the text too small when adding a second line.")
+                text: i18n("The default font for the Breeze theme is Noto Sans which is hard to read with small text. Try using the Sans Serif font if you find the text too small when adding a second line.")
             }
 
             Label {
