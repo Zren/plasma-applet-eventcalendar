@@ -380,6 +380,7 @@ RowLayout {
                             console.log("event", JSON.stringify(event, null, '\t'))
                             var calendar = eventModel.getCalendar(event.calendarId)
                             console.log("calendar", JSON.stringify(calendar, null, '\t'))
+                            upcomingEvents.sendEventStartingNotification(model)
                         } else {
                             // cfg_agenda_event_clicked == "browser_viewevent"
                             Qt.openUrlExternally(htmlLink)
