@@ -407,6 +407,19 @@ RowLayout {
                         // });
                         // contextMenu.addMenuItem(menuItem);
 
+                        var deleteMenuItem = contextMenu.newSubMenu();
+                        deleteMenuItem.text = i18n("Delete Event");
+                        menuItem = contextMenu.newMenuItem(deleteMenuItem);
+                        menuItem.text = i18n("Confirm Deletion");
+                        menuItem.enabled = event.canEdit
+                        menuItem.clicked.connect(function() {
+                            logger.debug('eventModel.deleteEvent', model.calendarId, model.id)
+                            eventModel.deleteEvent(model.calendarId, model.id)
+                        });
+                        deleteMenuItem.enabled = event.canEdit
+                        deleteMenuItem.subMenu.addMenuItem(menuItem);
+                        contextMenu.addMenuItem(deleteMenuItem);
+
                         menuItem = contextMenu.newMenuItem();
                         menuItem.text = i18n("Edit in browser");
                         menuItem.clicked.connect(function() {
