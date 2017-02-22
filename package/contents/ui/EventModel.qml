@@ -120,6 +120,7 @@ Item {
 	}
 
 	function fetchDebugEvents() {
+		plasmoid.configuration.debugging = true
 		var debugCalendar = DebugFixtures.getCalendar()
 		var debugEventData = DebugFixtures.getEventData()
 		parseEventList(debugCalendar, debugEventData.items)
