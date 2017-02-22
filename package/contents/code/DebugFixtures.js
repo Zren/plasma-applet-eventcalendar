@@ -21,7 +21,7 @@ function getEventData() {
             "summary": summary,
             "start": start,
             "end": end,
-            "recurringEventId": "a1a1a1a1a1a1a1a1a1a1a1a1a1",
+            // "recurringEventId": "a1a1a1a1a1a1a1a1a1a1a1a1a1",
             "originalStartTime": {
                 "date": "2016-03-25"
             },
