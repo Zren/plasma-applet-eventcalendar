@@ -22,7 +22,9 @@ Item {
 	signal calendarFetched(string calendarId, var data)
 	signal allDataFetched()
 	signal eventCreated(string calendarId, var data)
-	signal eventUpdated(string calendarId, var data)
+	signal eventRemoved(string calendarId, string eventId, var data)
+	signal eventDeleted(string calendarId, string eventId, var data)
+	signal eventUpdated(string calendarId, string eventId, var data)
 
 	onAsyncRequestsDoneChanged: checkIfDone()
 
@@ -352,11 +354,72 @@ Item {
 		})
 	}
 
+	function deleteEvent(calendarId, eventId) {
+		if (calendarId == "debug") {
+			var data = getEvent(calendarId, eventId)
+			removeEvent(calendarId, eventId)
+			eventDeleted(calendarId, eventId, data)
+		} else if (true) { // Google Calendar
+			if (plasmoid.configuration.access_token) {
+				deleteGCalEvent({
+					access_token: plasmoid.configuration.access_token,
+					calendarId: calendarId,
+					eventId: eventId,
+				}, function(err, data) {
+					// logger.debug(err, JSON.stringify(data, null, '\t'));
+					if (eventModel.calendarIdList.indexOf(calendarId) >= 0) {
+						removeEvent(calendarId, eventId)
+						eventDeleted(calendarId, eventId, data)
+					}
+				})
+			} else {
+				logger.log('attempting to delete an event without an access token set')
+			}
+		} else {
+			logger.log('cannot delete an event for the calendar', calendarId)
+		}
+	}
+
+	function deleteGCalEvent(args, callback) {
+		// DELETE https://www.googleapis.com/calendar/v3/calendars/calendarId/events/eventId
+		var url = 'https://www.googleapis.com/calendar/v3';
+		url += '/calendars/'
+		url += encodeURIComponent(args.calendarId);
+		url += '/events/';
+		url += encodeURIComponent(args.eventId);
+		Utils.postJSON({
+			method: 'DELETE',
+			url: url,
+			headers: {
+				"Authorization": "Bearer " + args.accessToken,
+			},
+		}, function(err, data, xhr) {
+			logger.debug('deleteGCalEvent.response', err, data, xhr.status);
+			if (!err && data && data.error) {
+				return callback(data, null, xhr);
+			}
+			callback(err, data, xhr);
+		})
+	}
+
 	function getEvent(calendarId, eventId) {
 		var events = eventModel.eventsByCalendar[calendarId].items
 		for (var i = 0; i < events.length; i++) {
 			if (events[i].id == eventId) {
 				return events[i];
+			}
+		}
+	}
+
+	// Remove from model only
+	function removeEvent(calendarId, eventId) {
+		var events = eventModel.eventsByCalendar[calendarId].items
+		for (var i = 0; i < events.length; i++) {
+			if (events[i].id == eventId) {
+				var data = events[i]
+				events.splice(i, 1) // Remove item at index
+				eventRemoved(calendarId, eventId, data)
+				break
 			}
 		}
 	}
@@ -394,7 +457,7 @@ Item {
 			if (data.summary) {
 				event.summary = data.summary
 			}
-			eventUpdated(calendarId, event)
+			eventUpdated(calendarId, eventId, event)
 		})
 	}
 
