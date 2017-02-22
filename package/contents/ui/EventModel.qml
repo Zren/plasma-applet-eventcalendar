@@ -363,7 +363,7 @@ Item {
 		} else if (true) { // Google Calendar
 			if (plasmoid.configuration.access_token) {
 				deleteGCalEvent({
-					access_token: plasmoid.configuration.access_token,
+					accessToken: plasmoid.configuration.access_token,
 					calendarId: calendarId,
 					eventId: eventId,
 				}, function(err, data) {
