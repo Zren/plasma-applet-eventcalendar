@@ -393,6 +393,7 @@ RowLayout {
 
                         menuItem = contextMenu.newMenuItem();
                         menuItem.text = i18n("Edit description");
+                        menuItem.icon = "edit-rename"
                         menuItem.enabled = event.canEdit
                         menuItem.clicked.connect(function() {
                             editSummaryForm.active = !editSummaryForm.active
@@ -409,8 +410,10 @@ RowLayout {
 
                         var deleteMenuItem = contextMenu.newSubMenu();
                         deleteMenuItem.text = i18n("Delete Event");
+                        deleteMenuItem.icon = "delete"
                         menuItem = contextMenu.newMenuItem(deleteMenuItem);
                         menuItem.text = i18n("Confirm Deletion");
+                        menuItem.icon = "delete"
                         menuItem.enabled = event.canEdit
                         menuItem.clicked.connect(function() {
                             logger.debug('eventModel.deleteEvent', model.calendarId, model.id)
@@ -422,6 +425,7 @@ RowLayout {
 
                         menuItem = contextMenu.newMenuItem();
                         menuItem.text = i18n("Edit in browser");
+                        menuItem.icon = "internet-web-browser"
                         menuItem.clicked.connect(function() {
                             Qt.openUrlExternally(model.htmlLink)
                         });
