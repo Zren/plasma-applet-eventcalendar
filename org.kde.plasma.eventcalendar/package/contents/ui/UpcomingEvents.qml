@@ -18,7 +18,7 @@ EventModel {
 	}
 	onAllDataFetched: {
 		console.log('upcomingEvents.onAllDataFetched')
-		sendEventListNotification()
+		// sendEventListNotification()
 	}
 
 	function isUpcomingEvent(eventItem) {
@@ -134,11 +134,63 @@ EventModel {
 		}
 	}
 
+	function sendEventsStartingNotification() {
+		sendEventListNotification({
+			showEventInProgress: false,
+			showUpcomingEvent: false,
+		})
+	}
+
+	function sendEventStartingNotification(eventItem) {
+		notificationManager.createNotification({
+			appName: i18n("Event Calendar"),
+			appIcon: "view-calendar-upcoming-events",
+			// expireTimeout: 10000,
+			summary: eventItem.summary,
+			body: Shared.formatEventDuration(eventItem, {
+				relativeDate: timeModel.currentTime,
+				clock_24h: plasmoid.configuration.clock_24h,
+			})
+		})
+	}
+
+	function checkForEventsStarting() {
+		for (var calendarId in eventsByCalendar) {
+			var calendar = eventsByCalendar[calendarId]
+			calendar.items.forEach(function(eventItem, index, calendarEventList) {
+				if (isEventStarting(eventItem)) {
+					sendEventStartingNotification(eventItem)
+				}
+			})
+		}
+	}
+
+	function tick() {
+		checkForEventsStarting()
+	}
+
+	Connections {
+		target: eventModel
+		onAllDataFetched: {
+			logger.debug('upcomingEvents eventModel.onAllDataFetched', eventModel.dateMin, timeModel.currentTime, eventModel.dateMax)
+			// if data is from current month
+			if (eventModel.dateMin <= timeModel.currentTime && timeModel.currentTime <= eventModel.dateMax) {
+				logger.debug('syncing upcomingEvents with eventModel')
+				upcomingEvents.clear()
+				upcomingEvents.dateMin = eventModel.dateMin
+				upcomingEvents.dateMax = eventModel.dateMax
+				upcomingEvents.eventsByCalendar = eventModel.eventsByCalendar
+				upcomingEvents.allDataFetched()
+			}
+		}
+	}
+
 	Connections {
 		target: timeModel
-		onMinuteChanged: upcomingEvents.update()
+		// onMinuteChanged: upcomingEvents.update()
+		onMinuteChanged: upcomingEvents.tick()
 	}
 
 	// Component.onCompleted: upcomingEvents.update()
-	Component.onCompleted: deferredUpdate.restart()
+	// Component.onCompleted: deferredUpdate.restart()
 }
