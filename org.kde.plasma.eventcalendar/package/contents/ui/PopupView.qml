@@ -196,6 +196,33 @@ Item {
                 Layout.maximumHeight: popup.bottomRowHeight
             }
         },
+        // State {
+        //     name: "singleColumnFullHeight"
+        //     when: !popup.twoColumns && popup.showAgenda && popup.showCalendar
+
+        //     PropertyChanges { target: widgetGrid
+        //         columns: 1
+        //     }
+        //     PropertyChanges { target: meteogramView
+        //         Layout.maximumHeight: popup.topRowHeight
+        //         Layout.row: 3
+        //     }
+        //     PropertyChanges { target: timerView
+        //         Layout.maximumHeight: popup.topRowHeight
+        //         Layout.row: 0
+        //     }
+        //     PropertyChanges { target: agendaView
+        //         Layout.preferredHeight: popup.bottomRowHeight
+        //         Layout.fillHeight: true
+        //         Layout.row: 2
+        //     }
+        //     PropertyChanges { target: monthView
+        //         Layout.minimumHeight: popup.bottomRowHeight
+        //         Layout.preferredHeight: popup.bottomRowHeight
+        //         Layout.maximumHeight: popup.bottomRowHeight
+        //         Layout.row: 1
+        //     }
+        // },
         State {
             name: "singleColumn"
             when: !popup.showAgenda || !popup.showCalendar
