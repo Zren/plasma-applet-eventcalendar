@@ -36,6 +36,10 @@ Some awesome users seemed to have packaged this applet under `plasma5-applets-ev
 * Arch: https://aur.archlinux.org/packages/plasma5-applets-eventcalendar/
 * Chakra: https://chakralinux.org/ccr/packages.php?ID=7656
 
+There's also a russian who's patched the widget with russian translations.
+
+* ABF: https://abf.rosalinux.ru/victorr2007/plasma5-applet-eventcalendar
+
 ## Configure
 
 1. Right click the Calendar > Event Calendar Settings > Google Calendar
