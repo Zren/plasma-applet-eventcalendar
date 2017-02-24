@@ -80,7 +80,7 @@ Item {
                         placeholderText: i18n("Eg: 5983720")
                     }
                     Button {
-                        text: i18n('Find City')
+                        text: i18n("Find City")
                         onClicked: openWeatherMapCityDialog.open()
                     }
 
@@ -104,7 +104,7 @@ Item {
                         placeholderText: i18n("Eg: on-14")
                     }
                     Button {
-                        text: i18n('Find City')
+                        text: i18n("Find City")
                         onClicked: weatherCanadaCityDialog.open()
                     }
 
@@ -179,13 +179,13 @@ Item {
 
             RowLayout {
                 Label {
-                    text: "Units:"
+                    text: i18n("Units:")
                     Layout.alignment: Qt.AlignTop | Qt.AlignLeft
                 }
                 ColumnLayout {
                     ExclusiveGroup { id: weather_unitsGroup }
                     RadioButton {
-                        text: "Celsius"
+                        text: i18n("Celsius")
                         checked: cfg_weather_units == 'metric'
                         exclusiveGroup: weather_unitsGroup
                         onClicked: {
@@ -193,7 +193,7 @@ Item {
                         }
                     }
                     RadioButton {
-                        text: "Fahrenheit"
+                        text: i18n("Fahrenheit")
                         checked: cfg_weather_units == 'imperial'
                         exclusiveGroup: weather_unitsGroup
                         onClicked: {
@@ -201,7 +201,7 @@ Item {
                         }
                     }
                     RadioButton {
-                        text: "Kelvin"
+                        text: i18n("Kelvin")
                         checked: cfg_weather_units == 'kelvin'
                         exclusiveGroup: weather_unitsGroup
                         onClicked: {

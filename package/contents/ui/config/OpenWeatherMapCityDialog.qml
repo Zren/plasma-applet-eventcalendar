@@ -9,7 +9,7 @@ import ".."
 
 Dialog {
 	id: chooseCityDialog
-	title: i18n('Select city')
+	title: i18n("Select city")
 
 	width: 500
 	height: 600
@@ -62,13 +62,13 @@ Dialog {
 	ColumnLayout {
 		anchors.fill: parent
 		LinkText { 
-			text: i18n('Fetched from <a href="http://openweathermap.org/help/city_list.txt">http://openweathermap.org/help/city_list.txt</a>')
+			text: i18n("Fetched from <a href=\"http://openweathermap.org/help/city_list.txt\">http://openweathermap.org/help/city_list.txt</a>")
 		}
 		TextField {
 			id: cityNameInput
 			Layout.fillWidth: true
 			text: ''
-			placeholderText: i18n('Search')
+			placeholderText: i18n("Search")
 			onTextChanged: debouceApplyFilter.restart()
 		}
 		TableView {
@@ -81,19 +81,19 @@ Dialog {
 			TableViewColumn {
 				width: 240
 				role: 'name'
-				title: i18n('Name')
+				title: i18n("Name")
 			}
 			TableViewColumn {
 				width: 100
 				role: 'id'
-				title: i18n('Id')
+				title: i18n("Id")
 			}
 			TableViewColumn {
 				width: 100
 				role: 'id'
-				title: i18n('City Webpage')
+				title: i18n("City Webpage")
 				delegate: LinkText {
-					text: '<a href="http://openweathermap.org/city/' + styleData.value + '">' + i18n('Open Link') + '</a>'
+					text: '<a href="http://openweathermap.org/city/' + styleData.value + '">' + i18n("Open Link") + '</a>'
 					linkColor: styleData.selected ? theme.textColor : theme.highlightColor
 				}
 			}

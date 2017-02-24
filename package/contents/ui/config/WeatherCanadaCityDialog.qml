@@ -10,7 +10,7 @@ import "../../code/WeatherCanada.js" as WeatherCanada
 
 Dialog {
 	id: chooseCityDialog
-	title: i18n('Select city')
+	title: i18n("Select city")
 
 	width: 500
 	height: 600
@@ -65,7 +65,7 @@ Dialog {
 	ColumnLayout {
 		anchors.fill: parent
 		LinkText { 
-			text: i18n('Fetched from <a href="https://weather.gc.ca/canada_e.html">https://weather.gc.ca/canada_e.html</a>')
+			text: i18n("Fetched from <a href=\"https://weather.gc.ca/canada_e.html\">https://weather.gc.ca/canada_e.html</a>")
 		}
 
 		Item {
@@ -88,7 +88,7 @@ Dialog {
 			id: cityNameInput
 			Layout.fillWidth: true
 			text: ''
-			placeholderText: i18n('Search')
+			placeholderText: i18n("Search")
 			onTextChanged: debouceApplyFilter.restart()
 		}
 		TableView {
@@ -101,19 +101,19 @@ Dialog {
 			TableViewColumn {
 				width: 240
 				role: 'name'
-				title: i18n('Name')
+				title: i18n("Name")
 			}
 			TableViewColumn {
 				width: 100
 				role: 'id'
-				title: i18n('Id')
+				title: i18n("Id")
 			}
 			TableViewColumn {
 				width: 100
 				role: 'id'
-				title: i18n('City Webpage')
+				title: i18n("City Webpage")
 				delegate: LinkText {
-					text: '<a href="https://weather.gc.ca/city/pages/' + styleData.value + '_metric_e.html">' + i18n('Open Link') + '</a>'
+					text: '<a href="https://weather.gc.ca/city/pages/' + styleData.value + '_metric_e.html">' + i18n("Open Link") + '</a>'
 					linkColor: styleData.selected ? theme.textColor : theme.highlightColor
 				}
 			}

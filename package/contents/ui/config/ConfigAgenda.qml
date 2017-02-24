@@ -29,7 +29,7 @@ ColumnLayout {
         CheckBox {
             Layout.fillWidth: true
             id: widget_show_agenda
-            text: "Show agenda"
+            text: i18n("Show agenda")
         }
 
         GroupBox {
@@ -62,7 +62,7 @@ ColumnLayout {
                     CheckBox {
                         id: agenda_weather_show_icon
                         checked: true
-                        text: "Weather Icon"
+                        text: i18n("Weather Icon")
                     }
                     Slider {
                         id: agenda_weather_icon_height
@@ -81,24 +81,24 @@ ColumnLayout {
                     Text { width: 24 }
                     CheckBox {
                         id: show_outlines
-                        text: "Icon Outline"
+                        text: i18n("Icon Outline")
                     }
                 }
 
                 CheckBox {
                     id: agenda_weather_show_text
-                    text: "Weather Text"
+                    text: i18n("Weather Text")
                 }
 
                 RowLayout {
                     Label {
-                        text: "Click Weather:"
+                        text: i18n("Click Weather:")
                         Layout.alignment: Qt.AlignTop | Qt.AlignLeft
                     }
                     ColumnLayout {
                         ExclusiveGroup { id: agenda_weather_clickGroup }
                         RadioButton {
-                            text: "Open City Forecast In Browser"
+                            text: i18n("Open City Forecast In Browser")
                             exclusiveGroup: agenda_weather_clickGroup
                             checked: true
                         }
@@ -112,18 +112,18 @@ ColumnLayout {
 
             RowLayout {
                 Label {
-                    text: "Click Date:"
+                    text: i18n("Click Date:")
                     Layout.alignment: Qt.AlignTop | Qt.AlignLeft
                 }
                 ColumnLayout {
                     ExclusiveGroup { id: agenda_date_clickGroup }
                     RadioButton {
-                        text: "Open New Event In Browser"
+                        text: i18n("Open New Event In Browser")
                         exclusiveGroup: agenda_date_clickGroup
                         enabled: false
                     }
                     RadioButton {
-                        text: "Open New Event Form"
+                        text: i18n("Open New Event Form")
                         exclusiveGroup: agenda_date_clickGroup
                         checked: true
                     }
@@ -136,13 +136,13 @@ ColumnLayout {
 
             RowLayout {
                 Label {
-                    text: "Click Event:"
+                    text: i18n("Click Event:")
                     Layout.alignment: Qt.AlignTop | Qt.AlignLeft
                 }
                 ColumnLayout {
                     ExclusiveGroup { id: agenda_event_clickGroup }
                     RadioButton {
-                        text: "Open Event In Browser"
+                        text: i18n("Open Event In Browser")
                         checked: true
                         exclusiveGroup: agenda_event_clickGroup
                     }
@@ -156,7 +156,7 @@ ColumnLayout {
 
             RowLayout {
                 Label {
-                    text: "Show multi-day events:"
+                    text: i18n("Show multi-day events:")
                     Layout.alignment: Qt.AlignTop | Qt.AlignLeft
                 }
                 ColumnLayout {
@@ -164,7 +164,7 @@ ColumnLayout {
                         id: agenda_breakup_multiday_eventsGroup
                     }
                     RadioButton {
-                        text: "On all days"
+                        text: i18n("On all days")
                         checked: cfg_agenda_breakup_multiday_events
                         exclusiveGroup: agenda_breakup_multiday_eventsGroup
                         onClicked: {
@@ -172,7 +172,7 @@ ColumnLayout {
                         }
                     }
                     RadioButton {
-                        text: "Only on the first and current day"
+                        text: i18n("Only on the first and current day")
                         checked: !cfg_agenda_breakup_multiday_events
                         exclusiveGroup: agenda_breakup_multiday_eventsGroup
                         onClicked: {
@@ -188,30 +188,30 @@ ColumnLayout {
 
             CheckBox {
                 id: agenda_newevent_remember_calendar
-                text: "Remember selected calendar in New Event Form"
+                text: i18n("Remember selected calendar in New Event Form")
             }
         
         }
 
         GroupBox {
             Layout.fillWidth: true
-            title: 'Current Month'
+            title: i18n("Current Month")
 
             ColumnLayout {
                 CheckBox {
                     enabled: false
                     checked: true
-                    text: "Always show next 14 days"
+                    text: i18n("Always show next 14 days")
                 }
                 CheckBox {
                     enabled: false
                     checked: false
-                    text: "Hide completed events"
+                    text: i18n("Hide completed events")
                 }
                 CheckBox {
                     enabled: false
                     checked: true
-                    text: "Show all events of the current day (including completed events)"
+                    text: i18n("Show all events of the current day (including completed events)")
                 }
             }
         }
@@ -219,25 +219,25 @@ ColumnLayout {
         GroupBox {
             visible: false
             Layout.fillWidth: true
-            title: 'Colors'
+            title: i18n("Colors")
 
             ColumnLayout {
                 RowLayout {
                     Label {
-                        text: "Event In Progress:"
+                        text: i18n("Event In Progress:")
                     }
                     TextField {
                         id: agenda_event_inprogress_color
                         placeholderText: theme.highlightColor
                     }
                     Button {
-                        text: "Highlight"
+                        text: i18n("Highlight")
                         onClicked: {
                             agenda_event_inprogress_color.text = 'highlightColor'
                         }
                     }
                     Button {
-                        text: "Normal"
+                        text: i18n("Normal")
                         onClicked: {
                             agenda_event_inprogress_color.text = 'textColor'
                         }

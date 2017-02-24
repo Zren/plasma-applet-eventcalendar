@@ -331,7 +331,7 @@ Item {
                             var labelValue = item.precipitation >= 1 ? Math.round(item.precipitation) : item.precipitation.toFixed(1)
                             var labelText;
                             if (graph.rainUnits == 'mm') {
-                                labelText = i18n('%1mm', labelValue);
+                                labelText = i18n("%1mm", labelValue);
                             } else { // rainUnits == '%'
                                 labelText = i18n('%1%%', labelValue);
                             }
