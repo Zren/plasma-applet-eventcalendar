@@ -80,7 +80,7 @@ Item {
 
     FileDialog {
         id: timer_sfx_filepathDialog
-        title: 'Chose a sound effect'
+        title: i18n("Chose a sound effect")
         folder: '/usr/share/sounds'
         nameFilters: [ "Sound files (*.wav *.mp3 *.oga *.ogg)", "All files (*)" ]
         onAccepted: {
@@ -221,7 +221,7 @@ Item {
                 ColumnLayout {
                     RowLayout {
                         Label {
-                            text: "Font:"
+                            text: i18n("Font:")
                         }
                         ComboBox {
                             // org.kde.plasma.digitalclock
@@ -316,7 +316,7 @@ Item {
                         Layout.fillWidth: true
                         Text { width: indentWidth } // indent
                         Label {
-                            text: "Preset:"
+                            text: i18n("Preset:")
                         }
                         Button {
                             text: Qt.formatDateTime(new Date(), timeFormat12hour)
@@ -342,7 +342,7 @@ Item {
                         Layout.fillWidth: true
                         Text { width: indentWidth } // indent
                         Label {
-                            text: "Preset:"
+                            text: i18n("Preset:")
                             color: "transparent"
                         }
                         Button {
@@ -397,7 +397,7 @@ Item {
                         Layout.fillWidth: true
                         Text { width: indentWidth } // indent
                         Label {
-                            text: "Preset:"
+                            text: i18n("Preset:")
                         }
                         Button {
                             property string dateFormat: {
@@ -442,7 +442,7 @@ Item {
                         Layout.fillWidth: true
                         Text { width: indentWidth } // indent
                         Label {
-                            text: "Height:"
+                            text: i18n("Height:")
                         }
                         Slider {
                             id: clock_line_2_height_ratio
@@ -475,7 +475,7 @@ Item {
                         visible: showDebug
                         exclusiveGroup: clock_mousewheelGroup
                         checked: cfg_clock_mousewheel == 'resize_clock'
-                        text: 'Resize Clock'
+                        text: i18n("Resize Clock")
                         onClicked: {
                             cfg_clock_mousewheel = 'resize_clock'
                         }
@@ -485,7 +485,7 @@ Item {
                         id: clock_mousewheelGroup_runcommands
                         exclusiveGroup: clock_mousewheelGroup
                         checked: cfg_clock_mousewheel == 'run_commands'
-                        text: 'Run Commands'
+                        text: i18n("Run Commands")
                         onClicked: {
                             cfg_clock_mousewheel = 'run_commands'
                         }
@@ -494,7 +494,7 @@ Item {
                         Layout.fillWidth: true
                         Text { width: indentWidth } // indent
                         Label {
-                            text: 'Scoll Up:'
+                            text: i18n("Scoll Up:")
                         }
                         TextField {
                             Layout.fillWidth: true
@@ -505,7 +505,7 @@ Item {
                         Layout.fillWidth: true
                         Text { width: indentWidth } // indent
                         Label {
-                            text: 'Scroll Down:'
+                            text: i18n("Scroll Down:")
                         }
                         TextField {
                             Layout.fillWidth: true
@@ -516,7 +516,7 @@ Item {
                     RadioButton {
                         exclusiveGroup: clock_mousewheelGroup
                         checked: false
-                        text: 'Volume (No UI) (amixer)'
+                        text: i18n("Volume (No UI) (amixer)")
                         onClicked: {
                             setMouseWheelCommands('amixer -q sset Master 10%+', 'amixer -q sset Master 10%-')
                         }
@@ -525,7 +525,7 @@ Item {
                     RadioButton {
                         exclusiveGroup: clock_mousewheelGroup
                         checked: false
-                        text: 'Volume (UI) (qdbus)'
+                        text: i18n("Volume (UI) (qdbus)")
                         property string upCommand:   'qdbus org.kde.kglobalaccel /component/kmix invokeShortcut "increase_volume"'
                         property string downCommand: 'qdbus org.kde.kglobalaccel /component/kmix invokeShortcut "decrease_volume"'
                         onClicked: {

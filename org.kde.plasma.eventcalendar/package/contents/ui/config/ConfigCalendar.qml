@@ -27,7 +27,7 @@ ColumnLayout {
         CheckBox {
             Layout.fillWidth: true
             id: widget_show_calendar
-            text: "Show calendar"
+            text: i18n("Show calendar")
         }
         
         GroupBox {
@@ -35,13 +35,13 @@ ColumnLayout {
 
             RowLayout {
                 Label {
-                    text: "Click Date:"
+                    text: i18n("Click Date:")
                     Layout.alignment: Qt.AlignTop | Qt.AlignLeft
                 }
                 ColumnLayout {
                     ExclusiveGroup { id: month_date_clickGroup }
                     RadioButton {
-                        text: "Scroll to event in Agenda"
+                        text: i18n("Scroll to event in Agenda")
                         checked: true
                         exclusiveGroup: month_date_clickGroup
                     }
@@ -54,13 +54,13 @@ ColumnLayout {
 
             RowLayout {
                 Label {
-                    text: "DoubleClick Date:"
+                    text: i18n("DoubleClick Date:")
                     Layout.alignment: Qt.AlignTop | Qt.AlignLeft
                 }
                 ColumnLayout {
                     ExclusiveGroup { id: month_date_doubleclickGroup }
                     RadioButton {
-                        text: "Open New Event In Browser"
+                        text: i18n("Open New Event In Browser")
                         checked: true
                         exclusiveGroup: month_date_doubleclickGroup
                     }
