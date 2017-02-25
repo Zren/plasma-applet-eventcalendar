@@ -55,8 +55,8 @@ PlasmaComponents.ListItem {
             }
         } else if (mixerItemType == 'Sink') {
             // Speaker
-            var portDescription = PulseObject.ports[PulseObject.activePortIndex].description;
-            if (portDescription === 'Headphones') {
+            var portName = PulseObject.ports[PulseObject.activePortIndex].name;
+            if (portName.indexOf('headphones') >= 0) { // Eg: analog-output-headphones
                 return 'audio-headphones';
             }
             if (PulseObject.name.indexOf('alsa_output.') >= 0 && PulseObject.name.indexOf('.hdmi-') >= 0) {
