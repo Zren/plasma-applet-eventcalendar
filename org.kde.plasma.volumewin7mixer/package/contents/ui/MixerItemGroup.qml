@@ -10,13 +10,14 @@ import org.kde.plasma.extras 2.0 as PlasmaExtras
 import org.kde.plasma.private.volume 0.1
 
 GroupBox {
+    id: mixerItemGroup
     style: PlasmaStyles.GroupBoxStyle {}
     property alias view: view
     property alias spacing: view.spacing
     property alias model: view.model
     property alias delegate: view.delegate
-    property int mixerItemWidth: 100
-    property int volumeSliderWidth: 50
+    property int mixerItemWidth: config.mixerItemWidth
+    property int volumeSliderWidth: config.volumeSliderWidth
     property string mixerGroupType: ''
     visible: view.count > 0
 
@@ -29,7 +30,7 @@ GroupBox {
     
     ListView {
         id: view
-        width: Math.max(childrenRect.width, mixerItemWidth) // At least 1 mixer item wide
+        width: Math.max(childrenRect.width, mixerItemGroup.mixerItemWidth) // At least 1 mixer item wide
         height: parent.height
         spacing: 10
         boundsBehavior: Flickable.StopAtBounds
@@ -37,9 +38,9 @@ GroupBox {
 
         delegate: MixerItem {
             // width: mixerItemWidth
-            mixerItemWidth: mixerItemWidth
-            volumeSliderWidth: volumeSliderWidth
-            mixerItemType: mixerGroupType
+            mixerItemWidth: mixerItemGroup.mixerItemWidth
+            volumeSliderWidth: mixerItemGroup.volumeSliderWidth
+            mixerItemType: mixerItemGroup.mixerGroupType
         }
     }
 }

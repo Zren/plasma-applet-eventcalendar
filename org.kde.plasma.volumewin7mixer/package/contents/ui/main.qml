@@ -41,7 +41,7 @@ Item {
     AppletConfig { id: config }
 
     // Layout.minimumHeight: units.gridUnit * 12
-    Layout.preferredHeight: units.gridUnit * 24 + (mediaControllerVisible ? config.mediaControllerHeight : 0)
+    Layout.preferredHeight: config.mixerGroupHeight + (mediaControllerVisible ? config.mediaControllerHeight : 0)
     Layout.minimumWidth: 10
     Layout.preferredWidth: mixerItemRow.width
     Layout.maximumWidth: plasmoid.screenGeometry.width
@@ -273,8 +273,8 @@ Item {
         id: mpris2Source
     }
 
-    property int mixerItemWidth: 100
-    property int volumeSliderWidth: 50
+    // property int mixerItemWidth: 100
+    // property int volumeSliderWidth: 50
 
     // https://github.com/KDE/plasma-pa/tree/master/src/kcm/package/contents/ui
     PulseObjectFilterModel {
