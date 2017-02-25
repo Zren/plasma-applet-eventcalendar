@@ -44,36 +44,64 @@ Window {
             }
         }
     }
+
+    function findEntry(section, key) {
+        for (var i = 0; i < tableView.model.count; i++) {
+            var item = tableView.model.get(i)
+            if (item.section === section && item.key === key) {
+                return i
+            }
+        }
+        return -1
+    }
     
     function addEntry(key, value, section) {
-        console.log(key, value)
         tableView.model.append({
             key: key,
             value: '' + value,
-            section: section || '',
+            section: ('' + section) || '',
         })
     }
+
+    function setEntry(key, value, section) {
+        // Scan for existing property
+        var entryIndex = findEntry(section, key)
+        if (entryIndex >= 0) {
+            var item = tableView.model.get(entryIndex)
+            var newValueStr = '' + value
+            if (item.value !== newValueStr) {
+                // valueChanged
+                console.log(key, value)
+                tableView.model.setProperty(entryIndex, "value", newValueStr)
+            }
+        } else {
+            // Property doesn't yet exist.
+            console.log(key, value)
+            addEntry(key, value, section)
+        }
+    }
+
     function addPulseObjectEntry(key, section) {
         if (typeof pulseObject[key] !== 'undefined') {
-            addEntry(key, pulseObject[key], section)
+            setEntry(key, pulseObject[key], section)
         }
     }
 
     function addPortEntry(i, port, key, section) {
         if (typeof port[key] !== 'undefined') {
-            addEntry('port[' + i + '].' + key, port[key], section)
+            setEntry('port[' + i + '].' + key, port[key], section)
         }
     }
 
     function addPropertiesEntries(obj, section) {
         if (typeof obj.properties !== 'undefined') {
             for (var key in obj.properties) {
-                addEntry(key, obj.properties[key], section)
+                setEntry(key, obj.properties[key], section)
             }
         }
     }
 
-    Component.onCompleted: {
+    function update() {
         addPulseObjectEntry('name', '')
 
         // https://github.com/KDE/plasma-pa/blob/master/src/pulseobject.h
@@ -136,5 +164,16 @@ Window {
 
         //
         addPropertiesEntries(pulseObject, 'PulseObject.properties')
+    }
+
+    Component.onCompleted: {
+        update()
+    }
+
+    Timer {
+        running: true
+        repeat: true
+        interval: 1000
+        onTriggered: update()
     }
 }
