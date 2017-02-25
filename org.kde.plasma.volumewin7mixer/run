@@ -6,3 +6,4 @@
 
 killall plasmoidviewer
 plasmoidviewer -a package -l bottomedge -f horizontal
+# QT_DEVICE_PIXEL_RATIO=2 plasmoidviewer -a package -l floating -f horizontal
