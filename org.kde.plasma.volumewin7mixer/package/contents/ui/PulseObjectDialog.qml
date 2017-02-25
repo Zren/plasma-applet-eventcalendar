@@ -129,6 +129,7 @@ Window {
         // addPulseObjectEntry('client', 'Stream')
         addPulseObjectEntry('virtualStream', 'Stream')
         addPulseObjectEntry('deviceIndex', 'Stream')
+        addPulseObjectEntry('corked', 'Stream')
 
         // https://github.com/KDE/plasma-pa/blob/master/src/client.h
         // addPulseObjectEntry('name', 'Client')
