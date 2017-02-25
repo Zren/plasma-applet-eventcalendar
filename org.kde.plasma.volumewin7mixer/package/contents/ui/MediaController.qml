@@ -141,7 +141,7 @@ Item {
         anchors.left: parent.left
         anchors.top: parent.top
         anchors.right: parent.right
-        height: 8
+        height: config.mediaControllerSliderHeight
         enabled: mpris2Source.canSeek
         z: 999
         // style: PlasmaStyles.SliderStyle {

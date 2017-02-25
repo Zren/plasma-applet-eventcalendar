@@ -37,8 +37,11 @@ import "../code/sinkcommands.js" as PulseObjectCommands
 
 Item {
     id: main
+
+    AppletConfig { id: config }
+
     // Layout.minimumHeight: units.gridUnit * 12
-    Layout.preferredHeight: units.gridUnit * 24 + (mediaControllerVisible ? mediaControllerHeight : 0)
+    Layout.preferredHeight: units.gridUnit * 24 + (mediaControllerVisible ? config.mediaControllerHeight : 0)
     Layout.minimumWidth: 10
     Layout.preferredWidth: mixerItemRow.width
     Layout.maximumWidth: plasmoid.screenGeometry.width
@@ -292,7 +295,7 @@ Item {
     property bool showMediaController: plasmoid.configuration.showMediaController
     property string mediaControllerLocation: plasmoid.configuration.mediaControllerLocation || 'bottom'
     property bool mediaControllerVisible: showMediaController && mpris2Source.hasPlayer
-    property int mediaControllerHeight: 56 // = 48px albumArt + 8px seekbar
+    // property int mediaControllerHeight: 56 // = 48px albumArt + 8px seekbar
     Item {
         anchors.fill: parent
 
@@ -300,7 +303,7 @@ Item {
             id: mixerItemRow
             anchors.right: parent.right
             width: childrenRect.width
-            height: parent.height - (mediaControllerVisible ? mediaControllerHeight : 0)
+            height: parent.height - (mediaControllerVisible ? config.mediaControllerHeight : 0)
             spacing: 10
 
             MixerItemGroup {
@@ -367,7 +370,7 @@ Item {
         MediaController {
             id: mediaController
             width: main.Layout.preferredWidth
-            height: mediaControllerHeight
+            height: config.mediaControllerHeight
         }
 
         states: [
@@ -390,7 +393,7 @@ Item {
                 PropertyChanges {
                     target: mixerItemRow
                     // anchors.top: undefined
-                    anchors.topMargin: mediaControllerHeight
+                    anchors.topMargin: config.mediaControllerHeight
                     anchors.bottom: mixerItemRow.parent.bottom
                 }
                 PropertyChanges {
@@ -402,7 +405,7 @@ Item {
                 }
                 PropertyChanges {
                     target: pinButton
-                    anchors.topMargin: mediaControllerHeight
+                    anchors.topMargin: config.mediaControllerHeight
                 }
             },
             State {
@@ -412,7 +415,7 @@ Item {
                     target: mixerItemRow
                     anchors.top: mixerItemRow.parent.top
                     // anchors.bottom: undefined
-                    anchors.bottomMargin: mediaControllerHeight
+                    anchors.bottomMargin: config.mediaControllerHeight
                 }
                 PropertyChanges {
                     target: mediaController
