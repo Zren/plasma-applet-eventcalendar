@@ -16,16 +16,17 @@ Item {
         anchors.fill: parent
         anchors.topMargin: seekSlider.height
 
-        PlasmaComponents.ToolButton {
+        Item {
+        // PlasmaComponents.ToolButton {
             anchors.fill: parent
             anchors.rightMargin: rightSide.width
-            enabled: mpris2Source.canRaise
-            onClicked: {
-                mpris2Source.raise()
-                if (plasmoid.hideOnWindowDeactivate) {
-                    plasmoid.expanded = false
-                }
-            }
+            // enabled: mpris2Source.canRaise
+            // onClicked: {
+            //     mpris2Source.raise()
+            //     if (plasmoid.hideOnWindowDeactivate) {
+            //         plasmoid.expanded = false
+            //     }
+            // }
 
             Image {
                 id: albumArt
