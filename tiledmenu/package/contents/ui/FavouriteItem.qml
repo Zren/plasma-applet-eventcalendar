@@ -63,8 +63,9 @@ Item {
 		anchors.fill: parent
 
 		property bool faded: favouritesView.editing || (mouseArea.pressedButtons & Qt.LeftButton)
+		property int fadedWidth: item.width - config.favCellPushedMargin
 		opacity: faded ? 0.75 : 1
-		scale: faded ? (item.width-5) / item.width : 1
+		scale: faded ? fadedWidth / item.width : 1
 		Behavior on opacity { NumberAnimation { duration: 200 } }
 		Behavior on scale { NumberAnimation { duration: 200 } }
 

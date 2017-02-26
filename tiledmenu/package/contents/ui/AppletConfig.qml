@@ -17,6 +17,7 @@ Item {
 	readonly property int leftSectionWidth: sidebarWidth + appListWidth
 
 	readonly property int favCellWidth: 60 * units.devicePixelRatio
+	readonly property int favCellPushedMargin: 5 * units.devicePixelRatio
 	readonly property int favCellPadding: 3 * units.devicePixelRatio
 	readonly property int favColWidth: ((favCellWidth + favCellPadding * 2) * 2) // = 132 (Medium Size)
 	readonly property int favViewDefaultWidth: (favColWidth * 3) * units.devicePixelRatio + 2
