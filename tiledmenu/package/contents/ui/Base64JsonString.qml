@@ -45,7 +45,7 @@ QtObject {
 
 	function getItemProperty(key1, key2, def) {
 		var item = value[key1] || {}
-		return typeof item[key2] !== undefined ? item[key2] : def
+		return typeof item[key2] !== "undefined" ? item[key2] : def
 	}
 
 	function load() {
