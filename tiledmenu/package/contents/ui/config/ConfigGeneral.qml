@@ -209,6 +209,14 @@ ConfigPage {
 
 	ConfigSection {
 		label: i18n("App List")
+
+		ConfigSpinBox {
+			id: appListWidthControl
+			configKey: 'appListWidth'
+			before: i18n("App List Area Width")
+			suffix: i18n("px")
+			minimumValue: 0
+		}
 		
 		ConfigComboBox {
 			id: appDescriptionControl

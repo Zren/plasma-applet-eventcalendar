@@ -157,6 +157,7 @@ Item {
 		}
 	}
 
+	// Plasmoid.hideOnWindowDeactivate: false
 	property bool expanded: plasmoid.expanded
 	onExpandedChanged: {
 		if (expanded) {
@@ -178,6 +179,26 @@ Item {
 	Layout.preferredWidth: config.popupWidth
 	Layout.preferredHeight: config.popupHeight
 
+	Connections {
+		target: config
+		property int lastAppListWidth: -1
+		onAppListWidthChanged: {
+			// We we increase the appListWidth, we need to increase the window width too.
+			// console.log('onAppListWidthChanged')
+			if (config.appListWidth != lastAppListWidth) {
+				// console.log('onAppListWidthChanged', config.appListWidth != lastAppListWidth)
+				if (lastAppListWidth != -1 && lastAppListWidth < config.appListWidth) {
+					var deltaPixels = config.appListWidth - lastAppListWidth
+					// console.log('onAppListWidthChanged', deltaPixels)
+					plasmoid.configuration.width += deltaPixels
+				} else {
+					resizeToFit.restart()
+				}
+				lastAppListWidth = config.appListWidth
+			}
+		}
+	}
+
 	onWidthChanged: {
 		// console.log('popup.size', width, height, 'width')
 		// plasmoid.configuration.width = width
@@ -194,6 +215,7 @@ Item {
 			var favWidth = Math.max(0, widget.width - config.leftSectionWidth) // 398 // 888-60-430
 			var cols = Math.floor(favWidth / config.favColWidth)
 			var newWidth = config.leftSectionWidth + cols * config.favColWidth
+			// console.log(widget.width, config.leftSectionWidth, config.favColWidth, favWidth, cols, newWidth)
 			if (newWidth != widget.width) {
 				// widget.Layout.preferredWidth = newWidth
 				plasmoid.configuration.width = newWidth
