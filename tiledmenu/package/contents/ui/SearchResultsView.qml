@@ -14,39 +14,37 @@ GridLayout {
 	RowLayout {
 		id: searchFiltersRow
 		Layout.row: searchView.searchOnTop ? 2 : 0
-		height: config.flatButtonSize - 1 // -1px is for the underline seperator
-		width: parent.width
+		Layout.preferredHeight: config.searchFilterRowHeight - 1 // -1px is for the underline seperator
+		Layout.fillWidth: true
 
 		FlatButton {
 			iconName: "system-search-symbolic"
-			// height: parent.height
-			// width: height
-			width: 20
+			Layout.preferredHeight: parent.Layout.preferredHeight
+			Layout.preferredWidth: parent.Layout.preferredHeight
 			onClicked: search.applyDefaultFilters()
 			checked: search.isDefaultFilter
 			checkedEdge: searchView.searchOnTop ?  Qt.TopEdge : Qt.BottomEdge
 		}
 		FlatButton {
 			iconName: "window"
-			height: parent.height
-			// width: height
-			width: 30
+			Layout.preferredHeight: parent.Layout.preferredHeight
+			Layout.preferredWidth: parent.Layout.preferredHeight
 			onClicked: search.filters = ['services']
 			checked: search.isAppsFilter
 			checkedEdge: searchView.searchOnTop ?  Qt.TopEdge : Qt.BottomEdge
 		}
 		FlatButton {
 			iconName: "document-new"
-			height: parent.height
-			width: height
+			Layout.preferredHeight: parent.Layout.preferredHeight
+			Layout.preferredWidth: parent.Layout.preferredHeight
 			onClicked: search.filters = ['baloosearch']
 			checked: search.isFileFilter
 			checkedEdge: searchView.searchOnTop ?  Qt.TopEdge : Qt.BottomEdge
 		}
 		FlatButton {
 			iconName: "globe"
-			height: parent.height
-			width: height
+			Layout.preferredHeight: parent.Layout.preferredHeight
+			Layout.preferredWidth: parent.Layout.preferredHeight
 			onClicked: search.filters = ['bookmarks']
 			checked: search.isBookmarksFilter
 			checkedEdge: searchView.searchOnTop ?  Qt.TopEdge : Qt.BottomEdge
@@ -55,7 +53,7 @@ GridLayout {
 		Item { Layout.fillWidth: true }
 
 		PlasmaComponents.ToolButton {
-			height: parent.height
+			Layout.preferredHeight: parent.Layout.preferredHeight
 			text: i18n("More")
 			enabled: false
 		}

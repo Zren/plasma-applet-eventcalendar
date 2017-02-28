@@ -32,6 +32,16 @@ Item {
 	readonly property int popupHeight: plasmoid.configuration.height > 0 ? plasmoid.configuration.height : defaultHeight
 	
 	readonly property int menuItemHeight: plasmoid.configuration.menuItemHeight * units.devicePixelRatio
+	
+	readonly property int searchFilterRowHeight: {
+		if (plasmoid.configuration.appListWidth >= 380) {
+			return flatButtonSize // 60px
+		} else if (plasmoid.configuration.appListWidth >= 320) {
+			return flatButtonSize*3/4 // 45px
+		} else {
+			return flatButtonSize/2 // 30px
+		}
+	}
 
 	//--- Colors
 	readonly property color defaultTileColor: plasmoid.configuration.defaultTileColor || theme.buttonBackgroundColor
