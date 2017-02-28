@@ -359,6 +359,10 @@ PlasmaComponents.ListItem {
                     readonly property bool isMic: mixerItemType == 'Source' || mixerItemType == 'SourceOutput'
                     readonly property string prefix: isMic ? 'microphone-sensitivity' : 'audio-volume'
                     source: Icon.name(PulseObject.volume, PulseObject.muted, prefix)
+
+                    // From ToolButtonStyle:
+                    active: parent.hovered
+                    colorGroup: parent.hovered || !parent.flat ? PlasmaCore.Theme.ButtonColorGroup : PlasmaCore.ColorScope.colorGroup
                 }
                 
                 onClicked: {
