@@ -18,7 +18,8 @@ AppToolButton {
 	property alias iconSource: itemIcon.source
 
 	// We need to look at the js list since ListModel doesn't support item's with non primitive propeties (like an Image).
-	property var iconInstance: listView.model.list[index] ? listView.model.list[index].icon : ""
+	property bool modelListPopulated: !!listView.model.list && listView.model.list.length - 1 >= index
+	property var iconInstance: modelListPopulated && listView.model.list[index] ? listView.model.list[index].icon : ""
 	Connections {
 		target: listView.model
 		onRefreshed: {
