@@ -42,14 +42,14 @@ GridLayout {
 			checked: search.isFileFilter
 			checkedEdge: searchView.searchOnTop ?  Qt.TopEdge : Qt.BottomEdge
 		}
-		FlatButton {
-			iconName: "globe"
-			Layout.preferredHeight: parent.Layout.preferredHeight
-			Layout.preferredWidth: parent.Layout.preferredHeight
-			onClicked: search.filters = ['bookmarks']
-			checked: search.isBookmarksFilter
-			checkedEdge: searchView.searchOnTop ?  Qt.TopEdge : Qt.BottomEdge
-		}
+		// FlatButton {
+		// 	iconName: "globe"
+		// 	Layout.preferredHeight: parent.Layout.preferredHeight
+		// 	Layout.preferredWidth: parent.Layout.preferredHeight
+		// 	onClicked: search.filters = ['bookmarks']
+		// 	checked: search.isBookmarksFilter
+		// 	checkedEdge: searchView.searchOnTop ?  Qt.TopEdge : Qt.BottomEdge
+		// }
 
 		Item { Layout.fillWidth: true }
 
@@ -58,7 +58,7 @@ GridLayout {
 			Layout.preferredHeight: parent.Layout.preferredHeight
 			Layout.preferredWidth: moreFiltersButtonRow.implicitWidth + padding*2
 			property int padding: (config.searchFilterRowHeight - config.flatButtonIconSize) / 2
-			enabled: false
+			// enabled: false
 
 			RowLayout {
 				id: moreFiltersButtonRow
@@ -92,14 +92,45 @@ GridLayout {
 		// anchors.bottom: searchFiltersRow.bottom - 1
 	}
 
-	ScrollView {
+	
+
+	StackView {
+		id: searchResultsViewStackView
 		Layout.row: searchView.searchOnTop ? 0 : 2
 		Layout.fillWidth: true
 		Layout.fillHeight: true
+		clip: true
+		initialItem: searchResultsListScrollView
 
-		SearchResultsList {
-			id: searchResultsList
-			anchors.fill: parent
+		Connections {
+			target: searchResultsView
+			onFilterViewOpenChanged: {
+				if (searchResultsView.filterViewOpen) {
+					searchResultsViewStackView.push(searchFiltersViewScrollView)
+				} else {
+					searchResultsViewStackView.pop()
+				}
+			}
 		}
+
+		ScrollView {
+			id: searchResultsListScrollView
+			visible: false
+
+			SearchResultsList {
+				id: searchResultsList
+			}
+		}
+
+		ScrollView {
+			id: searchFiltersViewScrollView
+			visible: false
+
+			SearchFiltersView {
+				id: searchFiltersView
+				width: searchFiltersViewScrollView.viewport.width
+			}
+		}
+		
 	}
 }

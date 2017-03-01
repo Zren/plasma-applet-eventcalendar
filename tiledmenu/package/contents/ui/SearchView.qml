@@ -184,8 +184,9 @@ Item {
 				target: search
 				onQueryChanged: {
 					if (search.query.length > 0 && stackView.currentItem != searchResultsView) {
-						stackView.push(searchResultsView, true);
+						stackView.push(searchResultsView, true)
 					}
+					searchResultsView.filterViewOpen = false
 				}
 			}
 
@@ -279,6 +280,6 @@ Item {
 		anchors.left: parent.left
 		anchors.right: parent.right
 
-		listView: stackView.currentItem ? stackView.currentItem.listView : []
+		listView: stackView.currentItem && stackView.currentItem.listView ? stackView.currentItem.listView : []
 	}
 }

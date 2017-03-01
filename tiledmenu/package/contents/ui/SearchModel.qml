@@ -26,6 +26,7 @@ Item {
 	onFiltersChanged: {
 		runnerModel.deleteWhenEmpty = !runnerModel.deleteWhenEmpty // runnerModel.clear()
 		runnerModel.runners = filters
+		clearQueryPrefix()
 		runnerModel.query = search.query
 	}
 
@@ -82,7 +83,37 @@ Item {
 	property bool isFileFilter: isFilter('baloosearch')
 	property bool isBookmarksFilter: isFilter('bookmarks')
 
+	function hasFilter(runnerId) {
+		return filters.indexOf(runnerId) >= 0
+	}
+
 	function applyDefaultFilters() {
 		filters = defaultFilters
+	}
+
+	function setQueryPrefix(prefix) {
+		// First check to see if there's already a prefix we need to replace.
+		var firstSpaceIndex = query.indexOf(' ')
+		if (firstSpaceIndex > 0) {
+			var firstToken = query.substring(0, firstSpaceIndex)
+
+			if (/^type:\w+$/.exec(firstToken) // baloosearch
+				|| /^define$/.exec(firstToken) // Dictionary
+			) {
+				// replace existing prefix
+				query = prefix + query.substring(firstSpaceIndex + 1, query.length)
+				return
+			}
+		}
+		
+		// If not, just prepend the prefix
+		var newQuery = prefix + query
+		if (newQuery != query) {
+			query = prefix + query
+		}
+	}
+
+	function clearQueryPrefix() {
+		setQueryPrefix('')
 	}
 }
