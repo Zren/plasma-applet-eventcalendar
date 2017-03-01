@@ -10,6 +10,7 @@ GridLayout {
 	id: searchResultsView
 	rowSpacing: 0
 	property alias listView: searchResultsList
+	property bool filterViewOpen: false
 	
 	RowLayout {
 		id: searchFiltersRow
@@ -52,10 +53,35 @@ GridLayout {
 
 		Item { Layout.fillWidth: true }
 
-		PlasmaComponents.ToolButton {
+		FlatButton {
+			id: moreFiltersButton
 			Layout.preferredHeight: parent.Layout.preferredHeight
-			text: i18n("More")
+			Layout.preferredWidth: moreFiltersButtonRow.implicitWidth + padding*2
+			property int padding: (config.searchFilterRowHeight - config.flatButtonIconSize) / 2
 			enabled: false
+
+			RowLayout {
+				id: moreFiltersButtonRow
+				anchors.centerIn: parent
+				anchors.margins: parent.padding
+				
+				PlasmaComponents.Label {
+					id: moreFiltersButtonLabel
+					text: i18n("Filters")
+				}
+				PlasmaCore.IconItem {
+					source: "usermenu-down"
+					rotation: searchResultsView.filterViewOpen ? 180 : 0
+					Layout.preferredHeight: config.flatButtonIconSize
+					Layout.preferredWidth: config.flatButtonIconSize
+
+					Behavior on rotation {
+						NumberAnimation { duration: units.longDuration }
+					}
+				}
+			}
+
+			onClicked: searchResultsView.filterViewOpen = !searchResultsView.filterViewOpen
 		}
 	}
 
