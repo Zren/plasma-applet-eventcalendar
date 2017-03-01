@@ -28,7 +28,8 @@ RowLayout {
 		id: spinBox
 
 		value: plasmoid.configuration[configKey]
-		onValueChanged: plasmoid.configuration[configKey] = value
+		// onValueChanged: plasmoid.configuration[configKey] = value
+		onValueChanged: serializeTimer.start()
 		maximumValue: 2147483647
 	}
 
@@ -36,5 +37,11 @@ RowLayout {
 		id: labelAfter
 		text: ""
 		visible: text
+	}
+
+	Timer { // throttle
+		id: serializeTimer
+		interval: 300
+		onTriggered: plasmoid.configuration[configKey] = value
 	}
 }
