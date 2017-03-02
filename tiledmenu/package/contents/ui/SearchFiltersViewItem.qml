@@ -19,6 +19,7 @@ RowLayout {
 
 	property alias iconSource: applyFilterButton.iconSource
 	property alias text: applyFilterButton.text
+	property alias subText: applyFilterButton.subText
 
 	property alias checkBox: isDefaultFilter
 	property alias applyButton: applyFilterButton
@@ -36,14 +37,57 @@ RowLayout {
 		Layout.minimumWidth: surfaceNormal.margins.left
 		Layout.maximumWidth: Layout.minimumWidth
 		Layout.fillHeight: true
-		visible: isDefaultFilter.visible && searchFiltersViewItem.indentLevel > 0
+		// visible: isDefaultFilter.visible && searchFiltersViewItem.indentLevel > 0
 	}
 
 
 	Item { // Align CheckBoxes buttons to "All"
-		Layout.minimumWidth: (isDefaultFilter.Layout.preferredWidth + surfaceNormal.margins.left) * (searchFiltersViewItem.indentLevel - (isDefaultFilter.visible ? 1 : 0))
+		// Layout.minimumWidth: (isDefaultFilter.Layout.preferredWidth + surfaceNormal.margins.left) * (searchFiltersViewItem.indentLevel - (isDefaultFilter.visible ? 1 : 0))
+		Layout.minimumWidth: (isDefaultFilter.Layout.minimumWidth + surfaceNormal.margins.left) * searchFiltersViewItem.indentLevel
 		Layout.maximumWidth: Layout.minimumWidth
 		Layout.fillHeight: true
+	}
+
+	PlasmaComponents.ToolButton {
+		id: applyFilterButton
+		Layout.fillWidth: true
+		property string subText: ""
+
+		style: PlasmaStyles.ToolButtonStyle {
+			id: style
+			label: RowLayout {
+				PlasmaCore.IconItem {
+					source: control.iconSource
+				}
+				ColumnLayout {
+					Layout.fillWidth: true
+					spacing: 0
+					PlasmaComponents.Label {
+						Layout.fillWidth: true
+						text: control.text
+						horizontalAlignment: Text.AlignLeft
+						maximumLineCount: 1
+						elide: Text.ElideRight
+					}
+					PlasmaComponents.Label {
+						Layout.fillWidth: true
+						text: control.subText
+						horizontalAlignment: Text.AlignLeft
+						visible: control.subText
+						color: config.menuItemTextColor2
+						maximumLineCount: 1
+						elide: Text.ElideRight
+					}
+				}
+			}
+		}
+		onClicked: {
+			if (searchFiltersViewItem.runnerId) {
+				search.filters = [searchFiltersViewItem.runnerId]
+			}
+			searchFiltersViewItem.applyButtonClicked()
+			searchResultsView.filterViewOpen = false
+		}
 	}
 
 	PlasmaComponents.CheckBox {
@@ -59,32 +103,16 @@ RowLayout {
 		}
 		// Layout.fillHeight: true
 		Layout.preferredHeight: config.flatButtonIconSize
-		Layout.preferredWidth: config.flatButtonIconSize
+		Layout.minimumWidth: config.flatButtonIconSize
+		Layout.preferredWidth: implicitWidth
 		implicitHeight: -1
+		text: i18n("Default")
 	}
 
-	PlasmaComponents.ToolButton {
-		id: applyFilterButton
-		Layout.fillWidth: true
-		style: PlasmaStyles.ToolButtonStyle {
-			id: style
-			label: RowLayout {
-				PlasmaCore.IconItem {
-					source: control.iconSource
-				}
-				PlasmaComponents.Label {
-					text: control.text
-					Layout.fillWidth: true
-					horizontalAlignment: Text.AlignLeft
-				}
-			}
-		}
-		onClicked: {
-			if (searchFiltersViewItem.runnerId) {
-				search.filters = [searchFiltersViewItem.runnerId]
-			}
-			searchFiltersViewItem.applyButtonClicked()
-			searchResultsView.filterViewOpen = false
-		}
+	Item { // Align CheckBoxes buttons to "All"
+		Layout.minimumWidth: surfaceNormal.margins.right
+		Layout.maximumWidth: Layout.minimumWidth
+		Layout.fillHeight: true
+		// visible: isDefaultFilter.visible && searchFiltersViewItem.indentLevel > 0
 	}
 }

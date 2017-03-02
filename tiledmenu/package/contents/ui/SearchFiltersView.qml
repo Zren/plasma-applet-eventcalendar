@@ -16,7 +16,19 @@ ColumnLayout {
 		runnerId: ""
 		indentLevel: 0
 		iconSource: "applications-other"
-		text: i18n("All")
+		text: i18n("All") + ' (Not working)'
+		subText: i18n("Search with all KRunner plugins")
+		checkBox.visible: false
+		onApplyButtonClicked: search.filters = []
+		enabled: false
+	}
+
+	SearchFiltersViewItem {
+		runnerId: ""
+		indentLevel: 0
+		iconSource: "applications-other"
+		text: i18n("Default")
+		subText: i18n("Search with user selected defaults")
 		checkBox.visible: false
 		onApplyButtonClicked: search.applyDefaultFilters()
 	}
