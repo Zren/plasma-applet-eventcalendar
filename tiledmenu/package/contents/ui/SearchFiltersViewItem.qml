@@ -58,8 +58,8 @@ RowLayout {
 			}
 		}
 		// Layout.fillHeight: true
-		Layout.preferredHeight: 30
-		Layout.preferredWidth: 30
+		Layout.preferredHeight: config.flatButtonIconSize
+		Layout.preferredWidth: config.flatButtonIconSize
 		implicitHeight: -1
 	}
 
