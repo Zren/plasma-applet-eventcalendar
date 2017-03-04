@@ -28,9 +28,11 @@ Item {
 
     Layout.minimumWidth: {
         if (twoColumns) {
-            return (400 + 10 + 400) * units.devicePixelRatio
+            // return (400 + 10 + 400) * units.devicePixelRatio
+            return units.gridUnit * 28
         } else {
-            return 400 * units.devicePixelRatio
+            // return 400 * units.devicePixelRatio
+            return units.gridUnit * 14
         }
     }
     Layout.preferredWidth: {
@@ -42,7 +44,8 @@ Item {
     }
     Layout.maximumWidth: plasmoid.screenGeometry.width
 
-    Layout.minimumHeight: 400 * units.devicePixelRatio
+    // Layout.minimumHeight: 400 * units.devicePixelRatio
+    Layout.minimumHeight: units.gridUnit * 14
     Layout.preferredHeight: {
         if (singleColumnFullHeight) {
             return plasmoid.screenGeometry.height
@@ -131,6 +134,19 @@ Item {
         // logger.debug(popup.state, widgetGrid.columns, widgetGrid.rows)
     }
     states: [
+        // State {
+        //     name: "calendar"
+        //     when: !popup.showAgenda && popup.showCalendar && !popup.showMeteogram && !popup.showTimer
+
+        //     PropertyChanges { target: popup
+        //         Layout.preferredWidth: units.gridUnit * 14
+        //         Layout.preferredHeight: units.gridUnit * 14
+        //     }
+        //     PropertyChanges { target: monthView
+        //         Layout.preferredWidth: -1
+        //         Layout.preferredHeight: -1
+        //     }
+        // },
         State {
             name: "twoColumns+agenda+month"
             when: popup.twoColumns && popup.showAgenda && popup.showCalendar && !popup.showMeteogram && !popup.showTimer
