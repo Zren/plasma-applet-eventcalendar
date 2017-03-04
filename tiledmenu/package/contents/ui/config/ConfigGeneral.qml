@@ -143,16 +143,25 @@ ConfigPage {
 		}
 		RowLayout {
 			RadioButton {
+				id: defaultTileColorRadioButton
 				text: i18n('Custom Color')
 				exclusiveGroup: tilesThemeGroup
 				checked: true
 			}
 			ConfigColor {
+				id: defaultTileColorColor
 				label: ""
 				configKey: 'defaultTileColor'
 			}
 		}
-		
+		RadioButton {
+			text: i18n("Transparent")
+			exclusiveGroup: tilesThemeGroup
+			onClicked: {
+				defaultTileColorColor.setValue("#00000000")
+				defaultTileColorRadioButton.checked = true
+			}
+		}
 		ConfigComboBox {
 			configKey: "tileLabelAlignment"
 			label: i18n("Text Alignment")
