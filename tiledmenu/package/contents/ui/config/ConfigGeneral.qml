@@ -136,7 +136,7 @@ ConfigPage {
 		label: i18n("Tiles")
 
 		RadioButton {
-			text: i18n('Desktop Theme (%1)', theme.themeName)
+			text: i18n("Desktop Theme (%1)", theme.themeName)
 			exclusiveGroup: tilesThemeGroup
 			checked: false
 			enabled: false
@@ -144,7 +144,7 @@ ConfigPage {
 		RowLayout {
 			RadioButton {
 				id: defaultTileColorRadioButton
-				text: i18n('Custom Color')
+				text: i18n("Custom Color")
 				exclusiveGroup: tilesThemeGroup
 				checked: true
 			}
@@ -178,14 +178,14 @@ ConfigPage {
 		label: i18n("Sidebar")
 
 		RadioButton {
-			text: i18n('Desktop Theme (%1)', theme.themeName)
+			text: i18n("Desktop Theme (%1)", theme.themeName)
 			exclusiveGroup: sidebarThemeGroup
 			checked: plasmoid.configuration.sidebarFollowsTheme
 			onClicked: plasmoid.configuration.sidebarFollowsTheme = true
 		}
 		RowLayout {
 			RadioButton {
-				text: i18n('Custom Color')
+				text: i18n("Custom Color")
 				exclusiveGroup: sidebarThemeGroup
 				checked: !plasmoid.configuration.sidebarFollowsTheme
 				onClicked: plasmoid.configuration.sidebarFollowsTheme = false
@@ -203,13 +203,13 @@ ConfigPage {
 		label: i18n("Search Box")
 		
 		RadioButton {
-			text: i18n('Desktop Theme (%1)', theme.themeName)
+			text: i18n("Desktop Theme (%1)", theme.themeName)
 			exclusiveGroup: searchBoxThemeGroup
 			checked: plasmoid.configuration.searchFieldFollowsTheme
 			onClicked: plasmoid.configuration.searchFieldFollowsTheme = true
 		}
 		RadioButton {
-			text: i18n('Windows (White)')
+			text: i18n("Windows (White)")
 			exclusiveGroup: searchBoxThemeGroup
 			checked: !plasmoid.configuration.searchFieldFollowsTheme
 			onClicked: plasmoid.configuration.searchFieldFollowsTheme = false
