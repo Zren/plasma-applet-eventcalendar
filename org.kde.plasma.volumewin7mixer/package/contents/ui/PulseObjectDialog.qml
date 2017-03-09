@@ -11,7 +11,7 @@ Window {
     property var pulseObject
     width: 600
     height: 600
-    title: i18n('%1 - Audio Volume', pulseObject.name)
+    title: i18n("%1 - Audio Volume", pulseObject.name)
 
 
     ColumnLayout {

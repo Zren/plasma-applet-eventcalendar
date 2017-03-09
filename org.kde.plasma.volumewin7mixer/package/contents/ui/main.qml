@@ -327,7 +327,7 @@ Item {
 
             MixerItemGroup {
                 height: parent.height
-                title: 'Recording Apps'
+                title: i18n("Recording Apps")
 
                 model: appOutputsModel
                 mixerGroupType: 'SourceOutput'
@@ -335,7 +335,7 @@ Item {
 
             MixerItemGroup {
                 height: parent.height
-                title: 'Apps'
+                title: i18n("Apps")
 
                 model: appsModel
                 mixerGroupType: 'SinkInput'
@@ -343,7 +343,7 @@ Item {
 
             MixerItemGroup {
                 height: parent.height
-                title: 'Mics'
+                title: i18n("Mics")
         
                 model: sourceModel
                 mixerGroupType: 'Source'
@@ -351,7 +351,7 @@ Item {
 
             MixerItemGroup {
                 height: parent.height
-                title: 'Speakers'
+                title: i18n("Speakers")
                 
                 model: sinkModel
                 mixerGroupType: 'Sink'

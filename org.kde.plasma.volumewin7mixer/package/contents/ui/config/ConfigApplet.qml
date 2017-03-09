@@ -21,20 +21,20 @@ ColumnLayout {
 
         GroupBox {
             Layout.fillWidth: true
-            title: 'Media Keys'
+            title: i18n("Media Keys")
 
             ColumnLayout {
 
                 RowLayout {
                     Label {
-                        text: 'Volume Up/Down Steps:'
+                        text: i18n("Volume Up/Down Steps:")
                     }
                     SpinBox {
                         id: volumeUpDownSteps
                         minimumValue: 1
                     }
                     Label {
-                        text: 'One step = ' + Math.round(1/volumeUpDownSteps.value * 100) + '%'
+                        text: i18n("One step = %1%", Math.round(1/volumeUpDownSteps.value * 100))
                     }
                 }
 
@@ -43,7 +43,7 @@ ColumnLayout {
 
         GroupBox {
             Layout.fillWidth: true
-            title: 'Mixer'
+            title: i18n("Mixer")
 
             ColumnLayout {
 
@@ -51,12 +51,12 @@ ColumnLayout {
                     enabled: false
                     id: showVolumeTickmarks
                     checked: true
-                    text: 'Show Ticks every 10%'
+                    text: i18n("Show Ticks every 10%")
                 }
 
                 RowLayout {
                     Label {
-                        text: 'Volume Boost'
+                        text: i18n("Volume Boost")
                     }
                     SpinBox {
                         enabled: false
@@ -103,18 +103,18 @@ ColumnLayout {
 
         GroupBox {
             Layout.fillWidth: true
-            title: 'Options'
+            title: i18n("Options")
 
             ColumnLayout {
 
                 CheckBox {
                     id: moveAllAppsOnSetDefault
-                    text: 'Move all Apps to device when setting default device (when set in with the context menu)'
+                    text: i18n("Move all Apps to device when setting default device (when set in with the context menu)")
                 }
 
                 CheckBox {
                     id: showOsd
-                    text: 'Show OSD on when changing the volume.'
+                    text: i18n("Show OSD on when changing the volume.")
                 }
 
             }
@@ -122,7 +122,7 @@ ColumnLayout {
 
         GroupBox {
             Layout.fillWidth: true
-            title: 'Media Controller'
+            title: i18n("Media Controller")
 
             ColumnLayout {
 

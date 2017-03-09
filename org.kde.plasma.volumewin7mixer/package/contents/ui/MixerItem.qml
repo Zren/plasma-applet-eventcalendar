@@ -82,13 +82,13 @@ PlasmaComponents.ListItem {
         var name = PulseObject.name;
         if (name.indexOf('alsa_input.') >= 0) {
             if (name.indexOf('.analog-') >= 0) {
-                return 'Mic'
+                return i18n("Mic")
             }
         } else if (name.indexOf('alsa_output.') >= 0) {
             if (name.indexOf('.analog-') >= 0) {
-                return 'Speaker'
+                return i18n("Speaker")
             } else if (name.indexOf('.hdmi-') >= 0) {
-                return 'HDMI'
+                return i18n("HDMI")
             }
         }
 
