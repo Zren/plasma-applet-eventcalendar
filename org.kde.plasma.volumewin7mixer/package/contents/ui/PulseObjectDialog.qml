@@ -6,6 +6,8 @@ import QtQuick.Layouts 1.0
 import QtQuick.Dialogs 1.0
 
 Window {
+    id: pulseObjectDialog
+
     property var pulseObject
     width: 600
     height: 600
@@ -171,7 +173,7 @@ Window {
     }
 
     Timer {
-        running: true
+        running: pulseObjectDialog.visible
         repeat: true
         interval: 1000
         onTriggered: update()
