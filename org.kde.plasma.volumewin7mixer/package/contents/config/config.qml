@@ -7,4 +7,9 @@ ConfigModel {
         icon: "plasma"
         source: "config/ConfigApplet.qml"
     }
+    // ConfigCategory {
+    //     name: "Stream Restore"
+    //     icon: "document-save-symbolic"
+    //     source: "config/ConfigStreamRestore.qml"
+    // }
 }
