@@ -167,6 +167,8 @@ Item {
             if (!mediaController.disablePositionUpdate) {
                 // delay setting the position to avoid race conditions
                 queuedPositionUpdate.restart()
+            } else {
+                console.log('onValueChanged skipped')
             }
         }
         maximumValue: mpris2Source.length
@@ -190,7 +192,13 @@ Item {
         Timer {
             id: queuedPositionUpdate
             interval: 100
-            onTriggered: mpris2Source.setPosition(seekSlider.value)
+            onTriggered: {
+                if (!mediaController.disablePositionUpdate) {
+                    mpris2Source.setPosition(seekSlider.value)
+                } else {
+                    console.log('queuedPositionUpdate skipped')
+                }
+            }
         }
 
         Timer {
