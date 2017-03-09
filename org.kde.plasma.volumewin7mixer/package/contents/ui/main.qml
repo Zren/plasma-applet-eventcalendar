@@ -472,5 +472,7 @@ Item {
         plasmoid.setAction("pavucontrol", i18n("PulseAudio Control"), "configure");
         plasmoid.setAction("alsamixer", i18n("AlsaMixer"), "configure");
         plasmoid.setAction("configure", i18n("Audio Volume Settings..."), "configure");
+
+        // plasmoid.action("configure").trigger();
     }
 }
