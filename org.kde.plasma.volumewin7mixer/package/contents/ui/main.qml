@@ -147,6 +147,25 @@ Item {
         showOsd(toMute ? 0 : sourceModel.defaultSource.volume);
     }
 
+    // Connections {
+    //     target: sinkModel
+    //     onDefaultSinkChanged: {
+    //         // console.log('sinkModel.onDefaultSinkChanged', sinkModel.defaultSink)
+    //         if (!sinkModel.defaultSink) {
+    //             return
+    //         }
+    //         if (plasmoid.configuration.moveAllAppsOnSetDefault) {
+    //             // console.log(appsModel, appsModel.count)
+    //             for (var i = 0; i < appsModel.count; i++) {
+    //                 var stream = appsModel.get(i)
+    //                 stream = stream.PulseObject
+    //                 // console.log(i, stream, stream.name, stream.deviceIndex, sinkModel.defaultSink.index)
+    //                 stream.deviceIndex = sinkModel.defaultSink.index
+    //             }
+    //         }
+    //     }
+    // }
+
     Plasmoid.compactRepresentation: PlasmaCore.IconItem {
         source: main.speakerIcon
         active: mouseArea.containsMouse
