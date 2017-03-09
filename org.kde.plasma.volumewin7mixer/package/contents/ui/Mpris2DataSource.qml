@@ -40,7 +40,7 @@ PlasmaCore.DataSource {
     property bool canSeek: canSeekMpris && track && currentMetadata && currentMetadata["mpris:length"]
 
 
-    property var currentMetadata: mpris2Source.data[mpris2Source.current] ? mpris2Source.data[mpris2Source.current].Metadata : undefined
+    property var currentMetadata: mpris2Source.data[mpris2Source.current] ? mpris2Source.data[mpris2Source.current].Metadata : null
     property string albumArt: currentMetadata ? currentMetadata["mpris:artUrl"] || "" : ""
     property string track: {
         if (!currentMetadata) {
