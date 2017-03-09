@@ -141,6 +141,23 @@ PlasmaComponents.ListItem {
         return lines.join('<br>');
     }
 
+    // property bool isDefault: typeof PulseObject.default === "boolean" ? PulseObject.default : false
+    // onIsDefaultChanged: {
+    //     console.log('onIsDefaultChanged', isDefault, PulseObject.name)
+    //     if (isDefault) {
+    //         if (plasmoid.configuration.moveAllAppsOnSetDefault) {
+    //             console.log(appsModel, appsModel.count)
+    //             for (var i = 0; i < appsModel.count; i++) {
+    //                 var stream = appsModel.get(i); 
+    //                 stream = stream.PulseObject;
+    //                 // console.log(i, stream, stream.name, stream.deviceIndex, PulseObject.index)
+    //                 // stream.deviceIndex = PulseObject.index;
+    //                 stream.deviceIndex = 4294967295
+    //             }
+    //         }
+    //     }
+    // }
+
     DropArea {
         id: dropArea
         anchors.fill: parent
