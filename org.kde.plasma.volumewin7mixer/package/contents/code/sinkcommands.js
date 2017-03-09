@@ -15,7 +15,7 @@ function toggleMute(pulseObject) {
 }
 
 function setVolume(pulseObject, volume) {
-    console.log('setVolume', pulseObject.volume, '=>', volume);
+    // console.log('setVolume', pulseObject.volume, '=>', volume);
     if ((volume > 0 && pulseObject.muted) || (volume == 0 && !pulseObject.muted)) {
         toggleMute(pulseObject);
     }
@@ -24,7 +24,7 @@ function setVolume(pulseObject, volume) {
 }
 
 function addVolume(pulseObject, step) {
-    console.log('addVolume', pulseObject, step);
+    // console.log('addVolume', pulseObject, step);
     var volume = bound(pulseObject.volume + step, 0, maximumValue);
     if (maximumValue - volume < step) {
         volume = maximumValue;
@@ -35,7 +35,7 @@ function addVolume(pulseObject, step) {
 }
 
 function increaseVolume(pulseObject) {
-    console.log('increaseVolume', pulseObject);
+    // console.log('increaseVolume', pulseObject);
     var totalSteps = plasmoid.configuration.volumeUpDownSteps;
     var step = maximumValue / totalSteps;
     return addVolume(pulseObject, step);
@@ -43,7 +43,7 @@ function increaseVolume(pulseObject) {
 
 
 function decreaseVolume(pulseObject) {
-    console.log('decreaseVolume', pulseObject);
+    // console.log('decreaseVolume', pulseObject);
     var totalSteps = plasmoid.configuration.volumeUpDownSteps;
     var step = maximumValue / totalSteps;
     return addVolume(pulseObject, -step);
