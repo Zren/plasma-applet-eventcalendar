@@ -31,6 +31,7 @@ Item {
     property alias cfg_clock_mousewheel_up: clock_mousewheel_up.text
     property alias cfg_clock_mousewheel_down: clock_mousewheel_down.text
     property alias cfg_clock_maxheight: clock_maxheight.value
+    property alias cfg_showBackground: showBackground.checked
 
     property string timeFormat24hour: 'hh:mm'
     property string timeFormat12hour: 'h:mm AP'
@@ -535,6 +536,17 @@ Item {
                 }
             }
 
+        }
+
+        HeaderText {
+            text: i18n("Misc")
+        }
+        ColumnLayout {
+            CheckBox {
+                id: showBackground
+                Layout.fillWidth: true
+                text: i18n("Desktop Widget: Show background")
+            }
         }
 
         HeaderText {
