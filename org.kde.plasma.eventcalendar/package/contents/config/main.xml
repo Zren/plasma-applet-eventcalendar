@@ -89,6 +89,9 @@
     <entry name="show_outlines" type="bool">
       <default>true</default>
     </entry>
+    <entry name="showBackground" type="bool">
+      <default>true</default>
+    </entry>
   </group>
   
   <group name="Calendar">
