@@ -266,21 +266,13 @@ Item {
         }
     }
 
-    // org.kde.plasma.mediacontrollercompact
     PlasmaCore.DataSource {
-        id: executeSource
+        id: executable
         engine: "executable"
-        connectedSources: []
-        onNewData: {
-            //we get new data when the process finished, so we can remove it
-            disconnectSource(sourceName)
+        onNewData: disconnectSource(sourceName)
+        function exec(cmd) {
+            connectSource(cmd)
         }
-    }
-    function exec(cmd) {
-        //Note: we assume that 'cmd' is executed quickly so that a previous call
-        //with the same 'cmd' has already finished (otherwise no new cmd will be
-        //added because it is already in the list)
-        executeSource.connectSource(cmd)
     }
 
     VolumeOSD {
@@ -480,11 +472,11 @@ Item {
     // }
 
     function action_alsamixer() {
-        exec("konsole -e alsamixer");
+        executable.exec("konsole -e alsamixer")
     }
 
     function action_pavucontrol() {
-        exec("pavucontrol");
+        executable.exec("pavucontrol")
     }
 
     Component.onCompleted: {
