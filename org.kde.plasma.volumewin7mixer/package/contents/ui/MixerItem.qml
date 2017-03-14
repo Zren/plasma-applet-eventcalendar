@@ -265,6 +265,8 @@ PlasmaComponents.ListItem {
                                 horizontalAlignment: Text.AlignHCenter
                             }
                         }
+
+                        onClicked: contextMenu.showBelow(iconLabelButton)
                     }
                 }
             }
@@ -537,8 +539,15 @@ PlasmaComponents.ListItem {
         }
 
         function show(x, y) {
-            loadDynamicActions();
-            open(x, y);
+            loadDynamicActions()
+            open(x, y)
+        }
+
+        function showBelow(item) {
+            visualParent = item
+            placement = PlasmaCore.Types.BottomPosedLeftAlignedPopup
+            loadDynamicActions()
+            openRelative()
         }
     }
 
