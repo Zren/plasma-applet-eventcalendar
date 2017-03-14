@@ -104,6 +104,21 @@ PlasmaComponents.ListItem {
         return name
     }
 
+    property var name
+    property bool usingDefaultDevice: {
+        if (typeof PulseObject.deviceIndex !== 'undefined') {
+            if (mixerItemType == 'SinkInput') {
+                return PulseObject.deviceIndex === sinkModel.defaultSink.index
+            } else if (mixerItemType == 'SourceOutput') {
+                return PulseObject.deviceIndex === sourceModel.defaultSink.index
+            } else {
+                return false
+            }
+        } else {
+            return true // Just pretend it's linked to the default so we don't show that it's not.
+        }
+    }
+
     property string tooltipSubText: {
         // maximum of 8 visible lines. Extra lines are cut off.
         var lines = [];
@@ -119,11 +134,7 @@ PlasmaComponents.ListItem {
             addLine('Port', '[' + PulseObject.activePortIndex +'] ' + PulseObject.ports[PulseObject.activePortIndex].description);
         }
         if (typeof PulseObject.deviceIndex !== 'undefined') {
-            var isDefaultSink = false;
-            if (mixerItemType == 'SinkInput') {
-                isDefaultSink = PulseObject.deviceIndex === sinkModel.defaultSink.index;
-            }
-            if (!isDefaultSink) {
+            if (!usingDefaultDevice) {
                 addLine('Device', '[' + PulseObject.deviceIndex + '] ');
             }
         }
@@ -238,6 +249,7 @@ PlasmaComponents.ListItem {
                                     height: parent.height
                                     anchors.fill: parent
                                     source: mixerItem.icon
+                                    overlays: mixerItem.usingDefaultDevice ? [] : ['emblem-unlocked']
                                 }
                             }
 
