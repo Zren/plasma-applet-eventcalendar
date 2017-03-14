@@ -47,6 +47,24 @@ PlasmaComponents.Slider {
 
 	// http://api.kde.org/frameworks-api/frameworks5-apidocs/plasma-framework/html/SliderStyle_8qml_source.html
 	style: PlasmaStyles.SliderStyle {
+		id: style
+
+		property int numTicks: Math.ceil(control.maxPercentage / 10) + 1 // 0% .. 100% by 10 = 11 ticks (or ...150% = 16 ticks)
+		
+		function calcTickWidth(tickIndex) {
+			if (tickIndex == 0) {
+				return 0 // 0% has no tick
+			} else if (tickIndex % 5 == 0) {
+				// 50%, 100%, 150% have medium length ticks
+				// 50%: 2/10
+				// 100%: 3/10
+				// 150%: 4/10
+				// >=200%: 5/10
+				return control.width*(1+Math.min(tickIndex/5, 4))/10
+			} else {
+				return control.width*1/10 // 10%, 20%, ... have short ticks
+			}
+		}
 
 		handle: Item {
 			width: handle.naturalSize.width
@@ -103,7 +121,7 @@ PlasmaComponents.Slider {
 					svg: grooveSvg
 					elementId: "groove-triangle"
 					property real availableHeight: (control.width - groove.height) / 2
-					height: control.isVolumeBoosted ? availableHeight * 3/4 : availableHeight / 2
+					height: style.calcTickWidth(style.numTicks - 1)
 					anchors.left: parent.left
 					anchors.top: groove.bottom
 					anchors.right: parent.right
@@ -159,7 +177,7 @@ PlasmaComponents.Slider {
 			// width/height and x/y is reversed since it's Vertical
 
 			id: repeater
-			model: Math.ceil(control.maxPercentage / 10) + 1 // 0% .. 100% by 10 = 11 ticks (or ...150% = 16 ticks)
+			model: style.numTicks
 			// onModelChanged: console.log('model', model)
 			// model: slider.tickmarkModel
 			// width: control.height 
@@ -178,16 +196,8 @@ PlasmaComponents.Slider {
 				// border.color: theme.backgroundColor
 				// width: 3
 				width: 1
-				height: {
-					if (index == 0) {
-						return 0 // 0% has no tick
-					} else if (index % 5 == 0) {
-						return control.width*(1+Math.min(index/5, 4))/10; // 50%, 100%, 150% have medium length ticks
-					} else {
-						return control.width*1/10; // 10%, 20%, ... have short ticks
-					}
-				}
-				y: control.width / 2
+				height: style.calcTickWidth(index)
+				y: control.width / 2 //- control.grooveThickness / 2
 				x: {
 					// if (index == 0) { // Align tick at very bottom to it's bottom.
 					// 	return 0
