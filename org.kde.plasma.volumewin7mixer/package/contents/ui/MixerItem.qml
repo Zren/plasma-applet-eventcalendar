@@ -177,31 +177,6 @@ PlasmaComponents.ListItem {
         }
     }
 
-    DragArea {
-        id: dragArea
-        anchors.fill: parent
-        delegate: parent
-        enabled: mixerItemType == 'SinkInput'
-
-        mimeData {
-            source: mixerItem
-        }
-
-        onDragStarted: {
-            console.log('DragArea.onDragStarted')
-            main.draggedStream = PulseObject
-        }
-        onDrop: {
-            console.log('DragArea.onDrop')
-            main.draggedStream = null
-        }
-
-        MouseArea {
-            anchors.fill: parent
-            cursorShape: dragArea.enabled ? (pressed ? Qt.ClosedHandCursor : Qt.OpenHandCursor) : undefined
-        }
-    }
-    
     Row {
         id: volumeSliderRow
         // anchors.fill: parent
@@ -215,51 +190,82 @@ PlasmaComponents.ListItem {
             width: mixerItem.mixerItemWidth
             height: parent.height
 
-            Item {
-                anchors.horizontalCenter: parent.horizontalCenter
-                width: mixerItem.volumeSliderWidth
-                height: mixerItem.volumeSliderWidth
-
-                PlasmaCore.IconItem {
-                    id: clientIcon
-                    anchors.fill: parent
-                    source: mixerItem.icon
-
-                    PlasmaCore.ToolTipArea {
-                        anchors.fill: parent
-                        mainText: mixerItem.label
-                        subText: tooltipSubText
-                        icon: mixerItem.icon
-                    }
-                }
-            }
-        
-            Label {
-                id: textLabel
-                text: mixerItem.label + '\n'
-                function updateLineCount() {
-                    if (lineCount == 1) {
-                        textLabel.text = mixerItem.label + '\n'
-                    } else if (truncated) {
-                        textLabel.text = mixerItem.label
-                    }
-                }
-                onLineCountChanged: updateLineCount()
-                onTruncatedChanged: updateLineCount()
-
-                color: PlasmaCore.ColorScope.textColor
-                opacity: 0.6
-                wrapMode: Text.Wrap
-                elide: Text.ElideRight
-                maximumLineCount: 2
+            PlasmaCore.ToolTipArea {
+                id: tooltip
                 Layout.fillWidth: true
-                horizontalAlignment: Text.AlignHCenter
+                Layout.preferredHeight: iconLabelButtonRow.height
+                mainText: mixerItem.label
+                subText: tooltipSubText
+                icon: mixerItem.icon
 
-                PlasmaCore.ToolTipArea {
+                DragArea {
+                    id: dragArea
                     anchors.fill: parent
-                    mainText: mixerItem.label
-                    subText: tooltipSubText
-                    icon: mixerItem.icon
+                    delegate: iconLabelButton // parent
+                    enabled: mixerItemType == 'SinkInput'
+
+                    mimeData {
+                        source: mixerItem
+                    }
+
+                    onDragStarted: {
+                        console.log('DragArea.onDragStarted')
+                        main.draggedStream = PulseObject
+                    }
+                    onDrop: {
+                        console.log('DragArea.onDrop')
+                        main.draggedStream = null
+                    }
+
+                    PlasmaComponents.ToolButton {
+                    // Item {
+                        id: iconLabelButton
+                        anchors.fill: parent
+
+                        Column {
+                            id: iconLabelButtonRow
+                            width: parent.width
+                            Item {
+                                // width: mixerItem.volumeSliderWidth
+                                // height: mixerItem.volumeSliderWidth
+                                width: parent.width
+                                height: mixerItem.volumeSliderWidth
+
+                                PlasmaCore.IconItem {
+                                    id: clientIcon
+                                    anchors.horizontalCenter: parent.horizontalCenter
+                                    width: mixerItem.volumeSliderWidth
+                                    height: parent.height
+                                    anchors.fill: parent
+                                    source: mixerItem.icon
+                                }
+                            }
+
+                            Label {
+                                id: textLabel
+                                Layout.fillWidth: true
+                                width: parent.width
+
+                                text: mixerItem.label + '\n'
+                                function updateLineCount() {
+                                    if (lineCount == 1) {
+                                        textLabel.text = mixerItem.label + '\n'
+                                    } else if (truncated) {
+                                        textLabel.text = mixerItem.label
+                                    }
+                                }
+                                onLineCountChanged: updateLineCount()
+                                onTruncatedChanged: updateLineCount()
+
+                                color: PlasmaCore.ColorScope.textColor
+                                opacity: 0.6
+                                wrapMode: Text.Wrap
+                                elide: Text.ElideRight
+                                maximumLineCount: 2
+                                horizontalAlignment: Text.AlignHCenter
+                            }
+                        }
+                    }
                 }
             }
 
