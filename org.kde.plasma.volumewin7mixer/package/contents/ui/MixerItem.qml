@@ -160,8 +160,8 @@ PlasmaComponents.ListItem {
             if (main.draggedStream) {
                 if (main.draggedStreamType == 'SinkInput') {
                     return mixerItemType == 'Sink'
-                } else if (main.draggedStreamType == 'SourceOutput') {
-                    return mixerItemType == 'Source'
+                } else if (main.draggedStreamType == 'Source') {
+                    return mixerItemType == 'SourceOutput'
                 }
             }
             return false
@@ -173,7 +173,11 @@ PlasmaComponents.ListItem {
             console.log(main.draggedStream, '=>', PulseObject)
             // logPulseObj(main.draggedStream)
             // logPulseObj(PulseObject)
-            main.draggedStream.deviceIndex = PulseObject.index
+            if (main.draggedStreamType == 'SinkInput') {
+                main.draggedStream.deviceIndex = PulseObject.index
+            } else if (main.draggedStreamType == 'Source') {
+                PulseObject.draggedStream == main.draggedStream.index
+            }
         }
     }
 
@@ -225,7 +229,7 @@ PlasmaComponents.ListItem {
                     id: dragArea
                     anchors.fill: parent
                     delegate: iconLabelButton // parent
-                    enabled: mixerItemType == 'SinkInput' || mixerItemType == 'SourceOutput'
+                    enabled: mixerItemType == 'SinkInput' || mixerItemType == 'Source'
 
                     mimeData {
                         source: mixerItem
