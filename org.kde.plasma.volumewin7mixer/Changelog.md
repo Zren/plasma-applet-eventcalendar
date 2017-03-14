@@ -1,15 +1,15 @@
-[b]v14 - September 7 2016[/b]
+## v14 - September 7 2016
 
 * Show current song in tooltip.
 * Use description instead of the internal name on mics/speakers.
 * Use the video-television icon for the hdmi speaker.
 
-[b]v13 - August 26 2016[/b]
+## v13 - August 26 2016
 
 * Add media controls based on the default widget + mediacontrollercompact. You can disable it in the settings.
 * Icons now follow the theme color.
 
-[b]v12 - August 24 2016[/b]
+## v12 - August 24 2016
 
 * Use heaphones icon when port is set to Headphones.
 * Add context menu to quickly: Change the default speaker/microphone, Volume Boost the steam, Change the port (eg: headphones).
@@ -20,7 +20,7 @@
 * Add standard pin to keep mixer open.
 * Optionally move all app streams to the newly selected default device.
 
-[b]v11 - July 7 2016[/b]
+## v11 - July 7 2016
 
 * This requires KDE 5.7+
 * Bump version ahead of the AUR package which bumped versions before I started versioning.
@@ -31,7 +31,7 @@
   * Don't disable the slider when muted, alowing the user to change the volume without unmuting.
   * Handle Microphone shortcuts.
 
-[b]v2 - May 13 2016[/b]
+## v2 - May 13 2016
 
 * Supports KDE 5.5 and KDE 5.6 (Maybe 5.4?)
 * Custom vertical volume slider.
@@ -40,5 +40,6 @@
 * Merged from upstram (plasma-pa):
   * Drag and drop to move app output to a specific speaker.
 
-[b]v1 - ?[/b]
+## v1 - ?
+
 * Vertical volume sliders.
