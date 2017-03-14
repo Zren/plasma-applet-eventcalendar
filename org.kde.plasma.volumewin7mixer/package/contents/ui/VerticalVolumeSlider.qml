@@ -50,6 +50,7 @@ PlasmaComponents.Slider {
 		id: style
 
 		property int numTicks: Math.ceil(control.maxPercentage / 10) + 1 // 0% .. 100% by 10 = 11 ticks (or ...150% = 16 ticks)
+		property real tickAvailableHeight: (control.width - control.grooveThickness) / 2
 		
 		function calcTickWidth(tickIndex) {
 			if (tickIndex == 0) {
@@ -60,9 +61,9 @@ PlasmaComponents.Slider {
 				// 100%: 3/10
 				// 150%: 4/10
 				// >=200%: 5/10
-				return control.width*(1+Math.min(tickIndex/5, 4))/10
+				return tickAvailableHeight*(1+Math.min(tickIndex/5, 4))/5
 			} else {
-				return control.width*1/10 // 10%, 20%, ... have short ticks
+				return tickAvailableHeight*1/5 // 10%, 20%, ... have short ticks
 			}
 		}
 
@@ -120,7 +121,6 @@ PlasmaComponents.Slider {
 					id: grooveTriangle
 					svg: grooveSvg
 					elementId: "groove-triangle"
-					property real availableHeight: (control.width - groove.height) / 2
 					height: style.calcTickWidth(style.numTicks - 1)
 					anchors.left: parent.left
 					anchors.top: groove.bottom
@@ -197,7 +197,7 @@ PlasmaComponents.Slider {
 				// width: 3
 				width: 1
 				height: style.calcTickWidth(index)
-				y: control.width / 2 //- control.grooveThickness / 2
+				y: control.width / 2 + control.grooveThickness / 2
 				x: {
 					// if (index == 0) { // Align tick at very bottom to it's bottom.
 					// 	return 0
