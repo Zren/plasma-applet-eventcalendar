@@ -21,10 +21,10 @@ PlasmaComponents.Slider {
 	readonly property int percentage: Math.round(value / hundredPercentValue * 100)
 	readonly property int maxPercentage: Math.ceil(maximumValue / hundredPercentValue * 100)
 
-	Component.onCompleted: {
-		console.log('maxPercentage', maxPercentage)
-		console.log(Math.floor(maxPercentage / 10) + 1)
-	}
+	// Component.onCompleted: {
+	// 	console.log('maxPercentage', maxPercentage)
+	// 	console.log(Math.floor(maxPercentage / 10) + 1)
+	// }
 
 	property int grooveThickness: 5 * units.devicePixelRatio
 	// property int handleHeight: 20 * units.devicePixelRatio
@@ -159,7 +159,7 @@ PlasmaComponents.Slider {
 
 			id: repeater
 			model: Math.ceil(control.maxPercentage / 10) + 1 // 0% .. 100% by 10 = 11 ticks (or ...150% = 16 ticks)
-			onModelChanged: console.log('model', model)
+			// onModelChanged: console.log('model', model)
 			// model: slider.tickmarkModel
 			// width: control.height 
 			// height: control.width
