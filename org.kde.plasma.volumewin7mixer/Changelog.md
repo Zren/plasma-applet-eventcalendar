@@ -1,3 +1,23 @@
+## v15 - March 14 2017
+
+* Reskin the volume sliders to be triangular similar to kmix/win7.
+* Allow placing the media controller at the top of the popup.
+* Make the media controller slider taller.
+* Scale the widget based on the DPI.
+* Remove context menu link to the kcm like the default widget. It's still availble with "Audio Volume Settings..." > "Audio Volume".
+* Map speakers with names starting with "bluez_sink." to a bluetooth icon.
+* Add a properties dialog listing all the values for a speaker/app/microphone.
+* Use 'google-chrome' icon for "chrome (deleted)" streams.
+* Use the "microphone volume/mute" icons from the OSD for a microphones mute button.
+* Add toggle for showing the OSD.
+* [upstream] Mute volume when the slider is at 0%.
+* When using the mediakeys, jump to 100%/0% if less than 1 step away.
+* Compare the port key for "headphone" instead of the localized "Headphone" when deciding on the icon.
+* Fix the mute button icon's hover effects.
+* Fix all strings for localization with i18n.
+* Russian translations are available in RosaLinux's ABF: https://abf.rosalinux.ru/victorr2007/plasma5-applet-volumewin7mixer
+* Use doubles instead of ints for the mpris2/media controller's position/duration which are in microseconds since it was overflowing on songs/movies longer than 33 minutes.
+
 ## v14 - September 7 2016
 
 * Show current song in tooltip.
