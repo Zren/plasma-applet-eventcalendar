@@ -110,7 +110,7 @@ PlasmaComponents.ListItem {
             if (mixerItemType == 'SinkInput') {
                 return PulseObject.deviceIndex === sinkModel.defaultSink.index
             } else if (mixerItemType == 'SourceOutput') {
-                return PulseObject.deviceIndex === sourceModel.defaultSink.index
+                return PulseObject.deviceIndex === sourceModel.defaultSource.index
             } else {
                 return false
             }
