@@ -18,6 +18,8 @@ PlasmaCore.DataSource {
         }
     }
 
+    // onNewData: logState()
+
     property bool hasPlayer: mpris2Source.sources.length >= 2 // We don't count @mutiplexSource
     property string playbackState: hasPlayer && mpris2Source.data[mpris2Source.current].PlaybackStatus
     property bool isPlaying: playbackState == "Playing"
@@ -75,6 +77,15 @@ PlasmaCore.DataSource {
 
     property double length: currentMetadata ? currentMetadata["mpris:length"] || 0 : 0
     property double position: hasPlayer ? mpris2Source.data[mpris2Source.current].Position : 0
+
+    function logState() {
+        console.log(JSON.stringify(mpris2Source.data, null, "\t"))
+        console.log('hasPlayer', hasPlayer)
+        console.log('currentMetadata', currentMetadata)
+        console.log('position', position)
+        console.log('length', length)
+        console.log('canSeek', canSeek, 'canSeekMpris', canSeekMpris)
+    }
 
     function retrievePosition() {
         serviceOp(mpris2Source.current, "GetPosition");
