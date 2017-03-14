@@ -19,7 +19,7 @@ PlasmaComponents.ListItem {
     width: mixerItemWidth + (showChannels ? numChannels * (channelSliderWidth + volumeSliderRow.spacing) : 0)
     height: parent.height
     checked: dropArea.containsDrag
-    opacity: main.draggedStream && mixerItemType != 'Sink' ? 0.4 : 1
+    opacity: !main.draggedStream || dropArea.canBeDroppedOn ? 1 : 0.4
     separatorVisible: false
     property string mixerItemType: ''
     property int mixerItemWidth: 100
@@ -110,6 +110,7 @@ PlasmaComponents.ListItem {
             if (mixerItemType == 'SinkInput') {
                 return PulseObject.deviceIndex === sinkModel.defaultSink.index
             } else if (mixerItemType == 'SourceOutput') {
+                console.log('mixerItemType', mixerItemType, PulseObject.deviceIndex, sourceModel.defaultSource.index)
                 return PulseObject.deviceIndex === sourceModel.defaultSource.index
             } else {
                 return false
@@ -155,7 +156,18 @@ PlasmaComponents.ListItem {
     DropArea {
         id: dropArea
         anchors.fill: parent
-        enabled: mixerItemType == 'Sink'
+        property bool canBeDroppedOn: {
+            if (main.draggedStream) {
+                if (main.draggedStreamType == 'SinkInput') {
+                    return mixerItemType == 'Sink'
+                } else if (main.draggedStreamType == 'SourceOutput') {
+                    return mixerItemType == 'Source'
+                }
+            }
+            return false
+        }
+
+        enabled: canBeDroppedOn
         onDrop: {
             console.log('DropArea.onDrop')
             console.log(main.draggedStream, '=>', PulseObject)
@@ -213,7 +225,7 @@ PlasmaComponents.ListItem {
                     id: dragArea
                     anchors.fill: parent
                     delegate: iconLabelButton // parent
-                    enabled: mixerItemType == 'SinkInput'
+                    enabled: mixerItemType == 'SinkInput' || mixerItemType == 'SourceOutput'
 
                     mimeData {
                         source: mixerItem
@@ -221,11 +233,11 @@ PlasmaComponents.ListItem {
 
                     onDragStarted: {
                         console.log('DragArea.onDragStarted')
-                        main.draggedStream = PulseObject
+                        main.startDrag(PulseObject, mixerItemType)
                     }
                     onDrop: {
                         console.log('DragArea.onDrop')
-                        main.draggedStream = null
+                        main.clearDrag()
                     }
 
                     PlasmaComponents.ToolButton {

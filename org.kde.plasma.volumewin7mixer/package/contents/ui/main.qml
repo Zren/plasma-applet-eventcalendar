@@ -48,7 +48,18 @@ Item {
     property int maxVolumePercent: 100.0 // plasmoid.configuration.maximumVolume
     property int maxVolumeValue: Math.round(maxVolumePercent * PulseAudio.NormalVolume / 100.0)
     property int volumeStep: Math.round(Plasmoid.configuration.volumeStep * PulseAudio.NormalVolume / 100.0)
+    
+    property string draggedStreamType: ''
     property QtObject draggedStream: null
+    function startDrag(pulseObject, type) {
+        draggedStreamType = type
+        draggedStream = pulseObject
+    }
+    function clearDrag() {
+        draggedStream = null
+        draggedStreamType = ''
+    }
+
 
     property string displayName: i18n("Audio Volume")
     property string speakerIcon: sinkModel.defaultSink ? Icon.name(sinkModel.defaultSink.volume, sinkModel.defaultSink.muted) : Icon.name(0, true)
