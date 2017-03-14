@@ -102,7 +102,8 @@ PlasmaComponents.Slider {
 					id: grooveTriangle
 					svg: grooveSvg
 					elementId: "groove-triangle"
-					height: (control.width - groove.height) / 2 / 2
+					property real availableHeight: (control.width - groove.height) / 2
+					height: control.isVolumeBoosted ? availableHeight * 3/4 : availableHeight / 2
 					anchors.left: parent.left
 					anchors.top: groove.bottom
 					anchors.right: parent.right
