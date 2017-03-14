@@ -267,7 +267,8 @@ PlasmaComponents.ListItem {
                 Layout.fillWidth: true
                 Layout.fillHeight: true
                 
-                VolumeSlider {
+                // VolumeSlider {
+                VerticalVolumeSlider {
                     id: slider
                     orientation: Qt.Vertical
                     height: parent.height
