@@ -73,9 +73,8 @@ PlasmaCore.DataSource {
     //     logObj(currentMetadata)
     // }
 
-    property int length: currentMetadata ? currentMetadata["mpris:length"] || 0 : 0
-    property int position: hasPlayer ? mpris2Source.data[mpris2Source.current].Position : 0
-
+    property double length: currentMetadata ? currentMetadata["mpris:length"] || 0 : 0
+    property double position: hasPlayer ? mpris2Source.data[mpris2Source.current].Position : 0
 
     function retrievePosition() {
         serviceOp(mpris2Source.current, "GetPosition");
