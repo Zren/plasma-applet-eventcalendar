@@ -10,10 +10,10 @@ import org.kde.plasma.extras 2.0 as PlasmaExtras
 
 import org.kde.plasma.private.volume 0.1
 
+import "lib"
+
 GroupBox {
     id: mixerItemGroup
-
-    signal onTitleButtonClicked()
 
     style: PlasmaStyles.GroupBoxStyle {
         id: groupBoxStyle
@@ -30,7 +30,6 @@ GroupBox {
                 // width: mixerItemGroup.mixerItemWidth
                 property var name
                 height: Math.max(theme.defaultFont.pixelSize, pinButton.height)
-                onClicked: mixerItemGroup.onTitleButtonClicked()
 
                 style: PlasmaStyles.ToolButtonStyle {
                     label: PlasmaComponents.Label {
@@ -44,6 +43,27 @@ GroupBox {
                         color: control.hovered || !flat ? theme.buttonTextColor : PlasmaCore.ColorScope.textColor
                         horizontalAlignment: Text.AlignLeft
                         elide: Text.ElideRight
+                    }
+                }
+
+
+                onClicked: contextMenu.showRelative()
+                ContextMenu {
+                    id: contextMenu
+                    visualParent: label
+                    placement: PlasmaCore.Types.BottomPosedLeftAlignedPopup
+
+                    onBeforeOpen: {
+                        // console.log('onBeforeOpen', view.model, view.model.count)
+                        for (var i = 0; i < view.model.count; i++) {
+                            var stream = view.model.get(i)
+                            // console.log(mixerItemGroup.model, i, stream)
+                            var menuItem = menu.newMenuItem()
+                            menuItem.text = stream.PulseObject.name
+                            menuItem.checkable = true
+                            menuItem.checked = true
+                            menuItem.enabled = false
+                        }
                     }
                 }
             }

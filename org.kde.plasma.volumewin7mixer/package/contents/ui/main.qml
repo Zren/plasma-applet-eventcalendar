@@ -307,11 +307,17 @@ Item {
         id: appOutputsModel
         sourceModel: SourceOutputModel {}
     }
-    SourceModel {
-        id: sourceModel
+    PulseObjectFilterModel {
+        id: filteredSourceModel
+        sourceModel: SourceModel {
+            id: sourceModel
+        }
     }
-    SinkModel {
-        id: sinkModel
+    PulseObjectFilterModel {
+        id: filteredSinkModel
+        sourceModel: SinkModel {
+            id: sinkModel
+        }
     }
 
     property bool showMediaController: plasmoid.configuration.showMediaController
@@ -348,7 +354,7 @@ Item {
                 height: parent.height
                 title: i18n("Mics")
         
-                model: sourceModel
+                model: filteredSourceModel
                 mixerGroupType: 'Source'
             }
 
@@ -356,7 +362,7 @@ Item {
                 height: parent.height
                 title: i18n("Speakers")
                 
-                model: sinkModel
+                model: filteredSinkModel
                 mixerGroupType: 'Sink'
             }
 
