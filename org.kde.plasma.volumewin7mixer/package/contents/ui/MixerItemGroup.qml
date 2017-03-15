@@ -1,6 +1,7 @@
 import QtQuick 2.0
 import QtQuick.Layouts 1.0
 import QtQuick.Controls 1.0
+import QtQuick.Controls.Private 1.0 as QtQuickControlsPrivate
 import QtQuick.Controls.Styles.Plasma 2.0 as PlasmaStyles
 
 import org.kde.plasma.core 2.0 as PlasmaCore
@@ -30,6 +31,21 @@ GroupBox {
                 property var name
                 height: Math.max(theme.defaultFont.pixelSize, pinButton.height)
                 onClicked: mixerItemGroup.onTitleButtonClicked()
+
+                style: PlasmaStyles.ToolButtonStyle {
+                    label: PlasmaComponents.Label {
+                        id: label
+                        // anchors.verticalCenter: parent.verticalCenter
+                        Layout.minimumWidth: implicitWidth
+                        text: QtQuickControlsPrivate.StyleHelpers.stylizeMnemonics(control.text)
+                        font: control.font || theme.defaultFont
+                        visible: control.text != ""
+                        Layout.fillWidth: true
+                        color: control.hovered || !flat ? theme.buttonTextColor : PlasmaCore.ColorScope.textColor
+                        horizontalAlignment: Text.AlignLeft
+                        elide: Text.ElideRight
+                    }
+                }
             }
 
             PlasmaCore.FrameSvgItem {
