@@ -11,7 +11,43 @@ import org.kde.plasma.private.volume 0.1
 
 GroupBox {
     id: mixerItemGroup
-    style: PlasmaStyles.GroupBoxStyle {}
+
+    signal onTitleButtonClicked()
+
+    style: PlasmaStyles.GroupBoxStyle {
+        id: groupBoxStyle
+
+        panel: Item {
+            anchors.fill: parent
+
+            PlasmaComponents.ToolButton {
+                id: label
+                anchors.top: parent.top
+                anchors.left: parent.left
+                anchors.right: parent.right
+                text: control.title
+                // width: mixerItemGroup.mixerItemWidth
+                property var name
+                height: Math.max(theme.defaultFont.pixelSize, pinButton.height)
+                onClicked: mixerItemGroup.onTitleButtonClicked()
+            }
+
+            PlasmaCore.FrameSvgItem {
+                id: frame
+                anchors.fill: parent
+                imagePath: "widgets/frame"
+                prefix: "plain"
+                visible: !control.flat
+                colorGroup: PlasmaCore.ColorScope.colorGroup
+                Component.onCompleted: {
+                    groupBoxStyle.padding.left = frame.margins.left
+                    groupBoxStyle.padding.top = label.height
+                    groupBoxStyle.padding.right = frame.margins.right
+                    groupBoxStyle.padding.bottom = frame.margins.bottom
+                }
+            }
+        }
+    }
     property alias view: view
     property alias spacing: view.spacing
     property alias model: view.model
@@ -20,13 +56,6 @@ GroupBox {
     property int volumeSliderWidth: config.volumeSliderWidth
     property string mixerGroupType: ''
     visible: view.count > 0
-
-    Text {
-        text: parent.title || ''
-        color: PlasmaCore.ColorScope.textColor
-        Layout.fillWidth: true
-        horizontalAlignment: Text.AlignHCenter
-    }
     
     ListView {
         id: view
