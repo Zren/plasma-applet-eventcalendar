@@ -54,6 +54,19 @@ GroupBox {
                     placement: PlasmaCore.Types.BottomPosedLeftAlignedPopup
 
                     onBeforeOpen: {
+                        function filterStreamName(streamName) {
+                            return function() {
+                                console.log('menuItem.clicked', streamName)
+                                view.model.filters.push({
+                                    role: 'name',
+                                    value: streamName,
+                                })
+                                //TODO: Find function that will force the model to reparse the filterCallback
+                                // https://github.com/KDE/plasma-framework/blob/master/src/declarativeimports/core/datamodel.h
+                                // view.model.invalidateFilter() // Not exposed
+                                // view.model.invalidate() // Just empties the model
+                            }
+                        }
                         // console.log('onBeforeOpen', view.model, view.model.count)
                         for (var i = 0; i < view.model.count; i++) {
                             var stream = view.model.get(i)
@@ -63,6 +76,7 @@ GroupBox {
                             menuItem.checkable = true
                             menuItem.checked = true
                             menuItem.enabled = false
+                            // menuItem.clicked.connect(filterStreamName(stream.PulseObject.name))
                         }
                     }
                 }
