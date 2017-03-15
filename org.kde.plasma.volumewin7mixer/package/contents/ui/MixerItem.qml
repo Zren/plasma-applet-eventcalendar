@@ -295,9 +295,8 @@ PlasmaComponents.ListItem {
                                 }
                                 onLineCountChanged: updateLineCount()
                                 onTruncatedChanged: updateLineCount()
-
-                                color: PlasmaCore.ColorScope.textColor
-                                opacity: 0.6
+                                color: iconLabelButton.hovered ? theme.buttonTextColor : PlasmaCore.ColorScope.textColor
+                                opacity: iconLabelButton.hovered ? 1 : 0.6
                                 wrapMode: Text.Wrap
                                 elide: Text.ElideRight
                                 maximumLineCount: 2
