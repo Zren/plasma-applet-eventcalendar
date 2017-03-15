@@ -266,6 +266,10 @@ PlasmaComponents.ListItem {
                                     anchors.fill: parent
                                     source: mixerItem.icon
                                     overlays: mixerItem.usingDefaultDevice ? [] : ['emblem-unlocked']
+
+                                    // From ToolButtonStyle:
+                                    active: iconLabelButton.hovered
+                                    colorGroup: iconLabelButton.hovered || !iconLabelButton.flat ? PlasmaCore.Theme.ButtonColorGroup : PlasmaCore.ColorScope.colorGroup
                                 }
                             }
 
