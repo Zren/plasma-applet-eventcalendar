@@ -178,4 +178,10 @@ Window {
         interval: 1000
         onTriggered: update()
     }
+
+    onVisibleChanged: {
+        if (!visible) {
+            destroy()
+        }
+    }
 }
