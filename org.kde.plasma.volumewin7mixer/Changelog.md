@@ -1,3 +1,12 @@
+## v16 - March 15 2017
+
+* Make the icon+label into a button that opens the context menu.
+* You can now drag a microphone onto a recording app to change it's input. I only tested this with SimpleStreamRecorder and it added recorded both the desktop output and the microphone output at the same time rather than switching from one to the other.
+* Overlay 'emblem-unlocked' when app isn't using the default speaker/mic. I may change the icon if a better one is recommended.
+* Fuss with the volume slider triangle. It will now be thicker when volume is boosted.
+* Make the group title (Apps/Mics/Speakers) into a button. It will probably be used for filtering unwanted streams in the future, but for now it just lists the items in it's group.
+* Fix the label/icon when using the echo-cancel pulseaudio module.
+
 ## v15 - March 14 2017
 
 * Reskin the volume sliders to be triangular similar to kmix/win7.
