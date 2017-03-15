@@ -37,6 +37,16 @@ PlasmaComponents.ListItem {
         visible: false
     }
 
+    function startsWith(a, b) {
+        return a.indexOf(b) === 0
+    }
+
+    function endsWith(a, b) {
+        return a.lastIndexOf(b) === a.length - b.length
+    }
+
+    readonly property var invalidPortIndex: 4294967295
+
     property string icon: {
         if (mixerItemType == 'SinkInput') {
             // App
@@ -62,11 +72,13 @@ PlasmaComponents.ListItem {
             }
         } else if (mixerItemType == 'Sink') {
             // Speaker
-            var portName = PulseObject.ports[PulseObject.activePortIndex].name;
-            if (portName.indexOf('headphones') >= 0) { // Eg: analog-output-headphones
-                return 'audio-headphones';
+            if (PulseObject.activePortIndex != invalidPortIndex) { // not "Invalid Port" (eg: echo-cancel)
+                var portName = PulseObject.ports[PulseObject.activePortIndex].name;
+                if (portName.indexOf('headphones') >= 0) { // Eg: analog-output-headphones
+                    return 'audio-headphones';
+                }
             }
-            if (PulseObject.name.indexOf('alsa_output.') >= 0 && PulseObject.name.indexOf('.hdmi-') >= 0) {
+            if (startsWith(PulseObject.name, 'alsa_output.') && PulseObject.name.indexOf('.hdmi-') >= 0) {
                 // return Qt.resolvedUrl('../icons/hdmi.svg');
                 return 'video-television';
             }
@@ -85,13 +97,28 @@ PlasmaComponents.ListItem {
         }
     }
 
-    property string label: {
-        var name = PulseObject.name;
-        if (name.indexOf('alsa_input.') >= 0) {
+    function labelFor(name) {
+        if (PulseObject.properties['device.class'] === 'filter') {
+            if (endsWith(name, '.echo-cancel')) { // Same for input and ouput stream
+                // pactl load-module module-echo-cancel
+                var inputName = PulseObject.properties['device.master_device']
+                var inputLabel = labelFor(inputName)
+                return i18n("%1 (Echo Cancelled)", inputLabel)
+            }
+        } else if (PulseObject.properties['media.role'] === 'abstract') {
+            if (startsWith(name, 'Loopback to ')) {
+                // microphone
+            } else if (startsWith(name, 'Loopback from ')) {
+                // speaker
+            }
+        }
+
+        // PulseObject.properties['device.class'] === 'sound'
+        if (startsWith(name, 'alsa_input.')) {
             if (name.indexOf('.analog-') >= 0) {
                 return i18n("Mic")
             }
-        } else if (name.indexOf('alsa_output.') >= 0) {
+        } else if (name.indexOf('alsa_output.') === 0) {
             if (name.indexOf('.analog-') >= 0) {
                 return i18n("Speaker")
             } else if (name.indexOf('.hdmi-') >= 0) {
@@ -110,6 +137,8 @@ PlasmaComponents.ListItem {
 
         return name
     }
+
+    property string label: labelFor(PulseObject.name)
 
     property var name
     property bool usingDefaultDevice: {
@@ -138,8 +167,8 @@ PlasmaComponents.ListItem {
         addLine('Name', PulseObject.name);
         addLine('Description', PulseObject.description);
         addLine('Volume', Math.round(PulseObjectCommands.volumePercent(PulseObject.volume)) + "%");
-        if (typeof PulseObject.activePortIndex !== 'undefined') {
-            addLine('Port', '[' + PulseObject.activePortIndex +'] ' + PulseObject.ports[PulseObject.activePortIndex].description);
+        if (typeof PulseObject.activePortIndex !== 'undefined' && PulseObject.activePortIndex != invalidPortIndex) {
+            addLine('Port', '[' + PulseObject.activePortIndex +'] ' + PulseObject.ports[PulseObject.activePortIndex].description)
         }
         if (typeof PulseObject.deviceIndex !== 'undefined') {
             if (!usingDefaultDevice) {
