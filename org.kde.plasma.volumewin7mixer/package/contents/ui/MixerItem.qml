@@ -16,7 +16,7 @@ import "../code/sinkcommands.js" as PulseObjectCommands
 
 PlasmaComponents.ListItem {
     id: mixerItem
-    width: mixerItemWidth + (showChannels ? numChannels * (channelSliderWidth + volumeSliderRow.spacing) : 0)
+    width: mixerItemWidth + (showChannels ? numChannels * (channelSliderWidth + volumeSliderRow.spacing) : 0) + background.margins.left + background.margins.right
     height: parent.height
     checked: dropArea.containsDrag
     opacity: !main.draggedStream || dropArea.canBeDroppedOn ? 1 : 0.4
@@ -29,6 +29,13 @@ PlasmaComponents.ListItem {
     property bool hasChannels: typeof PulseObject.channels !== 'undefined'
     property int numChannels: hasChannels ? PulseObject.channels.length : 0
     property bool showChannels: false
+
+    PlasmaCore.FrameSvgItem {
+        id: background
+        imagePath: "widgets/listitem"
+        prefix: "normal"
+        visible: false
+    }
 
     property string icon: {
         if (mixerItemType == 'SinkInput') {

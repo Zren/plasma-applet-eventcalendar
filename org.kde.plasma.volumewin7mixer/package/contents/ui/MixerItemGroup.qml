@@ -97,7 +97,7 @@ GroupBox {
         id: view
         width: Math.max(childrenRect.width, mixerItemGroup.mixerItemWidth) // At least 1 mixer item wide
         height: parent.height
-        spacing: 10
+        spacing: 0
         boundsBehavior: Flickable.StopAtBounds
         orientation: ListView.Horizontal
 
