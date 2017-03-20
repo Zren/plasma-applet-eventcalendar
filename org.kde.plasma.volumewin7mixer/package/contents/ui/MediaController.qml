@@ -171,7 +171,6 @@ Item {
                 // console.log('onValueChanged skipped')
             }
         }
-        maximumValue: mpris2Source.length
         onMaximumValueChanged: mpris2Source.retrievePosition()
 
         Connections {
@@ -185,6 +184,11 @@ Item {
                     seekSlider.value = mpris2Source.position
                     mediaController.disablePositionUpdate = false
                 }
+            }
+            onLengthChanged: {
+                mediaController.disablePositionUpdate = true
+                seekSlider.maximumValue = mpris2Source.length
+                mediaController.disablePositionUpdate = false
             }
         }
 
