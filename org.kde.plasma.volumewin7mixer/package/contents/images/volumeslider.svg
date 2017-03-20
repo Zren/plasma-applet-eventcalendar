@@ -67,6 +67,8 @@
     <style
        id="current-color-scheme"
        type="text/css">
+       /* This entire element will be replaced will a different stylesheet. */
+
       .ColorScheme-Text {
         color:#31363b;
         stop-color:#31363b;
@@ -115,10 +117,25 @@
     <style
        id="style7"
        type="text/css">
+      /* Extra defininitions not in ColorScheme */
 
       .ColorScheme-Danger {
         color: #ee0000;
       }
+      </style>
+    <style
+       id="style8"
+       type="text/css">
+      /* Override Color Scheme by defining last */
+      /* ColorScheme-Background = Groove color */
+      /*
+      .ColorScheme-Background {
+        color:#00ffff;
+      }
+      .ColorScheme-Highlight {
+        color:#ff80ff;
+      }
+      */
       </style>
   </defs>
   <metadata
@@ -186,7 +203,7 @@
        sodipodi:nodetypes="cccc"
        inkscape:connector-curvature="0" />
     <path
-       class="ColorScheme-Text"
+       class="ColorScheme-Background"
        id="groove-center"
        d="m 10,11 0,3 3,0 0,-3 -3,0 z"
        style="opacity:0.3;fill:currentColor"
@@ -208,59 +225,59 @@
        d="m 28,9 0,1 3,0 0,-1 -3,0 z"
        style="fill:currentColor;fill-opacity:1"
        inkscape:connector-curvature="0"
-       class="ColorScheme-ButtonHover" />
+       class="ColorScheme-Highlight" />
     <path
        inkscape:connector-curvature="0"
        sodipodi:nodetypes="cccc"
        id="groove-highlight-topleft"
        d="m 27,9 c -0.56072,0 -1,0.43928 -1,1 l 1,0 z"
        style="fill:currentColor;fill-opacity:1"
-       class="ColorScheme-ButtonHover" />
+       class="ColorScheme-Highlight" />
     <path
        style="fill:currentColor;fill-opacity:1"
        d="M 33,10 C 33,9.43928 32.56072,9 32,9 l 0,1 z"
        id="groove-highlight-topright"
        sodipodi:nodetypes="cccc"
        inkscape:connector-curvature="0"
-       class="ColorScheme-ButtonHover" />
+       class="ColorScheme-Highlight" />
     <path
        inkscape:connector-curvature="0"
        style="fill:currentColor;fill-opacity:1"
        d="m 28,16 0,-1 3,0 0,1 -3,0 z"
        id="groove-highlight-bottom"
-       class="ColorScheme-ButtonHover" />
+       class="ColorScheme-Highlight" />
     <path
        style="fill:currentColor;fill-opacity:1"
        d="m 27,16 c -0.56072,0 -1,-0.43928 -1,-1 l 1,0 z"
        id="groove-highlight-bottomleft"
        sodipodi:nodetypes="cccc"
        inkscape:connector-curvature="0"
-       class="ColorScheme-ButtonHover" />
+       class="ColorScheme-Highlight" />
     <path
        inkscape:connector-curvature="0"
        sodipodi:nodetypes="cccc"
        id="groove-highlight-bottomright"
        d="m 33,15 c 0,0.56072 -0.43928,1 -1,1 l 0,-1 z"
        style="fill:currentColor;fill-opacity:1"
-       class="ColorScheme-ButtonHover" />
+       class="ColorScheme-Highlight" />
     <path
        inkscape:connector-curvature="0"
        style="fill:currentColor;fill-opacity:1"
        d="m 28,11 0,3 3,0 0,-3 -3,0 z"
        id="groove-highlight-center"
-       class="ColorScheme-ButtonHover" />
+       class="ColorScheme-Highlight" />
     <path
        id="groove-highlight-left"
        d="m 26,11 0,3 1,0 0,-3 -1,0 z"
        style="fill:currentColor;fill-opacity:1"
        inkscape:connector-curvature="0"
-       class="ColorScheme-ButtonHover" />
+       class="ColorScheme-Highlight" />
     <path
        id="groove-highlight-right"
        d="m 32,11 0,3 1,0 0,-3 -1,0 z"
        style="fill:currentColor;fill-opacity:1"
        inkscape:connector-curvature="0"
-       class="ColorScheme-ButtonHover" />
+       class="ColorScheme-Highlight" />
     <g
        id="horizontal-slider-hover"
        transform="translate(24,2)">
@@ -462,7 +479,7 @@
        id="groove-triangle"
        transform="matrix(0.6,0,0,1.6666667,1,-2.3333338)">
       <path
-         class="ColorScheme-Text"
+         class="ColorScheme-Background"
          inkscape:connector-curvature="0"
          style="opacity:0.5;fill:currentColor"
          d="m 15,11 5,3 0,-3 z"
@@ -473,7 +490,7 @@
        id="groove-highlight-triangle"
        transform="matrix(0.6,0,0,1.6666667,19,-2.3333338)">
       <path
-         class="ColorScheme-ButtonHover"
+         class="ColorScheme-Highlight"
          inkscape:connector-curvature="0"
          style="opacity:0.5;fill:currentColor"
          d="m 15,11 5,3 0,-3 z"
