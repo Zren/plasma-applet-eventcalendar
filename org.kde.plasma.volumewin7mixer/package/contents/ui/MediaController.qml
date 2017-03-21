@@ -145,6 +145,7 @@ Item {
         anchors.right: parent.right
         height: config.mediaControllerSliderHeight
 
+        // org.kde.plasma.mediacontroller
         // ensure the layout doesn't shift as the numbers change and measure roughly the longest text that could occur with the current song
         TextMetrics {
             id: timeMetrics
@@ -154,7 +155,7 @@ Item {
         }
 
         PlasmaComponents.Label {
-            visible: plasmoid.configuration.showMediaTimeCurrent
+            visible: plasmoid.configuration.showMediaTimeElapsed
             Layout.preferredWidth: timeMetrics.width
             Layout.fillHeight: true
             verticalAlignment: Text.AlignVCenter
@@ -268,7 +269,7 @@ Item {
         }
 
         PlasmaComponents.Label {
-            visible: plasmoid.configuration.showMediaTimeTotal
+            visible: plasmoid.configuration.showMediaTotalDuration
             Layout.preferredWidth: timeMetrics.width
             Layout.fillHeight: true
             verticalAlignment: Text.AlignVCenter

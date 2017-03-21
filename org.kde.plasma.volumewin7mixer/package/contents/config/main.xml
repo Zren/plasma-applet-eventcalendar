@@ -33,13 +33,13 @@
     <entry name="volumeSliderTheme" type="string">
       <default>desktoptheme</default>
     </entry>
-    <entry name="showMediaTimeCurrent" type="bool">
+    <entry name="showMediaTimeElapsed" type="bool">
       <default>true</default>
     </entry>
     <entry name="showMediaTimeLeft" type="bool">
       <default>true</default>
     </entry>
-    <entry name="showMediaTimeTotal" type="bool">
+    <entry name="showMediaTotalDuration" type="bool">
       <default>false</default>
     </entry>
   </group>

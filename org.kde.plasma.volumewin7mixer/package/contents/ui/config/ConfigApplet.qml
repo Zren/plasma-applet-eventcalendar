@@ -14,6 +14,9 @@ ColumnLayout {
     // property alias cfg_showOpenPavucontrol: showOpenPavucontrol.checked
     property alias cfg_moveAllAppsOnSetDefault: moveAllAppsOnSetDefault.checked
     property alias cfg_showMediaController: showMediaController.checked
+    property alias cfg_showMediaTimeElapsed: showMediaTimeElapsed.checked
+    property alias cfg_showMediaTimeLeft: showMediaTimeLeft.checked
+    property alias cfg_showMediaTotalDuration: showMediaTotalDuration.checked
     property alias cfg_showOsd: showOsd.checked
 
     ColumnLayout {
@@ -170,6 +173,21 @@ ColumnLayout {
                         { value: "top", text: i18n("Top") },
                         { value: "bottom", text: i18n("Bottom") },
                     ]
+                }
+
+                CheckBox {
+                    id: showMediaTimeElapsed
+                    text: i18n("Show Time Elapsed")
+                }
+
+                CheckBox {
+                    id: showMediaTimeLeft
+                    text: i18n("Show Time Left")
+                }
+
+                CheckBox {
+                    id: showMediaTotalDuration
+                    text: i18n("Show Total Duration")
                 }
 
             }
