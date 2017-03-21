@@ -33,5 +33,14 @@
     <entry name="volumeSliderTheme" type="string">
       <default>desktoptheme</default>
     </entry>
+    <entry name="showMediaTimeCurrent" type="bool">
+      <default>true</default>
+    </entry>
+    <entry name="showMediaTimeLeft" type="bool">
+      <default>true</default>
+    </entry>
+    <entry name="showMediaTimeTotal" type="bool">
+      <default>false</default>
+    </entry>
   </group>
 </kcfg>

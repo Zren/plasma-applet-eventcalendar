@@ -1,4 +1,4 @@
-import QtQuick 2.1
+import QtQuick 2.4
 import QtQuick.Layouts 1.0
 import QtQuick.Controls 1.0
 import QtQuick.Controls.Styles.Plasma 2.0 as PlasmaStyles
@@ -6,6 +6,7 @@ import QtQuick.Controls.Styles.Plasma 2.0 as PlasmaStyles
 import org.kde.plasma.core 2.0 as PlasmaCore
 import org.kde.plasma.components 2.0 as PlasmaComponents
 import org.kde.plasma.extras 2.0 as PlasmaExtras
+import org.kde.kcoreaddons 1.0 as KCoreAddons
 
 Item {
     id: mediaController
@@ -14,7 +15,7 @@ Item {
 
     Item {
         anchors.fill: parent
-        anchors.topMargin: seekSlider.height
+        anchors.topMargin: seekRow.height
 
         Item {
         // PlasmaComponents.ToolButton {
@@ -137,97 +138,145 @@ Item {
         }
     }
 
-    PlasmaComponents.Slider {
-        id: seekSlider
+    RowLayout {
+        id: seekRow
         anchors.left: parent.left
         anchors.top: parent.top
         anchors.right: parent.right
         height: config.mediaControllerSliderHeight
-        enabled: mpris2Source.canSeek
-        z: 999
-        // style: PlasmaStyles.SliderStyle {
-        //     handle: Item {}
-        // }
 
-        // MouseArea {
-        //     id: seekSliderArea
-        //     anchors.fill: parent
-        //     hoverEnabled: true
-
-        //     acceptedButtons: Qt.NoButton
-        //     propagateComposedEvents: true
-        // }
-        opacity: hovered ? 1 : 0.75
-        Behavior on opacity {
-            NumberAnimation { duration: units.longDuration }
+        // ensure the layout doesn't shift as the numbers change and measure roughly the longest text that could occur with the current song
+        TextMetrics {
+            id: timeMetrics
+            text: i18nc("Remaining time for song e.g -5:42", "-%1",
+                        KCoreAddons.Format.formatDuration(seekSlider.maximumValue / 1000, KCoreAddons.FormatTypes.FoldHours))
+            font: theme.smallestFont
         }
 
-        value: 0
-        onValueChanged: {
-            if (!mediaController.disablePositionUpdate) {
-                // delay setting the position to avoid race conditions
-                queuedPositionUpdate.restart()
-            } else {
-                // console.log('onValueChanged skipped')
-            }
-        }
-        onMaximumValueChanged: mpris2Source.retrievePosition()
-
-        Connections {
-            target: mpris2Source
-
-            onPositionChanged: {
-                // we don't want to interrupt the user dragging the slider
-                if (!seekSlider.pressed && !mediaController.keyPressed && !queuedPositionUpdate.running) {
-                    // we also don't want passive position updates
-                    mediaController.disablePositionUpdate = true
-                    seekSlider.value = mpris2Source.position
-                    mediaController.disablePositionUpdate = false
-                }
-            }
-            onLengthChanged: {
-                mediaController.disablePositionUpdate = true
-                seekSlider.maximumValue = mpris2Source.length
-                mediaController.disablePositionUpdate = false
-            }
+        PlasmaComponents.Label {
+            visible: plasmoid.configuration.showMediaTimeCurrent
+            Layout.preferredWidth: timeMetrics.width
+            Layout.fillHeight: true
+            verticalAlignment: Text.AlignVCenter
+            horizontalAlignment: Text.AlignRight
+            text: KCoreAddons.Format.formatDuration(seekSlider.value / 1000, KCoreAddons.FormatTypes.FoldHours)
+            opacity: 0.6
+            font: theme.smallestFont
         }
 
+        PlasmaComponents.Slider {
+            id: seekSlider
+            Layout.fillWidth: true
+            Layout.fillHeight: true
+            enabled: mpris2Source.canSeek
+            z: 999
+            // style: PlasmaStyles.SliderStyle {
+            //     handle: Item {}
+            // }
 
-        Timer {
-            id: queuedPositionUpdate
-            interval: 100
-            onTriggered: {
+            // MouseArea {
+            //     id: seekSliderArea
+            //     anchors.fill: parent
+            //     hoverEnabled: true
+
+            //     acceptedButtons: Qt.NoButton
+            //     propagateComposedEvents: true
+            // }
+            opacity: hovered ? 1 : 0.75
+            Behavior on opacity {
+                NumberAnimation { duration: units.longDuration }
+            }
+
+            value: 0
+            onValueChanged: {
                 if (!mediaController.disablePositionUpdate) {
-                    mpris2Source.setPosition(seekSlider.value)
+                    // delay setting the position to avoid race conditions
+                    queuedPositionUpdate.restart()
                 } else {
-                    // console.log('queuedPositionUpdate skipped')
+                    // console.log('onValueChanged skipped')
+                }
+            }
+            onMaximumValueChanged: mpris2Source.retrievePosition()
+
+            Connections {
+                target: mpris2Source
+
+                onPositionChanged: {
+                    // we don't want to interrupt the user dragging the slider
+                    if (!seekSlider.pressed && !mediaController.keyPressed && !queuedPositionUpdate.running) {
+                        // we also don't want passive position updates
+                        mediaController.disablePositionUpdate = true
+                        seekSlider.value = mpris2Source.position
+                        mediaController.disablePositionUpdate = false
+                    }
+                }
+                onLengthChanged: {
+                    mediaController.disablePositionUpdate = true
+                    seekSlider.maximumValue = mpris2Source.length
+                    mediaController.disablePositionUpdate = false
+                }
+            }
+
+
+            Timer {
+                id: queuedPositionUpdate
+                interval: 100
+                onTriggered: {
+                    if (!mediaController.disablePositionUpdate) {
+                        mpris2Source.setPosition(seekSlider.value)
+                    } else {
+                        // console.log('queuedPositionUpdate skipped')
+                    }
+                }
+            }
+
+            Timer {
+                id: seekTimer
+                interval: 1000
+                repeat: true
+                running: mpris2Source.isPlaying && plasmoid.expanded && !mediaController.keyPressed
+                onTriggered: {
+                    // console.log(seekSlider.value, seekSlider.maximumValue,
+                    //     seekSlider.pressed ? 'pressed' : '',
+                    //     mediaController.disablePositionUpdate ? 'disablePositionUpdate' : '',
+                    //     mpris2Source.canSeek ? 'canSeek': '')
+                    
+                    // some players don't continuously update the seek slider position via mpris
+                    // add one second; value in microseconds
+                    if (!seekSlider.pressed) {
+                        mediaController.disablePositionUpdate = true
+                        if (seekSlider.value == seekSlider.maximumValue) {
+                            mpris2Source.retrievePosition();
+                        } else {
+                            seekSlider.value += 1000000
+                        }
+                        mediaController.disablePositionUpdate = false
+                    }
                 }
             }
         }
 
-        Timer {
-            id: seekTimer
-            interval: 1000
-            repeat: true
-            running: mpris2Source.isPlaying && plasmoid.expanded && !mediaController.keyPressed
-            onTriggered: {
-                // console.log(seekSlider.value, seekSlider.maximumValue,
-                //     seekSlider.pressed ? 'pressed' : '',
-                //     mediaController.disablePositionUpdate ? 'disablePositionUpdate' : '',
-                //     mpris2Source.canSeek ? 'canSeek': '')
-                
-                // some players don't continuously update the seek slider position via mpris
-                // add one second; value in microseconds
-                if (!seekSlider.pressed) {
-                    mediaController.disablePositionUpdate = true
-                    if (seekSlider.value == seekSlider.maximumValue) {
-                        mpris2Source.retrievePosition();
-                    } else {
-                        seekSlider.value += 1000000
-                    }
-                    mediaController.disablePositionUpdate = false
-                }
-            }
+        PlasmaComponents.Label {
+            visible: plasmoid.configuration.showMediaTimeLeft
+            Layout.preferredWidth: timeMetrics.width
+            Layout.fillHeight: true
+            verticalAlignment: Text.AlignVCenter
+            text: i18nc("Remaining time for song e.g -5:42", "-%1",
+                        KCoreAddons.Format.formatDuration((seekSlider.maximumValue - seekSlider.value) / 1000, KCoreAddons.FormatTypes.FoldHours))
+            opacity: 0.6
+            font: theme.smallestFont
         }
+
+        PlasmaComponents.Label {
+            visible: plasmoid.configuration.showMediaTimeTotal
+            Layout.preferredWidth: timeMetrics.width
+            Layout.fillHeight: true
+            verticalAlignment: Text.AlignVCenter
+            horizontalAlignment: Text.AlignRight
+            text: KCoreAddons.Format.formatDuration(seekSlider.maximumValue / 1000, KCoreAddons.FormatTypes.FoldHours)
+            opacity: 0.6
+            font: theme.smallestFont
+        }
+
     }
 }
