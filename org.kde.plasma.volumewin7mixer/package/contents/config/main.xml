@@ -30,5 +30,8 @@
     <entry name="showOsd" type="bool">
       <default>true</default>
     </entry>
+    <entry name="volumeSliderTheme" type="string">
+      <default>desktoptheme</default>
+    </entry>
   </group>
 </kcfg>

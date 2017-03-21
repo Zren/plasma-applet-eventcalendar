@@ -29,7 +29,7 @@ PlasmaComponents.Slider {
 	property int grooveThickness: 5 * units.devicePixelRatio
 	// property int handleHeight: 20 * units.devicePixelRatio
 
-	property string svgUrl: plasmoid.file("images", "volumeslider.svg")
+	property string svgUrl: config.volumeSliderUrl
 	PlasmaCore.Svg {
 		id: grooveSvg
 		imagePath: slider.svgUrl

@@ -74,6 +74,37 @@ ColumnLayout {
             }
         }
 
+        ExclusiveGroup { id: volumeSliderThemeGroup }
+        GroupBox {
+            Layout.fillWidth: true
+            title: i18n("Volume Slider Theme")
+
+            ColumnLayout {
+                RadioButton {
+                    text: i18n("Desktop Theme (%1)", theme.themeName)
+                    exclusiveGroup: volumeSliderThemeGroup
+                    enabled: false
+                    // checked: plasmoid.configuration.volumeSliderTheme == "desktoptheme"
+                    // onClicked: plasmoid.configuration.volumeSliderTheme = "desktoptheme"
+                }
+                RadioButton {
+                    text: i18n("Color Theme (Default Look)")
+                    exclusiveGroup: volumeSliderThemeGroup
+                    // checked: plasmoid.configuration.volumeSliderTheme == "colortheme"
+                    // onClicked: plasmoid.configuration.volumeSliderTheme = "colortheme"
+                    checked: plasmoid.configuration.volumeSliderTheme == "desktoptheme"
+                    onClicked: plasmoid.configuration.volumeSliderTheme = "desktoptheme"
+                }
+                
+                RadioButton {
+                    text: i18n("Light Blue on Grey (Default Look)")
+                    exclusiveGroup: volumeSliderThemeGroup
+                    checked: plasmoid.configuration.volumeSliderTheme == "default"
+                    onClicked: plasmoid.configuration.volumeSliderTheme = "default"
+                }
+            }
+        }
+
         // GroupBox {
         //     Layout.fillWidth: true
         //     title: 'Context Menu'
