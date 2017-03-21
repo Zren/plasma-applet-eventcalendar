@@ -1,3 +1,11 @@
+## v17 - March 21 2017
+
+* Fix for the media slider starting at the length of the previous song. Thanks davidedmundson.
+* Get rid of the 1px outline on the volume slider groove.
+* The new volume slider layout will now be coloured based on the desktop theme.
+* The previous volume slider theme/colouring (light blue on gray) can be selected in the settings.
+* Add time elapsed & time left next to the song's progressbar like the default media controller widget. Both are toggleable, along with the option to show the total duration of the song.
+
 ## v16 - March 15 2017
 
 * Make the icon+label into a button that opens the context menu.
