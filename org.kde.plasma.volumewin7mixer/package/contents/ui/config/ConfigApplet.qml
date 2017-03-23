@@ -23,186 +23,179 @@ ConfigPage {
     property alias cfg_showOsd: showOsd.checked
     property alias cfg_volumeChangeFeedback: volumeChangeFeedback.checked
 
-    // AppletVersion {}
+    GroupBox {
+        Layout.fillWidth: true
+        title: i18n("Media Keys")
 
-    // ColumnLayout {
-        // Layout.alignment: Qt.AlignTop | Qt.AlignLeft
+        ColumnLayout {
 
-        GroupBox {
-            Layout.fillWidth: true
-            title: i18n("Media Keys")
-
-            ColumnLayout {
-
-                RowLayout {
-                    Label {
-                        text: i18n("Volume Up/Down Steps:")
-                    }
-                    SpinBox {
-                        id: volumeUpDownSteps
-                        minimumValue: 1
-                    }
-                    Label {
-                        text: i18n("One step = %1%", Math.round(1/volumeUpDownSteps.value * 100))
-                    }
+            RowLayout {
+                Label {
+                    text: i18n("Volume Up/Down Steps:")
                 }
-
+                SpinBox {
+                    id: volumeUpDownSteps
+                    minimumValue: 1
+                }
+                Label {
+                    text: i18n("One step = %1%", Math.round(1/volumeUpDownSteps.value * 100))
+                }
             }
+
         }
+    }
 
-        GroupBox {
-            Layout.fillWidth: true
-            title: i18n("Mixer")
+    GroupBox {
+        Layout.fillWidth: true
+        title: i18n("Mixer")
 
-            ColumnLayout {
+        ColumnLayout {
 
-                CheckBox {
+            CheckBox {
+                enabled: false
+                id: showVolumeTickmarks
+                checked: true
+                text: i18n("Show Ticks every 10%")
+            }
+
+            RowLayout {
+                Label {
+                    text: i18n("Volume Boost")
+                }
+                SpinBox {
                     enabled: false
-                    id: showVolumeTickmarks
-                    checked: true
-                    text: i18n("Show Ticks every 10%")
-                }
-
-                RowLayout {
-                    Label {
-                        text: i18n("Volume Boost")
-                    }
-                    SpinBox {
-                        enabled: false
-                        id: volumeBoostMaxVolume
-                        minimumValue: 100
-                        value: 150
-                        maximumValue: 1000
-                        stepSize: 10
-                        suffix: '%'
-                    }
-                }
-                
-
-
-            }
-        }
-
-        ExclusiveGroup { id: volumeSliderThemeGroup }
-        GroupBox {
-            Layout.fillWidth: true
-            title: i18n("Volume Slider Theme")
-
-            ColumnLayout {
-                RadioButton {
-                    text: i18n("Desktop Theme (%1)", theme.themeName)
-                    exclusiveGroup: volumeSliderThemeGroup
-                    enabled: false
-                    // checked: plasmoid.configuration.volumeSliderTheme == "desktoptheme"
-                    // onClicked: plasmoid.configuration.volumeSliderTheme = "desktoptheme"
-                }
-                RadioButton {
-                    text: i18n("Color Theme (Default Look)")
-                    exclusiveGroup: volumeSliderThemeGroup
-                    // checked: plasmoid.configuration.volumeSliderTheme == "colortheme"
-                    // onClicked: plasmoid.configuration.volumeSliderTheme = "colortheme"
-                    checked: plasmoid.configuration.volumeSliderTheme == "desktoptheme"
-                    onClicked: plasmoid.configuration.volumeSliderTheme = "desktoptheme"
-                }
-                
-                RadioButton {
-                    text: i18n("Light Blue on Grey (Default Look)")
-                    exclusiveGroup: volumeSliderThemeGroup
-                    checked: plasmoid.configuration.volumeSliderTheme == "default"
-                    onClicked: plasmoid.configuration.volumeSliderTheme = "default"
+                    id: volumeBoostMaxVolume
+                    minimumValue: 100
+                    value: 150
+                    maximumValue: 1000
+                    stepSize: 10
+                    suffix: '%'
                 }
             }
+            
+
+
         }
+    }
 
-        // GroupBox {
-        //     Layout.fillWidth: true
-        //     title: 'Context Menu'
+    ExclusiveGroup { id: volumeSliderThemeGroup }
+    GroupBox {
+        Layout.fillWidth: true
+        title: i18n("Volume Slider Theme")
 
-        //     ColumnLayout {
-
-        //         CheckBox {
-        //             id: showOpenKcmAudioVolume
-        //             text: 'KDE Audio Volume'
-        //         }
-
-        //         CheckBox {
-        //             id: showOpenPavucontrol
-        //             text: 'pavucontrol (PulseAudio Control) (Can do Audio Boost)'
-        //         }
-
-        //         RowLayout {
-        //             Text { width: 24 } // indent
-        //             Text {
-        //                 font.family: 'monospace'
-        //                 text: 'sudo apt-get install pavucontrol'
-        //             }
-        //         }
-
-        //     }
-        // }
-
-        GroupBox {
-            Layout.fillWidth: true
-            title: i18n("Options")
-
-            ColumnLayout {
-
-                CheckBox {
-                    id: moveAllAppsOnSetDefault
-                    text: i18n("Move all Apps to device when setting default device (when set in with the context menu)")
-                }
-
-                CheckBox {
-                    id: showOsd
-                    text: i18n("Show OSD on when changing the volume.")
-                }
-
-                CheckBox {
-                    id: volumeChangeFeedback
-                    text: i18n("Volume Feedback: Play popping noise when changing the volume.")
-                }
-
+        ColumnLayout {
+            RadioButton {
+                text: i18n("Desktop Theme (%1)", theme.themeName)
+                exclusiveGroup: volumeSliderThemeGroup
+                enabled: false
+                // checked: plasmoid.configuration.volumeSliderTheme == "desktoptheme"
+                // onClicked: plasmoid.configuration.volumeSliderTheme = "desktoptheme"
+            }
+            RadioButton {
+                text: i18n("Color Theme (Default Look)")
+                exclusiveGroup: volumeSliderThemeGroup
+                // checked: plasmoid.configuration.volumeSliderTheme == "colortheme"
+                // onClicked: plasmoid.configuration.volumeSliderTheme = "colortheme"
+                checked: plasmoid.configuration.volumeSliderTheme == "desktoptheme"
+                onClicked: plasmoid.configuration.volumeSliderTheme = "desktoptheme"
+            }
+            
+            RadioButton {
+                text: i18n("Light Blue on Grey (Default Look)")
+                exclusiveGroup: volumeSliderThemeGroup
+                checked: plasmoid.configuration.volumeSliderTheme == "default"
+                onClicked: plasmoid.configuration.volumeSliderTheme = "default"
             }
         }
+    }
 
-        GroupBox {
-            Layout.fillWidth: true
-            title: i18n("Media Controller")
+    // GroupBox {
+    //     Layout.fillWidth: true
+    //     title: 'Context Menu'
 
-            ColumnLayout {
+    //     ColumnLayout {
 
-                CheckBox {
-                    id: showMediaController
-                    text: i18n("Show Media Controller")
-                }
+    //         CheckBox {
+    //             id: showOpenKcmAudioVolume
+    //             text: 'KDE Audio Volume'
+    //         }
 
-                ConfigComboBox {
-                    id: appDescriptionControl
-                    configKey: "mediaControllerLocation"
-                    label: i18n("Position")
-                    model: [
-                        { value: "top", text: i18n("Top") },
-                        { value: "bottom", text: i18n("Bottom") },
-                    ]
-                }
+    //         CheckBox {
+    //             id: showOpenPavucontrol
+    //             text: 'pavucontrol (PulseAudio Control) (Can do Audio Boost)'
+    //         }
 
-                CheckBox {
-                    id: showMediaTimeElapsed
-                    text: i18n("Show Time Elapsed")
-                }
+    //         RowLayout {
+    //             Text { width: 24 } // indent
+    //             Text {
+    //                 font.family: 'monospace'
+    //                 text: 'sudo apt-get install pavucontrol'
+    //             }
+    //         }
 
-                CheckBox {
-                    id: showMediaTimeLeft
-                    text: i18n("Show Time Left")
-                }
-
-                CheckBox {
-                    id: showMediaTotalDuration
-                    text: i18n("Show Total Duration")
-                }
-
-            }
-        }
-
+    //     }
     // }
+
+    GroupBox {
+        Layout.fillWidth: true
+        title: i18n("Options")
+
+        ColumnLayout {
+
+            CheckBox {
+                id: moveAllAppsOnSetDefault
+                text: i18n("Move all Apps to device when setting default device (when set in with the context menu)")
+            }
+
+            CheckBox {
+                id: showOsd
+                text: i18n("Show OSD on when changing the volume.")
+            }
+
+            CheckBox {
+                id: volumeChangeFeedback
+                text: i18n("Volume Feedback: Play popping noise when changing the volume.")
+            }
+
+        }
+    }
+
+    GroupBox {
+        Layout.fillWidth: true
+        title: i18n("Media Controller")
+
+        ColumnLayout {
+
+            CheckBox {
+                id: showMediaController
+                text: i18n("Show Media Controller")
+            }
+
+            ConfigComboBox {
+                id: appDescriptionControl
+                configKey: "mediaControllerLocation"
+                label: i18n("Position")
+                model: [
+                    { value: "top", text: i18n("Top") },
+                    { value: "bottom", text: i18n("Bottom") },
+                ]
+            }
+
+            CheckBox {
+                id: showMediaTimeElapsed
+                text: i18n("Show Time Elapsed")
+            }
+
+            CheckBox {
+                id: showMediaTimeLeft
+                text: i18n("Show Time Left")
+            }
+
+            CheckBox {
+                id: showMediaTotalDuration
+                text: i18n("Show Total Duration")
+            }
+
+        }
+    }
 }
