@@ -388,8 +388,11 @@ PlasmaComponents.ListItem {
                         }
                     }
 
+                    property bool playFeedbackOnUpdate: false
                     onPressedChanged: {
-                        if (!pressed) {
+                        if (pressed) {
+                            playFeedbackOnUpdate = true
+                        } else {
                             // Make sure to sync the volume once the button was
                             // released.
                             // Otherwise it might be that the slider is at v10
@@ -406,8 +409,12 @@ PlasmaComponents.ListItem {
                             slider.value = PulseObject.volume
 
                             // Done dragging, play feedback
-                            if (mixerItemType == 'Sink') {
+                            if (mixerItemType == 'Sink' && slider.playFeedbackOnUpdate) {
                                 main.playFeedback(PulseObject.index)
+                            }
+
+                            if (!slider.pressed) {
+                                slider.playFeedbackOnUpdate = false
                             }
                         }
                     }
