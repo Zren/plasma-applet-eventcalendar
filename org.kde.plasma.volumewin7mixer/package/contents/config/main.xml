@@ -42,5 +42,8 @@
     <entry name="showMediaTotalDuration" type="bool">
       <default>false</default>
     </entry>
+    <entry name="volumeChangeFeedback" type="bool">
+      <default>true</default>
+    </entry>
   </group>
 </kcfg>

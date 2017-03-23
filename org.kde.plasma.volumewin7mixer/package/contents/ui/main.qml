@@ -107,6 +107,7 @@ Item {
         sinkModel.defaultSink.muted = false;
         var volume = PulseObjectCommands.increaseVolume(sinkModel.defaultSink);
         showOsd(volume);
+        playFeedback();
     }
 
     function decreaseDefaultSinkVolume() {
@@ -116,6 +117,7 @@ Item {
         sinkModel.defaultSink.muted = false;
         var volume = PulseObjectCommands.decreaseVolume(sinkModel.defaultSink);
         showOsd(volume);
+        playFeedback();
     }
 
     function toggleDefaultSinksMute() {
@@ -124,6 +126,7 @@ Item {
         }
         var toMute = PulseObjectCommands.toggleMute(sinkModel.defaultSink);
         showOsd(toMute ? 0 : sinkModel.defaultSink.volume);
+        playFeedback();
     }
 
     function showMicrophoneOsd(volume) {
@@ -290,6 +293,19 @@ Item {
         id: osd
     }
 
+    VolumeFeedback {
+        id: feedback
+    }
+
+    function playFeedback(sinkIndex) {
+        if (!plasmoid.configuration.volumeChangeFeedback) {
+            return;
+        }
+        if (sinkIndex == undefined) {
+            sinkIndex = sinkModel.preferredSink.index;
+        }
+        feedback.play(sinkIndex);
+    }
 
     Mpris2DataSource {
         id: mpris2Source

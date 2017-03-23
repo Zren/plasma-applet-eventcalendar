@@ -354,7 +354,7 @@ PlasmaComponents.ListItem {
                     // as otherwise we can easily end up in a loop where value
                     // changes trigger volume changes trigger value changes.
                     property int volume: PulseObject.volume
-                    property bool ignoreValueChange: false
+                    property bool ignoreValueChange: true
 
                     Layout.fillWidth: true
 
@@ -370,12 +370,12 @@ PlasmaComponents.ListItem {
                     }
 
                     onVolumeChanged: {
-                        ignoreValueChange = true;
+                        var oldIgnoreValueChange = ignoreValueChange;
                         if (!mixerItem.isVolumeBoosted && PulseObject.volume > maximumValue) {
                             mixerItem.isVolumeBoosted = true;
                         }
                         value = PulseObject.volume;
-                        ignoreValueChange = false;
+                        ignoreValueChange = oldIgnoreValueChange;
                     }
 
                     onValueChanged: {
@@ -402,7 +402,14 @@ PlasmaComponents.ListItem {
                     Timer {
                         id: updateTimer
                         interval: 200
-                        onTriggered: slider.value = PulseObject.volume
+                        onTriggered: {
+                            slider.value = PulseObject.volume
+
+                            // Done dragging, play feedback
+                            if (mixerItemType == 'Sink') {
+                                main.playFeedback(PulseObject.index)
+                            }
+                        }
                     }
 
                     // Block wheel events
@@ -413,6 +420,7 @@ PlasmaComponents.ListItem {
                     }
 
                     Component.onCompleted: {
+                        ignoreValueChange = false
                         mixerItem.isVolumeBoosted = PulseObject.volume > 66000 // 100% is 65863.68, not 65536... Bleh. Just trigger at a round number.
                     }
                 }

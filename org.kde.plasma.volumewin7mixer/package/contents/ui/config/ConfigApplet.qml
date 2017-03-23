@@ -18,6 +18,7 @@ ColumnLayout {
     property alias cfg_showMediaTimeLeft: showMediaTimeLeft.checked
     property alias cfg_showMediaTotalDuration: showMediaTotalDuration.checked
     property alias cfg_showOsd: showOsd.checked
+    property alias cfg_volumeChangeFeedback: volumeChangeFeedback.checked
 
     ColumnLayout {
         Layout.alignment: Qt.AlignTop | Qt.AlignLeft
@@ -149,6 +150,11 @@ ColumnLayout {
                 CheckBox {
                     id: showOsd
                     text: i18n("Show OSD on when changing the volume.")
+                }
+
+                CheckBox {
+                    id: volumeChangeFeedback
+                    text: i18n("Volume Feedback: Play popping noise when changing the volume.")
                 }
 
             }
