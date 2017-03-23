@@ -1,3 +1,9 @@
+## v18 - March 23 2017
+
+* Raised minimum requirements to Plasma 5.8
+* [upstream] Add volume feedback
+* Show current version in the config.
+
 ## v17 - March 21 2017
 
 * Fix for the media slider starting at the length of the previous song. Thanks davidedmundson.
