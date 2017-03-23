@@ -43,7 +43,6 @@ Item {
 
 	Component.onCompleted: {
 		var cmd = 'kreadconfig5 --file "' + metadataFilepath + '" --group "Desktop Entry" --key "X-KDE-PluginInfo-Version"'
-		console.log(cmd)
 		executable.exec(cmd)
 	}
 
