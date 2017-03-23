@@ -4,9 +4,9 @@ import QtQuick.Layouts 1.0
 import org.kde.plasma.core 2.0 as PlasmaCore
 import org.kde.plasma.plasmoid 2.0
 
-GroupBox {
-	width: label.implicitWidth
-	height: label.implicitHeight
+Item {
+	implicitWidth: label.implicitWidth
+	implicitHeight: label.implicitHeight
 
 	property string version: "?"
 	property string metadataFilepath: plasmoid.file("", "../metadata.desktop")
@@ -38,7 +38,7 @@ GroupBox {
 
 	Label {
 		id: label
-		text: i18n("Version: %1", version)
+		text: i18n("<b>Version:</b> %1", version)
 	}
 
 	Component.onCompleted: {
