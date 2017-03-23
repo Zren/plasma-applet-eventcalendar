@@ -5,8 +5,11 @@ import org.kde.plasma.core 2.0 as PlasmaCore
 import org.kde.plasma.components 2.0 as PlasmaComponents
 import org.kde.plasma.extras 2.0 as PlasmaExtras
 
-ColumnLayout {
+import "../lib"
+
+ConfigPage {
     id: page
+    showAppletVersion: true
 
     property alias cfg_volumeUpDownSteps: volumeUpDownSteps.value
     property alias cfg_showVolumeTickmarks: showVolumeTickmarks.checked
@@ -20,8 +23,10 @@ ColumnLayout {
     property alias cfg_showOsd: showOsd.checked
     property alias cfg_volumeChangeFeedback: volumeChangeFeedback.checked
 
-    ColumnLayout {
-        Layout.alignment: Qt.AlignTop | Qt.AlignLeft
+    // AppletVersion {}
+
+    // ColumnLayout {
+        // Layout.alignment: Qt.AlignTop | Qt.AlignLeft
 
         GroupBox {
             Layout.fillWidth: true
@@ -199,5 +204,5 @@ ColumnLayout {
             }
         }
 
-    }
+    // }
 }
