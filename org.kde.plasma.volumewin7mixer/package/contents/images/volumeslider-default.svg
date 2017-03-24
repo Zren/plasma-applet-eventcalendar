@@ -65,6 +65,37 @@
   <defs
      id="defs4">
     <style
+       id="style8"
+       type="text/css">
+      /* Override Color Scheme by defining first */
+      /* ColorScheme-Text = Groove color */
+      /* ColorScheme-Background = Triangle color */
+      
+      .ColorScheme-Text {
+        color:#eeeeee;
+      }
+      .ColorScheme-Background {
+        color:#31363b;
+      }
+      .ColorScheme-Highlight {
+        color:#93cee9;
+      }
+      
+      .ColorScheme-ButtonText {
+        color:#31363b;
+      }
+      .ColorScheme-ButtonBackground {
+        color:#eff0f1;
+      }
+      .ColorScheme-ButtonHover {
+        color:#93cee9;
+      }
+      .ColorScheme-ButtonFocus{
+        color:#3daee9;
+      }
+      
+      </style>
+    <style
        id="current-color-scheme"
        type="text/css">
        /* This entire element will be replaced will a different stylesheet. */
@@ -122,24 +153,6 @@
       .ColorScheme-Danger {
         color: #ee0000;
       }
-      </style>
-    <style
-       id="style8"
-       type="text/css">
-      /* Override Color Scheme by defining last */
-      /* ColorScheme-Text = Groove color */
-      /* ColorScheme-Background = Triangle color */
-      
-      .ColorScheme-Text {
-        color:#eeeeee;
-      }
-      .ColorScheme-Background {
-        color:#31363b;
-      }
-      .ColorScheme-Highlight {
-        color:#93cee9;
-      }
-      
       </style>
   </defs>
   <metadata
