@@ -1,0 +1,2 @@
+module org.kde.plasma.private.volumewin7mixer
+plugin plasma-volumewin7mixer-declarative

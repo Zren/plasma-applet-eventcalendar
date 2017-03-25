@@ -1,0 +1,6 @@
+#!/bin/bash
+
+sudo apt install extra-cmake-modules
+sudo apt install plasma-framework-dev
+
+sh ./build

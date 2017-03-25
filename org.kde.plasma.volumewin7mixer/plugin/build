@@ -1,0 +1,13 @@
+#!/bin/bash
+
+# sudo apt install extra-cmake-modules
+# sudo apt install plasma-framework-dev
+
+buildDir="out"
+
+rm -r $buildDir
+(mkdir $buildDir && cd $buildDir \
+	&& cmake .. -DCMAKE_INSTALL_PREFIX=/usr -DCMAKE_BUILD_TYPE=Release -DKDE_INSTALL_LIBDIR=lib -DKDE_INSTALL_USE_QT_SYS_PATHS=ON \
+	&& make \
+	&& sudo make install \
+)
