@@ -371,7 +371,7 @@ PlasmaComponents.ListItem {
 
                     onVolumeChanged: {
                         var oldIgnoreValueChange = ignoreValueChange;
-                        if (!mixerItem.isVolumeBoosted && PulseObject.volume > maximumValue) {
+                        if (!mixerItem.isVolumeBoosted && PulseObject.volume > 66000) {
                             mixerItem.isVolumeBoosted = true;
                         }
                         value = PulseObject.volume;
