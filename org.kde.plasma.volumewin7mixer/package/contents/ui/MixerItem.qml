@@ -361,7 +361,7 @@ PlasmaComponents.ListItem {
                     minimumValue: 0
                     // FIXME: I do wonder if exposing max through the model would be useful at all
                     maximumValue: mixerItem.isVolumeBoosted ? 98304 : 65536
-                    stepSize: maximumValue / 100
+                    stepSize: maximumValue / maxPercentage
                     visible: PulseObject.hasVolume
                     enabled: typeof PulseObject.volumeWritable === 'undefined' || PulseObject.volumeWritable
 
