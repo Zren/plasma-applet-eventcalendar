@@ -21,6 +21,15 @@ PlasmaComponents.Slider {
 	readonly property int percentage: Math.round(value / hundredPercentValue * 100)
 	readonly property int maxPercentage: Math.ceil(maximumValue / hundredPercentValue * 100)
 
+	property bool isPeaking: volumePeakLoader.active && volumePeakLoader.item
+	property real peakValue: isPeaking ? volumePeakLoader.item.defaultSinkPeak : 65536
+	property real peakRatio: peakValue / 65536
+	Loader {
+		id: volumePeakLoader
+		active: mixerItem.mixerItemType === 'Sink'
+		source: "VolumePeaksManager.qml"
+	}
+
 	// Component.onCompleted: {
 	// 	console.log('maxPercentage', maxPercentage)
 	// 	console.log(Math.floor(maxPercentage / 10) + 1)
@@ -87,6 +96,10 @@ PlasmaComponents.Slider {
 		groove: Item {
 			id: grooveItem
 			anchors.fill: parent
+
+			property real valuePosition: styleData.handlePosition - control.handleHeight/2
+			property real peakPosition: valuePosition * control.peakRatio
+
 			PlasmaCore.FrameSvgItem {
 				id: groove
 				imagePath: slider.svgUrl
@@ -110,13 +123,23 @@ PlasmaComponents.Slider {
 					imagePath: slider.svgUrl
 					prefix: control.percentage <= 100 ? "groove-highlight" : "groove-danger"
 					height: groove.height
-
-					width: styleData.handlePosition - control.handleHeight/2
+					width: grooveItem.valuePosition
+					visible: width > 0
 					anchors.verticalCenter: parent.verticalCenter
 					colorGroup: PlasmaCore.ColorScope.colorGroup
-
-					visible: control.value > 0
 				}
+
+				PlasmaCore.FrameSvgItem {
+					id: peakHighlight
+					imagePath: slider.svgUrl
+					prefix: "groove-peaking"
+					height: groove.height
+					width: grooveItem.peakPosition
+					visible: control.isPeaking && width > 0
+					anchors.verticalCenter: parent.verticalCenter
+					colorGroup: PlasmaCore.ColorScope.colorGroup
+				}
+
 				PlasmaCore.SvgItem {
 					id: grooveTriangle
 					svg: grooveSvg
@@ -127,28 +150,9 @@ PlasmaComponents.Slider {
 					anchors.right: parent.right
 
 					Item {
-						// anchors.fill: parent
 						height: grooveTriangle.height
-						width: styleData.handlePosition - control.handleHeight/2
-						// anchors.verticalCenter: parent.verticalCenter
+						width: grooveItem.valuePosition
 						clip: true
-						// anchors.left: parent.left
-						// anchors.top: parent.top
-						// // anchors.right: parent.right
-						// anchors.bottom: parent.bottom
-
-						// Rectangle {
-						// 	color: "#f00"
-						// 	height: grooveTriangle.height
-						// 	width: grooveTriangle.width
-						// }
-
-						// Rectangle {
-						// 	anchors.fill: parent
-						// 	border.color: "#ff0"
-						// 	border.width: 1
-						// 	color: "transparent"
-						// }
 
 						PlasmaCore.SvgItem {
 							id: grooveHighlightTriangle
@@ -158,15 +162,21 @@ PlasmaComponents.Slider {
 							width: grooveTriangle.width
 							visible: control.value > 0
 						}
+					}
 
-						// PlasmaCore.SvgItem {
-						// 	id: grooveDangerTriangle
-						// 	svg: grooveSvg
-						// 	elementId: "groove-danger-triangle"
-						// 	height: grooveTriangle.height
-						// 	width: grooveTriangle.width
-						// 	visible: control.value > 0 && control.percentage > 100
-						// }
+					Item {
+						height: grooveTriangle.height
+						width: grooveItem.peakPosition
+						clip: true
+
+						PlasmaCore.SvgItem {
+							id: groovePeakHighlightTriangle
+							svg: grooveSvg
+							elementId: "groove-peaking-triangle"
+							height: grooveTriangle.height
+							width: grooveTriangle.width
+							visible: control.isPeaking && control.value > 0
+						}
 					}
 
 				}
