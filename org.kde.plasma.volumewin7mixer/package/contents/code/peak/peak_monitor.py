@@ -94,11 +94,21 @@ class PeakMonitor(object):
                                      None,
                                      flags)
 
+    # def logStreamInfo(self, stream_info):
+    #     import os
+    #     with open(os.path.expanduser("~/Desktop/peak_monitor.log"), 'a+') as f:
+    #         f.write(str(stream_info.name) + '\n')
+    #         if self.stream_type == 'sink':
+    #             f.write('\t' + str(stream_info.monitor_source_name) + '\n')
+    #         elif self.stream_type == 'source':
+    #             f.write('\t' + str(stream_info.monitor_of_sink_name) + '\n')
+
     def getMonitorName(self, stream_info):
+        # self.logStreamInfo(stream_info)
         if self.stream_type == 'sink':
             return stream_info.monitor_source_name
         elif self.stream_type == 'source':
-            return stream_info.monitor_of_sink_name
+            return stream_info.name
         else:
             raise NotImplementedError()
 
