@@ -12,14 +12,24 @@ from lib_pulseaudio import *
 
 class PeakMonitor(object):
 
-    def __init__(self, sink_name, rate):
-        self.sink_name = sink_name
+    def __init__(self, stream_type, stream_name, rate):
+        self.stream_type = stream_type
+        self.stream_name = stream_name
         self.rate = rate
+
+        if stream_type == 'sink':
+            self.fn_pa_stream_info_cb_t = pa_sink_info_cb_t
+            self.fn_pa_context_get_stream_info_list = pa_context_get_sink_info_list
+        elif stream_type == 'source':
+            self.fn_pa_stream_info_cb_t = pa_source_info_cb_t
+            self.fn_pa_context_get_stream_info_list = pa_context_get_source_info_list
+        else:
+            raise Exception("%0 stream_type must be [sink, source]" % stream_type)
 
         # Wrap callback methods in appropriate ctypefunc instances so
         # that the Pulseaudio C API can call them
         self._context_notify_cb = pa_context_notify_cb_t(self.context_notify_cb)
-        self._sink_info_cb = pa_sink_info_cb_t(self.sink_info_cb)
+        self._sink_info_cb = self.fn_pa_stream_info_cb_t(self.sink_info_cb)
         self._stream_read_cb = pa_stream_request_cb_t(self.stream_read_cb)
 
         # stream_read_cb() puts peak samples into this Queue instance
@@ -50,7 +60,7 @@ class PeakMonitor(object):
         if state == PA_CONTEXT_READY:
             # Connected to Pulseaudio. Now request that sink_info_cb
             # be called with information about the available sinks.
-            o = pa_context_get_sink_info_list(context, self._sink_info_cb, None)
+            o = self.fn_pa_context_get_stream_info_list(context, self._sink_info_cb, None)
             pa_operation_unref(o)
 
         elif state == PA_CONTEXT_FAILED :
@@ -66,10 +76,9 @@ class PeakMonitor(object):
         sink_info = sink_info_p.contents
         # print 'sink seen: %s / %s' % (sink_info.name, sink_info.description)
 
-        if sink_info.name == self.sink_name:
+        if sink_info.name == self.stream_name:
             # Found the sink we want to monitor for peak levels.
             # Tell PA to call stream_read_cb with peak samples.
-            # print 'setting up peak recording using', sink_info.monitor_source_name
             samplespec = pa_sample_spec()
             samplespec.channels = 1
             samplespec.format = PA_SAMPLE_U8
@@ -81,9 +90,17 @@ class PeakMonitor(object):
                                         sink_info.index)
             flags = PA_STREAM_DONT_MOVE | PA_STREAM_PEAK_DETECT | PA_STREAM_ADJUST_LATENCY
             pa_stream_connect_record(pa_stream,
-                                     sink_info.monitor_source_name,
+                                     self.getMonitorName(sink_info),
                                      None,
                                      flags)
+
+    def getMonitorName(self, stream_info):
+        if self.stream_type == 'sink':
+            return stream_info.monitor_source_name
+        elif self.stream_type == 'source':
+            return stream_info.monitor_of_sink_name
+        else:
+            raise NotImplementedError()
 
     def stream_read_cb(self, stream, length, index_incr):
         data = c_void_p()
@@ -99,14 +116,15 @@ class PeakMonitor(object):
 
 if __name__ == '__main__':
     import sys
-    sink_name = sys.argv[1] if len(sys.argv) >= 2 else 'alsa_output.pci-0000_00_14.2.analog-stereo'
-    peak = PeakMonitor(sink_name, 30)
-    i = 0
+    stream_type = sys.argv[1].lower()
+    stream_name = sys.argv[2]
+    peak = PeakMonitor(stream_type, stream_name, 30)
     for sample in peak:
+        # samples = 0..127
+        # 65536 = PulseAudio.NormalVolume = 100%
         # 128 = 2^7
         # 65536 = 2^16
         # 65536 = 2^7 * 2^9
         # 512 = 2^9
-
         sys.stdout.write(str(sample * 512) + "\n")
         sys.stdout.flush()
