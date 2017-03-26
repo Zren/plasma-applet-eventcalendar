@@ -23,6 +23,9 @@ class PeakMonitor(object):
         elif stream_type == 'source':
             self.fn_pa_stream_info_cb_t = pa_source_info_cb_t
             self.fn_pa_context_get_stream_info_list = pa_context_get_source_info_list
+        # elif stream_type == 'sourceoutput':
+        #     self.fn_pa_stream_info_cb_t = pa_source_output_info_cb_t
+        #     self.fn_pa_context_get_stream_info_list = pa_context_get_source_output_info_list
         else:
             raise Exception("%0 stream_type must be [sink, source]" % stream_type)
 
@@ -94,6 +97,11 @@ class PeakMonitor(object):
                                      None,
                                      flags)
 
+    # def log(self, s):
+    #     import os
+    #     with open(os.path.expanduser("~/Desktop/peak_monitor.log"), 'a+') as f:
+    #         f.write(str(s) + '\n')
+        
     # def logStreamInfo(self, stream_info):
     #     import os
     #     with open(os.path.expanduser("~/Desktop/peak_monitor.log"), 'a+') as f:
@@ -109,6 +117,8 @@ class PeakMonitor(object):
             return stream_info.monitor_source_name
         elif self.stream_type == 'source':
             return stream_info.name
+        # elif self.stream_type == 'sourceoutput':
+        #     return stream_info.name
         else:
             raise NotImplementedError()
 

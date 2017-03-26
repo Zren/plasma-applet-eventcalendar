@@ -8,7 +8,7 @@ VolumePeaks {
 	property int defaultSinkPeakPercent: Math.round(defaultSinkPeakRatio*100)
 	property string filename: plasmoid.file("", "code/peak/peak_monitor.py")
 	peakCommand: {
-		var command = "python2 " + filename + " " + mixerItem.mixerItemType + " " + PulseObject.name
+		var command = "python2 " + filename + " " + mixerItem.mixerItemType + " \"" + PulseObject.name + "\""
 		// console.log("filename", filename)
 		// console.log("command", command)
 		return command
