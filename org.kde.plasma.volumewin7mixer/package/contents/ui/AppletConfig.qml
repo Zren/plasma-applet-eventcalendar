@@ -22,4 +22,13 @@ QtObject {
 			return plasmoid.file("images", "volumeslider-default.svg")
 		}
 	}
+
+	property color selectedStreamOutline: config.withAlpha(theme.textColor, 0.25)
+	property color selectedStreamOutlinePulse: theme.textColor
+
+	function withAlpha(c1, alpha) {
+		var c2 = Qt.darker(c1, 1)
+		c2.a = alpha
+		return c2
+	}
 }

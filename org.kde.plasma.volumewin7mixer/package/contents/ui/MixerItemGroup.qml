@@ -121,5 +121,29 @@ GroupBox {
             volumeSliderWidth: mixerItemGroup.volumeSliderWidth
             mixerItemType: mixerItemGroup.mixerGroupType
         }
+
+        currentIndex: -1
+
+        highlight: Rectangle {
+            color: "transparent"
+            anchors.fill: view.currentItem
+            border.width: 1
+            border.color: config.selectedStreamOutline
+
+            
+            SequentialAnimation on border.color {
+                loops: Animation.Infinite
+                ColorAnimation {
+                    from: config.selectedStreamOutline
+                    to: config.selectedStreamOutlinePulse
+                    duration: 1000
+                }
+                ColorAnimation {
+                    from: config.selectedStreamOutlinePulse
+                    to: config.selectedStreamOutline
+                    duration: 1000
+                }
+            }
+        }
     }
 }
