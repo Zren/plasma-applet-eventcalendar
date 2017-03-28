@@ -30,6 +30,9 @@ PlasmaComponents.ListItem {
     property int numChannels: hasChannels ? PulseObject.channels.length : 0
     property bool showChannels: false
 
+    Keys.onUpPressed: PulseObjectCommands.increaseVolume(PulseObject)
+    Keys.onDownPressed: PulseObjectCommands.decreaseVolume(PulseObject)
+
     PlasmaCore.FrameSvgItem {
         id: background
         imagePath: "widgets/listitem"
@@ -430,6 +433,7 @@ PlasmaComponents.ListItem {
                         ignoreValueChange = false
                         mixerItem.isVolumeBoosted = PulseObject.volume > 66000 // 100% is 65863.68, not 65536... Bleh. Just trigger at a round number.
                     }
+
                 }
             }
 

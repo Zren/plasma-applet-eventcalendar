@@ -336,6 +336,27 @@ Item {
         }
     }
 
+    // Keyboard Navigation/Controls
+    InputManager { id: inputManager }
+    focus: true
+    Keys.forwardTo: inputManager.hasSelection ? [inputManager.selectedMixerItem] : []
+    Keys.onLeftPressed: inputManager.selectLeft()
+    Keys.onRightPressed: inputManager.selectRight()
+    Keys.onUpPressed:{
+        if (!inputManager.hasSelection) {
+            inputManager.selectDefault()
+            inputManager.selectedMixerItem.Keys.onUpPressed(event) // Manually trigger since it hasn't been forwarded yet.
+        }
+    }
+    Keys.onDownPressed: {
+        if (!inputManager.hasSelection) {
+            inputManager.selectDefault()
+            inputManager.selectedMixerItem.Keys.onDownPressed(event) // Manually trigger since it hasn't been forwarded yet.
+        }
+    }
+
+
+
     property bool showMediaController: plasmoid.configuration.showMediaController
     property string mediaControllerLocation: plasmoid.configuration.mediaControllerLocation || 'bottom'
     property bool mediaControllerVisible: showMediaController && mpris2Source.hasPlayer
@@ -351,6 +372,7 @@ Item {
             spacing: 10
 
             MixerItemGroup {
+                id: sourceOutputMixerItemGroup
                 height: parent.height
                 title: i18n("Recording Apps")
 
@@ -359,6 +381,7 @@ Item {
             }
 
             MixerItemGroup {
+                id: sinkInputMixerItemGroup
                 height: parent.height
                 title: i18n("Apps")
 
@@ -367,6 +390,7 @@ Item {
             }
 
             MixerItemGroup {
+                id: sourceMixerItemGroup
                 height: parent.height
                 title: i18n("Mics")
         
@@ -375,6 +399,7 @@ Item {
             }
 
             MixerItemGroup {
+                id: sinkMixerItemGroup
                 height: parent.height
                 title: i18n("Speakers")
                 
