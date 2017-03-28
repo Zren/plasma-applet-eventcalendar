@@ -26,7 +26,8 @@ PlasmaComponents.Slider {
 	property real peakRatio: peakValue / 65536
 	Loader {
 		id: volumePeakLoader
-		active: mixerItem.mixerItemType === 'Sink' || mixerItem.mixerItemType === 'Source' // || mixerItem.mixerItemType === 'SourceOutput'
+		property bool validType: mixerItem.mixerItemType === 'Sink' || mixerItem.mixerItemType === 'Source' // || mixerItem.mixerItemType === 'SourceOutput'
+		active: config.showVisualFeedback && validType
 		source: "VolumePeaksManager.qml"
 	}
 
