@@ -14,6 +14,11 @@ function toggleMute(pulseObject) {
     return toMute
 }
 
+function setPercent(pulseObject, percent) {
+    var volume = maximumValue * percent/100
+    return setVolume(pulseObject, volume)
+}
+
 function setVolume(pulseObject, volume) {
     // console.log('setVolume', pulseObject.volume, '=>', volume);
     if ((volume > 0 && pulseObject.muted) || (volume == 0 && !pulseObject.muted)) {

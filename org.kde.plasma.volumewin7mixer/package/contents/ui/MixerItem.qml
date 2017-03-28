@@ -32,6 +32,23 @@ PlasmaComponents.ListItem {
 
     Keys.onUpPressed: PulseObjectCommands.increaseVolume(PulseObject)
     Keys.onDownPressed: PulseObjectCommands.decreaseVolume(PulseObject)
+    Keys.onPressed: {
+        // AlsaMixer keybindings
+        if (event.key == Qt.Key_M) { PulseObjectCommands.toggleMute(PulseObject)
+        } else if (event.key == Qt.Key_0) { PulseObjectCommands.setPercent(PulseObject, 0)
+        } else if (event.key == Qt.Key_1) { PulseObjectCommands.setPercent(PulseObject, 10)
+        } else if (event.key == Qt.Key_2) { PulseObjectCommands.setPercent(PulseObject, 20)
+        } else if (event.key == Qt.Key_3) { PulseObjectCommands.setPercent(PulseObject, 30)
+        } else if (event.key == Qt.Key_4) { PulseObjectCommands.setPercent(PulseObject, 40)
+        } else if (event.key == Qt.Key_5) { PulseObjectCommands.setPercent(PulseObject, 50)
+        } else if (event.key == Qt.Key_6) { PulseObjectCommands.setPercent(PulseObject, 60)
+        } else if (event.key == Qt.Key_7) { PulseObjectCommands.setPercent(PulseObject, 70)
+        } else if (event.key == Qt.Key_8) { PulseObjectCommands.setPercent(PulseObject, 80)
+        } else if (event.key == Qt.Key_9) { PulseObjectCommands.setPercent(PulseObject, 90)
+        } else { return // don't accept the key press
+        }
+        event.accepted = true
+    }
 
     PlasmaCore.FrameSvgItem {
         id: background

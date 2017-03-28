@@ -342,18 +342,16 @@ Item {
     Keys.forwardTo: inputManager.hasSelection ? [inputManager.selectedMixerItem] : []
     Keys.onLeftPressed: inputManager.selectLeft()
     Keys.onRightPressed: inputManager.selectRight()
-    Keys.onUpPressed:{
+    function fireKeyOnDefault(keyName, event) {
         if (!inputManager.hasSelection) {
             inputManager.selectDefault()
-            inputManager.selectedMixerItem.Keys.onUpPressed(event) // Manually trigger since it hasn't been forwarded yet.
+            var fnName = 'on' + keyName + 'Pressed'
+            inputManager.selectedMixerItem.Keys[fnName](event) // Manually trigger since it hasn't been forwarded yet.
         }
     }
-    Keys.onDownPressed: {
-        if (!inputManager.hasSelection) {
-            inputManager.selectDefault()
-            inputManager.selectedMixerItem.Keys.onDownPressed(event) // Manually trigger since it hasn't been forwarded yet.
-        }
-    }
+    Keys.onUpPressed: fireKeyOnDefault('Up', event)
+    Keys.onDownPressed: fireKeyOnDefault('Down', event)
+    Keys.onPressed: fireKeyOnDefault('', event)
 
 
 
