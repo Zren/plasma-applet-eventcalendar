@@ -536,6 +536,10 @@ Item {
     }
 
     Component.onCompleted: {
+        if (plasmoid.hasOwnProperty("activationTogglesExpanded")) {
+            plasmoid.activationTogglesExpanded = true
+        }
+
         plasmoid.setAction("pavucontrol", i18n("PulseAudio Control"), "configure");
         plasmoid.setAction("alsamixer", i18n("AlsaMixer"), "configure");
         plasmoid.setAction("configure", i18n("Audio Volume Settings..."), "configure");
