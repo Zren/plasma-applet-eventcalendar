@@ -45,9 +45,25 @@ PlasmaComponents.ListItem {
         } else if (event.key == Qt.Key_7) { PulseObjectCommands.setPercent(PulseObject, 70)
         } else if (event.key == Qt.Key_8) { PulseObjectCommands.setPercent(PulseObject, 80)
         } else if (event.key == Qt.Key_9) { PulseObjectCommands.setPercent(PulseObject, 90)
+        } else if (event.key == Qt.Key_Return) { makeDeviceDefault()
         } else { return // don't accept the key press
         }
         event.accepted = true
+    }
+
+    function makeDeviceDefault() {
+        if (typeof PulseObject.default !== "undefined") {
+            PulseObject.default = true
+            if (plasmoid.configuration.moveAllAppsOnSetDefault) {
+                // console.log(appsModel, appsModel.count)
+                for (var i = 0; i < appsModel.count; i++) {
+                    var stream = appsModel.get(i); 
+                    stream = stream.PulseObject;
+                    // console.log(i, stream, stream.name, stream.deviceIndex, PulseObject.index)
+                    stream.deviceIndex = PulseObject.index;
+                }
+            }
+        }
     }
 
     PlasmaCore.FrameSvgItem {
@@ -584,17 +600,7 @@ PlasmaComponents.ListItem {
                 menuItem.checkable = true;
                 menuItem.checked = PulseObject.default
                 menuItem.clicked.connect(function() {
-                    PulseObject.default = true
-                    if (plasmoid.configuration.moveAllAppsOnSetDefault) {
-                        console.log(appsModel, appsModel.count)
-                        for (var i = 0; i < appsModel.count; i++) {
-                            var stream = appsModel.get(i); 
-                            stream = stream.PulseObject;
-                            // console.log(i, stream, stream.name, stream.deviceIndex, PulseObject.index)
-                            stream.deviceIndex = PulseObject.index;
-                        }
-                        
-                    }
+                    mixerItem.makeDeviceDefault()
                 });
                 contextMenu.addMenuItem(menuItem);
             }
