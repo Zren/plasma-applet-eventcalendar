@@ -198,4 +198,81 @@ ConfigPage {
 
         }
     }
+
+    GroupBox {
+        Layout.fillWidth: true
+        title: i18n("Keyboard Shortcuts")
+
+        ColumnLayout {
+            id: shortcutsTable
+            Layout.fillWidth: true
+
+            Label {
+                text: i18n("Set the Global Shortcut in the Keyboard Shortcuts tab.")
+                wrapMode: Text.Wrap
+            }
+
+            Label {} // Whitespace
+
+            Repeater {
+                property var shortcuts: [
+                    {
+                        "label": i18n("Global Shortcut"),
+                        "keySequence": plasmoid.globalShortcut,
+                    },
+                    {
+                        "label": i18n("Selection: Select Previous Stream"),
+                        "keySequence": "Left",
+                    },
+                    {
+                        "label": i18n("Selection: Select Next Stream"),
+                        "keySequence": "Right",
+                    },
+                    {
+                        "label": i18n("Selection: Increase Volume"),
+                        "keySequence": "Up",
+                    },
+                    {
+                        "label": i18n("Selection: Decrease Volume"),
+                        "keySequence": "Down",
+                    },
+                    {
+                        "label": i18n("Selection: Make Default Device"),
+                        "keySequence": "Enter",
+                    },
+                    {
+                        "label": i18n("Selection: Toggle Mute"),
+                        "keySequence": "M",
+                    },
+                ]
+
+                Component.onCompleted: {
+                    for (var i = 0; i <= 10; i++) {
+                        shortcuts.push({
+                            "label": i18n("Selection: Set Volume to %1%", i*10),
+                            "keySequence": "" + i,
+                        })
+                        model = shortcuts
+                    }
+                }
+
+
+                RowLayout {
+                    Layout.fillWidth: true
+                    Label {
+                        text: modelData.keySequence
+                        
+                        Layout.minimumWidth: 100 * units.devicePixelRatio
+                    }
+                    Label {
+                        text: modelData.label
+                        font.bold: true
+                    }
+                }
+
+            }
+        }
+    }
+
+    
 }
