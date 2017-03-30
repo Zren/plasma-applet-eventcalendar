@@ -1,3 +1,18 @@
+## v19 - March 29 2017
+
+* Can now use keyboard navigation to select a stream.
+** Left/Right: Select speaker/mic/app/etc.
+** Up/Down: Increase/decrease selected volume (by same amount as volume keys).
+** M: Mute/unmute selected stream.
+** 0-9: Set volume to 0%-90%
+** Enter: If a mic/speaker is selected, make it the default device.
+* Selected stream will have a pulsating outline. Current default speaker is selected by default. Outline is hidden if you open the mixer with the mouse, but shortcuts will still work.
+* Global shortcut will now toggle the popup.
+* Fix the blue on gray theme using the color scheme rather than hardcoded colours.
+* Fix toggling the volume boost, snapping the value to just over 100% causing it to remain in "boosted" state (with a max of 150%).
+* Drag to 1% intervals when volume boosted (instead of 1.5%, 3%, 4.5%, etc).
+* Possibly fix a binding loop when checking if you can seek through a song.
+
 ## v18 - March 23 2017
 
 * Raised minimum requirements to Plasma 5.8
