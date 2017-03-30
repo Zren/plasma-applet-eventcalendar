@@ -250,7 +250,7 @@ ConfigPage {
                     for (var i = 0; i <= 10; i++) {
                         shortcuts.push({
                             "label": i18n("Selection: Set Volume to %1%", i*10),
-                            "keySequence": "" + i,
+                            "keySequence": i < 10 ? "" + i : "",
                         })
                         model = shortcuts
                     }
