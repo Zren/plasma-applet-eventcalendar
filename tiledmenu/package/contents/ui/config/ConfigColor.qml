@@ -29,6 +29,10 @@ RowLayout {
 		}
 	}
 
+	function setValue(newColor) {
+		textField.text = newColor
+	}
+
 	Label {
 		id: label
 		text: "Label"
