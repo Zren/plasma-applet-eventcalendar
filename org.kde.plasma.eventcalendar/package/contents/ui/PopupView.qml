@@ -42,7 +42,7 @@ Item {
             return 400 * units.devicePixelRatio + padding * 2
         }
     }
-    Layout.maximumWidth: plasmoid.screenGeometry.width
+    // Layout.maximumWidth: plasmoid.screenGeometry.width
 
     // Layout.minimumHeight: 400 * units.devicePixelRatio
     Layout.minimumHeight: units.gridUnit * 14
@@ -66,7 +66,7 @@ Item {
             return h * units.devicePixelRatio + padding * 2
         }
     }
-    Layout.maximumHeight: plasmoid.screenGeometry.height
+    // Layout.maximumHeight: plasmoid.screenGeometry.height
 
     property var eventModel
     property var weatherModel
