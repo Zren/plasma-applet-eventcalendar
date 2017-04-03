@@ -17,6 +17,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 import QtQuick 2.0
+import QtQuick.Layouts 1.0
 import org.kde.plasma.calendar 2.0
 import org.kde.plasma.core 2.0 as PlasmaCore
 import org.kde.plasma.components 2.0 as Components
@@ -114,20 +115,63 @@ MouseArea {
         z: todayRect.z - 1
     }
 
+
+    property int eventCount: model.events.count
+    property var eventColors: []
+    property bool useHightlightColor: eventColors.length === 0
+
+    onEventCountChanged: updateEventColors()
+    function updateEventColors() {
+        var set = {}
+        for (var i = 0; i < eventCount; i++) {
+            var eventItem = model.events.get(i)
+            if (eventItem.backgroundColor) {
+                set[eventItem.backgroundColor] = true
+            }
+        }
+        eventColors = Object.keys(set)
+    }
+
+
     Item {
         id: eventBadge
         visible: model.showEventBadge || false
         anchors.fill: parent
 
         Rectangle {
+            id: eventBadgeBottomBarHighlight
+            visible: parent.visible && (dayStyle.eventBadgeType == 'bottomBarHighlight' || (dayStyle.eventBadgeType == 'bottomBar' && dayStyle.useHightlightColor))
+            anchors.left: parent.left
+            anchors.right: parent.right
+            anchors.bottom: parent.bottom
+            height: parent.height / 8
+            opacity: 0.6
+            color: theme.highlightColor
+        }
+
+        Item {
             id: eventBadgeBottomBar
             visible: parent.visible && dayStyle.eventBadgeType == 'bottomBar'
             anchors.left: parent.left
             anchors.right: parent.right
             anchors.bottom: parent.bottom
-            height: parent.height / 5
-            opacity: 0.6
-            color: theme.highlightColor
+            height: parent.height / 8
+
+            RowLayout {
+                anchors.fill: parent
+                spacing: 0
+
+                Repeater {
+                    model: dayStyle.eventColors
+
+                    Rectangle {
+                        Layout.fillHeight: true
+                        Layout.fillWidth: true
+                        color: modelData
+                    }
+                    
+                }
+            }
         }
 
         Item {
