@@ -168,6 +168,8 @@ MouseArea {
                         Layout.fillHeight: true
                         Layout.fillWidth: true
                         color: modelData
+                        border.width: 1
+                        border.color: Qt.darker(modelData, 1.5)
                     }
                     
                 }
