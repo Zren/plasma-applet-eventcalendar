@@ -6,9 +6,10 @@ import org.kde.plasma.calendar 2.0 as PlasmaCalendar
 import org.kde.plasma.components 2.0 as PlasmaComponents
 import org.kde.plasma.extras 2.0 as PlasmaExtras
 
-ColumnLayout {
+import "../lib"
+
+ConfigPage {
     id: page
-    property bool showDebug: false
 
     property alias cfg_widget_show_calendar: widget_show_calendar.checked
     property alias cfg_month_show_border: month_show_border.checked
@@ -16,173 +17,131 @@ ColumnLayout {
     property string cfg_month_eventbadge_type: 'bottomBar'
     property string cfg_month_today_style: 'theme'
 
-    SystemPalette {
-        id: palette
+    CheckBox {
+        Layout.fillWidth: true
+        id: widget_show_calendar
+        text: i18n("Show calendar")
+    }
+    
+    ConfigSection {
+        LabeledRowLayout {
+            label: i18n("Click Date:")
+            ExclusiveGroup { id: month_date_clickGroup }
+            RadioButton {
+                text: i18n("Scroll to event in Agenda")
+                checked: true
+                exclusiveGroup: month_date_clickGroup
+            }
+        }
     }
 
-    ColumnLayout {
-        Layout.alignment: Qt.AlignTop | Qt.AlignLeft
+    ConfigSection {
+        LabeledRowLayout {
+            label: i18n("DoubleClick Date:")
+            ExclusiveGroup { id: month_date_doubleclickGroup }
+            RadioButton {
+                text: i18n("Open New Event In Browser")
+                checked: true
+                exclusiveGroup: month_date_doubleclickGroup
+            }
+        }
+    }
 
-
+    HeaderText {
+        text: i18n("Style")
+    }
+    ConfigSection {
         CheckBox {
-            Layout.fillWidth: true
-            id: widget_show_calendar
-            text: i18n("Show calendar")
+            id: month_show_border
+            text: i18n("Show Borders")
         }
-        
-        GroupBox {
-            Layout.fillWidth: true
-
-            RowLayout {
-                Label {
-                    text: i18n("Click Date:")
-                    Layout.alignment: Qt.AlignTop | Qt.AlignLeft
+        CheckBox {
+            id: month_show_weeknumbers
+            text: i18n("Show Week Numbers")
+        }
+        LabeledRowLayout {
+            label: i18n("Event Badge:")
+            ExclusiveGroup { id: month_eventbadge_styleGroup }
+            RadioButton {
+                text: i18n("Theme")
+                exclusiveGroup: month_eventbadge_styleGroup
+                checked: cfg_month_eventbadge_type == 'theme'
+                onClicked: {
+                    cfg_month_eventbadge_type = 'theme'
                 }
-                ColumnLayout {
-                    ExclusiveGroup { id: month_date_clickGroup }
-                    RadioButton {
-                        text: i18n("Scroll to event in Agenda")
-                        checked: true
-                        exclusiveGroup: month_date_clickGroup
-                    }
+            }
+            RadioButton {
+                text: i18n("Dots (3 Maximum)")
+                exclusiveGroup: month_eventbadge_styleGroup
+                checked: cfg_month_eventbadge_type == 'dots'
+                onClicked: {
+                    cfg_month_eventbadge_type = 'dots'
+                }
+            }
+            RadioButton {
+                text: i18n("Bottom Bar (Event Color)")
+                exclusiveGroup: month_eventbadge_styleGroup
+                checked: cfg_month_eventbadge_type == 'bottomBar'
+                onClicked: {
+                    cfg_month_eventbadge_type = 'bottomBar'
+                }
+            }
+            RadioButton {
+                text: i18n("Bottom Bar (Highlight)")
+                exclusiveGroup: month_eventbadge_styleGroup
+                checked: cfg_month_eventbadge_type == 'bottomBarHighlight'
+                onClicked: {
+                    cfg_month_eventbadge_type = 'bottomBarHighlight'
+                }
+            }
+            RadioButton {
+                text: i18n("Count")
+                exclusiveGroup: month_eventbadge_styleGroup
+                checked: cfg_month_eventbadge_type == 'count'
+                onClicked: {
+                    cfg_month_eventbadge_type = 'count'
                 }
             }
         }
 
-        GroupBox {
-            Layout.fillWidth: true
-
-            RowLayout {
-                Label {
-                    text: i18n("DoubleClick Date:")
-                    Layout.alignment: Qt.AlignTop | Qt.AlignLeft
-                }
-                ColumnLayout {
-                    ExclusiveGroup { id: month_date_doubleclickGroup }
-                    RadioButton {
-                        text: i18n("Open New Event In Browser")
-                        checked: true
-                        exclusiveGroup: month_date_doubleclickGroup
-                    }
-                }
+        LabeledRowLayout {
+            label: i18n("Selected:")
+            ExclusiveGroup { id: month_selected_styleGroup }
+            RadioButton {
+                visible: false
+                enabled: false
+                text: i18n("Theme")
+                exclusiveGroup: month_selected_styleGroup
             }
-        }
-        
-        HeaderText {
-            text: i18n("Style")
-        }
-        GroupBox {
-            Layout.fillWidth: true
-            
-            ColumnLayout {
-                CheckBox {
-                    id: month_show_border
-                    text: i18n("Show Borders")
-                }
-                CheckBox {
-                    id: month_show_weeknumbers
-                    text: i18n("Show Week Numbers")
-                }
-                RowLayout {
-                    Label {
-                        text: i18n("Event Badge:")
-                        Layout.alignment: Qt.AlignTop | Qt.AlignLeft
-                    }
-                    ColumnLayout {
-                        ExclusiveGroup { id: month_eventbadge_styleGroup }
-                        RadioButton {
-                            text: i18n("Theme")
-                            exclusiveGroup: month_eventbadge_styleGroup
-                            checked: cfg_month_eventbadge_type == 'theme'
-                            onClicked: {
-                                cfg_month_eventbadge_type = 'theme'
-                            }
-                        }
-                        RadioButton {
-                            text: i18n("Dots (3 Maximum)")
-                            exclusiveGroup: month_eventbadge_styleGroup
-                            checked: cfg_month_eventbadge_type == 'dots'
-                            onClicked: {
-                                cfg_month_eventbadge_type = 'dots'
-                            }
-                        }
-                        RadioButton {
-                            text: i18n("Bottom Bar (Event Color)")
-                            exclusiveGroup: month_eventbadge_styleGroup
-                            checked: cfg_month_eventbadge_type == 'bottomBar'
-                            onClicked: {
-                                cfg_month_eventbadge_type = 'bottomBar'
-                            }
-                        }
-                        RadioButton {
-                            text: i18n("Bottom Bar (Highlight)")
-                            exclusiveGroup: month_eventbadge_styleGroup
-                            checked: cfg_month_eventbadge_type == 'bottomBarHighlight'
-                            onClicked: {
-                                cfg_month_eventbadge_type = 'bottomBarHighlight'
-                            }
-                        }
-                        RadioButton {
-                            text: i18n("Count")
-                            exclusiveGroup: month_eventbadge_styleGroup
-                            checked: cfg_month_eventbadge_type == 'count'
-                            onClicked: {
-                                cfg_month_eventbadge_type = 'count'
-                            }
-                        }
-                    }
-                }
-                RowLayout {
-                    Label {
-                        text: i18n("Selected:")
-                        Layout.alignment: Qt.AlignTop | Qt.AlignLeft
-                    }
-                    ColumnLayout {
-                        ExclusiveGroup { id: month_selected_styleGroup }
-                        RadioButton {
-                            visible: false
-                            enabled: false
-                            text: i18n("Theme")
-                            exclusiveGroup: month_selected_styleGroup
-                        }
-                        RadioButton {
-                            text: i18n("Solid Color (Highlight)")
-                            checked: true
-                            exclusiveGroup: month_selected_styleGroup
-                        }
-                    }
-                }
-
-                RowLayout {
-                    Label {
-                        text: i18n("Today:")
-                        Layout.alignment: Qt.AlignTop | Qt.AlignLeft
-                    }
-                    ColumnLayout {
-                        ExclusiveGroup { id: month_today_styleGroup }
-                        RadioButton {
-                            visible: false
-                            enabled: false
-                            text: i18n("Theme")
-                            exclusiveGroup: month_today_styleGroup
-                        }
-                        RadioButton {
-                            text: i18n("Solid Color (Inverted)")
-                            exclusiveGroup: month_today_styleGroup
-                            checked: cfg_month_today_style == 'theme'
-                            onClicked: cfg_month_today_style = 'theme'
-                        }
-                        RadioButton {
-                            text: i18n("Big Number")
-                            exclusiveGroup: month_today_styleGroup
-                            checked: cfg_month_today_style == 'bigNumber'
-                            onClicked: cfg_month_today_style = 'bigNumber'
-                        }
-                    }
-                }
+            RadioButton {
+                text: i18n("Solid Color (Highlight)")
+                checked: true
+                exclusiveGroup: month_selected_styleGroup
             }
         }
 
-        
+        LabeledRowLayout {
+            label: i18n("Today:")
+            ExclusiveGroup { id: month_today_styleGroup }
+            RadioButton {
+                visible: false
+                enabled: false
+                text: i18n("Theme")
+                exclusiveGroup: month_today_styleGroup
+            }
+            RadioButton {
+                text: i18n("Solid Color (Inverted)")
+                exclusiveGroup: month_today_styleGroup
+                checked: cfg_month_today_style == 'theme'
+                onClicked: cfg_month_today_style = 'theme'
+            }
+            RadioButton {
+                text: i18n("Big Number")
+                exclusiveGroup: month_today_styleGroup
+                checked: cfg_month_today_style == 'bigNumber'
+                onClicked: cfg_month_today_style = 'bigNumber'
+            }
+        }
     }
+
 }
