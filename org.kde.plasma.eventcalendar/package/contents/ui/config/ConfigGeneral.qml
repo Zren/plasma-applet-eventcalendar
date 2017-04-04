@@ -246,25 +246,6 @@ ConfigPage {
                         text: i18n(" (0px = scale to fit)")
                     }
                 }
-
-                CheckBox {
-                    visible: showDebug
-                    id: clock_24h
-                    Layout.fillWidth: true
-                    text: i18n("24 hour clock")
-                    enabled: false
-
-                    onClicked: {
-                        cfg_clock_timeformat = cfg_clock_24h ? timeFormat24hour : timeFormat12hour
-                    }
-                }
-                CheckBox {
-                    visible: showDebug
-                    id: clock_show_seconds
-                    Layout.fillWidth: true
-                    text: i18n("Show Seconds")
-                    enabled: false
-                }
             }
         }
 
