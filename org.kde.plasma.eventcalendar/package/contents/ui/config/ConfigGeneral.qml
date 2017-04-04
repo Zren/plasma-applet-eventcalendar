@@ -123,6 +123,9 @@ ConfigPage {
         Layout.fillWidth: true
 
         ColumnLayout {
+            anchors.left: parent.left
+            anchors.right: parent.right
+
             CheckBox {
                 id: widget_show_timer
                 text: i18n("Timer")
@@ -139,9 +142,8 @@ ConfigPage {
                     enabled: cfg_timer_sfx_enabled
                 }
                 TextField {
-                    // Layout.fillWidth: true // Doesn't fucking work.
-                    width: page.width // hack
                     id: timer_sfx_filepath
+                    Layout.fillWidth: true
                     enabled: cfg_timer_sfx_enabled
                     placeholderText: "/usr/share/sounds/freedesktop/stereo/complete.oga"
                 }
