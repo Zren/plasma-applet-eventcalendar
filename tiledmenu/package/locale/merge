@@ -1,5 +1,5 @@
 #!/bin/sh
-# Version: 2
+# Version: 3
 
 # https://techbase.kde.org/Development/Tutorials/Localization/i18n_Build_Systems
 # Based on: https://github.com/psifidotos/nowdock-plasmoid/blob/master/po/Messages.sh
@@ -11,6 +11,19 @@ website=`kreadconfig5 --file="$DIR/../metadata.desktop" --group="Desktop Entry" 
 bugAddress="$website"
 packageRoot=".." # Root of translatable sources
 projectName="plasma_applet_${plasmoidName}" # project name
+
+#---
+if [[ -z "$plasmoidName" ]]; then
+	echo "[merge] Error: Couldn't read plasmoidName."
+	exit
+fi
+
+if [[ -z "$(which xgettext)" ]]; then
+	echo "[merge] Error: xgettext command not found. Need to install gettext"
+	echo "[merge] Running 'sudo apt install gettext'"
+	sudo apt install gettext
+	echo "[merge] gettext installation should be finished. Going back to merging translations."
+fi
 
 #---
 echo "[merge] Extracting messages"

@@ -12,6 +12,7 @@ bugAddress="$website"
 packageRoot=".." # Root of translatable sources
 projectName="plasma_applet_${plasmoidName}" # project name
 
+#---
 if [[ -z "$plasmoidName" ]]; then
 	echo "[install] Error: Couldn't read plasmoidName."
 	exit
