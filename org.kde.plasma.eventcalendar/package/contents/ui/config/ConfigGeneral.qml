@@ -39,7 +39,7 @@ ConfigPage {
     property string timeFormat12hour: 'h:mm AP'
 
     property bool showDebug: plasmoid.configuration.debugging
-    property int indentWidth: 24
+    property int indentWidth: 24 * units.devicePixelRatio
 
     // populate
     onCfg_clock_fontfamilyChanged: {
@@ -474,25 +474,31 @@ ConfigPage {
     HeaderText {
         text: i18n("Misc")
     }
-    ColumnLayout {
-        CheckBox {
-            id: showBackground
-            Layout.fillWidth: true
-            text: i18n("Desktop Widget: Show background")
+    GroupBox {
+        Layout.fillWidth: true
+        ColumnLayout {
+            CheckBox {
+                id: showBackground
+                Layout.fillWidth: true
+                text: i18n("Desktop Widget: Show background")
+            }
         }
     }
 
     HeaderText {
         text: i18n("Debugging")
     }
-    ColumnLayout {
-        CheckBox {
-            id: debugging
-            Layout.fillWidth: true
-            text: i18n("Enable Debugging")
-            checked: plasmoid.configuration.debugging
-            onClicked: {
-                plasmoid.configuration.debugging = !plasmoid.configuration.debugging
+    GroupBox {
+        Layout.fillWidth: true
+        ColumnLayout {
+            CheckBox {
+                id: debugging
+                Layout.fillWidth: true
+                text: i18n("Enable Debugging\nThis will log sensitive information to ~/.xsession-errors")
+                checked: plasmoid.configuration.debugging
+                onClicked: {
+                    plasmoid.configuration.debugging = !plasmoid.configuration.debugging
+                }
             }
         }
     }
