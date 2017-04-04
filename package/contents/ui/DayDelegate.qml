@@ -168,8 +168,14 @@ MouseArea {
                         Layout.fillHeight: true
                         Layout.fillWidth: true
                         color: modelData
-                        border.width: 1
-                        border.color: Qt.darker(modelData, 1.5)
+
+                        Rectangle {
+                            anchors.fill: parent
+                            color: "transparent"
+                            border.width: 1
+                            border.color: theme.backgroundColor
+                            opacity: 0.5
+                        }
                     }
                     
                 }
