@@ -107,11 +107,19 @@ ColumnLayout {
                             }
                         }
                         RadioButton {
-                            text: i18n("Bottom Bar (Highlight)")
+                            text: i18n("Bottom Bar (Event Color)")
                             exclusiveGroup: month_eventbadge_styleGroup
                             checked: cfg_month_eventbadge_type == 'bottomBar'
                             onClicked: {
                                 cfg_month_eventbadge_type = 'bottomBar'
+                            }
+                        }
+                        RadioButton {
+                            text: i18n("Bottom Bar (Highlight)")
+                            exclusiveGroup: month_eventbadge_styleGroup
+                            checked: cfg_month_eventbadge_type == 'bottomBarHighlight'
+                            onClicked: {
+                                cfg_month_eventbadge_type = 'bottomBarHighlight'
                             }
                         }
                         RadioButton {
