@@ -20,8 +20,8 @@ ConfigPage {
     property alias cfg_widget_show_timer: widget_show_timer.checked
     property alias cfg_timer_sfx_enabled: timer_sfx_enabled.checked
     property alias cfg_timer_sfx_filepath: timer_sfx_filepath.text
-    property alias cfg_clock_24h: clock_24h.checked
-    property alias cfg_clock_show_seconds: clock_show_seconds.checked
+    property bool cfg_clock_24h: false
+    property bool cfg_clock_show_seconds: false
     property string cfg_clock_fontfamily: ""
     property alias cfg_clock_timeformat: clock_timeformat.text
     property alias cfg_clock_timeformat_2: clock_timeformat_2.text
@@ -95,11 +95,8 @@ ConfigPage {
     }
 
 
-    // Component.onCompleted: {
-    //     cfg_clock_timeformat = 'h:mm ap'
-    //     cfg_clock_timeformat_2 = 'MMM d, yyyy'
-    //     cfg_clock_line_2 = true
-    // }
+
+    //---
 
     HeaderText {
         text: i18n("Widgets")
@@ -110,17 +107,7 @@ ConfigPage {
         wrapMode: Text.Wrap
         text: i18n("Show/Hide widgets above the calendar. Toggle Agenda/Calendar on their respective tabs.")
     }
-    // GroupBox {
-    //     Layout.fillWidth: true
 
-    //     ColumnLayout {
-    //         CheckBox {
-    //             Layout.fillWidth: true
-    //             id: widget_show_pin
-    //             text: i18n("Pin Button to prevent the calendar from closing")
-    //         }
-    //     }
-    // }
     GroupBox {
         Layout.fillWidth: true
 
@@ -163,11 +150,6 @@ ConfigPage {
         }
     }
 
-    Label {
-        visible: false
-        text: i18n("You can also resize the entire popup by holding down Alt and dragging with the right mouse button.")
-    }
-    
     HeaderText {
         text: i18n("Clock")
     }
@@ -430,15 +412,6 @@ ConfigPage {
 
             ColumnLayout {
                 ExclusiveGroup { id: clock_mousewheelGroup }
-                RadioButton {
-                    visible: showDebug
-                    exclusiveGroup: clock_mousewheelGroup
-                    checked: cfg_clock_mousewheel == 'resize_clock'
-                    text: i18n("Resize Clock")
-                    onClicked: {
-                        cfg_clock_mousewheel = 'resize_clock'
-                    }
-                }
 
                 RadioButton {
                     id: clock_mousewheelGroup_runcommands
@@ -519,12 +492,6 @@ ConfigPage {
             onClicked: {
                 plasmoid.configuration.debugging = !plasmoid.configuration.debugging
             }
-        }
-
-        Label {
-            visible: showDebug
-            text: i18n("You can view debug output by running: <pre>tail -f ~/.xsession-errors</pre>")
-            textFormat: Text.RichText
         }
     }
 }
