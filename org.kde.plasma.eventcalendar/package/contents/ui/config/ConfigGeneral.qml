@@ -10,9 +10,11 @@ import org.kde.plasma.extras 2.0 as PlasmaExtras
 
 import "../utils.js" as Utils
 import ".."
+import "../lib"
 
-Item {
+ConfigPage {
     id: page
+    showAppletVersion: true
 
     property alias cfg_widget_show_meteogram: widget_show_meteogram.checked
     property alias cfg_widget_show_timer: widget_show_timer.checked
@@ -38,7 +40,6 @@ Item {
 
     property bool showDebug: plasmoid.configuration.debugging
     property int indentWidth: 24
-    property string appletVersion: ''
 
     // populate
     onCfg_clock_fontfamilyChanged: {
@@ -99,30 +100,6 @@ Item {
     //     cfg_clock_timeformat_2 = 'MMM d, yyyy'
     //     cfg_clock_line_2 = true
     // }
-
-
-
-    ColumnLayout {
-        id: pageColumn
-        Layout.fillWidth: true
-
-        GroupBox {
-            Layout.fillWidth: true
-            visible: appletVersion
-
-            ColumnLayout {
-                Label {
-                    text: i18n("Version: %1", appletVersion)
-
-                    Component.onCompleted: {
-                        Utils.getAppletVersion(function(err, appletVersion) {
-                            page.appletVersion = appletVersion
-                        });
-                    }
-                }
-
-            }
-        }
 
         HeaderText {
             text: i18n("Widgets")
@@ -569,5 +546,4 @@ Item {
                 textFormat: Text.RichText
             }
         }
-    }
 }
