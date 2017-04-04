@@ -196,6 +196,8 @@ Item {
     Component.onCompleted: {
         plasmoid.setAction("KCMClock", i18n("Adjust Date and Time..."), "preferences-system-time");
         plasmoid.setAction("KCMFormats", i18n("Set Locale..."), "preferences-desktop-locale");
+
+        // plasmoid.action("configure").trigger()
     }
 
     // Timer {
