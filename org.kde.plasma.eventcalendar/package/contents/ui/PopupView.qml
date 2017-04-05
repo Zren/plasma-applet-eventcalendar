@@ -134,19 +134,21 @@ Item {
         // logger.debug(popup.state, widgetGrid.columns, widgetGrid.rows)
     }
     states: [
-        // State {
-        //     name: "calendar"
-        //     when: !popup.showAgenda && popup.showCalendar && !popup.showMeteogram && !popup.showTimer
+        State {
+            name: "calendar"
+            when: !popup.showAgenda && popup.showCalendar && !popup.showMeteogram && !popup.showTimer
 
-        //     PropertyChanges { target: popup
-        //         Layout.preferredWidth: units.gridUnit * 14
-        //         Layout.preferredHeight: units.gridUnit * 14
-        //     }
-        //     PropertyChanges { target: monthView
-        //         Layout.preferredWidth: -1
-        //         Layout.preferredHeight: -1
-        //     }
-        // },
+            PropertyChanges { target: popup
+                // Use the same size as the digitalclock popup
+                // since we don't need more space to fit more agenda items.
+                Layout.preferredWidth: 378 * units.devicePixelRatio
+                Layout.preferredHeight: 378 * units.devicePixelRatio
+            }
+            PropertyChanges { target: monthView
+                Layout.preferredWidth: -1
+                Layout.preferredHeight: -1
+            }
+        },
         State {
             name: "twoColumns+agenda+month"
             when: popup.twoColumns && popup.showAgenda && popup.showCalendar && !popup.showMeteogram && !popup.showTimer
