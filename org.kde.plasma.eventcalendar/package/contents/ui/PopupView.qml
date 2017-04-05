@@ -176,8 +176,22 @@ Item {
                 columns: 2
                 rows: 2
             }
-            PropertyChanges { target: timerView
-                Layout.columnSpan: 2
+            AnchorChanges { target: timerView
+                anchors.top: widgetGrid.top
+                anchors.right: widgetGrid.right
+            }
+            AnchorChanges { target: agendaView
+                anchors.top: widgetGrid.top
+                anchors.left: widgetGrid.left
+                anchors.bottom: widgetGrid.bottom
+            }
+            AnchorChanges { target: monthView
+                anchors.top: timerView.bottom
+                anchors.right: widgetGrid.right
+                anchors.bottom: widgetGrid.bottom
+            }
+            PropertyChanges { target: monthView
+                anchors.topMargin: widgetGrid.rowSpacing
             }
         },
         State {
