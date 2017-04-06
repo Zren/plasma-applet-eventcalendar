@@ -4,9 +4,9 @@
 if [ -d "package/locale" ]; then
 	echo "[build] locale dir found, running merge."
 	(cd package/locale && sh ./merge)
-	if [ "$(git diff --stat)" != "" ]; then
+	if [ "$(git diff --stat .)" != "" ]; then
 		echo "[build] Changed detected. Cancelling build."
-		git diff --stat
+		git diff --stat .
 		exit
 	fi
 fi
