@@ -33,6 +33,7 @@ ConfigPage {
             spacing: units.smallSpacing
 
             model: []
+            cacheBuffer: 100000
 
             Component {
                 id: boolControl
