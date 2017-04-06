@@ -168,7 +168,7 @@
     <entry name="refresh_token" type="string">
       <default></default>
     </entry>
-    <entry name="calendar_list" type="string">
+    <entry name="calendar_list" type="string" stringType="base64json">
       <default></default>
     </entry>
     <entry name="calendar_id_list" type="string">
