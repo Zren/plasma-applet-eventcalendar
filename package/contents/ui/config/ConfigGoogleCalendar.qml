@@ -16,7 +16,6 @@ ConfigPage {
         id: session
 
         onCalendarListChanged: {
-            console.log('onCalendarListChanged')
             calendarsModel.clear()
             for (var i = 0; i < calendarList.length; i++) {
                 var item = calendarList[i];
@@ -30,9 +29,9 @@ ConfigPage {
                     foregroundColor: item.foregroundColor,
                     show: isShowned,
                 });
-                console.log(item.summary, isShowned, item.id);
+                // console.log(item.summary, isShowned, item.id);
             }
-            calendarsModel.onCalendarsShownChange()
+            calendarsModel.calendarsShownChanged()
         }
     }
 
@@ -92,19 +91,16 @@ ConfigPage {
         ListModel {
             id: calendarsModel
 
-            function onCalendarsShownChange() {
-                console.log('onCalendarsShownChange')
-                var calendarIdList = [];
+            signal calendarsShownChanged()
+
+            onCalendarsShownChanged: {
+                var calendarIdList = []
                 for (var i = 0; i < calendarsModel.count; i++) {
-                    var item = calendarsModel.get(i);
-                    console.log('calendarsModel', item.calendarId);
-                    
+                    var item = calendarsModel.get(i)
                     if (item.show) {
-                        calendarIdList.push(item.calendarId);
+                        calendarIdList.push(item.calendarId)
                     }
                 }
-
-                // page.setCalendarIdList(calendarIdList);
                 session.calendarIdList = calendarIdList
             }
         }
@@ -134,10 +130,7 @@ ConfigPage {
 
                     onClicked: {
                         calendarsModel.setProperty(index, 'show', checked)
-                        // model.show = checked
-                        console.log(index, model.calendarId, model.show, checked);
-
-                        calendarsModel.onCalendarsShownChange()
+                        calendarsModel.calendarsShownChanged()
                     }
                 }
             }
