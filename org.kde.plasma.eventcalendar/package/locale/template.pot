@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: eventcalendar \n"
 "Report-Msgid-Bugs-To: https://github.com/Zren/plasma-applets/tree/master/org.kde.plasma.eventcalendar\n"
-"POT-Creation-Date: 2017-04-06 14:28-0400\n"
+"POT-Creation-Date: 2017-04-06 18:19-0400\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -270,7 +270,7 @@ msgstr ""
 msgid "Meteogram"
 msgstr ""
 
-#: ../contents/ui/config/ConfigGeneral.qml:122 ../contents/ui/TimerView.qml:252
+#: ../contents/ui/config/ConfigGeneral.qml:122 ../contents/ui/TimerView.qml:249
 msgid "Timer"
 msgstr ""
 
@@ -533,50 +533,50 @@ msgstr ""
 msgid "Set Locale..."
 msgstr ""
 
-#: ../contents/ui/PopupView.qml:314
+#: ../contents/ui/PopupView.qml:313
 msgid ""
 "Weather not configured.\n"
 "Go to Weather in the config and set your city,\n"
 "and/or disable the meteogram to hide this area."
 msgstr ""
 
-#: ../contents/ui/TimerView.qml:45
+#: ../contents/ui/TimerView.qml:50
 msgid "Pause Timer"
 msgstr ""
 
-#: ../contents/ui/TimerView.qml:47
+#: ../contents/ui/TimerView.qml:52
 msgid "Start Timer"
 msgstr ""
 
-#: ../contents/ui/TimerView.qml:51
+#: ../contents/ui/TimerView.qml:56
 msgid "Scroll to add to duration"
 msgstr ""
 
-#: ../contents/ui/TimerView.qml:89
+#: ../contents/ui/TimerView.qml:94
 msgid "Repeat"
 msgstr ""
 
-#: ../contents/ui/TimerView.qml:100
+#: ../contents/ui/TimerView.qml:105
 msgid "Sound"
 msgstr ""
 
-#: ../contents/ui/TimerView.qml:114
+#: ../contents/ui/TimerView.qml:119
 msgid "30s"
 msgstr ""
 
-#: ../contents/ui/TimerView.qml:119
+#: ../contents/ui/TimerView.qml:123
 msgid "1m"
 msgstr ""
 
-#: ../contents/ui/TimerView.qml:124
+#: ../contents/ui/TimerView.qml:127
 msgid "5m"
 msgstr ""
 
-#: ../contents/ui/TimerView.qml:129
+#: ../contents/ui/TimerView.qml:131
 msgid "10m"
 msgstr ""
 
-#: ../contents/ui/TimerView.qml:134
+#: ../contents/ui/TimerView.qml:135
 msgid "15m"
 msgstr ""
 
@@ -584,19 +584,19 @@ msgstr ""
 msgid "30m"
 msgstr ""
 
-#: ../contents/ui/TimerView.qml:144
+#: ../contents/ui/TimerView.qml:143
 msgid "45m"
 msgstr ""
 
-#: ../contents/ui/TimerView.qml:149
+#: ../contents/ui/TimerView.qml:147
 msgid "1h"
 msgstr ""
 
-#: ../contents/ui/TimerView.qml:254
+#: ../contents/ui/TimerView.qml:251
 msgid "Timer finished"
 msgstr ""
 
-#: ../contents/ui/TimerView.qml:255
+#: ../contents/ui/TimerView.qml:252
 msgid "%1 has passed"
 msgstr ""
 
