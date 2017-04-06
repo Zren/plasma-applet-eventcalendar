@@ -310,8 +310,11 @@ Item {
                     visible: !WeatherApi.weatherIsSetup()
 
                     PlasmaComponents.Label {
-                        anchors.centerIn: parent
                         text: i18n("Weather not configured.\nGo to Weather in the config and set your city,\nand/or disable the meteogram to hide this area.")
+                        anchors.centerIn: parent
+                        width: Math.min(parent.width, implicitWidth)
+                        height: Math.min(parent.height, implicitHeight)
+                        fontSizeMode: Text.Fit
                     }
                 }
             }
@@ -320,7 +323,7 @@ Item {
                 id: timerView
                 visible: showTimer
                 Layout.fillWidth: true
-                Layout.minimumHeight: popup.topRowHeight
+                Layout.minimumHeight: Math.max(popup.topRowHeight, implicitHeight)
                 Layout.preferredHeight: parent.height / 5
             }
 

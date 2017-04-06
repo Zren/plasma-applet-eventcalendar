@@ -17,10 +17,15 @@ Item {
     property alias timerRepeats: timerRepeatsButton.isChecked
     property alias timerSfxEnabled: timerSfxEnabledButton.isChecked
 
-    Column {
+    implicitHeight: view.height
+
+    ColumnLayout {
+        id: view
+        anchors.left: parent.left
+        anchors.right: parent.right
         spacing: 4
 
-        Row {
+        RowLayout {
             spacing: 10
 
             PlasmaComponents.ToolButton {
@@ -107,47 +112,39 @@ Item {
             
         }
 
-        Row {
+        RowLayout {
             spacing: 2
 
-            PlasmaComponents.Button {
+            TimerPresetButton {
                 text: i18n("30s")
-                width: appletConfig.timerButtonWidth
                 onClicked: setDurationAndStart(30)
             }
-            PlasmaComponents.Button {
+            TimerPresetButton {
                 text: i18n("1m")
-                width: appletConfig.timerButtonWidth
                 onClicked: setDurationAndStart(60)
             }
-            PlasmaComponents.Button {
+            TimerPresetButton {
                 text: i18n("5m")
-                width: appletConfig.timerButtonWidth
                 onClicked: setDurationAndStart(5 * 60)
             }
-            PlasmaComponents.Button {
+            TimerPresetButton {
                 text: i18n("10m")
-                width: appletConfig.timerButtonWidth
                 onClicked: setDurationAndStart(10 * 60)
             }
-            PlasmaComponents.Button {
+            TimerPresetButton {
                 text: i18n("15m")
-                width: appletConfig.timerButtonWidth
                 onClicked: setDurationAndStart(15 * 60)
             }
-            PlasmaComponents.Button {
+            TimerPresetButton {
                 text: i18n("30m")
-                width: appletConfig.timerButtonWidth
                 onClicked: setDurationAndStart(30 * 60)
             }
-            PlasmaComponents.Button {
+            TimerPresetButton {
                 text: i18n("45m")
-                width: appletConfig.timerButtonWidth
                 onClicked: setDurationAndStart(45 * 60)
             }
-            PlasmaComponents.Button {
+            TimerPresetButton {
                 text: i18n("1h")
-                width: appletConfig.timerButtonWidth
                 onClicked: setDurationAndStart(60 * 60)
             }
         }
