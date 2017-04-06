@@ -32,4 +32,10 @@ ConfigModel {
         icon: "weather-clear"
         source: "config/ConfigWeather.qml"
     }
+    ConfigCategory {
+        name: i18n("Advanced")
+        icon: "applications-development"
+        source: "lib/ConfigAdvanced.qml"
+        visible: plasmoid.configuration.debugging
+    }
 }
