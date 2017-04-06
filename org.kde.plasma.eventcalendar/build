@@ -1,5 +1,15 @@
 #!/bin/bash
-# Version 4
+# Version 5
+
+if [ -d "package/locale" ]; then
+	echo "[build] locale dir found, running merge."
+	(cd package/locale && sh ./merge)
+	if [ "$(git diff --stat)" != "" ]; then
+		echo "[build] Changed detected. Cancelling build."
+		git diff --stat
+		exit
+	fi
+fi
 
 plasmoidName=$(kreadconfig5 --file="$PWD/package/metadata.desktop" --group="Desktop Entry" --key="X-KDE-PluginInfo-Name")
 plasmoidName="${plasmoidName##*.}" # Strip namespace (Eg: "org.kde.plasma.")
