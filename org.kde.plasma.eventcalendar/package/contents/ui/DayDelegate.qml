@@ -156,6 +156,11 @@ MouseArea {
             anchors.right: parent.right
             anchors.bottom: parent.bottom
             height: parent.height / 8
+            
+            property bool usePadding: !plasmoid.configuration.month_show_border
+            anchors.leftMargin: usePadding ? parent.width/8 : 0
+            anchors.rightMargin: usePadding ? parent.width/8 : 0
+            anchors.bottomMargin: usePadding ? parent.height/16 : 0
 
             RowLayout {
                 anchors.fill: parent
