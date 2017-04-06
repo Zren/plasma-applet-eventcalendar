@@ -1,3 +1,18 @@
+## v43 - April 5 2017
+
+* A notification is now displayed when an event is starting.
+* Can now delete non-reoccuring events from the context menu.
+* Prepare widget for translations (thanks Victor).
+* Use same popup size as digital clock when only the calendar widget is enabled.
+* A new event badge has been added which shows all the colors for that day in a line.
+* Add toggle for hiding the background when used as a desktop widget.
+* Close new event form with Esc
+* Support kelvin/fahrenheit freezing points (below freezing the meteogram line turns blue).
+* Refactor the config code. Add an advanced debugging view.
+* Show calendar colours in the config.
+* When the meteogram is disabled, move the timer to the top right, and have the agenda consume the entire left half of the popup.
+* Fix timer overlaying the calendar when using a non-default font size.
+
 ## v42 - February 14 2017
 
 * Possible fix for emojis in the event summary crashing plasmashell.
