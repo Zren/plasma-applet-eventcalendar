@@ -9,7 +9,7 @@ ConfigPage {
     Component {
         id: textFieldStyle
         TextFieldStyle {
-            textColor: syspal.textColor
+            // textColor: syspal.textColor
 
             background: Rectangle {
                 radius: 2
