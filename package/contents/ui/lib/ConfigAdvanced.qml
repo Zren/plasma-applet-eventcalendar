@@ -72,6 +72,23 @@ ConfigPage {
                 }
             }
 
+            Component {
+                id: base64jsonControl
+                TextArea {
+                    text: {
+                        if (modelValue) {
+                            var data = JSON.parse(Qt.atob(modelValue))
+                            return JSON.stringify(data, null, '  ')
+                        } else {
+                            return ''
+                        }
+                    }
+                    readOnly: true
+                    implicitHeight: contentHeight + font.pixelSize
+                    wrapMode: TextEdit.Wrap
+                }
+            }
+
             delegate: RowLayout {
                 width: parent.width
 
@@ -88,7 +105,7 @@ ConfigPage {
                 }
                 TextField {
                     Layout.alignment: Qt.AlignTop | Qt.AlignLeft
-                    text: model.valueType
+                    text: model.stringType || model.configType || model.valueType
                     readOnly: true
                     style: textFieldStyle
                     Layout.preferredWidth: 80 * units.devicePixelRatio
@@ -104,8 +121,12 @@ ConfigPage {
                             return boolControl
                         } else if (model.valueType === 'number') {
                             return numberControl
-                        } else {
-                            return stringControl
+                        } else { // string
+                            if (model.stringType === 'base64json') {
+                                return base64jsonControl
+                            } else {
+                                return stringControl
+                            }
                         }
                         
                     }
@@ -181,10 +202,18 @@ ConfigPage {
                     var valueType = entry.attributes['type'].nodeValue
                     var value = getText(findNode(entry, 'default'))
 
+                    var stringType = entry.attributes['stringType']
+                    if (stringType) {
+                        stringType = stringType.nodeValue
+                    } else {
+                        stringType = null
+                    }
+
                     configDefaults.append({
                         key: key,
                         valueType: valueType,
                         value: value,
+                        stringType: stringType
                     })
                 })
             })
@@ -208,11 +237,18 @@ ConfigPage {
             // console.log(JSON.stringify(keys, null, '\t'))
             for (var i = 0; i < keys.length; i++) {
                 var key = keys[i]
+                if (key === 'minimumWidth') {
+                    break // Where is this defined?! Exit loop when we reach this key.
+                }
+
                 var value = plasmoid.configuration[key]
+                
                 configTableModel.append({
                     key: key,
                     valueType: typeof value,
                     value: value,
+                    configType: null,
+                    stringType: null,
                     defaultValue: null,
                 })
             }
@@ -229,8 +265,13 @@ ConfigPage {
                 var key = keys[i]
                 var value = plasmoid.configuration[key]
                 var valueStr = '' + value
+                var node = configDefaults.get(i)
+                var configType = configDefaults.get(i).valueType
+                var stringType = configDefaults.get(i).stringType
                 var defaultValue = configDefaults.get(i).value
 
+                configTableModel.setProperty(i, 'configType', configType)
+                configTableModel.setProperty(i, 'stringType', stringType)
                 configTableModel.setProperty(i, 'defaultValue', defaultValue)
             }
         }
