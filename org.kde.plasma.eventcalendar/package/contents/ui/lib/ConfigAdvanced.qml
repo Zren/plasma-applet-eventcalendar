@@ -48,7 +48,9 @@ ConfigPage {
                 id: numberControl
                 SpinBox {
                     value: modelValue
-                    decimals: 1
+                    property bool isInteger: modelConfigType === 'UInt' || modelConfigType === 'int'
+                    decimals: isInteger ? 0 : 3
+                    maximumValue: 2147483647
                     Component.onCompleted: {
                         valueChanged.connect(function() {
                             plasmoid.configuration[modelKey] = value
@@ -116,6 +118,7 @@ ConfigPage {
                     property var modelKey: model.key
                     property var modelValueType: model.valueType
                     property var modelValue: model.value
+                    property var modelConfigType: model.configType
                     sourceComponent: {
                         if (model.valueType === 'boolean') {
                             return boolControl
