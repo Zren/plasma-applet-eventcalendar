@@ -6,6 +6,7 @@ import org.kde.plasma.core 2.0 as PlasmaCore
 import "utils.js" as Utils
 import "shared.js" as Shared
 import "../code/DebugFixtures.js" as DebugFixtures
+import "../code/ColorIdMap.js" as ColorIdMap
 
 Item {
 	id: eventModel
@@ -46,8 +47,29 @@ Item {
 		calendarFetched(calendarId, data)
 	}
 
+	function parseColorId(colorIdType, colorId) {
+		// Use hardcoded colorIdMap rather than requesting the list from the API.
+		// We could possibly fetch this in the config...
+		if (typeof colorId !== "undefined") {
+			var typeMap = ColorIdMap.colorIdMap[colorIdType]
+			if (typeMap) {
+				var colorIdStr = "" + colorId // Cast to string
+				if (typeMap[colorIdStr]) {
+					return typeMap[colorId]['background']
+				}
+			}
+		}
+		return null
+	}
+
+	function parseColor(calendar, event) {
+		var colorId = parseColorId('event', event.colorId)
+		// event.backgroundColor is a hardcoded color (like the debug calendar)
+		return event.backgroundColor || colorId || calendar.backgroundColor
+	}
+
 	function parseEvent(calendar, event) {
-		event.backgroundColor = event.backgroundColor || calendar.backgroundColor
+		event.backgroundColor = parseColor(calendar, event)
 		event.canEdit = calendar.accessRole == 'owner' && !event.recurringEventId // We cannot currently edit repeating events.
 	}
 
