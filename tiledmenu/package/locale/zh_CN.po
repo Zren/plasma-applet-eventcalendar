@@ -1,5 +1,5 @@
 # Translation of tiledmenu in zh_CN
-# Copyright (C) 2016
+# Copyright (C) 2017
 # This file is distributed under the same license as the PACKAGE package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: https://github.com/Zren/plasma-applets/tree/master/tiledmenu\n"
-"POT-Creation-Date: 2017-02-20 23:08-0500\n"
+"POT-Creation-Date: 2017-04-07 11:52+0800\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: Lin Mu <linmu789632@gmail.com>\n"
 "Language-Team: Chinese <kde-i18n-doc@kde.org>\n"
@@ -16,10 +16,11 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
 
 #: ../contents/config/config.qml:26
 msgid "General"
-msgstr "常规"
+msgstr "一般"
 
 #: ../contents/ui/AppContextMenu.qml:68
 msgid "Unpin from Menu"
@@ -63,101 +64,121 @@ msgstr "图片文件 (*.png *.jpg *.jpeg *.bmp *.svg *.svgz)"
 msgid "Tiles"
 msgstr "磁贴"
 
+#: ../contents/ui/config/ConfigGeneral.qml:139 ../contents/ui/config/ConfigGeneral.qml:181 ../contents/ui/config/ConfigGeneral.qml:206
+msgid "Desktop Theme (%1)"
+msgstr "桌面主题 (%1)"
+
+#: ../contents/ui/config/ConfigGeneral.qml:147 ../contents/ui/config/ConfigGeneral.qml:188
+msgid "Custom Color"
+msgstr "自定义颜色"
+
 #: ../contents/ui/config/ConfigGeneral.qml:158
+msgid "Transparent"
+msgstr "透明"
+
+#: ../contents/ui/config/ConfigGeneral.qml:167
 msgid "Text Alignment"
 msgstr "文字对齐"
 
-#: ../contents/ui/config/ConfigGeneral.qml:160
+#: ../contents/ui/config/ConfigGeneral.qml:169
 msgid "Left"
 msgstr "左"
 
-#: ../contents/ui/config/ConfigGeneral.qml:161
+#: ../contents/ui/config/ConfigGeneral.qml:170
 msgid "Center"
 msgstr "中"
 
-#: ../contents/ui/config/ConfigGeneral.qml:162
+#: ../contents/ui/config/ConfigGeneral.qml:171
 msgid "Right"
 msgstr "右"
 
-#: ../contents/ui/config/ConfigGeneral.qml:169
+#: ../contents/ui/config/ConfigGeneral.qml:178
 msgid "Sidebar"
 msgstr "侧栏"
 
-#: ../contents/ui/config/ConfigGeneral.qml:194
+#: ../contents/ui/config/ConfigGeneral.qml:203
 msgid "Search Box"
 msgstr "搜索框"
 
-#: ../contents/ui/config/ConfigGeneral.qml:211
-msgid "App List"
-msgstr "软件列表"
-
-#: ../contents/ui/config/ConfigGeneral.qml:216
-msgid "App Description"
-msgstr "软件描述"
-
-#: ../contents/ui/config/ConfigGeneral.qml:218
-msgid "Hidden"
-msgstr "隐藏"
-
-#: ../contents/ui/config/ConfigGeneral.qml:219
-msgid "After"
-msgstr "后方"
+#: ../contents/ui/config/ConfigGeneral.qml:212
+msgid "Windows (White)"
+msgstr "Windows (白色)"
 
 #: ../contents/ui/config/ConfigGeneral.qml:220
-msgid "Below"
-msgstr "下方"
+msgid "App List"
+msgstr "应用列表"
 
-#: ../contents/ui/config/ConfigGeneral.qml:232
-msgid "Show recent applications"
-msgstr "显示最近运行软件"
+#: ../contents/ui/config/ConfigGeneral.qml:225
+msgid "App List Area Width"
+msgstr "应用列表区域宽度"
 
-#: ../contents/ui/config/ConfigGeneral.qml:239
-msgid "Icon Size"
-msgstr "图标尺寸"
-
-#: ../contents/ui/config/ConfigGeneral.qml:240
+#: ../contents/ui/config/ConfigGeneral.qml:226 ../contents/ui/config/ConfigGeneral.qml:257
 msgid "px"
 msgstr "像素"
 
-#: ../contents/ui/config/ConfigGeneral.qml:255
+#: ../contents/ui/config/ConfigGeneral.qml:233
+msgid "App Description"
+msgstr "应用描述"
+
+#: ../contents/ui/config/ConfigGeneral.qml:235
+msgid "Hidden"
+msgstr "隐藏"
+
+#: ../contents/ui/config/ConfigGeneral.qml:236
+msgid "After"
+msgstr "后方"
+
+#: ../contents/ui/config/ConfigGeneral.qml:237
+msgid "Below"
+msgstr "下方"
+
+#: ../contents/ui/config/ConfigGeneral.qml:249
+msgid "Show recent applications"
+msgstr "显示最近运行应用"
+
+#: ../contents/ui/config/ConfigGeneral.qml:256
+msgid "Icon Size"
+msgstr "图标尺寸"
+
+#: ../contents/ui/config/ConfigGeneral.qml:272
 msgid "Search Results"
 msgstr "搜索结果"
 
-#: ../contents/ui/config/ConfigGeneral.qml:259
+#: ../contents/ui/config/ConfigGeneral.qml:276
 msgid "Merged (Application Launcher)"
-msgstr "合并（软件启动器）"
+msgstr "合并（应用启动器）"
 
-#: ../contents/ui/config/ConfigGeneral.qml:268
+#: ../contents/ui/config/ConfigGeneral.qml:285
 msgid "Split into Categories (Application Menu / Dashboard)"
-msgstr "分类（软件菜单/仪表板）"
+msgstr "分类（应用菜单/仪表板）"
 
-#: ../contents/ui/FavouriteItem.qml:179
+#: ../contents/ui/FavouriteItem.qml:180
 msgid "Edit Tile"
 msgstr "编辑磁贴"
 
-#: ../contents/ui/Main.qml:225
+#: ../contents/ui/Main.qml:247
 msgid "System Info"
 msgstr "系统信息"
 
-#: ../contents/ui/Main.qml:226
+#: ../contents/ui/Main.qml:248
 msgid "Terminal"
 msgstr "终端"
 
-#: ../contents/ui/Main.qml:228
+#: ../contents/ui/Main.qml:250
 msgid "Task Manager"
 msgstr "任务管理器"
 
-#: ../contents/ui/Main.qml:229
+#: ../contents/ui/Main.qml:251
 msgid "System Settings"
 msgstr "系统设置"
 
-#: ../contents/ui/Main.qml:230
+#: ../contents/ui/Main.qml:252
 msgid "File Manager"
 msgstr "文件管理器"
 
-#: ../contents/ui/Main.qml:232
+#: ../contents/ui/Main.qml:254
 msgid "Edit Applications..."
-msgstr "编辑软件列表"
+msgstr "编辑应用列表"
 
 #: ../contents/ui/Popup.qml:58
 msgid "Resize?"
@@ -173,7 +194,7 @@ msgstr "搜索"
 
 #: ../contents/ui/SearchField.qml:17
 msgid "Search Apps"
-msgstr "搜索软件"
+msgstr "搜索应用"
 
 #: ../contents/ui/SearchField.qml:19
 msgid "Search Files"
@@ -188,9 +209,73 @@ msgctxt "Search [krunnerName, krunnerName, ...], "
 msgid "Search %1"
 msgstr "搜索 %1"
 
-#: ../contents/ui/SearchResultsView.qml:59
-msgid "More"
-msgstr "更多"
+#: ../contents/ui/SearchFiltersViewItem.qml:109 ../contents/ui/SearchFiltersView.qml:30
+msgid "Default"
+msgstr "默认"
+
+#: ../contents/ui/SearchFiltersView.qml:19
+msgid "All"
+msgstr "全部"
+
+#: ../contents/ui/SearchFiltersView.qml:20
+msgid "Search with all KRunner plugins"
+msgstr "使用全部 KRunner 插件搜索"
+
+#: ../contents/ui/SearchFiltersView.qml:31
+msgid "Search with user selected defaults"
+msgstr "使用用户选择的默认值进行搜索"
+
+#: ../contents/ui/SearchFiltersView.qml:42
+msgid "Applications"
+msgstr "应用"
+
+#: ../contents/ui/SearchFiltersView.qml:49
+msgid "Files"
+msgstr "文件"
+
+#: ../contents/ui/SearchFiltersView.qml:59
+msgid "Music"
+msgstr "音乐"
+
+#: ../contents/ui/SearchFiltersView.qml:67
+msgid "Videos"
+msgstr "视频"
+
+#: ../contents/ui/SearchFiltersView.qml:77
+msgid "Bookmarks"
+msgstr "书签"
+
+#: ../contents/ui/SearchFiltersView.qml:84
+msgid "locations"
+msgstr "位置"
+
+#: ../contents/ui/SearchFiltersView.qml:91
+msgid "Dictionary"
+msgstr "词典"
+
+#: ../contents/ui/SearchFiltersView.qml:99
+msgid "Shell"
+msgstr "命令行"
+
+#: ../contents/ui/SearchFiltersView.qml:106
+msgid "Calculator"
+msgstr "计算器"
+
+#: ../contents/ui/SearchFiltersView.qml:113
+msgid "Windowed Widgets"
+msgstr "窗口小部件"
+
+#: ../contents/ui/SearchFiltersView.qml:120
+msgid "Date/Time"
+msgstr "日期/时间"
+
+#: ../contents/ui/SearchFiltersView.qml:127
+msgid "Unit Converter"
+msgstr "单位转换"
+
+#: ../contents/ui/SearchResultsView.qml:70
+msgid "Filters"
+msgstr "过滤器"
 
 #: ../contents/ui/SearchView.qml:64
 msgid "Menu"
@@ -198,7 +283,7 @@ msgstr "菜单"
 
 #: ../contents/ui/SearchView.qml:71
 msgid "Apps"
-msgstr "软件"
+msgstr "应用"
 
 #: ../contents/ui/SearchView.qml:82
 msgid "Categories"
@@ -232,6 +317,9 @@ msgstr "中等"
 #: ../contents/ui/TileEditorView.qml:102 ../contents/ui/TileEditorWindow.qml:46
 msgid "Label"
 msgstr "标签"
+
+#~ msgid "More"
+#~ msgstr "更多"
 
 #~ msgid "Settings"
 #~ msgstr "设置"
