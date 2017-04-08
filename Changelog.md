@@ -1,4 +1,9 @@
-## v43 - April 5 2017
+## v44 - April 8 2017
+
+* Fix "ConfigSerializedString.qml is missing" error when installed via a package manager that downloaded from GitHub by commiting the file.
+* Support event specific colors. When a specific event is assigned a color, a colorId is used rather than a hex color (#ffffff). So we package a hardcoded set of colours for now until we download the user selected colors from the API.
+
+## v43 - April 6 2017
 
 * A notification is now displayed when an event is starting.
 * Can now delete non-reoccuring events from the context menu.
