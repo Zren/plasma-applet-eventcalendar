@@ -24,11 +24,11 @@ msgstr "Général"
 
 #: ../contents/config/config.qml:16 ../contents/ui/UpcomingEvents.qml:124
 msgid "Calendar"
-msgstr ""
+msgstr "Calendrier"
 
 #: ../contents/config/config.qml:21
 msgid "Agenda"
-msgstr ""
+msgstr "Agenda"
 
 #: ../contents/config/config.qml:26
 msgid "Google Calendar"
@@ -36,7 +36,7 @@ msgstr ""
 
 #: ../contents/config/config.qml:31
 msgid "Weather"
-msgstr ""
+msgstr "Météo"
 
 #: ../contents/config/config.qml:36
 msgid "Advanced"
@@ -56,11 +56,11 @@ msgstr ""
 
 #: ../contents/ui/AgendaListItem.qml:327
 msgid "to"
-msgstr ""
+msgstr "à"
 
 #: ../contents/ui/AgendaListItem.qml:353
 msgid "All Day"
-msgstr ""
+msgstr "Toute la journée"
 
 #: ../contents/ui/AgendaListItem.qml:357
 msgid "Save"
@@ -72,11 +72,11 @@ msgstr ""
 
 #: ../contents/ui/AgendaListItem.qml:395
 msgid "Edit description"
-msgstr ""
+msgstr "Éditer la description"
 
 #: ../contents/ui/AgendaListItem.qml:412
 msgid "Delete Event"
-msgstr ""
+msgstr "Effacer l'événement"
 
 #: ../contents/ui/AgendaListItem.qml:415
 msgid "Confirm Deletion"
@@ -84,19 +84,19 @@ msgstr ""
 
 #: ../contents/ui/AgendaListItem.qml:427
 msgid "Edit in browser"
-msgstr ""
+msgstr "Éditer dans le navigateur"
 
 #: ../contents/ui/config/ConfigAgenda.qml:28
 msgid "Show agenda"
-msgstr ""
+msgstr "Afficher l'agenda"
 
 #: ../contents/ui/config/ConfigAgenda.qml:34
 msgid "Agenda above the month (Single Column)"
-msgstr ""
+msgstr "Agenda au-dessus du mois"
 
 #: ../contents/ui/config/ConfigAgenda.qml:41
 msgid "Agenda to the left (Two Columns)"
-msgstr ""
+msgstr "Agenda à gauche du mois"
 
 #: ../contents/ui/config/ConfigAgenda.qml:54
 msgid "Weather Icon"
@@ -156,27 +156,27 @@ msgstr ""
 
 #: ../contents/ui/config/ConfigAgenda.qml:155
 msgid "Current Month"
-msgstr ""
+msgstr "Mois en cours"
 
 #: ../contents/ui/config/ConfigAgenda.qml:160
 msgid "Always show next 14 days"
-msgstr ""
+msgstr "Toujours afficher les 14 prochains jours"
 
 #: ../contents/ui/config/ConfigAgenda.qml:165
 msgid "Hide completed events"
-msgstr ""
+msgstr "Caher les événements complétés"
 
 #: ../contents/ui/config/ConfigAgenda.qml:170
 msgid "Show all events of the current day (including completed events)"
-msgstr ""
+msgstr "Afficher tous les événements de la journée (incluant les événments complétés)"
 
 #: ../contents/ui/config/ConfigAgenda.qml:176
 msgid "Colors"
-msgstr ""
+msgstr "Couleurs"
 
 #: ../contents/ui/config/ConfigAgenda.qml:180
 msgid "Event In Progress:"
-msgstr ""
+msgstr "Événement en cours:"
 
 #: ../contents/ui/config/ConfigAgenda.qml:187
 msgid "Highlight"
@@ -184,11 +184,11 @@ msgstr ""
 
 #: ../contents/ui/config/ConfigAgenda.qml:193
 msgid "Normal"
-msgstr ""
+msgstr "Normal"
 
 #: ../contents/ui/config/ConfigCalendar.qml:23
 msgid "Show calendar"
-msgstr ""
+msgstr "Afficher le calendrier"
 
 #: ../contents/ui/config/ConfigCalendar.qml:31
 msgid "Scroll to event in Agenda"
@@ -200,15 +200,15 @@ msgstr ""
 
 #: ../contents/ui/config/ConfigCalendar.qml:51 ../contents/ui/config/ConfigWeather.qml:120
 msgid "Style"
-msgstr ""
+msgstr "Style"
 
 #: ../contents/ui/config/ConfigCalendar.qml:56
 msgid "Show Borders"
-msgstr ""
+msgstr "Afficher les contours"
 
 #: ../contents/ui/config/ConfigCalendar.qml:60
 msgid "Show Week Numbers"
-msgstr ""
+msgstr "Afficher les numéros de semaine"
 
 #: ../contents/ui/config/ConfigCalendar.qml:63
 msgid "Event Badge:"
@@ -216,11 +216,11 @@ msgstr ""
 
 #: ../contents/ui/config/ConfigCalendar.qml:66 ../contents/ui/config/ConfigCalendar.qml:113 ../contents/ui/config/ConfigCalendar.qml:129
 msgid "Theme"
-msgstr ""
+msgstr "Thème"
 
 #: ../contents/ui/config/ConfigCalendar.qml:74
 msgid "Dots (3 Maximum)"
-msgstr ""
+msgstr "Points (maximum 3)"
 
 #: ../contents/ui/config/ConfigCalendar.qml:82
 msgid "Bottom Bar (Event Color)"
@@ -232,19 +232,19 @@ msgstr ""
 
 #: ../contents/ui/config/ConfigCalendar.qml:98
 msgid "Count"
-msgstr ""
+msgstr "Compteur"
 
 #: ../contents/ui/config/ConfigCalendar.qml:108
 msgid "Selected:"
-msgstr ""
+msgstr "Sélectionné"
 
 #: ../contents/ui/config/ConfigCalendar.qml:117
 msgid "Solid Color (Highlight)"
-msgstr ""
+msgstr "Couleur uni (surligné)"
 
 #: ../contents/ui/config/ConfigCalendar.qml:124
 msgid "Today:"
-msgstr ""
+msgstr "Aujourd'hui"
 
 #: ../contents/ui/config/ConfigCalendar.qml:133
 msgid "Solid Color (Inverted)"
@@ -252,11 +252,11 @@ msgstr ""
 
 #: ../contents/ui/config/ConfigCalendar.qml:139
 msgid "Big Number"
-msgstr ""
+msgstr "Gros numéro"
 
 #: ../contents/ui/config/ConfigGeneral.qml:85
 msgid "Chose a sound effect"
-msgstr ""
+msgstr "Choisir le son"
 
 #: ../contents/ui/config/ConfigGeneral.qml:102
 msgid "Widgets"
@@ -268,11 +268,11 @@ msgstr ""
 
 #: ../contents/ui/config/ConfigGeneral.qml:115
 msgid "Meteogram"
-msgstr ""
+msgstr "Météogramme"
 
 #: ../contents/ui/config/ConfigGeneral.qml:122 ../contents/ui/TimerView.qml:249
 msgid "Timer"
-msgstr ""
+msgstr "Minuteur"
 
 #: ../contents/ui/config/ConfigGeneral.qml:128
 msgid "SFX:"
@@ -284,11 +284,11 @@ msgstr ""
 
 #: ../contents/ui/config/ConfigGeneral.qml:145
 msgid "Clock"
-msgstr ""
+msgstr "Horloge"
 
 #: ../contents/ui/config/ConfigGeneral.qml:149
 msgid "Time Format"
-msgstr ""
+msgstr "Format de l'heure"
 
 #: ../contents/ui/config/ConfigGeneral.qml:160
 msgid "The default font for the Breeze theme is Noto Sans which is hard to read with small text. Try using the Sans Serif font if you find the text too small when adding a second line."
@@ -302,12 +302,12 @@ msgstr ""
 
 #: ../contents/ui/config/ConfigGeneral.qml:172
 msgid "Font:"
-msgstr ""
+msgstr "Police"
 
 #: ../contents/ui/config/ConfigGeneral.qml:183
 msgctxt "Use default font"
 msgid "Default"
-msgstr ""
+msgstr "Défaut"
 
 #: ../contents/ui/config/ConfigGeneral.qml:204
 msgid "Fixed Clock Height: "
@@ -315,7 +315,7 @@ msgstr ""
 
 #: ../contents/ui/config/ConfigGeneral.qml:210
 msgid "px"
-msgstr ""
+msgstr "px"
 
 #: ../contents/ui/config/ConfigGeneral.qml:216
 msgid " (0px = scale to fit)"
@@ -323,19 +323,19 @@ msgstr ""
 
 #: ../contents/ui/config/ConfigGeneral.qml:226
 msgid "Line 1:"
-msgstr ""
+msgstr "Ligne 1"
 
 #: ../contents/ui/config/ConfigGeneral.qml:244 ../contents/ui/config/ConfigGeneral.qml:270 ../contents/ui/config/ConfigGeneral.qml:321
 msgid "Preset:"
-msgstr ""
+msgstr "Présélection:"
 
 #: ../contents/ui/config/ConfigGeneral.qml:292 ../contents/ui/config/ConfigGeneral.qml:358
 msgid "Bold"
-msgstr ""
+msgstr "Gras"
 
 #: ../contents/ui/config/ConfigGeneral.qml:304
 msgid "Line 2:"
-msgstr ""
+msgstr "Ligne 2"
 
 #: ../contents/ui/config/ConfigGeneral.qml:366
 msgid "Height:"
@@ -385,15 +385,15 @@ msgstr ""
 
 #: ../contents/ui/config/ConfigGoogleCalendar.qml:40
 msgid "Login"
-msgstr ""
+msgstr "Connexion"
 
 #: ../contents/ui/config/ConfigGoogleCalendar.qml:45
 msgid "Currently Synched."
-msgstr ""
+msgstr "Synchronisé"
 
 #: ../contents/ui/config/ConfigGoogleCalendar.qml:49
 msgid "Logout"
-msgstr ""
+msgstr "Déconnexion"
 
 #: ../contents/ui/config/ConfigGoogleCalendar.qml:59
 msgid "To sync with Google Calendar"
@@ -409,7 +409,7 @@ msgstr ""
 
 #: ../contents/ui/config/ConfigGoogleCalendar.qml:85
 msgid "Calendars"
-msgstr ""
+msgstr "Calendriers"
 
 #: ../contents/ui/config/ConfigGoogleCalendar.qml:147
 msgid "Refresh events every: "
@@ -440,7 +440,7 @@ msgstr ""
 
 #: ../contents/ui/config/ConfigWeather.qml:61 ../contents/ui/config/ConfigWeather.qml:85
 msgid "Find City"
-msgstr ""
+msgstr "Trouver une ville"
 
 #: ../contents/ui/config/ConfigWeather.qml:82
 msgid "Eg: on-14"
@@ -448,7 +448,7 @@ msgstr ""
 
 #: ../contents/ui/config/ConfigWeather.qml:99
 msgid "Settings"
-msgstr ""
+msgstr "Paramètres"
 
 #: ../contents/ui/config/ConfigWeather.qml:105
 msgid "Update forecast every: "
@@ -461,8 +461,8 @@ msgstr ""
 #: ../contents/ui/config/ConfigWeather.qml:133
 msgid " hours"
 msgid_plural " hours"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] " heure"
+msgstr[1] " heures"
 
 #: ../contents/ui/config/ConfigWeather.qml:140
 msgid " in the meteogram."
@@ -486,7 +486,7 @@ msgstr ""
 
 #: ../contents/ui/config/OpenWeatherMapCityDialog.qml:12 ../contents/ui/config/WeatherCanadaCityDialog.qml:13
 msgid "Select city"
-msgstr ""
+msgstr "Choisir une ville"
 
 #: ../contents/ui/config/OpenWeatherMapCityDialog.qml:65
 msgid "Fetched from <a href=\"http://openweathermap.org/help/city_list.txt\">http://openweathermap.org/help/city_list.txt</a>"
@@ -494,11 +494,11 @@ msgstr ""
 
 #: ../contents/ui/config/OpenWeatherMapCityDialog.qml:71 ../contents/ui/config/WeatherCanadaCityDialog.qml:91
 msgid "Search"
-msgstr ""
+msgstr "Chercher"
 
 #: ../contents/ui/config/OpenWeatherMapCityDialog.qml:84 ../contents/ui/config/WeatherCanadaCityDialog.qml:104
 msgid "Name"
-msgstr ""
+msgstr "Nom"
 
 #: ../contents/ui/config/OpenWeatherMapCityDialog.qml:89 ../contents/ui/config/WeatherCanadaCityDialog.qml:109
 msgid "Id"
@@ -510,7 +510,7 @@ msgstr ""
 
 #: ../contents/ui/config/OpenWeatherMapCityDialog.qml:96 ../contents/ui/config/WeatherCanadaCityDialog.qml:116
 msgid "Open Link"
-msgstr ""
+msgstr "Ouvrir le lien"
 
 #: ../contents/ui/config/WeatherCanadaCityDialog.qml:68
 msgid "Fetched from <a href=\"https://weather.gc.ca/canada_e.html\">https://weather.gc.ca/canada_e.html</a>"
@@ -558,39 +558,39 @@ msgstr ""
 
 #: ../contents/ui/TimerView.qml:105
 msgid "Sound"
-msgstr ""
+msgstr "Son"
 
 #: ../contents/ui/TimerView.qml:119
 msgid "30s"
-msgstr ""
+msgstr "30s"
 
 #: ../contents/ui/TimerView.qml:123
 msgid "1m"
-msgstr ""
+msgstr "1m"
 
 #: ../contents/ui/TimerView.qml:127
 msgid "5m"
-msgstr ""
+msgstr "5m"
 
 #: ../contents/ui/TimerView.qml:131
 msgid "10m"
-msgstr ""
+msgstr "10m"
 
 #: ../contents/ui/TimerView.qml:135
 msgid "15m"
-msgstr ""
+msgstr "15m"
 
 #: ../contents/ui/TimerView.qml:139
 msgid "30m"
-msgstr ""
+msgstr "30m"
 
 #: ../contents/ui/TimerView.qml:143
 msgid "45m"
-msgstr ""
+msgstr "45m"
 
 #: ../contents/ui/TimerView.qml:147
 msgid "1h"
-msgstr ""
+msgstr "1h"
 
 #: ../contents/ui/TimerView.qml:251
 msgid "Timer finished"
@@ -610,7 +610,7 @@ msgstr ""
 
 #: ../contents/ui/UpcomingEvents.qml:120
 msgid "Upcoming Events"
-msgstr ""
+msgstr "Événement à venir"
 
 #: ../contents/ui/UpcomingEvents.qml:129 ../contents/ui/UpcomingEvents.qml:146
 msgid "Event Calendar"
