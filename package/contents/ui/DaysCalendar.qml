@@ -334,6 +334,8 @@ Item {
                 opacity: 0.4
                 horizontalAlignment: Text.AlignHCenter
                 verticalAlignment: Text.AlignVCenter
+                elide: Text.ElideRight
+                fontSizeMode: Text.HorizontalFit
             }
         }
 
