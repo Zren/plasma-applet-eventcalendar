@@ -91,6 +91,17 @@ MouseArea {
             onCurrentItemChanged: {
                 // console.log('listView.onCurrentItemChanged', currentIndex)
             }
+
+            Connections {
+                target: plasmoid
+                onExpandedChanged: {
+                    if (expanded) {
+                        listView.focus = true
+                        listView.currentIndex = listView.count - 1
+                        listView.positionViewAtEnd()
+                    }
+                }
+            }
         }
 
         Column {
