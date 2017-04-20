@@ -7,14 +7,10 @@ import org.kde.plasma.core 2.0 as PlasmaCore
 import org.kde.plasma.components 2.0 as PlasmaComponents
 import QtQuick.Controls.Styles.Plasma 2.0 as PlasmaStyles
 
-
-RowLayout {
-    id: todoItemRow
-    // height: 48
-    // Layout.fillWidth: true
+Item {
+    id: todoItemDelegate
     width: parent.width
     height: Math.max(checkbox.height, textArea.height)
-    spacing: 0
 
     function setComplete(completed) {
         var newStatus = completed ? 'completed' : 'needsAction'
@@ -48,17 +44,82 @@ RowLayout {
     }
 
 
+DropArea {
+    anchors.fill: parent
+    // z: 1
+    // anchors.margins: 10
+
+    onEntered: {
+        // visualModel.items.move(
+        //         drag.source.DelegateModel.itemsIndex,
+        //         dragArea.DelegateModel.itemsIndex)
+        console.log('onEntered.index', index)
+        console.log('onEntered.drag.source', drag.source)
+        // console.log('onEntered.drag.source.ListView', drag.source.ListView)
+        // console.log('onEntered.drag.source.DelegateModel.index', drag.source.index)
+
+        filterModel.moveItem(drag.source.dragItemIndex, index)
+
+    }
+
+    Rectangle {
+        anchors.fill: parent
+        color: parent.containsDrag ? "#88336699" : "transparent"
+    }
+}
+
+RowLayout {
+    id: todoItemRow
+    // anchors.left: parent.left
+    // anchors.right: parent.right
+    // height:
+    // anchors.fill: parent
+    width: parent.width
+    height: parent.height
+    // height: 48
+    // Layout.fillWidth: true
+    spacing: 0
+
     Item {
         id: indentItem
         Layout.preferredWidth: checkbox.height * model.indent
         visible: model.indent > 0
     }
 
+    Drag.active: dragArea.pressed
+    Drag.source: dragArea
+    Drag.hotSpot.x: dragArea.width / 2
+    Drag.hotSpot.y: dragArea.height / 2
+
+    MouseArea {
+        id: dragArea
+        Layout.fillHeight: true
+        Layout.preferredWidth: checkbox.height
+        property int dragItemIndex: index
+
+        // property bool held: false
+        // drag.target: held ? todoItemRow : undefined
+        drag.target: todoItemRow
+        // drag.axis: Drag.YAxis
+
+        // onPressAndHold: held = true
+        // onReleased: held = false
+
+        Rectangle {
+            id: dragAreaRect
+            color: "#88FFFFFF"
+            anchors.horizontalCenter: parent.horizontalCenter
+            anchors.top: parent.top
+            anchors.bottom: parent.bottom
+            width: parent.width / 2
+        }
+    }
+
     PlasmaComponents.CheckBox {
         id: checkbox
         anchors.top: parent.top
-        // Layout.fillHeight: true
-        height: 30
+        Layout.preferredHeight: 30 * units.devicePixelRatio
+        Layout.preferredWidth: 30 * units.devicePixelRatio
         checked: model.status == 'completed'
         enabled: model.title
 
@@ -187,4 +248,6 @@ RowLayout {
     //         filterModel.removeItem(index)
     //     }
     // }
+}
+
 }

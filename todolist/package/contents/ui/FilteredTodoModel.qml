@@ -8,6 +8,11 @@ PlasmaCore.SortFilterModel {
     filterRole: "isVisible"
     filterRegExp: ""
 
+    function moveItem(from, to) {
+        console.log('moveItem', from, to, mapRowToSource(from), mapRowToSource(to))
+        sourceModel.move(mapRowToSource(from), mapRowToSource(to), 1)
+    }
+
     function removeItem(index) {
         sourceModel.removeItem(mapRowToSource(index))
     }
