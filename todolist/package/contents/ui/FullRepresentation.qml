@@ -52,53 +52,58 @@ MouseArea {
         anchors.fill: parent
         // anchors.rightMargin: units.smallSpacing + rightMenu.width
 
-        ListView {
-            id: listView
+        ScrollView {
             Layout.fillWidth: true
             Layout.fillHeight: true
-            // anchors.fill: parent
 
-            model: noteItem.filterModel
-            cacheBuffer: 10000000
-            spacing: 4
+            ListView {
+                id: listView
+                Layout.fillWidth: true
+                Layout.fillHeight: true
+                // anchors.fill: parent
 
-            delegate: TodoItemDelegate {}
-            
-            remove: Transition {
-                NumberAnimation { property: "opacity"; to: 0; duration: 400 }
-            }
-            add: Transition {
-                NumberAnimation { property: "opacity"; from: 0; to: 1.0; duration: 400 }
-            }
-            displaced: Transition {
-                NumberAnimation { properties: "x,y"; duration: 200; }
-            }
+                model: noteItem.filterModel
+                cacheBuffer: 10000000
+                spacing: 4
 
-            Timer {
-                id: deboucedPositionViewAtEnd
-                interval: 1000
-                onTriggered: listView.positionViewAtEnd()
-            }
-
-            Connections {
-                target: noteItem.filterModel
-                onCountChanged: {
-                    // console.log('onCountChanged', count)
-                    deboucedPositionViewAtEnd.restart()
+                delegate: TodoItemDelegate {}
+                
+                remove: Transition {
+                    NumberAnimation { property: "opacity"; to: 0; duration: 400 }
                 }
-            }
+                add: Transition {
+                    NumberAnimation { property: "opacity"; from: 0; to: 1.0; duration: 400 }
+                }
+                displaced: Transition {
+                    NumberAnimation { properties: "x,y"; duration: 200; }
+                }
 
-            onCurrentItemChanged: {
-                // console.log('listView.onCurrentItemChanged', currentIndex)
-            }
+                Timer {
+                    id: deboucedPositionViewAtEnd
+                    interval: 1000
+                    onTriggered: listView.positionViewAtEnd()
+                }
 
-            Connections {
-                target: plasmoid
-                onExpandedChanged: {
-                    if (expanded) {
-                        listView.focus = true
-                        listView.currentIndex = listView.count - 1
-                        listView.positionViewAtEnd()
+                Connections {
+                    target: noteItem.filterModel
+                    onCountChanged: {
+                        // console.log('onCountChanged', count)
+                        deboucedPositionViewAtEnd.restart()
+                    }
+                }
+
+                onCurrentItemChanged: {
+                    // console.log('listView.onCurrentItemChanged', currentIndex)
+                }
+
+                Connections {
+                    target: plasmoid
+                    onExpandedChanged: {
+                        if (expanded) {
+                            listView.focus = true
+                            listView.currentIndex = listView.count - 1
+                            listView.positionViewAtEnd()
+                        }
                     }
                 }
             }
