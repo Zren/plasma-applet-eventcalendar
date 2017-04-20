@@ -6,6 +6,7 @@ import QtQuick.Window 2.2
 import QtQuick.Layouts 1.1
 import org.kde.plasma.core 2.0 as PlasmaCore
 import org.kde.plasma.components 2.0 as PlasmaComponents
+import org.kde.plasma.extras 2.0 as PlasmaExtras
 import QtQuick.Controls.Styles.Plasma 2.0 as PlasmaStyles
 
 import org.kde.plasma.private.notes 0.1
@@ -52,7 +53,7 @@ MouseArea {
         anchors.fill: parent
         // anchors.rightMargin: units.smallSpacing + rightMenu.width
 
-        ScrollView {
+        PlasmaExtras.ScrollArea {
             Layout.fillWidth: true
             Layout.fillHeight: true
 
