@@ -43,6 +43,9 @@ RowLayout {
             filterModel.update()
         }
     }
+    function deleteItem() {
+        filterModel.removeItem(index)
+    }
 
 
     Item {
@@ -173,15 +176,15 @@ RowLayout {
         }
     }
 
-    PlasmaComponents.ToolButton {
-        id: removeButton
-        anchors.top: parent.top
-        height: 30
-        iconName: 'list-remove-symbolic'
-        opacity: textArea.activeFocus || hovered ? 1 : 0
-        
-        onClicked: {
-            filterModel.removeItem(index)
-        }
-    }
+    // PlasmaComponents.ToolButton {
+    //     id: removeButton
+    //     anchors.top: parent.top
+    //     height: 30
+    //     iconName: 'list-remove-symbolic'
+    //     opacity: textArea.activeFocus || hovered ? 1 : 0
+
+    //     onClicked: {
+    //         filterModel.removeItem(index)
+    //     }
+    // }
 }
