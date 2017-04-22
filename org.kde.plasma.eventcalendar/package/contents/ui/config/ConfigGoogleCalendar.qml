@@ -12,13 +12,30 @@ import "../lib"
 ConfigPage {
     id: page
 
+    function sortByKey(key, a, b){
+        if (typeof a[key] === "string") {
+            return a[key].toLowerCase().localeCompare(b[key].toLowerCase())
+        } else if (typeof a[key] === "number") {
+            return a[key] - b[key]
+        } else {
+            return 0
+        }
+    }
+    function sortArr(arr, predicate) {
+        if (typeof predicate === "string") { // predicate is a key
+            predicate = sortByKey.bind(null, predicate)
+        }
+        return arr.concat().sort(predicate)
+    }
+
     GoogleCalendarSession {
         id: session
 
         onCalendarListChanged: {
             calendarsModel.clear()
-            for (var i = 0; i < calendarList.length; i++) {
-                var item = calendarList[i];
+            var sortedList = sortArr(calendarList, "summary")
+            for (var i = 0; i < sortedList.length; i++) {
+                var item = sortedList[i];
                 // console.log(JSON.stringify(item));
                 var isShowned = calendarIdList.indexOf(item.id) >= 0;
                 calendarsModel.append({
