@@ -241,6 +241,7 @@ RowLayout {
                         ColumnLayout {
                             id: eventColumn
                             Layout.fillWidth: true
+                            spacing: 0
 
                             PlasmaComponents.Label {
                                 id: eventSummary
