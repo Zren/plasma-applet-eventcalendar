@@ -28,6 +28,7 @@ ConfigPage {
                     backgroundColor: item.backgroundColor,
                     foregroundColor: item.foregroundColor,
                     show: isShowned,
+                    isReadOnly: item.accessRole == "reader",
                 });
                 // console.log(item.summary, isShowned, item.id);
             }
@@ -133,6 +134,11 @@ ConfigPage {
                             Label {
                                 id: labelText
                                 text: control.text
+                            }
+                            LockIcon {
+                                Layout.fillHeight: true
+                                Layout.preferredWidth: height
+                                visible: model.isReadOnly
                             }
                         }
                         
