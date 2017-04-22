@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: eventcalendar \n"
 "Report-Msgid-Bugs-To: https://github.com/Zren/plasma-applets/tree/master/org.kde.plasma.eventcalendar\n"
-"POT-Creation-Date: 2017-04-06 18:19-0400\n"
+"POT-Creation-Date: 2017-04-22 17:02-0400\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -50,39 +50,39 @@ msgstr ""
 msgid "Eg: 9am-5pm Work"
 msgstr ""
 
-#: ../contents/ui/AgendaListItem.qml:262
+#: ../contents/ui/AgendaListItem.qml:263
 msgid "Event Summary"
 msgstr ""
 
-#: ../contents/ui/AgendaListItem.qml:327
+#: ../contents/ui/AgendaListItem.qml:328
 msgid "to"
 msgstr "à"
 
-#: ../contents/ui/AgendaListItem.qml:353
+#: ../contents/ui/AgendaListItem.qml:354
 msgid "All Day"
 msgstr "Toute la journée"
 
-#: ../contents/ui/AgendaListItem.qml:357
+#: ../contents/ui/AgendaListItem.qml:358
 msgid "Save"
 msgstr ""
 
-#: ../contents/ui/AgendaListItem.qml:365
+#: ../contents/ui/AgendaListItem.qml:366
 msgid "Discard"
 msgstr ""
 
-#: ../contents/ui/AgendaListItem.qml:395
+#: ../contents/ui/AgendaListItem.qml:396
 msgid "Edit description"
 msgstr "Éditer la description"
 
-#: ../contents/ui/AgendaListItem.qml:412
+#: ../contents/ui/AgendaListItem.qml:413
 msgid "Delete Event"
 msgstr "Effacer l'événement"
 
-#: ../contents/ui/AgendaListItem.qml:415
+#: ../contents/ui/AgendaListItem.qml:416
 msgid "Confirm Deletion"
 msgstr ""
 
-#: ../contents/ui/AgendaListItem.qml:427
+#: ../contents/ui/AgendaListItem.qml:428
 msgid "Edit in browser"
 msgstr "Éditer dans le navigateur"
 
@@ -365,7 +365,7 @@ msgstr ""
 msgid "Volume (UI) (qdbus)"
 msgstr ""
 
-#: ../contents/ui/config/ConfigGeneral.qml:448 ../contents/ui/config/ConfigGoogleCalendar.qml:141
+#: ../contents/ui/config/ConfigGeneral.qml:448 ../contents/ui/config/ConfigGoogleCalendar.qml:174
 msgid "Misc"
 msgstr ""
 
@@ -383,39 +383,43 @@ msgid ""
 "This will log sensitive information to ~/.xsession-errors"
 msgstr ""
 
-#: ../contents/ui/config/ConfigGoogleCalendar.qml:40
+#: ../contents/ui/config/ConfigGoogleCalendar.qml:58
 msgid "Login"
 msgstr "Connexion"
 
-#: ../contents/ui/config/ConfigGoogleCalendar.qml:45
+#: ../contents/ui/config/ConfigGoogleCalendar.qml:63
 msgid "Currently Synched."
 msgstr "Synchronisé"
 
-#: ../contents/ui/config/ConfigGoogleCalendar.qml:49
+#: ../contents/ui/config/ConfigGoogleCalendar.qml:67
 msgid "Logout"
 msgstr "Déconnexion"
 
-#: ../contents/ui/config/ConfigGoogleCalendar.qml:59
+#: ../contents/ui/config/ConfigGoogleCalendar.qml:77
 msgid "To sync with Google Calendar"
 msgstr ""
 
-#: ../contents/ui/config/ConfigGoogleCalendar.qml:63
+#: ../contents/ui/config/ConfigGoogleCalendar.qml:81
 msgid "Enter the following code at <a href=\"https://www.google.com/device\">https://www.google.com/device</a>."
 msgstr ""
 
-#: ../contents/ui/config/ConfigGoogleCalendar.qml:69
+#: ../contents/ui/config/ConfigGoogleCalendar.qml:87
 msgid "Generating Code..."
 msgstr ""
 
-#: ../contents/ui/config/ConfigGoogleCalendar.qml:85
+#: ../contents/ui/config/ConfigGoogleCalendar.qml:106
 msgid "Calendars"
 msgstr "Calendriers"
 
-#: ../contents/ui/config/ConfigGoogleCalendar.qml:147
+#: ../contents/ui/config/ConfigGoogleCalendar.qml:111
+msgid "Refresh"
+msgstr ""
+
+#: ../contents/ui/config/ConfigGoogleCalendar.qml:180
 msgid "Refresh events every: "
 msgstr ""
 
-#: ../contents/ui/config/ConfigGoogleCalendar.qml:153 ../contents/ui/config/ConfigWeather.qml:112
+#: ../contents/ui/config/ConfigGoogleCalendar.qml:186 ../contents/ui/config/ConfigWeather.qml:112
 msgctxt "Polling interval in minutes"
 msgid "min"
 msgid_plural "min"
