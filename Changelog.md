@@ -1,3 +1,9 @@
+## v45 - April 22 2017
+
+* Get rid of padding between event summary and the timestamp.
+* Polish the Google calendar list in the config. Adding a refresh list button, mark which calendars are read only, and sort the list alphabetically.
+* [upstream] Shrink and elide week names like is done with day delegate
+
 ## v44 - April 8 2017
 
 * Fix "ConfigSerializedString.qml is missing" error when installed via a package manager that downloaded from GitHub by commiting the file.
