@@ -116,7 +116,7 @@ MouseArea {
     }
 
 
-    property int eventCount: model.events.count
+    property int eventCount: model.events ? model.events.count : 0
     property var eventColors: []
     property bool useHightlightColor: eventColors.length === 0
 
