@@ -6,13 +6,9 @@ PlasmaExtras.Heading {
     id: heading
     text: "Heading"
     level: 2
-    color: palette.text
+    color: syspal.text
     Layout.fillWidth: true
     property bool showUnderline: level <= 2
-
-    SystemPalette {
-        id: palette
-    }
 
     Rectangle {
         visible: heading.showUnderline
