@@ -81,8 +81,18 @@ ConfigPage {
         }
     }
 
-    HeaderText {
-        text: i18n("Calendars")
+    RowLayout {
+        Layout.fillWidth: true
+
+        HeaderText {
+            text: i18n("Calendars")
+        }
+
+        Button {
+            iconName: "view-refresh"
+            text: i18n("Refresh")
+            onClicked: session.updateCalendarList()
+        }
     }
     ColumnLayout {
         spacing: units.smallSpacing * 2
