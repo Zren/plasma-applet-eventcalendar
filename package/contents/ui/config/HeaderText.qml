@@ -13,7 +13,7 @@ PlasmaExtras.Heading {
     Rectangle {
         visible: heading.showUnderline
         anchors.bottom: heading.bottom
-        width: heading.parent.width
+        width: heading.width
         height: 1
         color: heading.color
     }
