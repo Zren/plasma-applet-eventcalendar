@@ -250,6 +250,7 @@ RowLayout {
                                 font.weight: eventItemInProgress ? inProgressFontWeight : Font.Normal
                                 visible: !editSummaryForm.active
                                 Layout.fillWidth: true
+                                wrapMode: Text.Wrap
                             }
 
                             Loader {
