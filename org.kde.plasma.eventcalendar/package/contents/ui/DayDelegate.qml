@@ -294,9 +294,9 @@ MouseArea {
         fontSizeMode: Text.HorizontalFit
         font.pixelSize: {
             if (today && todayStyle == "bigNumber") {
-                return Math.max(theme.smallestFont.pixelSize, Math.floor(dayStyle.height / 2))
+                return Math.max(theme.smallestFont.pixelSize, Math.min(Math.floor(dayStyle.height / 2), Math.floor(dayStyle.width * 7/8)))
             } else {
-                return Math.max(theme.smallestFont.pixelSize, Math.floor(dayStyle.height / 3))
+                return Math.max(theme.smallestFont.pixelSize, Math.min(Math.floor(dayStyle.height / 3), Math.floor(dayStyle.width * 5/8)))
             }
         }
         // This is to avoid the "Both point size and
