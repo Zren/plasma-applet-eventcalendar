@@ -269,7 +269,7 @@ Item {
         visible: showWeekNumbers
         anchors {
             top: canvas.top
-            left: parent.left
+            left: canvas.left
             bottom: canvas.bottom
             // The borderWidth needs to be counted twice here because it goes
             // in fact through two lines - the topmost one (the outer edge)
