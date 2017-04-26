@@ -107,6 +107,9 @@
     <entry name="month_today_style" type="string">
       <default>theme</default>
     </entry>
+    <entry name="month_cell_radius" type="double">
+      <default>0</default>
+    </entry>
   </group>
 
   <group name="Agenda">

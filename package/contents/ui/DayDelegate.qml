@@ -32,6 +32,7 @@ MouseArea {
     hoverEnabled: true
     property string eventBadgeType: "bottomBar"
     property string todayStyle: "theme"
+    property real radius: Math.min(width, height) * plasmoid.configuration.month_cell_radius
 
     signal activated
 
@@ -91,6 +92,7 @@ MouseArea {
         }
         Behavior on opacity { NumberAnimation { duration: units.shortDuration*2 } }
         color: theme.textColor
+        radius: dayStyle.radius
     }
 
     Rectangle {
@@ -112,6 +114,7 @@ MouseArea {
         // visible: !today
         Behavior on opacity { NumberAnimation { duration: units.shortDuration*2 } }
         color: theme.highlightColor
+        radius: dayStyle.radius
         z: todayRect.z - 1
     }
 
