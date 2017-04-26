@@ -288,7 +288,7 @@ Item {
                 verticalAlignment: Text.AlignVCenter
                 opacity: 0.4
                 text: modelData
-                font.pixelSize: Math.max(theme.smallestFont.pixelSize, daysCalendar.cellHeight / 3)
+                font.pixelSize: Math.max(theme.smallestFont.pixelSize, Math.min(daysCalendar.cellHeight / 3, daysCalendar.cellWidth * 5/8))
                 font.pointSize: -1 // Ignore pixelSize warning
             }
         }
@@ -327,7 +327,7 @@ Item {
                 width: daysCalendar.cellWidth
                 height: daysCalendar.cellHeight
                 text: Qt.locale().dayName(calendarBackend.firstDayOfWeek + index, Locale.ShortFormat)
-                font.pixelSize: Math.max(theme.smallestFont.pixelSize, daysCalendar.cellHeight / 3)
+                font.pixelSize: Math.max(theme.smallestFont.pixelSize, Math.min(daysCalendar.cellHeight / 3, daysCalendar.cellWidth * 5/8))
                 // This is to avoid the "Both point size and
                 // pixel size set. Using pixel size" warnings
                 font.pointSize: -1
