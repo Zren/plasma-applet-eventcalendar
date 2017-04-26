@@ -104,6 +104,14 @@ ConfigPage {
             }
         }
 
+        ConfigSlider {
+            configKey: 'month_cell_radius'
+            minimumValue: 0
+            maximumValue: 1
+            before: i18n("Radius:")
+            after: "" + Math.round(value*100) + "%"
+        }
+
         LabeledRowLayout {
             label: i18n("Selected:")
             ExclusiveGroup { id: month_selected_styleGroup }
