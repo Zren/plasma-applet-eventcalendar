@@ -250,7 +250,10 @@ RowLayout {
                                 font.weight: eventItemInProgress ? inProgressFontWeight : Font.Normal
                                 visible: !editSummaryForm.active
                                 Layout.fillWidth: true
-                                wrapMode: Text.Wrap
+
+                                // Wrapping causes reflow, which causes scroll to selection to miss the selected date
+                                // since it reflows after updateUI/scrollToDate is done.
+                                // wrapMode: Text.Wrap
                             }
 
                             Loader {
