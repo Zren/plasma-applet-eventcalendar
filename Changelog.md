@@ -1,3 +1,9 @@
+## v46 - April 27 2017
+
+* Add ability to set the radius of the selected date.
+* Fix different sized labels (for 1-9 vs 10-31) in the calendar when the cell height is greater than the width.
+* French translations by Amathadius.
+
 ## v45 - April 22 2017
 
 * Get rid of padding between event summary and the timestamp.
