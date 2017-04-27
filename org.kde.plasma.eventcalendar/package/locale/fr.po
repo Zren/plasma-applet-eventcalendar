@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: eventcalendar \n"
 "Report-Msgid-Bugs-To: https://github.com/Zren/plasma-applets/tree/master/org.kde.plasma.eventcalendar\n"
-"POT-Creation-Date: 2017-04-22 17:02-0400\n"
+"POT-Creation-Date: 2017-04-27 12:38-0400\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: Mathieu Provençal <mth.provencal@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -50,39 +50,39 @@ msgstr "[Aucun calendrier]"
 msgid "Eg: 9am-5pm Work"
 msgstr "Ex: 9am-5pm Travail"
 
-#: ../contents/ui/AgendaListItem.qml:263
+#: ../contents/ui/AgendaListItem.qml:267
 msgid "Event Summary"
 msgstr "Résumé d'événement"
 
-#: ../contents/ui/AgendaListItem.qml:328
+#: ../contents/ui/AgendaListItem.qml:332
 msgid "to"
 msgstr "à"
 
-#: ../contents/ui/AgendaListItem.qml:354
+#: ../contents/ui/AgendaListItem.qml:358
 msgid "All Day"
 msgstr "Toute la journée"
 
-#: ../contents/ui/AgendaListItem.qml:358
+#: ../contents/ui/AgendaListItem.qml:362
 msgid "Save"
 msgstr "Sauvegarder"
 
-#: ../contents/ui/AgendaListItem.qml:366
+#: ../contents/ui/AgendaListItem.qml:370
 msgid "Discard"
 msgstr "Retirer"
 
-#: ../contents/ui/AgendaListItem.qml:396
+#: ../contents/ui/AgendaListItem.qml:400
 msgid "Edit description"
 msgstr "Modifier la description"
 
-#: ../contents/ui/AgendaListItem.qml:413
+#: ../contents/ui/AgendaListItem.qml:417
 msgid "Delete Event"
 msgstr "Effacer l'événement"
 
-#: ../contents/ui/AgendaListItem.qml:416
+#: ../contents/ui/AgendaListItem.qml:420
 msgid "Confirm Deletion"
 msgstr "Confirmer la suppression"
 
-#: ../contents/ui/AgendaListItem.qml:428
+#: ../contents/ui/AgendaListItem.qml:432
 msgid "Edit in browser"
 msgstr "Modifier dans le navigateur"
 
@@ -214,7 +214,7 @@ msgstr "Afficher les numéros de semaine"
 msgid "Event Badge:"
 msgstr "Badge d'événement:"
 
-#: ../contents/ui/config/ConfigCalendar.qml:66 ../contents/ui/config/ConfigCalendar.qml:113 ../contents/ui/config/ConfigCalendar.qml:129
+#: ../contents/ui/config/ConfigCalendar.qml:66 ../contents/ui/config/ConfigCalendar.qml:121 ../contents/ui/config/ConfigCalendar.qml:137
 msgid "Theme"
 msgstr "Thème"
 
@@ -234,23 +234,27 @@ msgstr "Barre inférieure"
 msgid "Count"
 msgstr "Compteur"
 
-#: ../contents/ui/config/ConfigCalendar.qml:108
+#: ../contents/ui/config/ConfigCalendar.qml:111
+msgid "Radius:"
+msgstr ""
+
+#: ../contents/ui/config/ConfigCalendar.qml:116
 msgid "Selected:"
 msgstr "Sélectionné:"
 
-#: ../contents/ui/config/ConfigCalendar.qml:117
+#: ../contents/ui/config/ConfigCalendar.qml:125
 msgid "Solid Color (Highlight)"
 msgstr "Couleur unie (surlignée)"
 
-#: ../contents/ui/config/ConfigCalendar.qml:124
+#: ../contents/ui/config/ConfigCalendar.qml:132
 msgid "Today:"
 msgstr "Aujourd'hui"
 
-#: ../contents/ui/config/ConfigCalendar.qml:133
+#: ../contents/ui/config/ConfigCalendar.qml:141
 msgid "Solid Color (Inverted)"
 msgstr "Couleur unie (inversée)"
 
-#: ../contents/ui/config/ConfigCalendar.qml:139
+#: ../contents/ui/config/ConfigCalendar.qml:147
 msgid "Big Number"
 msgstr "Gros numéro"
 
