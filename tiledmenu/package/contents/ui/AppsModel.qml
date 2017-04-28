@@ -99,14 +99,6 @@ Item {
 				plasmoid.configuration.favoriteApps = favorites
 			}
 
-			// Connections {
-			// 	target: plasmoid.configuration
-
-			// 	onFavoriteAppsChanged: {
-			// 		favoritesModel.favorites = plasmoid.configuration.favoriteApps
-			// 	}
-			// }
-
 			signal triggerIndex(int index)
 			onTriggerIndex: {
 				var closeRequested = favoritesModel.trigger(index, "", null)
@@ -178,6 +170,16 @@ Item {
 				if (count > 0) {
 					openModel.trigger(0, "", null)
 				}
+			}
+		}
+	}
+
+	Connections {
+		target: plasmoid.configuration
+
+		onFavoriteAppsChanged: {
+			if (favoritesModel.favorites != plasmoid.configuration.favoriteApps) {
+				favoritesModel.favorites = plasmoid.configuration.favoriteApps
 			}
 		}
 	}
