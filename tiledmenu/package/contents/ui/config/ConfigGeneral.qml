@@ -171,6 +171,11 @@ ConfigPage {
 				{ value: "right", text: i18n("Right") },
 			]
 		}
+
+		// ConfigStringList {
+		// 	configKey: 'favoriteApps'
+		// 	enabled: false
+		// }
 	}
 
 	ExclusiveGroup { id: sidebarThemeGroup }
@@ -197,6 +202,16 @@ ConfigPage {
 		}
 		
 	}
+
+	// ConfigSection {
+	// 	label: i18n("Sidebar Shortcuts")
+		
+
+	// 	ConfigStringList {
+	// 		configKey: 'sidebarShortcuts'
+	// 	}
+	// }
+
 
 	ExclusiveGroup { id: searchBoxThemeGroup }
 	ConfigSection {
