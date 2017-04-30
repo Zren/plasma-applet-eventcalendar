@@ -215,10 +215,16 @@
     <entry name="meteogram_gridColor" type="string" stringType="color">
       <default></default>
     </entry>
+    <entry name="meteogram_rainColor" type="string" stringType="color">
+      <default></default>
+    </entry>
     <entry name="meteogram_positiveTempColor" type="string" stringType="color">
       <default></default>
     </entry>
     <entry name="meteogram_negativeTempColor" type="string" stringType="color">
+      <default></default>
+    </entry>
+    <entry name="meteogram_iconColor" type="string" stringType="color">
       <default></default>
     </entry>
   </group>
