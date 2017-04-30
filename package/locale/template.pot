@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: eventcalendar \n"
 "Report-Msgid-Bugs-To: https://github.com/Zren/plasma-applets/tree/master/org.kde.plasma.eventcalendar\n"
-"POT-Creation-Date: 2017-04-27 12:38-0400\n"
+"POT-Creation-Date: 2017-04-30 03:01-0400\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -40,6 +40,16 @@ msgstr ""
 
 #: ../contents/config/config.qml:36
 msgid "Advanced"
+msgstr ""
+
+#: ../contents/ui/AgendaListItem.qml:108
+msgctxt "agenda date format line 1"
+msgid "MMM d"
+msgstr ""
+
+#: ../contents/ui/AgendaListItem.qml:128
+msgctxt "agenda date format line 2"
+msgid "ddd"
 msgstr ""
 
 #: ../contents/ui/AgendaListItem.qml:177
@@ -262,126 +272,126 @@ msgstr ""
 msgid "Chose a sound effect"
 msgstr ""
 
-#: ../contents/ui/config/ConfigGeneral.qml:102
+#: ../contents/ui/config/ConfigGeneral.qml:106
 msgid "Widgets"
 msgstr ""
 
-#: ../contents/ui/config/ConfigGeneral.qml:108
+#: ../contents/ui/config/ConfigGeneral.qml:112
 msgid "Show/Hide widgets above the calendar. Toggle Agenda/Calendar on their respective tabs."
 msgstr ""
 
-#: ../contents/ui/config/ConfigGeneral.qml:115
+#: ../contents/ui/config/ConfigGeneral.qml:119
 msgid "Meteogram"
 msgstr ""
 
-#: ../contents/ui/config/ConfigGeneral.qml:122 ../contents/ui/TimerView.qml:249
+#: ../contents/ui/config/ConfigGeneral.qml:126 ../contents/ui/TimerView.qml:249
 msgid "Timer"
 msgstr ""
 
-#: ../contents/ui/config/ConfigGeneral.qml:128
+#: ../contents/ui/config/ConfigGeneral.qml:132
 msgid "SFX:"
 msgstr ""
 
-#: ../contents/ui/config/ConfigGeneral.qml:131
+#: ../contents/ui/config/ConfigGeneral.qml:135
 msgid "Choose"
 msgstr ""
 
-#: ../contents/ui/config/ConfigGeneral.qml:145
+#: ../contents/ui/config/ConfigGeneral.qml:149
 msgid "Clock"
 msgstr ""
 
-#: ../contents/ui/config/ConfigGeneral.qml:149
+#: ../contents/ui/config/ConfigGeneral.qml:153
 msgid "Time Format"
 msgstr ""
 
-#: ../contents/ui/config/ConfigGeneral.qml:160
+#: ../contents/ui/config/ConfigGeneral.qml:164
 msgid "The default font for the Breeze theme is Noto Sans which is hard to read with small text. Try using the Sans Serif font if you find the text too small when adding a second line."
 msgstr ""
 
-#: ../contents/ui/config/ConfigGeneral.qml:166
+#: ../contents/ui/config/ConfigGeneral.qml:170
 msgid ""
 "You can also use <b>'&lt;b&gt;'ddd'&lt;/b&gt;'</b> or <b>'&lt;font color=\"#77aaadd\"&gt;'ddd'&lt;/font&gt;'</b> to style a section. Note the single quotes around the tags are used to bypass the "
 "time format."
 msgstr ""
 
-#: ../contents/ui/config/ConfigGeneral.qml:172
+#: ../contents/ui/config/ConfigGeneral.qml:176
 msgid "Font:"
 msgstr ""
 
-#: ../contents/ui/config/ConfigGeneral.qml:183
+#: ../contents/ui/config/ConfigGeneral.qml:187
 msgctxt "Use default font"
 msgid "Default"
 msgstr ""
 
-#: ../contents/ui/config/ConfigGeneral.qml:204
+#: ../contents/ui/config/ConfigGeneral.qml:208
 msgid "Fixed Clock Height: "
 msgstr ""
 
-#: ../contents/ui/config/ConfigGeneral.qml:210
+#: ../contents/ui/config/ConfigGeneral.qml:214
 msgid "px"
 msgstr ""
 
-#: ../contents/ui/config/ConfigGeneral.qml:216
+#: ../contents/ui/config/ConfigGeneral.qml:220
 msgid " (0px = scale to fit)"
 msgstr ""
 
-#: ../contents/ui/config/ConfigGeneral.qml:226
+#: ../contents/ui/config/ConfigGeneral.qml:230
 msgid "Line 1:"
 msgstr ""
 
-#: ../contents/ui/config/ConfigGeneral.qml:244 ../contents/ui/config/ConfigGeneral.qml:270 ../contents/ui/config/ConfigGeneral.qml:321
+#: ../contents/ui/config/ConfigGeneral.qml:248 ../contents/ui/config/ConfigGeneral.qml:274 ../contents/ui/config/ConfigGeneral.qml:325
 msgid "Preset:"
 msgstr ""
 
-#: ../contents/ui/config/ConfigGeneral.qml:292 ../contents/ui/config/ConfigGeneral.qml:358
+#: ../contents/ui/config/ConfigGeneral.qml:296 ../contents/ui/config/ConfigGeneral.qml:362
 msgid "Bold"
 msgstr ""
 
-#: ../contents/ui/config/ConfigGeneral.qml:304
+#: ../contents/ui/config/ConfigGeneral.qml:308
 msgid "Line 2:"
 msgstr ""
 
-#: ../contents/ui/config/ConfigGeneral.qml:366
+#: ../contents/ui/config/ConfigGeneral.qml:370
 msgid "Height:"
 msgstr ""
 
-#: ../contents/ui/config/ConfigGeneral.qml:386
+#: ../contents/ui/config/ConfigGeneral.qml:390
 msgid "Mouse Wheel"
 msgstr ""
 
-#: ../contents/ui/config/ConfigGeneral.qml:396
+#: ../contents/ui/config/ConfigGeneral.qml:400
 msgid "Run Commands"
 msgstr ""
 
-#: ../contents/ui/config/ConfigGeneral.qml:405
+#: ../contents/ui/config/ConfigGeneral.qml:409
 msgid "Scoll Up:"
 msgstr ""
 
-#: ../contents/ui/config/ConfigGeneral.qml:416
+#: ../contents/ui/config/ConfigGeneral.qml:420
 msgid "Scroll Down:"
 msgstr ""
 
-#: ../contents/ui/config/ConfigGeneral.qml:427
+#: ../contents/ui/config/ConfigGeneral.qml:431
 msgid "Volume (No UI) (amixer)"
 msgstr ""
 
-#: ../contents/ui/config/ConfigGeneral.qml:436
+#: ../contents/ui/config/ConfigGeneral.qml:440
 msgid "Volume (UI) (qdbus)"
 msgstr ""
 
-#: ../contents/ui/config/ConfigGeneral.qml:448 ../contents/ui/config/ConfigGoogleCalendar.qml:174
+#: ../contents/ui/config/ConfigGeneral.qml:452 ../contents/ui/config/ConfigGoogleCalendar.qml:174
 msgid "Misc"
 msgstr ""
 
-#: ../contents/ui/config/ConfigGeneral.qml:454
+#: ../contents/ui/config/ConfigGeneral.qml:458
 msgid "Desktop Widget: Show background"
 msgstr ""
 
-#: ../contents/ui/config/ConfigGeneral.qml:459
+#: ../contents/ui/config/ConfigGeneral.qml:463
 msgid "Debugging"
 msgstr ""
 
-#: ../contents/ui/config/ConfigGeneral.qml:465
+#: ../contents/ui/config/ConfigGeneral.qml:469
 msgid ""
 "Enable Debugging\n"
 "This will log sensitive information to ~/.xsession-errors"
@@ -522,6 +532,11 @@ msgstr ""
 
 #: ../contents/ui/config/WeatherCanadaCityDialog.qml:68
 msgid "Fetched from <a href=\"https://weather.gc.ca/canada_e.html\">https://weather.gc.ca/canada_e.html</a>"
+msgstr ""
+
+#: ../contents/ui/EventModel.qml:75
+msgctxt "event with no summary"
+msgid "(No title)"
 msgstr ""
 
 #: ../contents/ui/ForecastGraph.qml:334
