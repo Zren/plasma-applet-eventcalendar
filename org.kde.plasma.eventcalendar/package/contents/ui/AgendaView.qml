@@ -28,7 +28,7 @@ Item {
     property date currentMonth: new Date()
     property date currentTime: root.currentTime
 
-    property color inProgressColor: theme.highlightColor
+    property color inProgressColor: appletConfig.agendaInProgressColor
     property int inProgressFontWeight: Font.Bold
 
     signal newEventFormOpened(variant agendaItem, variant newEventCalendarId)

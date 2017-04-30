@@ -37,6 +37,14 @@ Item {
         anchors.fill: parent
     }
 
+    Connections {
+        target: appletConfig
+        onMeteogramTextColorChanged: graph.update()
+        onMeteogramScaleColorChanged: graph.update()
+        onMeteogramPositiveTempColorChanged: graph.update()
+        onMeteogramNegativeTempColorChanged: graph.update()
+    }
+
     Item {
         id: graph
         anchors.fill: parent
@@ -71,18 +79,6 @@ Item {
         property int gridY: 5
         property int gridY2: height - xAxisLabelHeight
         property int gridHeight: gridY2 - gridY
-
-        // property color scaleColor: "#11000000" // meteogramView.showGridlines ? theme.buttonBackgroundColor : "transparent"
-        property color scaleColor: theme.buttonBackgroundColor
-        property color labelColor: theme.textColor
-        property color tempAbove0Color: "#900"
-        property color tempBelow0Color: "#369"
-
-        Connections {
-            target: theme
-            onTextColorChanged: { graph.update(); }
-            onButtonBackgroundColorChanged: { graph.update(); }
-        }
 
         property variant gridData: []
         property variant yData: []
@@ -247,13 +243,13 @@ Item {
 
                     // yAxis scale
                     for (var y = graph.yAxisMin; y <= graph.yAxisMax; y += graph.yAxisScale) {
-                        context.strokeStyle = graph.scaleColor
+                        context.strokeStyle = appletConfig.meteogramScaleColor
                         context.lineWidth = 1;
                         drawLine(graph.xAxisMin, y, graph.xAxisMax, y);
 
                         // yAxis label: temp
                         var p = graph.gridPoint(graph.xAxisMin, y);
-                        context.fillStyle = graph.labelColor
+                        context.fillStyle = appletConfig.meteogramTextColor
                         context.font = "12px sans-serif"
                         context.textAlign = 'end'
                         var labelText = y + '°';
@@ -262,7 +258,7 @@ Item {
 
                     // xAxis scale
                     for (var x = graph.xAxisMin; x <= graph.xAxisMax; x += graph.xAxisScale) {
-                        context.strokeStyle = graph.scaleColor
+                        context.strokeStyle = appletConfig.meteogramScaleColor
                         context.lineWidth = 1;
                         drawLine(x, graph.yAxisMin, x, graph.yAxisMax);
                     }
@@ -270,7 +266,7 @@ Item {
                         var item = graph.gridData[i];
                         var p = graph.gridPoint(i, graph.yAxisMin);
 
-                        context.fillStyle = graph.labelColor
+                        context.fillStyle = appletConfig.meteogramTextColor
                         context.font = "12px sans-serif"
                         context.textAlign = 'center'
 
@@ -302,13 +298,13 @@ Item {
                     // console.log(height)
                     // console.log(pZeroY, pZeroYRatio)
                     if (pZeroYRatio <= 0) {
-                        context.strokeStyle = graph.tempBelow0Color;
+                        context.strokeStyle = appletConfig.meteogramNegativeTempColor;
                     } else if (pZeroYRatio >= 1) {
-                        context.strokeStyle = graph.tempAbove0Color;
+                        context.strokeStyle = appletConfig.meteogramPositiveTempColor;
                     } else {
                         var gradient = context.createLinearGradient(0, pMinY, 0, pMaxY);
-                        gradient.addColorStop(pZeroYRatio-0.0001, graph.tempAbove0Color);
-                        gradient.addColorStop(pZeroYRatio, graph.tempBelow0Color);
+                        gradient.addColorStop(pZeroYRatio-0.0001, appletConfig.meteogramPositiveTempColor);
+                        gradient.addColorStop(pZeroYRatio, appletConfig.meteogramNegativeTempColor);
                         context.strokeStyle = gradient;
                     }
                     drawCurve(path);

@@ -11,13 +11,16 @@ Item {
 
 	property bool showIconOutline: plasmoid.configuration.show_outlines
 
-	property color meteogramScaleColor: theme.buttonBackgroundColor
+	property color meteogramTextColor: plasmoid.configuration.meteogram_textColor || theme.textColor
+	property color meteogramScaleColor: plasmoid.configuration.meteogram_gridColor || theme.buttonBackgroundColor
 	property color meteogramLabelColor: theme.textColor
 	property color meteogramPrecipitationColor: setAlpha("#acd", 0.6)
 	property color meteogramPrecipitationTextColor: Qt.tint(theme.textColor, setAlpha("#acd", 0.3))
 	property color meteogramPrecipitationTextOutlineColor: showIconOutline ? theme.backgroundColor : "transparent"
-	property color meteogramTempAbove0Color: "#900"
-	property color meteogramTempBelow0Color: "#369"
+	property color meteogramPositiveTempColor: plasmoid.configuration.meteogram_positiveTempColor || "#900"
+	property color meteogramNegativeTempColor: plasmoid.configuration.meteogram_negativeTempColor || "#369"
+
+	property color agendaInProgressColor: plasmoid.configuration.agenda_inProgressColor || theme.highlightColor
 
 	property int agendaColumnSpacing: 10 * units.devicePixelRatio
 	property int agendaRowSpacing: 10 * units.devicePixelRatio
