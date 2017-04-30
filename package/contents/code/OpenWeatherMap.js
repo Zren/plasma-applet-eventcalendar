@@ -91,7 +91,7 @@ function updateDailyWeather(callback) {
     }, function(err, data, xhr) {
         if (err) return console.log('fetchDailyWeatherForecast.err', err, xhr && xhr.status, data);
         console.log('fetchDailyWeatherForecast.response');
-        // console.log('fetchDailyWeatherForecast.response', data);
+        // console.log('fetchDailyWeatherForecast.response', JSON.stringify(data, null, '\t'));
 
         data = parseDailyData(data);
 
@@ -108,7 +108,7 @@ function updateHourlyWeather(callback) {
     }, function(err, data, xhr) {
         if (err) return console.log('fetchHourlyWeatherForecast.err', err, xhr && xhr.status, data);
         console.log('fetchHourlyWeatherForecast.response');
-        // console.log('fetchHourlyWeatherForecast.response', data);
+        // console.log('fetchHourlyWeatherForecast.response', JSON.stringify(data, null, '\t'));
 
         data = parseHourlyData(data);
 
