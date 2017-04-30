@@ -125,7 +125,7 @@ function formatEventDuration(event, args) {
         var dayBefore = new Date(endTime);
         dayBefore.setDate(dayBefore.getDate() - 1);
         if (isSameDate(startTime, dayBefore)) {
-            return "All Day";
+            return i18n("All Day");
         } else {
             var s = Qt.formatDateTime(startTime, "MMM d");
             s += " - ";
