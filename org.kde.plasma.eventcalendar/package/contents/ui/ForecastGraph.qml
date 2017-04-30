@@ -218,7 +218,9 @@ Item {
                 }
 
                 onPaint: {
-                    // var ctx = canvas.getContext("2d");
+                    if (!context) {
+                        var ctx = gridCanvas.getContext("2d");
+                    }
                     if (!context) return;
                     context.reset();
                     if (graph.gridData.length < 2) return;
