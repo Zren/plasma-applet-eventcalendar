@@ -71,6 +71,8 @@ Item {
 	function parseEvent(calendar, event) {
 		event.backgroundColor = parseColor(calendar, event)
 		event.canEdit = calendar.accessRole == 'owner' && !event.recurringEventId // We cannot currently edit repeating events.
+		event._summary = event.summary
+		event.summary = event.summary || i18nc("event with no summary", "(No title)")
 	}
 
 	function parseEventList(calendar, eventList) {
@@ -462,6 +464,7 @@ Item {
 		if (data.end.date) delete data.end.dateTime;
 		if (data.end.calendarId) delete data.end.calendarId;
 		delete data.canEdit;
+		delete data._summary;
 
 		data.summary = summary
 		logger.debug(JSON.stringify(data, null, '\t'))
