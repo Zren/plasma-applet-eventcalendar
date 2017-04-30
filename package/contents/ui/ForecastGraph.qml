@@ -43,6 +43,7 @@ Item {
         onMeteogramScaleColorChanged: graph.update()
         onMeteogramPositiveTempColorChanged: graph.update()
         onMeteogramNegativeTempColorChanged: graph.update()
+        onMeteogramPrecipitationRawColorChanged: graph.update()
     }
 
     Item {
@@ -402,7 +403,7 @@ Item {
                         id: weatherIcon
                         visible: modelData.showIcon
                         anchors.centerIn: parent
-                        color: PlasmaCore.ColorScope.textColor
+                        color: appletConfig.meteogramIconColor
                         source: modelData.aggregratedIcon
                         height: 24
                         opacity: tooltip.containsMouse ? 0.1 : 1

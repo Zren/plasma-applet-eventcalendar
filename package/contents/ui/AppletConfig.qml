@@ -13,12 +13,13 @@ Item {
 
 	property color meteogramTextColor: plasmoid.configuration.meteogram_textColor || theme.textColor
 	property color meteogramScaleColor: plasmoid.configuration.meteogram_gridColor || theme.buttonBackgroundColor
-	property color meteogramLabelColor: theme.textColor
-	property color meteogramPrecipitationColor: setAlpha("#acd", 0.6)
-	property color meteogramPrecipitationTextColor: Qt.tint(theme.textColor, setAlpha("#acd", 0.3))
+	property color meteogramPrecipitationRawColor: plasmoid.configuration.meteogram_rainColor || "#acd"
+	property color meteogramPrecipitationColor: setAlpha(meteogramPrecipitationRawColor, 0.6)
+	property color meteogramPrecipitationTextColor: Qt.tint(meteogramTextColor, setAlpha(meteogramPrecipitationRawColor, 0.3))
 	property color meteogramPrecipitationTextOutlineColor: showIconOutline ? theme.backgroundColor : "transparent"
 	property color meteogramPositiveTempColor: plasmoid.configuration.meteogram_positiveTempColor || "#900"
 	property color meteogramNegativeTempColor: plasmoid.configuration.meteogram_negativeTempColor || "#369"
+	property color meteogramIconColor: plasmoid.configuration.meteogram_iconColor || theme.textColor
 
 	property color agendaInProgressColor: plasmoid.configuration.agenda_inProgressColor || theme.highlightColor
 
