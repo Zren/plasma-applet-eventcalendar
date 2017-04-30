@@ -9,7 +9,7 @@ ConfigSection {
 	id: lacaleInstaller
 	visible: langCode != "en" && isTranslated
 
-	property var locale: Qt.locale("de")
+	property var locale: Qt.locale()
 	property string localeCode: locale.name
 	property string langCode: localeCode.substr(0, 2)
 	property string countryCode: localeCode.length >= 5 ? localeCode.substr(3, 2).toLowerCase() : ''
