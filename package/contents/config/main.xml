@@ -134,6 +134,9 @@
     <entry name="agenda_newevent_last_calendar_id" type="string">
       <default></default>
     </entry>
+    <entry name="agenda_inProgressColor" type="string" stringType="color">
+      <default></default>
+    </entry>
   </group>
 
 
@@ -205,6 +208,18 @@
     </entry>
     <entry name="meteogram_hours" type="UInt">
       <default>30</default>
+    </entry>
+    <entry name="meteogram_textColor" type="string" stringType="color">
+      <default></default>
+    </entry>
+    <entry name="meteogram_gridColor" type="string" stringType="color">
+      <default></default>
+    </entry>
+    <entry name="meteogram_positiveTempColor" type="string" stringType="color">
+      <default></default>
+    </entry>
+    <entry name="meteogram_negativeTempColor" type="string" stringType="color">
+      <default></default>
     </entry>
   </group>
 
