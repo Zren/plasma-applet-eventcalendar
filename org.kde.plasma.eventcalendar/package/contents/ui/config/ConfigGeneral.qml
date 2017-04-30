@@ -98,6 +98,10 @@ ConfigPage {
 
     //---
 
+    LocaleInstaller {
+        packageName: "org.kde.plasma.eventcalendar"
+    }
+
     HeaderText {
         text: i18n("Widgets")
     }
