@@ -104,12 +104,19 @@ function isDateAfter(a, b) {
 
 function formatEventTime(dateTime, args) {
     var clock_24h = args && args.clock_24h;
-    var timeFormat = "h"
-    if (dateTime.getMinutes() != 0) {
-        timeFormat += ":mm"
-    }
-    if (!clock_24h) {
-        timeFormat += " AP"
+    var timeFormat;
+    if (clock_24h) {
+        if (dateTime.getMinutes() == 0) {
+            timeFormat = i18nc("event time on the hour (24 hour clock)", "h")
+        } else {
+            timeFormat = i18n("h:mm")
+        }
+    } else { // 12h
+        if (dateTime.getMinutes() == 0) {
+            timeFormat = i18nc("event time on the hour (12 hour clock)", "h AP")
+        } else {
+            timeFormat = i18n("h:mm AP")
+        }
     }
     return Qt.formatDateTime(dateTime, timeFormat)
 }
