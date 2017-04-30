@@ -105,7 +105,7 @@ RowLayout {
 
             Text {
                 id: itemDate
-                text: Qt.formatDateTime(date, "MMM d")
+                text: Qt.formatDateTime(date, i18nc("agenda date format line 1", "MMM d"))
                 color: agendaItemIsToday ? inProgressColor : PlasmaCore.ColorScope.textColor
                 opacity: agendaItemIsToday ? 1 : 0.75
                 font.weight: agendaItemIsToday ? inProgressFontWeight : Font.Normal
@@ -125,7 +125,7 @@ RowLayout {
 
             Text {
                 id: itemDay
-                text: Qt.formatDateTime(date, "ddd")
+                text: Qt.formatDateTime(date, i18nc("agenda date format line 2", "ddd"))
                 color: agendaItemIsToday ? inProgressColor : PlasmaCore.ColorScope.textColor
                 opacity: agendaItemIsToday ? 1 : 0.5
                 font.weight: agendaItemIsToday ? inProgressFontWeight : Font.Normal
