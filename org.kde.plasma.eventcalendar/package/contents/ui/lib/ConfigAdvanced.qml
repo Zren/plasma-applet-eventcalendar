@@ -269,9 +269,13 @@ ConfigPage {
                 var value = plasmoid.configuration[key]
                 var valueStr = '' + value
                 var node = configDefaults.get(i)
-                var configType = configDefaults.get(i).valueType
-                var stringType = configDefaults.get(i).stringType
-                var defaultValue = configDefaults.get(i).value
+                if (!node) {
+                    console.log('configDefaults doesn\'t conain an entry for plasmoid.configuration.' + key)
+                    continue
+                }
+                var configType = node.valueType
+                var stringType = node.stringType
+                var defaultValue = node.value
 
                 configTableModel.setProperty(i, 'configType', configType)
                 configTableModel.setProperty(i, 'stringType', stringType)
