@@ -1,5 +1,5 @@
 #!/bin/bash
-# Version: 1
+# Version: 2
 
 # TODO: Call a CMakeLists.txt ...
 # OR just find out what env variables it looks at to determine the "/usr/share" dir.
@@ -50,5 +50,5 @@ echo "[install] Done installing messages (will take effect after restarting plas
 
 echo "[install] Restarting plasmashell"
 killall plasmashell
-nohup plasmashell >/dev/null 2>&1 &
+kstart5 plasmashell
 echo "[install] Done restarting plasmashell"
