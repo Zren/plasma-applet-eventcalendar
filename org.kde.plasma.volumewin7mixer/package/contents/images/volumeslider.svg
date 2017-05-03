@@ -31,8 +31,8 @@
      inkscape:pageopacity="1"
      inkscape:pageshadow="2"
      inkscape:zoom="20"
-     inkscape:cx="42.418807"
-     inkscape:cy="48.142279"
+     inkscape:cx="33.043807"
+     inkscape:cy="48.742279"
      inkscape:document-units="px"
      inkscape:current-layer="vertical-slider-handle"
      width="128px"
@@ -441,25 +441,26 @@
        id="vertical-slider-handle"
        transform="matrix(1.2,0,0,1.2,-2.2,27.2)">
       <rect
-         transform="matrix(0.83333333,0,0,0.83333333,-5.6666667,-6)"
          y="42"
          x="14"
          height="24"
          width="24"
          id="rect3922"
-         style="opacity:0.00100002;fill:#000000;fill-opacity:0.00392157;stroke:none" />
+         style="opacity:0.00100002;fill:#000000;fill-opacity:0.00392157;stroke:none"
+         transform="matrix(0.83333333,0,0,0.83333333,-5.6666667,-6)" />
       <path
          class="ColorScheme-ButtonText"
-         style="fill:currentColor;opacity:0.5"
-         d="m 20.166666,34 0,10.263158 L 16,49 11.833333,44.263158 11.833333,34 Z"
+         style="opacity:0.5;fill:currentColor"
+         d="M 21,33.166667 21,44.263158 16,49 11,44.263158 11,33.166667 Z"
          id="path4245-3"
-         inkscape:connector-curvature="0" />
+         inkscape:connector-curvature="0"
+         sodipodi:nodetypes="cccccc" />
       <path
          inkscape:connector-curvature="0"
          id="path4332"
          class="ColorScheme-ButtonBackground"
          style="fill:currentColor"
-         d="m 19.333333,34.833333 0,9.098246 L 16,47.75 l -3.333333,-3.818421 0,-9.098246 z"
+         d="m 20.166667,34 0,9.931579 L 16,47.75 11.833333,43.931579 11.833333,34 Z"
          sodipodi:nodetypes="cccccc" />
     </g>
     <g
