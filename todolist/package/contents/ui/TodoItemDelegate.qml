@@ -152,6 +152,17 @@ RowLayout {
                 }
             }
 
+            Timer {
+                id: delayedSelect
+                property int cursorPosition: -1
+                interval: 100
+
+                onTriggered: {
+                    textArea.forceActiveFocus()
+                    textArea.cursorPosition = delayedSelect.cursorPosition
+                }
+            }
+
             onLinkActivated: {
                 Qt.openUrlExternally(link)
             }
@@ -232,6 +243,23 @@ RowLayout {
                     event.accepted = true
                     // nextItemInFocusChain().nextItemInFocusChain().focus = true
                     listView.currentIndex = index + 1
+                } else if (event.key == Qt.Key_Up && event.modifiers == Qt.ControlModifier) {
+                    event.accepted = true
+                    if (index > 0) {
+                        delayedSelect.cursorPosition = cursorPosition
+                        filterModel.moveItem(index, index-1)
+                        // todoModel.move(index, index-1, 1)
+                        delayedSelect.restart()
+                    }
+                } else if (event.key == Qt.Key_Down && event.modifiers == Qt.ControlModifier) {
+                    event.accepted = true
+                    if (index < filterModel.count-1) {
+                    // if (index < todoModel.count-1) {
+                        delayedSelect.cursorPosition = cursorPosition
+                        filterModel.moveItem(index, index+1)
+                        // todoModel.move(index, index+1, 1)
+                        delayedSelect.restart()
+                    }
                 }
             }
         }
