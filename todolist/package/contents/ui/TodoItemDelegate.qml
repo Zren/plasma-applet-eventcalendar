@@ -246,17 +246,19 @@ RowLayout {
         
     }
 
-    // PlasmaComponents.ToolButton {
-    //     id: removeButton
-    //     anchors.top: parent.top
-    //     height: 30
-    //     iconName: 'list-remove-symbolic'
-    //     opacity: textArea.activeFocus || hovered ? 1 : 0
+    PlasmaComponents.ToolButton {
+        id: removeButton
+        anchors.top: parent.top
+        visible: !plasmoid.configuration.deleteOnComplete
+        Layout.preferredWidth: checkbox.height
+        Layout.preferredHeight: checkbox.height
+        iconName: 'list-remove-symbolic'
+        opacity: textArea.activeFocus || hovered ? 1 : 0
 
-    //     onClicked: {
-    //         filterModel.removeItem(index)
-    //     }
-    // }
+        onClicked: {
+            deleteItem()
+        }
+    }
 }
 
 }
