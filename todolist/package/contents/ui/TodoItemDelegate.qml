@@ -255,7 +255,7 @@ RowLayout {
         visible: !plasmoid.configuration.deleteOnComplete
         Layout.preferredWidth: checkbox.height
         Layout.preferredHeight: checkbox.height
-        iconName: 'list-remove-symbolic'
+        iconName: 'trash-empty'
         opacity: textArea.activeFocus || hovered ? 1 : 0
 
         onClicked: {

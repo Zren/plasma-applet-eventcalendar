@@ -63,8 +63,17 @@ Item {
         plasmoid.configuration.deleteOnComplete = !plasmoid.configuration.deleteOnComplete
     }
 
+
+    function updateContextMenuCheckmark(actionName, value) {
+        // Use "NOICON" since `"" == false`
+        // Because it's false, that means that when we try to unset the icon,
+        // it ignores assigning the icon since it thinks we haven't set the function argument.
+        // "NOICON" is not a FreeDesktop naming standard, but it probably has no image.
+        plasmoid.setAction(actionName, plasmoid.action(actionName).text, value ? "checkmark" : "NOICON")
+    }
+
     function updateContextMenu() {
-        plasmoid.action("toggleDeleteOnComplete").icon = plasmoid.configuration.deleteOnComplete ? "checkmark" : ""
+        updateContextMenuCheckmark("toggleDeleteOnComplete", plasmoid.configuration.deleteOnComplete)
     }
 
     Connections {
@@ -75,7 +84,7 @@ Item {
     Component.onCompleted: {
         plasmoid.setAction("openInTextEditor", i18n("Open in Text Editor"), "accessories-text-editor");
         plasmoid.setAction("toggleDeleteOnComplete", i18n("Delete on Complete"), "checkmark");
-        plasmoid.setAction("deleteCompleted", i18n("Delete All Completed"), "trash");
+        // plasmoid.setAction("deleteCompleted", i18n("Delete All Completed"), "trash-empty");
         console.log('main.isDesktopContainment', plasmoid.location == PlasmaCore.Types.Desktop)
         updateContextMenu()
     }
