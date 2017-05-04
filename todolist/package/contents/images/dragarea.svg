@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="48"
+   height="48"
+   viewBox="0 0 48 48"
+   id="svg4351"
+   version="1.1"
+   inkscape:version="0.91 r13725"
+   sodipodi:docname="dragarea.svg">
+  <defs
+     id="defs4353">
+    <style
+       id="current-color-scheme"
+       type="text/css">
+       /* This entire element will be replaced will a different stylesheet. */
+
+      .ColorScheme-Text {
+        color:#31363b;
+        stop-color:#31363b;
+      }
+      .ColorScheme-Background {
+        color:#eff0f1;
+        stop-color:#eff0f1;
+      }
+      .ColorScheme-Highlight {
+        color:#3daee9;
+        stop-color:#3daee9;
+      }
+      .ColorScheme-ViewText {
+        color:#31363b;
+        stop-color:#31363b;
+      }
+      .ColorScheme-ViewBackground {
+        color:#fcfcfc;
+        stop-color:#fcfcfc;
+      }
+      .ColorScheme-ViewHover {
+        color:#93cee9;
+        stop-color:#93cee9;
+      }
+      .ColorScheme-ViewFocus{
+        color:#3daee9;
+        stop-color:#3daee9;
+      }
+      .ColorScheme-ButtonText {
+        color:#31363b;
+        stop-color:#31363b;
+      }
+      .ColorScheme-ButtonBackground {
+        color:#eff0f1;
+        stop-color:#eff0f1;
+      }
+      .ColorScheme-ButtonHover {
+        color:#93cee9;
+        stop-color:#93cee9;
+      }
+      .ColorScheme-ButtonFocus{
+        color:#3daee9;
+        stop-color:#3daee9;
+      }
+    </style>
+  </defs>
+
+  <g
+     id="top">
+    <rect
+       id="rect4265"
+       class="ColorScheme-ButtonBackground"
+       style="opacity:0.7;fill:currentColor"
+       width="3"
+       height="2"
+       x="3"
+       y="0" />
+  </g>
+  <g
+     id="topleft">
+    <rect
+       id="rect4296"
+       class="ColorScheme-ButtonBackground"
+       style="opacity:0.7;fill:currentColor"
+       x="0"
+       y="0"
+       width="2"
+       height="2" />
+  </g>
+  <g
+     id="topright">
+    <rect
+       id="rect4297"
+       class="ColorScheme-ButtonBackground"
+       style="opacity:0.7;fill:currentColor"
+       x="7"
+       y="0"
+       width="2"
+       height="2" />
+  </g>
+  <g
+     id="bottom">
+    <rect
+       id="rect4291"
+       class="ColorScheme-ButtonBackground"
+       style="opacity:0.7;fill:currentColor"
+       x="3"
+       y="7"
+       width="3"
+       height="2" />
+  </g>
+  <g
+     id="bottomleft">
+    <rect
+       id="rect4319"
+       class="ColorScheme-ButtonBackground"
+       style="opacity:0.7;fill:currentColor"
+       x="0"
+       y="7"
+       width="2"
+       height="2" />
+  </g>
+  <g
+     id="bottomright">
+    <rect
+       id="rect4318"
+       class="ColorScheme-ButtonBackground"
+       style="opacity:0.7;fill:currentColor"
+       x="7"
+       y="7"
+       width="2"
+       height="2" />
+  </g>
+  <g
+     id="left">
+    <rect
+       id="rect4317"
+       class="ColorScheme-ButtonBackground"
+       style="opacity:0.7;fill:currentColor"
+       x="0"
+       y="3"
+       width="2"
+       height="3" />
+  </g>
+  <g
+     id="right">
+    <rect
+       id="rect4323"
+       class="ColorScheme-ButtonBackground"
+       style="opacity:0.7;fill:currentColor"
+       x="7"
+       y="3"
+       width="2"
+       height="3" />
+  </g>
+  <g
+     id="center">
+    <rect
+       id="rect4331"
+       class="ColorScheme-ButtonBackground"
+       style="opacity:0.3;fill:currentColor"
+       x="3"
+       y="3"
+       width="3"
+       height="3" />
+    <rect
+       id="rect4981"
+       class="ColorScheme-ButtonText"
+       style="opacity:0.3;fill:currentColor"
+       x="3.5"
+       y="3.5"
+       width="2"
+       height="2" />
+  </g>
+  <rect
+     style="opacity:1;fill:#ff6600;fill-opacity:1;stroke:none"
+     id="hint-tile-center"
+     width="3"
+     height="3"
+     x="0"
+     y="10" />
+</svg>
