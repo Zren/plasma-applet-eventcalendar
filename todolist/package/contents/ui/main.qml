@@ -11,7 +11,6 @@ Item {
 
     NoteItem { id: noteItem }
     property alias todoModel: noteItem.todoModel
-    property alias filterModel: noteItem.filterModel
 
     Plasmoid.compactRepresentation: MouseArea {
         PlasmaCore.IconItem {

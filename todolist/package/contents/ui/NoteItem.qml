@@ -170,7 +170,6 @@ Item {
 
     // public
     property alias todoModel: todoModel
-    property alias filterModel: filterModel
 
     TodoModel {
         id: todoModel
@@ -180,9 +179,6 @@ Item {
         }
     }
 
-    FilteredTodoModel {
-        id: filterModel
-    }
     Connections {
         target: plasmoid.configuration
         onShowCompletedItemsChanged: todoModel.updateVisibleItems()
@@ -190,7 +186,6 @@ Item {
 
     Component.onCompleted: {
         loadNote()
-        filterModel.filterRegExp = "true"
     }
     Component.onDestruction: {
         saveNote()

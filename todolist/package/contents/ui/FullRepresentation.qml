@@ -85,12 +85,9 @@ MouseArea {
                     onTriggered: listView.positionViewAtEnd()
                 }
 
-                Connections {
-                    target: noteItem.filterModel
-                    onCountChanged: {
-                        // console.log('onCountChanged', count)
-                        deboucedPositionViewAtEnd.restart()
-                    }
+                onCountChanged: {
+                    // console.log('onCountChanged', count)
+                    deboucedPositionViewAtEnd.restart()
                 }
 
                 onCurrentItemChanged: {
