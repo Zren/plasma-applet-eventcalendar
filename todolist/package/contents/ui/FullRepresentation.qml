@@ -129,20 +129,6 @@ MouseArea {
                 onCheckedChanged: plasmoid.hideOnWindowDeactivate = !checked
                 visible: !isDesktopContainment
             }
-
-            Item { height: units.smallSpacing; width: 1; visible: !isDesktopContainment }
-
-            PlasmaComponents.ToolButton {
-                width: rightMenu.iconSize
-                height: width
-                checked: plasmoid.configuration.showCompletedItems
-                checkable: true
-                iconSource: 'checkmark'
-                onClicked: {
-                    plasmoid.configuration.showCompletedItems = !plasmoid.configuration.showCompletedItems
-                }
-            }
-
         }
         
     }
