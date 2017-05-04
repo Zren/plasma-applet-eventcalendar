@@ -106,7 +106,6 @@ RowLayout {
         Layout.preferredHeight: 30 * units.devicePixelRatio
         Layout.preferredWidth: 30 * units.devicePixelRatio
         checked: model.status == 'completed'
-        enabled: model.title
 
         onClicked: setComplete(checked)
 
