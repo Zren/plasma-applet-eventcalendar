@@ -22,6 +22,9 @@ MouseArea {
             // console.log(completed, model.status)
             todoModel.update()
         }
+        if (plasmoid.configuration.deleteOnComplete) {
+            deleteItem()
+        }
     }
     function setTitle(title) {
         if (model.title != title) {
