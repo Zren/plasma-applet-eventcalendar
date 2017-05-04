@@ -31,9 +31,9 @@ ListModel {
         if (count == 0 || !noteItem.isEmptyItem(get(count-1))) {
             var lastItem = get(count-1);
             append(newTodoItem());
-            console.log('addTemplateIfNeeded', 'added')
+            // console.log('addTemplateIfNeeded', 'added')
         } else {
-            console.log('addTemplateIfNeeded', 'no')
+            // console.log('addTemplateIfNeeded', 'no')
         }
     }
 
