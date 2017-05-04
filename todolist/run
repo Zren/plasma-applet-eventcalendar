@@ -4,5 +4,6 @@
 # plasmapkg2 -u package
 # plasmawindowed $(kreadconfig5 --file="$PWD/package/metadata.desktop" --group="Desktop Entry" --key="X-KDE-PluginInfo-Name")
 
+rm ~/.cache/plasma-svgelements-*
 killall plasmoidviewer
-plasmoidviewer -a package -l bottomedge -f horizontal
+plasmoidviewer -a package -l topedge -f horizontal -x 0 -y 0
