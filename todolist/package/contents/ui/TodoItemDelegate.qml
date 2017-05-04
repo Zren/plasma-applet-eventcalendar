@@ -6,61 +6,58 @@ import QtQuick.Layouts 1.1
 import org.kde.plasma.core 2.0 as PlasmaCore
 import org.kde.plasma.components 2.0 as PlasmaComponents
 import QtQuick.Controls.Styles.Plasma 2.0 as PlasmaStyles
+import org.kde.draganddrop 2.0 as DragAndDrop
 
-Item {
+MouseArea {
     id: todoItemDelegate
     width: parent.width
-    height: Math.max(checkbox.height, textArea.height)
+    height: todoItemRow.height
+    hoverEnabled: true
 
     function setComplete(completed) {
         var newStatus = completed ? 'completed' : 'needsAction'
         if (model.status != newStatus) {
             // model.status = newStatus // Not supported in KDE 5.5
-            filterModel.setProperty(index, 'status', newStatus)
+            todoModel.setProperty(index, 'status', newStatus)
             // console.log(completed, model.status)
-            filterModel.update()
+            todoModel.update()
         }
     }
     function setTitle(title) {
         if (model.title != title) {
             // console.log('setTitle')
             // model.title = title // Not supported in KDE 5.5
-            filterModel.setProperty(index, 'title', title)
-            filterModel.update()
+            todoModel.setProperty(index, 'title', title)
+            todoModel.update()
         }
     }
     function setIndent(indent) {
         if (model.indent != indent) {
             // model.indent = Math.max(0, indent) // Not supported in KDE 5.5
-            filterModel.setProperty(index, 'indent', Math.max(0, indent))
+            todoModel.setProperty(index, 'indent', Math.max(0, indent))
             // indentItem.width = checkbox.height * indent
             // console.log(indent, model.indent, indentItem.width)
             // console.log(model.title)
-            filterModel.update()
+            todoModel.update()
         }
     }
     function deleteItem() {
-        filterModel.removeItem(index)
+        todoModel.removeItem(index)
     }
 
-
 DropArea {
+    id: dropArea
     anchors.fill: parent
-    // z: 1
+    z: -1
     // anchors.margins: 10
 
     onEntered: {
-        // visualModel.items.move(
-        //         drag.source.DelegateModel.itemsIndex,
-        //         dragArea.DelegateModel.itemsIndex)
-        console.log('onEntered.index', index)
-        console.log('onEntered.drag.source', drag.source)
-        // console.log('onEntered.drag.source.ListView', drag.source.ListView)
-        // console.log('onEntered.drag.source.DelegateModel.index', drag.source.index)
-
-        filterModel.moveItem(drag.source.dragItemIndex, index)
-
+        todoModel.move(drag.source.dragItemIndex, index, 1)
     }
+
+    // onDropped: {
+    //     todoModel.move(drop.source.dragItemIndex, index, 1)
+    // }
 
     Rectangle {
         anchors.fill: parent
@@ -70,14 +67,8 @@ DropArea {
 
 RowLayout {
     id: todoItemRow
-    // anchors.left: parent.left
-    // anchors.right: parent.right
-    // height:
-    // anchors.fill: parent
     width: parent.width
-    height: parent.height
-    // height: 48
-    // Layout.fillWidth: true
+    height: Math.max(checkbox.height, textArea.height)
     spacing: 0
 
     Item {
@@ -86,32 +77,23 @@ RowLayout {
         visible: model.indent > 0
     }
 
-    Drag.active: dragArea.pressed
-    Drag.source: dragArea
-    Drag.hotSpot.x: dragArea.width / 2
-    Drag.hotSpot.y: dragArea.height / 2
-
-    MouseArea {
-        id: dragArea
+    Item {
         Layout.fillHeight: true
         Layout.preferredWidth: checkbox.height
         property int dragItemIndex: index
+        DragAndDrop.DragArea {
+            id: dragArea
+            anchors.fill: parent
+            delegate: todoItemRow
+        }
 
-        // property bool held: false
-        // drag.target: held ? todoItemRow : undefined
-        drag.target: todoItemRow
-        // drag.axis: Drag.YAxis
-
-        // onPressAndHold: held = true
-        // onReleased: held = false
-
-        Rectangle {
-            id: dragAreaRect
-            color: "#88FFFFFF"
+        PlasmaCore.FrameSvgItem {
+            visible: todoItemDelegate.containsMouse && !dropArea.containsDrag
             anchors.horizontalCenter: parent.horizontalCenter
             anchors.top: parent.top
             anchors.bottom: parent.bottom
             width: parent.width / 2
+            imagePath: plasmoid.file("", "images/dragarea.svg")
         }
     }
 
@@ -247,22 +229,20 @@ RowLayout {
                     event.accepted = true
                     if (index > 0) {
                         delayedSelect.cursorPosition = cursorPosition
-                        filterModel.moveItem(index, index-1)
-                        // todoModel.move(index, index-1, 1)
+                        todoModel.move(index, index-1, 1)
                         delayedSelect.restart()
                     }
                 } else if (event.key == Qt.Key_Down && event.modifiers == Qt.ControlModifier) {
                     event.accepted = true
-                    if (index < filterModel.count-1) {
-                    // if (index < todoModel.count-1) {
+                    if (index < todoModel.count-1) {
                         delayedSelect.cursorPosition = cursorPosition
-                        filterModel.moveItem(index, index+1)
-                        // todoModel.move(index, index+1, 1)
+                        todoModel.move(index, index+1, 1)
                         delayedSelect.restart()
                     }
                 }
             }
         }
+        
     }
 
     // PlasmaComponents.ToolButton {

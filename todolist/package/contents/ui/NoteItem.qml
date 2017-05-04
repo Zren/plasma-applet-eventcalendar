@@ -48,10 +48,11 @@ Item {
     }
     function loadNote() {
         // console.log('loadNote')
+        var savingOnChange = saveOnChange
         saveOnChange = false
         var todoData = noteItem.deserializeTodoModel(note.noteText)
         todoModel.setData(todoData)
-        saveOnChange = true
+        saveOnChange = savingOnChange
     }
     Timer {
         id: deboucedSaveNoteTimer
@@ -174,7 +175,7 @@ Item {
     TodoModel {
         id: todoModel
         onUpdate: {
-            filterModel.updateVisibleItems()
+            todoModel.updateVisibleItems()
             noteItem.deboucedSaveNote()
         }
     }
@@ -184,7 +185,7 @@ Item {
     }
     Connections {
         target: plasmoid.configuration
-        onShowCompletedItemsChanged: filterModel.updateVisibleItems()
+        onShowCompletedItemsChanged: todoModel.updateVisibleItems()
     }
 
     Component.onCompleted: {

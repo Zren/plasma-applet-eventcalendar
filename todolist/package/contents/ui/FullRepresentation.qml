@@ -61,10 +61,10 @@ MouseArea {
                 id: listView
                 Layout.fillWidth: true
                 Layout.fillHeight: true
-                // anchors.fill: parent
 
-                model: noteItem.filterModel
+                model: noteItem.todoModel
                 cacheBuffer: 10000000
+                // interactive: false
                 spacing: 4
 
                 delegate: TodoItemDelegate {}

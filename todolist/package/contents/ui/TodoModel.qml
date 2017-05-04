@@ -25,4 +25,36 @@ ListModel {
         // addTemplateIfNeeded()
         update()
     }
+
+    function addTemplateIfNeeded() {
+        // console.log('addTemplateIfNeeded')
+        if (count == 0 || !noteItem.isEmptyItem(get(count-1))) {
+            var lastItem = get(count-1);
+            append(newTodoItem());
+            console.log('addTemplateIfNeeded', 'added')
+        } else {
+            console.log('addTemplateIfNeeded', 'no')
+        }
+    }
+
+    function updateVisibleItems() {
+        var hasUpdated = false;
+        var incompleteCount = 0;
+        for (var i = 0; i < count; i++) {
+            var todoItem = get(i);
+            var wasVisible = todoItem.isVisible
+            var incomplete = todoItem.status == 'needsAction'
+            var shouldBeVisible = plasmoid.configuration.showCompletedItems || incomplete
+            var isPlaceholder = !todoItem.title
+            if (incomplete && !isPlaceholder) {
+                incompleteCount += 1
+            }
+            // if (wasVisible != shouldBeVisible) {
+                setProperty(i, 'isVisible', shouldBeVisible)
+                // hasUpdated = true;
+            // }
+        }
+        todoModel.incompleteCount = incompleteCount
+        addTemplateIfNeeded()
+    }
 }
