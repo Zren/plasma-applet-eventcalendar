@@ -145,7 +145,7 @@ RowLayout {
             // autoSize: true
 
             tabChangesFocus: false
-            focus: todoItemRow.ListView.isCurrentItem
+            focus: todoItemDelegate.ListView.isCurrentItem
             onActiveFocusChanged: {
                 if (activeFocus) {
                     listView.currentIndex = index
