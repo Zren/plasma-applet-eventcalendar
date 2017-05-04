@@ -126,6 +126,7 @@ RowLayout {
             // }
             // autoSize: true
 
+            menu: null
             tabChangesFocus: false
             focus: todoItemDelegate.ListView.isCurrentItem
             onActiveFocusChanged: {
