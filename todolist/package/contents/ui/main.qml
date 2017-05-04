@@ -59,26 +59,24 @@ Item {
         exec("xdg-open ~/.local/share/plasma_notes/todolist");
     }
 
-    function action_toggleShowChecked() {
-        plasmoid.configuration.showCompletedItems = !plasmoid.configuration.showCompletedItems
+    function action_toggleDeleteOnComplete() {
+        plasmoid.configuration.deleteOnComplete = !plasmoid.configuration.deleteOnComplete
     }
 
     function updateContextMenu() {
-        if (plasmoid.configuration.showCompletedItems) {
-            plasmoid.setAction("toggleShowChecked", i18n("Hide Completed"), "checkmark");
-        } else {
-            plasmoid.setAction("toggleShowChecked", i18n("Show Completed"), "");
-        }
+        plasmoid.action("toggleDeleteOnComplete").icon = plasmoid.configuration.deleteOnComplete ? "checkmark" : ""
     }
 
     Connections {
         target: plasmoid.configuration
-        onShowCompletedItemsChanged: updateContextMenu()
+        onDeleteOnCompleteChanged: updateContextMenu()
     }
 
     Component.onCompleted: {
         plasmoid.setAction("openInTextEditor", i18n("Open in Text Editor"), "accessories-text-editor");
-        updateContextMenu() // plasmoid.setAction("toggleShowChecked", ...)
+        plasmoid.setAction("toggleDeleteOnComplete", i18n("Delete on Complete"), "checkmark");
+        plasmoid.setAction("deleteCompleted", i18n("Delete All Completed"), "trash");
         console.log('main.isDesktopContainment', plasmoid.location == PlasmaCore.Types.Desktop)
+        updateContextMenu()
     }
 }
