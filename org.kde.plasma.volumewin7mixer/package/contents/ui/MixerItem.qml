@@ -26,8 +26,9 @@ PlasmaComponents.ListItem {
     property int volumeSliderWidth: 50
     property int channelSliderWidth: volumeSliderWidth
     property bool isVolumeBoosted: false
-    property bool hasChannels: typeof PulseObject.channels !== 'undefined'
-    property int numChannels: hasChannels ? PulseObject.channels.length : 0
+    readonly property bool hasChannels: typeof PulseObject.channels !== 'undefined'
+    readonly property int numChannels: hasChannels ? PulseObject.channels.length : 0
+    readonly property string canShowChannels: hasChannels && ("" + PulseObject.channels != "QVariant(QList<qlonglong>)") // Plasma 5.9 and below used QList<qlonglong> which is unreadable.
     property bool showChannels: false
 
     Keys.onUpPressed: PulseObjectCommands.increaseVolume(PulseObject)
@@ -291,7 +292,7 @@ PlasmaComponents.ListItem {
             PlasmaCore.ToolTipArea {
                 id: tooltip
                 Layout.fillWidth: true
-                Layout.preferredHeight: iconLabelButtonRow.height
+                Layout.preferredHeight: iconLabelButton.height
                 mainText: mixerItem.label
                 subText: tooltipSubText
                 icon: mixerItem.icon
@@ -315,58 +316,16 @@ PlasmaComponents.ListItem {
                         main.clearDrag()
                     }
 
-                    PlasmaComponents.ToolButton {
+                    // PlasmaComponents.ToolButton {
                     // Item {
+                    IconLabelButton {
                         id: iconLabelButton
-                        anchors.fill: parent
-
-                        Column {
-                            id: iconLabelButtonRow
-                            width: parent.width
-                            Item {
-                                // width: mixerItem.volumeSliderWidth
-                                // height: mixerItem.volumeSliderWidth
-                                width: parent.width
-                                height: mixerItem.volumeSliderWidth
-
-                                PlasmaCore.IconItem {
-                                    id: clientIcon
-                                    anchors.horizontalCenter: parent.horizontalCenter
-                                    width: mixerItem.volumeSliderWidth
-                                    height: parent.height
-                                    anchors.fill: parent
-                                    source: mixerItem.icon
-                                    overlays: mixerItem.usingDefaultDevice ? [] : ['emblem-unlocked']
-
-                                    // From ToolButtonStyle:
-                                    active: iconLabelButton.hovered
-                                    colorGroup: iconLabelButton.hovered || !iconLabelButton.flat ? PlasmaCore.Theme.ButtonColorGroup : PlasmaCore.ColorScope.colorGroup
-                                }
-                            }
-
-                            Label {
-                                id: textLabel
-                                Layout.fillWidth: true
-                                width: parent.width
-
-                                text: mixerItem.label + '\n'
-                                function updateLineCount() {
-                                    if (lineCount == 1) {
-                                        textLabel.text = mixerItem.label + '\n'
-                                    } else if (truncated) {
-                                        textLabel.text = mixerItem.label
-                                    }
-                                }
-                                onLineCountChanged: updateLineCount()
-                                onTruncatedChanged: updateLineCount()
-                                color: iconLabelButton.hovered ? theme.buttonTextColor : PlasmaCore.ColorScope.textColor
-                                opacity: iconLabelButton.hovered ? 1 : 0.6
-                                wrapMode: Text.Wrap
-                                elide: Text.ElideRight
-                                maximumLineCount: 2
-                                horizontalAlignment: Text.AlignHCenter
-                            }
-                        }
+                        // anchors.fill: parent
+                        width: parent.width
+                        iconItemSource: mixerItem.icon
+                        iconItemOverlays: mixerItem.usingDefaultDevice ? [] : ['emblem-unlocked']
+                        iconItemHeight: mixerItem.volumeSliderWidth
+                        labelText: mixerItem.label
 
                         onClicked: contextMenu.showBelow(iconLabelButton)
                     }
@@ -380,7 +339,6 @@ PlasmaComponents.ListItem {
                 // VolumeSlider {
                 VerticalVolumeSlider {
                     id: slider
-                    orientation: Qt.Vertical
                     height: parent.height
                     width: mixerItem.volumeSliderWidth
                     anchors.horizontalCenter: parent.horizontalCenter
@@ -509,41 +467,33 @@ PlasmaComponents.ListItem {
                 width: mixerItem.channelSliderWidth
                 height: parent.height
 
-                Label {
-                    text: PulseObject.channels[index] + '\n'
-                    function updateLineCount() {
-                        if (lineCount == 1) {
-                            text = PulseObject.channels[index] + '\n'
-                        } else if (truncated) {
-                            text = PulseObject.channels[index]
-                        }
-                    }
-                    onLineCountChanged: updateLineCount()
-                    onTruncatedChanged: updateLineCount()
-
-                    color: PlasmaCore.ColorScope.textColor
-                    opacity: 0.6
-                    wrapMode: Text.Wrap
-                    elide: Text.ElideRight
-                    maximumLineCount: 2
+                PlasmaCore.ToolTipArea {
                     Layout.fillWidth: true
-                    horizontalAlignment: Text.AlignHCenter
-                }
+                    Layout.preferredHeight: iconLabelButton.height
+
+                    IconLabelButton {
+                        anchors.fill: parent
+                        iconItemHeight: mixerItem.volumeSliderWidth
+                        labelText: PulseObject.channels[index]
+                    }
+                } // ToolTipArea
+                
                 Item {
                     Layout.fillWidth: true
                     Layout.fillHeight: true
 
-                    VolumeSlider {
-                        orientation: Qt.Vertical
+                    VerticalVolumeSlider {
                         width: mixerItem.channelSliderWidth
                         height: parent.height
                         enabled: false
                         // anchors.horizontalCenter: parent.horizontalCenter
+                        
+                        showVisualFeedback: false
 
-                        // value: PulseObject.channelVolumes.at(index)
+                        value: PulseObject.channelVolumes[index]
                         minimumValue: 0
                         // FIXME: I do wonder if exposing max through the model would be useful at all
-                        maximumValue: 65536
+                        maximumValue: mixerItem.isVolumeBoosted ? 98304 : 65536
 
                         Component.onCompleted: {
                             console.log(PulseObject.channels[index], model, index) // Front Left QQmlDMListAccessorData(0x1b33b40) 0
@@ -608,7 +558,7 @@ PlasmaComponents.ListItem {
             // Channels
             if (mixerItem.hasChannels) {
                 var menuItem = newMenuItem();
-                menuItem.text = i18n("Show Channels (Not Working)");
+                menuItem.text = i18n("Show Channels");
                 menuItem.checkable = true;
                 menuItem.checked = mixerItem.showChannels
                 menuItem.clicked.connect(function() {
