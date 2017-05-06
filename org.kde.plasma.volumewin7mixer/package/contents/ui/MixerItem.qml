@@ -347,7 +347,7 @@ PlasmaComponents.ListItem {
                     // While we are sliding we must not react to value updates
                     // as otherwise we can easily end up in a loop where value
                     // changes trigger volume changes trigger value changes.
-                    property int volume: PulseObject.volume
+                    readonly property int volume: PulseObject.volume
                     property bool ignoreValueChange: true
 
                     Layout.fillWidth: true
@@ -428,11 +428,8 @@ PlasmaComponents.ListItem {
                 }
             }
 
-            Item {
-                id: muteButton
-            }
-
             PlasmaComponents.ToolButton {
+                id: muteButton
                 Layout.maximumWidth: mixerItem.volumeSliderWidth
                 Layout.maximumHeight: mixerItem.volumeSliderWidth
                 Layout.minimumWidth: Layout.maximumWidth
@@ -483,23 +480,83 @@ PlasmaComponents.ListItem {
                     Layout.fillHeight: true
 
                     VerticalVolumeSlider {
+                        id: channelSlider
                         width: mixerItem.channelSliderWidth
                         height: parent.height
-                        enabled: false
+                        // enabled: false
                         // anchors.horizontalCenter: parent.horizontalCenter
                         
                         showVisualFeedback: false
 
-                        value: PulseObject.channelVolumes[index]
+                        // Helper properties to allow async slider updates.
+                        // While we are sliding we must not react to value updates
+                        // as otherwise we can easily end up in a loop where value
+                        // changes trigger volume changes trigger value changes.
+                        readonly property int volume: PulseObject.channelVolumes[index]
+                        property bool ignoreValueChange: true
+
+                        value: volume
                         minimumValue: 0
                         // FIXME: I do wonder if exposing max through the model would be useful at all
                         maximumValue: mixerItem.isVolumeBoosted ? 98304 : 65536
 
-                        Component.onCompleted: {
-                            console.log(PulseObject.channels[index], model, index) // Front Left QQmlDMListAccessorData(0x1b33b40) 0
-                            console.log('channelVolumes', PulseObject.channelVolumes, typeof PulseObject.channelVolumes) // channelVolumes QVariant(QList<qlonglong>) object
+                        onVolumeChanged: {
+                            var oldIgnoreValueChange = ignoreValueChange
+                            if (!mixerItem.isVolumeBoosted && PulseObject.volume > 66000) {
+                                mixerItem.isVolumeBoosted = true
+                            }
+                            value = volume
+                            ignoreValueChange = oldIgnoreValueChange
                         }
+
+                        onValueChanged: {
+                            if (!ignoreValueChange) {
+                                console.log('onVolumeChanged', index, value)
+                                PulseObject.setChannelVolume(index, Math.floor(value))
+
+                                if (!pressed) {
+                                    channelUpdateTimer.restart()
+                                }
+                            }
+                        }
+
+                        property bool playFeedbackOnUpdate: false
+                        onPressedChanged: {
+                            if (pressed) {
+                                playFeedbackOnUpdate = true
+                            } else {
+                                // Make sure to sync the volume once the button was
+                                // released.
+                                // Otherwise it might be that the slider is at v10
+                                // whereas PA rejected the volume change and is
+                                // still at v15 (e.g.).
+                                channelUpdateTimer.restart()
+                            }
+                        }
+
+                        Timer {
+                            id: channelUpdateTimer
+                            interval: 200
+                            onTriggered: {
+                                channelSlider.value = channelSlider.volume
+
+                                // Done dragging, play feedback
+                                if (mixerItemType == 'Sink' && channelSlider.playFeedbackOnUpdate) {
+                                    main.playFeedback(PulseObject.index)
+                                }
+
+                                if (!channelSlider.pressed) {
+                                    channelSlider.playFeedbackOnUpdate = false
+                                }
+                            }
+                        }
+                        
                     }
+                }
+
+                Item {
+                    Layout.fillWidth: true
+                    Layout.preferredHeight: muteButton.height
                 }
                 
             }
