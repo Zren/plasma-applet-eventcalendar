@@ -21,13 +21,14 @@ PlasmaComponents.Slider {
 	readonly property int percentage: Math.round(value / hundredPercentValue * 100)
 	readonly property int maxPercentage: Math.ceil(maximumValue / hundredPercentValue * 100)
 
-	property bool isPeaking: volumePeakLoader.active && volumePeakLoader.item
-	property real peakValue: isPeaking ? volumePeakLoader.item.defaultSinkPeak : 65536
-	property real peakRatio: peakValue / 65536
+	property bool showVisualFeedback: config.showVisualFeedback
+	readonly property bool isPeaking: volumePeakLoader.active && volumePeakLoader.item
+	readonly property real peakValue: isPeaking ? volumePeakLoader.item.defaultSinkPeak : 65536
+	readonly property real peakRatio: peakValue / 65536
 	Loader {
 		id: volumePeakLoader
 		property bool validType: mixerItem.mixerItemType === 'Sink' || mixerItem.mixerItemType === 'Source' // || mixerItem.mixerItemType === 'SourceOutput'
-		active: config.showVisualFeedback && validType
+		active: showVisualFeedback && validType
 		source: "VolumePeaksManager.qml"
 	}
 
