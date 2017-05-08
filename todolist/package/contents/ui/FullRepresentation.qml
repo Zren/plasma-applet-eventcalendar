@@ -48,10 +48,19 @@ MouseArea {
         noteItem.saveNote()
     }
 
-    RowLayout {
+    ColumnLayout {
         id: container
         anchors.fill: parent
-        // anchors.rightMargin: units.smallSpacing + rightMenu.width
+
+        PlasmaComponents.ToolButton {
+            anchors.right: parent.right
+            Layout.preferredWidth: Math.round(units.gridUnit * 1.25)
+            Layout.preferredHeight: width
+            checkable: true
+            iconSource: "window-pin"
+            onCheckedChanged: plasmoid.hideOnWindowDeactivate = !checked
+            visible: !isDesktopContainment
+        }
 
         PlasmaExtras.ScrollArea {
             Layout.fillWidth: true
@@ -106,28 +115,6 @@ MouseArea {
                 }
             }
         }
-
-        Column {
-            id: rightMenu
-            property int iconSize: units.iconSizes.medium
-            width: iconSize
-            anchors.top: parent.top
-            visible: !isDesktopContainment
-            // anchors.right: parent.right
-            // anchors.bottom: parent.bottom
-            spacing: units.smallSpacing
-
-            PlasmaComponents.ToolButton {
-                anchors.right: parent.right
-                width: Math.round(units.gridUnit * 1.25)
-                height: width
-                checkable: true
-                iconSource: "window-pin"
-                onCheckedChanged: plasmoid.hideOnWindowDeactivate = !checked
-                visible: !isDesktopContainment
-            }
-        }
-        
     }
 
     
