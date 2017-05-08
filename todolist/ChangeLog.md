@@ -1,3 +1,12 @@
+## v5 - May 7 2017
+
+* Remove ability to hide completed items.
+* Added ability to remove items when completed instead, which will hide the "delete item" button (this is the new default).
+* Added ability to reorder items.
+* Focus on "new item" when popup is opened.
+* Add scrollbar.
+* Disable copy/cut/paste context menu so it's easier to open the widget context menu.
+
 ## v4 - December 14 2016
 
 * Fix bug overwriting the wrong index when hiding completed items.
