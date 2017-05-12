@@ -19,7 +19,8 @@ MouseArea {
     Layout.minimumWidth: units.gridUnit * 10
     Layout.minimumHeight: units.gridUnit * 10
     Layout.preferredWidth: units.gridUnit * 20
-    Layout.preferredHeight: Math.min(Math.max(units.gridUnit * 20, listView.contentHeight), Screen.desktopAvailableHeight) // Binding loop warning (meh).
+    Layout.preferredHeight: Math.min(Math.max(units.gridUnit * 20, contentHeight), Screen.desktopAvailableHeight) // Binding loop warning (meh).
+    property int contentHeight: pinButton.height + container.spacing + listView.contentHeight
     // Layout.maximumWidth: plasmoid.screenGeometry.width
     // Layout.maximumHeight: plasmoid.screenGeometry.height
 
@@ -53,6 +54,7 @@ MouseArea {
         anchors.fill: parent
 
         PlasmaComponents.ToolButton {
+            id: pinButton
             anchors.right: parent.right
             Layout.preferredWidth: Math.round(units.gridUnit * 1.25)
             Layout.preferredHeight: width
