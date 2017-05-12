@@ -639,7 +639,7 @@
        sodipodi:nodetypes="cccc"
        id="groove-peaking-bottomright"
        d="m 24.023615,15.081831 c 0,0.56072 -0.43928,1 -1,1 l 0,-1 z"
-       style="fill:currentColor;fill-opacity:1"
+       style="fill:currentColor;fill-opacity:0.3"
        class="ColorScheme-Text" />
     <path
        inkscape:connector-curvature="0"
