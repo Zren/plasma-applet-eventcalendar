@@ -7,8 +7,11 @@ import org.kde.plasma.calendar 2.0 as PlasmaCalendar
 import org.kde.plasma.components 2.0 as PlasmaComponents
 import org.kde.plasma.extras 2.0 as PlasmaExtras
 
+import "../lib"
+
 ConfigPage {
     id: page
+    showAppletVersion: true
     
     property string cfg_click_action: 'showdesktop'
     property alias cfg_click_command: click_command.text
@@ -20,9 +23,6 @@ ConfigPage {
     property bool showDebug: false
     property int indentWidth: 24
 
-    SystemPalette {
-        id: palette
-    }
 
     function setMouseWheelCommands(up, down) {
         cfg_mousewheel_action = 'run_commands'
@@ -31,9 +31,19 @@ ConfigPage {
         cfg_mousewheel_down = down
     }
 
+    ConfigSection {
+        title: i18n("Look")
+
+        ConfigSpinBox {
+            before: i18n("Size:")
+            configKey: 'size'
+            suffix: i18n("px")
+        }
+    }
+
     ExclusiveGroup { id: clickGroup }
     ConfigSection {
-        label: i18n("Click")
+        title: i18n("Click")
 
         RadioButton {
             exclusiveGroup: clickGroup
@@ -75,7 +85,7 @@ ConfigPage {
 
     ExclusiveGroup { id: mousewheelGroup }
     ConfigSection {
-        label: i18n("Mouse Wheel")
+        title: i18n("Mouse Wheel")
 
 
         RadioButton {

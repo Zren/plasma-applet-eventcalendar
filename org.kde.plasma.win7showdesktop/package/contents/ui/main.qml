@@ -38,6 +38,8 @@ Item {
     Layout.minimumWidth: Layout.maximumWidth
     Layout.minimumHeight: Layout.maximumHeight
 
+    property int size: Math.max(1, plasmoid.configuration.size) * units.devicePixelRatio
+
     state: {
         if (plasmoid.formFactor == PlasmaCore.Types.Vertical) return "vertical"
         if (plasmoid.formFactor == PlasmaCore.Types.Horizontal) return "horizontal"
@@ -59,29 +61,26 @@ Item {
             PropertyChanges {
                 target: root
                 Layout.maximumWidth: plasmoid.width
-                Layout.maximumHeight: 5 // + 5 = 8
+                Layout.maximumHeight: root.size // size + bottomMargin = totalHeight
             }
             PropertyChanges {
                 target: buttonRect
-                y: 0
-                x: 0
-                width: plasmoid.width+5
-                height: plasmoid.height+5
+                rightMargin: 5
+                bottomMargin: 5
             }
         },
         State { name: "horizontal" // ...panel (thin tall button)
             // Assume it's on the right. Breeze has margins of top=4 right=5 bottom=1 left=N/A
             PropertyChanges {
                 target: root
-                Layout.maximumWidth: 3 // + 5 = 8
+                Layout.maximumWidth: root.size // size + rightMargin = totalWidth
                 Layout.maximumHeight: plasmoid.height
             }
             PropertyChanges {
                 target: buttonRect
-                y: -4
-                x: 0
-                width: plasmoid.width+5
-                height: plasmoid.height+3+5
+                topMargin: 4
+                rightMargin: 5
+                bottomMargin: 3
             }
         }
     ]
@@ -144,6 +143,16 @@ Item {
     Rectangle {
         id: buttonRect
         color: "transparent"
+
+        property int topMargin: 0
+        property int rightMargin: 0
+        property int bottomMargin: 0
+        property int leftMargin: 0
+
+        y: -topMargin
+        x: -leftMargin
+        width: leftMargin + plasmoid.width + rightMargin
+        height: topMargin + plasmoid.height + bottomMargin
 
         Item {
             anchors.fill: parent
