@@ -85,7 +85,15 @@ PlasmaComponents.Slider {
 				id: handle
 				anchors.fill: parent
 				svg: grooveSvg
-				elementId: "vertical-slider-handle"
+				elementId: {
+					if (control.focus || control.pressed) {
+						return "vertical-slider-focus"
+					} else if (control.hovered) {
+						return "vertical-slider-hover"
+					} else {
+						return "vertical-slider-handle"
+					}
+				}
 			}
 			PlasmaComponents.Label {
 				text: control.percentage
