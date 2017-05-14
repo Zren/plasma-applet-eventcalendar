@@ -207,11 +207,20 @@ Item {
 	}
 	onHeightChanged: {
 		// console.log('popup.size', width, height, 'height')
-		plasmoid.configuration.height = height
+		resizeHeight.restart()
+	}
+
+	Timer {
+		id: resizeHeight
+		interval: 200
+		onTriggered: {
+			// console.log('popup.size', width, height, 'height')
+			plasmoid.configuration.popupHeight = height / units.devicePixelRatio
+		}
 	}
 	Timer {
 		id: resizeToFit
-		interval: 100
+		interval: attemptsLeft == attempts ? 200 : 100
 		repeat: attemptsLeft > 0
 		property int attempts: 10
 		property int attemptsLeft: 10
@@ -223,14 +232,13 @@ Item {
 
 		onTriggered: {
 			var favWidth = Math.max(0, widget.width - config.leftSectionWidth) // 398 // 888-60-430
-			var cols = Math.floor(favWidth / config.favColWidth)
-			var newWidth = cols * config.favColWidth
-			// console.log(widget.width, config.leftSectionWidth, config.favColWidth, favWidth, cols, newWidth)
-			if (newWidth != favWidth) {
-				// widget.Layout.preferredWidth = newWidth
-				plasmoid.configuration.favGridWidth = newWidth
-				// console.log('resizeToFit', cols, favWidth, newWidth - config.favColWidth)
+			var cols = Math.floor(favWidth / config.favColWidth) * 2
+			if (plasmoid.configuration.favGridCols != cols) {
+				plasmoid.configuration.favGridCols = cols
 			}
+			// Force a reflow since Alt+RightClick+Drag resizing doesn't really play nice with PlasmaCore.Dialog.
+			config.popupWidthChanged()
+			widget.Layout.preferredWidthChanged()
 			attemptsLeft -= 1
 		}
 	}

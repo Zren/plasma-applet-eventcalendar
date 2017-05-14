@@ -24,7 +24,7 @@ Item {
 	readonly property int favViewDefaultWidth: (favColWidth * 3) * units.devicePixelRatio
 	readonly property int favSmallIconSize: 32 * units.devicePixelRatio
 	readonly property int favMediumIconSize: 72 * units.devicePixelRatio
-	readonly property int favGridWidth: plasmoid.configuration.favGridWidth * units.devicePixelRatio
+	readonly property int favGridWidth: (plasmoid.configuration.favGridCols/2) * favColWidth
 
 	readonly property int searchFieldHeight: 50 * units.devicePixelRatio
 
