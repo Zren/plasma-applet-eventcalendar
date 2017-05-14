@@ -1,4 +1,5 @@
 import QtQuick 2.0
+import QtQuick.Window 2.2
 
 Item {
 	function setAlpha(c, a) {
@@ -28,8 +29,24 @@ Item {
 
 	readonly property int defaultWidth: leftSectionWidth + favViewDefaultWidth // 886 * units.devicePixelRatio
 	readonly property int defaultHeight: 620 * units.devicePixelRatio
-	readonly property int popupWidth: plasmoid.configuration.width > 0 ? plasmoid.configuration.width : defaultWidth
-	readonly property int popupHeight: plasmoid.configuration.height > 0 ? plasmoid.configuration.height : defaultHeight
+	readonly property int popupWidth: {
+		if (plasmoid.configuration.fullscreen) {
+			return Screen.desktopAvailableWidth
+		} else if (plasmoid.configuration.width > 0) {
+			return plasmoid.configuration.width
+		} else {
+			return defaultWidth
+		}
+	}
+	readonly property int popupHeight: {
+		if (plasmoid.configuration.fullscreen) {
+			return Screen.desktopAvailableHeight
+		} else if (plasmoid.configuration.height > 0) {
+			return plasmoid.configuration.height
+		} else {
+			return defaultHeight
+		}
+	}
 	
 	readonly property int menuItemHeight: plasmoid.configuration.menuItemHeight * units.devicePixelRatio
 	

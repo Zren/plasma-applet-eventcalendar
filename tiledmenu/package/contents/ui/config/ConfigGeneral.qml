@@ -21,6 +21,15 @@ ConfigPage {
 
 
 	ConfigSection {
+		label: i18n("Popup")
+
+		ConfigCheckBox {
+			text: i18n("Fullscreen")
+			configKey: 'fullscreen'
+		}
+	}
+
+	ConfigSection {
 		label: i18n("Panel Icon")
 
 		RowLayout {

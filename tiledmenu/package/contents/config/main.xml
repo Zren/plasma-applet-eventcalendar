@@ -16,6 +16,9 @@
     <entry name="height" type="int"> 
       <default>0</default> <!-- serialized in pixels in older versions unfortunately -->
     </entry>
+    <entry name="fullscreen" type="bool"> 
+      <default>false</default>
+    </entry>
     <entry name="icon" type="String">
       <label>The name of the icon used in the compact representation (e.g. on a small panel).</label>
       <default>start-here-kde</default>
