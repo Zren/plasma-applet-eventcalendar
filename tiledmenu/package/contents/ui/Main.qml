@@ -176,6 +176,7 @@ Item {
 		id: popup
 		anchors.fill: parent
 	}
+	Layout.minimumWidth: config.leftSectionWidth
 	Layout.preferredWidth: config.popupWidth
 	Layout.preferredHeight: config.popupHeight
 
@@ -192,7 +193,7 @@ Item {
 					// console.log('onAppListWidthChanged', deltaPixels)
 					plasmoid.configuration.width += deltaPixels
 				} else {
-					resizeToFit.restart()
+					resizeToFit.run()
 				}
 				lastAppListWidth = config.appListWidth
 			}
@@ -202,7 +203,7 @@ Item {
 	onWidthChanged: {
 		// console.log('popup.size', width, height, 'width')
 		// plasmoid.configuration.width = width
-		resizeToFit.restart()
+		resizeToFit.run()
 	}
 	onHeightChanged: {
 		// console.log('popup.size', width, height, 'height')
@@ -210,17 +211,27 @@ Item {
 	}
 	Timer {
 		id: resizeToFit
-		interval: 400
+		interval: 100
+		repeat: attemptsLeft > 0
+		property int attempts: 10
+		property int attemptsLeft: 10
+
+		function run() {
+			restart()
+			attemptsLeft = attempts
+		}
+
 		onTriggered: {
 			var favWidth = Math.max(0, widget.width - config.leftSectionWidth) // 398 // 888-60-430
 			var cols = Math.floor(favWidth / config.favColWidth)
-			var newWidth = config.leftSectionWidth + cols * config.favColWidth
+			var newWidth = cols * config.favColWidth
 			// console.log(widget.width, config.leftSectionWidth, config.favColWidth, favWidth, cols, newWidth)
-			if (newWidth != widget.width) {
+			if (newWidth != favWidth) {
 				// widget.Layout.preferredWidth = newWidth
-				plasmoid.configuration.width = newWidth
+				plasmoid.configuration.favGridWidth = newWidth
 				// console.log('resizeToFit', cols, favWidth, newWidth - config.favColWidth)
 			}
+			attemptsLeft -= 1
 		}
 	}
 	// Layout.onPreferredWidthChanged: console.log('popup.size', width, height)

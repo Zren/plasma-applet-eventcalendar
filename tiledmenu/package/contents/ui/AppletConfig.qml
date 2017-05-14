@@ -24,27 +24,22 @@ Item {
 	readonly property int favViewDefaultWidth: (favColWidth * 3) * units.devicePixelRatio
 	readonly property int favSmallIconSize: 32 * units.devicePixelRatio
 	readonly property int favMediumIconSize: 72 * units.devicePixelRatio
+	readonly property int favGridWidth: plasmoid.configuration.favGridWidth * units.devicePixelRatio
 
 	readonly property int searchFieldHeight: 50 * units.devicePixelRatio
 
-	readonly property int defaultWidth: leftSectionWidth + favViewDefaultWidth // 886 * units.devicePixelRatio
-	readonly property int defaultHeight: 620 * units.devicePixelRatio
 	readonly property int popupWidth: {
 		if (plasmoid.configuration.fullscreen) {
 			return Screen.desktopAvailableWidth
-		} else if (plasmoid.configuration.width > 0) {
-			return plasmoid.configuration.width
 		} else {
-			return defaultWidth
+			return leftSectionWidth + favGridWidth
 		}
 	}
 	readonly property int popupHeight: {
 		if (plasmoid.configuration.fullscreen) {
 			return Screen.desktopAvailableHeight
-		} else if (plasmoid.configuration.height > 0) {
-			return plasmoid.configuration.height
 		} else {
-			return defaultHeight
+			return plasmoid.configuration.popupHeight * units.devicePixelRatio
 		}
 	}
 	

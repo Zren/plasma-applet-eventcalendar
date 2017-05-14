@@ -17,7 +17,7 @@ DragAndDrop.DropArea {
 	id: favouritesView
 
 	width: config.favViewDefaultWidth
-	height: config.defaultHeight
+	height: config.popupHeight
 
 	property bool editing: draggedItem
 	property QtObject draggedItem: null

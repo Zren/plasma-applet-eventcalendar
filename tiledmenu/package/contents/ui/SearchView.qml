@@ -11,7 +11,7 @@ import org.kde.kquickcontrolsaddons 2.0 // KCMShell
 Item {
 	id: searchView
 	width: config.leftSectionWidth
-	height: config.defaultHeight
+	height: config.popupHeight
 	property alias searchResultsView: searchResultsView
 	property alias appsView: appsView
 	property alias tileEditorView: tileEditorView

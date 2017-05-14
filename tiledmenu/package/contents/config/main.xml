@@ -80,6 +80,12 @@
     <entry name="appListWidth" type="int">
       <default>350</default>
     </entry>
+    <entry name="favGridWidth" type="int">
+      <default>396</default>
+    </entry>
+    <entry name="popupHeight" type="int">
+      <default>620</default>
+    </entry>
   </group>
 
 </kcfg>
