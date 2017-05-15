@@ -192,8 +192,6 @@ Item {
 					var deltaPixels = config.appListWidth - lastAppListWidth
 					// console.log('onAppListWidthChanged', deltaPixels)
 					plasmoid.configuration.width += deltaPixels
-				} else {
-					resizeToFit.run()
 				}
 				lastAppListWidth = config.appListWidth
 			}
@@ -214,8 +212,9 @@ Item {
 		id: resizeHeight
 		interval: 200
 		onTriggered: {
-			// console.log('popup.size', width, height, 'height')
-			plasmoid.configuration.popupHeight = height / units.devicePixelRatio
+			if (!plasmoid.configuration.fullscreen) {
+				plasmoid.configuration.popupHeight = height / units.devicePixelRatio
+			}
 		}
 	}
 	Timer {
@@ -231,15 +230,19 @@ Item {
 		}
 
 		onTriggered: {
-			var favWidth = Math.max(0, widget.width - config.leftSectionWidth) // 398 // 888-60-430
-			var cols = Math.floor(favWidth / config.favColWidth) * 2
-			if (plasmoid.configuration.favGridCols != cols) {
-				plasmoid.configuration.favGridCols = cols
+			if (plasmoid.configuration.fullscreen) {
+				attemptsLeft = 0
+			} else {
+				var favWidth = Math.max(0, widget.width - config.leftSectionWidth) // 398 // 888-60-430
+				var cols = Math.floor(favWidth / config.favColWidth) * 2
+				if (plasmoid.configuration.favGridCols != cols) {
+					plasmoid.configuration.favGridCols = cols
+				}
+				// Force a reflow since Alt+RightClick+Drag resizing doesn't really play nice with PlasmaCore.Dialog.
+				config.popupWidthChanged()
+				widget.Layout.preferredWidthChanged()
+				attemptsLeft -= 1
 			}
-			// Force a reflow since Alt+RightClick+Drag resizing doesn't really play nice with PlasmaCore.Dialog.
-			config.popupWidthChanged()
-			widget.Layout.preferredWidthChanged()
-			attemptsLeft -= 1
 		}
 	}
 	// Layout.onPreferredWidthChanged: console.log('popup.size', width, height)
