@@ -45,7 +45,7 @@
     </entry>
 
     <!-- Base64 encoded JSON -->
-    <entry name="tileData" type="string">
+    <entry name="tileData" type="string" stringType="base64json">
       <!-- Schema: { "konsole.desktop": { size: "1x1", x: 3, y: 0, label: "Terminal" }, ...} -->
       <default></default>
     </entry>
