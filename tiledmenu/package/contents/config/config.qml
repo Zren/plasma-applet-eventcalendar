@@ -27,4 +27,10 @@ ConfigModel {
          icon: "preferences-system-windows"
          source: "config/ConfigGeneral.qml"
     }
+    ConfigCategory {
+        name: i18n("Advanced")
+        icon: "applications-development"
+        source: "lib/ConfigAdvanced.qml"
+        visible: false
+    }
 }
