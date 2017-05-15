@@ -13,6 +13,7 @@ import "../lib"
 
 ConfigPage {
 	id: page
+	showAppletVersion: true
 
 	property alias cfg_icon: icon.text
 
