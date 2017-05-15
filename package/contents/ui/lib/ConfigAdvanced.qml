@@ -9,11 +9,11 @@ ConfigPage {
     Component {
         id: textFieldStyle
         TextFieldStyle {
-            // textColor: syspal.textColor
+            // textColor: syspal.text
 
             background: Rectangle {
                 radius: 2
-                color: control.activeFocus ? syspal.backgroundColor : "transparent"
+                color: control.activeFocus ? syspal.base : "transparent"
                 border.color: control.activeFocus ? syspal.highlight : "transparent"
                 border.width: 1
             }
@@ -56,6 +56,16 @@ ConfigPage {
                             plasmoid.configuration[modelKey] = value
                         })
                     }
+                }
+            }
+
+            Component {
+                id: stringListControl
+                TextArea {
+                    text: '' + modelValue
+                    readOnly: true
+                    implicitHeight: contentHeight + font.pixelSize
+                    wrapMode: TextEdit.Wrap
                 }
             }
 
@@ -124,6 +134,8 @@ ConfigPage {
                             return boolControl
                         } else if (model.valueType === 'number') {
                             return numberControl
+                        } else if (model.valueType === 'object') { // StringList
+                            return stringListControl
                         } else { // string
                             if (model.stringType === 'base64json') {
                                 return base64jsonControl
