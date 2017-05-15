@@ -9,6 +9,7 @@ import org.kde.kquickcontrolsaddons 2.0 as KQuickAddons
 import org.kde.plasma.private.kicker 0.1 as Kicker
 
 import ".."
+import "../lib"
 
 ConfigPage {
 	id: page
