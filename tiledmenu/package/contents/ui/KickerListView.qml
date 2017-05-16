@@ -12,7 +12,7 @@ ListView {
 	width: parent.width
 	Layout.fillHeight: true
 	clip: true
-	cacheBuffer: 1000 // Don't unload when scrolling (prevent stutter)
+	cacheBuffer: 100000 // Don't unload when scrolling (prevent stutter)
 
 	// snapMode: ListView.SnapToItem
 	keyNavigationWraps: true
