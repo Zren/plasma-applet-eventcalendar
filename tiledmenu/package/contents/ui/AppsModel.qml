@@ -194,6 +194,7 @@ Item {
 			
 			Item {
 				Component.onCompleted: {
+					// console.log('debouncedRefreshRecentApps', index)
 					if (plasmoid.configuration.showRecentApps) {
 						debouncedRefreshRecentApps.restart()
 					}
