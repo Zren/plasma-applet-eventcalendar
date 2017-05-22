@@ -140,7 +140,7 @@ Item {
                 area.areaHeight = graph.gridHeight
                 // console.log(JSON.stringify(area));
                 area.gridItem = gridData[i];
-                if (area.areaWidth <= 32) { // weatherIcon.size = 32px (height = 24px but most icons are landscape)
+                if (area.areaWidth <= appletConfig.meteogramColumnWidth) { 
                     // Show icon representing 3 hours.
                     area.showIcon = (i-1) % 3 === 1; // .X..X..X.
                     area.aggregratedIcon = getAggregatedIcon(gridData, i-1, i+1);
@@ -405,7 +405,7 @@ Item {
                         anchors.centerIn: parent
                         color: appletConfig.meteogramIconColor
                         source: modelData.aggregratedIcon
-                        height: 24
+                        height: appletConfig.meteogramIconSize
                         opacity: tooltip.containsMouse ? 0.1 : 1
                         showOutline: meteogramView.showIconOutline
                     }

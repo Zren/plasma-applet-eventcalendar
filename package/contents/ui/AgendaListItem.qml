@@ -44,7 +44,7 @@ RowLayout {
                 visible: showWeather && plasmoid.configuration.agenda_weather_show_icon
                 color: agendaItemIsToday ? inProgressColor : PlasmaCore.ColorScope.textColor
                 source: weatherIcon
-                height: plasmoid.configuration.agenda_weather_icon_height
+                height: appletConfig.agendaWeatherIconSize
                 showOutline: plasmoid.configuration.show_outlines
                 anchors {
                     left: parent.left
