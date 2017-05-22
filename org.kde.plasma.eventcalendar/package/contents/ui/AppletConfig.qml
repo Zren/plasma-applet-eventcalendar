@@ -26,9 +26,13 @@ Item {
 	property int agendaColumnSpacing: 10 * units.devicePixelRatio
 	property int agendaRowSpacing: 10 * units.devicePixelRatio
 	property int agendaWeatherColumnWidth: 60 * units.devicePixelRatio
+	property int agendaWeatherIconSize: plasmoid.configuration.agenda_weather_icon_height * units.devicePixelRatio
 	property int agendaDateColumnWidth: 50 * units.devicePixelRatio + agendaColumnSpacing * 2
 	property int eventIndicatorWidth: 2 * units.devicePixelRatio
 
 	property int timerClockFontHeight: 40 * units.devicePixelRatio
 	property int timerButtonWidth: 48 * units.devicePixelRatio
+
+	property int meteogramIconSize: 24 * units.devicePixelRatio
+	property int meteogramColumnWidth: 32 * units.devicePixelRatio // weatherIconSize = 32px (height = 24px but most icons are landscape)
 }
