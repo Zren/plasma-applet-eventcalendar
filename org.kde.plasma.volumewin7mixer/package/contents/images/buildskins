@@ -1,0 +1,38 @@
+#!/bin/python3
+
+def buildTheme(template, palette):
+    overrides = 'id="defs4">\n'
+    overrides += """
+    <style
+       id="style8"
+       type="text/css">
+      /* Override Color Scheme by defining first */
+      /* ColorScheme-Text = Groove color */
+      /* ColorScheme-Background = Triangle color */
+      """
+    for key, value in palette.items():
+        overrides += '.' + key + ' { color: ' + value + '; }\n      '
+    overrides += '\n    </style>'
+    theme = template.replace('id="defs4">', overrides)
+    return theme
+
+themes = {
+    'default': {
+        'ColorScheme-Text': '#eeeeee',
+        'ColorScheme-Background': '#31363b',
+        'ColorScheme-Highlight': '#93cee9',
+        'ColorScheme-ButtonText': '#31363b',
+        'ColorScheme-ButtonBackground': '#eff0f1',
+        'ColorScheme-ButtonHover': '#93cee9',
+        'ColorScheme-ButtonFocus': '#3daee9',
+    }
+}
+
+with open("volumeslider.svg", "r") as f:
+    template = f.read()
+
+for themeName, palette in themes.items():
+    theme = buildTheme(template, palette)
+    filename = "volumeslider-{}.svg".format(themeName)
+    with open(filename, "w") as f:
+        f.write(theme)

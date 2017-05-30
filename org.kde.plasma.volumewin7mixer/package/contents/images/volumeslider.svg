@@ -153,24 +153,6 @@
         color: #ee0000;
       }
       </style>
-    <style
-       id="style8"
-       type="text/css">
-      /* Override Color Scheme by defining last */
-      /* ColorScheme-Text = Groove color */
-      /* ColorScheme-Background = Triangle color */
-      /*
-      .ColorScheme-Text {
-        color:#eeeeee;
-      }
-      .ColorScheme-Background {
-        color:#31363b;
-      }
-      .ColorScheme-Highlight {
-        color:#93cee9;
-      }
-      */
-      </style>
   </defs>
   <metadata
      id="metadata7">
