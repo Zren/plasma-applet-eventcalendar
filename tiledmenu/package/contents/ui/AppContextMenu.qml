@@ -64,17 +64,17 @@ Item {
 
             function addPinToMenuAction(favoriteId) {
                 var menuItem = menu.newMenuItem();
-                if (appsModel.favoritesModel.isFavorite(favoriteId)) {
+                if (favouritesView.hasAppTile(favoriteId)) {
                     menuItem.text = i18n("Unpin from Menu")
                     menuItem.icon = "list-remove"
                     menuItem.clicked.connect(function() {
-                        appsModel.favoritesModel.removeFavorite(favoriteId)
+                        favouritesView.removeApp(favoriteId)
                     })
                 } else {
                     menuItem.text = i18n("Pin to Menu")
                     menuItem.icon = "bookmark-new"
                     menuItem.clicked.connect(function() {
-                        appsModel.favoritesModel.addFavorite(favoriteId)
+                        favouritesView.addApp(favoriteId)
                     })
                 }
                 menu.addMenuItem(menuItem)

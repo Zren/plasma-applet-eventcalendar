@@ -218,7 +218,7 @@ Item {
 
 		TileEditorView {
 			id: tileEditorView
-			visible: false
+			visible: false 
 
 			function show() {
 				if (stackView.currentItem != tileEditorView) {
@@ -226,15 +226,14 @@ Item {
 				}
 			}
 
-			function open(favoriteId, favouritesItem) {
-				reset()
-				tileEditorView.favoriteId = favoriteId
-				tileEditorView.item = favouritesItem
+			function open(tile) {
+				resetView()
+				tileEditorView.tile = tile
 				show()
 			}
 
 			function close() {
-				reset()
+				resetView()
 				appsView.show()
 			}
 		}

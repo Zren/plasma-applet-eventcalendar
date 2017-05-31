@@ -234,8 +234,12 @@ Item {
 				attemptsLeft = 0
 			} else {
 				var favWidth = Math.max(0, widget.width - config.leftSectionWidth) // 398 // 888-60-430
-				var cols = Math.floor(favWidth / config.favColWidth) * 2
+				console.log(favWidth, widget.width, config.leftSectionWidth)
+				console.log(favWidth / config.cellBoxSize)
+				// var cols = Math.floor(favWidth / config.favColWidth) * 2
+				var cols = Math.floor(favWidth / config.cellBoxSize)
 				if (plasmoid.configuration.favGridCols != cols) {
+					console.log(plasmoid.configuration.favGridCols, cols)
 					plasmoid.configuration.favGridCols = cols
 				}
 				// Force a reflow since Alt+RightClick+Drag resizing doesn't really play nice with PlasmaCore.Dialog.

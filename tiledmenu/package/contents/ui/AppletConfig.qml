@@ -17,6 +17,16 @@ Item {
 	readonly property int appListWidth: plasmoid.configuration.appListWidth * units.devicePixelRatio
 	readonly property int leftSectionWidth: sidebarWidth + appListWidth
 
+	readonly property real tileScale: 0.8
+	readonly property int cellBoxUnits: 80
+	readonly property int cellMarginUnits: 5
+	readonly property int cellSizeUnits: cellBoxUnits - cellMarginUnits*2
+	readonly property int cellSize: cellSizeUnits * tileScale * units.devicePixelRatio
+	readonly property real cellMargin: cellMarginUnits * tileScale * units.devicePixelRatio
+	readonly property real cellPushedMargin: cellMargin * 2
+	readonly property int cellBoxSize: cellMargin + cellSize + cellMargin
+	readonly property int tileGridWidth: plasmoid.configuration.favGridCols * cellBoxSize
+
 	readonly property int favCellWidth: 60 * units.devicePixelRatio
 	readonly property int favCellPushedMargin: 5 * units.devicePixelRatio
 	readonly property int favCellPadding: 3 * units.devicePixelRatio
@@ -32,7 +42,7 @@ Item {
 		if (plasmoid.configuration.fullscreen) {
 			return Screen.desktopAvailableWidth
 		} else {
-			return leftSectionWidth + favGridWidth
+			return leftSectionWidth + tileGridWidth
 		}
 	}
 	readonly property int popupHeight: {
@@ -97,5 +107,35 @@ Item {
 				"label": "Screen Recorder"
 			}
 		}
+	}
+
+	property var tileModel: Base64JsonString {
+		configKey: 'tileModel'
+		// defaultValue: []
+		defaultValue: [
+			{
+				"x": 0,
+				"y": 0,
+				"w": 2,
+				"h": 2,
+				"url": "org.kde.dolphin.desktop",
+				"label": "Files",
+			},
+			{
+				"x": 2,
+				"y": 1,
+				"w": 1,
+				"h": 1,
+				"url": "virtualbox.desktop",
+				"iconFill": true,
+			},
+			{
+				"x": 2,
+				"y": 0,
+				"w": 1,
+				"h": 1,
+				"url": "org.kde.ark.desktop",
+			},
+		]
 	}
 }

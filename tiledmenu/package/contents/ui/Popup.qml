@@ -7,40 +7,35 @@ import org.kde.plasma.core 2.0 as PlasmaCore
 import org.kde.plasma.components 2.0 as PlasmaComponents
 
 MouseArea {
-	// Layout.preferredWidth: 888
-	// Layout.preferredHeight: 620
-
-	// width: childrenRect.width
-	// height: childrenRect.height
-
 	property alias searchView: searchView
 	property alias favouritesView: favouritesView
 
-	Row {
-		// width: 888
-		// width: childrenRect.width
-		// height: childrenRect.height
-		// height: 620
+	RowLayout {
 		anchors.fill: parent
-
-		// PlasmaComponents.Label {
-		// 	visible: false
-		// 	text: ""
-		// 	color: "#888"
-		// 	maximumLineCount: 1
-		// 	elide: Text.ElideRight
-		// }
+		spacing: 0
 
 		SearchView {
 			id: searchView
-			width: config.leftSectionWidth
-			height: parent.height
+			Layout.minimumWidth: config.leftSectionWidth
+			Layout.maximumWidth: config.leftSectionWidth
+			Layout.fillHeight: true
+			Rectangle { anchors.fill: parent; color: "transparent"; border.width: 1; border.color: "#f00" }
 		}
 
-		FavouritesView {
+		TileGrid {
 			id: favouritesView
-			width: parent.width - searchView.width
-			height: parent.height
+			Layout.fillWidth: true
+			Layout.fillHeight: true
+
+			cellSize: config.cellSize
+			cellMargin: config.cellMargin
+			cellPushedMargin: config.cellPushedMargin
+
+			tileModel: config.tileModel.value
+
+			onEditTile: searchView.tileEditorView.open(tile)
+
+			Rectangle { anchors.fill: parent; color: "transparent"; border.width: 1; border.color: "#f00" }
 		}
 		
 	}
@@ -62,4 +57,3 @@ MouseArea {
 
 	onClicked: searchView.searchField.forceActiveFocus()
 }
-// }
