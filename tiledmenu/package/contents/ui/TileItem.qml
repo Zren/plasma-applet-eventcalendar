@@ -72,7 +72,11 @@ Item {
 			onClicked: {
 				mouse.accepted = true
 				if (mouse.button == Qt.LeftButton) {
-					 appsModel.tileGridModel.runApp(modelData.url)
+					if (tileEditorView.tile) {
+						openTileEditor()
+					} else {
+						appsModel.tileGridModel.runApp(modelData.url)
+					}
 				} else if (mouse.button == Qt.RightButton) {
 					contextMenu.open(mouse.x, mouse.y)
 				}

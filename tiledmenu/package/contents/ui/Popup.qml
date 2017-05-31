@@ -8,6 +8,7 @@ import org.kde.plasma.components 2.0 as PlasmaComponents
 
 MouseArea {
 	property alias searchView: searchView
+	property alias tileEditorView: searchView.tileEditorView
 	property alias favouritesView: favouritesView
 
 	RowLayout {
@@ -19,7 +20,6 @@ MouseArea {
 			Layout.minimumWidth: config.leftSectionWidth
 			Layout.maximumWidth: config.leftSectionWidth
 			Layout.fillHeight: true
-			Rectangle { anchors.fill: parent; color: "transparent"; border.width: 1; border.color: "#f00" }
 		}
 
 		TileGrid {
@@ -33,9 +33,7 @@ MouseArea {
 
 			tileModel: config.tileModel.value
 
-			onEditTile: searchView.tileEditorView.open(tile)
-
-			Rectangle { anchors.fill: parent; color: "transparent"; border.width: 1; border.color: "#f00" }
+			onEditTile: tileEditorView.open(tile)
 		}
 		
 	}
