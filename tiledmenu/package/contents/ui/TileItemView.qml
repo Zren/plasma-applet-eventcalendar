@@ -29,9 +29,23 @@ Rectangle {
 
 	states: [
 		State {
-			when: modelData.w == 1 && modelData.h == 1
-			PropertyChanges { target: label; visible: false }
+			when: modelData.w == 1 && modelData.h >= 1
 			PropertyChanges { target: icon; size: smallIconSize }
+			PropertyChanges { target: label; visible: false }
+		},
+		State {
+			when: modelData.w >= 2 && modelData.h == 1
+			AnchorChanges { target: icon
+				anchors.horizontalCenter: undefined
+				anchors.left: tileItemView.left
+			}
+			PropertyChanges { target: icon; anchors.leftMargin: 4 }
+			AnchorChanges { target: label
+				anchors.verticalCenter: tileItemView.verticalCenter
+				anchors.left: icon.right
+				anchors.bottom: undefined
+				anchors.right: tileItemView.right
+			}
 		},
 		State {
 			when: modelData.w == 2 && modelData.h == 2
@@ -50,7 +64,8 @@ Rectangle {
 	PlasmaCore.IconItem {
 		id: icon
 		source: appObj.iconSource
-		anchors.centerIn: parent
+		anchors.verticalCenter: parent.verticalCenter
+		anchors.horizontalCenter: parent.horizontalCenter
 		// property int size: 72 // Just a default, overriden in State change
 		property int size: Math.min(parent.width, parent.height) / 2
 		width: size
