@@ -9,6 +9,7 @@ import org.kde.plasma.components 2.0 as PlasmaComponents
 import org.kde.plasma.extras 2.0 as PlasmaExtras
 
 GroupBox {
+	id: tileEditorColorField
 	title: "Label"
 	Layout.fillWidth: true
 	property alias placeholderText: textField.placeholderText
@@ -46,9 +47,9 @@ GroupBox {
 				id: dialog
 				visible: false
 				// modality: Qt.WindowModal // Don't dim the menu
-				title: configColor.label
+				title: tileEditorColorField.title
 				showAlphaChannel: true
-				color: configColor.value
+				color: textField.text
 				onCurrentColorChanged: {
 					if (visible && color != currentColor) {
 						textField.text = currentColor

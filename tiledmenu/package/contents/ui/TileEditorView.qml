@@ -31,6 +31,7 @@ ColumnLayout {
 	function resetTile() {
 		delete appObj.tile.label
 		delete appObj.tile.icon
+		delete appObj.tile.backgroundColor
 		appObj.tileChanged()
 		favouritesView.tileModelChanged()
 	}
@@ -45,12 +46,12 @@ ColumnLayout {
 		}
 
 		PlasmaComponents.Button {
-			text: i18n("Reset")
+			text: i18n("Reset Tile")
 			onClicked: resetTile()
 		}
 
 		PlasmaComponents.Button {
-			text: i18n("Save")
+			text: i18n("Close")
 			onClicked: {
 				tileEditorView.close() // Defined in SearchView.qml
 			}

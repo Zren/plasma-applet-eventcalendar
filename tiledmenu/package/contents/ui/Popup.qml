@@ -34,6 +34,13 @@ MouseArea {
 			tileModel: config.tileModel.value
 
 			onEditTile: tileEditorView.open(tile)
+
+			onTileModelChanged: saveTileModel.restart()
+			Timer {
+				id: saveTileModel
+				interval: 2000
+				onTriggered: config.tileModel.save()
+			}
 		}
 		
 	}

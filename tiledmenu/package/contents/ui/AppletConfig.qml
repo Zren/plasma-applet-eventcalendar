@@ -96,46 +96,42 @@ Item {
 	//--- Tile Data
 	property var tileData: Base64JsonString {
 		configKey: 'tileData'
-		defaultValue: {
-			// "org.kde.dolphin.desktop": {
-			// 	"x": "2",
-			// 	"y": "0",
-			// 	"size": "small",
-			// 	"label": "File Manager"
-			// }
-			"simplescreenrecorder.desktop": {
-				"label": "Screen Recorder"
-			}
-		}
 	}
 
 	property var tileModel: Base64JsonString {
 		configKey: 'tileModel'
-		// defaultValue: []
-		defaultValue: [
-			{
-				"x": 0,
-				"y": 0,
-				"w": 2,
-				"h": 2,
-				"url": "org.kde.dolphin.desktop",
-				"label": "Files",
-			},
-			{
-				"x": 2,
-				"y": 1,
-				"w": 1,
-				"h": 1,
-				"url": "virtualbox.desktop",
-				"iconFill": true,
-			},
-			{
-				"x": 2,
-				"y": 0,
-				"w": 1,
-				"h": 1,
-				"url": "org.kde.ark.desktop",
-			},
-		]
+		defaultValue: []
+
+		onLoaded: {
+			// Only load on change at start.
+			// Otherwise .save() will create a new [] breaking the tile editor.
+			loadOnConfigChange = false
+		}
+
+		// defaultValue: [
+		// 	{
+		// 		"x": 0,
+		// 		"y": 0,
+		// 		"w": 2,
+		// 		"h": 2,
+		// 		"url": "org.kde.dolphin.desktop",
+		// 		"label": "Files",
+		// 	},
+		// 	{
+		// 		"x": 2,
+		// 		"y": 1,
+		// 		"w": 1,
+		// 		"h": 1,
+		// 		"url": "virtualbox.desktop",
+		// 		"iconFill": true,
+		// 	},
+		// 	{
+		// 		"x": 2,
+		// 		"y": 0,
+		// 		"w": 1,
+		// 		"h": 1,
+		// 		"url": "org.kde.ark.desktop",
+		// 	},
+		// ]
 	}
 }

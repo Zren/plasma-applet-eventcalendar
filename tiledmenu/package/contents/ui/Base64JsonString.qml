@@ -6,12 +6,18 @@ QtObject {
 	property variant value: { return {} }
 	property variant defaultValue: { return {} }
 	property bool writing: false
+	property bool loadOnConfigChange: true
+	signal loaded()
 
 	Component.onCompleted: {
 		load()
 	}
 
-	onConfigValueChanged: load()
+	onConfigValueChanged: {
+		if (loadOnConfigChange) {
+			load()
+		}
+	}
 
 	function getBase64Json(key, defaultValue) {
 		var val = plasmoid.configuration[key]
@@ -49,13 +55,21 @@ QtObject {
 	}
 
 	function load() {
-		console.log('load')
-		console.log('configKey', configKey)
-		console.log('plasmoid.configuration[key]', plasmoid.configuration[configKey])
+		// console.log('load')
+		// console.log('configKey', configKey)
+		// console.log('plasmoid.configuration[key]', plasmoid.configuration[configKey])
 		value = getBase64Json(configKey, defaultValue)
+		loaded()
+	}
+
+	function save() {
+		// console.log('save')
+		// console.log('configKey', configKey)
+		// console.log('plasmoid.configuration[key]', plasmoid.configuration[configKey])
+		setBase64Json(configKey, value || defaultValue)
 	}
 
 	onValueChanged: {
-		console.log('onValueChanged', configKey, value)
+		// console.log('onValueChanged', configKey, value)
 	}
 }

@@ -17,6 +17,6 @@ QtObject {
 	readonly property int tileH: tile && typeof tile.h !== "undefined" ? tile.h : 2
 
 
-	onTileChanged: console.log('onTileChanged', JSON.stringify(tile))
-	onAppLabelChanged: console.log('onAppLabelChanged', appLabel)
+	// onTileChanged: console.log('onTileChanged', JSON.stringify(tile))
+	// onAppLabelChanged: console.log('onAppLabelChanged', appLabel)
 }

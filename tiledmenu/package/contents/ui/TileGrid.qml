@@ -469,7 +469,4 @@ DragAndDrop.DropArea {
 	}
 
 	signal editTile(var tile)
-	// function editTile(tile) {
-	// 	searchView.tileEditorView.open(tile)
-	// }
 }
