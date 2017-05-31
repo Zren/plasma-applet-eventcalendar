@@ -9,10 +9,11 @@ import org.kde.draganddrop 2.0 as DragAndDrop
 import org.kde.plasma.private.kicker 0.1 as Kicker
 import org.kde.kquickcontrolsaddons 2.0
 
-MouseArea {
+// MouseArea {
+DragAndDrop.DropArea {
 	id: tileGrid
 
-	hoverEnabled: true
+	// hoverEnabled: true
 	property bool isDragging: cellRepeater.dropping
 
 	property int cellSize: 60 * units.devicePixelRatio
@@ -41,9 +42,12 @@ MouseArea {
 	readonly property int dropWidth: draggedItem ? draggedItem.w : addedItem ? addedItem.w : 0
 	readonly property int dropHeight: draggedItem ? draggedItem.h : addedItem ? addedItem.h : 0
 	property bool canDrop: false
-	function resetDrag() {
+	function resetDragHover() {
 		dropHoverX = -1
 		dropHoverY = -1
+	}
+	function resetDrag() {
+		resetDragHover()
 		cellRepeater.dropping = false
 		draggedIndex = -1
 		addedItem = null
@@ -53,6 +57,82 @@ MouseArea {
 		dropHoverX = draggedItem.x
 		dropHoverY = draggedItem.y
 		cellRepeater.dropping = true
+	}
+
+
+	onDrop: {
+		// console.log('onDrop', JSON.stringify(draggedItem))
+		if (draggedItem) {
+			draggedItem.x = dropHoverX
+			draggedItem.y = dropHoverY
+			tileGrid.tileModelChanged()
+			tileGrid.resetDrag()
+			// event.accept(Qt.MoveAction)
+		} else if (addedItem) {
+			addedItem.x = dropHoverX
+			addedItem.y = dropHoverY
+			tileGrid.tileModel.push(addedItem)
+			tileGrid.tileModelChanged()
+			tileGrid.resetDrag()
+		}
+	}
+	function parseDropUrl(url) {
+		var workingDir = Qt.resolvedUrl('.')
+		var endsWithDesktop = url.indexOf('.desktop') === url.length - '.desktop'.length
+		var isRelativeDesktopUrl = endsWithDesktop && (
+			url.indexOf(workingDir) === 0
+			// || url.indexOf('file:///usr/share/applications/') === 0
+			// || url.indexOf('/.local/share/applications/') >= 0
+			|| url.indexOf('/share/applications/') >= 0 // 99% certain this desktop file should be accessed relatively.
+		)
+		console.log('parseDropUrl', workingDir, endsWithDesktop, isRelativeDesktopUrl)
+		console.log('[tiledmenu] onUrlDropped', 'url', url)
+		if (isRelativeDesktopUrl) {
+			// Remove the path because .favoriteId is just the file name.
+			// However passing the favoriteId in mimeData.url will prefix the current QML path because it's a QUrl.
+			var tokens = url.toString().split('/')
+			var favoriteId = tokens[tokens.length-1]
+			console.log('isRelativeDesktopUrl', tokens, favoriteId)
+			return favoriteId
+		} else {
+			return url
+		}
+	}
+
+	function dragTick(event) {
+		var dragX = event.x + scrollView.flickableItem.contentX
+		var dragY = event.y + scrollView.flickableItem.contentY
+		var modelX = Math.floor(dragX / cellBoxSize)
+		var modelY = Math.floor(dragY / cellBoxSize)
+		// console.log('onDragMove', event.x, event.y, modelX, modelY)
+		scrollUpArea.checkContains(event)
+		scrollDownArea.checkContains(event)
+
+		if (draggedItem) {
+		} else if (addedItem) {
+		} else if (event && event.mimeData && event.mimeData.url) {
+			var url = event.mimeData.url.toString()
+			// console.log('new addedItem', event.mimeData.url, url)
+			url = parseDropUrl(url)
+
+			addedItem = newTile(url)
+			dropHoverX = modelX
+			dropHoverY = modelY
+		} else {
+			return
+		}
+
+		dropHoverX = Math.min(modelX, columns - dropWidth)
+		dropHoverY = modelY
+		canDrop = !hits(dropHoverX, dropHoverY, dropWidth, dropHeight)
+	}
+	onDragEnter: dragTick(event)
+	onDragMove: dragTick(event)
+	onDragLeave: {
+		// console.log('onExited')
+		resetDragHover()
+		scrollUpArea.containsDrag = false
+		scrollDownArea.containsDrag = false
 	}
 
 	property color tileDefaultBackgroundColor: config.defaultTileColor
@@ -215,84 +295,6 @@ MouseArea {
 						border.width: 1
 						border.color: tileGrid.editing ? "#44000000" : "transparent"
 					}
-
-
-					// DragAndDrop.DropArea {
-					DropArea {
-						id: cellDropArea
-						anchors.fill: parent
-
-						// onDrop: {
-						onDropped: {
-							// console.log('onDrop', JSON.stringify(draggedItem))
-							if (draggedItem) {
-								draggedItem.x = dropHoverX
-								draggedItem.y = dropHoverY
-								tileGrid.tileModelChanged()
-								tileGrid.resetDrag()
-								// event.accept(Qt.MoveAction)
-							} else if (addedItem) {
-								addedItem.x = dropHoverX
-								addedItem.y = dropHoverY
-								tileGrid.tileModel.push(addedItem)
-								tileGrid.tileModelChanged()
-								tileGrid.resetDrag()
-							}
-
-							
-						}
-						function parseDropUrl(url) {
-							var workingDir = Qt.resolvedUrl('.')
-							var endsWithDesktop = url.indexOf('.desktop') === url.length - '.desktop'.length
-							var isRelativeDesktopUrl = endsWithDesktop && (
-								url.indexOf(workingDir) === 0
-								// || url.indexOf('file:///usr/share/applications/') === 0
-								// || url.indexOf('/.local/share/applications/') >= 0
-								|| url.indexOf('/share/applications/') >= 0 // 99% certain this desktop file should be accessed relatively.
-							)
-							console.log('parseDropUrl', workingDir, endsWithDesktop, isRelativeDesktopUrl)
-							console.log('[tiledmenu] onUrlDropped', 'url', url)
-							if (isRelativeDesktopUrl) {
-								// Remove the path because .favoriteId is just the file name.
-								// However passing the favoriteId in mimeData.url will prefix the current QML path because it's a QUrl.
-								var tokens = url.toString().split('/')
-								var favoriteId = tokens[tokens.length-1]
-								console.log('isRelativeDesktopUrl', tokens, favoriteId)
-								return favoriteId
-							} else {
-								return url
-							}
-						}
-						// onDragEnter: {
-						onEntered: {
-							// http://doc.qt.io/qt-5/qml-qtquick-dragevent.html
-							// console.log('onDragEnter', modelX, modelY)
-							if (draggedItem) {
-							} else if (addedItem) {
-							} else if (drag.hasUrls) {
-								var url = drag.urls[0]
-								url = parseDropUrl(url)
-
-								addedItem = newTile(url)
-								dropHoverX = modelX
-								dropHoverY = modelY
-
-								for (var i = 0; i < drag.keys.length; i++) {
-									var key = drag.keys[i]
-									console.log('drop => addItem', key, drag.getDataAsString(key))
-								}
-
-								// Add new favorite from dolphin/desktop/taskbar.
-								// var favoriteId = favouritesGridView.parseDropUrl(event)
-							} else {
-								return
-							}
-
-							dropHoverX = Math.min(modelX, columns - dropWidth)
-							dropHoverY = modelY
-							canDrop = !hits(dropHoverX, dropHoverY, dropWidth, dropHeight)
-						}
-					}
 				}
 			}
 
@@ -314,16 +316,19 @@ MouseArea {
 	property int scrollAreaTickInterval: 200
 	property int scrollAreaSize: Math.min(cellBoxSize * 1.5, scrollView.height / 5) // 20vh or 90pt
 
-	// Plasma's DropArea requires you to exit the area and reenter for the drop to take.
-	// Qt's DropArea only requires the mouse to move for the cellRepeater's DropArea to detect the drag.
-	DropArea {
+	Item {
 		id: scrollUpArea
 		anchors.left: parent.left
 		anchors.right: parent.right
 		anchors.top: parent.top
 		height: scrollAreaSize
 		enabled: !scrollView.scrollAtTop
+		property bool containsDrag: false
 		property bool ticking: enabled && containsDrag
+
+		function checkContains(event) {
+			containsDrag = scrollUpArea.contains(Qt.point(event.x, event.y))
+		}
 
 		Timer {
 			id: scrollUpTicker
@@ -345,14 +350,20 @@ MouseArea {
 		}
 	}
 
-	DropArea {
+	Item {
 		id: scrollDownArea
 		anchors.left: parent.left
 		anchors.right: parent.right
 		anchors.bottom: parent.bottom
 		height: scrollAreaSize
 		enabled: !scrollView.scrollAtBottom
+		property bool containsDrag: false
 		property bool ticking: enabled && containsDrag
+
+		function checkContains(event) {
+			var mouseY = event.y - (parent.height - height)
+			containsDrag = scrollDownArea.contains(Qt.point(event.x, mouseY))
+		}
 
 		Timer {
 			id: scrollDownTicker
