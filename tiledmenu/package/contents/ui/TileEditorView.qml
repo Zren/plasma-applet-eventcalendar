@@ -29,7 +29,10 @@ ColumnLayout {
 	}
 
 	function resetTile() {
-		delete tile.label
+		delete appObj.tile.label
+		delete appObj.tile.icon
+		appObj.tileChanged()
+		favouritesView.tileModelChanged()
 	}
 
 
