@@ -76,6 +76,12 @@ ColumnLayout {
 		checkable: true
 	}
 
+	TileEditorColorField {
+		title: i18n("Background Color")
+		placeholderText: config.defaultTileColor
+		key: 'backgroundColor'
+	}
+
 	TileEditorRectField {
 		title: i18n("Position / Size")
 	}

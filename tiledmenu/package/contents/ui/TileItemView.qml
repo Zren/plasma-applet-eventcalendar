@@ -9,7 +9,7 @@ import org.kde.draganddrop 2.0 as DragAndDrop
 
 Rectangle {
 	id: tileItemView
-	color: modelData.backgroundColor || tileDefaultBackgroundColor
+	color: appObj.backgroundColor
 
 	// property string appLabel: app ? app.display : ""
 	// property string appUrl: app ? app.url : ""
