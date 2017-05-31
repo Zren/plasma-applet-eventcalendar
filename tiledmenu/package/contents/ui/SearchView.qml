@@ -233,8 +233,17 @@ Item {
 			}
 
 			function close() {
-				resetView()
 				appsView.show()
+			}
+
+			Connections {
+				target: stackView
+
+				onCurrentItemChanged: {
+					if (stackView.currentItem != tileEditorView) {
+						tileEditorView.resetView()
+					}
+				}
 			}
 		}
 
