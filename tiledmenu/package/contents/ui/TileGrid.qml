@@ -121,11 +121,11 @@ MouseArea {
 	function hits(x, y, w, h) {
 		// console.log('hits', [columns,rows], [x,y,w,h], hitBox)
 		for (var j = y; j < y + h; j++) {
-			if (j < 0 || j >= rows) {
+			if (j < 0 || j >= hitBox.length) {
 				continue; // Should we return true when out of bounds?
 			}
 			for (var k = x; k < x + w; k++) {
-				if (k < 0 || k >= columns) {
+				if (k < 0 || k >= hitBox[j].length) {
 					continue; // Should we return true when out of bounds?
 				}
 				if (hitBox[j][k]) {
