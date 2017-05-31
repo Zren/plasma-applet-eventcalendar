@@ -45,6 +45,8 @@ DragAndDrop.DropArea {
 	function resetDragHover() {
 		dropHoverX = -1
 		dropHoverY = -1
+		scrollUpArea.containsDrag = false
+		scrollDownArea.containsDrag = false
 	}
 	function resetDrag() {
 		resetDragHover()
@@ -131,8 +133,6 @@ DragAndDrop.DropArea {
 	onDragLeave: {
 		// console.log('onExited')
 		resetDragHover()
-		scrollUpArea.containsDrag = false
-		scrollDownArea.containsDrag = false
 	}
 
 	property color tileDefaultBackgroundColor: config.defaultTileColor
@@ -322,9 +322,9 @@ DragAndDrop.DropArea {
 		anchors.right: parent.right
 		anchors.top: parent.top
 		height: scrollAreaSize
-		enabled: !scrollView.scrollAtTop
+		property bool active: !scrollView.scrollAtTop
 		property bool containsDrag: false
-		property bool ticking: enabled && containsDrag
+		property bool ticking: active && containsDrag
 
 		function checkContains(event) {
 			containsDrag = scrollUpArea.contains(Qt.point(event.x, event.y))
@@ -356,9 +356,9 @@ DragAndDrop.DropArea {
 		anchors.right: parent.right
 		anchors.bottom: parent.bottom
 		height: scrollAreaSize
-		enabled: !scrollView.scrollAtBottom
+		property bool active: !scrollView.scrollAtBottom
 		property bool containsDrag: false
-		property bool ticking: enabled && containsDrag
+		property bool ticking: active && containsDrag
 
 		function checkContains(event) {
 			var mouseY = event.y - (parent.height - height)
