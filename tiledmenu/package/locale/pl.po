@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: https://github.com/Zren/plasma-applets/tree/master/tiledmenu\n"
-"POT-Creation-Date: 2017-02-20 23:08-0500\n"
+"POT-Creation-Date: 2017-05-31 21:57-0400\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: pl\n"
@@ -19,6 +19,10 @@ msgstr ""
 
 #: ../contents/config/config.qml:26
 msgid "General"
+msgstr ""
+
+#: ../contents/config/config.qml:31
+msgid "Advanced"
 msgstr ""
 
 #: ../contents/ui/AppContextMenu.qml:68
@@ -33,129 +37,157 @@ msgstr ""
 msgid "Pin to Taskbar"
 msgstr ""
 
-#: ../contents/ui/config/ConfigGeneral.qml:24
+#: ../contents/ui/config/ConfigGeneral.qml:26
+msgid "Popup"
+msgstr ""
+
+#: ../contents/ui/config/ConfigGeneral.qml:29
+msgid "Fullscreen"
+msgstr ""
+
+#: ../contents/ui/config/ConfigGeneral.qml:35
 msgid "Panel Icon"
 msgstr ""
 
-#: ../contents/ui/config/ConfigGeneral.qml:74
+#: ../contents/ui/config/ConfigGeneral.qml:85
 msgctxt "@item:inmenu Open icon chooser dialog"
 msgid "Choose..."
 msgstr ""
 
-#: ../contents/ui/config/ConfigGeneral.qml:79
+#: ../contents/ui/config/ConfigGeneral.qml:90
 msgctxt "@item:inmenu Reset icon to default"
 msgid "Clear Icon"
 msgstr ""
 
-#: ../contents/ui/config/ConfigGeneral.qml:111
+#: ../contents/ui/config/ConfigGeneral.qml:122
 msgid "Fixed Size"
 msgstr ""
 
-#: ../contents/ui/config/ConfigGeneral.qml:120
+#: ../contents/ui/config/ConfigGeneral.qml:131
 msgid "Choose an image"
 msgstr ""
 
-#: ../contents/ui/config/ConfigGeneral.qml:125
+#: ../contents/ui/config/ConfigGeneral.qml:136
 msgid "Image Files (*.png *.jpg *.jpeg *.bmp *.svg *.svgz)"
 msgstr ""
 
-#: ../contents/ui/config/ConfigGeneral.qml:136
+#: ../contents/ui/config/ConfigGeneral.qml:147
 msgid "Tiles"
 msgstr ""
 
-#: ../contents/ui/config/ConfigGeneral.qml:158
-msgid "Text Alignment"
+#: ../contents/ui/config/ConfigGeneral.qml:150 ../contents/ui/config/ConfigGeneral.qml:197 ../contents/ui/config/ConfigGeneral.qml:232
+msgid "Desktop Theme (%1)"
 msgstr ""
 
-#: ../contents/ui/config/ConfigGeneral.qml:160
-msgid "Left"
-msgstr ""
-
-#: ../contents/ui/config/ConfigGeneral.qml:161
-msgid "Center"
-msgstr ""
-
-#: ../contents/ui/config/ConfigGeneral.qml:162
-msgid "Right"
+#: ../contents/ui/config/ConfigGeneral.qml:158 ../contents/ui/config/ConfigGeneral.qml:204
+msgid "Custom Color"
 msgstr ""
 
 #: ../contents/ui/config/ConfigGeneral.qml:169
-msgid "Sidebar"
+msgid "Transparent"
+msgstr ""
+
+#: ../contents/ui/config/ConfigGeneral.qml:178
+msgid "Text Alignment"
+msgstr ""
+
+#: ../contents/ui/config/ConfigGeneral.qml:180
+msgid "Left"
+msgstr ""
+
+#: ../contents/ui/config/ConfigGeneral.qml:181
+msgid "Center"
+msgstr ""
+
+#: ../contents/ui/config/ConfigGeneral.qml:182
+msgid "Right"
 msgstr ""
 
 #: ../contents/ui/config/ConfigGeneral.qml:194
+msgid "Sidebar"
+msgstr ""
+
+#: ../contents/ui/config/ConfigGeneral.qml:229
 msgid "Search Box"
 msgstr ""
 
-#: ../contents/ui/config/ConfigGeneral.qml:211
+#: ../contents/ui/config/ConfigGeneral.qml:238
+msgid "Windows (White)"
+msgstr ""
+
+#: ../contents/ui/config/ConfigGeneral.qml:246
 msgid "App List"
 msgstr ""
 
-#: ../contents/ui/config/ConfigGeneral.qml:216
-msgid "App Description"
+#: ../contents/ui/config/ConfigGeneral.qml:251
+msgid "App List Area Width"
 msgstr ""
 
-#: ../contents/ui/config/ConfigGeneral.qml:218
-msgid "Hidden"
-msgstr ""
-
-#: ../contents/ui/config/ConfigGeneral.qml:219
-msgid "After"
-msgstr ""
-
-#: ../contents/ui/config/ConfigGeneral.qml:220
-msgid "Below"
-msgstr ""
-
-#: ../contents/ui/config/ConfigGeneral.qml:232
-msgid "Show recent applications"
-msgstr ""
-
-#: ../contents/ui/config/ConfigGeneral.qml:239
-msgid "Icon Size"
-msgstr ""
-
-#: ../contents/ui/config/ConfigGeneral.qml:240
+#: ../contents/ui/config/ConfigGeneral.qml:252 ../contents/ui/config/ConfigGeneral.qml:283
 msgid "px"
 msgstr ""
 
-#: ../contents/ui/config/ConfigGeneral.qml:255
+#: ../contents/ui/config/ConfigGeneral.qml:259
+msgid "App Description"
+msgstr ""
+
+#: ../contents/ui/config/ConfigGeneral.qml:261
+msgid "Hidden"
+msgstr ""
+
+#: ../contents/ui/config/ConfigGeneral.qml:262
+msgid "After"
+msgstr ""
+
+#: ../contents/ui/config/ConfigGeneral.qml:263
+msgid "Below"
+msgstr ""
+
+#: ../contents/ui/config/ConfigGeneral.qml:275
+msgid "Show recent applications"
+msgstr ""
+
+#: ../contents/ui/config/ConfigGeneral.qml:282
+msgid "Icon Size"
+msgstr ""
+
+#: ../contents/ui/config/ConfigGeneral.qml:298
 msgid "Search Results"
 msgstr ""
 
-#: ../contents/ui/config/ConfigGeneral.qml:259
+#: ../contents/ui/config/ConfigGeneral.qml:302
 msgid "Merged (Application Launcher)"
 msgstr ""
 
-#: ../contents/ui/config/ConfigGeneral.qml:268
+#: ../contents/ui/config/ConfigGeneral.qml:311
 msgid "Split into Categories (Application Menu / Dashboard)"
 msgstr ""
 
-#: ../contents/ui/FavouriteItem.qml:179
-msgid "Edit Tile"
+#: ../contents/ui/lib/AppletVersion.qml:41
+msgid "<b>Version:</b> %1"
 msgstr ""
 
-#: ../contents/ui/Main.qml:225
+#: ../contents/ui/Main.qml:273
 msgid "System Info"
 msgstr ""
 
-#: ../contents/ui/Main.qml:226
+#: ../contents/ui/Main.qml:274
 msgid "Terminal"
 msgstr ""
 
-#: ../contents/ui/Main.qml:228
+#: ../contents/ui/Main.qml:276
 msgid "Task Manager"
 msgstr ""
 
-#: ../contents/ui/Main.qml:229
+#: ../contents/ui/Main.qml:277
 msgid "System Settings"
 msgstr ""
 
-#: ../contents/ui/Main.qml:230
+#: ../contents/ui/Main.qml:278
 msgid "File Manager"
 msgstr ""
 
-#: ../contents/ui/Main.qml:232
+#: ../contents/ui/Main.qml:280
 msgid "Edit Applications..."
 msgstr ""
 
@@ -188,8 +220,72 @@ msgctxt "Search [krunnerName, krunnerName, ...], "
 msgid "Search %1"
 msgstr ""
 
-#: ../contents/ui/SearchResultsView.qml:59
-msgid "More"
+#: ../contents/ui/SearchFiltersViewItem.qml:109 ../contents/ui/SearchFiltersView.qml:30
+msgid "Default"
+msgstr ""
+
+#: ../contents/ui/SearchFiltersView.qml:19
+msgid "All"
+msgstr ""
+
+#: ../contents/ui/SearchFiltersView.qml:20
+msgid "Search with all KRunner plugins"
+msgstr ""
+
+#: ../contents/ui/SearchFiltersView.qml:31
+msgid "Search with user selected defaults"
+msgstr ""
+
+#: ../contents/ui/SearchFiltersView.qml:42
+msgid "Applications"
+msgstr ""
+
+#: ../contents/ui/SearchFiltersView.qml:49
+msgid "Files"
+msgstr ""
+
+#: ../contents/ui/SearchFiltersView.qml:59
+msgid "Music"
+msgstr ""
+
+#: ../contents/ui/SearchFiltersView.qml:67
+msgid "Videos"
+msgstr ""
+
+#: ../contents/ui/SearchFiltersView.qml:77
+msgid "Bookmarks"
+msgstr ""
+
+#: ../contents/ui/SearchFiltersView.qml:84
+msgid "locations"
+msgstr ""
+
+#: ../contents/ui/SearchFiltersView.qml:91
+msgid "Dictionary"
+msgstr ""
+
+#: ../contents/ui/SearchFiltersView.qml:99
+msgid "Shell"
+msgstr ""
+
+#: ../contents/ui/SearchFiltersView.qml:106
+msgid "Calculator"
+msgstr ""
+
+#: ../contents/ui/SearchFiltersView.qml:113
+msgid "Windowed Widgets"
+msgstr ""
+
+#: ../contents/ui/SearchFiltersView.qml:120
+msgid "Date/Time"
+msgstr ""
+
+#: ../contents/ui/SearchFiltersView.qml:127
+msgid "Unit Converter"
+msgstr ""
+
+#: ../contents/ui/SearchResultsView.qml:70
+msgid "Filters"
 msgstr ""
 
 #: ../contents/ui/SearchView.qml:64
@@ -212,22 +308,34 @@ msgstr ""
 msgid "Power"
 msgstr ""
 
-#: ../contents/ui/TileEditorView.qml:63
-msgid "Save"
+#: ../contents/ui/TileEditorView.qml:48 ../contents/ui/TileItem.qml:95
+msgid "Edit Tile"
 msgstr ""
 
-#: ../contents/ui/TileEditorView.qml:72 ../contents/ui/TileEditorWindow.qml:30
-msgid "Size"
+#: ../contents/ui/TileEditorView.qml:52
+msgid "Reset Tile"
 msgstr ""
 
-#: ../contents/ui/TileEditorView.qml:81 ../contents/ui/TileEditorWindow.qml:34
-msgid "Small"
+#: ../contents/ui/TileEditorView.qml:57
+msgid "Close"
 msgstr ""
 
-#: ../contents/ui/TileEditorView.qml:91 ../contents/ui/TileEditorWindow.qml:40
-msgid "Medium"
+#: ../contents/ui/TileEditorView.qml:65
+msgid "Url"
 msgstr ""
 
-#: ../contents/ui/TileEditorView.qml:102 ../contents/ui/TileEditorWindow.qml:46
+#: ../contents/ui/TileEditorView.qml:70
 msgid "Label"
+msgstr ""
+
+#: ../contents/ui/TileEditorView.qml:77
+msgid "Icon"
+msgstr ""
+
+#: ../contents/ui/TileEditorView.qml:84
+msgid "Background Color"
+msgstr ""
+
+#: ../contents/ui/TileEditorView.qml:90
+msgid "Position / Size"
 msgstr ""
