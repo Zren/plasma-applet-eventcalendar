@@ -1,3 +1,7 @@
+## v15 - May 31 2017
+
+* Open the localized version of ~/Music (eg: ~/Musik).
+
 ## v14 - May 31 2017
 
 * Resets tiles. There is no migration path. Sorry.
