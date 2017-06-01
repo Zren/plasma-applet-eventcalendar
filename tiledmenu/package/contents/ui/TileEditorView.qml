@@ -72,7 +72,7 @@ ColumnLayout {
 
 	TileEditorField {
 		title: i18n("Icon")
-		placeholderText: appObj.appIcon ? appObj.appIcon.toString() : ''
+		// placeholderText: appObj.appIcon ? appObj.appIcon.toString() : ''
 		key: 'icon'
 		checkable: true
 	}
