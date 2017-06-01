@@ -23,7 +23,7 @@ GroupBox {
 			Layout.fillWidth: true
 
 			RowLayout {
-				PlasmaComponents.Label { text: i18n("x:") }
+				PlasmaComponents.Label { text: "x:" }
 				TileEditorSpinBox {
 					key: 'x'
 					minimumValue: 0
@@ -31,14 +31,14 @@ GroupBox {
 				}
 			}
 			RowLayout {
-				PlasmaComponents.Label { text: i18n("y:") }
+				PlasmaComponents.Label { text: "y:" }
 				TileEditorSpinBox {
 					key: 'y'
 					minimumValue: 0
 				}
 			}
 			RowLayout {
-				PlasmaComponents.Label { text: i18n("w:") }
+				PlasmaComponents.Label { text: "w:" }
 				TileEditorSpinBox {
 					key: 'w'
 					minimumValue: 1
@@ -46,7 +46,7 @@ GroupBox {
 				}
 			}
 			RowLayout {
-				PlasmaComponents.Label { text: i18n("h:") }
+				PlasmaComponents.Label { text: "h:" }
 				TileEditorSpinBox {
 					key: 'h'
 					minimumValue: 1
@@ -68,7 +68,7 @@ GroupBox {
 					implicitWidth: 20
 					property int w: (modelData % resizeGrid.columns) + 1
 					property int h: Math.floor(modelData / resizeGrid.columns) + 1
-					text: i18n("%1x%2", w, h)
+					text: '' + w + 'x' + h
 					checked: w <= appObj.tileW && h <= appObj.tileH
 					onClicked: {
 						appObj.tile.w = w
