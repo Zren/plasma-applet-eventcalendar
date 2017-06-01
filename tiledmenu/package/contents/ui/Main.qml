@@ -48,6 +48,16 @@ Item {
 		Kicker.WindowSystem {
 			id: windowSystem
 		}
+
+		PlasmaCore.DataSource {
+			id: executable
+			engine: "executable"
+			connectedSources: []
+			onNewData: disconnectSource(sourceName) // cmd finished
+			function exec(cmd) {
+				connectSource(cmd)
+			}
+		}
 	}
 
 	// Workaround for passing the favoriteId to the drop handler.
