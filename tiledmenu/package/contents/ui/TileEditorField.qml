@@ -8,12 +8,16 @@ import org.kde.plasma.core 2.0 as PlasmaCore
 import org.kde.plasma.components 2.0 as PlasmaComponents
 import org.kde.plasma.extras 2.0 as PlasmaExtras
 
+import "lib"
+
 GroupBox {
 	title: "Label"
 	Layout.fillWidth: true
 	property alias placeholderText: textField.placeholderText
 	property alias enabled: textField.enabled
 	property string key: ''
+
+	style: GroupBoxStyle {}
 
 	ColumnLayout {
 		anchors.fill: parent

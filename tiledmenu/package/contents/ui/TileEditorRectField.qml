@@ -8,9 +8,13 @@ import org.kde.plasma.core 2.0 as PlasmaCore
 import org.kde.plasma.components 2.0 as PlasmaComponents
 import org.kde.plasma.extras 2.0 as PlasmaExtras
 
+import "lib"
+
 GroupBox {
 	title: "Label"
 	Layout.fillWidth: true
+
+	style: GroupBoxStyle {}
 
 	RowLayout {
 		anchors.fill: parent
