@@ -1,3 +1,15 @@
+## v14 - May 31 2017
+
+* Resets tiles. There is no migration path. Sorry.
+* Tiles can now be placed on an actual grid, rather than a list of tiles that looks like one.
+* Can now edit the icon, individual tile color, and set the size to anything. Can toggle the icon/text.
+* 1x2, 1x3, 1x4, etc tiles are in a "list" style with the icon to the left of the label.
+* Resets the menu width/height of the popup to default.
+* You can now set the width of the app list.
+* Added option to do a fullscreen popup.
+* Rough implementation of filter dropdown menu in the search results.
+* Updated zh_CN translations.
+
 ## v13 - February 6 2017
 
 * Only support Plasma 5.9+
