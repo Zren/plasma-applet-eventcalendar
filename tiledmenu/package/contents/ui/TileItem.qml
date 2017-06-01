@@ -88,10 +88,8 @@ Item {
 		id: contextMenu
 		onPopulateMenu: {
 			menu.addPinToMenuAction(modelData.url)
-			// // var actionList = favouritesGridView.model.getActionList(index)
-			// console.log('model.hasActionList', model.hasActionList)
-			// console.log('model.actionList', model.actionList)
-			// menu.addActionList(model.actionList, favouritesGridView.model)
+			
+			appObj.addActionList(menu)
 
 			var menuItem = menu.newMenuItem()
 			menuItem.text = i18n("Edit Tile")

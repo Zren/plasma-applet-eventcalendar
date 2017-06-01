@@ -20,4 +20,19 @@ QtObject {
 
 	// onTileChanged: console.log('onTileChanged', JSON.stringify(tile))
 	// onAppLabelChanged: console.log('onAppLabelChanged', appLabel)
+
+	function hasActionList() {
+		return app ? appsModel.tileGridModel.indexHasActionList(app.indexInModel) : false
+	}
+
+	function getActionList() {
+		return app ? appsModel.tileGridModel.getActionListAtIndex(app.indexInModel) : []
+	}
+
+	function addActionList(menu) {
+		if (hasActionList()) {
+			var actionList = getActionList()
+			menu.addActionList(actionList, appsModel.tileGridModel, appObj.app.indexInModel)
+		}
+	}
 }

@@ -39,6 +39,7 @@ Kicker.FavoritesModel {
 			var favoriteId = kickerAppModel.data(modelIndex, Qt.UserRole + 3)
 			if (favoriteId == url) {
 				var app = {}
+				app.indexInModel = i
 				app.favoriteId = favoriteId
 				app.display = kickerAppModel.data(modelIndex, Qt.DisplayRole)
 				app.decoration = kickerAppModel.data(modelIndex, Qt.DecorationRole)
@@ -64,5 +65,17 @@ Kicker.FavoritesModel {
 			}
 		}
 		console.log('runApp', url, 'no index')
+	}
+
+	function indexHasActionList(i) {
+		var modelIndex = kickerAppModel.index(i, 0)
+		var hasActionList = kickerAppModel.data(modelIndex, Qt.UserRole + 8)
+		return hasActionList
+	}
+
+	function getActionListAtIndex(i) {
+		var modelIndex = kickerAppModel.index(i, 0)
+		var actionList = kickerAppModel.data(modelIndex, Qt.UserRole + 9)
+		return actionList
 	}
 }

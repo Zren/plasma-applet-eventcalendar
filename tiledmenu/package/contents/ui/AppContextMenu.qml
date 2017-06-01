@@ -81,7 +81,7 @@ Item {
             }
     
             // // https://github.com/KDE/plasma-desktop/blob/master/applets/taskmanager/package/contents/ui/ContextMenu.qml#L75
-            function addActionList(actionList, listModel) {
+            function addActionList(actionList, listModel, index) {
                 // .desktop file Exec actions
                 // ------
                 // Pin to Taskbar / Desktop / Panel

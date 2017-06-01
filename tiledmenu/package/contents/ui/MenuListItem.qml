@@ -176,7 +176,7 @@ AppToolButton {
 			}
 			if (listView.model.hasActionList(index)) {
 				var actionList = listView.model.getActionList(index)
-				menu.addActionList(actionList, listView.model)
+				menu.addActionList(actionList, listView.model, index)
 			}
 		}
 	}
