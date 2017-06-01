@@ -11,14 +11,6 @@ Rectangle {
 	id: tileItemView
 	color: appObj.backgroundColor
 
-	// property string appLabel: app ? app.display : ""
-	// property string appUrl: app ? app.url : ""
-	// property var appIcon: app ? app.decoration : null
-	// property string labelText: modelData.label || appLabel || appUrl || ""
-	// property var iconSource: modelData.icon || appIcon
-	// property bool iconFill: typeof modelData.iconFill !== "undefined" ? modelData.iconFill : false
-	// property bool showText: typeof modelData.showText !== "undefined" ? modelData.showText : true
-
 	readonly property int smallIconSize: 32 * units.devicePixelRatio
 	readonly property int mediumIconSize: 72 * units.devicePixelRatio
 	readonly property int largeIconSize: 96 * units.devicePixelRatio
@@ -63,20 +55,21 @@ Rectangle {
 
 	PlasmaCore.IconItem {
 		id: icon
+		visible: appObj.showIcon
 		source: appObj.iconSource
 		anchors.verticalCenter: parent.verticalCenter
 		anchors.horizontalCenter: parent.horizontalCenter
 		// property int size: 72 // Just a default, overriden in State change
 		property int size: Math.min(parent.width, parent.height) / 2
-		width: size
-		height: size
+		width: appObj.showIcon ? size : 0
+		height: appObj.showIcon ? size : 0
 		anchors.fill: appObj.iconFill ? parent : null
 		smooth: appObj.iconFill
 	}
 
 	PlasmaComponents.Label {
 		id: label
-		visible: appObj.showText
+		visible: appObj.showLabel
 		text: appObj.labelText
 		anchors.leftMargin: 4
 		anchors.left: parent.left

@@ -29,6 +29,9 @@ ColumnLayout {
 	}
 
 	function resetTile() {
+		delete appObj.tile.showIcon
+		delete appObj.tile.showLabel
+		delete appObj.tile.label
 		delete appObj.tile.label
 		delete appObj.tile.icon
 		delete appObj.tile.backgroundColor
@@ -67,14 +70,14 @@ ColumnLayout {
 		title: i18n("Label")
 		placeholderText: appObj.appLabel
 		key: 'label'
-		checkable: true
+		checkedKey: 'showLabel'
 	}
 
 	TileEditorField {
 		title: i18n("Icon")
 		// placeholderText: appObj.appIcon ? appObj.appIcon.toString() : ''
 		key: 'icon'
-		checkable: true
+		checkedKey: 'showIcon'
 	}
 
 	TileEditorColorField {

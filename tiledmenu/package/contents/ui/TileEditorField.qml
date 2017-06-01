@@ -11,11 +11,36 @@ import org.kde.plasma.extras 2.0 as PlasmaExtras
 import "lib"
 
 GroupBox {
+	id: tileEditorField
 	title: "Label"
 	Layout.fillWidth: true
 	property alias placeholderText: textField.placeholderText
 	property alias enabled: textField.enabled
 	property string key: ''
+	property string checkedKey: ''
+	checkable: checkedKey
+	property bool checkedDefault: true
+
+	property bool updateOnChange: false
+	onCheckedChanged: {
+		if (checkedKey && tileEditorField.updateOnChange) {
+			appObj.tile[checkedKey] = checked
+			appObj.tileChanged()
+			favouritesView.tileModelChanged()
+		}
+	}
+
+	Connections {
+		target: appObj
+
+		onTileChanged: {
+			if (checkedKey && tile) {
+				tileEditorField.updateOnChange = false
+				tileEditorField.checked = typeof appObj.tile[checkedKey] !== "undefined" ? appObj.tile[checkedKey] : checkedDefault
+				tileEditorField.updateOnChange = true
+			}
+		}
+	}
 
 	style: GroupBoxStyle {}
 
@@ -28,7 +53,7 @@ GroupBox {
 			text: key && appObj.tile ? appObj.tile[key] : ''
 			property bool updateOnChange: false
 			onTextChanged: {
-				if (key && updateOnChange) {
+				if (key && textField.updateOnChange) {
 					appObj.tile[key] = text
 					appObj.tileChanged()
 					favouritesView.tileModelChanged()
