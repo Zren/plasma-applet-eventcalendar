@@ -20,7 +20,7 @@ ScrollView {
 		
 		delegate: MenuListItem {
 			secondRowVisible: config.appDescriptionBelow
-			description: config.appDescriptionVisible ? model.description : ''
+			description: config.appDescriptionVisible ? modelDescription : ''
 		}
 		iconSize: config.menuItemHeight
 		showItemUrl: false

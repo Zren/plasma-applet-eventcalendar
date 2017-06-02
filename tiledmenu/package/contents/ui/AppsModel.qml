@@ -477,7 +477,6 @@ Item {
 	}
 
 	function endsWith(s, substr) {
-		// console.log(s, s.indexOf(substr), s.length - substr.length - 1)
 		return s.indexOf(substr) == s.length - substr.length
 	}
 

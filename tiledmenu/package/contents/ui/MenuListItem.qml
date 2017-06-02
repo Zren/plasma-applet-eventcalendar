@@ -11,11 +11,18 @@ AppToolButton {
 	height: row.height
 
 	property var parentModel: typeof modelList !== "undefined" && modelList[index] ? modelList[index].parentModel : undefined
-	property string description: model.url ? model.description : '' // 
-	property string secondRowText: listView.showItemUrl && model.url ? model.url : model.description
+	property string modelDescription: model.name == model.description ? '' : model.description // Ignore the Comment if it's the same as the Name.
+	property string description: model.url ? modelDescription : '' // 
+	property bool isDesktopFile: model.url && endsWith(model.url, '.desktop')
+	property bool showItemUrl: listView.showItemUrl && (!isDesktopFile || listView.showDesktopFileUrl)
+	property string secondRowText: showItemUrl && model.url ? model.url : modelDescription
 	property bool secondRowVisible: secondRowText
 	property string launcherUrl: model.favoriteId || model.url
 	property alias iconSource: itemIcon.source
+
+	function endsWith(s, substr) {
+		return s.indexOf(substr) == s.length - substr.length
+	}
 
 	// We need to look at the js list since ListModel doesn't support item's with non primitive propeties (like an Image).
 	property bool modelListPopulated: !!listView.model.list && listView.model.list.length - 1 >= index
