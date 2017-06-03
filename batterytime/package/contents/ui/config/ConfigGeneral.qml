@@ -6,8 +6,12 @@ import org.kde.plasma.components 2.0 as PlasmaComponents
 import org.kde.plasma.extras 2.0 as PlasmaExtras
 import org.kde.kcoreaddons 1.0 as KCoreAddons
 
+import ".."
+
 ConfigPage {
 	id: page
+
+	AppletConfig { id: config }
 	
 	ConfigSection {
 		label: i18n("Breeze Battery Icon")
@@ -18,14 +22,29 @@ ConfigPage {
 		}
 
 		ConfigColor {
-			value: "#1e1"
-			label: i18n("Charging")
-			enabled: false
+			label: i18n("Normal")
+			configKey: 'normalColor'
+			defaultColor: config.defaultNormalColor
 		}
+
 		ConfigColor {
-			value: "#e11"
-			label: i18n("Low Battery (under 20%)")
-			enabled: false
+			label: i18n("Charging")
+			configKey: 'chargingColor'
+			defaultColor: config.defaultChargingColor
+		}
+		RowLayout {
+			ConfigSpinBox {
+				before: i18n("Low Battery")
+				suffix: '%'
+				configKey: 'lowBatteryPercent'
+				minimumValue: 0
+				maximumValue: 100
+			}
+			ConfigColor {
+				label: ''
+				configKey: 'lowBatteryColor'
+				defaultColor: config.defaultLowBatteryColor
+			}
 		}
 	}
 

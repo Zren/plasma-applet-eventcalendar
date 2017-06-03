@@ -8,6 +8,8 @@ import org.kde.kcoreaddons 1.0 as KCoreAddons
 Item {
 	id: widget
 
+	AppletConfig { id: config }
+
 	// https://github.com/KDE/plasma-workspace/blob/master/dataengines/powermanagement/powermanagementengine.h
 	// https://github.com/KDE/plasma-workspace/blob/master/dataengines/powermanagement/powermanagementengine.cpp
 	PlasmaCore.DataSource {
@@ -86,7 +88,7 @@ Item {
 	// 	}
 	// }
 	Timer {
-		interval: 1000
+		interval: 400
 		running: widget.testing
 		repeat: true
 		onTriggered: {
@@ -117,18 +119,12 @@ Item {
 		}
 	}
 
-	Item {
-		id: config
-		property int lowPowerPercent: 15
-		property color lowPowerColor: '#e33'
-	}
-
-	property bool currentBatteryLowPower: currentBatteryPercent <= config.lowPowerPercent
+	property bool currentBatteryLowPower: currentBatteryPercent <= config.lowBatteryPercent
 	property color currentTextColor: {
 		if (currentBatteryLowPower) {
-			return config.lowPowerColor
+			return config.lowBatteryColor
 		} else {
-			return theme.textColor
+			return config.normalColor
 		}
 	}
 	
@@ -245,6 +241,10 @@ Item {
 					anchors.centerIn: parent
 					charging: currentBatteryState == "Charging"
 					charge: currentBatteryPercent
+					normalColor: config.normalColor
+					chargingColor: config.chargingColor
+					lowBatteryColor: config.lowBatteryColor
+					lowBatteryPercent: plasmoid.configuration.lowBatteryPercent
 				}
 			}
 

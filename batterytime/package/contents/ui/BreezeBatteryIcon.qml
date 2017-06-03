@@ -12,13 +12,17 @@ Item {
 
 	property bool charging: false
 	property int charge: 0
+	property color normalColor: theme.textColor
+	property color chargingColor: "#1e1"
+	property color lowBatteryColor: "#e33"
+	property int lowBatteryPercent: 20
 
 	Rectangle {
 		// Outline
 		anchors.fill: parent
 		anchors.rightMargin: 1
 		color: "transparent"
-		border.color: theme.textColor
+		border.color: normalColor
 
 		Item {
 			anchors.fill: parent
@@ -31,11 +35,11 @@ Item {
 				anchors.bottom: parent.bottom
 				color: {
 					if (charging) {
-						return "#1e1"
-					} else if (charge < 20) {
-						return "#e11"
+						return chargingColor
+					} else if (charge < lowBatteryPercent) {
+						return lowBatteryColor
 					} else {
-						return theme.textColor
+						return normalColor
 					}
 				}
 				width: parent.width * Math.max(0, Math.min(charge, 100)) / 100
@@ -48,6 +52,6 @@ Item {
 		anchors.verticalCenter: parent.verticalCenter
 		height: parent.height / 3
 		width: 1
-		color: theme.textColor
+		color: normalColor
 	}
 }

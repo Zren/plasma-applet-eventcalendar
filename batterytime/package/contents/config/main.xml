@@ -15,6 +15,18 @@
     <entry name="showTimeLeft" type="bool">
       <default>true</default>
     </entry>
+    <entry name="normalColor" type="string">
+      <default></default>
+    </entry>
+    <entry name="chargingColor" type="string">
+      <default></default>
+    </entry>
+    <entry name="lowBatteryColor" type="string">
+      <default></default>
+    </entry>
+    <entry name="lowBatteryPercent" type="int">
+      <default>20</default>
+    </entry>
   </group>
 
 </kcfg>

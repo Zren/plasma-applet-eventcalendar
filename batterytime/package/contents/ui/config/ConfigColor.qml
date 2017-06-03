@@ -19,13 +19,15 @@ RowLayout {
 	property alias horizontalAlignment: label.horizontalAlignment
 
 	property string configKey: ''
-	property string value: configKey ? plasmoid.configuration[configKey] : "#000"
-	onValueChanged: {
+	property string configValue: configKey ? plasmoid.configuration[configKey] : ""
+	property string defaultColor: ''
+	readonly property color value: configValue || defaultColor
+	onConfigValueChanged: {
 		if (!textField.activeFocus) {
-			textField.text = configColor.value
+			textField.text = configColor.configValue
 		}
 		if (configKey) {
-			plasmoid.configuration[configKey] = value
+			plasmoid.configuration[configKey] = configValue
 		}
 	}
 
@@ -64,7 +66,7 @@ RowLayout {
 			if (text.length === 0
 				|| (text.indexOf('#') === 0 && (text.length == 4 || text.length == 7 || text.length == 9))
 			) {
-				configColor.value = text
+				configColor.configValue = text
 			}
 		}
 	}
@@ -78,7 +80,7 @@ RowLayout {
 		color: configColor.value
 		onCurrentColorChanged: {
 			if (visible && color != currentColor) {
-				configColor.value = currentColor
+				configColor.configValue = currentColor
 			}
 		}
 	}
