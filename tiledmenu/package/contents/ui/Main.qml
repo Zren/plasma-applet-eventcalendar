@@ -167,7 +167,7 @@ Item {
 		}
 	}
 
-	// Plasmoid.hideOnWindowDeactivate: !plasmoid.userConfiguring
+	Plasmoid.hideOnWindowDeactivate: !plasmoid.userConfiguring
 	property bool expanded: plasmoid.expanded
 	onExpandedChanged: {
 		if (expanded) {
