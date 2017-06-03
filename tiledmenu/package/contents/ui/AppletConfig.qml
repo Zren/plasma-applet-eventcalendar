@@ -17,9 +17,9 @@ Item {
 	readonly property int appListWidth: plasmoid.configuration.appListWidth * units.devicePixelRatio
 	readonly property int leftSectionWidth: sidebarWidth + appListWidth
 
-	readonly property real tileScale: 0.8
+	readonly property real tileScale: plasmoid.configuration.tileScale
 	readonly property int cellBoxUnits: 80
-	readonly property int cellMarginUnits: 5
+	readonly property int cellMarginUnits: plasmoid.configuration.tileMargin
 	readonly property int cellSizeUnits: cellBoxUnits - cellMarginUnits*2
 	readonly property int cellSize: cellSizeUnits * tileScale * units.devicePixelRatio
 	readonly property real cellMargin: cellMarginUnits * tileScale * units.devicePixelRatio

@@ -146,6 +146,27 @@ ConfigPage {
 	ConfigSection {
 		label: i18n("Tiles")
 
+		RowLayout {
+			visible: false
+			ConfigSpinBox {
+				configKey: 'tileScale'
+				before: i18n("Tile Size")
+				suffix: i18n("x")
+				minimumValue: 0.1
+				maximumValue: 4
+				decimals: 1
+			}
+			Label {
+				text: i18n("%1 px", config.cellBoxSize)
+			}
+		}
+		ConfigSpinBox {
+			configKey: 'tileMargin'
+			before: i18n("Tile Margin")
+			suffix: i18n("px")
+			minimumValue: 0
+			maximumValue: config.cellBoxUnits/2
+		}
 		RadioButton {
 			text: i18n("Desktop Theme (%1)", theme.themeName)
 			exclusiveGroup: tilesThemeGroup

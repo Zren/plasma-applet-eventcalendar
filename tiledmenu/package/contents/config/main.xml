@@ -53,6 +53,12 @@
       <!-- Schema: [{ url: "konsole.desktop", x: 3, y: 0, w: 2, h: 2, label: "Terminal" }, ...] -->
       <default></default>
     </entry>
+    <entry name="tileScale" type="double">
+      <default>0.8</default>
+    </entry>
+    <entry name="tileMargin" type="double">
+      <default>5</default>
+    </entry>
 
     <!-- Colors -->
     <!-- Use empty string instead of color type so that we can use default colors from the color scheme. -->
