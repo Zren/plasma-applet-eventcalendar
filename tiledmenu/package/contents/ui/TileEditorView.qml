@@ -35,6 +35,7 @@ ColumnLayout {
 		delete appObj.tile.label
 		delete appObj.tile.icon
 		delete appObj.tile.backgroundColor
+		delete appObj.tile.backgroundImage
 		appObj.tileChanged()
 		favouritesView.tileModelChanged()
 	}
@@ -67,6 +68,7 @@ ColumnLayout {
 	}
 
 	TileEditorField {
+		id: labelField
 		title: i18n("Label")
 		placeholderText: appObj.appLabel
 		key: 'label'
@@ -74,10 +76,41 @@ ColumnLayout {
 	}
 
 	TileEditorField {
+		id: iconField
 		title: i18n("Icon")
 		// placeholderText: appObj.appIcon ? appObj.appIcon.toString() : ''
 		key: 'icon'
 		checkedKey: 'showIcon'
+	}
+
+	TileEditorField {
+		id: backgroundImageField
+		title: i18n("Background Image")
+		key: 'backgroundImage'
+
+		PlasmaComponents.Button {
+			iconName: 'document-open'
+			onClicked: imagePicker.open()
+
+			FileDialog {
+				id: imagePicker
+
+				title: i18n("Choose an image")
+
+				selectFolder: false
+				selectMultiple: false
+
+				nameFilters: [ i18n("Image Files (*.png *.jpg *.jpeg *.bmp *.svg *.svgz)") ]
+
+				onFileUrlChanged: {
+					backgroundImageField.text = fileUrl
+					if (fileUrl) {
+						labelField.checked = false
+						iconField.checked = false
+					}
+				}
+			}
+		}
 	}
 
 	TileEditorColorField {

@@ -53,6 +53,15 @@ Rectangle {
 		}
 	]
 
+	Image {
+		id: backgroundImage
+		anchors.fill: parent
+		visible: appObj.backgroundImage
+		source: appObj.backgroundImage
+		fillMode: Image.PreserveAspectCrop
+		asynchronous: true
+	}
+
 	PlasmaCore.IconItem {
 		id: icon
 		visible: appObj.showIcon

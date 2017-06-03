@@ -14,12 +14,14 @@ GroupBox {
 	id: tileEditorField
 	title: "Label"
 	Layout.fillWidth: true
+	property alias text: textField.text
 	property alias placeholderText: textField.placeholderText
 	property alias enabled: textField.enabled
 	property string key: ''
 	property string checkedKey: ''
 	checkable: checkedKey
 	property bool checkedDefault: true
+	property Item itemAfter: null
 
 	property bool updateOnChange: false
 	onCheckedChanged: {
@@ -29,6 +31,8 @@ GroupBox {
 			favouritesView.tileModelChanged()
 		}
 	}
+
+	default property alias _contentChildren: content.data
 
 	Connections {
 		target: appObj
@@ -44,7 +48,8 @@ GroupBox {
 
 	style: GroupBoxStyle {}
 
-	ColumnLayout {
+	RowLayout {
+		id: content
 		anchors.fill: parent
 
 		PlasmaComponents.TextField {
@@ -70,6 +75,12 @@ GroupBox {
 						textField.updateOnChange = true
 					}
 				}
+			}
+		}
+
+		Component.onDestruction: {
+			while (children.length > 0) {
+				children[children.length - 1].parent = tileEditorField
 			}
 		}
 	}

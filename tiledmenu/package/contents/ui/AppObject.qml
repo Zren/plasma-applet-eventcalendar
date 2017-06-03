@@ -13,6 +13,7 @@ QtObject {
 	readonly property bool showIcon: tile && typeof tile.showIcon !== "undefined" ? tile.showIcon : true
 	readonly property bool showLabel: tile && typeof tile.showLabel !== "undefined" ? tile.showLabel : true
 	readonly property color backgroundColor: tile && typeof tile.backgroundColor !== "undefined" ? tile.backgroundColor : config.defaultTileColor
+	readonly property string backgroundImage: tile && typeof tile.backgroundImage !== "undefined" ? tile.backgroundImage : ""
 
 	readonly property int tileW: tile && typeof tile.w !== "undefined" ? tile.w : 2
 	readonly property int tileH: tile && typeof tile.h !== "undefined" ? tile.h : 2
