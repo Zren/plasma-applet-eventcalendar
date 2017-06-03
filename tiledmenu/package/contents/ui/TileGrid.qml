@@ -271,7 +271,7 @@ DragAndDrop.DropArea {
 					height: cellBoxSize
 
 					property bool hovered: {
-						if (tileGrid.editing) {
+						if (tileGrid.editing && dropHoverX >= 0 && dropHoverY >= 0) {
 							return dropHoverX <= modelX && modelX < dropHoverX + dropWidth && dropHoverY <= modelY && modelY < dropHoverY + dropHeight
 						} else {
 							return false
