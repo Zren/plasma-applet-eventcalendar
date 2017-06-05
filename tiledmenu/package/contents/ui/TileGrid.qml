@@ -47,12 +47,12 @@ DragAndDrop.DropArea {
 		dropHoverY = -1
 		scrollUpArea.containsDrag = false
 		scrollDownArea.containsDrag = false
+		addedItem = null
 	}
 	function resetDrag() {
 		resetDragHover()
 		cellRepeater.dropping = false
 		draggedIndex = -1
-		addedItem = null
 	}
 	function startDrag(index) {
 		draggedIndex = index
