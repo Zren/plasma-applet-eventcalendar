@@ -8,6 +8,7 @@ Item {
     property QtObject menu
     property Item visualParent
     property bool opened: menu ? (menu.status != PlasmaComponents.DialogStatus.Closed) : false
+    property int tileIndex: -1
 
     signal closed
     signal populateMenu(var menu)
@@ -68,7 +69,11 @@ Item {
                     menuItem.text = i18n("Unpin from Menu")
                     menuItem.icon = "list-remove"
                     menuItem.clicked.connect(function() {
-                        favouritesView.removeApp(favoriteId)
+                        if (root.tileIndex >= 0) {
+                            favouritesView.removeIndex(root.tileIndex)
+                        } else {
+                            favouritesView.removeApp(favoriteId)
+                        }
                     })
                 } else {
                     menuItem.text = i18n("Pin to Menu")

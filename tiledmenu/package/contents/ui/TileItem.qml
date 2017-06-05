@@ -86,6 +86,7 @@ Item {
 
 	AppContextMenu {
 		id: contextMenu
+		tileIndex: index
 		onPopulateMenu: {
 			menu.addPinToMenuAction(modelData.url)
 			
