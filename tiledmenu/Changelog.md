@@ -1,3 +1,12 @@
+## v16 - June 5 2017
+
+* Can now set a background image on a tile.
+* Can edit the margins around the tiles.
+* Apps in search now show their description instead the filepath to the shortcut.
+* Hide the description if it's the same as the app name.
+* Fix a few tile drag glitches when the drag leaves the grid.
+* Only remove the right clicked tile when unpining if there are multiple tiles for an app.
+
 ## v15 - May 31 2017
 
 * Open the localized version of ~/Music (eg: ~/Musik).
