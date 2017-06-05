@@ -16,6 +16,7 @@ ConfigPage {
     // property alias cfg_showOpenKcmAudioVolume: showOpenKcmAudioVolume.checked
     // property alias cfg_showOpenPavucontrol: showOpenPavucontrol.checked
     property alias cfg_moveAllAppsOnSetDefault: moveAllAppsOnSetDefault.checked
+    property alias cfg_closeOnSetDefault: closeOnSetDefault.checked
     property alias cfg_showMediaController: showMediaController.checked
     property alias cfg_showMediaTimeElapsed: showMediaTimeElapsed.checked
     property alias cfg_showMediaTimeLeft: showMediaTimeLeft.checked
@@ -145,6 +146,11 @@ ConfigPage {
             CheckBox {
                 id: moveAllAppsOnSetDefault
                 text: i18n("Move all Apps to device when setting default device (when set in with the context menu)")
+            }
+
+            CheckBox {
+                id: closeOnSetDefault
+                text: i18n("Close the popup after setting a default device")
             }
 
             CheckBox {

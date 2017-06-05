@@ -64,6 +64,9 @@ PlasmaComponents.ListItem {
                     stream.deviceIndex = PulseObject.index;
                 }
             }
+            if (plasmoid.configuration.closeOnSetDefault) {
+                plasmoid.expanded = false
+            }
         }
     }
 

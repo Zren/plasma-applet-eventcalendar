@@ -21,6 +21,9 @@
     <entry name="moveAllAppsOnSetDefault" type="bool">
       <default>true</default>
     </entry>
+    <entry name="closeOnSetDefault" type="bool">
+      <default>true</default>
+    </entry>
     <entry name="showMediaController" type="bool">
       <default>true</default>
     </entry>
