@@ -87,6 +87,9 @@
     <entry name="menuItemHeight" type="int">
       <default>36</default>
     </entry>
+    <entry name="searchFieldHeight" type="int">
+      <default>50</default>
+    </entry>
     <entry name="appListWidth" type="int">
       <default>350</default>
     </entry>

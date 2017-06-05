@@ -36,7 +36,7 @@ Item {
 	readonly property int favMediumIconSize: 72 * units.devicePixelRatio
 	readonly property int favGridWidth: (plasmoid.configuration.favGridCols/2) * favColWidth
 
-	readonly property int searchFieldHeight: 50 * units.devicePixelRatio
+	readonly property int searchFieldHeight: plasmoid.configuration.searchFieldHeight * units.devicePixelRatio
 
 	readonly property int popupWidth: {
 		if (plasmoid.configuration.fullscreen) {

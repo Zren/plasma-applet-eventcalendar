@@ -23,8 +23,6 @@ TextField {
 			return i18nc("Search [krunnerName, krunnerName, ...], ", "Search %1", search.filters)
 		}
 	}
-	// Layout.fillWidth: true
-	// Layout.preferredHeight: 50
 	font.pixelSize: 16 * units.devicePixelRatio // Not the same as pointSize=16
 
 	style: plasmoid.configuration.searchFieldFollowsTheme ? plasmaStyle : redmondStyle
