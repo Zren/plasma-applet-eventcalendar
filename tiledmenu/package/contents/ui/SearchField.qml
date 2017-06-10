@@ -23,7 +23,11 @@ TextField {
 			return i18nc("Search [krunnerName, krunnerName, ...], ", "Search %1", search.filters)
 		}
 	}
-	font.pixelSize: 16 * units.devicePixelRatio // Not the same as pointSize=16
+	property int topMargin: 0
+	property int bottomMargin: 0
+	property int defaultFontSize: 16 * units.devicePixelRatio // Not the same as pointSize=16
+	property int styleMaxFontSize: height - topMargin - bottomMargin
+	font.pixelSize: Math.min(defaultFontSize, styleMaxFontSize)
 
 	style: plasmoid.configuration.searchFieldFollowsTheme ? plasmaStyle : redmondStyle
 	Component {
@@ -32,7 +36,17 @@ TextField {
 		//   file:///usr/lib/x86_64-linux-gnu/qt5/qml/QtQuick/Controls/Styles/Plasma/TextFieldStyle.qml:74: ReferenceError: textField is not defined
 		// Caused by:
 		//   var actionIconSize = Math.max(textField.height * 0.8, units.iconSizes.small);
-		PlasmaStyles.TextFieldStyle {}
+		PlasmaStyles.TextFieldStyle {
+			id: style
+			Component.onCompleted: {
+				searchField.topMargin = Qt.binding(function() {
+					return style.padding.top
+				})
+				searchField.bottomMargin = Qt.binding(function() {
+					return style.padding.bottom
+				})
+			}
+		}
 	}
 	Component {
 		id: redmondStyle
@@ -40,11 +54,22 @@ TextField {
 		// https://github.com/qt/qtquickcontrols/blob/dev/src/controls/Styles/Base/TextFieldStyle.qml
 		// https://github.com/qt/qtquickcontrols/blob/dev/src/controls/Styles/Desktop/TextFieldStyle.qml
 		TextFieldStyle {
+			id: style
+			
 			background: Rectangle {
 				color: "#eee"
 			}
 			textColor: "#111"
 			placeholderTextColor: "#777"
+
+			Component.onCompleted: {
+				searchField.topMargin = Qt.binding(function() {
+					return style.padding.top
+				})
+				searchField.bottomMargin = Qt.binding(function() {
+					return style.padding.bottom
+				})
+			}
 		}
 	}
 
