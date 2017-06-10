@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: eventcalendar \n"
 "Report-Msgid-Bugs-To: https://github.com/Zren/plasma-applets/tree/master/org.kde.plasma.eventcalendar\n"
-"POT-Creation-Date: 2017-04-30 03:01-0400\n"
+"POT-Creation-Date: 2017-06-10 11:25-0400\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: Mathieu Provençal <mth.provencal@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -309,9 +309,7 @@ msgid "The default font for the Breeze theme is Noto Sans which is hard to read 
 msgstr "La police qu'utilise Breeze par défaut est Noto Sans, mais les petits caractères sont difficiles à lire. Essayer Sans Serif si la deuxième ligne paraît illisible."
 
 #: ../contents/ui/config/ConfigGeneral.qml:170
-msgid ""
-"You can also use <b>'&lt;b&gt;'ddd'&lt;/b&gt;'</b> or <b>'&lt;font color=\"#77aaadd\"&gt;'ddd'&lt;/font&gt;'</b> to style a section. Note the single quotes around the tags are used to bypass the "
-"time format."
+msgid "You can also use <b>'&lt;b&gt;'ddd'&lt;/b&gt;'</b> or <b>'&lt;font color=\"#77aaadd\"&gt;'ddd'&lt;/font&gt;'</b> to style a section. Note the single quotes around the tags are used to bypass the time format."
 msgstr ""
 
 #: ../contents/ui/config/ConfigGeneral.qml:176
@@ -539,7 +537,7 @@ msgctxt "event with no summary"
 msgid "(No title)"
 msgstr ""
 
-#: ../contents/ui/ForecastGraph.qml:334
+#: ../contents/ui/ForecastGraph.qml:333
 #, c-format
 msgid "%1mm"
 msgstr "%1mm"
