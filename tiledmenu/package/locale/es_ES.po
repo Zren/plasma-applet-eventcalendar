@@ -1,0 +1,341 @@
+# Translation of tiledmenu in es_ES
+# Copyright (C) 2017
+# This file is distributed under the same license as the tiledmenu package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: tiledmenu \n"
+"Report-Msgid-Bugs-To: https://github.com/Zren/plasma-applets/tree/master/tiledmenu\n"
+"POT-Creation-Date: 2017-05-31 21:57-0400\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: Kepa Badiola <badiol@yahoo.es>\n"
+"Language-Team: Spanish <LL@li.org>\n"
+"Language: es_ES\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../contents/config/config.qml:26
+msgid "General"
+msgstr "General"
+
+#: ../contents/config/config.qml:31
+msgid "Advanced"
+msgstr "Avanzado"
+
+#: ../contents/ui/AppContextMenu.qml:68
+msgid "Unpin from Menu"
+msgstr "Desanclar del Menú"
+
+#: ../contents/ui/AppContextMenu.qml:74
+msgid "Pin to Menu"
+msgstr "Anclar al Menú"
+
+#: ../contents/ui/AppContextMenu.qml:115
+msgid "Pin to Taskbar"
+msgstr "Anclar a la Barra de Tareas"
+
+#: ../contents/ui/config/ConfigGeneral.qml:26
+msgid "Popup"
+msgstr "Mensaje Emergente"
+
+#: ../contents/ui/config/ConfigGeneral.qml:29
+msgid "Fullscreen"
+msgstr "Pantalla Completa"
+
+#: ../contents/ui/config/ConfigGeneral.qml:35
+msgid "Panel Icon"
+msgstr "Icono del Panel"
+
+#: ../contents/ui/config/ConfigGeneral.qml:85
+msgctxt "@item:inmenu Open icon chooser dialog"
+msgid "Choose..."
+msgstr "Elegir..."
+
+#: ../contents/ui/config/ConfigGeneral.qml:90
+msgctxt "@item:inmenu Reset icon to default"
+msgid "Clear Icon"
+msgstr "Limpiar Icono"
+
+#: ../contents/ui/config/ConfigGeneral.qml:122
+msgid "Fixed Size"
+msgstr "Tamaño Fijo"
+
+#: ../contents/ui/config/ConfigGeneral.qml:131
+msgid "Choose an image"
+msgstr "Elegir una Imagen"
+
+#: ../contents/ui/config/ConfigGeneral.qml:136
+msgid "Image Files (*.png *.jpg *.jpeg *.bmp *.svg *.svgz)"
+msgstr "Archivos de Imagen (*.png *.jpg *.jpeg *.bmp *.svg *.svgz)"
+
+#: ../contents/ui/config/ConfigGeneral.qml:147
+msgid "Tiles"
+msgstr "Baldosas"
+
+#: ../contents/ui/config/ConfigGeneral.qml:150 ../contents/ui/config/ConfigGeneral.qml:197 ../contents/ui/config/ConfigGeneral.qml:232
+msgid "Desktop Theme (%1)"
+msgstr "Tema de Escritorio (%1)"
+
+#: ../contents/ui/config/ConfigGeneral.qml:158 ../contents/ui/config/ConfigGeneral.qml:204
+msgid "Custom Color"
+msgstr "Color Personalizado"
+
+#: ../contents/ui/config/ConfigGeneral.qml:169
+msgid "Transparent"
+msgstr "Transparente"
+
+#: ../contents/ui/config/ConfigGeneral.qml:178
+msgid "Text Alignment"
+msgstr "Alineamiento del Texto"
+
+#: ../contents/ui/config/ConfigGeneral.qml:180
+msgid "Left"
+msgstr "Izquierda"
+
+#: ../contents/ui/config/ConfigGeneral.qml:181
+msgid "Center"
+msgstr "Centro"
+
+#: ../contents/ui/config/ConfigGeneral.qml:182
+msgid "Right"
+msgstr "Derecha"
+
+#: ../contents/ui/config/ConfigGeneral.qml:194
+msgid "Sidebar"
+msgstr "Barra Lateral"
+
+#: ../contents/ui/config/ConfigGeneral.qml:229
+msgid "Search Box"
+msgstr "Caja de Búsqueda"
+
+#: ../contents/ui/config/ConfigGeneral.qml:238
+msgid "Windows (White)"
+msgstr "Ventanas (Blanco)"
+
+#: ../contents/ui/config/ConfigGeneral.qml:246
+msgid "App List"
+msgstr "Lista de Aplicaciones"
+
+#: ../contents/ui/config/ConfigGeneral.qml:251
+msgid "App List Area Width"
+msgstr "Ancho del area de la Lista de Aplicaciones"
+
+#: ../contents/ui/config/ConfigGeneral.qml:252 ../contents/ui/config/ConfigGeneral.qml:283
+msgid "px"
+msgstr "px"
+
+#: ../contents/ui/config/ConfigGeneral.qml:259
+msgid "App Description"
+msgstr "Descripción de la Applicación"
+
+#: ../contents/ui/config/ConfigGeneral.qml:261
+msgid "Hidden"
+msgstr "Oculto"
+
+#: ../contents/ui/config/ConfigGeneral.qml:262
+msgid "After"
+msgstr "Después"
+
+#: ../contents/ui/config/ConfigGeneral.qml:263
+msgid "Below"
+msgstr "Debajo"
+
+#: ../contents/ui/config/ConfigGeneral.qml:275
+msgid "Show recent applications"
+msgstr "Mostrar aplicaciones recientes"
+
+#: ../contents/ui/config/ConfigGeneral.qml:282
+msgid "Icon Size"
+msgstr "Tamaño de Icono"
+
+#: ../contents/ui/config/ConfigGeneral.qml:298
+msgid "Search Results"
+msgstr "Resultados de la Búsqueda"
+
+#: ../contents/ui/config/ConfigGeneral.qml:302
+msgid "Merged (Application Launcher)"
+msgstr "Fusionado (Lanzador de Aplicaciones)"
+
+#: ../contents/ui/config/ConfigGeneral.qml:311
+msgid "Split into Categories (Application Menu / Dashboard)"
+msgstr "Dividir en Categorías (Menú de Aplicaciones / Tablero de Mandos)"
+
+#: ../contents/ui/lib/AppletVersion.qml:41
+msgid "<b>Version:</b> %1"
+msgstr "<b>Versión:</b> %1"
+
+#: ../contents/ui/Main.qml:273
+msgid "System Info"
+msgstr "Información del Sistema"
+
+#: ../contents/ui/Main.qml:274
+msgid "Terminal"
+msgstr "Terminal"
+
+#: ../contents/ui/Main.qml:276
+msgid "Task Manager"
+msgstr "Administrador de Tareas"
+
+#: ../contents/ui/Main.qml:277
+msgid "System Settings"
+msgstr "Preferencias del Sistema"
+
+#: ../contents/ui/Main.qml:278
+msgid "File Manager"
+msgstr "Explorador de Archivos"
+
+#: ../contents/ui/Main.qml:280
+msgid "Edit Applications..."
+msgstr "Editar Aplicaciones..."
+
+#: ../contents/ui/Popup.qml:58
+msgid "Resize?"
+msgstr "¿Redimensionar?"
+
+#: ../contents/ui/Popup.qml:59
+msgid "Alt + Right Click to resize the menu."
+msgstr "Alt + Click Derecho para redimensioanr el menú"
+
+#: ../contents/ui/SearchField.qml:15
+msgid "Search"
+msgstr "Buscar"
+
+#: ../contents/ui/SearchField.qml:17
+msgid "Search Apps"
+msgstr "Buscar Aplicaciones"
+
+#: ../contents/ui/SearchField.qml:19
+msgid "Search Files"
+msgstr "Buscar Archivos"
+
+#: ../contents/ui/SearchField.qml:21
+msgid "Search Bookmarks"
+msgstr "Buscar Marcadores"
+
+#: ../contents/ui/SearchField.qml:23
+msgctxt "Search [krunnerName, krunnerName, ...], "
+msgid "Search %1"
+msgstr "Buscar %1"
+
+#: ../contents/ui/SearchFiltersViewItem.qml:109 ../contents/ui/SearchFiltersView.qml:30
+msgid "Default"
+msgstr "Predeterminado"
+
+#: ../contents/ui/SearchFiltersView.qml:19
+msgid "All"
+msgstr "Todo"
+
+#: ../contents/ui/SearchFiltersView.qml:20
+msgid "Search with all KRunner plugins"
+msgstr "Buscar con todos los complementos de KRunner"
+
+#: ../contents/ui/SearchFiltersView.qml:31
+msgid "Search with user selected defaults"
+msgstr "Buscar con los ajustes predeterminados seleccionados por el usuario"
+
+#: ../contents/ui/SearchFiltersView.qml:42
+msgid "Applications"
+msgstr "Aplicaciones"
+
+#: ../contents/ui/SearchFiltersView.qml:49
+msgid "Files"
+msgstr "Archivos"
+
+#: ../contents/ui/SearchFiltersView.qml:59
+msgid "Music"
+msgstr "Música"
+
+#: ../contents/ui/SearchFiltersView.qml:67
+msgid "Videos"
+msgstr "Vídeos"
+
+#: ../contents/ui/SearchFiltersView.qml:77
+msgid "Bookmarks"
+msgstr "Marcadores"
+
+#: ../contents/ui/SearchFiltersView.qml:84
+msgid "locations"
+msgstr "Ubicaciones"
+
+#: ../contents/ui/SearchFiltersView.qml:91
+msgid "Dictionary"
+msgstr "Diccionario"
+
+#: ../contents/ui/SearchFiltersView.qml:99
+msgid "Shell"
+msgstr "Intérprete de Comandos"
+
+#: ../contents/ui/SearchFiltersView.qml:106
+msgid "Calculator"
+msgstr "Calculadora"
+
+#: ../contents/ui/SearchFiltersView.qml:113
+msgid "Windowed Widgets"
+msgstr "Elementos Gráficos en Modo Ventana"
+
+#: ../contents/ui/SearchFiltersView.qml:120
+msgid "Date/Time"
+msgstr "Fecha/Hora"
+
+#: ../contents/ui/SearchFiltersView.qml:127
+msgid "Unit Converter"
+msgstr "Conversor de Unidades"
+
+#: ../contents/ui/SearchResultsView.qml:70
+msgid "Filters"
+msgstr "Filtros"
+
+#: ../contents/ui/SearchView.qml:64
+msgid "Menu"
+msgstr "Menú"
+
+#: ../contents/ui/SearchView.qml:71
+msgid "Apps"
+msgstr "Aplicaciones"
+
+#: ../contents/ui/SearchView.qml:82
+msgid "Categories"
+msgstr "Categorías"
+
+#: ../contents/ui/SearchView.qml:115
+msgid "User Manager"
+msgstr "Administrador de Usuario"
+
+#: ../contents/ui/SearchView.qml:153
+msgid "Power"
+msgstr "Inicio y Apagado"
+
+#: ../contents/ui/TileEditorView.qml:48 ../contents/ui/TileItem.qml:95
+msgid "Edit Tile"
+msgstr "Editar Baldosa"
+
+#: ../contents/ui/TileEditorView.qml:52
+msgid "Reset Tile"
+msgstr "Reiniciar Baldosa"
+
+#: ../contents/ui/TileEditorView.qml:57
+msgid "Close"
+msgstr "Cerrar"
+
+#: ../contents/ui/TileEditorView.qml:65
+msgid "Url"
+msgstr "Url"
+
+#: ../contents/ui/TileEditorView.qml:70
+msgid "Label"
+msgstr "Etiqueta"
+
+#: ../contents/ui/TileEditorView.qml:77
+msgid "Icon"
+msgstr "Icono"
+
+#: ../contents/ui/TileEditorView.qml:84
+msgid "Background Color"
+msgstr "Color de Fondo"
+
+#: ../contents/ui/TileEditorView.qml:90
+msgid "Position / Size"
+msgstr "Posición / Tamaño"
