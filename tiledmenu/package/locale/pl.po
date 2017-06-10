@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: https://github.com/Zren/plasma-applets/tree/master/tiledmenu\n"
-"POT-Creation-Date: 2017-05-31 21:57-0400\n"
+"POT-Creation-Date: 2017-06-09 21:40-0400\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: pl\n"
@@ -25,15 +25,15 @@ msgstr ""
 msgid "Advanced"
 msgstr ""
 
-#: ../contents/ui/AppContextMenu.qml:68
+#: ../contents/ui/AppContextMenu.qml:69
 msgid "Unpin from Menu"
 msgstr ""
 
-#: ../contents/ui/AppContextMenu.qml:74
+#: ../contents/ui/AppContextMenu.qml:79
 msgid "Pin to Menu"
 msgstr ""
 
-#: ../contents/ui/AppContextMenu.qml:115
+#: ../contents/ui/AppContextMenu.qml:120
 msgid "Pin to Taskbar"
 msgstr ""
 
@@ -63,11 +63,11 @@ msgstr ""
 msgid "Fixed Size"
 msgstr ""
 
-#: ../contents/ui/config/ConfigGeneral.qml:131
+#: ../contents/ui/config/ConfigGeneral.qml:131 ../contents/ui/TileEditorView.qml:98
 msgid "Choose an image"
 msgstr ""
 
-#: ../contents/ui/config/ConfigGeneral.qml:136
+#: ../contents/ui/config/ConfigGeneral.qml:136 ../contents/ui/TileEditorView.qml:103
 msgid "Image Files (*.png *.jpg *.jpeg *.bmp *.svg *.svgz)"
 msgstr ""
 
@@ -75,91 +75,107 @@ msgstr ""
 msgid "Tiles"
 msgstr ""
 
-#: ../contents/ui/config/ConfigGeneral.qml:150 ../contents/ui/config/ConfigGeneral.qml:197 ../contents/ui/config/ConfigGeneral.qml:232
-msgid "Desktop Theme (%1)"
+#: ../contents/ui/config/ConfigGeneral.qml:153
+msgid "Tile Size"
 msgstr ""
 
-#: ../contents/ui/config/ConfigGeneral.qml:158 ../contents/ui/config/ConfigGeneral.qml:204
-msgid "Custom Color"
+#: ../contents/ui/config/ConfigGeneral.qml:154
+msgid "x"
 msgstr ""
 
-#: ../contents/ui/config/ConfigGeneral.qml:169
-msgid "Transparent"
+#: ../contents/ui/config/ConfigGeneral.qml:160
+msgid "%1 px"
 msgstr ""
 
-#: ../contents/ui/config/ConfigGeneral.qml:178
-msgid "Text Alignment"
+#: ../contents/ui/config/ConfigGeneral.qml:165
+msgid "Tile Margin"
 msgstr ""
 
-#: ../contents/ui/config/ConfigGeneral.qml:180
-msgid "Left"
-msgstr ""
-
-#: ../contents/ui/config/ConfigGeneral.qml:181
-msgid "Center"
-msgstr ""
-
-#: ../contents/ui/config/ConfigGeneral.qml:182
-msgid "Right"
-msgstr ""
-
-#: ../contents/ui/config/ConfigGeneral.qml:194
-msgid "Sidebar"
-msgstr ""
-
-#: ../contents/ui/config/ConfigGeneral.qml:229
-msgid "Search Box"
-msgstr ""
-
-#: ../contents/ui/config/ConfigGeneral.qml:238
-msgid "Windows (White)"
-msgstr ""
-
-#: ../contents/ui/config/ConfigGeneral.qml:246
-msgid "App List"
-msgstr ""
-
-#: ../contents/ui/config/ConfigGeneral.qml:251
-msgid "App List Area Width"
-msgstr ""
-
-#: ../contents/ui/config/ConfigGeneral.qml:252 ../contents/ui/config/ConfigGeneral.qml:283
+#: ../contents/ui/config/ConfigGeneral.qml:166 ../contents/ui/config/ConfigGeneral.qml:273 ../contents/ui/config/ConfigGeneral.qml:304
 msgid "px"
 msgstr ""
 
+#: ../contents/ui/config/ConfigGeneral.qml:171 ../contents/ui/config/ConfigGeneral.qml:218 ../contents/ui/config/ConfigGeneral.qml:253
+msgid "Desktop Theme (%1)"
+msgstr ""
+
+#: ../contents/ui/config/ConfigGeneral.qml:179 ../contents/ui/config/ConfigGeneral.qml:225
+msgid "Custom Color"
+msgstr ""
+
+#: ../contents/ui/config/ConfigGeneral.qml:190
+msgid "Transparent"
+msgstr ""
+
+#: ../contents/ui/config/ConfigGeneral.qml:199
+msgid "Text Alignment"
+msgstr ""
+
+#: ../contents/ui/config/ConfigGeneral.qml:201
+msgid "Left"
+msgstr ""
+
+#: ../contents/ui/config/ConfigGeneral.qml:202
+msgid "Center"
+msgstr ""
+
+#: ../contents/ui/config/ConfigGeneral.qml:203
+msgid "Right"
+msgstr ""
+
+#: ../contents/ui/config/ConfigGeneral.qml:215
+msgid "Sidebar"
+msgstr ""
+
+#: ../contents/ui/config/ConfigGeneral.qml:250
+msgid "Search Box"
+msgstr ""
+
 #: ../contents/ui/config/ConfigGeneral.qml:259
+msgid "Windows (White)"
+msgstr ""
+
+#: ../contents/ui/config/ConfigGeneral.qml:267
+msgid "App List"
+msgstr ""
+
+#: ../contents/ui/config/ConfigGeneral.qml:272
+msgid "App List Area Width"
+msgstr ""
+
+#: ../contents/ui/config/ConfigGeneral.qml:280
 msgid "App Description"
 msgstr ""
 
-#: ../contents/ui/config/ConfigGeneral.qml:261
+#: ../contents/ui/config/ConfigGeneral.qml:282
 msgid "Hidden"
 msgstr ""
 
-#: ../contents/ui/config/ConfigGeneral.qml:262
+#: ../contents/ui/config/ConfigGeneral.qml:283
 msgid "After"
 msgstr ""
 
-#: ../contents/ui/config/ConfigGeneral.qml:263
+#: ../contents/ui/config/ConfigGeneral.qml:284
 msgid "Below"
 msgstr ""
 
-#: ../contents/ui/config/ConfigGeneral.qml:275
+#: ../contents/ui/config/ConfigGeneral.qml:296
 msgid "Show recent applications"
 msgstr ""
 
-#: ../contents/ui/config/ConfigGeneral.qml:282
+#: ../contents/ui/config/ConfigGeneral.qml:303
 msgid "Icon Size"
 msgstr ""
 
-#: ../contents/ui/config/ConfigGeneral.qml:298
+#: ../contents/ui/config/ConfigGeneral.qml:319
 msgid "Search Results"
 msgstr ""
 
-#: ../contents/ui/config/ConfigGeneral.qml:302
+#: ../contents/ui/config/ConfigGeneral.qml:323
 msgid "Merged (Application Launcher)"
 msgstr ""
 
-#: ../contents/ui/config/ConfigGeneral.qml:311
+#: ../contents/ui/config/ConfigGeneral.qml:332
 msgid "Split into Categories (Application Menu / Dashboard)"
 msgstr ""
 
@@ -167,27 +183,27 @@ msgstr ""
 msgid "<b>Version:</b> %1"
 msgstr ""
 
-#: ../contents/ui/Main.qml:273
+#: ../contents/ui/Main.qml:283
 msgid "System Info"
 msgstr ""
 
-#: ../contents/ui/Main.qml:274
+#: ../contents/ui/Main.qml:284
 msgid "Terminal"
 msgstr ""
 
-#: ../contents/ui/Main.qml:276
+#: ../contents/ui/Main.qml:286
 msgid "Task Manager"
 msgstr ""
 
-#: ../contents/ui/Main.qml:277
+#: ../contents/ui/Main.qml:287
 msgid "System Settings"
 msgstr ""
 
-#: ../contents/ui/Main.qml:278
+#: ../contents/ui/Main.qml:288
 msgid "File Manager"
 msgstr ""
 
-#: ../contents/ui/Main.qml:280
+#: ../contents/ui/Main.qml:290
 msgid "Edit Applications..."
 msgstr ""
 
@@ -308,34 +324,38 @@ msgstr ""
 msgid "Power"
 msgstr ""
 
-#: ../contents/ui/TileEditorView.qml:48 ../contents/ui/TileItem.qml:95
+#: ../contents/ui/TileEditorView.qml:49 ../contents/ui/TileItem.qml:96
 msgid "Edit Tile"
 msgstr ""
 
-#: ../contents/ui/TileEditorView.qml:52
+#: ../contents/ui/TileEditorView.qml:53
 msgid "Reset Tile"
 msgstr ""
 
-#: ../contents/ui/TileEditorView.qml:57
+#: ../contents/ui/TileEditorView.qml:58
 msgid "Close"
 msgstr ""
 
-#: ../contents/ui/TileEditorView.qml:65
+#: ../contents/ui/TileEditorView.qml:66
 msgid "Url"
 msgstr ""
 
-#: ../contents/ui/TileEditorView.qml:70
+#: ../contents/ui/TileEditorView.qml:72
 msgid "Label"
 msgstr ""
 
-#: ../contents/ui/TileEditorView.qml:77
+#: ../contents/ui/TileEditorView.qml:80
 msgid "Icon"
 msgstr ""
 
-#: ../contents/ui/TileEditorView.qml:84
+#: ../contents/ui/TileEditorView.qml:88
+msgid "Background Image"
+msgstr ""
+
+#: ../contents/ui/TileEditorView.qml:117
 msgid "Background Color"
 msgstr ""
 
-#: ../contents/ui/TileEditorView.qml:90
+#: ../contents/ui/TileEditorView.qml:123
 msgid "Position / Size"
 msgstr ""

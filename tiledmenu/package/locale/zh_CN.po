@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: https://github.com/Zren/plasma-applets/tree/master/tiledmenu\n"
-"POT-Creation-Date: 2017-05-31 21:57-0400\n"
+"POT-Creation-Date: 2017-06-09 21:40-0400\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: Lin Mu <linmu789632@gmail.com>\n"
 "Language-Team: Chinese <kde-i18n-doc@kde.org>\n"
@@ -26,15 +26,15 @@ msgstr "一般"
 msgid "Advanced"
 msgstr ""
 
-#: ../contents/ui/AppContextMenu.qml:68
+#: ../contents/ui/AppContextMenu.qml:69
 msgid "Unpin from Menu"
 msgstr "从菜单上移除"
 
-#: ../contents/ui/AppContextMenu.qml:74
+#: ../contents/ui/AppContextMenu.qml:79
 msgid "Pin to Menu"
 msgstr "添加到菜单"
 
-#: ../contents/ui/AppContextMenu.qml:115
+#: ../contents/ui/AppContextMenu.qml:120
 msgid "Pin to Taskbar"
 msgstr "添加到任务栏"
 
@@ -64,11 +64,11 @@ msgstr "清除图标"
 msgid "Fixed Size"
 msgstr "修复尺寸"
 
-#: ../contents/ui/config/ConfigGeneral.qml:131
+#: ../contents/ui/config/ConfigGeneral.qml:131 ../contents/ui/TileEditorView.qml:98
 msgid "Choose an image"
 msgstr "选择一张图片"
 
-#: ../contents/ui/config/ConfigGeneral.qml:136
+#: ../contents/ui/config/ConfigGeneral.qml:136 ../contents/ui/TileEditorView.qml:103
 msgid "Image Files (*.png *.jpg *.jpeg *.bmp *.svg *.svgz)"
 msgstr "图片文件 (*.png *.jpg *.jpeg *.bmp *.svg *.svgz)"
 
@@ -76,91 +76,107 @@ msgstr "图片文件 (*.png *.jpg *.jpeg *.bmp *.svg *.svgz)"
 msgid "Tiles"
 msgstr "磁贴"
 
-#: ../contents/ui/config/ConfigGeneral.qml:150 ../contents/ui/config/ConfigGeneral.qml:197 ../contents/ui/config/ConfigGeneral.qml:232
-msgid "Desktop Theme (%1)"
-msgstr "桌面主题 (%1)"
+#: ../contents/ui/config/ConfigGeneral.qml:153
+msgid "Tile Size"
+msgstr ""
 
-#: ../contents/ui/config/ConfigGeneral.qml:158 ../contents/ui/config/ConfigGeneral.qml:204
-msgid "Custom Color"
-msgstr "自定义颜色"
+#: ../contents/ui/config/ConfigGeneral.qml:154
+msgid "x"
+msgstr ""
 
-#: ../contents/ui/config/ConfigGeneral.qml:169
-msgid "Transparent"
-msgstr "透明"
+#: ../contents/ui/config/ConfigGeneral.qml:160
+msgid "%1 px"
+msgstr ""
 
-#: ../contents/ui/config/ConfigGeneral.qml:178
-msgid "Text Alignment"
-msgstr "文字对齐"
+#: ../contents/ui/config/ConfigGeneral.qml:165
+msgid "Tile Margin"
+msgstr ""
 
-#: ../contents/ui/config/ConfigGeneral.qml:180
-msgid "Left"
-msgstr "左"
-
-#: ../contents/ui/config/ConfigGeneral.qml:181
-msgid "Center"
-msgstr "中"
-
-#: ../contents/ui/config/ConfigGeneral.qml:182
-msgid "Right"
-msgstr "右"
-
-#: ../contents/ui/config/ConfigGeneral.qml:194
-msgid "Sidebar"
-msgstr "侧栏"
-
-#: ../contents/ui/config/ConfigGeneral.qml:229
-msgid "Search Box"
-msgstr "搜索框"
-
-#: ../contents/ui/config/ConfigGeneral.qml:238
-msgid "Windows (White)"
-msgstr "Windows (白色)"
-
-#: ../contents/ui/config/ConfigGeneral.qml:246
-msgid "App List"
-msgstr "应用列表"
-
-#: ../contents/ui/config/ConfigGeneral.qml:251
-msgid "App List Area Width"
-msgstr "应用列表区域宽度"
-
-#: ../contents/ui/config/ConfigGeneral.qml:252 ../contents/ui/config/ConfigGeneral.qml:283
+#: ../contents/ui/config/ConfigGeneral.qml:166 ../contents/ui/config/ConfigGeneral.qml:273 ../contents/ui/config/ConfigGeneral.qml:304
 msgid "px"
 msgstr "像素"
 
+#: ../contents/ui/config/ConfigGeneral.qml:171 ../contents/ui/config/ConfigGeneral.qml:218 ../contents/ui/config/ConfigGeneral.qml:253
+msgid "Desktop Theme (%1)"
+msgstr "桌面主题 (%1)"
+
+#: ../contents/ui/config/ConfigGeneral.qml:179 ../contents/ui/config/ConfigGeneral.qml:225
+msgid "Custom Color"
+msgstr "自定义颜色"
+
+#: ../contents/ui/config/ConfigGeneral.qml:190
+msgid "Transparent"
+msgstr "透明"
+
+#: ../contents/ui/config/ConfigGeneral.qml:199
+msgid "Text Alignment"
+msgstr "文字对齐"
+
+#: ../contents/ui/config/ConfigGeneral.qml:201
+msgid "Left"
+msgstr "左"
+
+#: ../contents/ui/config/ConfigGeneral.qml:202
+msgid "Center"
+msgstr "中"
+
+#: ../contents/ui/config/ConfigGeneral.qml:203
+msgid "Right"
+msgstr "右"
+
+#: ../contents/ui/config/ConfigGeneral.qml:215
+msgid "Sidebar"
+msgstr "侧栏"
+
+#: ../contents/ui/config/ConfigGeneral.qml:250
+msgid "Search Box"
+msgstr "搜索框"
+
 #: ../contents/ui/config/ConfigGeneral.qml:259
+msgid "Windows (White)"
+msgstr "Windows (白色)"
+
+#: ../contents/ui/config/ConfigGeneral.qml:267
+msgid "App List"
+msgstr "应用列表"
+
+#: ../contents/ui/config/ConfigGeneral.qml:272
+msgid "App List Area Width"
+msgstr "应用列表区域宽度"
+
+#: ../contents/ui/config/ConfigGeneral.qml:280
 msgid "App Description"
 msgstr "应用描述"
 
-#: ../contents/ui/config/ConfigGeneral.qml:261
+#: ../contents/ui/config/ConfigGeneral.qml:282
 msgid "Hidden"
 msgstr "隐藏"
 
-#: ../contents/ui/config/ConfigGeneral.qml:262
+#: ../contents/ui/config/ConfigGeneral.qml:283
 msgid "After"
 msgstr "后方"
 
-#: ../contents/ui/config/ConfigGeneral.qml:263
+#: ../contents/ui/config/ConfigGeneral.qml:284
 msgid "Below"
 msgstr "下方"
 
-#: ../contents/ui/config/ConfigGeneral.qml:275
+#: ../contents/ui/config/ConfigGeneral.qml:296
 msgid "Show recent applications"
 msgstr "显示最近运行应用"
 
-#: ../contents/ui/config/ConfigGeneral.qml:282
+#: ../contents/ui/config/ConfigGeneral.qml:303
 msgid "Icon Size"
 msgstr "图标尺寸"
 
-#: ../contents/ui/config/ConfigGeneral.qml:298
+#: ../contents/ui/config/ConfigGeneral.qml:319
 msgid "Search Results"
 msgstr "搜索结果"
 
-#: ../contents/ui/config/ConfigGeneral.qml:302
+#: ../contents/ui/config/ConfigGeneral.qml:323
 msgid "Merged (Application Launcher)"
 msgstr "合并（应用启动器）"
 
-#: ../contents/ui/config/ConfigGeneral.qml:311
+#: ../contents/ui/config/ConfigGeneral.qml:332
 msgid "Split into Categories (Application Menu / Dashboard)"
 msgstr "分类（应用菜单/仪表板）"
 
@@ -168,27 +184,27 @@ msgstr "分类（应用菜单/仪表板）"
 msgid "<b>Version:</b> %1"
 msgstr ""
 
-#: ../contents/ui/Main.qml:273
+#: ../contents/ui/Main.qml:283
 msgid "System Info"
 msgstr "系统信息"
 
-#: ../contents/ui/Main.qml:274
+#: ../contents/ui/Main.qml:284
 msgid "Terminal"
 msgstr "终端"
 
-#: ../contents/ui/Main.qml:276
+#: ../contents/ui/Main.qml:286
 msgid "Task Manager"
 msgstr "任务管理器"
 
-#: ../contents/ui/Main.qml:277
+#: ../contents/ui/Main.qml:287
 msgid "System Settings"
 msgstr "系统设置"
 
-#: ../contents/ui/Main.qml:278
+#: ../contents/ui/Main.qml:288
 msgid "File Manager"
 msgstr "文件管理器"
 
-#: ../contents/ui/Main.qml:280
+#: ../contents/ui/Main.qml:290
 msgid "Edit Applications..."
 msgstr "编辑应用列表"
 
@@ -310,35 +326,39 @@ msgstr "用户管理程序"
 msgid "Power"
 msgstr "电源"
 
-#: ../contents/ui/TileEditorView.qml:48 ../contents/ui/TileItem.qml:95
+#: ../contents/ui/TileEditorView.qml:49 ../contents/ui/TileItem.qml:96
 msgid "Edit Tile"
 msgstr "编辑磁贴"
 
-#: ../contents/ui/TileEditorView.qml:52
+#: ../contents/ui/TileEditorView.qml:53
 msgid "Reset Tile"
 msgstr ""
 
-#: ../contents/ui/TileEditorView.qml:57
+#: ../contents/ui/TileEditorView.qml:58
 msgid "Close"
 msgstr ""
 
-#: ../contents/ui/TileEditorView.qml:65
+#: ../contents/ui/TileEditorView.qml:66
 msgid "Url"
 msgstr ""
 
-#: ../contents/ui/TileEditorView.qml:70
+#: ../contents/ui/TileEditorView.qml:72
 msgid "Label"
 msgstr "标签"
 
-#: ../contents/ui/TileEditorView.qml:77
+#: ../contents/ui/TileEditorView.qml:80
 msgid "Icon"
 msgstr ""
 
-#: ../contents/ui/TileEditorView.qml:84
+#: ../contents/ui/TileEditorView.qml:88
+msgid "Background Image"
+msgstr ""
+
+#: ../contents/ui/TileEditorView.qml:117
 msgid "Background Color"
 msgstr ""
 
-#: ../contents/ui/TileEditorView.qml:90
+#: ../contents/ui/TileEditorView.qml:123
 msgid "Position / Size"
 msgstr ""
 

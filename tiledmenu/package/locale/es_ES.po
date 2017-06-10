@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tiledmenu \n"
 "Report-Msgid-Bugs-To: https://github.com/Zren/plasma-applets/tree/master/tiledmenu\n"
-"POT-Creation-Date: 2017-05-31 21:57-0400\n"
+"POT-Creation-Date: 2017-06-09 21:40-0400\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: Kepa Badiola <badiol@yahoo.es>\n"
 "Language-Team: Spanish <LL@li.org>\n"
@@ -25,15 +25,15 @@ msgstr "General"
 msgid "Advanced"
 msgstr "Avanzado"
 
-#: ../contents/ui/AppContextMenu.qml:68
+#: ../contents/ui/AppContextMenu.qml:69
 msgid "Unpin from Menu"
 msgstr "Desanclar del Menú"
 
-#: ../contents/ui/AppContextMenu.qml:74
+#: ../contents/ui/AppContextMenu.qml:79
 msgid "Pin to Menu"
 msgstr "Anclar al Menú"
 
-#: ../contents/ui/AppContextMenu.qml:115
+#: ../contents/ui/AppContextMenu.qml:120
 msgid "Pin to Taskbar"
 msgstr "Anclar a la Barra de Tareas"
 
@@ -63,11 +63,11 @@ msgstr "Limpiar Icono"
 msgid "Fixed Size"
 msgstr "Tamaño Fijo"
 
-#: ../contents/ui/config/ConfigGeneral.qml:131
+#: ../contents/ui/config/ConfigGeneral.qml:131 ../contents/ui/TileEditorView.qml:98
 msgid "Choose an image"
 msgstr "Elegir una Imagen"
 
-#: ../contents/ui/config/ConfigGeneral.qml:136
+#: ../contents/ui/config/ConfigGeneral.qml:136 ../contents/ui/TileEditorView.qml:103
 msgid "Image Files (*.png *.jpg *.jpeg *.bmp *.svg *.svgz)"
 msgstr "Archivos de Imagen (*.png *.jpg *.jpeg *.bmp *.svg *.svgz)"
 
@@ -75,91 +75,107 @@ msgstr "Archivos de Imagen (*.png *.jpg *.jpeg *.bmp *.svg *.svgz)"
 msgid "Tiles"
 msgstr "Baldosas"
 
-#: ../contents/ui/config/ConfigGeneral.qml:150 ../contents/ui/config/ConfigGeneral.qml:197 ../contents/ui/config/ConfigGeneral.qml:232
-msgid "Desktop Theme (%1)"
-msgstr "Tema de Escritorio (%1)"
+#: ../contents/ui/config/ConfigGeneral.qml:153
+msgid "Tile Size"
+msgstr ""
 
-#: ../contents/ui/config/ConfigGeneral.qml:158 ../contents/ui/config/ConfigGeneral.qml:204
-msgid "Custom Color"
-msgstr "Color Personalizado"
+#: ../contents/ui/config/ConfigGeneral.qml:154
+msgid "x"
+msgstr ""
 
-#: ../contents/ui/config/ConfigGeneral.qml:169
-msgid "Transparent"
-msgstr "Transparente"
+#: ../contents/ui/config/ConfigGeneral.qml:160
+msgid "%1 px"
+msgstr ""
 
-#: ../contents/ui/config/ConfigGeneral.qml:178
-msgid "Text Alignment"
-msgstr "Alineamiento del Texto"
+#: ../contents/ui/config/ConfigGeneral.qml:165
+msgid "Tile Margin"
+msgstr ""
 
-#: ../contents/ui/config/ConfigGeneral.qml:180
-msgid "Left"
-msgstr "Izquierda"
-
-#: ../contents/ui/config/ConfigGeneral.qml:181
-msgid "Center"
-msgstr "Centro"
-
-#: ../contents/ui/config/ConfigGeneral.qml:182
-msgid "Right"
-msgstr "Derecha"
-
-#: ../contents/ui/config/ConfigGeneral.qml:194
-msgid "Sidebar"
-msgstr "Barra Lateral"
-
-#: ../contents/ui/config/ConfigGeneral.qml:229
-msgid "Search Box"
-msgstr "Caja de Búsqueda"
-
-#: ../contents/ui/config/ConfigGeneral.qml:238
-msgid "Windows (White)"
-msgstr "Ventanas (Blanco)"
-
-#: ../contents/ui/config/ConfigGeneral.qml:246
-msgid "App List"
-msgstr "Lista de Aplicaciones"
-
-#: ../contents/ui/config/ConfigGeneral.qml:251
-msgid "App List Area Width"
-msgstr "Ancho del area de la Lista de Aplicaciones"
-
-#: ../contents/ui/config/ConfigGeneral.qml:252 ../contents/ui/config/ConfigGeneral.qml:283
+#: ../contents/ui/config/ConfigGeneral.qml:166 ../contents/ui/config/ConfigGeneral.qml:273 ../contents/ui/config/ConfigGeneral.qml:304
 msgid "px"
 msgstr "px"
 
+#: ../contents/ui/config/ConfigGeneral.qml:171 ../contents/ui/config/ConfigGeneral.qml:218 ../contents/ui/config/ConfigGeneral.qml:253
+msgid "Desktop Theme (%1)"
+msgstr "Tema de Escritorio (%1)"
+
+#: ../contents/ui/config/ConfigGeneral.qml:179 ../contents/ui/config/ConfigGeneral.qml:225
+msgid "Custom Color"
+msgstr "Color Personalizado"
+
+#: ../contents/ui/config/ConfigGeneral.qml:190
+msgid "Transparent"
+msgstr "Transparente"
+
+#: ../contents/ui/config/ConfigGeneral.qml:199
+msgid "Text Alignment"
+msgstr "Alineamiento del Texto"
+
+#: ../contents/ui/config/ConfigGeneral.qml:201
+msgid "Left"
+msgstr "Izquierda"
+
+#: ../contents/ui/config/ConfigGeneral.qml:202
+msgid "Center"
+msgstr "Centro"
+
+#: ../contents/ui/config/ConfigGeneral.qml:203
+msgid "Right"
+msgstr "Derecha"
+
+#: ../contents/ui/config/ConfigGeneral.qml:215
+msgid "Sidebar"
+msgstr "Barra Lateral"
+
+#: ../contents/ui/config/ConfigGeneral.qml:250
+msgid "Search Box"
+msgstr "Caja de Búsqueda"
+
 #: ../contents/ui/config/ConfigGeneral.qml:259
+msgid "Windows (White)"
+msgstr "Ventanas (Blanco)"
+
+#: ../contents/ui/config/ConfigGeneral.qml:267
+msgid "App List"
+msgstr "Lista de Aplicaciones"
+
+#: ../contents/ui/config/ConfigGeneral.qml:272
+msgid "App List Area Width"
+msgstr "Ancho del area de la Lista de Aplicaciones"
+
+#: ../contents/ui/config/ConfigGeneral.qml:280
 msgid "App Description"
 msgstr "Descripción de la Applicación"
 
-#: ../contents/ui/config/ConfigGeneral.qml:261
+#: ../contents/ui/config/ConfigGeneral.qml:282
 msgid "Hidden"
 msgstr "Oculto"
 
-#: ../contents/ui/config/ConfigGeneral.qml:262
+#: ../contents/ui/config/ConfigGeneral.qml:283
 msgid "After"
 msgstr "Después"
 
-#: ../contents/ui/config/ConfigGeneral.qml:263
+#: ../contents/ui/config/ConfigGeneral.qml:284
 msgid "Below"
 msgstr "Debajo"
 
-#: ../contents/ui/config/ConfigGeneral.qml:275
+#: ../contents/ui/config/ConfigGeneral.qml:296
 msgid "Show recent applications"
 msgstr "Mostrar aplicaciones recientes"
 
-#: ../contents/ui/config/ConfigGeneral.qml:282
+#: ../contents/ui/config/ConfigGeneral.qml:303
 msgid "Icon Size"
 msgstr "Tamaño de Icono"
 
-#: ../contents/ui/config/ConfigGeneral.qml:298
+#: ../contents/ui/config/ConfigGeneral.qml:319
 msgid "Search Results"
 msgstr "Resultados de la Búsqueda"
 
-#: ../contents/ui/config/ConfigGeneral.qml:302
+#: ../contents/ui/config/ConfigGeneral.qml:323
 msgid "Merged (Application Launcher)"
 msgstr "Fusionado (Lanzador de Aplicaciones)"
 
-#: ../contents/ui/config/ConfigGeneral.qml:311
+#: ../contents/ui/config/ConfigGeneral.qml:332
 msgid "Split into Categories (Application Menu / Dashboard)"
 msgstr "Dividir en Categorías (Menú de Aplicaciones / Tablero de Mandos)"
 
@@ -167,27 +183,27 @@ msgstr "Dividir en Categorías (Menú de Aplicaciones / Tablero de Mandos)"
 msgid "<b>Version:</b> %1"
 msgstr "<b>Versión:</b> %1"
 
-#: ../contents/ui/Main.qml:273
+#: ../contents/ui/Main.qml:283
 msgid "System Info"
 msgstr "Información del Sistema"
 
-#: ../contents/ui/Main.qml:274
+#: ../contents/ui/Main.qml:284
 msgid "Terminal"
 msgstr "Terminal"
 
-#: ../contents/ui/Main.qml:276
+#: ../contents/ui/Main.qml:286
 msgid "Task Manager"
 msgstr "Administrador de Tareas"
 
-#: ../contents/ui/Main.qml:277
+#: ../contents/ui/Main.qml:287
 msgid "System Settings"
 msgstr "Preferencias del Sistema"
 
-#: ../contents/ui/Main.qml:278
+#: ../contents/ui/Main.qml:288
 msgid "File Manager"
 msgstr "Explorador de Archivos"
 
-#: ../contents/ui/Main.qml:280
+#: ../contents/ui/Main.qml:290
 msgid "Edit Applications..."
 msgstr "Editar Aplicaciones..."
 
@@ -308,34 +324,38 @@ msgstr "Administrador de Usuario"
 msgid "Power"
 msgstr "Inicio y Apagado"
 
-#: ../contents/ui/TileEditorView.qml:48 ../contents/ui/TileItem.qml:95
+#: ../contents/ui/TileEditorView.qml:49 ../contents/ui/TileItem.qml:96
 msgid "Edit Tile"
 msgstr "Editar Baldosa"
 
-#: ../contents/ui/TileEditorView.qml:52
+#: ../contents/ui/TileEditorView.qml:53
 msgid "Reset Tile"
 msgstr "Reiniciar Baldosa"
 
-#: ../contents/ui/TileEditorView.qml:57
+#: ../contents/ui/TileEditorView.qml:58
 msgid "Close"
 msgstr "Cerrar"
 
-#: ../contents/ui/TileEditorView.qml:65
+#: ../contents/ui/TileEditorView.qml:66
 msgid "Url"
 msgstr "Url"
 
-#: ../contents/ui/TileEditorView.qml:70
+#: ../contents/ui/TileEditorView.qml:72
 msgid "Label"
 msgstr "Etiqueta"
 
-#: ../contents/ui/TileEditorView.qml:77
+#: ../contents/ui/TileEditorView.qml:80
 msgid "Icon"
 msgstr "Icono"
 
-#: ../contents/ui/TileEditorView.qml:84
+#: ../contents/ui/TileEditorView.qml:88
+msgid "Background Image"
+msgstr ""
+
+#: ../contents/ui/TileEditorView.qml:117
 msgid "Background Color"
 msgstr "Color de Fondo"
 
-#: ../contents/ui/TileEditorView.qml:90
+#: ../contents/ui/TileEditorView.qml:123
 msgid "Position / Size"
 msgstr "Posición / Tamaño"
