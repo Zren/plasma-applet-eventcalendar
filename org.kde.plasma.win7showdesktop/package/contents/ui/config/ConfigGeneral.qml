@@ -24,6 +24,12 @@ ConfigPage {
     property int indentWidth: 24
 
 
+    function setClickCommand(command) {
+        cfg_click_action = 'run_command'
+        clickGroup_runcommand.checked = true
+        cfg_click_command = command
+    }
+
     function setMouseWheelCommands(up, down) {
         cfg_mousewheel_action = 'run_commands'
         mousewheelGroup_runcommands.checked = true
@@ -79,6 +85,27 @@ ConfigPage {
                 Layout.fillWidth: true
                 id: click_command
             }
+        }
+        RadioButton {
+            exclusiveGroup: clickGroup
+            checked: false
+            text: i18nd("kwin_effects", "Toggle Present Windows (All desktops)")
+            property string command: 'qdbus org.kde.kglobalaccel /component/kwin invokeShortcut "ExposeAll"'
+            onClicked: setClickCommand(command)
+        }
+        RadioButton {
+            exclusiveGroup: clickGroup
+            checked: false
+            text: i18nd("kwin_effects", "Toggle Present Windows (Current desktop)")
+            property string command: 'qdbus org.kde.kglobalaccel /component/kwin invokeShortcut "Expose"'
+            onClicked: setClickCommand(command)
+        }
+        RadioButton {
+            exclusiveGroup: clickGroup
+            checked: false
+            text: i18nd("kwin_effects", "Toggle Present Windows (Window class)")
+            property string command: 'qdbus org.kde.kglobalaccel /component/kwin invokeShortcut "ExposeClass"'
+            onClicked: setClickCommand(command)
         }
     }
 
