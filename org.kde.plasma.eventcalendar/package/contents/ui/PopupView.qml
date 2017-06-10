@@ -498,6 +498,10 @@ Item {
             // logger.debug('onCalendarFetched', calendarId, JSON.stringify(data, null, '\t'))
             popup.deferredUpdateUI()
         }
+        onAllDataFetched: {
+            // logger.log('onAllDataFetched')
+            popup.updateUI()
+        }
         onEventCreated: {
             logger.log('onEventCreated', calendarId, JSON.stringify(data, null, '\t'))
             popup.updateUI()
@@ -652,6 +656,10 @@ Item {
     function updateUI() {
         // logger.debug('updateUI');
         var now = new Date();
+
+        if (updateUITimer.running) {
+            updateUITimer.running = false
+        }
 
         if (monthViewDate.getYear() == now.getYear() && monthViewDate.getMonth() == now.getMonth()) {
             agendaView.showNextNumDays = 14;
