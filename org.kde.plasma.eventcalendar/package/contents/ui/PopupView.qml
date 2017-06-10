@@ -488,7 +488,7 @@ Item {
     Timer {
         id: updateEventsTimer
         interval: 200
-        onTriggered: defferedUpdateEvents()
+        onTriggered: deferredUpdateEvents()
     }
 
     Connections {
@@ -496,7 +496,7 @@ Item {
         onCalendarFetched: {
             logger.log('onCalendarFetched', calendarId)
             // logger.debug('onCalendarFetched', calendarId, JSON.stringify(data, null, '\t'))
-            popup.updateUI()
+            popup.deferredUpdateUI()
         }
         onEventCreated: {
             logger.log('onEventCreated', calendarId, JSON.stringify(data, null, '\t'))
@@ -511,7 +511,7 @@ Item {
             popup.updateUI()
         }
     }
-    function defferedUpdateEvents() {
+    function deferredUpdateEvents() {
         var dateMin = monthView.firstDisplayedDate();
         if (!dateMin) {
             // logger.log('updateEvents', 'no dateMin');
@@ -603,9 +603,9 @@ Item {
     Timer {
         id: updateWeatherTimer
         interval: 100
-        onTriggered: defferedUpdateWeather()
+        onTriggered: deferredUpdateWeather()
     }
-    function defferedUpdateWeather() {
+    function deferredUpdateWeather() {
         updateDailyWeather();
 
         if (popup.showMeteogram) {
@@ -638,6 +638,15 @@ Item {
             currentWeatherData = data.list[0];
             meteogramView.parseWeatherForecast(currentWeatherData, hourlyWeatherData);
         });
+    }
+
+    Timer {
+        id: updateUITimer
+        interval: 100
+        onTriggered: popup.updateUI()
+    }
+    function deferredUpdateUI() {
+        updateUITimer.restart()
     }
 
     function updateUI() {
