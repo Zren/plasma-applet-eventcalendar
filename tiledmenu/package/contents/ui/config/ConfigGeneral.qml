@@ -248,6 +248,13 @@ ConfigPage {
 	ExclusiveGroup { id: searchBoxThemeGroup }
 	ConfigSection {
 		label: i18n("Search Box")
+
+		ConfigSpinBox {
+			configKey: 'searchFieldHeight'
+			before: i18n("Search Field Height")
+			suffix: i18n("px")
+			minimumValue: 0
+		}
 		
 		RadioButton {
 			text: i18n("Desktop Theme (%1)", theme.themeName)
