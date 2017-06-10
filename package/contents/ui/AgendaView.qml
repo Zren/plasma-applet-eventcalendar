@@ -19,6 +19,7 @@ Item {
     property alias agendaListView: agendaListView
 
     property int showNextNumDays: 14
+    property bool showAllDaysInMonth: true
     property bool clipPastEvents: false
     property bool clipPastEventsToday: false
     property bool clipEventsOutsideLimits: true
@@ -98,6 +99,45 @@ Item {
             weatherDescription: "",
             weatherNotes: "",
         };
+    }
+
+    function addAgendaItemIfMissing(agendaItemList, day) {
+        // console.log(day);
+
+        // Check if an agendaItem with this date already exists.
+        var index = -1;
+        for (var i = 0; i < agendaItemList.length; i++) {
+            var agendaItem = agendaItemList[i];
+            if (Shared.isSameDate(day, agendaItem.date)) {
+                index = i;
+                break;
+            }
+        }
+        if (index >= 0) {
+            // It does, so skip.
+            return;
+        }
+
+        // It doesn't, so we need to insert an item.
+        var newAgendaItem = buildAgendaItem(day);
+
+        // Insert before the agendaItem with a higher date.
+        for (var i = 0; i < agendaItemList.length; i++) {
+            var agendaItem = agendaItemList[i];
+            if (Shared.isDateEarlier(day, agendaItem.date)) {
+                index = i;
+                break;
+            }
+        }
+
+        if (index >= 0) {
+            // Insert at index
+            agendaItemList.splice(i, 0, newAgendaItem);
+        } else {
+            // Append
+            agendaItemList.push(newAgendaItem);
+        }
+        // console.log('uneventfulDay:', day);
     }
 
     function parseGCalEvents(data) {
@@ -183,16 +223,15 @@ Item {
         }
 
         var today = new Date(agendaView.currentTime);
-        var nextNumDaysEndExclusive = new Date(currentMonth.getFullYear(), currentMonth.getMonth(), today.getDate() + showNextNumDays);
+        var nextNumDaysEnd = new Date(today.getFullYear(), today.getMonth(), today.getDate() + showNextNumDays);
+        var currentMonthMin = new Date(currentMonth.getFullYear(), currentMonth.getMonth(), 1);
+        var currentMonthMaxExclusive = new Date(currentMonth.getFullYear(), currentMonth.getMonth()+1, 1);
 
         if (clipEventsFromOtherMonths) {
             // Remove calendar from different months
-            var currentMonthMin = new Date(currentMonth.getFullYear(), currentMonth.getMonth(), 1);
-            var currentMonthMaxExclusive = new Date(currentMonth.getFullYear(), currentMonth.getMonth()+1, 1);
-            
             for (var i = 0; i < agendaItemList.length; i++) {
                 var agendaItem = agendaItemList[i];
-                if (agendaItem.date < currentMonthMin || currentMonthMaxExclusive <= agendaItem.date && nextNumDaysEndExclusive <= agendaItem.date) {
+                if (agendaItem.date < currentMonthMin || currentMonthMaxExclusive <= agendaItem.date && nextNumDaysEnd <= agendaItem.date) {
                     // console.log('removed agendaItem:', agendaItem.date)
                     agendaItemList.splice(i, 1);
                     i--;
@@ -200,44 +239,16 @@ Item {
             }
         }
 
+        if (showAllDaysInMonth) {
+            for (var day = new Date(currentMonthMin); day < currentMonthMaxExclusive; day.setDate(day.getDate() + 1)) {
+                addAgendaItemIfMissing(agendaItemList, day)
+            }
+        }
+
         if (showNextNumDays > 0) {
-            for (var day = new Date(today); day <= nextNumDaysEndExclusive; day.setDate(day.getDate() + 1)) {
-                // console.log(day);
-
-                // Check if an agendaItem with this date already exists.
-                var index = -1;
-                for (var i = 0; i < agendaItemList.length; i++) {
-                    var agendaItem = agendaItemList[i];
-                    if (Shared.isSameDate(day, agendaItem.date)) {
-                        index = i;
-                        break;
-                    }
-                }
-                if (index >= 0) {
-                    // It does, so skip.
-                    continue;
-                }
-
-                // It doesn't, so we need to insert an item.
-                var newAgendaItem = buildAgendaItem(new Date(day));
-
-                // Insert before the agendaItem with a higher date.
-                for (var i = 0; i < agendaItemList.length; i++) {
-                    var agendaItem = agendaItemList[i];
-                    if (Shared.isDateEarlier(day, agendaItem.date)) {
-                        index = i;
-                        break;
-                    }
-                }
-
-                if (index >= 0) {
-                    // Insert at index
-                    agendaItemList.splice(i, 0, newAgendaItem);
-                } else {
-                    // Append
-                    agendaItemList.push(newAgendaItem);
-                }
-                // console.log('uneventfulDay:', day);
+            var todayMidnight = new Date(today.getFullYear(), today.getMonth(), today.getDate());
+            for (var day = todayMidnight; day <= nextNumDaysEnd; day.setDate(day.getDate() + 1)) {
+                addAgendaItemIfMissing(agendaItemList, day)
             }
         }
         
