@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: eventcalendar\n"
 "Report-Msgid-Bugs-To: https://github.com/Zren/plasma-applets/tree/master/org.kde.plasma.eventcalendar\n"
-"POT-Creation-Date: 2017-04-30 03:01-0400\n"
+"POT-Creation-Date: 2017-06-10 11:25-0400\n"
 "PO-Revision-Date: 2017-04-29 11:18+0100\n"
 "Last-Translator: Hans-Peter Jansen <hpj@urpla.net>\n"
 "Language-Team: de <hpj@urpla.net>\n"
@@ -310,12 +310,8 @@ msgid "The default font for the Breeze theme is Noto Sans which is hard to read 
 msgstr "Der Standardzeichensatz Noto Sans für Breeze ist bei kleiner Schrift schwer zu lesen. Probiere Sans Serif, wenn der Text in der zweiten Zeile zu klein erscheint."
 
 #: ../contents/ui/config/ConfigGeneral.qml:170
-msgid ""
-"You can also use <b>'&lt;b&gt;'ddd'&lt;/b&gt;'</b> or <b>'&lt;font color=\"#77aaadd\"&gt;'ddd'&lt;/font&gt;'</b> to style a section. Note the single quotes around the tags are used to bypass the "
-"time format."
-msgstr ""
-"Genau so kann <b>'&lt;b&gt;'ddd'&lt;/b&gt;'</b> oder <b>'&lt;font color=\"#77aaadd\"&gt;'ddd'&lt;/font&gt;'</b> zum gestalten eines Bereichs verwendet werden. Die einfachen Anführungszeichen um die "
-"Marken werden zur Unterscheidung mit der Zeitformatierung verwendet."
+msgid "You can also use <b>'&lt;b&gt;'ddd'&lt;/b&gt;'</b> or <b>'&lt;font color=\"#77aaadd\"&gt;'ddd'&lt;/font&gt;'</b> to style a section. Note the single quotes around the tags are used to bypass the time format."
+msgstr "Genau so kann <b>'&lt;b&gt;'ddd'&lt;/b&gt;'</b> oder <b>'&lt;font color=\"#77aaadd\"&gt;'ddd'&lt;/font&gt;'</b> zum gestalten eines Bereichs verwendet werden. Die einfachen Anführungszeichen um die Marken werden zur Unterscheidung mit der Zeitformatierung verwendet."
 
 #: ../contents/ui/config/ConfigGeneral.qml:176
 msgid "Font:"
@@ -544,7 +540,7 @@ msgctxt "event with no summary"
 msgid "(No title)"
 msgstr ""
 
-#: ../contents/ui/ForecastGraph.qml:334
+#: ../contents/ui/ForecastGraph.qml:333
 #, c-format
 msgid "%1mm"
 msgstr "%1mm"

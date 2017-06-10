@@ -33,4 +33,5 @@ Or if you know how to make a pull request
 |-------|-------|-------|
 |Template	|149	|	|
 |fr	|129/149	|86%	|
-|de	|143/149	|95%	|
+|de	|144/149	|96%	|
+|es	|147/149	|98%	|
