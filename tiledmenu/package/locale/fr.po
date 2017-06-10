@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: https://github.com/Zren/plasma-applets/tree/master/tiledmenu\n"
-"POT-Creation-Date: 2017-06-09 21:40-0400\n"
+"POT-Creation-Date: 2017-06-10 11:38-0400\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: fr\n"
@@ -94,11 +94,11 @@ msgstr ""
 msgid "Tile Margin"
 msgstr ""
 
-#: ../contents/ui/config/ConfigGeneral.qml:166 ../contents/ui/config/ConfigGeneral.qml:273 ../contents/ui/config/ConfigGeneral.qml:304
+#: ../contents/ui/config/ConfigGeneral.qml:166 ../contents/ui/config/ConfigGeneral.qml:255 ../contents/ui/config/ConfigGeneral.qml:280 ../contents/ui/config/ConfigGeneral.qml:311
 msgid "px"
 msgstr "px"
 
-#: ../contents/ui/config/ConfigGeneral.qml:171 ../contents/ui/config/ConfigGeneral.qml:218 ../contents/ui/config/ConfigGeneral.qml:253
+#: ../contents/ui/config/ConfigGeneral.qml:171 ../contents/ui/config/ConfigGeneral.qml:218 ../contents/ui/config/ConfigGeneral.qml:260
 msgid "Desktop Theme (%1)"
 msgstr ""
 
@@ -134,52 +134,56 @@ msgstr ""
 msgid "Search Box"
 msgstr ""
 
-#: ../contents/ui/config/ConfigGeneral.qml:259
+#: ../contents/ui/config/ConfigGeneral.qml:254
+msgid "Search Field Height"
+msgstr ""
+
+#: ../contents/ui/config/ConfigGeneral.qml:266
 msgid "Windows (White)"
 msgstr ""
 
-#: ../contents/ui/config/ConfigGeneral.qml:267
+#: ../contents/ui/config/ConfigGeneral.qml:274
 msgid "App List"
 msgstr ""
 
-#: ../contents/ui/config/ConfigGeneral.qml:272
+#: ../contents/ui/config/ConfigGeneral.qml:279
 msgid "App List Area Width"
 msgstr ""
 
-#: ../contents/ui/config/ConfigGeneral.qml:280
+#: ../contents/ui/config/ConfigGeneral.qml:287
 msgid "App Description"
 msgstr ""
 
-#: ../contents/ui/config/ConfigGeneral.qml:282
+#: ../contents/ui/config/ConfigGeneral.qml:289
 msgid "Hidden"
 msgstr "Masqué"
 
-#: ../contents/ui/config/ConfigGeneral.qml:283
+#: ../contents/ui/config/ConfigGeneral.qml:290
 msgid "After"
 msgstr "Après"
 
-#: ../contents/ui/config/ConfigGeneral.qml:284
+#: ../contents/ui/config/ConfigGeneral.qml:291
 msgid "Below"
 msgstr "En-dessous"
 
-#: ../contents/ui/config/ConfigGeneral.qml:296
+#: ../contents/ui/config/ConfigGeneral.qml:303
 msgid "Show recent applications"
 msgstr "Afficher les applications récentes"
 
-#: ../contents/ui/config/ConfigGeneral.qml:303
+#: ../contents/ui/config/ConfigGeneral.qml:310
 #, fuzzy
 msgid "Icon Size"
 msgstr "Taille des icônes"
 
-#: ../contents/ui/config/ConfigGeneral.qml:319
+#: ../contents/ui/config/ConfigGeneral.qml:326
 msgid "Search Results"
 msgstr "Résultats de la recherche"
 
-#: ../contents/ui/config/ConfigGeneral.qml:323
+#: ../contents/ui/config/ConfigGeneral.qml:330
 msgid "Merged (Application Launcher)"
 msgstr ""
 
-#: ../contents/ui/config/ConfigGeneral.qml:332
+#: ../contents/ui/config/ConfigGeneral.qml:339
 msgid "Split into Categories (Application Menu / Dashboard)"
 msgstr ""
 
