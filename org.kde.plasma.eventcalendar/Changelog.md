@@ -1,3 +1,12 @@
+## v47 - June 9 2017
+
+* Add German translation by frispete
+* Add button in the config to simply installing translations (hopefully it works).
+* Ability to set colors in the agenda/meteogram. Only available in the debugging/advanced view for now. A simpler editor will come soonish.
+* Scale meteogram/agenda icons based on the DPI.
+* Show clickable date in agenda for each day in selected month.
+* Wait 100ms after receiving events before updating the interface. Should minimize stuttering when events are loading.
+
 ## v46 - April 27 2017
 
 * Add ability to set the radius of the selected date.
