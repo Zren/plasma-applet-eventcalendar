@@ -1,0 +1,4 @@
+#!/bin/bash
+# Version 4
+
+plasmoidviewer -a package -l topedge -f horizontal
