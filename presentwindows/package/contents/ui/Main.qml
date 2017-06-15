@@ -10,7 +10,7 @@ Item {
 
 	QtObject {
 		id: config
-		property string icon: 'presentwindows'
+		property string icon: 'presentwindows-24px'
 	}
 
 	Plasmoid.onActivated: widget.activate()
