@@ -30,7 +30,7 @@ ConfigPage {
 		}
 		RadioButton {
 			text: i18nd("kwin_effects", "Toggle Present Windows (Window class)")
-			checked: cfg_clickCommand == 'ExposeAll'
+			checked: cfg_clickCommand == 'ExposeClass'
 			exclusiveGroup: clickCommandGroup
 			onClicked: cfg_clickCommand = 'ExposeClass'
 		}
