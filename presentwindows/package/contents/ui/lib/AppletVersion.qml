@@ -20,13 +20,13 @@ Item {
 			var exitStatus = data["exit status"]
 			var stdout = data["stdout"]
 			var stderr = data["stderr"]
-			exited(exitCode, exitStatus, stdout, stderr)
+			exited(sourceName, exitCode, exitStatus, stdout, stderr)
 			disconnectSource(sourceName) // cmd finished
 		}
 		function exec(cmd) {
 			connectSource(cmd)
 		}
-		signal exited(int exitCode, int exitStatus, string stdout, string stderr)
+		signal exited(string command, int exitCode, int exitStatus, string stdout, string stderr)
 	}
 
 	Connections {
