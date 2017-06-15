@@ -3,12 +3,20 @@ import QtQuick.Layouts 1.1
 import org.kde.plasma.plasmoid 2.0
 import org.kde.plasma.core 2.0 as PlasmaCore
 
+import "lib"
+
 Item {
 	id: widget
 
+	QtObject {
+		id: config
+		property string icon: 'presentwindows'
+	}
+
 	Plasmoid.onActivated: widget.activate()
 
-	Plasmoid.compactRepresentation: PlasmaCore.IconItem {
+	Plasmoid.preferredRepresentation: Plasmoid.fullRepresentation
+	Plasmoid.fullRepresentation: AppletIcon {
 		id: icon
 
 		readonly property bool inPanel: (plasmoid.location == PlasmaCore.Types.TopEdge
@@ -41,7 +49,7 @@ Item {
 		Layout.maximumWidth: inPanel ? units.iconSizeHints.panel : -1
 		Layout.maximumHeight: inPanel ? units.iconSizeHints.panel : -1
 
-		source: plasmoid.icon
+		source: config.icon
 		active: mouseArea.containsMouse
 
 		MouseArea {
