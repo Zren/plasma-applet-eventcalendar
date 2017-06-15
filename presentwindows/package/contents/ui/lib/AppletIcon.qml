@@ -7,6 +7,7 @@ Item {
 	property bool active: false
 	readonly property bool usingPackageSvg: svg.isValid()
 	readonly property string filename: source ? plasmoid.file("", "icons/" + source + '.svg') : ""
+	readonly property int minSize: Math.min(width, height)
 
 	PlasmaCore.IconItem {
 		anchors.fill: parent
@@ -17,7 +18,13 @@ Item {
 
 	PlasmaCore.SvgItem {
 		id: svgItem
-		anchors.fill: parent
+		anchors.centerIn: parent
+		readonly property real maxSize: Math.min(naturalSize.width, naturalSize.height)
+		readonly property real widthRatio: naturalSize.width / maxSize
+		readonly property real heightRatio: naturalSize.height / maxSize
+		width: appletIcon.minSize * widthRatio
+		height: appletIcon.minSize * heightRatio
+
 		visible: appletIcon.usingPackageSvg
 		svg: PlasmaCore.Svg {
 			id: svg
