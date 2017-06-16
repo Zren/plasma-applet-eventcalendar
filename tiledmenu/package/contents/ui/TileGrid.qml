@@ -422,9 +422,6 @@ DragAndDrop.DropArea {
 	function findOpenPos(w, h) {
 		for (var y = 0; y < rows; y++) {
 			for (var x = 0; x < columns - (w-1); x++) {
-				if (hitBox[y][x])
-					continue
-
 				if (hits(x, y, w, h))
 					continue
 
