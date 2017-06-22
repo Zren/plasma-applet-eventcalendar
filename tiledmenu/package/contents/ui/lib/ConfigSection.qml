@@ -6,7 +6,7 @@ import QtQuick.Layouts 1.0
 Rectangle {
 	id: control
 	Layout.fillWidth: true
-	default property alias _contentChildren: content.children
+	default property alias _contentChildren: content.data
 	property string label: ""
 
 	color: "#0c000000"
@@ -14,7 +14,7 @@ Rectangle {
 	border.color: "#10000000"
 	// radius: 5
 	property int padding: 8
-	height: childrenRect.height + padding + padding
+	implicitHeight: childrenRect.height + padding + padding
 	property alias spacing: content.spacing
 
 	Label {
@@ -44,8 +44,8 @@ Rectangle {
 		// https://bugreports.qt.io/browse/QTBUG-52490
 		// Still affecting Qt 5.7.0
 		Component.onDestruction: {
-			while (children.length > 0) {
-				children[children.length - 1].parent = control;
+			while (data.length > 0) {
+				data[data.length - 1].parent = control;
 			}
 		}
 	}

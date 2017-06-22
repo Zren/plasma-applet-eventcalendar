@@ -16,8 +16,8 @@ GroupBox {
 		// https://bugreports.qt.io/browse/QTBUG-52490
 		// Still affecting Qt 5.7.0
 		Component.onDestruction: {
-			while (children.length > 0) {
-				children[children.length - 1].parent = configSection
+			while (data.length > 0) {
+				data[data.length - 1].parent = configSection
 			}
 		}
 	}
