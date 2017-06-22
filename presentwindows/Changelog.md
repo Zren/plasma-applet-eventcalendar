@@ -1,3 +1,7 @@
+## v3 - June 22 2017
+
+* Add option to toggle the Desktop Grid Effect.
+
 ## v2 - June 15 2017
 
 * Provide checkbox in the config to quickly enabled the "Present Windows" desktop effect.
