@@ -83,6 +83,10 @@ Item {
 		executable.exec('qdbus org.kde.kglobalaccel /component/kwin invokeShortcut "ExposeClass"')
 	}
 
+	function action_showDesktopGrid() {
+		executable.exec('qdbus org.kde.kglobalaccel /component/kwin invokeShortcut "ShowDesktopGrid"')
+	}
+
 	function activate() {
 		if (plasmoid.configuration.clickCommand == 'ExposeAll') {
 			action_exposeAll()
@@ -90,6 +94,8 @@ Item {
 			action_exposeDesktop()
 		} else if (plasmoid.configuration.clickCommand == 'ExposeClass') {
 			action_exposeWindowClass()
+		} else if (plasmoid.configuration.clickCommand == 'ShowDesktopGrid') {
+			action_showDesktopGrid()
 		}
 	}
 
@@ -97,6 +103,7 @@ Item {
 		plasmoid.setAction("exposeAll", i18n("Present Windows (All desktops)"), "window");
 		plasmoid.setAction("exposeDesktop", i18n("Present Windows (Current desktop)"), "window");
 		plasmoid.setAction("exposeWindowClass", i18n("Present Windows (Window class)"), "window");
+		plasmoid.setAction("showDesktopGrid", i18n("Show Desktop Grid"), "view-grid");
 
 		// plasmoid.action('configure').trigger() // Uncomment to open the config window on load.
 	}

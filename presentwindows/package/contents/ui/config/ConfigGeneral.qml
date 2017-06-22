@@ -11,44 +11,23 @@ ConfigPage {
 
 	property string cfg_clickCommand
 
-	ExecUtil {
-		id: executable
-		property string readStateCommand: 'qdbus org.kde.KWin /Effects isEffectLoaded presentwindows'
-		property string toggleStateCommand: 'qdbus org.kde.KWin /Effects toggleEffect presentwindows'
-
-		function readState() {
-			executable.exec(readStateCommand)
-		}
-		function toggleState() {
-			executable.exec(toggleStateCommand)
-		}
-		Component.onCompleted: {
-			readState()
-		}
-
-		onExited: {
-			if (command == readStateCommand) {
-				var value = executable.trimOutput(stdout)
-				value = !!value // cast to boolean
-				kwin_presentwindowsEnabled.checked = value
-			} else if (command == toggleStateCommand) {
-				readState()
-			}
+	DesktopEffectToggle {
+		id: presentWindowsToggle
+		label: i18n("Present Windows Effect")
+		effectId: 'presentwindows'
+		Label {
+			visible: presentWindowsToggle.loaded && !presentWindowsToggle.effectEnabled
+			text: i18n("Button will not work when the Present Windows desktop effect is disabled.")
 		}
 	}
-	
-	ConfigSection {
-		label: i18n("Present Windows Effect")
 
-		CheckBox {
-			id: kwin_presentwindowsEnabled
-			text: i18n("Enabled")
-			onClicked: {
-				executable.toggleState()
-			}
-		}
+	DesktopEffectToggle {
+		id: showDesktopGridToggle
+		label: i18n("Show Desktop Grid Effect")
+		effectId: 'desktopgrid'
 		Label {
-			text: i18n("Button will not work when Present Windows Desktop Effect is disabled.")
+			visible: showDesktopGridToggle.loaded && !showDesktopGridToggle.effectEnabled
+			text: i18n("Button will not work when the Desktop Grid desktop effect is disabled.")
 		}
 	}
 
@@ -74,6 +53,12 @@ ConfigPage {
 			checked: cfg_clickCommand == 'ExposeClass'
 			exclusiveGroup: clickCommandGroup
 			onClicked: cfg_clickCommand = 'ExposeClass'
+		}
+		RadioButton {
+			text: i18nd("kwin_effects", "Toggle Desktop Grid")
+			checked: cfg_clickCommand == 'ShowDesktopGrid'
+			exclusiveGroup: clickCommandGroup
+			onClicked: cfg_clickCommand = 'ShowDesktopGrid'
 		}
 	}
 
