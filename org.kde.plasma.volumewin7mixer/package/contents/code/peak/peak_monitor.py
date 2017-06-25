@@ -12,9 +12,10 @@ from lib_pulseaudio import *
 
 class PeakMonitor(object):
 
-    def __init__(self, stream_type, stream_name, rate):
+    def __init__(self, stream_type, stream_name, stream_index=-1, rate=30):
         self.stream_type = stream_type
         self.stream_name = stream_name
+        self.stream_index = stream_index
         self.rate = rate
 
         if stream_type == 'sink':
@@ -23,9 +24,17 @@ class PeakMonitor(object):
         elif stream_type == 'source':
             self.fn_pa_stream_info_cb_t = pa_source_info_cb_t
             self.fn_pa_context_get_stream_info_list = pa_context_get_source_info_list
-        # elif stream_type == 'sourceoutput':
-        #     self.fn_pa_stream_info_cb_t = pa_source_output_info_cb_t
-        #     self.fn_pa_context_get_stream_info_list = pa_context_get_source_output_info_list
+
+        # sinkinput and sourceoutput are bacically the same as sink/source but we pass a stream_index.
+        # TODO: Test if protocol version is >= 13
+        # https://github.com/pulseaudio/pavucontrol/blob/574139c10e70b63874bcb75fe4cdfd1f4644ad68/src/mainwindow.cc#L750
+        # if (pa_context_get_server_protocol_version(get_context()) >= 13)
+        elif stream_type == 'sinkinput':
+            self.fn_pa_stream_info_cb_t = pa_sink_info_cb_t
+            self.fn_pa_context_get_stream_info_list = pa_context_get_sink_info_list
+        elif stream_type == 'sourceoutput':
+            self.fn_pa_stream_info_cb_t = pa_source_info_cb_t
+            self.fn_pa_context_get_stream_info_list = pa_context_get_source_info_list
         else:
             raise Exception("%0 stream_type must be [sink, source]" % stream_type)
 
@@ -78,10 +87,12 @@ class PeakMonitor(object):
 
         sink_info = sink_info_p.contents
         # print 'sink seen: %s / %s' % (sink_info.name, sink_info.description)
+        # print 'sink seen: [%s] %s' % (sink_info.index, sink_info.name)
 
         if sink_info.name == self.stream_name:
             # Found the sink we want to monitor for peak levels.
             # Tell PA to call stream_read_cb with peak samples.
+            # Eg: https://github.com/pulseaudio/pavucontrol/blob/574139c10e70b63874bcb75fe4cdfd1f4644ad68/src/mainwindow.cc#L574
             samplespec = pa_sample_spec()
             samplespec.channels = 1
             samplespec.format = PA_SAMPLE_U8
@@ -91,6 +102,12 @@ class PeakMonitor(object):
             pa_stream_set_read_callback(pa_stream,
                                         self._stream_read_cb,
                                         sink_info.index)
+
+            # sinkinput and sourceoutput
+            if self.stream_index != -1:
+                pa_stream_set_monitor_stream(pa_stream, self.stream_index)
+                # print('pa_stream_set_monitor_stream', self.stream_index)
+
             flags = PA_STREAM_DONT_MOVE | PA_STREAM_PEAK_DETECT | PA_STREAM_ADJUST_LATENCY
             pa_stream_connect_record(pa_stream,
                                      self.getMonitorName(sink_info),
@@ -113,12 +130,10 @@ class PeakMonitor(object):
 
     def getMonitorName(self, stream_info):
         # self.logStreamInfo(stream_info)
-        if self.stream_type == 'sink':
+        if self.stream_type == 'sink' or self.stream_type == 'sinkinput':
             return stream_info.monitor_source_name
-        elif self.stream_type == 'source':
+        elif self.stream_type == 'source' or self.stream_type == 'sourceoutput':
             return stream_info.name
-        # elif self.stream_type == 'sourceoutput':
-        #     return stream_info.name
         else:
             raise NotImplementedError()
 
@@ -138,7 +153,8 @@ if __name__ == '__main__':
     import sys
     stream_type = sys.argv[1].lower()
     stream_name = sys.argv[2]
-    peak = PeakMonitor(stream_type, stream_name, 30)
+    stream_index = int(sys.argv[3]) if len(sys.argv) >= 4 else -1
+    peak = PeakMonitor(stream_type, stream_name, stream_index=stream_index, rate=30)
     for sample in peak:
         # samples = 0..127
         # 65536 = PulseAudio.NormalVolume = 100%
