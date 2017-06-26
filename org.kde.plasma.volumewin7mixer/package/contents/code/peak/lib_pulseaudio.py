@@ -2,6 +2,8 @@
 # by Vincent Breitmoser, released under LGPL
 # https://github.com/Valodim/python-pulseaudio
 
+# I (Zren) modified __all__ to export STRING
+
 # generation commands
 # h2xml.py -I $PWD -c -o pa.xml pulse/mainloop-api.h pulse/sample.h pulse/def.h pulse/operation.h pulse/context.h pulse/channelmap.h pulse/volume.h pulse/stream.h pulse/introspect.h pulse/subscribe.h pulse/scache.h pulse/version.h pulse/error.h pulse/xmalloc.h pulse/utf8.h pulse/thread-mainloop.h pulse/mainloop.h pulse/mainloop-signal.h pulse/util.h pulse/timeval.h
 # xml2py.py -k efstd -o lib_pulseaudio.py -l 'pulse' -r '(pa|PA)_.+' pa.xml
@@ -2190,4 +2192,5 @@ __all__ = ['pa_context_set_name',
            'PA_PROP_WINDOW_HEIGHT', 'pa_format_info_valid',
            'pa_signal_event', 'pa_sink_input_info',
            'pa_sample_format_to_string', 'pa_format_info_snprint',
-           'pa_context_success_cb_t', 'pa_buffer_attr']
+           'pa_context_success_cb_t', 'pa_buffer_attr',
+           'STRING']
