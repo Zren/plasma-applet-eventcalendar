@@ -11,29 +11,9 @@ VolumePeaks {
 		var command = ''
 
 		if (mixerItem.mixerItemType == 'Sink' || mixerItem.mixerItemType == 'Source') {
-			command = "python2 " + filename + " " + mixerItem.mixerItemType + " \"" + PulseObject.name + "\""
-		} else if (mixerItem.mixerItemType == 'SinkInput') {
-			// console.log('SinkInput', PulseObject.index, PulseObject.name, PulseObject.deviceIndex)
-			for (var i = 0; i < filteredSinkModel.count; i++) {
-				var sink = filteredSinkModel.get(i);
-				sink = sink.PulseObject;
-				// console.log('\t', i, sink, sink.name, sink.index)
-				if (PulseObject.deviceIndex == sink.index) {
-					command = "python2 " + filename + " " + mixerItem.mixerItemType + " \"" + sink.name + "\" " + PulseObject.index
-					break;
-				}
-			}
-		} else if (mixerItem.mixerItemType == 'SourceOutput') {
-			console.log('SourceOutput', PulseObject.index, PulseObject.name, PulseObject.deviceIndex)
-			for (var i = 0; i < filteredSourceModel.count; i++) {
-				var source = filteredSourceModel.get(i);
-				source = source.PulseObject;
-				// console.log('\t', i, source, source.name, source.index)
-				if (PulseObject.deviceIndex == source.index) {
-					command = "python2 " + filename + " " + mixerItem.mixerItemType + " \"" + source.name + "\" " + PulseObject.index
-					break;
-				}
-			}
+			command = "python2 " + filename + " " + mixerItem.mixerItemType + " " + PulseObject.index
+		} else if (mixerItem.mixerItemType == 'SinkInput' || mixerItem.mixerItemType == 'SourceOutput') {
+			command = "python2 " + filename + " " + mixerItem.mixerItemType + " " + PulseObject.deviceIndex + " " + PulseObject.index
 		}
 
 		// console.log("filename", filename)
