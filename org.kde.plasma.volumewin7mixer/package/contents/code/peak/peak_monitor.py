@@ -139,7 +139,21 @@ class PeakMonitor(object):
 
     def stream_read_cb(self, stream, length, index_incr):
         data = c_void_p()
-        pa_stream_peek(stream, data, c_ulong(length))
+        
+        if pa_stream_peek(stream, data, c_ulong(length)) < 0:
+            print("Failed to read data from stream")
+            return
+
+        if not data:
+            # NULL data means either a hole or empty buffer
+            # Only drop the stream when there is a hole (length > 0)
+            if length:
+                pa_stream_drop(stream)
+            return
+
+        assert(length > 0)
+        assert(length % sizeof(c_ubyte) == 0)
+
         data = cast(data, POINTER(c_ubyte))
         for i in xrange(length):
             # When PA_SAMPLE_U8 is used, samples values range from 128
