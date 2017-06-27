@@ -31,6 +31,7 @@ PlasmaComponents.ListItem {
     readonly property string canShowChannels: hasChannels && ("" + PulseObject.channels != "QVariant(QList<qlonglong>)") // Plasma 5.9 and below used QList<qlonglong> which is unreadable.
     property bool showChannels: false
     readonly property bool hasModuleLoopback: PulseObjectCommands.hasLoopbackModuleId(PulseObject)
+    readonly property bool hasModuleEchoCancel: PulseObjectCommands.hasEchoCancelModuleId(PulseObject)
 
     Keys.onUpPressed: PulseObjectCommands.increaseVolume(PulseObject)
     Keys.onDownPressed: PulseObjectCommands.decreaseVolume(PulseObject)
@@ -647,9 +648,21 @@ PlasmaComponents.ListItem {
                 }
             }
 
-            // Module Loopback
+            // Modules: Source
             if (mixerItemType == 'Source') {
                 contextMenu.addMenuItem(newSeperator());
+
+                // module-echo-cancel
+                var menuItem = newMenuItem();
+                menuItem.text = i18n("Echo Cancellation");
+                menuItem.checkable = true;
+                menuItem.checked = mixerItem.hasModuleEchoCancel;
+                menuItem.clicked.connect(function() {
+                    PulseObjectCommands.toggleModuleEchoCancel(PulseObject)
+                });
+                contextMenu.addMenuItem(menuItem);
+
+                // module-loopback
                 var menuItem = newMenuItem();
                 menuItem.text = i18n("Listen to Device");
                 menuItem.checkable = true;

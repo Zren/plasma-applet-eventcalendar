@@ -55,20 +55,37 @@ function decreaseVolume(pulseObject) {
 }
 
 
-// module-loopback
-// https://www.freedesktop.org/wiki/Software/PulseAudio/Documentation/User/Modules/#module-loopback
-// We use source.properties['loopback.moduleid'] != -1 serialize the state.
-function getLoopbackModuleId(pulseObject) {
+// module toggle utils
+function getProperty(pulseObject, key, defaultValue) {
     // Not necessarily a Source
     if (typeof PulseObject.properties === "undefined")
-        return;
+        return defaultValue;
 
-    var moduleId = PulseObject.properties['loopback.moduleid']
-    if (moduleId) {
-        return parseInt(moduleId, 10)
+    var value = PulseObject.properties[key];
+    if (value) {
+        return parseInt(value, 10);
     } else {
-        return -1
+        return defaultValue;
     }
+}
+
+function setSourceProperty(sourceId, key, value) {
+    var command = 'pacmd update-source-proplist ' + sourceId + ' ' + key + '="' + value + '"'
+    console.log('setSourceProperty.command', command)
+    executable.exec(command)
+}
+
+function disableModule(moduleId) {
+    var command = 'pactl unload-module ' + moduleId
+    console.log('disableModule.command', command)
+    executable.exec(command)
+}
+
+// module-loopback
+// https://www.freedesktop.org/wiki/Software/PulseAudio/Documentation/User/Modules/#module-loopback
+// We use source.properties['loopback.module_id'] != -1 serialize the state.
+function getLoopbackModuleId(pulseObject) {
+    return getProperty(pulseObject, 'loopback.module_id', -1)
 }
 function hasLoopbackModuleId(pulseObject) {
     return getLoopbackModuleId(pulseObject) >= 0
@@ -76,10 +93,10 @@ function hasLoopbackModuleId(pulseObject) {
 function toggleModuleLoopback(pulseObject) {
     var moduleId = getLoopbackModuleId(pulseObject)
     if (moduleId >= 0) {
-        PulseObjectCommands.disableModuleLoopback(moduleId)
-        PulseObjectCommands.setLoopbackProperties(pulseObject.index, -1)
+        disableModule(moduleId)
+        setSourceProperty(pulseObject.index, 'loopback.module_id', -1)
     } else {
-        PulseObjectCommands.enableModuleLoopback(pulseObject.index)
+        enableModuleLoopback(pulseObject.index)
     }
 }
 
@@ -98,18 +115,42 @@ function loadModuleLoopbackCallback(sourceId, command, exitCode, exitStatus, std
     console.log('LoopbackCallback.sourceId', sourceId)
     var moduleId = executable.trimOutput(stdout)
     console.log('LoopbackCallback.moduleId', moduleId)
-    // disableModuleLoopback(moduleId)
-    setLoopbackProperties(sourceId, moduleId)
+    setSourceProperty(sourceId, 'loopback.module_id', moduleId)
 }
 
-function setLoopbackProperties(sourceId, moduleId) {
-    var command = 'pacmd update-source-proplist ' + sourceId + ' loopback.moduleid="' + moduleId + '"'
-    console.log('setLoopbackProperties.command', command)
-    executable.exec(command)
+
+// module-echo-cancel
+// https://www.freedesktop.org/wiki/Software/PulseAudio/Documentation/User/Modules/#module-echo-cancel
+// We use source.properties['echo_cancel.module_id'] != -1 serialize the state.
+function getEchoCancelModuleId(pulseObject) {
+    return getProperty(pulseObject, 'echo_cancel.module_id', -1)
+}
+function hasEchoCancelModuleId(pulseObject) {
+    return getEchoCancelModuleId(pulseObject) >= 0
+}
+function toggleModuleEchoCancel(pulseObject) {
+    var moduleId = getEchoCancelModuleId(pulseObject)
+    if (moduleId >= 0) {
+        disableModule(moduleId)
+        setSourceProperty(pulseObject.index, 'echo_cancel.module_id', -1)
+    } else {
+        enableModuleEchoCancel(pulseObject.index)
+    }
 }
 
-function disableModuleLoopback(moduleId) {
-    var command = 'pactl unload-module ' + moduleId
-    console.log('disableModuleLoopback.command', command)
-    executable.exec(command)
+function enableModuleEchoCancel(sourceId) {
+    var command = 'pactl load-module module-echo-cancel'
+    command += ' source_master=' + sourceId
+    command += ' source_properties="echo_cancel.source=' + sourceId + '"'
+    command += ' sink_properties="echo_cancel.source=' + sourceId + '"'
+    console.log('enableModuleEchoCancel.command', command)
+    var callback = loadModuleEchoCancelCallback.bind(null, sourceId)
+    executable.execAwait(command, callback)
+}
+
+function loadModuleEchoCancelCallback(sourceId, command, exitCode, exitStatus, stdout, stderr) {
+    console.log('EchoCancelCallback.sourceId', sourceId)
+    var moduleId = executable.trimOutput(stdout)
+    console.log('EchoCancelCallback.moduleId', moduleId)
+    setSourceProperty(sourceId, 'echo_cancel.module_id', moduleId)
 }
