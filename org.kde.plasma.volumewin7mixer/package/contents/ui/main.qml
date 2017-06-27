@@ -311,21 +311,21 @@ Item {
     // property int volumeSliderWidth: 50
 
     // https://github.com/KDE/plasma-pa/tree/master/src/kcm/package/contents/ui
-    PulseObjectFilterModel {
+    DynamicFilterModel {
         id: appsModel
         sourceModel: SinkInputModel {}
     }
-    PulseObjectFilterModel {
+    DynamicFilterModel {
         id: appOutputsModel
         sourceModel: SourceOutputModel {}
     }
-    PulseObjectFilterModel {
+    DynamicFilterModel {
         id: filteredSourceModel
         sourceModel: SourceModel {
             id: sourceModel
         }
     }
-    PulseObjectFilterModel {
+    DynamicFilterModel {
         id: filteredSinkModel
         sourceModel: SinkModel {
             id: sinkModel
