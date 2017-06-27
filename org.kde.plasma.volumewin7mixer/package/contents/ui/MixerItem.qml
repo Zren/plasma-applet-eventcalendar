@@ -30,6 +30,7 @@ PlasmaComponents.ListItem {
     readonly property int numChannels: hasChannels ? PulseObject.channels.length : 0
     readonly property string canShowChannels: hasChannels && ("" + PulseObject.channels != "QVariant(QList<qlonglong>)") // Plasma 5.9 and below used QList<qlonglong> which is unreadable.
     property bool showChannels: false
+    readonly property bool hasModuleLoopback: PulseObjectCommands.hasLoopbackModuleId(PulseObject)
 
     Keys.onUpPressed: PulseObjectCommands.increaseVolume(PulseObject)
     Keys.onDownPressed: PulseObjectCommands.decreaseVolume(PulseObject)
@@ -644,6 +645,19 @@ PlasmaComponents.ListItem {
                     menuItem.clicked.connect(setActivePort(i));
                     contextMenu.addMenuItem(menuItem);
                 }
+            }
+
+            // Module Loopback
+            if (mixerItemType == 'Source') {
+                contextMenu.addMenuItem(newSeperator());
+                var menuItem = newMenuItem();
+                menuItem.text = i18n("Listen to Device");
+                menuItem.checkable = true;
+                menuItem.checked = mixerItem.hasModuleLoopback;
+                menuItem.clicked.connect(function() {
+                    PulseObjectCommands.toggleModuleLoopback(PulseObject)
+                });
+                contextMenu.addMenuItem(menuItem);
             }
 
             // Properties

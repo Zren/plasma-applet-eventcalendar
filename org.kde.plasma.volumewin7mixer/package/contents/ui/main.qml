@@ -34,6 +34,7 @@ import org.kde.plasma.private.volume 0.1
 
 import "../code/icon.js" as Icon
 import "../code/sinkcommands.js" as PulseObjectCommands
+import "lib"
 
 Item {
     id: main
@@ -280,13 +281,8 @@ Item {
         }
     }
 
-    PlasmaCore.DataSource {
+    ExecUtil {
         id: executable
-        engine: "executable"
-        onNewData: disconnectSource(sourceName)
-        function exec(cmd) {
-            connectSource(cmd)
-        }
     }
 
     VolumeOSD {
