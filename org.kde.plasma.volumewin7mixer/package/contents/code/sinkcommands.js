@@ -81,6 +81,10 @@ function disableModule(moduleId) {
     executable.exec(command)
 }
 
+function hasIdProperty(pulseObject, key) {
+    return getProperty(pulseObject, key, -1) >= 0
+}
+
 // module-loopback
 // https://www.freedesktop.org/wiki/Software/PulseAudio/Documentation/User/Modules/#module-loopback
 // We use source.properties['loopback.module_id'] != -1 serialize the state.

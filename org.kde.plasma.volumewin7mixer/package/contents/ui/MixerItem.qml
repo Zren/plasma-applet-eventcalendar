@@ -655,6 +655,7 @@ PlasmaComponents.ListItem {
                 // module-echo-cancel
                 var menuItem = newMenuItem();
                 menuItem.text = i18n("Echo Cancellation");
+                menuItem.enabled = !PulseObjectCommands.hasIdProperty(PulseObject, 'echo_cancel.source');
                 menuItem.checkable = true;
                 menuItem.checked = mixerItem.hasModuleEchoCancel;
                 menuItem.clicked.connect(function() {
@@ -665,6 +666,7 @@ PlasmaComponents.ListItem {
                 // module-loopback
                 var menuItem = newMenuItem();
                 menuItem.text = i18n("Listen to Device");
+                menuItem.enabled = !PulseObjectCommands.hasIdProperty(PulseObject, 'loopback.source');
                 menuItem.checkable = true;
                 menuItem.checked = mixerItem.hasModuleLoopback;
                 menuItem.clicked.connect(function() {
