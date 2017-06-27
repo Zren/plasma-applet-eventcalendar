@@ -120,6 +120,7 @@ GroupBox {
             mixerItemWidth: mixerItemGroup.mixerItemWidth
             volumeSliderWidth: mixerItemGroup.volumeSliderWidth
             mixerItemType: mixerItemGroup.mixerGroupType
+            showDefaultDeviceIndicator: mixerItemGroup.model.count > 1
         }
 
         currentIndex: -1

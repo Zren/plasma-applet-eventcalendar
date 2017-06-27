@@ -183,6 +183,15 @@ PlasmaComponents.ListItem {
     property string label: labelFor(PulseObject.name)
 
     property var name
+
+    property bool showDefaultDeviceIndicator: false
+    property bool isDefaultDevice: {
+        if (typeof PulseObject.default === 'boolean') {
+            return PulseObject.default
+        } else {
+            return false
+        }
+    }
     property bool usingDefaultDevice: {
         if (typeof PulseObject.deviceIndex !== 'undefined') {
             if (mixerItemType == 'SinkInput') {
@@ -328,7 +337,15 @@ PlasmaComponents.ListItem {
                         // anchors.fill: parent
                         width: parent.width
                         iconItemSource: mixerItem.icon
-                        iconItemOverlays: mixerItem.usingDefaultDevice ? [] : ['emblem-unlocked']
+                        iconItemOverlays: {
+                            if (mixerItem.showDefaultDeviceIndicator && mixerItem.isDefaultDevice) {
+                                return ['emblem-checked']
+                            } else if (mixerItem.usingDefaultDevice) {
+                                return []
+                            } else {
+                                return ['emblem-unlocked']
+                            }
+                        }
                         iconItemHeight: mixerItem.volumeSliderWidth
                         labelText: mixerItem.label
 
