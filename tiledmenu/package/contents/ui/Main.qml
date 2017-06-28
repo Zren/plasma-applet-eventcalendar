@@ -6,7 +6,6 @@ import org.kde.plasma.core 2.0 as PlasmaCore
 import org.kde.plasma.plasmoid 2.0
 import org.kde.plasma.private.kicker 0.1 as Kicker
 import org.kde.kcoreaddons 1.0 as KCoreAddons
-import org.kde.draganddrop 2.0 as DragAndDrop
 
 Item {
 	id: widget
@@ -101,70 +100,9 @@ Item {
 		}
 	}
 
-	Plasmoid.compactRepresentation: Item {
+	Plasmoid.compactRepresentation: LauncherIcon {
 		id: panelItem
-		
-		states: [
-			State {
-				name: "horizontal"
-				when: plasmoid.configuration.fixedPanelIcon && plasmoid.formFactor == PlasmaCore.Types.Horizontal
-				PropertyChanges {
-					target: panelItem
-					Layout.minimumWidth: 24
-					Layout.preferredWidth: panelItem.height
-					Layout.maximumWidth: config.flatButtonSize
-				}
-			},
-			State {
-				name: "vertical"
-				when: plasmoid.configuration.fixedPanelIcon && plasmoid.formFactor == PlasmaCore.Types.Vertical
-				PropertyChanges {
-					target: panelItem
-					Layout.minimumHeight: 24
-					Layout.preferredHeight: panelItem.width
-					Layout.maximumHeight: config.flatButtonSize
-				}
-			},
-			State {
-				name: "scaled"
-				when: !config.fixedPanelIcon
-				PropertyChanges {
-					target: launcherIcon
-					iconSize: Math.min(panelItem.width, panelItem.height)
-				}
-			}
-		]
-
-		LauncherIcon {
-			id: launcherIcon
-			iconSource: plasmoid.configuration.icon || "start-here-kde"
-			iconSize: Math.min(config.panelIconSize, panelItem.width, panelItem.height)
-			anchors.fill: parent
-			onClicked: {
-				plasmoid.expanded = !plasmoid.expanded
-			}
-
-			DragAndDrop.DropArea {
-				id: dropArea
-				anchors.fill: parent
-
-				onDragEnter: {
-					activateOnDrag.restart()
-				}
-			}
-
-			onContainsMouseChanged: {
-				if (!containsMouse) {
-					activateOnDrag.stop()
-				}
-			}
-
-			Timer {
-				id: activateOnDrag
-				interval: 250 // Same as taskmanager's activationTimer in MouseHandler.qml
-				onTriggered: plasmoid.expanded = true
-			}
-		}
+		iconSource: plasmoid.configuration.icon || "start-here-kde"
 	}
 
 	Plasmoid.hideOnWindowDeactivate: !plasmoid.userConfiguring
