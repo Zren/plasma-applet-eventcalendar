@@ -1,3 +1,8 @@
+## v6 - June 28 2017
+
+* Fix height calculation (we ignored the height taken by the pin button).
+* Use Plasma's panel icon size (which can be set in System Settings > Icons > Advanced).
+
 ## v5 - May 7 2017
 
 * Remove ability to hide completed items.
