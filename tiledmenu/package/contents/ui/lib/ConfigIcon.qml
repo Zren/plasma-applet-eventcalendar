@@ -11,6 +11,8 @@ import ".."
 
 RowLayout {
 	id: configIcon
+	
+	default property alias _contentChildren: content.data
 
 	property string configKey: ''
 	property alias value: textField.text
@@ -78,6 +80,7 @@ RowLayout {
 	}
 
 	ColumnLayout {
+		id: content
 		Layout.fillWidth: true
 
 		RowLayout {
@@ -103,6 +106,15 @@ RowLayout {
 			Button {
 				iconName: "document-open"
 				onClicked: iconDialog.open()
+			}
+		}
+
+		// Workaround for crash when using default on a Layout.
+		// https://bugreports.qt.io/browse/QTBUG-52490
+		// Still affecting Qt 5.7.0
+		Component.onDestruction: {
+			while (data.length > 0) {
+				data[data.length - 1].parent = control;
 			}
 		}
 	}

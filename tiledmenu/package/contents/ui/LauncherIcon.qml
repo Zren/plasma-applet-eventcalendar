@@ -33,8 +33,19 @@ MouseArea {
 		}
 	}
 
-	Layout.maximumWidth: inPanel ? units.iconSizeHints.panel : -1
-	Layout.maximumHeight: inPanel ? units.iconSizeHints.panel : -1
+	property int size: {
+		if (inPanel) {
+			if (plasmoid.configuration.fixedPanelIcon) {
+				return units.iconSizeHints.panel
+			} else {
+				return Math.max(width, height)
+			}
+		} else {
+			return -1
+		}
+	}
+	Layout.maximumWidth: size
+	Layout.maximumHeight: size
 
 
 	property int iconSize: Math.min(width, height)

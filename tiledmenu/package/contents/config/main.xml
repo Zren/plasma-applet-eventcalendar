@@ -24,7 +24,7 @@
       <default>start-here-kde</default>
     </entry>
     <entry name="fixedPanelIcon" type="bool">
-      <default>false</default>
+      <default>true</default>
     </entry>
     <entry name="searchResultsMerged" type="bool">
       <default>true</default>

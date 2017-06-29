@@ -31,6 +31,12 @@ ConfigPage {
 
 		ConfigIcon {
 			configKey: 'icon'
+			previewIconSize: units.iconSizes.large
+
+			ConfigCheckBox {
+				text: i18n("Fixed Size")
+				configKey: 'fixedPanelIcon'
+			}
 		}
 	}
 
