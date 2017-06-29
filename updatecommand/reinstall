@@ -1,6 +1,6 @@
 #!/bin/bash
-# Version 1
+# Version 2
 
-plasmapkg2 -u package
+kpackagetool5 -t Plasma/Applet -u package
 killall plasmashell
 kstart5 plasmashell
