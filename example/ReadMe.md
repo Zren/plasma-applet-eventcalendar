@@ -2,8 +2,14 @@
 
 This folder is useful for quickly writing a new plasmoid.
 
-* The `build`/`run` commands require `kreadconfig5`.
+* `sh ./run` will run the `plasmoidviewer` command (part of `sudo apt install plasma-sdk`) with some sane default settings.
+    * `QML_DISABLE_DISK_CACHE=true` will prevent Qt from cluttering your source code with `.qmlc` and `.jsc` files.
+    * `QT_DEVICE_PIXEL_RATIO=2` will test 2x DPI
+    * `LANG=fr_FR.UTF-8` will test the French locale (language).
 * Do *not* run the `install`/`reinstall` scripts with `sudo` or the plasmoid will be placed in `/usr/share/` instead of your home directory.
+* `sh ./build` will zip the contents of the `package` folder into a `example-v1.plasmoid` for when you're ready to upload to the [KDE Store](http://store.kde.org).
+* `project.sublime-project` You can go ahead and delete this if you don't use Sublime Text.
+    * If you use ST though, you can easily test with `Ctrl+B` after chosing the build system (Tools > Build System > Project).
 
 ## Locations
 
