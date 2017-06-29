@@ -1,4 +1,4 @@
 #!/bin/bash
-# Version 1
+# Version 2
 
-plasmapkg2 -i package
+kpackagetool5 -t Plasma/Applet -i package
