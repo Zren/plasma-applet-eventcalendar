@@ -1,0 +1,33 @@
+{
+	"build_systems": [
+		{
+			"name": "Project",
+			"shell_cmd": "QML_DISABLE_DISK_CACHE=true plasmoidviewer -a package -l topedge -f horizontal -x 0 -y 0",
+			"working_dir": "${project_path}/",
+			"variants": [
+				{
+					"shell_cmd": "QT_DEVICE_PIXEL_RATIO=2 QML_DISABLE_DISK_CACHE=true plasmoidviewer -a package -l topedge -f horizontal -x 0 -y 0 -s 1920x1080",
+					"name": "Run (2x DPI)"
+				},
+				{
+					"shell_cmd": "LANG=fr_FR.UTF-8 QML_DISABLE_DISK_CACHE=true plasmoidviewer -a package -l topedge -f horizontal -x 0 -y 0",
+					"name": "Run (LocaleTest)"
+				},
+				{
+					"shell_cmd": "./reinstall",
+					"name": "Reinstall"
+				},
+				{
+					"shell_cmd": "./build",
+					"name": "Build"
+				}
+			]
+		}
+	],
+	"folders":
+	[
+		{
+			"path": "."
+		}
+	]
+}
