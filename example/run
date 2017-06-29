@@ -1,8 +1,14 @@
 #!/bin/bash
-# Version 4
+# Version 5
 
-# plasmapkg2 -u package
-# plasmawindowed $(kreadconfig5 --file="$PWD/package/metadata.desktop" --group="Desktop Entry" --key="X-KDE-PluginInfo-Name")
+### Clear SVG cache
+# rm ~/.cache/plasma-svgelements-*
 
 killall plasmoidviewer
-plasmoidviewer -a package -l bottomedge -f horizontal
+QML_DISABLE_DISK_CACHE=true plasmoidviewer -a package -l topedge -f horizontal -x 0 -y 0
+
+### 2x DPI Test
+# QT_DEVICE_PIXEL_RATIO=2 QML_DISABLE_DISK_CACHE=true plasmoidviewer -a package -l topedge -f horizontal -x 0 -y 0
+
+### Test French Locale
+# LANG=fr_FR.UTF-8 QML_DISABLE_DISK_CACHE=true plasmoidviewer -a package -l topedge -f horizontal -x 0 -y 0

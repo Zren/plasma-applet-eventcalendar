@@ -1,4 +1,8 @@
 #!/bin/bash
-# Version 4
+# Version 5
 
-plasmoidviewer -a package -l topedge -f horizontal
+# Clear SVG cache
+# rm ~/.cache/plasma-svgelements-*
+
+killall plasmoidviewer
+QML_DISABLE_DISK_CACHE=true plasmoidviewer -a package -l topedge -f horizontal -x 0 -y 0
