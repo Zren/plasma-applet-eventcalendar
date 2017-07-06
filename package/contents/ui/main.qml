@@ -41,8 +41,8 @@ Item {
         source: "../fonts/weathericons-regular-webfont.ttf"
     }
 
-    Plasmoid.toolTipMainText: Qt.formatTime(timeModel.currentTime, Qt.locale().timeFormat(Locale.LongFormat))
-    Plasmoid.toolTipSubText: Qt.formatDate(timeModel.currentTime, Qt.locale().dateFormat(Locale.LongFormat))
+    // Plasmoid.toolTipMainText: Qt.formatTime(timeModel.currentTime, Qt.locale().timeFormat(Locale.LongFormat))
+    // Plasmoid.toolTipSubText: Qt.formatDate(timeModel.currentTime, Qt.locale().dateFormat(Locale.LongFormat))
 
     // org.kde.plasma.mediacontrollercompact
     PlasmaCore.DataSource {
