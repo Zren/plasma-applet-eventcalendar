@@ -27,7 +27,7 @@ Item {
     property date visibleDateMin: new Date()
     property date visibleDateMax: new Date()
     property date currentMonth: new Date()
-    property date currentTime: root.currentTime
+    property date currentTime: timeModel.currentTime
 
     property color inProgressColor: appletConfig.agendaInProgressColor
     property int inProgressFontWeight: Font.Bold
