@@ -22,8 +22,6 @@ Item {
     AppletConfig { id: appletConfig }
     NotificationManager { id: notificationManager }
 
-    property alias dataSource: timeModel.dataSource
-    property alias currentTime: timeModel.currentTime
     property alias eventModel: eventModel
     property alias weatherModel: weatherModel
     property alias agendaModel: agendaModel
@@ -43,9 +41,9 @@ Item {
         source: "../fonts/weathericons-regular-webfont.ttf"
     }
 
-    Plasmoid.toolTipMainText: Qt.formatTime(currentTime, Qt.locale().timeFormat(Locale.LongFormat))
-    Plasmoid.toolTipSubText: Qt.formatDate(currentTime, Qt.locale().dateFormat(Locale.LongFormat))
-    
+    Plasmoid.toolTipMainText: Qt.formatTime(timeModel.currentTime, Qt.locale().timeFormat(Locale.LongFormat))
+    Plasmoid.toolTipSubText: Qt.formatDate(timeModel.currentTime, Qt.locale().dateFormat(Locale.LongFormat))
+
     // org.kde.plasma.mediacontrollercompact
     PlasmaCore.DataSource {
         id: executable
@@ -125,14 +123,14 @@ Item {
         }
 
         function updateToday() {
-            setToday(root.currentTime)
+            setToday(timeModel.currentTime)
         }
 
         function setToday(d) {
             logger.debug('setToday', d)
             today = d
             // console.log(root.timezone, dataSource.data[root.timezone]["DateTime"])
-            logger.debug('currentTime', root.currentTime)
+            logger.debug('currentTime', timeModel.currentTime)
             monthViewDate = today
             selectedDate = today
             scrollToSelection()
@@ -161,7 +159,7 @@ Item {
             target: timeModel
             onDateChanged: {
                 popup.updateToday()
-                logger.debug('root.onDateChanged', root.currentTime, popup.today)
+                logger.debug('root.onDateChanged', timeModel.currentTime, popup.today)
             }
         }
 
