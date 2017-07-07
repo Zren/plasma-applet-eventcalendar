@@ -18,6 +18,8 @@ ConfigPage {
     property alias cfg_events_pollinterval: weather_pollinterval.value // TODO
     property alias cfg_meteogram_hours: meteogram_hours.value
 
+    AppletConfig { id: config }
+
 
     HeaderText {
         text: i18n("Data")
@@ -170,6 +172,43 @@ ConfigPage {
                     cfg_weather_units = 'kelvin'
                 }
             }
+        }
+    }
+
+    HeaderText {
+        text: i18n("Style")
+    }
+
+    ColorGrid {
+        ConfigColor {
+            configKey: 'meteogram_textColor'
+            label: i18n("Text")
+            defaultColor: config.meteogramTextColorDefault
+        }
+        ConfigColor {
+            configKey: 'meteogram_gridColor'
+            label: i18n("Grid")
+            defaultColor: config.meteogramScaleColorDefault
+        }
+        ConfigColor {
+            configKey: 'meteogram_rainColor'
+            label: i18n("Rain")
+            defaultColor: config.meteogramPrecipitationRawColorDefault
+        }
+        ConfigColor {
+            configKey: 'meteogram_positiveTempColor'
+            label: i18n("Positive Temp")
+            defaultColor: config.meteogramPositiveTempColorDefault
+        }
+        ConfigColor {
+            configKey: 'meteogram_negativeTempColor'
+            label: i18n("Negative Temp")
+            defaultColor: config.meteogramNegativeTempColorDefault
+        }
+        ConfigColor {
+            configKey: 'meteogram_iconColor'
+            label: i18n("Icons")
+            defaultColor: config.meteogramIconColorDefault
         }
     }
 
