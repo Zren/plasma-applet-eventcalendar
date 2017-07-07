@@ -93,4 +93,28 @@ ConfigPage {
             movable: false
         }
     }
+
+
+    ExclusiveGroup { id: timezoneDisplayType }
+    RowLayout {
+        Label {
+            text: digitalclock_i18n("Display time zone as:")
+        }
+
+        RadioButton {
+            id: timezoneCityRadio
+            text: digitalclock_i18n("Time zone city")
+            exclusiveGroup: timezoneDisplayType
+            checked: !plasmoid.configuration.displayTimezoneAsCode
+            onClicked: plasmoid.configuration.displayTimezoneAsCode = false
+        }
+
+        RadioButton {
+            id: timezoneCodeRadio
+            text: digitalclock_i18n("Time zone code")
+            exclusiveGroup: timezoneDisplayType
+            checked: plasmoid.configuration.displayTimezoneAsCode
+            onClicked: plasmoid.configuration.displayTimezoneAsCode = true
+        }
+    }
 }
