@@ -93,6 +93,17 @@
       <default>true</default>
     </entry>
   </group>
+
+  <group name="Tooltip">
+    <entry name="selectedTimeZones" type="StringList">
+      <label>A list of the time zones available on mouse wheel. Requires wheelChangesTimezone to be true. Format is "Europe/London". Special entry "Local" indicates system time zone.</label>
+      <default>Local</default>
+    </entry>
+    <entry name="displayTimezoneAsCode" type="Bool">
+      <label>Whether the timezone is displayed as a code i.e. "GMT" or full text i.e. "London".</label>
+      <default>true</default>
+    </entry>
+  </group>
   
   <group name="Calendar">
     <entry name="month_show_border" type="bool">
