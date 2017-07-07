@@ -13,19 +13,40 @@ RowLayout {
 	id: configColor
 	spacing: 2
 	// Layout.fillWidth: true
-	Layout.maximumWidth: 300
+	Layout.maximumWidth: 300 * units.devicePixelRatio
 
 	property alias label: label.text
 	property alias horizontalAlignment: label.horizontalAlignment
 
 	property string configKey: ''
-	property string value: configKey ? plasmoid.configuration[configKey] : "#000"
+	property string defaultColor: ''
+	property string value: {
+		if (configKey) {
+			return plasmoid.configuration[configKey]
+		} else {
+			return "#000"
+		}
+	}
+
+	readonly property color defaultColorValue: defaultColor
+	readonly property color valueColor: {
+		if (value == '' && defaultColor) {
+			return defaultColor
+		} else {
+			return value
+		}
+	}
+
 	onValueChanged: {
 		if (!textField.activeFocus) {
 			textField.text = configColor.value
 		}
 		if (configKey) {
-			plasmoid.configuration[configKey] = value
+			if (value == defaultColorValue) {
+				plasmoid.configuration[configKey] = ""
+			} else {
+				plasmoid.configuration[configKey] = value
+			}
 		}
 	}
 
@@ -41,8 +62,7 @@ RowLayout {
 	}
 
 	MouseArea {
-		// width: label.font.pixelSize
-		// height: label.font.pixelSize
+		id: mouseArea
 		width: textField.height
 		height: textField.height
 		hoverEnabled: true
@@ -51,7 +71,7 @@ RowLayout {
 
 		Rectangle {
 			anchors.fill: parent
-			color: configColor.value
+			color: configColor.valueColor
 			border.width: 2
 			border.color: parent.containsMouse ? theme.highlightColor : "#BB000000"
 		}
@@ -59,7 +79,7 @@ RowLayout {
 
 	TextField {
 		id: textField
-		placeholderText: "#AARRGGBB"
+		placeholderText: defaultColor ? defaultColor : "#AARRGGBB"
 		Layout.fillWidth: label.horizontalAlignment == Text.AlignLeft
 		onTextChanged: {
 			// Make sure the text is:
@@ -79,7 +99,7 @@ RowLayout {
 		modality: Qt.WindowModal
 		title: configColor.label
 		showAlphaChannel: true
-		color: configColor.value
+		color: configColor.valueColor
 		onCurrentColorChanged: {
 			if (visible && color != currentColor) {
 				configColor.value = currentColor
