@@ -18,8 +18,6 @@ ConfigPage {
     property alias cfg_events_pollinterval: weather_pollinterval.value // TODO
     property alias cfg_meteogram_hours: meteogram_hours.value
 
-    AppletConfig { id: config }
-
 
     HeaderText {
         text: i18n("Data")
@@ -179,6 +177,7 @@ ConfigPage {
         text: i18n("Style")
     }
 
+    AppletConfig { id: config }
     ColorGrid {
         ConfigColor {
             configKey: 'meteogram_textColor'
