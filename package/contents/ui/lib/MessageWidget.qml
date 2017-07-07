@@ -88,16 +88,34 @@ Rectangle {
         }
     }
 
+    function show(message, messageType) {
+        if (typeof messageType !== "undefined") {
+            messageWidget.messageType = messageType
+        }
+        text = message
+        visible = true
+    }
+
+    function success(message) {
+        show(message, positive)
+    }
+
+    function info(message) {
+        show(message, information)
+    }
+
+    function warn(message) {
+        show(message, warning)
+    }
+
+    function err(message) {
+        show(message, error)
+    }
+
     gradient: Gradient {
         GradientStop { position: 0.0; color: Qt.lighter(messageWidget.gradBaseColor, 1.1) }
         GradientStop { position: 0.1; color: messageWidget.gradBaseColor }
         GradientStop { position: 1.0; color: Qt.darker(messageWidget.gradBaseColor, 1.1) }
-    }
-
-    Component.onCompleted: {
-        if (visible) {
-            visibleChanged()
-        }
     }
 
     Layout.minimumHeight: 0
