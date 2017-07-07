@@ -41,8 +41,16 @@ Item {
         source: "../fonts/weathericons-regular-webfont.ttf"
     }
 
-    // Plasmoid.toolTipMainText: Qt.formatTime(timeModel.currentTime, Qt.locale().timeFormat(Locale.LongFormat))
-    // Plasmoid.toolTipSubText: Qt.formatDate(timeModel.currentTime, Qt.locale().dateFormat(Locale.LongFormat))
+    Plasmoid.toolTipItem: Loader {
+        id: tooltipLoader
+
+        Layout.minimumWidth: item ? item.width : 0
+        Layout.maximumWidth: item ? item.width : 0
+        Layout.minimumHeight: item ? item.height : 0
+        Layout.maximumHeight: item ? item.height : 0
+
+        source: "TooltipView.qml"
+    }
 
     // org.kde.plasma.mediacontrollercompact
     PlasmaCore.DataSource {

@@ -8,6 +8,18 @@ Item {
 	property string timezone: "Local"
 	property var currentTime: dataSource.data[timezone]["DateTime"]
 	property alias dataSource: dataSource
+	property var allTimezones: {
+		var timezones = plasmoid.configuration.selectedTimeZones.toString()
+		if (timezones.length > 0) {
+			timezones = timezones.split(',')
+		} else {
+			timezones = []
+		}
+		if (timezones.indexOf('Local') == -1) {
+			timezones.push('Local')
+		}
+		return timezones
+	}
 
 	signal secondChanged()
 	signal minuteChanged()
@@ -18,11 +30,13 @@ Item {
 	PlasmaCore.DataSource {
 		id: dataSource
 		engine: "time"
-		connectedSources: [timezone]
+		connectedSources: timeModel.allTimezones
 		interval: 1000
 		intervalAlignment: PlasmaCore.Types.NoAlignment
 		onNewData: {
-			timeModel.tick()
+			if (sourceName == 'Local') {
+				timeModel.tick()
+			}
 		}
 	}
 
