@@ -1,6 +1,6 @@
 import QtQuick 2.0
 
-Item {
+QtObject {
 	id: config
 
 	function setAlpha(c, a) {

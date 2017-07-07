@@ -6,6 +6,7 @@ import org.kde.plasma.calendar 2.0 as PlasmaCalendar
 import org.kde.plasma.components 2.0 as PlasmaComponents
 import org.kde.plasma.extras 2.0 as PlasmaExtras
 
+import ".."
 import "../lib"
 
 ConfigPage {
@@ -171,30 +172,14 @@ ConfigPage {
         }
     }
 
-    ConfigSection {
-        visible: false
+    AppletConfig { id: config }
+    ColorGrid {
         title: i18n("Colors")
 
-        RowLayout {
-            Label {
-                text: i18n("Event In Progress:")
-            }
-            TextField {
-                id: agenda_event_inprogress_color
-                placeholderText: theme.highlightColor
-            }
-            Button {
-                text: i18n("Highlight")
-                onClicked: {
-                    agenda_event_inprogress_color.text = 'highlightColor'
-                }
-            }
-            Button {
-                text: i18n("Normal")
-                onClicked: {
-                    agenda_event_inprogress_color.text = 'textColor'
-                }
-            }
+        ConfigColor {
+            configKey: 'agenda_inProgressColor'
+            label: i18n("In Progress")
+            defaultColor: config.agendaInProgressColorDefault
         }
     }
 
