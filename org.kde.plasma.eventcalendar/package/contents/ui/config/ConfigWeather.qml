@@ -174,7 +174,7 @@ ConfigPage {
     }
 
     HeaderText {
-        text: i18n("Style")
+        text: i18n("Colors")
     }
 
     AppletConfig { id: config }
