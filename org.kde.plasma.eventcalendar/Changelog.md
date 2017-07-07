@@ -1,3 +1,11 @@
+## v48 - July 7 2017
+
+* Add Spanish translation by Zipristin
+* Fix plasmashell crash when closing eventcalendar's config window.
+* Support extra timezones in the tooltip based on digitalclock.
+* The meteogram colors are now configurable.
+* The in progress color in the agenda is now configurable.
+
 ## v47 - June 9 2017
 
 * Add German translation by frispete
