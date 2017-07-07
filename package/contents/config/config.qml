@@ -13,6 +13,11 @@ ConfigModel {
     //     source: "config/ConfigClock.qml"
     // }
     ConfigCategory {
+        name: i18n("Timezones")
+        icon: "preferences-system-time"
+        source: "config/ConfigTimezones.qml"
+    }
+    ConfigCategory {
         name: i18n("Calendar")
         icon: "view-calendar"
         source: "config/ConfigCalendar.qml"
