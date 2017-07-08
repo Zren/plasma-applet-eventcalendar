@@ -5,7 +5,7 @@ Item {
 	id: appletIcon
 	property string source: ''
 	property bool active: false
-	readonly property bool usingPackageSvg: svg.isValid()
+	readonly property bool usingPackageSvg: filename && svg.isValid()
 	readonly property string filename: source ? plasmoid.file("", "icons/" + source + '.svg') : ""
 	readonly property int minSize: Math.min(width, height)
 
