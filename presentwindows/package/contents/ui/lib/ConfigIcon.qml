@@ -114,7 +114,7 @@ RowLayout {
 		// Still affecting Qt 5.7.0
 		Component.onDestruction: {
 			while (data.length > 0) {
-				data[data.length - 1].parent = control;
+				data[data.length - 1].parent = configIcon;
 			}
 		}
 	}
