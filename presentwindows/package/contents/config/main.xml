@@ -9,6 +9,9 @@
     <entry name="clickCommand" type="String">
       <default>ExposeAll</default>
     </entry>
+    <entry name="icon" type="String">
+      <default>presentwindows-24px</default>
+    </entry>
   </group>
 
 </kcfg>

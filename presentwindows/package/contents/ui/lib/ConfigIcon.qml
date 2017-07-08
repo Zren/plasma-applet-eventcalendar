@@ -53,7 +53,7 @@ RowLayout {
 			width: previewIconSize + fixedMargins.left + fixedMargins.right
 			height: previewIconSize + fixedMargins.top + fixedMargins.bottom
 
-			PlasmaCore.IconItem {
+			AppletIcon {
 				anchors.centerIn: parent
 				width: previewIconSize
 				height: previewIconSize

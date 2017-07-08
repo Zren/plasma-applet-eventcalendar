@@ -62,4 +62,9 @@ ConfigPage {
 		}
 	}
 
+	ConfigIcon {
+		configKey: 'icon'
+		defaultValue: 'presentwindows-24px'
+	}
+
 }

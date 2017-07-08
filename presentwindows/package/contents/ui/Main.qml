@@ -8,11 +8,6 @@ import "lib"
 Item {
 	id: widget
 
-	QtObject {
-		id: config
-		property string icon: 'presentwindows-24px'
-	}
-
 	Plasmoid.onActivated: widget.activate()
 
 	Plasmoid.preferredRepresentation: Plasmoid.fullRepresentation
@@ -49,7 +44,7 @@ Item {
 		Layout.maximumWidth: inPanel ? units.iconSizeHints.panel : -1
 		Layout.maximumHeight: inPanel ? units.iconSizeHints.panel : -1
 
-		source: config.icon
+		source: plasmoid.configuration.icon
 		active: mouseArea.containsMouse
 
 		MouseArea {
