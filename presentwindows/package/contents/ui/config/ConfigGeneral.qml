@@ -62,9 +62,14 @@ ConfigPage {
 		}
 	}
 
-	ConfigIcon {
-		configKey: 'icon'
-		defaultValue: 'presentwindows-24px'
+
+	ConfigSection {
+		label: i18n("Icon")
+
+		ConfigIcon {
+			configKey: 'icon'
+			defaultValue: 'presentwindows-24px'
+		}
 	}
 
 }
