@@ -1,3 +1,7 @@
+## v4 - July 8 2017
+
+* Add ability to change the panel icon.
+
 ## v3 - June 22 2017
 
 * Add option to toggle the Desktop Grid Effect.
