@@ -311,9 +311,7 @@ Item {
 			if (!err && data && data.error) {
 				return callback(data, null, xhr);
 			}
-			if (logger.showDebug) { // JSON.stringify is probably slow.
-				logger.debug('fetchGCalEvents.response', args.calendarId, JSON.stringify(data, null, '\t'))
-			}
+			logger.debugJSON('fetchGCalEvents.response', args.calendarId, data)
 			callback(err, data, xhr);
 		});
 	}
@@ -459,7 +457,7 @@ Item {
 		
 		// Clone the event data and clean up the extra stuff we added in parseGCalEvents()
 		var data = JSON.parse(JSON.stringify(event)) // clone
-		logger.debug(JSON.stringify(data, null, '\t'))
+		logger.debugJSON('setGoogleCalendarEventSummary', 'clone', data)
 		if (data.start.date) delete data.start.dateTime;
 		if (data.end.date) delete data.end.dateTime;
 		if (data.end.calendarId) delete data.end.calendarId;
@@ -467,7 +465,7 @@ Item {
 		delete data._summary;
 
 		data.summary = summary
-		logger.debug(JSON.stringify(data, null, '\t'))
+		logger.debugJSON('setGoogleCalendarEventSummary', 'final', data)
 		
 		patchGCalEvent({
 			accessToken: accessToken,
@@ -479,7 +477,7 @@ Item {
 			data: data,
 		}, function(err, data, xhr) {
 			logger.debug('setGoogleCalendarEventSummary.response', err, data, xhr.status);
-			logger.debug('setGoogleCalendarEventSummary.response', JSON.stringify(data, null, '\t'))
+			logger.debugJSON('setGoogleCalendarEventSummary.response', data)
 			if (data.summary) {
 				event.summary = data.summary
 			}

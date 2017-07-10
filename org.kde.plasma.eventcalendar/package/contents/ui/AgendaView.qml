@@ -291,7 +291,7 @@ Item {
             for (var i = 0; i < agendaModel.count; i++) {
                 var agendaItem = agendaModel.get(i);
                 if (Shared.isSameDate(day, agendaItem.date)) {
-                    // console.log(day);
+                    // logger.debug('parseWeatherForecast', day);
                     agendaItem.tempLow = Math.floor(forecastItem.temp.min);
                     agendaItem.tempHigh = Math.ceil(forecastItem.temp.max);
                     agendaModel.setProperty(i, 'tempLow', Math.floor(forecastItem.temp.min));
@@ -314,7 +314,7 @@ Item {
         parseWeatherForecast({ "list": [], });
 
         if (typeof root === 'undefined') {
-            console.log('[AgendaView] now = new Date()')
+            logger.log('[AgendaView] now = new Date()')
             var now = new Date()
             visibleDateMin = new Date(now.getFullYear(), now.getMonth(), 1)
             visibleDateMax = new Date(now.getFullYear(), now.getMonth()+1, 0)
