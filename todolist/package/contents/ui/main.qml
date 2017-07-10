@@ -7,10 +7,10 @@ import org.kde.plasma.components 2.0 as PlasmaComponents
 Item {
     id: main
 
-    // Plasmoid.icon: 'view-list-symbolic'
-
-    NoteItem { id: noteItem }
-    property alias todoModel: noteItem.todoModel
+    AllNotesModel {
+        id: allNotesModel
+        numLists: plasmoid.configuration.numLists
+    }
 
     Plasmoid.compactRepresentation: MouseArea {
         readonly property bool inPanel: (plasmoid.location == PlasmaCore.Types.TopEdge
@@ -51,8 +51,8 @@ Item {
             
         IconCounterOverlay {
             anchors.fill: parent
-            text: noteItem.todoModel.incompleteCount
-            visible: noteItem.todoModel.incompleteCount > 0
+            text: allNotesModel.incompleteCount
+            visible: allNotesModel.incompleteCount > 0
             heightRatio: 0.5
         }
 

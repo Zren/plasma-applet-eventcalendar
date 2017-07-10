@@ -10,6 +10,11 @@ ConfigPage {
 
     ConfigSection {
 
+        ConfigSpinBox {
+            configKey: 'numLists'
+            before: i18n("Number of Lists")
+        }
+
         ConfigCheckBox {
             configKey: 'deleteOnComplete'
             text: i18n("Delete On Complete")

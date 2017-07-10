@@ -12,6 +12,9 @@
     <entry name="deleteOnComplete" type="Bool">
       <default>true</default>
     </entry>
+    <entry name="numLists" type="int">
+      <default>1</default>
+    </entry>
   </group>
 
 </kcfg>

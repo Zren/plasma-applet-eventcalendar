@@ -1,9 +1,9 @@
 import QtQuick 2.0
 import QtQuick.Controls 1.1
 import QtQuick.Controls.Styles 1.1
+import QtQuick.Layouts 1.1
 import QtQuick.Window 2.2
 
-import QtQuick.Layouts 1.1
 import org.kde.plasma.core 2.0 as PlasmaCore
 import org.kde.plasma.components 2.0 as PlasmaComponents
 import org.kde.plasma.extras 2.0 as PlasmaExtras
@@ -18,9 +18,18 @@ MouseArea {
     // height: Math.min(Math.max(400, listView.implicitHeight, 400), Screen.desktopAvailableHeight)
     Layout.minimumWidth: units.gridUnit * 10
     Layout.minimumHeight: units.gridUnit * 10
-    Layout.preferredWidth: units.gridUnit * 20
-    Layout.preferredHeight: Math.min(Math.max(units.gridUnit * 20, contentHeight), Screen.desktopAvailableHeight) // Binding loop warning (meh).
-    property int contentHeight: pinButton.height + container.spacing + listView.contentHeight
+    Layout.preferredWidth: units.gridUnit * 20 * allNotesModel.numLists
+    Layout.preferredHeight: Math.min(Math.max(units.gridUnit * 20, maxContentHeight), Screen.desktopAvailableHeight) // Binding loop warning (meh).
+    property int maxContentHeight: 0
+    function updateMaxContentHeight() {
+        var maxHeight = 0
+        for (var i = 0; i < notesRepeater.count; i++) {
+            var item = notesRepeater.itemAt(i)
+            maxHeight = Math.max(maxHeight, item.contentHeight)
+        }
+        maxContentHeight = maxHeight
+    }
+    // property int contentHeight: pinButton.height + container.spacing + listView.contentHeight
     // Layout.maximumWidth: plasmoid.screenGeometry.width
     // Layout.maximumHeight: plasmoid.screenGeometry.height
 
@@ -49,76 +58,56 @@ MouseArea {
         noteItem.saveNote()
     }
 
-    ColumnLayout {
-        id: container
+    RowLayout {
+        id: notesRow
         anchors.fill: parent
 
-        PlasmaComponents.ToolButton {
-            id: pinButton
-            anchors.right: parent.right
-            Layout.preferredWidth: Math.round(units.gridUnit * 1.25)
-            Layout.preferredHeight: width
-            checkable: true
-            iconSource: "window-pin"
-            onCheckedChanged: plasmoid.hideOnWindowDeactivate = !checked
-            visible: !isDesktopContainment
-        }
+        Repeater {
+            id: notesRepeater
+            model: allNotesModel.noteIdList
 
-        PlasmaExtras.ScrollArea {
-            Layout.fillWidth: true
-            Layout.fillHeight: true
-
-            ListView {
-                id: listView
+            ColumnLayout {
+                id: container
                 Layout.fillWidth: true
                 Layout.fillHeight: true
 
-                model: noteItem.todoModel
-                cacheBuffer: 10000000
-                // interactive: false
-                spacing: 4
-                verticalLayoutDirection: plasmoid.location == PlasmaCore.Types.TopEdge ? ListView.BottomToTop : ListView.TopToBottom
+                property int contentHeight: label.height + container.spacing + noteListView.contentHeight
+                onContentHeightChanged: mouseArea.updateMaxContentHeight()
 
-                delegate: TodoItemDelegate {}
-                
-                remove: Transition {
-                    NumberAnimation { property: "opacity"; to: 0; duration: 400 }
-                }
-                add: Transition {
-                    NumberAnimation { property: "opacity"; from: 0; to: 1.0; duration: 400 }
-                }
-                displaced: Transition {
-                    NumberAnimation { properties: "x,y"; duration: 200; }
+                property string noteId: modelData
+                property var noteItem: allNotesModel.noteItemList[noteId]
+
+                PlasmaComponents.Label {
+                    id: label
+                    text: noteId
+                    font.pointSize: -1
+                    font.pixelSize: pinButton.height
+                    Layout.preferredHeight: pinButton.height
                 }
 
-                Timer {
-                    id: deboucedPositionViewAtEnd
-                    interval: 1000
-                    onTriggered: listView.positionViewAtEnd()
-                }
+                PlasmaExtras.ScrollArea {
+                    Layout.fillWidth: true
+                    Layout.fillHeight: true
 
-                onCountChanged: {
-                    // console.log('onCountChanged', count)
-                    deboucedPositionViewAtEnd.restart()
-                }
-
-                onCurrentItemChanged: {
-                    // console.log('listView.onCurrentItemChanged', currentIndex)
-                }
-
-                Connections {
-                    target: plasmoid
-                    onExpandedChanged: {
-                        if (expanded) {
-                            listView.focus = true
-                            listView.currentIndex = listView.count - 1
-                            listView.positionViewAtEnd()
-                        }
+                    NoteListView {
+                        id: noteListView
+                        model: noteItem.todoModel
                     }
                 }
             }
         }
+
     }
 
-    
+    PlasmaComponents.ToolButton {
+        id: pinButton
+        anchors.top: parent.top
+        anchors.right: parent.right
+        width: Math.round(units.gridUnit * 1.25)
+        height: width
+        checkable: true
+        iconSource: "window-pin"
+        onCheckedChanged: plasmoid.hideOnWindowDeactivate = !checked
+        visible: !isDesktopContainment
+    }
 }

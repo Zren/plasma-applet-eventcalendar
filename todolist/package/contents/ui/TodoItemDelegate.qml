@@ -14,6 +14,8 @@ MouseArea {
     height: todoItemRow.height
     hoverEnabled: true
 
+    property var todoModel: listView.model
+
     function setComplete(completed) {
         var newStatus = completed ? 'completed' : 'needsAction'
         if (model.status != newStatus) {
@@ -55,12 +57,24 @@ DropArea {
     // anchors.margins: 10
 
     onEntered: {
-        todoModel.move(drag.source.dragItemIndex, index, 1)
+        if (todoModel == drag.source.dragItemModel) {
+            todoModel.move(drag.source.dragItemIndex, index, 1)
+        } else {
+            // We can't preview it since we can't move it to the
+            // new model yet without the ListView destroying the
+            // drag area source.
+            // So just move on drop.
+        }
+        
     }
 
-    // onDropped: {
-    //     todoModel.move(drop.source.dragItemIndex, index, 1)
-    // }
+    onDropped: {
+        if (todoModel != drag.source.dragItemModel) {
+            var todoObj = drag.source.dragItemModel.get(drag.source.dragItemIndex)
+            todoModel.insert(index, todoObj)
+            drag.source.dragItemModel.remove(drag.source.dragItemIndex)
+        }
+    }
 
     Rectangle {
         anchors.fill: parent
@@ -83,6 +97,8 @@ RowLayout {
     Item {
         Layout.fillHeight: true
         Layout.preferredWidth: checkbox.height
+        property var dragItemDelegate: todoItemDelegate
+        property var dragItemModel: todoModel
         property int dragItemIndex: index
         DragAndDrop.DragArea {
             id: dragArea

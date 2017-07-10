@@ -5,7 +5,7 @@
 rm ~/.cache/plasma-svgelements-*
 
 killall plasmoidviewer
-QML_DISABLE_DISK_CACHE=true plasmoidviewer -a package -l topedge -f horizontal -x 0 -y 0
+QML_DISABLE_DISK_CACHE=true plasmoidviewer -a package -l bottomedge -f horizontal -x 0 -y 0
 
 ### 2x DPI Test
 # QT_DEVICE_PIXEL_RATIO=2 QML_DISABLE_DISK_CACHE=true plasmoidviewer -a package -l topedge -f horizontal -x 0 -y 0
