@@ -83,6 +83,7 @@ MouseArea {
                     Layout.fillWidth: true
                     Layout.preferredHeight: labelRow.height
                     hoverEnabled: true
+                    cursorShape: Qt.IBeamCursor
 
                     property bool editingLabel: false
                     onClicked: labelMouseArea.editingLabel = true
@@ -137,7 +138,7 @@ MouseArea {
                             id: label
                             Layout.fillWidth: true
                             visible: !labelMouseArea.editingLabel
-                            text: noteId
+                            text: noteItem.noteLabel
                             font.pointSize: -1
                             font.pixelSize: pinButton.height
                             Layout.preferredHeight: pinButton.height
@@ -146,8 +147,11 @@ MouseArea {
                         PlasmaComponents.TextField {
                             Layout.fillWidth: true
                             visible: labelMouseArea.editingLabel
-                            text: noteId
+                            text: noteItem.noteLabel
+
+                            onVisibleChanged: focus = true
                             onEditingFinished: {
+                                noteItem.noteLabel = text
                                 labelMouseArea.editingLabel = false
                             }
                         }

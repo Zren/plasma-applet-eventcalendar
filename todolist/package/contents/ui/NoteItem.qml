@@ -74,6 +74,10 @@ Item {
 
     function serializeTodoModel() {
         var out = '';
+        console.log('serializeTodoModel', noteLabel)
+        if (noteLabel) {
+            out += '# ' + noteLabel + '\n\n';
+        }
         for (var i = 0; i < todoModel.count; i++) {
             var todoItem = todoModel.get(i);
             if (i == todoModel.count-1 && isEmptyItem(todoItem)) {
@@ -121,6 +125,23 @@ Item {
         }
         return true;
     }
+
+    function isHeading(line) {
+        return line.indexOf('#') == 0
+    }
+
+    function getStartIndex(line, startIndex) {
+        for (var i = startIndex; i < line.length; i++) {
+            console.log()
+            if (line[i] === ' ' || line[i] === '\t') {
+                continue;
+            } else {
+                startIndex = i;
+                break;
+            }
+        }
+        return startIndex;
+    }
     
     function deserializeTodoModel(s) {
         var out = [];
@@ -147,16 +168,11 @@ Item {
                     todoItem.status = false;
                     todoItem.title = line.substr(line.indexOf('*') + ' '.length + 1);
                 }
+            } else if (isHeading(line)) {
+                var startIndex = getStartIndex(line, 1);
+                noteLabel = line.substr(startIndex);
             } else if (todoItem) {
-                var startIndex = 0;
-                for (var i = 0; i < line.length; i++) {
-                    if (line[i] === ' ' || line[i] === '\t') {
-                        continue;
-                    } else {
-                        startIndex = i;
-                        break;
-                    }
-                }
+                var startIndex = getStartIndex(line, 0);
                 todoItem.title += '\n' + line.substr(startIndex);
             }
         }
@@ -167,6 +183,10 @@ Item {
         return out;
     }
 
+    property string noteLabel: ''
+    onNoteLabelChanged: {
+        noteItem.deboucedSaveNote()
+    }
 
     // public
     property alias todoModel: todoModel
