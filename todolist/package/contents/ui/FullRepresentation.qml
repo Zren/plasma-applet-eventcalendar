@@ -144,8 +144,11 @@ MouseArea {
                             Layout.preferredHeight: pinButton.height
                         }
 
-                        PlasmaComponents.TextField {
+                        TextField {
+                            id: textField
                             Layout.fillWidth: true
+                            Layout.preferredHeight: pinButton.height
+
                             visible: labelMouseArea.editingLabel
                             text: noteItem.noteLabel
 
@@ -153,6 +156,15 @@ MouseArea {
                             onEditingFinished: {
                                 noteItem.noteLabel = text
                                 labelMouseArea.editingLabel = false
+                            }
+
+                            style: TextFieldStyle {
+                                id: style
+                                // font.pointSize: -1
+                                // font.pixelSize: pinButton.height
+                                background: Item {}
+                                textColor: theme.textColor
+                                placeholderTextColor: "#777"
                             }
                         }
                     }
