@@ -57,22 +57,25 @@ DropArea {
     // anchors.margins: 10
 
     onEntered: {
-        if (todoModel == drag.source.dragItemModel) {
-            todoModel.move(drag.source.dragItemIndex, index, 1)
-        } else {
-            // We can't preview it since we can't move it to the
-            // new model yet without the ListView destroying the
-            // drag area source.
-            // So just move on drop.
+        if (drag.source.dragItemModel) {
+            if (todoModel == drag.source.dragItemModel) {
+                todoModel.move(drag.source.dragItemIndex, index, 1)
+            } else {
+                // We can't preview it since we can't move it to the
+                // new model yet without the ListView destroying the
+                // drag area source.
+                // So just move on drop.
+            }
         }
-        
     }
 
     onDropped: {
-        if (todoModel != drag.source.dragItemModel) {
-            var todoObj = drag.source.dragItemModel.get(drag.source.dragItemIndex)
-            todoModel.insert(index, todoObj)
-            drag.source.dragItemModel.remove(drag.source.dragItemIndex)
+        if (drag.source.dragItemModel) {
+            if (todoModel != drag.source.dragItemModel) {
+                var todoObj = drag.source.dragItemModel.get(drag.source.dragItemIndex)
+                todoModel.insert(index, todoObj)
+                drag.source.dragItemModel.remove(drag.source.dragItemIndex)
+            }
         }
     }
 

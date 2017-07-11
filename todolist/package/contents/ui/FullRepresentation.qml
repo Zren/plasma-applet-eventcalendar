@@ -9,6 +9,7 @@ import org.kde.plasma.components 2.0 as PlasmaComponents
 import org.kde.plasma.extras 2.0 as PlasmaExtras
 import QtQuick.Controls.Styles.Plasma 2.0 as PlasmaStyles
 
+import org.kde.draganddrop 2.0 as DragAndDrop
 import org.kde.plasma.private.notes 0.1
 
 MouseArea {
@@ -76,13 +77,81 @@ MouseArea {
 
                 property string noteId: modelData
                 property var noteItem: allNotesModel.noteItemList[noteId]
+                
+                MouseArea {
+                    id: labelMouseArea
+                    Layout.fillWidth: true
+                    Layout.preferredHeight: labelRow.height
+                    hoverEnabled: true
 
-                PlasmaComponents.Label {
-                    id: label
-                    text: noteId
-                    font.pointSize: -1
-                    font.pixelSize: pinButton.height
-                    Layout.preferredHeight: pinButton.height
+                    property bool editingLabel: false
+                    onClicked: labelMouseArea.editingLabel = true
+
+                    DropArea {
+                        id: dropArea
+                        anchors.fill: parent
+                        z: -1
+                        // anchors.margins: 10
+
+                        onDropped: {
+                            if (drag.source.dragNoteId) {
+                                // swap drag.source.dragNoteIndex and labelRow.dragNoteIndex
+                            }
+                        }
+
+                        Rectangle {
+                            anchors.fill: parent
+                            color: parent.containsDrag ? "#88336699" : "transparent"
+                        }
+                    }
+
+                    RowLayout {
+                        id: labelRow
+                        anchors.left: parent.left
+                        anchors.right: parent.right
+
+                        property int dragNoteIndex: index
+                        property int dragNoteId: noteId
+
+                        Item {
+                            Layout.fillHeight: true
+                            Layout.preferredWidth: 30 * units.devicePixelRatio // Same width as drag area in todoItem
+                            
+                            DragAndDrop.DragArea {
+                                id: dragArea
+                                anchors.fill: parent
+                                delegate: labelRow
+                            }
+
+                            PlasmaCore.FrameSvgItem {
+                                visible: labelMouseArea.containsMouse && !dropArea.containsDrag
+                                anchors.horizontalCenter: parent.horizontalCenter
+                                anchors.top: parent.top
+                                anchors.bottom: parent.bottom
+                                width: parent.width / 2
+                                imagePath: plasmoid.file("", "images/dragarea.svg")
+                            }
+                        }
+
+                        PlasmaComponents.Label {
+                            id: label
+                            Layout.fillWidth: true
+                            visible: !labelMouseArea.editingLabel
+                            text: noteId
+                            font.pointSize: -1
+                            font.pixelSize: pinButton.height
+                            Layout.preferredHeight: pinButton.height
+                        }
+
+                        PlasmaComponents.TextField {
+                            Layout.fillWidth: true
+                            visible: labelMouseArea.editingLabel
+                            text: noteId
+                            onEditingFinished: {
+                                labelMouseArea.editingLabel = false
+                            }
+                        }
+                    }
                 }
 
                 PlasmaExtras.ScrollArea {
