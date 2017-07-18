@@ -121,6 +121,7 @@ Item {
                     id: timezone
                     // Layout.fillWidth is buggy here
                     Layout.alignment: index % 2 === 0 ? Qt.AlignRight : Qt.AlignLeft
+                    Layout.fillWidth: index % 2 === 1
 
                     wrapMode: Text.NoWrap
                     text: index % 2 == 0 ? nameForZone(modelData) : timeForZone(modelData)
