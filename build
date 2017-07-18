@@ -14,9 +14,10 @@ fi
 plasmoidName=$(kreadconfig5 --file="$PWD/package/metadata.desktop" --group="Desktop Entry" --key="X-KDE-PluginInfo-Name")
 plasmoidName="${plasmoidName##*.}" # Strip namespace (Eg: "org.kde.plasma.")
 plasmoidVersion=$(kreadconfig5 --file="$PWD/package/metadata.desktop" --group="Desktop Entry" --key="X-KDE-PluginInfo-Version")
+filenameTag="-plasma5.6"
 rm ${plasmoidName}-v*.plasmoid
 cd package
-filename=${plasmoidName}-v${plasmoidVersion}.plasmoid
+filename=${plasmoidName}-v${plasmoidVersion}${filenameTag}.plasmoid
 zip -r $filename *
 mv $filename ../$filename
 cd ..
