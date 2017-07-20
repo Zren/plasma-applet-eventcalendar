@@ -222,11 +222,7 @@ Item {
 			access_token: accessToken,
 		}, function(err, data, xhr) {
 			if (err) {
-				if (typeof err === 'object') {
-					logger.log('err: ', JSON.stringify(err, null, '\t'));
-				} else {
-					logger.log('err: ', err);
-				}
+				logger.logJSON('onGCalError: ', err);
 				if (xhr.status === 404) {
 					return;
 				}
@@ -240,12 +236,7 @@ Item {
 	}
 
 	function onGCalError(err) {
-		if (typeof err === 'object') {
-			logger.log('onGCalError: ', JSON.stringify(err, null, '\t'));
-		} else {
-			logger.log('onGCalError: ', err);
-		}
-		
+		logger.logJSON('onGCalError: ', err);
 		deferredUpdateAccessToken.restart()
 	}
 
