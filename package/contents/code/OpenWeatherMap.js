@@ -90,8 +90,8 @@ function updateDailyWeather(callback) {
         units: plasmoid.configuration.weather_units,
     }, function(err, data, xhr) {
         if (err) return console.log('fetchDailyWeatherForecast.err', err, xhr && xhr.status, data);
-        console.log('fetchDailyWeatherForecast.response');
-        // console.log('fetchDailyWeatherForecast.response', JSON.stringify(data, null, '\t'));
+        logger.log('fetchDailyWeatherForecast.response');
+        // logger.debugJSON('fetchDailyWeatherForecast.response', data);
 
         data = parseDailyData(data);
 
@@ -107,8 +107,8 @@ function updateHourlyWeather(callback) {
         units: plasmoid.configuration.weather_units,
     }, function(err, data, xhr) {
         if (err) return console.log('fetchHourlyWeatherForecast.err', err, xhr && xhr.status, data);
-        console.log('fetchHourlyWeatherForecast.response');
-        // console.log('fetchHourlyWeatherForecast.response', JSON.stringify(data, null, '\t'));
+        logger.log('fetchHourlyWeatherForecast.response');
+        // logger.debugJSON('fetchHourlyWeatherForecast.response', data);
 
         data = parseHourlyData(data);
 
