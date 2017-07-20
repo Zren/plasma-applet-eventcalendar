@@ -156,50 +156,10 @@ RowLayout {
             Layout.fillWidth: true
         }
 
-        Loader {
+        NewEventForm {
             id: newEventForm
-            active: false
-            visible: active
-
             Layout.fillWidth: true
-            sourceComponent: Component {
-
-                ColumnLayout {
-                    spacing: appletConfig.agendaRowSpacing
-
-                    Component.onCompleted: {
-                        newEventText.forceActiveFocus()
-                        newEventFormOpened(model, newEventCalendarId)
-                    }
-                    PlasmaComponents.ComboBox {
-                        id: newEventCalendarId
-                        Layout.fillWidth: true
-                        model: [i18n("[No Calendars]")]
-                    }
-
-                    RowLayout {
-                        PlasmaComponents.TextField {
-                            id: newEventText
-                            Layout.fillWidth: true
-                            placeholderText: i18n("Eg: 9am-5pm Work")
-                            onAccepted: {
-                                var calendarId = newEventCalendarId.model[newEventCalendarId.currentIndex]
-                                // calendarId = calendarId.calendarId ? calendarId.calendarId : calendarId
-                                submitNewEventForm(calendarId, date, text)
-                                text = ''
-                            }
-                            Keys.onEscapePressed: newEventForm.active = false
-                        }
-                    }
-
-                    Item {
-                        Layout.fillWidth: true
-                        height: appletConfig.agendaRowSpacing // Effectively twice the padding below the form.
-                    }
-                }
-            }
         }
-        
 
         ColumnLayout {
             spacing: appletConfig.agendaRowSpacing
