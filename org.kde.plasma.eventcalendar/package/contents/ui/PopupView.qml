@@ -621,8 +621,7 @@ Item {
         logger.debug('fetchDailyWeatherForecast', lastForecastAt, Date.now());
         WeatherApi.updateDailyWeather(function(err, data, xhr) {
             if (err) return logger.log('fetchDailyWeatherForecast.err', err, xhr && xhr.status, data);
-            logger.debug('fetchDailyWeatherForecast.response');
-            // logger.debug('fetchDailyWeatherForecast.response', data);
+            logger.debugJSON('fetchDailyWeatherForecast.response', data);
 
             lastForecastAt = Date.now();
             dailyWeatherData = data;
@@ -634,8 +633,7 @@ Item {
         logger.debug('fetchHourlyWeatherForecast', lastForecastAt, Date.now());
         WeatherApi.updateHourlyWeather(function(err, data, xhr) {
             if (err) return logger.log('fetchHourlyWeatherForecast.err', err, xhr && xhr.status, data);
-            logger.debug('fetchHourlyWeatherForecast.response');
-            // logger.debug('fetchHourlyWeatherForecast.response', data);
+            logger.debugJSON('fetchHourlyWeatherForecast.response', data);
 
             lastForecastAt = Date.now();
             hourlyWeatherData = data;
