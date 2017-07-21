@@ -11,7 +11,7 @@ import "../code/ColorIdMap.js" as ColorIdMap
 Item {
 	id: eventModel
 	property variant eventsData: { "items": [] }
-	property variant eventsByCalendar: { "": { "items": [] } }
+	property variant eventsByCalendar: { return {} } // { "": { "items": [] } }
 	property date dateMin: new Date()
 	property date dateMax: new Date()
 	property variant calendarIdList: plasmoid.configuration.calendar_id_list ? plasmoid.configuration.calendar_id_list.split(',') : ['primary']
@@ -28,10 +28,6 @@ Item {
 	signal eventUpdated(string calendarId, string eventId, var data)
 
 	onAsyncRequestsDoneChanged: checkIfDone()
-
-	Component.onCompleted: {
-		delete eventModel.eventsByCalendar[''] // Is there really no way to initialize an empty JSON object?
-	}
 
 	function clear() {
 		logger.debug('eventModel.clear()')
@@ -112,10 +108,8 @@ Item {
 		for (var calendarId in eventModel.eventsByCalendar) {
 			parseGoogleCalendarEvents(calendarId, eventModel.eventsByCalendar[calendarId])
 			eventModel.eventsData.items = eventModel.eventsData.items.concat(eventModel.eventsByCalendar[calendarId].items)
-			// logger.debug('updateUI', calendarId, eventModel.eventsByCalendar[calendarId].items.length, eventsData.items.length);
 		}
 	}
-	
 
 	property var deferredUpdate: Timer {
 		id: deferredUpdate
