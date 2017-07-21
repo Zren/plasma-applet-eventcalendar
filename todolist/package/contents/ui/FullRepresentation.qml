@@ -112,7 +112,7 @@ MouseArea {
                         anchors.right: parent.right
 
                         property int dragNoteIndex: index
-                        property int dragNoteId: noteId
+                        property string dragNoteId: noteId
 
                         Item {
                             Layout.fillHeight: true
