@@ -12,6 +12,14 @@ CalendarManager {
 	id: eventModel
 	property variant eventsData: { "items": [] }
 
+	ICalManager {
+		id: icalManager
+
+		onFetchingData: eventModel.asyncRequests += 1
+		onAllDataFetched: eventModel.asyncRequestsDone += 1
+		onCalendarFetched: eventModel.setCalendarData(calendarId, data)
+	}
+
 	property variant calendarIdList: plasmoid.configuration.calendar_id_list ? plasmoid.configuration.calendar_id_list.split(',') : ['primary']
 
 	function parseColorId(colorIdType, colorId) {
@@ -93,6 +101,7 @@ CalendarManager {
 
 	onFetchAllCalendars: {
 		fetchGoogleAccountData()
+		icalManager.fetchAll(dateMin, dateMax)
 		// fetchDebugEvents()
 	}
 
