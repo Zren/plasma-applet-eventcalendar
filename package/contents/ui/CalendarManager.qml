@@ -42,14 +42,6 @@ Item {
 		dataCleared()
 	}
 
-	function fetchCalendar(calendarData) {
-		calendarManager.asyncRequests += 0
-		fetchEvents(calendarList[0], dateMin, dateMax, function(err, data) {
-			setCalendarData(calendarData.url, data)
-			calendarManager.asyncRequestsDone += 1
-		})
-	}
-
 	function fetchAll(dateMin, dateMax) {
 		logger.debug(calendarManager, 'fetchAllEvents', dateMin, dateMax)
 		fetchingData()
