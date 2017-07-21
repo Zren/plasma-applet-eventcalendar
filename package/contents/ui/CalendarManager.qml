@@ -35,8 +35,10 @@ Item {
 	}
 
 	function clear() {
+		logger.debug(calendarManager, 'clear()')
 		calendarManager.asyncRequests = 0
 		calendarManager.asyncRequestsDone = 0
+		calendarManager.eventsByCalendar = {}
 		dataCleared()
 	}
 
@@ -48,10 +50,15 @@ Item {
 		})
 	}
 
-	function fetchAll() {
+	function fetchAll(dateMin, dateMax) {
+		logger.debug(calendarManager, 'fetchAllEvents', dateMin, dateMax)
 		fetchingData()
 		clear()
-		doFetchAllCalendars()
+		if (typeof dateMin !== "undefined") {
+			calendarManager.dateMin = dateMin
+			calendarManager.dateMax = dateMax
+		}
+		fetchAllCalendars()
 		checkIfDone()
 	}
 

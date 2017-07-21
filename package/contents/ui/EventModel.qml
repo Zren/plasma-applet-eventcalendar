@@ -8,40 +8,11 @@ import "shared.js" as Shared
 import "../code/DebugFixtures.js" as DebugFixtures
 import "../code/ColorIdMap.js" as ColorIdMap
 
-Item {
+CalendarManager {
 	id: eventModel
 	property variant eventsData: { "items": [] }
-	property variant eventsByCalendar: { return {} } // { "": { "items": [] } }
-	property date dateMin: new Date()
-	property date dateMax: new Date()
+
 	property variant calendarIdList: plasmoid.configuration.calendar_id_list ? plasmoid.configuration.calendar_id_list.split(',') : ['primary']
-
-	property int asyncRequests: 0
-	property int asyncRequestsDone: 0
-	signal dataCleared()
-	signal fetchingData()
-	signal calendarFetched(string calendarId, var data)
-	signal allDataFetched()
-	signal eventCreated(string calendarId, var data)
-	signal eventRemoved(string calendarId, string eventId, var data)
-	signal eventDeleted(string calendarId, string eventId, var data)
-	signal eventUpdated(string calendarId, string eventId, var data)
-
-	onAsyncRequestsDoneChanged: checkIfDone()
-
-	function clear() {
-		logger.debug('eventModel.clear()')
-		asyncRequests = 0
-		asyncRequestsDone = 0
-		eventModel.eventsByCalendar = {}
-		dataCleared()
-	}
-
-	function setCalendarData(calendarId, data) {
-		eventModel.eventsByCalendar[calendarId] = data
-		// eventModel.eventsData.items = eventModel.eventsData.items.concat(eventModel.eventsByCalendar[calendarId].items)
-		calendarFetched(calendarId, data)
-	}
 
 	function parseColorId(colorIdType, colorId) {
 		// Use hardcoded colorIdMap rather than requesting the list from the API.
@@ -117,24 +88,12 @@ Item {
 		onTriggered: eventModel.update()
 	}
 	function update() {
-		fetchAllEvents(dateMin, dateMax)
+		fetchAll()
 	}
 
-	function fetchAllEvents(dateMin, dateMax) {
-		logger.debug('fetchAllEvents', dateMin, dateMax)
-		fetchingData()
-		clear()
-		eventModel.dateMin = dateMin
-		eventModel.dateMax = dateMax
+	onFetchAllCalendars: {
 		fetchGoogleAccountData()
 		// fetchDebugEvents()
-		checkIfDone()
-	}
-
-	function checkIfDone() {
-		if (asyncRequestsDone >= asyncRequests) {
-			allDataFetched()
-		}
 	}
 
 	function fetchDebugEvents() {

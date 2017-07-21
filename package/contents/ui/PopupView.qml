@@ -533,7 +533,7 @@ Item {
 
         popup.visibleDateMin = dateMin
         popup.visibleDateMax = dateMax
-        eventModel.fetchAllEvents(dateMin, dateMax)
+        eventModel.fetchAll(dateMin, dateMax)
 
         // logger.debug(dateMin);
         // logger.debug(dateMax);
