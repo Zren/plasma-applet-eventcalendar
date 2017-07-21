@@ -8,9 +8,20 @@ CalendarManager {
 
 	property var calendarList: [
 		{
-			url: "/home/chris/Code/icsjson/basic.ics"
+			url: "/home/chris/Code/icsjson/basic.ics",
+			backgroundColor: '#ff0',
 		}
 	]
+
+	function getCalendar(calendarId) {
+		for (var i = 0; i < calendarList.length; i++) {
+			var calendarData = calendarList[i]
+			if (calendarData.url == calendarId) {
+				return calendarData
+			}
+		}
+		return null
+	}
 
 	PlasmaCore.DataSource {
 		id: executable
@@ -75,6 +86,7 @@ CalendarManager {
 	function fetchCalendar(calendarData) {
 		icalManager.asyncRequests += 0
 		fetchEvents(calendarData, dateMin, dateMax, function(err, data) {
+			parseEventList(calendarData, data.items)
 			setCalendarData(calendarData.url, data)
 			icalManager.asyncRequestsDone += 1
 		})
@@ -87,15 +99,28 @@ CalendarManager {
 		}
 	}
 
-	onCalendarFetched: {
-		console.log(calendarId, data)
+	function parseEvent(calendar, event) {
+		event.backgroundColor = calendar.backgroundColor
+		event.canEdit = false
+		event._summary = event.summary
+		event.summary = event.summary || i18nc("event with no summary", "(No title)")
 	}
 
-	Component.onCompleted: {
-		var startTime = new Date(2017, 07-1, 01)
-		var endTime = new Date(2017, 07-1, 31)
-		dateMin = startTime
-		dateMax = endTime
-		fetchAllCalendars()
+	function parseEventList(calendar, eventList) {
+		eventList.forEach(function(event) {
+			parseEvent(calendar, event)
+		})
 	}
+
+	// onCalendarFetched: {
+	// 	console.log(calendarId, data)
+	// }
+
+	// Component.onCompleted: {
+	// 	var startTime = new Date(2017, 07-1, 01)
+	// 	var endTime = new Date(2017, 07-1, 31)
+	// 	dateMin = startTime
+	// 	dateMax = endTime
+	// 	fetchAllCalendars()
+	// }
 }
