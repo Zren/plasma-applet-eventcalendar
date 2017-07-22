@@ -8,6 +8,8 @@ import org.kde.plasma.components 2.0 as PlasmaComponents
 import QtQuick.Controls.Styles.Plasma 2.0 as PlasmaStyles
 import org.kde.draganddrop 2.0 as DragAndDrop
 
+import "lib/style" as PlasmaFlatStyle
+
 MouseArea {
     id: todoItemDelegate
     width: parent.width
@@ -120,6 +122,7 @@ MouseArea {
         }
 
         PlasmaComponents.CheckBox {
+        // PlasmaFlatStyle.CheckBoxOnly {
             id: checkbox
             anchors.top: parent.top
             Layout.preferredHeight: 30 * units.devicePixelRatio
@@ -136,6 +139,7 @@ MouseArea {
             Layout.fillWidth: true
             anchors.top: parent.top
 
+            
             TextArea {
                 id: textArea
                 width: parent.width
@@ -172,8 +176,8 @@ MouseArea {
                 }
 
                 property bool isEditing: activeFocus
-                // textFormat: TextEdit.PlainText
-                // text: ''
+                textFormat: TextEdit.RichText
+                text: renderText(model.title)
                 onTextChanged: {
                     // console.log('onTextChanged')
                     if (isEditing && textFormat == TextEdit.PlainText) {
@@ -185,12 +189,12 @@ MouseArea {
                     // parent.parent.height = height
                 }
                 onIsEditingChanged: updateText()
-                Component.onCompleted: updateText()
+                // Component.onCompleted: updateText()
 
                 function updateText() {
                     // console.log('updateText')
                     if (isEditing) {
-                        var cursor = cursorPosition;
+                        var cursor = cursorPosition
                         textFormat = TextEdit.PlainText
                         text = model.title
                         cursorPosition = cursor
@@ -282,4 +286,5 @@ MouseArea {
         }
     }
 
+    Component.onCompleted: console.log('TodoItemDelegate', Date.now())
 }
