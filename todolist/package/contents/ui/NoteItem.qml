@@ -132,7 +132,6 @@ Item {
 
     function getStartIndex(line, startIndex) {
         for (var i = startIndex; i < line.length; i++) {
-            console.log()
             if (line[i] === ' ' || line[i] === '\t') {
                 continue;
             } else {
