@@ -55,9 +55,6 @@ MouseArea {
             height = Layout.preferredHeight
         }
     }
-    Component.onDestruction: {
-        noteItem.saveNote()
-    }
 
     RowLayout {
         id: notesRow
@@ -77,7 +74,11 @@ MouseArea {
 
                 property string noteId: modelData
                 property var noteItem: allNotesModel.noteItemList[noteId]
-                
+
+                Component.onDestruction: {
+                    noteItem.saveNote()
+                }
+
                 MouseArea {
                     id: labelMouseArea
                     Layout.fillWidth: true
