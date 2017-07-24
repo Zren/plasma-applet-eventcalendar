@@ -391,6 +391,7 @@ RowLayout {
                         menuItem = contextMenu.newMenuItem();
                         menuItem.text = i18n("Edit in browser");
                         menuItem.icon = "internet-web-browser"
+                        menuItem.enabled = !!event.htmlLink
                         menuItem.clicked.connect(function() {
                             Qt.openUrlExternally(model.htmlLink)
                         });
