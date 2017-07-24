@@ -327,7 +327,7 @@ Item {
                             context.fillStyle = appletConfig.meteogramPrecipitationTextColor
                             context.font = "12px sans-serif"
                             context.textAlign = 'end'
-                            var labelValue = item.precipitation >= 1 ? Math.round(item.precipitation) : item.precipitation.toFixed(1)
+                            var labelValue = formatDecimal(item.precipitation, 1)
                             var labelText;
                             if (graph.rainUnits == 'mm') {
                                 labelText = i18n("%1mm", labelValue);
@@ -422,41 +422,8 @@ Item {
     }
 
     Component.onCompleted: {
-        // graph.gridData = [
-        //     {'y': 1},
-        //     {'y': 2},
-        //     {'y': 3},
-        // ]
         graph.update();
-
-        if (typeof popup === "undefined" || typeof root === 'undefined') {
-            Utils.getJSON({
-                url: 'ForecastGraphData.json'
-            }, function(err, hourlyData, xhr) {
-                var currentWeatherData = hourlyData.list[0];
-                parseWeatherForecast(currentWeatherData, hourlyData)
-            });
-        }
     }
-
-    function updateWeatherData() {
-        var app_id = '99e575d9aa8a8407bcee7693d5912c6a';
-        var city_id = 5983720;
-        var units = 'metric';
-        Shared.fetchHourlyWeatherForecast({
-            app_id: app_id,
-            city_id: city_id,
-            units: units,
-        }, function(err, hourlyData, xhr) {
-            var currentWeatherData = hourlyData.list[0];
-            parseWeatherForecast(currentWeatherData, hourlyData)
-        });
-    }
-
-    // function onWeatherData(err, data, xhr) {
-    //     parseWeatherForecast(data);
-    // }
-        
 
     function parseWeatherForecast(currentWeatherData, data) {
         // console.log(JSON.stringify(data, null, '\t'));
@@ -470,7 +437,7 @@ Item {
             // console.log(JSON.stringify(item))
             var tooltipSubText = item.weather[0].description;
             if (mm) {
-                tooltipSubText += ' (' + mm + 'mm)';
+                tooltipSubText += ' (' + formatDecimal(mm, 2) + 'mm)';
             }
             tooltipSubText += '<br>' + item.main.temp + '°';
 
@@ -536,6 +503,10 @@ Item {
             }
         }
         return gData;
+    }
+
+    function formatDecimal(x, afterDecimal) {
+        return x >= 1 ? Math.round(x) : x.toFixed(afterDecimal)
     }
 }
 
