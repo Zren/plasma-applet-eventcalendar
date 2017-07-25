@@ -15,6 +15,8 @@ CalendarManager {
 	ICalManager {
 		id: icalManager
 
+		calendarList: appletConifg.icalCalendarList.value
+
 		onFetchingData: eventModel.asyncRequests += 1
 		onAllDataFetched: eventModel.asyncRequestsDone += 1
 		onCalendarFetched: eventModel.setCalendarData(calendarId, data)

@@ -151,6 +151,13 @@
   </group>
 
 
+  <group name="Events">
+    <entry name="icalCalendarList" type="string" stringType="base64json">
+      <default></default>
+    </entry>
+  </group>
+
+
   <group name="Google Calendar">
     <entry name="client_id" type="string">
       <default>391436299960-o4hchof1u5vq49rdn2nlnlbs295qeqhj.apps.googleusercontent.com</default>
