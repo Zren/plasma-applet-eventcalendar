@@ -1,5 +1,7 @@
 import QtQuick 2.0
 
+import "lib"
+
 QtObject {
 	id: config
 
@@ -43,4 +45,12 @@ QtObject {
 
 	property int meteogramIconSize: 24 * units.devicePixelRatio
 	property int meteogramColumnWidth: 32 * units.devicePixelRatio // weatherIconSize = 32px (height = 24px but most icons are landscape)
+
+	property QtObject icalCalendarList: Base64Json {
+		configKey: 'icalCalendarList'
+	}
+
+	property ListModel icalCalendarListModel: Base64JsonListModel {
+		configKey: 'icalCalendarList'
+	}
 }
