@@ -99,7 +99,9 @@ MouseArea {
             visible: model.indent > 0
         }
 
-        Item {
+        MouseArea {
+            hoverEnabled: true
+            cursorShape: Qt.OpenHandCursor
             Layout.fillHeight: true
             Layout.preferredWidth: checkbox.height
             property var dragItemDelegate: todoItemDelegate
