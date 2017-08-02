@@ -68,6 +68,7 @@ MouseArea {
                 id: container
                 Layout.fillWidth: true
                 Layout.fillHeight: true
+                spacing: 0
 
                 property int contentHeight: label.height + container.spacing + noteListView.contentHeight
                 onContentHeightChanged: mouseArea.updateMaxContentHeight()
@@ -84,10 +85,7 @@ MouseArea {
                     Layout.fillWidth: true
                     Layout.preferredHeight: labelRow.height
                     hoverEnabled: true
-                    cursorShape: Qt.IBeamCursor
-
-                    property bool editingLabel: false
-                    onClicked: labelMouseArea.editingLabel = true
+                    cursorShape: Qt.OpenHandCursor
 
                     DropArea {
                         id: dropArea
@@ -135,37 +133,24 @@ MouseArea {
                             }
                         }
 
-                        PlasmaComponents.Label {
-                            id: label
-                            Layout.fillWidth: true
-                            visible: !labelMouseArea.editingLabel
-                            text: noteItem.noteLabel
-                            font.pointSize: -1
-                            font.pixelSize: pinButton.height
-                            Layout.preferredHeight: pinButton.height
-                        }
-
                         TextField {
                             id: textField
                             Layout.fillWidth: true
-                            Layout.preferredHeight: pinButton.height
-
-                            visible: labelMouseArea.editingLabel
                             text: noteItem.noteLabel
-
-                            onVisibleChanged: focus = true
-                            onEditingFinished: {
-                                noteItem.noteLabel = text
-                                labelMouseArea.editingLabel = false
-                            }
 
                             style: TextFieldStyle {
                                 id: style
-                                // font.pointSize: -1
-                                // font.pixelSize: pinButton.height
+                                font.pointSize: -1
+                                font.pixelSize: pinButton.height
                                 background: Item {}
                                 textColor: theme.textColor
                                 placeholderTextColor: "#777"
+
+                                padding.top: 0
+                                padding.bottom: 0
+                                padding.left: 0
+                                padding.right: 0
+
                             }
                         }
                     }
