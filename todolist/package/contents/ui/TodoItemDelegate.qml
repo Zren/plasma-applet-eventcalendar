@@ -75,8 +75,8 @@ MouseArea {
             if (drag.source.dragItemModel) {
                 if (todoModel != drag.source.dragItemModel) {
                     var todoObj = drag.source.dragItemModel.get(drag.source.dragItemIndex)
-                    todoModel.insert(index, todoObj)
-                    drag.source.dragItemModel.remove(drag.source.dragItemIndex)
+                    todoModel.insertItem(index, todoObj)
+                    drag.source.dragItemModel.removeItem(drag.source.dragItemIndex)
                 }
             }
         }

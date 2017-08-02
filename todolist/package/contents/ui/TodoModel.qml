@@ -8,6 +8,12 @@ ListModel {
     
     property int incompleteCount: 0
 
+    function insertItem(index, todoObj) {
+        insert(index, todoObj)
+        // addTemplateIfNeeded()
+        update()
+    }
+
     function removeItem(index) {
         // console.log('removeItem', index)
         remove(index, 1)
