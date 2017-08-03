@@ -56,9 +56,7 @@ Item {
         saveOnChange = false
         todoData = noteItem.deserializeTodoModel(note.noteText)
         numSections = todoData.length
-        for (var i = 0; i < todoData.length; i++) {
-            updateSectionModel(i)
-        }
+        updateAllModels()
         saveOnChange = savingOnChange
     }
     Timer {
@@ -107,6 +105,11 @@ Item {
                 var todoItemlines = todoItem.title.split('\n');
                 line += todoItemlines[0];
                 for (var j = 1; j < todoItemlines.length; j++) {
+                    // line += '\n'
+                    // var trimmedLine = rtrim(todoItemlines[j]);
+                    // if (trimmedLine.length > 0) {
+                    //     line += repeat(' ', indent) + trimmedLine;
+                    // }
                     line += '\n' + repeat(' ', indent) + todoItemlines[j];
                 }
                 out += line + '\n';
@@ -163,6 +166,19 @@ Item {
             items: [],
         });
     }
+
+    function rtrim(s) { // trim spaces, tabs, and newlines
+        if (s && s.length > 0) {
+            for (var i = s.length-1; i >= 0; i--) {
+                if (!(s[i] == ' ' || s[i] == '\t' || s[i] == '\n')) {
+                    return s.substr(0, i+1);
+                }
+            }
+            return '';
+        } else {
+            return s;
+        }
+    }
     function trimLastNewline(s) {
         if (s && s[s.length-1] == '\n') {
             return s.substr(0, s.length-1); // trim ending \n
@@ -216,6 +232,7 @@ Item {
             } else if (todoItem) {
                 var startIndex = getStartIndex(line, 0);
                 var lineContents = line.substr(startIndex);
+                lineContents = rtrim(lineContents);
                 if (todoItem) {
                     todoItem.title += '\n' + lineContents;
                 } else {
@@ -260,8 +277,19 @@ Item {
     }
 
     property variant todoData: []
+    function updateAllModels() {
+        for (var i = 0; i < numSections; i++) {
+            updateSectionModel(i)
+        }
+    }
     function updateSectionModel(sectionIndex) {
         sectionList[sectionIndex].setData(todoData[sectionIndex])
+    }
+
+    function moveSection(sectionIndex, insertIndex) {
+        var arr = todoData.splice(sectionIndex, 1)
+        todoData.splice(insertIndex, 0, arr[0])
+        updateAllModels()
     }
 
     property var sectionList: { return {} }

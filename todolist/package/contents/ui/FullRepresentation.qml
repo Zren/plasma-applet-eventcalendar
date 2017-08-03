@@ -90,8 +90,9 @@ MouseArea {
                         // anchors.margins: 10
 
                         onDropped: {
-                            if (drag.source.dragNoteId) {
+                            if (drag.source.dragSectionIndex) {
                                 // swap drag.source.dragNoteIndex and labelRow.dragNoteIndex
+                                noteItem.moveSection(drag.source.dragSectionIndex, labelRow.dragSectionIndex)
                             }
                         }
 
@@ -106,8 +107,7 @@ MouseArea {
                         anchors.left: parent.left
                         anchors.right: parent.right
 
-                        property int dragNoteIndex: index
-                        property string dragNoteId: noteId
+                        property int dragSectionIndex: index
 
                         Item {
                             Layout.fillHeight: true
