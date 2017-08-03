@@ -79,7 +79,7 @@ Item {
 
     function serializeTodoModel() {
         var out = '';
-        console.log('serializeTodoModel')
+        // console.log('serializeTodoModel')
 
         for (var sectionIndex = 0; sectionIndex < numSections; sectionIndex++) {
             var noteSection = sectionList[sectionIndex];
@@ -291,6 +291,11 @@ Item {
         var arr = todoData.splice(sectionIndex, 1)
         todoData.splice(insertIndex, 0, arr[0])
         updateAllModels()
+    }
+
+    function addSection() {
+        _addSectionTo(todoData)
+        numSections += 1
     }
 
     property var sectionList: { return {} }

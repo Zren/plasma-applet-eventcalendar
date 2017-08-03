@@ -87,6 +87,10 @@ Item {
         exec("xdg-open ~/.local/share/plasma_notes/todolist");
     }
 
+    function action_addSection() {
+        noteItem.addSection()
+    }
+
     function action_toggleDeleteOnComplete() {
         plasmoid.configuration.deleteOnComplete = !plasmoid.configuration.deleteOnComplete
     }
@@ -111,6 +115,7 @@ Item {
 
     Component.onCompleted: {
         plasmoid.setAction("openInTextEditor", i18n("Open in Text Editor"), "accessories-text-editor");
+        plasmoid.setAction("addSection", i18n("Add List"), "list-add");
         plasmoid.setAction("toggleDeleteOnComplete", i18n("Delete on Complete"), "checkmark");
         // plasmoid.setAction("deleteCompleted", i18n("Delete All Completed"), "trash-empty");
         console.log('main.isDesktopContainment', plasmoid.location == PlasmaCore.Types.Desktop)
