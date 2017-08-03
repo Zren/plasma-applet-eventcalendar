@@ -200,7 +200,7 @@ Item {
             var newItem = isNewItem(line);
             if (newItem) {
                 if (todoItem) {
-                    console.log('items.push(newItem)', out[sectionIndex].label, todoItem.title)
+                    // console.log('items.push(newItem)', out[sectionIndex].label, todoItem.title)
                     out[sectionIndex].items.push(todoItem);
                 }
                 todoItem = newTodoItem();
@@ -218,7 +218,7 @@ Item {
                 if (todoItem) {
                     todoItem.title = trimLastNewline(todoItem.title);
                     if (todoItem.title) {
-                        console.log('items.push(newHeading)', out[sectionIndex].label, todoItem.title)
+                        // console.log('items.push(newHeading)', out[sectionIndex].label, todoItem.title)
                         out[sectionIndex].items.push(todoItem);
                         todoItem = null;
                     }
@@ -236,15 +236,15 @@ Item {
                 if (todoItem) {
                     todoItem.title += '\n' + lineContents;
                 } else {
-                    console.log('skipped line')
+                    // console.log('skipped line')
                 }
             }
         }
         if (todoItem) {
-            console.log('items.push(last)', out[sectionIndex].label, todoItem.title)
+            // console.log('items.push(last)', out[sectionIndex].label, todoItem.title)
             out[sectionIndex].items.push(todoItem);
         }
-        console.log('deserializeTodoModel', JSON.stringify(out, null, '\t'))
+        // console.log('deserializeTodoModel', JSON.stringify(out, null, '\t'))
         return out;
     }
 

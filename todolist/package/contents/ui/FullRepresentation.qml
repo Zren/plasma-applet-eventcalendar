@@ -84,13 +84,14 @@ MouseArea {
                     cursorShape: Qt.OpenHandCursor
 
                     DropArea {
-                        id: dropArea
+                        id: noteSectionDropArea
                         anchors.fill: parent
                         z: -1
                         // anchors.margins: 10
 
                         onDropped: {
-                            if (drag.source.dragSectionIndex) {
+                            // console.log('noteSectionDropArea.onDropped', drag.source.dragSectionIndex, index)
+                            if (typeof drag.source.dragSectionIndex === "number") {
                                 // swap drag.source.dragNoteIndex and labelRow.dragNoteIndex
                                 noteItem.moveSection(drag.source.dragSectionIndex, labelRow.dragSectionIndex)
                             }
@@ -106,21 +107,18 @@ MouseArea {
                         id: labelRow
                         anchors.left: parent.left
                         anchors.right: parent.right
-
+                        
                         property int dragSectionIndex: index
 
-                        Item {
+                        DragAndDrop.DragArea {
+                            id: dragArea
                             Layout.fillHeight: true
                             Layout.preferredWidth: 30 * units.devicePixelRatio // Same width as drag area in todoItem
-                            
-                            DragAndDrop.DragArea {
-                                id: dragArea
-                                anchors.fill: parent
-                                delegate: labelRow
-                            }
+
+                            delegate: labelRow
 
                             PlasmaCore.FrameSvgItem {
-                                visible: labelMouseArea.containsMouse && !dropArea.containsDrag
+                                visible: labelMouseArea.containsMouse && !noteSectionDropArea.containsDrag
                                 anchors.horizontalCenter: parent.horizontalCenter
                                 anchors.top: parent.top
                                 anchors.bottom: parent.bottom
