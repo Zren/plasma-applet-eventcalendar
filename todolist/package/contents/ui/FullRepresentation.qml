@@ -25,7 +25,9 @@ FocusScope {
         var maxHeight = 0
         for (var i = 0; i < notesRepeater.count; i++) {
             var item = notesRepeater.itemAt(i)
-            maxHeight = Math.max(maxHeight, item.contentHeight)
+            if (item) {
+                maxHeight = Math.max(maxHeight, item.contentHeight)
+            }
         }
         // console.log('maxContentHeight', maxHeight)
         maxContentHeight = maxHeight
