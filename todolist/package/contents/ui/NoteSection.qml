@@ -125,12 +125,12 @@ ColumnLayout {
                 sourceComponent: Component {
                     MessageDialog {
                         // visible: true
-                        title: i18n("Confirm Delete")
+                        title: i18n("Delete List")
                         icon: StandardIcon.Warning
                         text: i18n("Are you sure you want to delete the list \"%1\" with %2 items?", noteSection.label || ' ', Math.max(0, noteSection.model.count - 1))
                         standardButtons: StandardButton.Yes | StandardButton.Cancel
 
-                        onAccepted: noteItem.removeSection(index)
+                        onYes: noteItem.removeSection(index)
                         Component.onCompleted: visible = true
                     }
                 }
