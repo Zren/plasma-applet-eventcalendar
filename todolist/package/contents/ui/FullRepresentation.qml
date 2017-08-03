@@ -64,101 +64,11 @@ MouseArea {
             id: notesRepeater
             model: noteItem.numSections
 
-            ColumnLayout {
+            NoteSection {
                 id: container
-                Layout.fillWidth: true
-                Layout.fillHeight: true
-                spacing: 0
 
                 property int contentHeight: textField.height + container.spacing + noteListView.contentHeight
                 onContentHeightChanged: mouseArea.updateMaxContentHeight()
-
-                property string noteId: modelData
-                property var noteSection: noteItem.sectionList[index]
-
-                MouseArea {
-                    id: labelMouseArea
-                    Layout.fillWidth: true
-                    Layout.preferredHeight: labelRow.height
-                    hoverEnabled: true
-                    cursorShape: Qt.OpenHandCursor
-
-                    DropArea {
-                        id: noteSectionDropArea
-                        anchors.fill: parent
-                        z: -1
-                        // anchors.margins: 10
-
-                        onDropped: {
-                            // console.log('noteSectionDropArea.onDropped', drag.source.dragSectionIndex, index)
-                            if (typeof drag.source.dragSectionIndex === "number") {
-                                // swap drag.source.dragNoteIndex and labelRow.dragNoteIndex
-                                noteItem.moveSection(drag.source.dragSectionIndex, labelRow.dragSectionIndex)
-                            }
-                        }
-
-                        Rectangle {
-                            anchors.fill: parent
-                            color: parent.containsDrag ? "#88336699" : "transparent"
-                        }
-                    }
-
-                    RowLayout {
-                        id: labelRow
-                        anchors.left: parent.left
-                        anchors.right: parent.right
-                        
-                        property int dragSectionIndex: index
-
-                        DragAndDrop.DragArea {
-                            id: dragArea
-                            Layout.fillHeight: true
-                            Layout.preferredWidth: 30 * units.devicePixelRatio // Same width as drag area in todoItem
-
-                            delegate: labelRow
-
-                            PlasmaCore.FrameSvgItem {
-                                visible: labelMouseArea.containsMouse && !noteSectionDropArea.containsDrag
-                                anchors.horizontalCenter: parent.horizontalCenter
-                                anchors.top: parent.top
-                                anchors.bottom: parent.bottom
-                                width: parent.width / 2
-                                imagePath: plasmoid.file("", "images/dragarea.svg")
-                            }
-                        }
-
-                        TextField {
-                            id: textField
-                            Layout.fillWidth: true
-                            text: noteSection.label
-
-                            style: TextFieldStyle {
-                                id: style
-                                font.pointSize: -1
-                                font.pixelSize: pinButton.height
-                                background: Item {}
-                                textColor: theme.textColor
-                                placeholderTextColor: "#777"
-
-                                padding.top: 0
-                                padding.bottom: 0
-                                padding.left: 0
-                                padding.right: 0
-
-                            }
-                        }
-                    }
-                }
-
-                PlasmaExtras.ScrollArea {
-                    Layout.fillWidth: true
-                    Layout.fillHeight: true
-
-                    NoteListView {
-                        id: noteListView
-                        model: noteSection.model
-                    }
-                }
             }
         }
 
