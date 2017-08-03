@@ -1,3 +1,10 @@
+## v7 - August 3 2017
+
+* Support multiple lists side by side. Each list is seperated by a heading in the file.
+* Can drag and drop the lists to reorder them. Can drag items between lists.
+* Can add a new list via the context menu. The delete button will prompt before deleting.
+* Lines have the excess whitespace at the end of the line stripped.
+
 ## v6 - June 28 2017
 
 * Fix height calculation (we ignored the height taken by the pin button).
