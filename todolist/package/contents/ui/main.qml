@@ -7,9 +7,8 @@ import org.kde.plasma.components 2.0 as PlasmaComponents
 Item {
     id: main
 
-    AllNotesModel {
-        id: allNotesModel
-        numLists: plasmoid.configuration.numLists
+    NoteItem {
+        id: noteItem
     }
 
     Plasmoid.compactRepresentation: MouseArea {
@@ -51,8 +50,8 @@ Item {
             
         IconCounterOverlay {
             anchors.fill: parent
-            text: allNotesModel.incompleteCount
-            visible: allNotesModel.incompleteCount > 0
+            text: noteItem.incompleteCount
+            visible: noteItem.incompleteCount > 0
             heightRatio: 0.5
         }
 

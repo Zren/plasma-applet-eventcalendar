@@ -22,7 +22,7 @@ ListModel {
     }
 
     function setData(todoData) {
-        // console.log('setData')
+        console.log('setData', JSON.stringify(todoData))
         clear()
         for (var i = 0; i < todoData.length; i++) {
             append(todoData[i]);

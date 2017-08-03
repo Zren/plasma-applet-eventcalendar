@@ -38,6 +38,10 @@ Item {
     }
     function saveNote(str) {
         // console.log('saveNote')
+        // if (!allSectionsLoaded()) {
+        //     return;
+        // }
+
         if (!str) {
             str = serializeTodoModel();
         }
@@ -50,8 +54,11 @@ Item {
         // console.log('loadNote')
         var savingOnChange = saveOnChange
         saveOnChange = false
-        var todoData = noteItem.deserializeTodoModel(note.noteText)
-        todoModel.setData(todoData)
+        todoData = noteItem.deserializeTodoModel(note.noteText)
+        numSections = todoData.length
+        for (var i = 0; i < todoData.length; i++) {
+            updateSectionModel(i)
+        }
         saveOnChange = savingOnChange
     }
     Timer {
@@ -74,28 +81,36 @@ Item {
 
     function serializeTodoModel() {
         var out = '';
-        console.log('serializeTodoModel', noteLabel)
-        if (noteLabel) {
-            out += '# ' + noteLabel + '\n\n';
-        }
-        for (var i = 0; i < todoModel.count; i++) {
-            var todoItem = todoModel.get(i);
-            if (i == todoModel.count-1 && isEmptyItem(todoItem)) {
-                break;
+        console.log('serializeTodoModel')
+
+        for (var sectionIndex = 0; sectionIndex < numSections; sectionIndex++) {
+            var noteSection = sectionList[sectionIndex];
+            if (noteSection.label || sectionIndex > 0) { // Don't add heading if the first label is empty
+                if (sectionIndex > 0) { // Don't add "top margin" for first heading
+                    out += '\n'
+                }
+                out += '# ' + noteSection.label + '\n\n';
             }
-            // console.log(i, todoItem);
-            var line = '';
-            line += repeat('    ', todoItem.indent)
-            line += '* '
-            line += todoItem.status == 'completed' ? '[x]' : '[ ]';
-            line += ' ';
-            var indent = line.length;
-            var todoItemlines = todoItem.title.split('\n');
-            line += todoItemlines[0];
-            for (var j = 1; j < todoItemlines.length; j++) {
-                line += '\n' + repeat(' ', indent) + todoItemlines[j];
+            var todoModel = noteSection.model
+            for (var i = 0; i < todoModel.count; i++) {
+                var todoItem = todoModel.get(i);
+                if (i == todoModel.count-1 && isEmptyItem(todoItem)) {
+                    break;
+                }
+                // console.log(i, todoItem);
+                var line = '';
+                line += repeat('    ', todoItem.indent)
+                line += '* '
+                line += todoItem.status == 'completed' ? '[x]' : '[ ]';
+                line += ' ';
+                var indent = line.length;
+                var todoItemlines = todoItem.title.split('\n');
+                line += todoItemlines[0];
+                for (var j = 1; j < todoItemlines.length; j++) {
+                    line += '\n' + repeat(' ', indent) + todoItemlines[j];
+                }
+                out += line + '\n';
             }
-            out += line + '\n';
         }
         return out;
     }
@@ -142,11 +157,26 @@ Item {
         return startIndex;
     }
     
-    function deserializeTodoModel(s) {
-        var out = [];
+    function _addSectionTo(out) {
+        out.push({
+            label: '',
+            items: [],
+        });
+    }
+    function trimLastNewline(s) {
         if (s && s[s.length-1] == '\n') {
-            s = s.substr(0, s.length-1); // trim ending \n
+            return s.substr(0, s.length-1); // trim ending \n
+        } else {
+            return s;
         }
+    }
+    function deserializeTodoModel(s) {
+        var sectionIndex = 0;
+        var out = [];
+        _addSectionTo(out);
+
+        s = trimLastNewline(s);
+
         var lines = s.split('\n');
         var todoItem;
         for (var j = 0; j < lines.length; j++) {
@@ -154,7 +184,8 @@ Item {
             var newItem = isNewItem(line);
             if (newItem) {
                 if (todoItem) {
-                    out.push(todoItem);
+                    console.log('items.push(newItem)', out[sectionIndex].label, todoItem.title)
+                    out[sectionIndex].items.push(todoItem);
                 }
                 todoItem = newTodoItem();
                 todoItem.indent = line.indexOf('*') / 4;
@@ -168,33 +199,104 @@ Item {
                     todoItem.title = line.substr(line.indexOf('*') + ' '.length + 1);
                 }
             } else if (isHeading(line)) {
+                if (todoItem) {
+                    todoItem.title = trimLastNewline(todoItem.title);
+                    if (todoItem.title) {
+                        console.log('items.push(newHeading)', out[sectionIndex].label, todoItem.title)
+                        out[sectionIndex].items.push(todoItem);
+                        todoItem = null;
+                    }
+                }
                 var startIndex = getStartIndex(line, 1);
-                noteLabel = line.substr(startIndex);
+                if (!(sectionIndex == 0 && out[sectionIndex].items.length == 0)) { // Not the first heading
+                    _addSectionTo(out);
+                    sectionIndex += 1;
+                }
+                out[sectionIndex].label = line.substr(startIndex);
             } else if (todoItem) {
                 var startIndex = getStartIndex(line, 0);
-                todoItem.title += '\n' + line.substr(startIndex);
+                var lineContents = line.substr(startIndex);
+                if (todoItem) {
+                    todoItem.title += '\n' + lineContents;
+                } else {
+                    console.log('skipped line')
+                }
             }
         }
         if (todoItem) {
-            out.push(todoItem);
+            console.log('items.push(last)', out[sectionIndex].label, todoItem.title)
+            out[sectionIndex].items.push(todoItem);
         }
-        // console.log(JSON.stringify(out, null, '\t'))
+        console.log('deserializeTodoModel', JSON.stringify(out, null, '\t'))
         return out;
     }
 
-    property string noteLabel: ''
-    onNoteLabelChanged: {
-        noteItem.deboucedSaveNote()
-    }
+    // property string noteLabel: ''
+    // onNoteLabelChanged: {
+    //     noteItem.deboucedSaveNote()
+    // }
 
     // public
-    property alias todoModel: todoModel
+    // property alias todoModel: todoModel
 
-    TodoModel {
-        id: todoModel
-        onUpdate: {
-            todoModel.updateVisibleItems()
-            noteItem.deboucedSaveNote()
+    // TodoModel {
+    //     id: todoModel
+    //     onUpdate: {
+    //         todoModel.updateVisibleItems()
+    //         noteItem.deboucedSaveNote()
+    //     }
+    // }
+
+    property int incompleteCount: 0
+    function updateIncompleteCount() {
+        var n = 0
+        for (var i = 0; i < numSections; i++) {
+            var noteSection = sectionList[i]
+            if (noteSection) {
+                n += noteSection.model.incompleteCount
+            }
+        }
+        incompleteCount = n
+    }
+
+    property variant todoData: []
+    function updateSectionModel(sectionIndex) {
+        sectionList[sectionIndex].setData(todoData[sectionIndex])
+    }
+
+    property var sectionList: { return {} }
+    property int numSections: 1
+
+    Repeater {
+        model: noteItem.numSections
+        Item {
+            id: noteSectionItem
+            property string label: ''
+
+            function setData(sectionData) {
+                label = sectionData.label
+                model.setData(sectionData.items)
+            }
+
+            property alias model: model
+            TodoModel {
+                id: model
+                onUpdate: {
+                    model.updateVisibleItems()
+                    noteItem.deboucedSaveNote()
+                }
+            }
+
+            Component.onCompleted: {
+                noteItem.sectionList[index] = noteSectionItem
+                noteItem.updateSectionModel(index)
+                noteSectionItem.model.incompleteCountChanged.connect(noteItem.updateIncompleteCount)
+                noteItem.updateIncompleteCount()
+            }
+            Component.onDestruction: {
+                // noteItem.saveNote()
+                delete noteItem.sectionList[index]
+            }
         }
     }
 

@@ -19,7 +19,7 @@ MouseArea {
     // height: Math.min(Math.max(400, listView.implicitHeight, 400), Screen.desktopAvailableHeight)
     Layout.minimumWidth: units.gridUnit * 10
     Layout.minimumHeight: units.gridUnit * 10
-    Layout.preferredWidth: units.gridUnit * 20 * allNotesModel.numLists
+    Layout.preferredWidth: units.gridUnit * 20 * noteItem.numSections
     Layout.preferredHeight: Math.min(Math.max(units.gridUnit * 20, maxContentHeight), Screen.desktopAvailableHeight) // Binding loop warning (meh).
     property int maxContentHeight: 0
     function updateMaxContentHeight() {
@@ -62,7 +62,7 @@ MouseArea {
 
         Repeater {
             id: notesRepeater
-            model: allNotesModel.noteIdList
+            model: noteItem.numSections
 
             ColumnLayout {
                 id: container
@@ -70,15 +70,11 @@ MouseArea {
                 Layout.fillHeight: true
                 spacing: 0
 
-                property int contentHeight: label.height + container.spacing + noteListView.contentHeight
+                property int contentHeight: textField.height + container.spacing + noteListView.contentHeight
                 onContentHeightChanged: mouseArea.updateMaxContentHeight()
 
                 property string noteId: modelData
-                property var noteItem: allNotesModel.noteItemList[noteId]
-
-                Component.onDestruction: {
-                    noteItem.saveNote()
-                }
+                property var noteSection: noteItem.sectionList[index]
 
                 MouseArea {
                     id: labelMouseArea
@@ -136,7 +132,7 @@ MouseArea {
                         TextField {
                             id: textField
                             Layout.fillWidth: true
-                            text: noteItem.noteLabel
+                            text: noteSection.label
 
                             style: TextFieldStyle {
                                 id: style
@@ -162,7 +158,7 @@ MouseArea {
 
                     NoteListView {
                         id: noteListView
-                        model: noteItem.todoModel
+                        model: noteSection.model
                     }
                 }
             }
