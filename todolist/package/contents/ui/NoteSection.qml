@@ -18,6 +18,8 @@ ColumnLayout {
     Layout.fillWidth: true
     Layout.fillHeight: true
     spacing: 0
+
+    property int contentHeight: textField.height + container.spacing + noteListView.contentHeight
     
     property var noteSection: noteItem.sectionList[index]
 

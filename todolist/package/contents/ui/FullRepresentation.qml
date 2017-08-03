@@ -12,9 +12,8 @@ import QtQuick.Controls.Styles.Plasma 2.0 as PlasmaStyles
 import org.kde.draganddrop 2.0 as DragAndDrop
 import org.kde.plasma.private.notes 0.1
 
-MouseArea {
-    id: mouseArea
-    hoverEnabled: true
+FocusScope {
+    id: fullRepresentation
     // width: 800
     // height: Math.min(Math.max(400, listView.implicitHeight, 400), Screen.desktopAvailableHeight)
     Layout.minimumWidth: units.gridUnit * 10
@@ -28,6 +27,7 @@ MouseArea {
             var item = notesRepeater.itemAt(i)
             maxHeight = Math.max(maxHeight, item.contentHeight)
         }
+        // console.log('maxContentHeight', maxHeight)
         maxContentHeight = maxHeight
     }
     // property int contentHeight: pinButton.height + container.spacing + listView.contentHeight
@@ -36,6 +36,11 @@ MouseArea {
 
     property bool isDesktopContainment: false
 
+    // MouseArea {
+    //     id: mouseArea
+    //     anchors.fill: parent
+    //     hoverEnabled: true
+    // }
     // Rectangle {
     //  anchors.fill: parent
     //  color: "#000"
@@ -67,8 +72,10 @@ MouseArea {
             NoteSection {
                 id: container
 
-                property int contentHeight: textField.height + container.spacing + noteListView.contentHeight
-                onContentHeightChanged: mouseArea.updateMaxContentHeight()
+                onContentHeightChanged: {
+                    // console.log('onContentHeightChanged', index, contentHeight)
+                    fullRepresentation.updateMaxContentHeight()
+                }
             }
         }
 
