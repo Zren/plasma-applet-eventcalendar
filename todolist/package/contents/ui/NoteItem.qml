@@ -287,6 +287,7 @@ Item {
     }
 
     function moveSection(sectionIndex, insertIndex) {
+        todoData = deserializeTodoModel(serializeTodoModel()) // First make sure todoData is updated
         var arr = todoData.splice(sectionIndex, 1)
         todoData.splice(insertIndex, 0, arr[0])
         updateAllModels()
