@@ -318,6 +318,7 @@ Item {
         Item {
             id: noteSectionItem
             property string label: ''
+            onLabelChanged: noteItem.deboucedSaveNote()
 
             function setData(sectionData) {
                 label = sectionData.label

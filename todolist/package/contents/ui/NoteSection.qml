@@ -89,42 +89,51 @@ ColumnLayout {
                     padding.bottom: 0
                     padding.left: 0
                     padding.right: 0
+                }
 
+                onEditingFinished: {
+                    noteSection.label = text
+                    text = Qt.binding(function() { return noteSection.label })
                 }
             }
+        }
 
-            PlasmaComponents.ToolButton {
-                opacity: labelMouseArea.containsMouse ? 1 : 0
-                iconName: "trash-empty"
-                onClicked: promptDeleteLoader.show()
+        PlasmaComponents.ToolButton {
+            anchors.right: labelRow.right
+            anchors.rightMargin: index == notesRepeater.count-1 ? pinButton.width : 0
+            // anchors.top: labelRow.top
+            // anchors.bottom: labelRow.bottom
+            anchors.verticalCenter: labelRow.verticalCenter
+            opacity: labelMouseArea.containsMouse && !noteSectionDropArea.containsDrag ? 1 : 0
+            iconName: "trash-empty"
+            onClicked: promptDeleteLoader.show()
 
-                Loader {
-                    id: promptDeleteLoader
-                    active: false
+            Loader {
+                id: promptDeleteLoader
+                active: false
 
-                    function show() {
-                        if (item) {
-                            item.visible = true
-                        } else {
-                            active = true
-                        }
-                    }
-
-                    sourceComponent: Component {
-                        MessageDialog {
-                            // visible: true
-                            title: i18n("Confirm Delete")
-                            icon: StandardIcon.Warning
-                            text: i18n("Are you sure you want to delete the list \"%1\" with %2 items?", noteSection.label || ' ', Math.max(0, noteSection.model.count - 1))
-                            standardButtons: StandardButton.Yes | StandardButton.Cancel
-
-                            onAccepted: noteItem.removeSection(index)
-                            Component.onCompleted: visible = true
-                        }
+                function show() {
+                    if (item) {
+                        item.visible = true
+                    } else {
+                        active = true
                     }
                 }
 
+                sourceComponent: Component {
+                    MessageDialog {
+                        // visible: true
+                        title: i18n("Confirm Delete")
+                        icon: StandardIcon.Warning
+                        text: i18n("Are you sure you want to delete the list \"%1\" with %2 items?", noteSection.label || ' ', Math.max(0, noteSection.model.count - 1))
+                        standardButtons: StandardButton.Yes | StandardButton.Cancel
+
+                        onAccepted: noteItem.removeSection(index)
+                        Component.onCompleted: visible = true
+                    }
+                }
             }
+
         }
     }
 
