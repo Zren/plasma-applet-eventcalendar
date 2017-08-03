@@ -91,6 +91,7 @@ MouseArea {
         id: todoItemRow
         width: parent.width
         height: Math.max(checkbox.height, textArea.height)
+        // Component.onCompleted: height = Qt.binding(function() { return Math.max(checkbox.height, textArea.height) })
         spacing: 0
 
         Item {
@@ -143,6 +144,7 @@ MouseArea {
 
             
             TextArea {
+            // PlasmaFlatStyle.FastTextArea {
                 id: textArea
                 width: parent.width
                 // Layout.fillHeight: true
