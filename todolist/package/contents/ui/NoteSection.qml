@@ -104,7 +104,7 @@ ColumnLayout {
             // anchors.top: labelRow.top
             // anchors.bottom: labelRow.bottom
             anchors.verticalCenter: labelRow.verticalCenter
-            opacity: labelMouseArea.containsMouse && !noteSectionDropArea.containsDrag ? 1 : 0
+            visible: notesRepeater.count > 1 && labelMouseArea.containsMouse && !noteSectionDropArea.containsDrag
             iconName: "trash-empty"
             onClicked: promptDeleteLoader.show()
 
