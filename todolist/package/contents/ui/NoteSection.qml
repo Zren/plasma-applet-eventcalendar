@@ -1,6 +1,7 @@
 import QtQuick 2.0
 import QtQuick.Controls 1.1
 import QtQuick.Controls.Styles 1.1
+import QtQuick.Dialogs 1.2
 import QtQuick.Layouts 1.1
 import QtQuick.Window 2.2
 
@@ -90,6 +91,39 @@ ColumnLayout {
                     padding.right: 0
 
                 }
+            }
+
+            PlasmaComponents.ToolButton {
+                opacity: labelMouseArea.containsMouse ? 1 : 0
+                iconName: "trash-empty"
+                onClicked: promptDeleteLoader.show()
+
+                Loader {
+                    id: promptDeleteLoader
+                    active: false
+
+                    function show() {
+                        if (item) {
+                            item.visible = true
+                        } else {
+                            active = true
+                        }
+                    }
+
+                    sourceComponent: Component {
+                        MessageDialog {
+                            // visible: true
+                            title: i18n("Confirm Delete")
+                            icon: StandardIcon.Warning
+                            text: i18n("Are you sure you want to delete the list \"%1\" with %2 items?", noteSection.label || ' ', Math.max(0, noteSection.model.count - 1))
+                            standardButtons: StandardButton.Yes | StandardButton.Cancel
+
+                            onAccepted: noteItem.removeSection(index)
+                            Component.onCompleted: visible = true
+                        }
+                    }
+                }
+
             }
         }
     }

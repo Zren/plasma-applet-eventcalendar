@@ -286,16 +286,28 @@ Item {
         sectionList[sectionIndex].setData(todoData[sectionIndex])
     }
 
+    function updateTodoData() {
+        todoData = deserializeTodoModel(serializeTodoModel())
+    }
+
     function moveSection(sectionIndex, insertIndex) {
-        todoData = deserializeTodoModel(serializeTodoModel()) // First make sure todoData is updated
+        updateTodoData() // First make sure todoData is updated
         var arr = todoData.splice(sectionIndex, 1)
         todoData.splice(insertIndex, 0, arr[0])
         updateAllModels()
     }
 
     function addSection() {
+        updateTodoData() // First make sure todoData is updated
         _addSectionTo(todoData)
         numSections += 1
+    }
+
+    function removeSection(sectionIndex) {
+        updateTodoData() // First make sure todoData is updated
+        todoData.splice(sectionIndex, 1)
+        numSections -= 1
+        updateAllModels()
     }
 
     property var sectionList: { return {} }
