@@ -16,7 +16,7 @@ FocusScope {
     id: fullRepresentation
     // width: 800
     // height: Math.min(Math.max(400, listView.implicitHeight, 400), Screen.desktopAvailableHeight)
-    Layout.minimumWidth: units.gridUnit * 10
+    Layout.minimumWidth: units.gridUnit * 10 * noteItem.numSections
     Layout.minimumHeight: units.gridUnit * 10
     Layout.preferredWidth: units.gridUnit * 20 * noteItem.numSections
     Layout.preferredHeight: Math.min(Math.max(units.gridUnit * 20, maxContentHeight), Screen.desktopAvailableHeight) // Binding loop warning (meh).
