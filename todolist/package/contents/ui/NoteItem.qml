@@ -87,7 +87,7 @@ Item {
                 if (sectionIndex > 0) { // Don't add "top margin" for first heading
                     out += '\n'
                 }
-                out += '# ' + noteSection.label + '\n\n';
+                out += '# ' + rtrim(noteSection.label) + '\n\n';
             }
             var todoModel = noteSection.model
             for (var i = 0; i < todoModel.count; i++) {
@@ -228,7 +228,7 @@ Item {
                     _addSectionTo(out);
                     sectionIndex += 1;
                 }
-                out[sectionIndex].label = line.substr(startIndex);
+                out[sectionIndex].label = rtrim(line.substr(startIndex));
             } else if (todoItem) {
                 var startIndex = getStartIndex(line, 0);
                 var lineContents = line.substr(startIndex);
