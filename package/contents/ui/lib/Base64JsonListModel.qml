@@ -4,6 +4,7 @@ ListModel {
 	id: listModel
 	property alias configKey: base64Json.configKey
 
+	property int oldCount: count
 	property QtObject base64Json: Base64Json {
 		id: base64Json
 		value: []
@@ -21,13 +22,35 @@ ListModel {
 	function addItem(obj) {
 		append(obj)
 		base64Json.value.push(obj)
-		base64Json.serialize()
+		serialize()
 	}
 
 	function removeIndex(index) {
 		remove(index)
 		base64Json.value.splice(index, 1)
-		base64Json.serialize()
+		serialize()
 	}
-	
+
+	function setItemProperty(index, key, value) {
+		setProperty(index, key, value)
+		base64Json.value[index][key] = value
+		serialize()
+	}
+
+	function serialize() {
+		if (throttle > 0) {
+			serializeTimer.restart()
+		} else {
+			base64Json.serialize()
+		}
+	}
+
+	property alias throttle: serializeTimer.interval
+	property Timer serializeTimer: Timer {
+		id: serializeTimer
+		interval: 200
+		onTriggered: {
+			base64Json.serialize()
+		}
+	}
 }
