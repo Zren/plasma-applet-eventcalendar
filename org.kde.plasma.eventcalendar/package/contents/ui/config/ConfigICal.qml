@@ -1,16 +1,23 @@
 import QtQuick 2.0
 import QtQuick.Controls 1.0
 import QtQuick.Controls.Styles 1.1
+import QtQuick.Dialogs 1.2
 import QtQuick.Layouts 1.0
 import org.kde.plasma.core 2.0 as PlasmaCore
 import org.kde.plasma.components 2.0 as PlasmaComponents
 import org.kde.plasma.extras 2.0 as PlasmaExtras
+
+import org.kde.kcoreaddons 1.0 as KCoreAddons
 
 import ".."
 import "../lib"
 
 ConfigPage {
     id: page
+
+    KCoreAddons.KUser {
+        id: kuser
+    }
 
     Base64JsonListModel {
         id: calendarsModel
@@ -19,6 +26,18 @@ ConfigPage {
         function addCalendar() {
             addItem({
                 url: '',
+                name: 'Label',
+                backgroundColor: '' + theme.highlightColor,
+                show: true,
+                isReadOnly: true,
+            });
+        }
+
+        function addNewCalendar() {
+            var dirPath = '/home/' + kuser.loginName + '/.local/share/plasma_org.kde.plasma.eventcalendar'
+            var icsPath = dirPath + '/calendar.ics'
+            addItem({
+                url: icsPath,
                 name: 'Label',
                 backgroundColor: '' + theme.highlightColor,
                 show: true,
@@ -35,6 +54,11 @@ ConfigPage {
             iconName: "resource-calendar-insert"
             text: i18n("Add Calendar")
             onClicked: calendarsModel.addCalendar()
+        }
+        Button {
+            iconName: "resource-calendar-insert"
+            text: i18n("New Calendar")
+            onClicked: calendarsModel.addNewCalendar()
         }
     }
 
@@ -78,12 +102,28 @@ ConfigPage {
                     }
                     RowLayout {
                         TextField {
+                            id: calendarUrlField
                             Layout.fillWidth: true
                             text: model.url
+                            onTextChanged: calendarsModel.setItemProperty(index, 'url', text)
                         }
 
                         Button {
                             iconName: "folder-open"
+                            text: i18n("Browse")
+                            onClicked: {
+                                filePicker.open()
+                            }
+
+                            FileDialog {
+                                id: filePicker
+
+                                nameFilters: [ i18n("iCalendar (*.ics)") ]
+
+                                onFileUrlChanged: {
+                                    calendarUrlField.text = fileUrl
+                                }
+                            }
                         }
                     }
                 }
