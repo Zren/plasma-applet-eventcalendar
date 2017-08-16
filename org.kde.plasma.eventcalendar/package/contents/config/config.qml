@@ -28,6 +28,12 @@ ConfigModel {
         source: "config/ConfigAgenda.qml"
     }
     ConfigCategory {
+        name: i18n("ICalendar (.ics)")
+        icon: "text-calendar"
+        source: "config/ConfigICal.qml"
+        visible: plasmoid.configuration.debugging
+    }
+    ConfigCategory {
         name: i18n("Google Calendar")
         icon: "google-chrome"
         source: "config/ConfigGoogleCalendar.qml"
