@@ -11,6 +11,7 @@ import "../lib"
 
 ConfigPage {
 	id: page
+	showAppletVersion: true
 
 	AppletConfig { id: config }
 	
