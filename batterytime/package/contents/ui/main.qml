@@ -76,7 +76,7 @@ Item {
 	readonly property bool isKeyboardBrightnessAvailable: getData('PowerDevil', 'Keyboard Brightness Available', false)
 
 	// Debugging
-	property bool testing: true
+	property bool testing: false
 	// Timer {
 	// 	interval: 3000
 	// 	running: widget.testing
@@ -127,112 +127,42 @@ Item {
 			return config.normalColor
 		}
 	}
-	
+
 	Plasmoid.compactRepresentation: Item {
 		id: panelItem
 
-		Layout.minimumWidth: 4 * units.devicePixelRatio
-		Layout.minimumHeight: 4 * units.devicePixelRatio
+		Layout.minimumWidth: gridLayout.implicitWidth
+		Layout.preferredWidth: gridLayout.implicitWidth
 
-		property int textHeight: Math.max(6, Math.min(panelItem.height, 16 * units.devicePixelRatio))
+		Layout.minimumHeight: gridLayout.implicitHeight
+		Layout.preferredHeight: gridLayout.implicitHeight
+
+		// property int textHeight: Math.max(6, Math.min(panelItem.height, 16 * units.devicePixelRatio))
+		property int textHeight: 12 * units.devicePixelRatio
 		// onTextHeightChanged: console.log('textHeight', textHeight)
-
-		states: [
-			State {
-				name: "horizontal"
-				when: plasmoid.formFactor == PlasmaCore.Types.Horizontal
-				PropertyChanges {
-					target: panelItem
-					Layout.minimumWidth: gridLayout.implicitWidth
-					Layout.preferredWidth: gridLayout.implicitWidth
-				}
-				PropertyChanges {
-					target: gridLayout
-					rows: 1
-					columnSpacing: 4 * units.devicePixelRatio
-				}
-				PropertyChanges {
-					target: batteryIconContainer
-					height: gridLayout.height
-				}
-				PropertyChanges {
-					target: percentText
-					height: gridLayout.height
-				}
-				PropertyChanges {
-					target: timeLeftText
-					height: gridLayout.height
-				}
-			},
-			State {
-				name: "vertical"
-				when: plasmoid.formFactor == PlasmaCore.Types.Vertical
-				PropertyChanges {
-					target: panelItem
-					Layout.minimumHeight: gridLayout.implicitHeight
-					Layout.preferredHeight: gridLayout.implicitHeight
-					textHeight: 12 * units.devicePixelRatio
-				}
-				PropertyChanges {
-					target: gridLayout
-					columns: 1
-				}
-				PropertyChanges {
-					target: batteryIconContainer
-					width: gridLayout.width
-					anchors.left: gridLayout.left
-					anchors.right: gridLayout.right
-				}
-				PropertyChanges {
-					target: percentText
-					anchors.left: gridLayout.left
-					anchors.right: gridLayout.right
-				}
-				PropertyChanges {
-					target: timeLeftText
-					anchors.left: gridLayout.left
-					anchors.right: gridLayout.right
-				}
-			},
-			State {
-				name: "desktop"
-				when: plasmoid.location == PlasmaCore.Types.Floating
-				PropertyChanges {
-					target: panelItem
-					textHeight: 12 * units.devicePixelRatio
-				}
-				PropertyChanges {
-					target: batteryIconContainer
-					width: gridLayout.width
-					anchors.left: gridLayout.left
-					anchors.right: gridLayout.right
-				}
-				PropertyChanges {
-					target: percentText
-					anchors.left: gridLayout.left
-					anchors.right: gridLayout.right
-					height: gridLayout.height
-				}
-				PropertyChanges {
-					target: timeLeftText
-					anchors.left: gridLayout.left
-					anchors.right: gridLayout.right
-					height: gridLayout.height
-				}
-			}
-		]
 
 		GridLayout {
 			id: gridLayout
 			anchors.fill: parent
-			columnSpacing: 0
+
+			// The rect around the Text items in the vertical layout should provide 2 pixels above
+			// and below. Adding extra space will make the space between the percentage and time left
+			// labels look bigger than the space between the icon and the percentage.
+			// So for vertical layouts, we'll add the spacing to just the icon.
+			property int spacing: 4 * units.devicePixelRatio
+			columnSpacing: spacing
 			rowSpacing: 0
+
+			property bool useVerticalLayout: plasmoid.formFactor == PlasmaCore.Types.Vertical
+			columns: useVerticalLayout ? 1 : 3
 
 			Item {
 				id: batteryIconContainer
 				visible: plasmoid.configuration.showBatteryIcon
-				width: 22
-				height: 12
+				anchors.left: gridLayout.useVerticalLayout ? parent.left : undefined
+				anchors.right: gridLayout.useVerticalLayout ? parent.right : undefined
+				width: 22 * units.devicePixelRatio
+				height: 12 * units.devicePixelRatio + (gridLayout.useVerticalLayout ? gridLayout.spacing : 0)
 
 				BreezeBatteryIcon {
 					id: batteryIcon
@@ -252,6 +182,8 @@ Item {
 			PlasmaComponent.Label {
 				id: percentText
 				visible: plasmoid.configuration.showPercentage
+				anchors.left: gridLayout.useVerticalLayout ? parent.left : undefined
+				anchors.right: gridLayout.useVerticalLayout ? parent.right : undefined
 				// Layout.fillWidth: true
 				text: {
 					if (currentBatteryPercent > 0) {
@@ -267,13 +199,15 @@ Item {
 				horizontalAlignment: Text.AlignHCenter
 				verticalAlignment: Text.AlignVCenter
 				color: currentTextColor
+
+				// Rectangle { border.color: "#ff0"; border.width: 1; anchors.fill: parent; color: "transparent"}
 			}
 
 			PlasmaComponent.Label {
 				id: timeLeftText
-				// Layout.fillWidth: true
 				visible: plasmoid.configuration.showTimeLeft
-				// visible: currentBatteryRemainingTime > 0
+				anchors.left: gridLayout.useVerticalLayout ? parent.left : undefined
+				anchors.right: gridLayout.useVerticalLayout ? parent.right : undefined
 				text: {
 					if (currentBatteryRemainingTime > 0) {
 						if (plasmoid.configuration.timeLeftFormat == '69m') {
@@ -291,6 +225,8 @@ Item {
 				horizontalAlignment: Text.AlignHCenter
 				verticalAlignment: Text.AlignVCenter
 				color: currentTextColor
+
+				// Rectangle { border.color: "#f00"; border.width: 1; anchors.fill: parent; color: "transparent"}
 			}
 		}
 	}
