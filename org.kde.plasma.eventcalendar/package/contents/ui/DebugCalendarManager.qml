@@ -1,7 +1,5 @@
 import QtQuick 2.0
-import org.kde.plasma.core 2.0 as PlasmaCore
 
-import "lib"
 import "utils.js" as Utils
 import "../code/DebugFixtures.js" as DebugFixtures
 
