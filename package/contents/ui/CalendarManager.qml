@@ -42,6 +42,28 @@ Item {
 		dataCleared()
 	}
 
+	function getEvent(calendarId, eventId) {
+		var events = calendarManager.eventsByCalendar[calendarId].items
+		for (var i = 0; i < events.length; i++) {
+			if (events[i].id == eventId) {
+				return events[i];
+			}
+		}
+	}
+
+	// Remove from model only
+	function removeEvent(calendarId, eventId) {
+		var events = calendarManager.eventsByCalendar[calendarId].items
+		for (var i = 0; i < events.length; i++) {
+			if (events[i].id == eventId) {
+				var data = events[i]
+				events.splice(i, 1) // Remove item at index
+				eventRemoved(calendarId, eventId, data)
+				break
+			}
+		}
+	}
+
 	function fetchAll(dateMin, dateMax) {
 		logger.debug(calendarManager, 'fetchAllEvents', dateMin, dateMax)
 		fetchingData()
