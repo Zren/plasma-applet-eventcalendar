@@ -1,3 +1,9 @@
+## v4 - August 23 2017
+
+* Support displaying time left as "1:09" and default to that.
+* Make space between icon and percentage the same as the space between the percentage and the time left in a vertical panel.
+* Fixed text size of 12px for now.
+
 ## v3 - June 2 2017
 
 * Normal color, charging color, and the low battery color + percentage is now configurable.
