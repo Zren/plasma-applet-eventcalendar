@@ -76,7 +76,7 @@ Item {
 	readonly property bool isKeyboardBrightnessAvailable: getData('PowerDevil', 'Keyboard Brightness Available', false)
 
 	// Debugging
-	property bool testing: false
+	property bool testing: true
 	// Timer {
 	// 	interval: 3000
 	// 	running: widget.testing
@@ -276,9 +276,9 @@ Item {
 				// visible: currentBatteryRemainingTime > 0
 				text: {
 					if (currentBatteryRemainingTime > 0) {
-						if (true) {
+						if (plasmoid.configuration.timeLeftFormat == '69m') {
 							return '' + Math.floor(currentBatteryRemainingTime / (60 * 1000)) + 'm'
-						} else {
+						} else { // Empty string
 							return KCoreAddons.Format.formatDuration(currentBatteryRemainingTime, KCoreAddons.FormatTypes.HideSeconds)
 						}
 					} else {

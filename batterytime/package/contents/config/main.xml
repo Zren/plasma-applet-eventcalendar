@@ -27,6 +27,10 @@
     <entry name="lowBatteryPercent" type="int">
       <default>20</default>
     </entry>
+    <entry name="timeLeftFormat" type="string">
+      <label>Empty string means using the default locale (eg: "1:09"). "69m" is hardcoded to not carry over into the hour digit.</label>
+      <default></default>
+    </entry>
   </group>
 
 </kcfg>

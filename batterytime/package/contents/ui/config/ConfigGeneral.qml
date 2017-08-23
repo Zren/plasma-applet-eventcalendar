@@ -69,18 +69,18 @@ ConfigPage {
 		RadioButton {
 			text: KCoreAddons.Format.formatDuration(69 * 1000, KCoreAddons.FormatTypes.HideSeconds)
 			exclusiveGroup: timeLeftFormatGroup
-			checked: false
-			enabled: false
-			// checked: plasmoid.configuration.timeLeftFormat
-			// onClicked: plasmoid.configuration.timeLeftFormat = true
+			// checked: false
+			// enabled: false
+			checked: config.timeLeftUseLocaleFormat
+			onClicked: plasmoid.configuration.timeLeftFormat = ''
 		}
 		RadioButton {
 			text: i18n("69m")
 			exclusiveGroup: timeLeftFormatGroup
-			checked: true
-			enabled: false
-			// checked: !plasmoid.configuration.timeLeftFormat
-			// onClicked: plasmoid.configuration.timeLeftFormat = false
+			// checked: true
+			// enabled: false
+			checked: !config.timeLeftUseLocaleFormat
+			onClicked: plasmoid.configuration.timeLeftFormat = '69m'
 		}
 	}
 }

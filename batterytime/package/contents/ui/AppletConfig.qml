@@ -9,4 +9,6 @@ QtObject {
 	
 	readonly property color defaultLowBatteryColor: '#e33'
 	readonly property color lowBatteryColor: plasmoid.configuration.lowBatteryColor || defaultLowBatteryColor
+
+	readonly property bool timeLeftUseLocaleFormat: plasmoid.configuration.timeLeftFormat != '69m'
 }
