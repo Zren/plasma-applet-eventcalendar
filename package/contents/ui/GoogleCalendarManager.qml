@@ -132,14 +132,14 @@ CalendarManager {
 		}, callback);
 	}
 
-
-
+	onCalendarParsing: {
+		var calendar = getCalendar(calendarId)
+		parseEventList(calendar, data.items)
+	}
 
 	function parseEvent(calendar, event) {
 		event.backgroundColor = parseColor(calendar, event)
 		event.canEdit = calendar.accessRole == 'owner' && !event.recurringEventId // We cannot currently edit repeating events.
-		event._summary = event.summary
-		event.summary = event.summary || i18nc("event with no summary", "(No title)")
 	}
 
 	function parseEventList(calendar, eventList) {
@@ -147,8 +147,6 @@ CalendarManager {
 			parseEvent(calendar, event)
 		})
 	}
-
-
 
 	function parseColorId(colorIdType, colorId) {
 		// Use hardcoded colorIdMap rather than requesting the list from the API.

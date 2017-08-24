@@ -6,12 +6,13 @@ import "../code/DebugFixtures.js" as DebugFixtures
 CalendarManager {
 	id: debugCalendarManager
 
+	property variant debugCalendar: null
+
 	function fetchDebugEvents() {
 		plasmoid.configuration.debugging = true
-		var debugCalendar = DebugFixtures.getCalendar()
+		debugCalendar = DebugFixtures.getCalendar()
 		var debugEventData = DebugFixtures.getEventData()
-		parseEventList(debugCalendar, debugEventData.items)
-		setCalendarData('debug', debugEventData)
+		setCalendarData(debugCalendar.id, debugEventData)
 	}
 
 	function fetchDebugGoogleSession() {
@@ -62,11 +63,13 @@ CalendarManager {
 		// fetchDebugGoogleSession()
 	}
 
+	onCalendarParsing: {
+		parseEventList(debugCalendar, data.items)
+	}
+
 	function parseEvent(calendar, event) {
 		event.backgroundColor = calendar.backgroundColor
 		event.canEdit = false
-		event._summary = event.summary
-		event.summary = event.summary || i18nc("event with no summary", "(No title)")
 	}
 
 	function parseEventList(calendar, eventList) {
