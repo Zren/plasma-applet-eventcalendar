@@ -667,7 +667,6 @@ Item {
             agendaView.clipPastEvents = false;
         }
 
-        eventModel.parseGCalEvents()
         agendaView.parseGCalEvents(eventModel.eventsData);
         agendaView.parseWeatherForecast(dailyWeatherData);
         monthView.parseGCalEvents(eventModel.eventsData);

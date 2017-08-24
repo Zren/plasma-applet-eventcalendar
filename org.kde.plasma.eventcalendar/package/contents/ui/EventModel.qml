@@ -39,53 +39,6 @@ CalendarManager {
 		onEventUpdated: eventModel.eventUpdated(calendarId, eventId, data)
 	}
 
-	function parseEvent(calendar, event) {
-		event.backgroundColor = parseColor(calendar, event)
-		event.canEdit = calendar.accessRole == 'owner' && !event.recurringEventId // We cannot currently edit repeating events.
-		event._summary = event.summary
-		event.summary = event.summary || i18nc("event with no summary", "(No title)")
-	}
-
-	function parseEventList(calendar, eventList) {
-		eventList.forEach(function(event){
-			parseEvent(calendar, event)
-		})
-	}
-
-	function parseGoogleCalendarEvent(calendarId, event) {
-		event.calendarId = calendarId
-
-		var calendarList = googleCalendarManager.getCalendarList()
-		calendarList.forEach(function(calendar){
-			if (calendarId == calendar.id) {
-				parseEvent(calendar, event)
-			}
-		})
-	}
-
-
-	function parseGoogleCalendarEvents(calendarId, data) {
-		data.items.forEach(function(event){
-			event.calendarId = calendarId
-		})
-
-		var calendarList = googleCalendarManager.getCalendarList()
-		calendarList.forEach(function(calendar){
-			if (calendarId == calendar.id) {
-				parseEventList(calendar, data.items)
-			}
-		})
-	}
-
-	function parseGCalEvents() {
-		var calendarList = googleCalendarManager.getCalendarList()
-		eventModel.eventsData = { items: [] }
-		for (var calendarId in eventModel.eventsByCalendar) {
-			parseGoogleCalendarEvents(calendarId, eventModel.eventsByCalendar[calendarId])
-			eventModel.eventsData.items = eventModel.eventsData.items.concat(eventModel.eventsByCalendar[calendarId].items)
-		}
-	}
-
 	property var deferredUpdate: Timer {
 		id: deferredUpdate
 		interval: 200
@@ -96,10 +49,17 @@ CalendarManager {
 	}
 
 	onFetchAllCalendars: {
-		// fetchGoogleAccountData()
 		googleCalendarManager.fetchAll(dateMin, dateMax)
 		// icalManager.fetchAll(dateMin, dateMax)
-		debugCalendarManager.fetchAll(dateMin, dateMax)
+		// debugCalendarManager.fetchAll(dateMin, dateMax)
+	}
+
+	onAllDataFetched: mergeEvents()
+	function mergeEvents() {
+		eventModel.eventsData = { items: [] }
+		for (var calendarId in eventModel.eventsByCalendar) {
+			eventModel.eventsData.items = eventModel.eventsData.items.concat(eventModel.eventsByCalendar[calendarId].items)
+		}
 	}
 
 	function createEvent(calendarId, date, text) {

@@ -30,6 +30,7 @@ Item {
 	}
 
 	function setCalendarData(calendarId, data) {
+		calendarParsing(calendarId, data)
 		eventsByCalendar[calendarId] = data
 		calendarFetched(calendarId, data)
 	}
@@ -78,4 +79,16 @@ Item {
 
 	// Implementation
 	signal fetchAllCalendars()
+	signal calendarParsing(string calendarId, var data)
+
+	onCalendarParsing: {
+		// To simplify repeated code amongst implementations,
+		// we'll put the reused code here.
+		data.items.forEach(function(event) {
+			event.calendarId = calendarId
+			event._summary = event.summary
+			event.summary = event.summary || i18nc("event with no summary", "(No title)")
+		})
+		// logger.debug('CalendarManager.calendarParsing(', calendarManager, ')', calendarId)
+	}
 }

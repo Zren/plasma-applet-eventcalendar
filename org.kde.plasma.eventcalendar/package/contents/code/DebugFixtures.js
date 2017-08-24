@@ -1,5 +1,6 @@
 function getCalendar() {
     return {
+        "id": "debug",
         "backgroundColor": "#9a9cff",
         "accessRole": "owner",
     }
