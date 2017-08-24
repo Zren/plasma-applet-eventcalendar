@@ -447,18 +447,7 @@ Item {
     }
 
     Component.onCompleted: {
-        if (typeof root === 'undefined') {
-            logger.debug('today = new Date()')
-            today = new Date();
-        }
-        update();
-        if (typeof root === 'undefined') {
-            // eventModel.eventsByCalendar['debug'] = DebugFixtures.getEventData();
-            eventModel.eventsData = DebugFixtures.getEventData();
-            // updateUI();
-            // agendaView.parseGCalEvents(eventsData);
-            // monthView.parseGCalEvents(eventsData);
-        }
+        update()
         polltimer.start()
     }
         
@@ -503,15 +492,15 @@ Item {
             popup.updateUI()
         }
         onEventCreated: {
-            logger.log('onEventCreated', calendarId, JSON.stringify(data, null, '\t'))
+            logger.logJSON('onEventCreated', calendarId, data)
             popup.updateUI()
         }
         onEventUpdated: {
-            logger.log('onEventUpdated', calendarId, eventId, JSON.stringify(data, null, '\t'))
+            logger.logJSON('onEventUpdated', calendarId, eventId, data)
             popup.updateUI()
         }
         onEventDeleted: {
-            logger.log('onEventDeleted', calendarId, eventId, JSON.stringify(data, null, '\t'))
+            logger.logJSON('onEventDeleted', calendarId, eventId, data)
             popup.updateUI()
         }
     }
@@ -534,53 +523,6 @@ Item {
         popup.visibleDateMin = dateMin
         popup.visibleDateMax = dateMax
         eventModel.fetchAll(dateMin, dateMax)
-
-        // logger.debug(dateMin);
-        // logger.debug(dateMax);
-
-        /*
-        if (plasmoid.configuration.access_token) {
-            var calendarIdList = plasmoid.configuration.calendar_id_list ? plasmoid.configuration.calendar_id_list.split(',') : ['primary'];
-            var calendarList = plasmoid.configuration.calendar_list ? JSON.parse(Qt.atob(plasmoid.configuration.calendar_list)) : [];
-
-            // logger.debug('updateEvents', dateMin, ' - ', dateMax);
-            // logger.debug('calendarIdList', calendarIdList);
-            // logger.debug('calendarList.length', calendarList.length);
-
-            eventModel.eventsByCalendar = {};
-            popup.visibleDateMin = dateMin
-            popup.visibleDateMax = dateMax
-
-            for (var i = 0; i < calendarIdList.length; i++) {
-                (function(calendarId){
-                    fetchGCalEvents({
-                        calendarId: calendarId,
-                        start: dateMin.toISOString(),
-                        end: dateMax.toISOString(),
-                        access_token: plasmoid.configuration.access_token,
-                    }, function(err, data, xhr) {
-                        if (err) {
-                            if (typeof err === 'object') {
-                                logger.debug('err: ', JSON.stringify(err, null, '\t'));
-                            } else {
-                                logger.debug('err: ', err);
-                            }
-                            if (xhr.status === 404) {
-                                return;
-                            }
-                            return onGCalError(err);
-                        }
-                        // logger.debug('onGCalEvents', JSON.stringify(data, null, '\t'))
-
-                        
-                        eventModel.eventsByCalendar[calendarId] = data;
-                        updateUI();
-                    });
-                })(calendarIdList[i]);
-                
-            }
-        }
-        */
     }
 
     function updateWeather(force) {

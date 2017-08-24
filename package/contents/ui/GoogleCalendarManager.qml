@@ -134,18 +134,14 @@ CalendarManager {
 
 	onCalendarParsing: {
 		var calendar = getCalendar(calendarId)
-		parseEventList(calendar, data.items)
+		data.items.forEach(function(event){
+			parseEvent(calendar, event)
+		})
 	}
 
 	function parseEvent(calendar, event) {
 		event.backgroundColor = parseColor(calendar, event)
 		event.canEdit = calendar.accessRole == 'owner' && !event.recurringEventId // We cannot currently edit repeating events.
-	}
-
-	function parseEventList(calendar, eventList) {
-		eventList.forEach(function(event){
-			parseEvent(calendar, event)
-		})
 	}
 
 	function parseColorId(colorIdType, colorId) {
@@ -182,7 +178,8 @@ CalendarManager {
 			}, function(err, data) {
 				// logger.debug(err, JSON.stringify(data, null, '\t'));
 				if (googleCalendarManager.calendarIdList.indexOf(calendarId) >= 0) {
-					googleCalendarManager.eventsByCalendar[calendarId].items.push(data)
+					parseSingleEvent(calendarId, data)
+					addEvent(calendarId, data)
 					eventCreated(calendarId, data)
 				}
 			})
@@ -224,6 +221,7 @@ CalendarManager {
 			if (data.summary) {
 				event.summary = data.summary
 			}
+			parseSingleEvent(calendarId, event)
 			eventUpdated(calendarId, eventId, event)
 		})
 	}
@@ -259,11 +257,14 @@ CalendarManager {
 				accessToken: plasmoid.configuration.access_token,
 				calendarId: calendarId,
 				eventId: eventId,
-			}, function(err, data) {
-				// logger.debug(err, JSON.stringify(data, null, '\t'));
-				if (googleCalendarManager.calendarIdList.indexOf(calendarId) >= 0) {
+			}, function(err, data, xhr) {
+				// Note: No data is returned on success
+				// logger.debugJSON('deleteEvent.response', err, data, xhr.status)
+				var event = getEvent(calendarId, eventId)
+				logger.debugJSON('deleteEvent.success', calendarId, eventId, event)
+				if (event) {
 					removeEvent(calendarId, eventId)
-					eventDeleted(calendarId, eventId, data)
+					eventDeleted(calendarId, eventId, event)
 				}
 			})
 		} else {
@@ -273,6 +274,7 @@ CalendarManager {
 
 	function deleteGCalEvent(args, callback) {
 		// DELETE https://www.googleapis.com/calendar/v3/calendars/calendarId/events/eventId
+		// Note: Success means a response of xhr.status == 204 (No Content)
 		var url = 'https://www.googleapis.com/calendar/v3';
 		url += '/calendars/'
 		url += encodeURIComponent(args.calendarId);

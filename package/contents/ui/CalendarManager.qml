@@ -15,6 +15,7 @@ Item {
 	signal fetchingData()
 	signal calendarFetched(string calendarId, var data)
 	signal allDataFetched()
+	signal eventAdded(string calendarId, var data)
 	signal eventCreated(string calendarId, var data)
 	signal eventRemoved(string calendarId, string eventId, var data)
 	signal eventDeleted(string calendarId, string eventId, var data)
@@ -52,17 +53,29 @@ Item {
 		}
 	}
 
+	// Add to model only
+	function addEvent(calendarId, data) {
+		calendarManager.eventsByCalendar[calendarId].items.push(data)
+		eventAdded(calendarId, data)
+	}
+
 	// Remove from model only
 	function removeEvent(calendarId, eventId) {
+		console.log(calendarManager, 'removeEvent', calendarId, eventId)
 		var events = calendarManager.eventsByCalendar[calendarId].items
+		console.log(calendarManager, 'removeEvent.events', events, events.length)
 		for (var i = 0; i < events.length; i++) {
 			if (events[i].id == eventId) {
 				var data = events[i]
+				console.log(calendarManager, 'removeEvent', 'sliced event to remove it')
 				events.splice(i, 1) // Remove item at index
 				eventRemoved(calendarId, eventId, data)
-				break
+				return
 			}
 		}
+
+		console.log(calendarManager, 'removeEvent', 'event didn\'t exist')
+		logger.logJSON('eventsByCalendar', calendarManager.eventsByCalendar)
 	}
 
 	function fetchAll(dateMin, dateMax) {
@@ -80,15 +93,39 @@ Item {
 	// Implementation
 	signal fetchAllCalendars()
 	signal calendarParsing(string calendarId, var data)
+	signal eventParsing(string calendarId, var event)
 
+	// To simplify repeated code amongst implementations,
+	// we'll put the reused code here.
 	onCalendarParsing: {
-		// To simplify repeated code amongst implementations,
-		// we'll put the reused code here.
-		data.items.forEach(function(event) {
-			event.calendarId = calendarId
-			event._summary = event.summary
-			event.summary = event.summary || i18nc("event with no summary", "(No title)")
-		})
 		// logger.debug('CalendarManager.calendarParsing(', calendarManager, ')', calendarId)
+		data.items.forEach(function(event) {
+			eventParsing(calendarId, event)
+		})
 	}
+	onEventParsing: {
+		event.calendarId = calendarId
+
+		event._summary = event.summary
+		event.summary = event.summary || i18nc("event with no summary", "(No title)")
+
+		if (event.start.date) {
+			event.start.dateTime = new Date(event.start.date + ' 00:00:00')
+		} else {
+			event.start.dateTime = new Date(event.start.dateTime)
+		}
+
+		if (event.end.date) {
+			event.end.dateTime = new Date(event.end.date + ' 00:00:00')
+		} else {
+			event.end.dateTime = new Date(event.end.dateTime)
+		}
+	}
+
+	function parseSingleEvent(calendarId, event) {
+		calendarParsing(calendarId, {
+			items: [event],
+		})
+	}
+
 }

@@ -57,10 +57,16 @@ CalendarManager {
 		});
 	}
 
+	function deleteEvent(calendarId, eventId) {
+		var data = getEvent(calendarId, eventId)
+		removeEvent(calendarId, eventId)
+		eventDeleted(calendarId, eventId, data)
+	}
+
 
 	onFetchAllCalendars: {
 		fetchDebugEvents()
-		// fetchDebugGoogleSession()
+		fetchDebugGoogleSession()
 	}
 
 	onCalendarParsing: {
