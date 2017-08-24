@@ -37,6 +37,35 @@ Item {
 
     property alias agendaModel: agendaListView.model
 
+    Connections {
+        target: eventModel
+        onEventCreated: {
+            notificationManager.createNotification({
+                appName: i18n("Event Calendar"),
+                appIcon: "resource-calendar-insert",
+                // expireTimeout: 10000,
+                summary: data.summary,
+                body: Shared.formatEventDuration(data, {
+                    relativeDate: timeModel.currentTime,
+                    clock_24h: plasmoid.configuration.clock_24h,
+                })
+            })
+        }
+        onEventDeleted: {
+            logger.logJSON('AgendaView.onEventDeleted', data)
+            notificationManager.createNotification({
+                appName: i18n("Event Calendar"),
+                appIcon: "user-trash-symbolic",
+                // expireTimeout: 10000,
+                summary: data.summary,
+                body: Shared.formatEventDuration(data, {
+                    relativeDate: timeModel.currentTime,
+                    clock_24h: plasmoid.configuration.clock_24h,
+                })
+            })
+        }
+    }
+
     // width: 400
     // height: 400
 
@@ -154,6 +183,7 @@ Item {
         for (var i = 0; i < data.items.length; i++) {
             var eventItem = data.items[i];
 
+            /*
             if (eventItem.start.date) {
                 eventItem.start.dateTime = new Date(eventItem.start.date + ' 00:00:00');
             } else {
@@ -166,6 +196,7 @@ Item {
             } else {
                 eventItem.end.dateTime = new Date(eventItem.end.dateTime);
             }
+            */
 
             // eventItemList.push(eventItem);
         }

@@ -33,10 +33,20 @@ CalendarManager {
 		onAllDataFetched: eventModel.asyncRequestsDone += 1
 		onCalendarFetched: eventModel.setCalendarData(calendarId, data)
 
+		onEventAdded: {
+			eventModel.mergeEvents()
+			eventModel.eventAdded(calendarId, data)
+		}
 		onEventCreated: eventModel.eventCreated(calendarId, data)
-		onEventRemoved: eventModel.removeEvent(calendarId, eventId)
+		onEventRemoved: {
+			eventModel.mergeEvents()
+			eventModel.eventRemoved(calendarId, eventId, data)
+		}
 		onEventDeleted: eventModel.eventDeleted(calendarId, eventId, data)
-		onEventUpdated: eventModel.eventUpdated(calendarId, eventId, data)
+		onEventUpdated: {
+			eventModel.mergeEvents()
+			eventModel.eventUpdated(calendarId, eventId, data)
+		}
 	}
 
 	property var deferredUpdate: Timer {
@@ -55,7 +65,9 @@ CalendarManager {
 	}
 
 	onAllDataFetched: mergeEvents()
+
 	function mergeEvents() {
+		console.log('eventModel.mergeEvents')
 		eventModel.eventsData = { items: [] }
 		for (var calendarId in eventModel.eventsByCalendar) {
 			eventModel.eventsData.items = eventModel.eventsData.items.concat(eventModel.eventsByCalendar[calendarId].items)
@@ -82,9 +94,7 @@ CalendarManager {
 
 	function deleteEvent(calendarId, eventId) {
 		if (calendarId == "debug") {
-			var data = getEvent(calendarId, eventId)
-			removeEvent(calendarId, eventId)
-			eventDeleted(calendarId, eventId, data)
+			debugCalendarManager.deleteEvent(calendarId, eventId)
 		} else if (true) { // Google Calendar
 			googleCalendarManager.deleteEvent(calendarId, eventId)
 		} else {
