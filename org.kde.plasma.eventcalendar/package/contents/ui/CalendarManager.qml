@@ -61,21 +61,17 @@ Item {
 
 	// Remove from model only
 	function removeEvent(calendarId, eventId) {
-		console.log(calendarManager, 'removeEvent', calendarId, eventId)
+		logger.debug(calendarManager, 'removeEvent', calendarId, eventId)
 		var events = calendarManager.eventsByCalendar[calendarId].items
-		console.log(calendarManager, 'removeEvent.events', events, events.length)
 		for (var i = 0; i < events.length; i++) {
 			if (events[i].id == eventId) {
 				var data = events[i]
-				console.log(calendarManager, 'removeEvent', 'sliced event to remove it')
 				events.splice(i, 1) // Remove item at index
 				eventRemoved(calendarId, eventId, data)
 				return
 			}
 		}
-
-		console.log(calendarManager, 'removeEvent', 'event didn\'t exist')
-		logger.logJSON('eventsByCalendar', calendarManager.eventsByCalendar)
+		logger.log(calendarManager, 'removeEvent', 'event didn\'t exist')
 	}
 
 	function fetchAll(dateMin, dateMax) {
