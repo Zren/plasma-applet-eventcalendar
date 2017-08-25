@@ -187,54 +187,68 @@ CalendarManager {
 	}
 
 
-
-	function setGoogleCalendarEventSummary(accessToken, calendarId, eventId, summary) {
-		var event = getEvent(calendarId, eventId);
-		if (!event) {
-			logger.log('error, trying to set summary for event that doesn\'t exist')
-			return;
-		}
-		
-		// Clone the event data and clean up the extra stuff we added in parseGCalEvents()
+	function cloneRawEvent(event) {
+		// Clone the event data and clean up the extra stuff we added when parsing the event.
 		var data = JSON.parse(JSON.stringify(event)) // clone
-		logger.debugJSON('setGoogleCalendarEventSummary', 'clone', data)
 		if (data.start.date) delete data.start.dateTime;
 		if (data.end.date) delete data.end.dateTime;
 		if (data.end.calendarId) delete data.end.calendarId;
 		delete data.canEdit;
 		delete data._summary;
+		return data;
+	}
 
-		data.summary = summary
-		logger.debugJSON('setGoogleCalendarEventSummary', 'final', data)
+	function setGoogleCalendarEventSummary(accessToken, calendarId, eventId, summary) {
+		updateGoogleCalendarEvent(accessToken, calendarId, eventId, {
+			summary: summary
+		})
+	}
+
+	function updateGoogleCalendarEvent(accessToken, calendarId, eventId, args) {
+		var event = getEvent(calendarId, eventId);
+		if (!event) {
+			logger.log('error, trying to update event that doesn\'t exist')
+			return;
+		}
 		
-		patchGCalEvent({
+		// Merge assigned values into a cloned object
+		var data = cloneRawEvent(event)
+		var keys = Object.keys(args)
+		for (var i = 0; i < keys.length; i++) {
+			var key = keys[i]
+			data[key] = args[keys]
+		}
+		logger.debugJSON('updateGoogleCalendarEvent', 'sent', data)
+		
+		updateGCalEvent({
 			accessToken: accessToken,
 			calendarId: calendarId,
 			eventId: eventId,
-			// data: {
-			// 	summary: summary,
-			// },
 			data: data,
 		}, function(err, data, xhr) {
-			logger.debug('setGoogleCalendarEventSummary.response', err, data, xhr.status);
 			logger.debugJSON('setGoogleCalendarEventSummary.response', data)
-			if (data.summary) {
-				event.summary = data.summary
+
+			// Merge serialized values
+			for (var i = 0; i < keys.length; i++) {
+				var key = keys[i]
+				if (typeof data[key] !== "undefined") {
+					event[key] = data[key]
+				}
 			}
+			
 			parseSingleEvent(calendarId, event)
 			eventUpdated(calendarId, eventId, event)
 		})
 	}
 
-	function patchGCalEvent(args, callback) {
-		// PATCH https://www.googleapis.com/calendar/v3/calendars/calendarId/events/eventId
+	function updateGCalEvent(args, callback) {
+		// PUT https://www.googleapis.com/calendar/v3/calendars/calendarId/events/eventId
 		var url = 'https://www.googleapis.com/calendar/v3';
 		url += '/calendars/'
 		url += encodeURIComponent(args.calendarId);
 		url += '/events/';
 		url += encodeURIComponent(args.eventId);
 		Utils.postJSON({
-			// method: 'PATCH', // Note: Qt 5.7+ still doesn't support the PATCH method type
 			method: 'PUT',
 			url: url,
 			headers: {
@@ -242,7 +256,7 @@ CalendarManager {
 			},
 			data: args.data,
 		}, function(err, data, xhr) {
-			logger.debug('patchGCalEvent.response', err, data, xhr.status);
+			logger.debug('updateGCalEvent.response', err, data, xhr.status);
 			if (!err && data && data.error) {
 				return callback(data, null, xhr);
 			}
@@ -250,6 +264,13 @@ CalendarManager {
 		})
 	}
 
+	function patchGCalEvent(args, callback) {
+		// Note: Qt 5.7+ still doesn't support the PATCH method type
+		// https://bugreports.qt.io/browse/QTBUG-38175
+		// Qt 5.8 supports it, but KDE depends on Qt 5.7 or less still so we must support it.
+		// Instead, we'll use "update" with PUT.
+		throw new Exception("Qt 5.7+ still doesn't support the PATCH method type")
+	}
 
 	function deleteEvent(calendarId, eventId) {
 		if (plasmoid.configuration.access_token) {
