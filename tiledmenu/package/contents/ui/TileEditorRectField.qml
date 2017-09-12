@@ -12,6 +12,7 @@ import "lib"
 
 GroupBox {
 	title: "Label"
+	implicitWidth: parent.implicitWidth
 	Layout.fillWidth: true
 
 	style: GroupBoxStyle {}

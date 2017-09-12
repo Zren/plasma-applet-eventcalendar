@@ -13,6 +13,7 @@ import "lib"
 GroupBox {
 	id: tileEditorField
 	title: "Label"
+	implicitWidth: parent.implicitWidth
 	Layout.fillWidth: true
 	property alias text: textField.text
 	property alias placeholderText: textField.placeholderText
@@ -55,7 +56,7 @@ GroupBox {
 		PlasmaComponents.TextField {
 			id: textField
 			Layout.fillWidth: true
-			text: key && appObj.tile ? appObj.tile[key] : ''
+			text: key && appObj.tile && appObj.tile[key] ? appObj.tile[key] : ''
 			property bool updateOnChange: false
 			onTextChanged: {
 				if (key && textField.updateOnChange) {
