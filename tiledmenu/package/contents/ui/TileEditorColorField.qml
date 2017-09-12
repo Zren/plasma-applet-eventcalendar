@@ -68,7 +68,11 @@ GroupBox {
 			property bool updateOnChange: false
 			onTextChanged: {
 				if (key && updateOnChange) {
-					appObj.tile[key] = text
+					if (text) {
+						appObj.tile[key] = text
+					} else {
+						delete appObj.tile[key]
+					}
 					appObj.tileChanged()
 					favouritesView.tileModelChanged()
 				}
