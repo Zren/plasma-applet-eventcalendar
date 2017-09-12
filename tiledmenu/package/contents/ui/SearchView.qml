@@ -8,13 +8,16 @@ import org.kde.plasma.components 2.0 as PlasmaComponents
 
 import org.kde.kquickcontrolsaddons 2.0 // KCMShell
 
+// import "tiledmenu3" as TM3
+
 Item {
 	id: searchView
 	width: config.leftSectionWidth
 	height: config.popupHeight
 	property alias searchResultsView: searchResultsView
 	property alias appsView: appsView
-	property alias tileEditorView: tileEditorView
+	property alias tileEditorView: tileEditorViewLoader.item
+	property alias tileEditorViewLoader: tileEditorViewLoader
 	property alias searchField: searchField
 
 	property bool searchOnTop: false
@@ -216,34 +219,32 @@ Item {
 			}
 		}
 
-		TileEditorView {
-			id: tileEditorView
-			visible: false 
+		// TM3.Main {
+		// 	id: appsView
+		// 	// width: parent.width
+		// 	// height: parent.height
 
-			function show() {
-				if (stackView.currentItem != tileEditorView) {
-					stackView.push(tileEditorView, true)
-				}
-			}
+		// 	function show() {
+		// 		if (stackView.currentItem != appsView) {
+		// 			stackView.push(appsView, true)
+		// 		}
+		// 		appsView.scrollToTop()
+		// 	}
+		// }
 
+		// Item {
+		// 	id: appsView
+		// }
+
+		Loader {
+			id: tileEditorViewLoader
+			source: "TileEditorView.qml"
+			visible: false
+			active: false
+			// asynchronous: true
 			function open(tile) {
-				resetView()
-				tileEditorView.tile = tile
-				show()
-			}
-
-			function close() {
-				appsView.show()
-			}
-
-			Connections {
-				target: stackView
-
-				onCurrentItemChanged: {
-					if (stackView.currentItem != tileEditorView) {
-						tileEditorView.resetView()
-					}
-				}
+				active = true
+				item.open(tile)
 			}
 		}
 

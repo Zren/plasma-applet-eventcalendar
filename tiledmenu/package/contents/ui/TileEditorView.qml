@@ -127,4 +127,30 @@ ColumnLayout {
 		Layout.fillHeight: true
 	}
 
+	function show() {
+		if (stackView.currentItem != tileEditorView) {
+			stackView.push(tileEditorView, true)
+		}
+	}
+
+	function open(tile) {
+		resetView()
+		tileEditorView.tile = tile
+		show()
+	}
+
+	function close() {
+		appsView.show()
+	}
+
+	Connections {
+		target: stackView
+
+		onCurrentItemChanged: {
+			if (stackView.currentItem != tileEditorView) {
+				tileEditorView.resetView()
+			}
+		}
+	}
+
 }

@@ -9,6 +9,7 @@ import org.kde.plasma.components 2.0 as PlasmaComponents
 MouseArea {
 	property alias searchView: searchView
 	property alias tileEditorView: searchView.tileEditorView
+	property alias tileEditorViewLoader: searchView.tileEditorViewLoader
 	property alias favouritesView: favouritesView
 
 	RowLayout {
@@ -33,7 +34,7 @@ MouseArea {
 
 			tileModel: config.tileModel.value
 
-			onEditTile: tileEditorView.open(tile)
+			onEditTile: tileEditorViewLoader.open(tile)
 
 			onTileModelChanged: saveTileModel.restart()
 			Timer {
