@@ -8,8 +8,6 @@ import org.kde.plasma.components 2.0 as PlasmaComponents
 
 import org.kde.kquickcontrolsaddons 2.0 // KCMShell
 
-// import "tiledmenu3" as TM3
-
 Item {
 	id: searchView
 	width: config.leftSectionWidth

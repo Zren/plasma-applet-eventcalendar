@@ -14,9 +14,7 @@ import "lib"
 GroupBox {
 	id: tileEditorField
 	title: "Label"
-	implicitWidth: parent.implicitWidth
-	anchors.left: parent.left
-	anchors.right: parent.right
+	Layout.fillWidth: true
 	property alias text: textField.text
 	property alias placeholderText: textField.placeholderText
 	property alias enabled: textField.enabled
