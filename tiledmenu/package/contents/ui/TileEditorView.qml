@@ -57,84 +57,84 @@ ColumnLayout {
 	}
 
 
-ScrollView {
-	id: scrollView
-	Layout.fillHeight: true
-	anchors.left: parent.left
-	anchors.right: parent.right
+	ScrollView {
+		id: scrollView
+		Layout.fillHeight: true
+		anchors.left: parent.left
+		anchors.right: parent.right
 
-	readonly property int viewportWidth: viewport ? viewport.width : 0
+		readonly property int viewportWidth: viewport ? viewport.width : 0
 
-ColumnLayout {
-	id: scrollContent
-	width: scrollView.viewportWidth
+		ColumnLayout {
+			id: scrollContent
+			width: scrollView.viewportWidth
 
-	TileEditorField {
-		title: i18n("Url")
-		key: 'url'
-	}
+			TileEditorField {
+				title: i18n("Url")
+				key: 'url'
+			}
 
-	TileEditorField {
-		id: labelField
-		title: i18n("Label")
-		placeholderText: appObj.appLabel
-		key: 'label'
-		checkedKey: 'showLabel'
-	}
+			TileEditorField {
+				id: labelField
+				title: i18n("Label")
+				placeholderText: appObj.appLabel
+				key: 'label'
+				checkedKey: 'showLabel'
+			}
 
-	TileEditorField {
-		id: iconField
-		title: i18n("Icon")
-		// placeholderText: appObj.appIcon ? appObj.appIcon.toString() : ''
-		key: 'icon'
-		checkedKey: 'showIcon'
-	}
+			TileEditorField {
+				id: iconField
+				title: i18n("Icon")
+				// placeholderText: appObj.appIcon ? appObj.appIcon.toString() : ''
+				key: 'icon'
+				checkedKey: 'showIcon'
+			}
 
-	TileEditorField {
-		id: backgroundImageField
-		title: i18n("Background Image")
-		key: 'backgroundImage'
+			TileEditorField {
+				id: backgroundImageField
+				title: i18n("Background Image")
+				key: 'backgroundImage'
 
-		PlasmaComponents.Button {
-			iconName: 'document-open'
-			onClicked: imagePicker.open()
+				PlasmaComponents.Button {
+					iconName: 'document-open'
+					onClicked: imagePicker.open()
 
-			FileDialog {
-				id: imagePicker
+					FileDialog {
+						id: imagePicker
 
-				title: i18n("Choose an image")
+						title: i18n("Choose an image")
 
-				selectFolder: false
-				selectMultiple: false
+						selectFolder: false
+						selectMultiple: false
 
-				nameFilters: [ i18n("Image Files (*.png *.jpg *.jpeg *.bmp *.svg *.svgz)") ]
+						nameFilters: [ i18n("Image Files (*.png *.jpg *.jpeg *.bmp *.svg *.svgz)") ]
 
-				onFileUrlChanged: {
-					backgroundImageField.text = fileUrl
-					if (fileUrl) {
-						labelField.checked = false
-						iconField.checked = false
+						onFileUrlChanged: {
+							backgroundImageField.text = fileUrl
+							if (fileUrl) {
+								labelField.checked = false
+								iconField.checked = false
+							}
+						}
 					}
 				}
 			}
+
+			TileEditorColorField {
+				title: i18n("Background Color")
+				placeholderText: config.defaultTileColor
+				key: 'backgroundColor'
+			}
+
+			TileEditorRectField {
+				title: i18n("Position / Size")
+			}
+
+			Item { // Consume the extra space below
+				Layout.fillHeight: true
+			}
 		}
 	}
-
-	TileEditorColorField {
-		title: i18n("Background Color")
-		placeholderText: config.defaultTileColor
-		key: 'backgroundColor'
-	}
-
-	TileEditorRectField {
-		title: i18n("Position / Size")
-	}
-
-	Item { // Consume the extra space below
-		Layout.fillHeight: true
-	}
-}
-}
 
 	function show() {
 		if (stackView.currentItem != tileEditorView) {
