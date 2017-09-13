@@ -7,6 +7,7 @@ import QtQuick.Dialogs 1.0
 import org.kde.plasma.core 2.0 as PlasmaCore
 import org.kde.plasma.components 2.0 as PlasmaComponents
 import org.kde.plasma.extras 2.0 as PlasmaExtras
+import org.kde.kquickcontrolsaddons 2.0 as KQuickAddons
 
 import "./config"
 
@@ -88,6 +89,16 @@ ColumnLayout {
 				// placeholderText: appObj.appIcon ? appObj.appIcon.toString() : ''
 				key: 'icon'
 				checkedKey: 'showIcon'
+
+				PlasmaComponents.Button {
+					iconName: "document-open"
+					onClicked: iconDialog.open()
+
+					KQuickAddons.IconDialog {
+						id: iconDialog
+						onIconNameChanged: iconField.text = iconName
+					}
+				}
 			}
 
 			TileEditorField {
