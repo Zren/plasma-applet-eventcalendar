@@ -1,3 +1,13 @@
+## v17 - September 13 2017
+
+* Various fixes to make the menu faster to open (from a cold start).
+* Lazy load the tile editor GUI for performance reasons.
+* Add button to open the icon selector dialog to the tile editor.
+* Configurable search field height.
+* Spanish translations by Zipristin.
+* Used a fixed panel icon by default, using the same icon size as the other icons in the panel.
+* Support reseting a tile bg color to default by deleting the hex color text.
+
 ## v16 - June 5 2017
 
 * Can now set a background image on a tile.
