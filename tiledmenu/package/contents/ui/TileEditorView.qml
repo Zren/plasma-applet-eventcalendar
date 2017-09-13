@@ -12,13 +12,8 @@ import "./config"
 
 ColumnLayout {
 	id: tileEditorView
-
-	// Layout.fillWidth: true
-	// Layout.fillHeight: true
-	width: 200
-	height: 200
 	Layout.alignment: Qt.AlignTop
-	
+
 	AppObject {
 		id: appObj
 	}
@@ -41,7 +36,6 @@ ColumnLayout {
 	}
 
 
-
 	RowLayout {
 		PlasmaExtras.Heading {
 			Layout.fillWidth: true
@@ -61,6 +55,19 @@ ColumnLayout {
 			}
 		}
 	}
+
+
+ScrollView {
+	id: scrollView
+	Layout.fillHeight: true
+	anchors.left: parent.left
+	anchors.right: parent.right
+
+	readonly property int viewportWidth: viewport ? viewport.width : 0
+
+ColumnLayout {
+	id: scrollContent
+	width: scrollView.viewportWidth
 
 	TileEditorField {
 		title: i18n("Url")
@@ -126,6 +133,8 @@ ColumnLayout {
 	Item { // Consume the extra space below
 		Layout.fillHeight: true
 	}
+}
+}
 
 	function show() {
 		if (stackView.currentItem != tileEditorView) {
@@ -142,6 +151,7 @@ ColumnLayout {
 	function close() {
 		appsView.show()
 	}
+
 
 	Connections {
 		target: stackView
