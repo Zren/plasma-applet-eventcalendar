@@ -7,6 +7,7 @@ import QtQuick.Dialogs 1.0
 import org.kde.plasma.core 2.0 as PlasmaCore
 import org.kde.plasma.components 2.0 as PlasmaComponents
 import org.kde.plasma.extras 2.0 as PlasmaExtras
+import QtQuick.Controls.Styles.Plasma 2.0 as PlasmaStyles
 
 import "lib"
 
@@ -14,7 +15,8 @@ GroupBox {
 	id: tileEditorField
 	title: "Label"
 	implicitWidth: parent.implicitWidth
-	Layout.fillWidth: true
+	anchors.left: parent.left
+	anchors.right: parent.right
 	property alias text: textField.text
 	property alias placeholderText: textField.placeholderText
 	property alias enabled: textField.enabled
@@ -22,7 +24,6 @@ GroupBox {
 	property string checkedKey: ''
 	checkable: checkedKey
 	property bool checkedDefault: true
-	property Item itemAfter: null
 
 	property bool updateOnChange: false
 	onCheckedChanged: {
@@ -47,11 +48,12 @@ GroupBox {
 		}
 	}
 
-	style: GroupBoxStyle {}
+	style: PlasmaStyles.GroupBoxStyle {}
 
 	RowLayout {
 		id: content
-		anchors.fill: parent
+		anchors.left: parent.left
+		anchors.right: parent.right
 
 		PlasmaComponents.TextField {
 			id: textField
