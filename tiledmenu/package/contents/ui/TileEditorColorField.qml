@@ -65,7 +65,7 @@ GroupBox {
 		PlasmaComponents.TextField {
 			id: textField
 			Layout.fillWidth: true
-			text: key && appObj.tile ? appObj.tile[key] : ''
+			text: key && appObj.tile && appObj.tile[key] ? appObj.tile[key] : ''
 			property bool updateOnChange: false
 			onTextChanged: {
 				if (key && updateOnChange) {
