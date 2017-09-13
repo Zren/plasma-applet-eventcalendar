@@ -385,8 +385,19 @@ Item {
     property string mediaControllerLocation: plasmoid.configuration.mediaControllerLocation || 'bottom'
     property bool mediaControllerVisible: showMediaController && mpris2Source.hasPlayer
     // property int mediaControllerHeight: 56 // = 48px albumArt + 8px seekbar
+
+    // ScrollView {
+    //     id: scrollView
+    //     anchors.fill: parent
+    //     readonly property int viewportWidth: viewport ? viewport.width : 0
+    //     readonly property int viewportHeight: viewport ? viewport.height : 0
+
+    //     onViewportWidthChanged: flickableItem.contentX = flickableItem.contentWidth - viewportWidth
+
     Item {
         anchors.fill: parent
+        // width: childrenRect.width
+        // height: scrollView.viewportHeight
 
         Row {
             id: mixerItemRow
@@ -521,6 +532,7 @@ Item {
             }
         ]
     }
+    // }
 
     PlasmaComponents.ToolButton {
         id: pinButton
