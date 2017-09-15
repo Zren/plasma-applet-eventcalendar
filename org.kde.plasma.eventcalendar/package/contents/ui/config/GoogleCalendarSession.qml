@@ -22,10 +22,10 @@ Item {
     property int userCodePollInterval: 0
 
     // Active Session
-    property string accessToken: plasmoid.configuration.access_token
-    property string accessTokenType: plasmoid.configuration.access_token_type
-    property int accessTokenExpiresAt: plasmoid.configuration.access_token_expires_at
-    property string refreshToken: plasmoid.configuration.refresh_token
+    readonly property string accessToken: plasmoid.configuration.access_token
+    readonly property string accessTokenType: plasmoid.configuration.access_token_type
+    readonly property int accessTokenExpiresAt: plasmoid.configuration.access_token_expires_at
+    readonly property string refreshToken: plasmoid.configuration.refresh_token
 
     // Data
     property var calendarListData: ConfigSerializedString {
@@ -150,10 +150,18 @@ Item {
     }
 
     function reset() {
-        accessToken = ''
-        refreshToken = ''
+        plasmoid.configuration.access_token = ''
+        plasmoid.configuration.access_token_type = ''
+        plasmoid.configuration.access_token_expires_at = 0
+        plasmoid.configuration.refresh_token = ''
+
+        // Delete relevant data
+        // TODO: only target google calendar data
+        // TODO: Make a signal?
+        plasmoid.configuration.agenda_newevent_last_calendar_id = ''
         calendarList = []
         calendarIdList = []
+
         generateUserCodeAndPoll()
     }
 }
