@@ -263,6 +263,8 @@ RowLayout {
                                 Layout.fillWidth: true
                                 sourceComponent: Component {
                                     RowLayout {
+                                        property alias isAllDayEvent: editAllDay.checked
+
                                         ColumnLayout {
                                             Layout.fillWidth: true
                                             RowLayout {
@@ -281,6 +283,7 @@ RowLayout {
 
                                                 PlasmaComponents.TextField {
                                                     id: editStartTime
+                                                    enabled: !isAllDayEvent
                                                     placeholderText: '9:00am'
                                                     text: Qt.formatTime(model.start.dateTime)
 
@@ -290,6 +293,8 @@ RowLayout {
                                             }
                                             PlasmaComponents.Label {
                                                 text: i18n("to")
+                                                Layout.fillWidth: true
+                                                horizontalAlignment: Text.AlignHCenter
                                             }
                                             RowLayout {
                                                 PlasmaComponents.TextField {
@@ -303,6 +308,7 @@ RowLayout {
 
                                                 PlasmaComponents.TextField {
                                                     id: editEndTime
+                                                    enabled: !isAllDayEvent
                                                     placeholderText: '10:00am'
                                                     text: Qt.formatTime(model.end.dateTime)
 
@@ -315,8 +321,10 @@ RowLayout {
                                         ColumnLayout {
                                             Layout.alignment: Qt.AlignTop
                                             PlasmaComponents.CheckBox {
+                                                id: editAllDay
                                                 text: i18n("All Day")
                                                 Layout.minimumWidth: 0
+                                                checked: !!model.start.date
                                             }
                                             PlasmaComponents.Button {
                                                 text: i18n("Save")
