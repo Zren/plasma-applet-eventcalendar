@@ -72,7 +72,7 @@ Item {
 			onClicked: {
 				mouse.accepted = true
 				if (mouse.button == Qt.LeftButton) {
-					if (tileEditorView.tile) {
+					if (tileEditorView && tileEditorView.tile) {
 						openTileEditor()
 					} else {
 						appsModel.tileGridModel.runApp(modelData.url)
