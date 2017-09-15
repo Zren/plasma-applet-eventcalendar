@@ -1,3 +1,9 @@
+## v49 - September 15 2017
+
+* Fix inability to logout of google calendar which got broken during earlier refactoring.
+* Show notification when an event is added or deleted.
+* Lots of refactoring needed for supporting different calendar backends.
+
 ## v48 - July 7 2017
 
 * Add Spanish translation by Zipristin
