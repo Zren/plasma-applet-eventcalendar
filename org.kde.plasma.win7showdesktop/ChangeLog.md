@@ -1,3 +1,8 @@
+## v7 - September 18 2017
+
+* Configurable width/height
+* Add command presets to trigger the various "Present Windows" Desktop Effects.
+
 ## v6 - December 15 2016
 
 * Update the config so that the command text fields scale to the width of the window.
