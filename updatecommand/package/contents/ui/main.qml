@@ -56,13 +56,17 @@ Item {
         plasmoid.setAction("configure", i18n("Updates Settings"), "configure");
     }
 
-    function action_update() {
-        var upgradeScriptPath = plasmoid.file("", "scripts/upgradepackages")
-        var command = "konsole --hide-menubar --hide-tabbar --hold -e \'" + upgradeScriptPath + "\'"
+    function execScript(scriptRelativePath) {
+        var scriptPath = plasmoid.file("", scriptRelativePath)
+        var command = "konsole --hide-menubar --hide-tabbar --hold -e \'" + scriptPath + "\'"
         exec(command)
     }
 
+    function action_update() {
+        execScript("scripts/upgradepackages")
+    }
+
     function action_checkForUpdates() {
-        exec('konsole --hide-menubar --hide-tabbar -e \'sudo apt update\'')
+        execScript("scripts/updatepackages")
     }
 }

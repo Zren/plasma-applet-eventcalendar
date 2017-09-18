@@ -1,0 +1,19 @@
+#!/bin/bash
+
+function echoCommand () {
+    echo -e "$(tput setab 12) $(tput sgr0)$(tput setaf 12)\uE0B0$(tput sgr0)$(tput setaf 9) $@$(tput sgr0) "
+}
+
+echoCommand "sudo apt update"
+sudo apt update
+
+result="$?"
+if [ $result != 0 ]; then
+    notify-send --icon="dialog-error" "Could Not Update" "Error while checking for updates."
+    paplay /usr/share/sounds/KDE-Sys-App-Negative.ogg
+    exit $result
+fi
+
+echo " "
+DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+bash "$DIR/upgradepackages"
