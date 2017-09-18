@@ -15,7 +15,6 @@ X-KDE-PluginInfo-Website=http://plasma.kde.org/
 X-KDE-PluginInfo-Category=Online Services
 X-KDE-PluginInfo-Depends=
 X-KDE-PluginInfo-License=GPL
-X-KDE-PluginInfo-EnabledByDefault=true
 
 X-KDE-PluginInfo-OrigName=org.kde.discovernotifier
 X-KDE-PluginInfo-OrigAuthor=The Plasma Team
