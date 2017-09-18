@@ -35,7 +35,7 @@ fi
 
 # Prompt to autoremove packages if we have some.
 # https://askubuntu.com/questions/652363/how-can-i-get-a-list-with-the-packages-selected-by-apt-get-autoremove
-autoremovePackages=`apt --dry-run autoremove | grep -Po 'Remv \K[^ ]+'`
+autoremovePackages=`apt --dry-run autoremove 2>/dev/null | grep -Po 'Remv \K[^ ]+'`
 if [[ ! -z "$autoremovePackages" ]]; then
     echo ""
     echoCommand "sudo apt autoremove"
