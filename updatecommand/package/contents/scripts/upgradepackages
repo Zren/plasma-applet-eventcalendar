@@ -1,0 +1,57 @@
+#!/bin/bash
+
+function echoCommand () {
+    echo -e "$(tput setab 12) $(tput sgr0)$(tput setaf 12)\uE0B0$(tput sgr0)$(tput setaf 9) $@$(tput sgr0) "
+}
+
+echoCommand "apt list --upgradeable"
+
+# Ignore "apt API isn't stable warning" sent to stderr.
+upgradeablePackages=`apt list --upgradeable 2>/dev/null`
+
+# Trim "Listing..." on line #1 by starting at line #2.
+# Colorize padoka ppa updates brown
+# Colorize neon ppa updates cyan
+# Reapply the green color for everything else.
+# Colorize the word security in red.
+# apt list --upgradeable \
+echo "$upgradeablePackages" \
+    | tail --lines=+2 \
+    | sed "s/\(.*\)\(\/.*\)\(padoka0\)\(.*\)/$(tput setaf 3)\1$(tput sgr0)\2$(tput setaf 3)\3$(tput sgr0)\4/g" \
+    | sed "s/\(.*\)\(\/.*\)\(neon\)\(.*\)/$(tput setaf 6)\1$(tput sgr0)\2$(tput setaf 6)\3$(tput sgr0)\4/g" \
+    | sed "s/\(.*\)\(\/.*\)/$(tput setaf 2)\1$(tput sgr0)\2/g" \
+    | sed "s/\(security\)/$(tput setaf 1)\1$(tput sgr0)/g"
+
+echo ""
+echoCommand "sudo apt upgrade"
+sudo apt upgrade
+
+result="$?"
+if [ $result != 0 ]; then
+    notify-send --icon="dialog-error" "Updates not installed" "Error while installing."
+    paplay /usr/share/sounds/KDE-Sys-App-Positive.ogg
+    exit $result
+fi
+
+# Prompt to autoremove packages if we have some.
+# https://askubuntu.com/questions/652363/how-can-i-get-a-list-with-the-packages-selected-by-apt-get-autoremove
+autoremovePackages=`apt --dry-run autoremove | grep -Po 'Remv \K[^ ]+'`
+if [[ ! -z "$autoremovePackages" ]]; then
+    echo ""
+    echoCommand "sudo apt autoremove"
+    notify-send --icon="update-none" "Auto-Remove Packages" "Need to cleanup unused packages."
+    paplay /usr/share/sounds/KDE-Sys-App-Positive.ogg
+    sudo apt autoremove
+    result="$?"
+    if [ $result != 0 ]; then
+        exit $result
+    fi
+fi
+
+
+# Bell when done.
+echo ""
+echo "Done."
+# echo -e "\a"
+notify-send --icon="update-none" "Updates Installed" "Restart apps/desktop when convienient to for updates to take effect."
+paplay /usr/share/sounds/KDE-Sys-App-Positive.ogg
