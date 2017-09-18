@@ -26,8 +26,8 @@ import org.kde.discovernotifier 1.0
 import "./lib"
 
 Item {
-    Layout.minimumWidth: 300
-    Layout.minimumHeight: 200
+    Layout.preferredWidth: 384 * units.devicePixelRatio
+    Layout.preferredHeight: 330 * units.devicePixelRatio
 
 
     PlasmaExtras.Heading {
