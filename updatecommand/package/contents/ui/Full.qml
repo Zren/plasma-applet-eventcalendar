@@ -23,6 +23,8 @@ import org.kde.plasma.extras 2.0 as PlasmaExtras
 import org.kde.plasma.components 2.0
 import org.kde.discovernotifier 1.0
 
+import "./lib"
+
 Item {
     Layout.minimumWidth: 300
     Layout.minimumHeight: 200
@@ -51,20 +53,33 @@ Item {
             horizontalAlignment: Text.AlignHCenter
             text: DiscoverNotifier.extendedMessage
         }
-        Button {
-            visible: !DiscoverNotifier.isSystemUpToDate
-            anchors.horizontalCenter: parent.horizontalCenter
-            text: i18nd("plasma_applet_org.kde.discovernotifier", "Update")
-            tooltip: i18nd("plasma_applet_org.kde.discovernotifier", "Launches the software to perform the update")
-            onClicked: root.action_update()
-        }
+        Item {
+            Layout.fillWidth: true
+            Layout.fillHeight: true
+            Button {
+                visible: !DiscoverNotifier.isSystemUpToDate
+                anchors.centerIn: parent
+                text: i18nd("plasma_applet_org.kde.discovernotifier", "Update")
+                tooltip: i18nd("plasma_applet_org.kde.discovernotifier", "Launches the software to perform the update")
+                onClicked: root.action_update()
+            }
 
-        Button {
-            visible: DiscoverNotifier.isSystemUpToDate
-            anchors.horizontalCenter: parent.horizontalCenter
-            text: i18n("Check For Updates")
-            tooltip: i18n("Check for updates")
-            onClicked: root.action_checkForUpdates()
+            Button {
+                visible: DiscoverNotifier.isSystemUpToDate
+                anchors.centerIn: parent
+                text: i18n("Check For Updates")
+                onClicked: root.action_checkForUpdates()
+            }
+        }
+        LinkLabel {
+            Layout.fillWidth: true
+            wrapMode: Text.WordWrap
+            text: i18n("<b>Ubuntu Security Notices:</b> <a href=\"https://usn.ubuntu.com/usn/xenial/\">Xenial 16.04 LTS</a>")
+        }
+        LinkLabel {
+            Layout.fillWidth: true
+            wrapMode: Text.WordWrap
+            text: i18n("<b>KDE Security Advisories:</b> <a href=\"https://www.kde.org/info/security/\">Link</a>")
         }
     }
 }
