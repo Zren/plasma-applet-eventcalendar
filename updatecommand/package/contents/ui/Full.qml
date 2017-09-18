@@ -54,8 +54,8 @@ Item {
         Button {
             visible: !DiscoverNotifier.isSystemUpToDate
             anchors.horizontalCenter: parent.horizontalCenter
-            text: i18n("Update")
-            tooltip: i18n("Launches the software to perform the update")
+            text: i18nd("plasma_applet_org.kde.discovernotifier", "Update")
+            tooltip: i18nd("plasma_applet_org.kde.discovernotifier", "Launches the software to perform the update")
             onClicked: root.action_update()
         }
 
