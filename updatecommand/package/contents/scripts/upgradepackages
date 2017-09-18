@@ -29,7 +29,7 @@ sudo apt upgrade
 result="$?"
 if [ $result != 0 ]; then
     notify-send --icon="dialog-error" "Updates not installed" "Error while installing."
-    paplay /usr/share/sounds/KDE-Sys-App-Positive.ogg
+    paplay /usr/share/sounds/KDE-Sys-App-Negative.ogg
     exit $result
 fi
 
@@ -44,6 +44,8 @@ if [[ ! -z "$autoremovePackages" ]]; then
     sudo apt autoremove
     result="$?"
     if [ $result != 0 ]; then
+        notify-send --icon="dialog-error" "Could Not Auto-Remove Packages" "Error while attempting to remove auto-removeable packages."
+        paplay /usr/share/sounds/KDE-Sys-App-Negative.ogg
         exit $result
     fi
 fi
