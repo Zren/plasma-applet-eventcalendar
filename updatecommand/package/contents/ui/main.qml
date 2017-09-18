@@ -57,7 +57,9 @@ Item {
     }
 
     function action_update() {
-        exec('konsole --hide-menubar --hide-tabbar --hold -e \'~/bin/updatepackages\'')
+        var upgradeScriptPath = plasmoid.file("", "scripts/upgradepackages")
+        var command = "konsole --hide-menubar --hide-tabbar --hold -e \'" + upgradeScriptPath + "\'"
+        exec(command)
     }
 
     function action_checkForUpdates() {
