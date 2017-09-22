@@ -4,6 +4,6 @@ This is a fork of Discover's (formerly known as Muon) notifier plasmoid which yo
 
 ## Screenshots
 
-![](https://i.imgur.com/rFOHqN7.jpg)
+![](https://i.imgur.com/2veXxyw.png)
 
-![](https://i.imgur.com/XepUKqk.jpg)
+![](https://i.imgur.com/sq2rA7L.png)
