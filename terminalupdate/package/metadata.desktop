@@ -1,5 +1,5 @@
 [Desktop Entry]
-Name=Updates (UpdateCommand)
+Name=Updates (Terminal)
 Comment=Helps you keep your system up to date
 Encoding=UTF-8
 
@@ -9,9 +9,9 @@ Type=Service
 X-KDE-ServiceTypes=Plasma/Applet
 X-KDE-PluginInfo-Author=Chris Holland
 X-KDE-PluginInfo-Email=zrenfire@gmail.com
-X-KDE-PluginInfo-Name=com.github.zren.updatecommand
-X-KDE-PluginInfo-Version=5
-X-KDE-PluginInfo-Website=http://plasma.kde.org/
+X-KDE-PluginInfo-Name=com.github.zren.terminalupdate
+X-KDE-PluginInfo-Version=1
+X-KDE-PluginInfo-Website=https://github.com/Zren/plasma-applets/tree/master/terminalupdate
 X-KDE-PluginInfo-Category=Online Services
 X-KDE-PluginInfo-Depends=
 X-KDE-PluginInfo-License=GPL
