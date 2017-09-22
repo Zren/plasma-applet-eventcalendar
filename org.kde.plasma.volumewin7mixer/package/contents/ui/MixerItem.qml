@@ -683,7 +683,7 @@ PlasmaComponents.ListItem {
                 // module-loopback
                 var menuItem = newMenuItem();
                 menuItem.text = i18n("Listen to Device");
-                menuItem.enabled = !PulseObjectCommands.hasIdProperty(PulseObject, 'loopback.source');
+                menuItem.enabled = !mixerItem.hasModuleEchoCancel && !PulseObjectCommands.hasIdProperty(PulseObject, 'loopback.source');
                 menuItem.checkable = true;
                 menuItem.checked = mixerItem.hasModuleLoopback;
                 menuItem.clicked.connect(function() {
