@@ -1,3 +1,7 @@
+## v18 - September 25 2017
+
+* Fix tiles not launching unless we open and close the tile editor.
+
 ## v17 - September 13 2017
 
 * Various fixes to make the menu faster to open (from a cold start).
