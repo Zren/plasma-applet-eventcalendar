@@ -20,8 +20,6 @@ ConfigPage {
     property alias cfg_widget_show_timer: widget_show_timer.checked
     property alias cfg_timer_sfx_enabled: timer_sfx_enabled.checked
     property alias cfg_timer_sfx_filepath: timer_sfx_filepath.text
-    property bool cfg_clock_24h: false
-    property bool cfg_clock_show_seconds: false
     property string cfg_clock_fontfamily: ""
     property alias cfg_clock_timeformat: clock_timeformat.text
     property alias cfg_clock_timeformat_2: clock_timeformat_2.text
@@ -34,6 +32,11 @@ ConfigPage {
     property alias cfg_clock_mousewheel_down: clock_mousewheel_down.text
     property alias cfg_clock_maxheight: clock_maxheight.value
     property alias cfg_showBackground: showBackground.checked
+
+    readonly property string localeTimeFormat: Qt.locale().timeFormat(Locale.ShortFormat)
+    readonly property string localeDateFormat: Qt.locale().dateFormat(Locale.ShortFormat)
+    readonly property string line1TimeFormat: cfg_clock_timeformat || localeTimeFormat
+    readonly property string line2TimeFormat: cfg_clock_timeformat_2 || localeDateFormat
 
     property string timeFormat24hour: 'hh:mm'
     property string timeFormat12hour: 'h:mm AP'
@@ -61,16 +64,6 @@ ConfigPage {
     }
     onCfg_clock_maxheightChanged: {
         plasmoid.configuration.clock_maxheight = cfg_clock_maxheight
-    }
-
-    function onClockFormatChange() {
-        var combinedFormat = cfg_clock_timeformat;
-        if (cfg_clock_line_2) {
-            combinedFormat += '\n' + cfg_clock_timeformat_2;
-        }
-        var is12hour = combinedFormat.toLowerCase().indexOf('ap') >= 0;
-        cfg_clock_24h = !is12hour;
-        cfg_clock_show_seconds = combinedFormat.indexOf('s') >= 0
     }
 
     function setMouseWheelCommands(up, down) {
@@ -233,11 +226,10 @@ ConfigPage {
                 TextField {
                     Layout.fillWidth: true
                     id: clock_timeformat
-                    onTextChanged: onClockFormatChange()
-                    placeholderText: Qt.locale().timeFormat(Locale.ShortFormat)
+                    placeholderText: localeTimeFormat
                 }
                 Label {
-                    text: Qt.formatDateTime(new Date(), cfg_clock_timeformat)
+                    text: Qt.formatDateTime(new Date(), line1TimeFormat)
                 }
             }
 
@@ -304,17 +296,15 @@ ConfigPage {
                 CheckBox {
                     id: clock_line_2
                     checked: false
-                    onCheckedChanged: onClockFormatChange()
                     text: i18n("Line 2:")
                 }
                 TextField {
                     Layout.fillWidth: true
                     id: clock_timeformat_2
-                    onTextChanged: onClockFormatChange()
-                    placeholderText: Qt.locale().dateFormat(Locale.ShortFormat)
+                    placeholderText: localeDateFormat
                 }
                 Label {
-                    text: Qt.formatDateTime(new Date(), cfg_clock_timeformat_2)
+                    text: Qt.formatDateTime(new Date(), line2TimeFormat)
                 }
             }
 

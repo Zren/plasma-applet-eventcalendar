@@ -103,9 +103,9 @@ function isDateAfter(a, b) {
 }
 
 function formatEventTime(dateTime, args) {
-    var clock_24h = args && args.clock_24h;
+    var clock24h = args && args.clock24h;
     var timeFormat;
-    if (clock_24h) {
+    if (clock24h) {
         if (dateTime.getMinutes() == 0) {
             timeFormat = i18nc("event time on the hour (24 hour clock)", "h")
         } else {
@@ -130,7 +130,7 @@ function formatEventDateTime(dateTime, args) {
 
 function formatEventDuration(event, args) {
     var relativeDate = args && args.relativeDate;
-    var clock_24h = args && args.clock_24h;
+    var clock24h = args && args.clock24h;
     var startTime = event.start.dateTime;
     var endTime = event.end.dateTime;
     var shortDateFormat = i18nc("short month+date format", "MMM d");

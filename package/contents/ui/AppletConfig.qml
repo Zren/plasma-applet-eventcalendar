@@ -53,4 +53,20 @@ QtObject {
 	property ListModel icalCalendarListModel: Base64JsonListModel {
 		configKey: 'icalCalendarList'
 	}
+
+	readonly property string localeTimeFormat: Qt.locale().timeFormat(Locale.ShortFormat)
+	readonly property string localeDateFormat: Qt.locale().dateFormat(Locale.ShortFormat)
+	readonly property string line1TimeFormat: plasmoid.configuration.clock_timeformat || localeTimeFormat
+	readonly property string line2TimeFormat: plasmoid.configuration.clock_timeformat_2 || localeDateFormat
+	readonly property string combinedFormat: {
+		if (plasmoid.configuration.cfg_clock_line_2) {
+			return line1TimeFormat + '\n' + line2TimeFormat
+		} else {
+			return line1TimeFormat
+		}
+	}
+	readonly property bool clock24h: {
+		var is12hour = combinedFormat.toLowerCase().indexOf('ap') >= 0
+		return !is12hour
+	}
 }
