@@ -146,7 +146,6 @@ Item {
 
         Connections {
             target: plasmoid.configuration
-            onClock_24hChanged: { updateUI() }
             onAgenda_breakup_multiday_eventsChanged: { updateUI() }
             onCalendar_id_listChanged: { updateEvents() }
             onAccess_tokenChanged: { updateEvents() }
@@ -161,6 +160,11 @@ Item {
                     updateHourlyWeather();
                 }
             }
+        }
+
+        Connections {
+            target: appletConfig
+            onClock24hChanged: { updateUI() }
         }
 
         Connections {

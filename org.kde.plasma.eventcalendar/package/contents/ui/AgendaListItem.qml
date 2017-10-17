@@ -247,7 +247,7 @@ RowLayout {
                                 text: {
                                     Shared.formatEventDuration(model, {
                                         relativeDate: agendaItemDate,
-                                        clock_24h: plasmoid.configuration.clock_24h,
+                                        clock24h: appletConfig.clock24h,
                                     })
                                 }
                                 color: eventItemInProgress ? inProgressColor : PlasmaCore.ColorScope.textColor

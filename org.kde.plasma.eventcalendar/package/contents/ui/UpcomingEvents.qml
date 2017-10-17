@@ -70,7 +70,7 @@ EventModel {
 		line += '<b>' + eventItem.summary + ':</b> '
 		line += Shared.formatEventDuration(eventItem, {
 			relativeDate: timeModel.currentTime,
-			clock_24h: plasmoid.configuration.clock_24h,
+			clock24h: appletConfig.clock24h,
 		})
 		return line
 	}
@@ -149,7 +149,7 @@ EventModel {
 			summary: eventItem.summary,
 			body: Shared.formatEventDuration(eventItem, {
 				relativeDate: timeModel.currentTime,
-				clock_24h: plasmoid.configuration.clock_24h,
+				clock24h: appletConfig.clock24h,
 			})
 		})
 	}

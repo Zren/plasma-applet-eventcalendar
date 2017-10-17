@@ -342,7 +342,7 @@ MouseArea {
                 line += '<b>' + eventItem.summary + ':</b> ';
                 line += Shared.formatEventDuration(eventItem, {
                     relativeDate: thisDate,
-                    clock_24h: plasmoid && plasmoid.configuration && plasmoid.configuration.clock_24h,
+                    clock24h: appletConfig.clock24h,
                 });
                 lines.push(line);
             }

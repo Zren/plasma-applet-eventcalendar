@@ -47,7 +47,7 @@ Item {
                 summary: data.summary,
                 body: Shared.formatEventDuration(data, {
                     relativeDate: timeModel.currentTime,
-                    clock_24h: plasmoid.configuration.clock_24h,
+                    clock24h: appletConfig.clock24h,
                 })
             })
         }
@@ -60,7 +60,7 @@ Item {
                 summary: data.summary,
                 body: Shared.formatEventDuration(data, {
                     relativeDate: timeModel.currentTime,
-                    clock_24h: plasmoid.configuration.clock_24h,
+                    clock24h: appletConfig.clock24h,
                 })
             })
         }
