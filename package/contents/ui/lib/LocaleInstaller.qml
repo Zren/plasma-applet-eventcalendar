@@ -7,7 +7,7 @@ import org.kde.kcoreaddons 1.0 as KCoreAddons
 
 ConfigSection {
 	id: lacaleInstaller
-	visible: langCode != "en" && isTranslated
+	visible: langCode != "en" && isTranslated && !isBundled
 
 	property var locale: Qt.locale()
 	property string localeCode: locale.name
@@ -35,6 +35,16 @@ ConfigSection {
 				}
 			}
 		}
+	}
+
+	property bool isBundled: bundledLocaledirModel.count > 0
+	property string bundledLocaleDir: packageRootUrl + "/contents/locale"
+	FolderListModel {
+		id: bundledLocaledirModel
+		folder: bundledLocaleDir
+		showDirs: true
+		showDotAndDotDot: false
+		showFiles: false
 	}
 
 	// property string shareDir: packageRootUrl.substr(0, packageRootUrl.length - "plasma/plasmoids//".length - packageName.length)
