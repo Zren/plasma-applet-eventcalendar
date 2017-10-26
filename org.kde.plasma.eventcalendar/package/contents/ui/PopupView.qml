@@ -347,7 +347,7 @@ Item {
                         var list = []
                         var selectedIndex = 0;
                         calendarList.forEach(function(calendar){
-                            if (calendar.accessRole == 'owner') {
+                            if (calendar.accessRole == 'writer' || calendar.accessRole == 'owner') {
                                 if (plasmoid.configuration.agenda_newevent_remember_calendar && calendar.id === plasmoid.configuration.agenda_newevent_last_calendar_id) {
                                     selectedIndex = list.length; // index after insertion
                                 }
