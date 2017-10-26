@@ -1,5 +1,5 @@
 #!/bin/bash
-# Version: 1
+# Version: 2
 
 # This script will convert the *.po files to *.mo files, rebuilding the package/contents/locale folder.
 # Feature discussion: https://phabricator.kde.org/D5209
@@ -41,4 +41,13 @@ for cat in $catalogs; do
 	mv "${catLocale}.mo" "${installPath}"
 done
 
-echo "[build] Done building messages, (re)install the plasmoid and restart plasmashell to test."
+echo "[build] Done building messages"
+
+if [ "$1" = "--restartplasma" ]; then
+	echo "[build] Restarting plasmashell"
+	killall plasmashell
+	kstart5 plasmashell
+	echo "[build] Done restarting plasmashell"
+else
+	echo "[build] (re)install the plasmoid and restart plasmashell to test."
+fi

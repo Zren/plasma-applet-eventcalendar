@@ -1,8 +1,8 @@
-> Version 1 of Zren's i18n scripts.
+> Version 2 of Zren's i18n scripts.
 
 ## Install Translations
 
-Go to `~/.local/share/plasma/plasmoids/{{plasmoidName}}/locale/` and run `sh ./install`.
+Go to `~/.local/share/plasma/plasmoids/{{plasmoidName}}/locale/` and run `sh ./build --restartplasma`.
 
 ## New Translations
 
@@ -15,7 +15,8 @@ Or if you know how to make a pull request
 ## Scripts
 
 * `./merge` will parse the `i18n()` calls in the `*.qml` files and write it to the `template.pot` file. Then it will merge any changes into the `*.po` language files.
-* `./install` It will then convert the `*.po` files to it's binary `*.mo` version and move it to `~/.local/share/locale/...`.
+* `./build` will convert the `*.po` files to it's binary `*.mo` version and move it to `contents/locale/...` which will bundle the translations in the *.plasmoid without needed the user to manually install them.
+* `./install` will convert the `*.po` files to it's binary `*.mo` version and move it to `~/.local/share/locale/...`.
 * `./test` will run `./merge` then `./install`.
 
 ## Links
