@@ -141,7 +141,7 @@ CalendarManager {
 
 	function parseEvent(calendar, event) {
 		event.backgroundColor = parseColor(calendar, event)
-		event.canEdit = calendar.accessRole == 'owner' && !event.recurringEventId // We cannot currently edit repeating events.
+		event.canEdit = (calendar.accessRole == 'writer' || calendar.accessRole == 'owner') && !event.recurringEventId // We cannot currently edit repeating events.
 	}
 
 	function parseColorId(colorIdType, colorId) {
