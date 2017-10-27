@@ -24,6 +24,10 @@ CalendarManager {
 		onFetchingData: eventModel.asyncRequests += 1
 		onAllDataFetched: eventModel.asyncRequestsDone += 1
 		onCalendarFetched: eventModel.setCalendarData(calendarId, data)
+		onEventUpdated: {
+			eventModel.mergeEvents()
+			eventModel.eventUpdated(calendarId, eventId, data)
+		}
 	}
 
 	GoogleCalendarManager {
@@ -98,11 +102,18 @@ CalendarManager {
 		} else if (true) { // Google Calendar
 			googleCalendarManager.deleteEvent(calendarId, eventId)
 		} else {
-			logger.log('cannot delete an event for the calendar', calendarId)
+			logger.log('cannot delete an event for the calendar', calendarId, eventId)
 		}
 	}
 
 	function setEventSummary(calendarId, eventId, summary) {
-		googleCalendarManager.setGoogleCalendarEventSummary(plasmoid.configuration.access_token, calendarId, eventId, summary)
+		console.log('eventModel.setEventSummary', calendarId, eventId, summary)
+		if (calendarId == "debug") {
+			debugCalendarManager.setEventSummary(calendarId, eventId, summary)
+		} else if (true) { // Google Calendar
+			googleCalendarManager.setGoogleCalendarEventSummary(plasmoid.configuration.access_token, calendarId, eventId, summary)
+		} else {
+			logger.log('cannot edit the event summary for the calendar', calendarId, eventId)
+		}
 	}
 }
