@@ -13,12 +13,12 @@ packageRoot=".." # Root of translatable sources
 projectName="plasma_applet_${plasmoidName}" # project name
 
 #---
-if [[ -z "$plasmoidName" ]]; then
+if [ -z "$plasmoidName" ]; then
 	echo "[merge] Error: Couldn't read plasmoidName."
 	exit
 fi
 
-if [[ -z "$(which xgettext)" ]]; then
+if [ -z "$(which xgettext)" ]; then
 	echo "[merge] Error: xgettext command not found. Need to install gettext"
 	echo "[merge] Running 'sudo apt install gettext'"
 	sudo apt install gettext
