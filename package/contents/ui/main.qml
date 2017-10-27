@@ -175,6 +175,12 @@ Item {
             }
         }
 
+        Binding {
+            target: plasmoid
+            property: "hideOnWindowDeactivate"
+            value: !plasmoid.configuration.pin
+        }
+
         // Allows the user to keep the calendar open for reference
         PlasmaComponents.ToolButton {
             visible: isPinVisible
@@ -183,7 +189,8 @@ Item {
             height: width
             checkable: true
             iconSource: "window-pin"
-            onCheckedChanged: plasmoid.hideOnWindowDeactivate = !checked
+            checked: plasmoid.configuration.pin
+            onCheckedChanged: plasmoid.configuration.pin = checked
         }
 
     }
