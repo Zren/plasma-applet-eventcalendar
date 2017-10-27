@@ -20,6 +20,10 @@
       <default>false</default>
     </entry>
     -->
+    <entry name="pin" type="Bool">
+      <label>Whether the popup should remain open when another window is activated</label>
+      <default>false</default>
+    </entry>
     <entry name="widget_show_meteogram" type="bool">
       <default>true</default>
     </entry>
