@@ -1,5 +1,6 @@
 import QtQuick 2.0
 import org.kde.plasma.core 2.0 as PlasmaCore
+import QtMultimedia 5.4
 
 QtObject {
 	id: notificationManager
@@ -24,5 +25,11 @@ QtObject {
 		}
 
 		service.startOperationCall(operation)
+		if (args.soundFile) {
+			sfx.source = args.soundFile
+			sfx.play()
+		}
 	}
+
+	property Audio sfx: Audio {}
 }

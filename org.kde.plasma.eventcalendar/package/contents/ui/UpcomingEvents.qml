@@ -150,7 +150,8 @@ EventModel {
 			body: Shared.formatEventDuration(eventItem, {
 				relativeDate: timeModel.currentTime,
 				clock24h: appletConfig.clock24h,
-			})
+			}),
+			soundFile: plasmoid.configuration.eventStartingSfxEnabled ? plasmoid.configuration.eventStartingSfxPath : '',
 		})
 	}
 
@@ -159,7 +160,9 @@ EventModel {
 			var calendar = eventsByCalendar[calendarId]
 			calendar.items.forEach(function(eventItem, index, calendarEventList) {
 				if (isEventStarting(eventItem)) {
-					sendEventStartingNotification(eventItem)
+					if (plasmoid.configuration.eventStartingNotificationEnabled) {
+						sendEventStartingNotification(eventItem)
+					}
 				}
 			})
 		}
