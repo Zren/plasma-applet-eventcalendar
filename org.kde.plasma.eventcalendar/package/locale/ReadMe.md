@@ -6,7 +6,7 @@ Go to `~/.local/share/plasma/plasmoids/{{plasmoidName}}/locale/` and run `sh ./b
 
 ## New Translations
 
-1. Fill out [`template.pot`](template.pot) with your translations then open a [new issue](https://github.com/Zren/plasma-applets/issues/new).
+1. Fill out [`template.pot`](template.pot) with your translations then open a [new issue](https://github.com/Zren/plasma-applets/issues/new), name the file `spanish.txt`, attach the txt file to the issue (drag and drop).
 
 Or if you know how to make a pull request
 
