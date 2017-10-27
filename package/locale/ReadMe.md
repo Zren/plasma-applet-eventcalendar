@@ -32,7 +32,7 @@ Or if you know how to make a pull request
 ## Status
 |Locale | Lines | % Done|
 |-------|-------|-------|
-|Template	|156	|	|
-|fr	|127/156	|81%	|
-|de	|143/156	|91%	|
-|es	|146/156	|93%	|
+|Template	|162	|	|
+|fr	|127/162	|78%	|
+|de	|143/162	|88%	|
+|es	|146/162	|90%	|
