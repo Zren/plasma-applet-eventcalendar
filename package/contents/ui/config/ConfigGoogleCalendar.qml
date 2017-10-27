@@ -190,6 +190,20 @@ ConfigPage {
         }
     }
 
+    HeaderText {
+        text: i18n("Notifications")
+    }
+
+    ConfigSection {
+        ConfigNotification {
+            label: i18n("Event Starting")
+            notificationEnabledKey: 'eventStartingNotificationEnabled'
+            sfxEnabledKey: 'eventStartingSfxEnabled'
+            sfxPathKey: 'eventStartingSfxPath'
+            sfxPathDefaultValue: '/usr/share/sounds/KDE-Im-Nudge.ogg'
+        }
+    }
+
     Component.onCompleted: {
         if (!session.accessToken) {
             session.generateUserCodeAndPoll()
