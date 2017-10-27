@@ -75,12 +75,23 @@ CalendarManager {
 
 	function parseEvent(calendar, event) {
 		event.backgroundColor = calendar.backgroundColor
-		event.canEdit = false
+		event.canEdit = true
 	}
 
 	function parseEventList(calendar, eventList) {
 		eventList.forEach(function(event) {
 			parseEvent(calendar, event)
 		})
+	}
+
+	function setEventSummary(calendarId, eventId, summary) {
+		console.log('debugCalendarManager.setEventSummary', calendarId, eventId, summary)
+		var event = getEvent(calendarId, eventId);
+		if (!event) {
+			logger.log('error, trying to update event that doesn\'t exist')
+			return;
+		}
+		event.summary = summary
+		eventUpdated(calendarId, eventId, event)
 	}
 }
