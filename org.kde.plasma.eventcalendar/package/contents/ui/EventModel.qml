@@ -8,49 +8,60 @@ CalendarManager {
 	id: eventModel
 	property variant eventsData: { "items": [] }
 
+	function fetchingDataListener() { eventModel.asyncRequests += 1 }
+	function allDataFetchedListener() { eventModel.asyncRequestsDone += 1 }
+	function calendarFetchedListener(calendarId, data) {
+		eventModel.setCalendarData(calendarId, data)
+	}
+	function eventAddedListener(calendarId, data) {
+		eventModel.mergeEvents()
+		eventModel.eventAdded(calendarId, data)
+	}
+	function eventCreatedListener(calendarId, data) {
+		eventModel.eventCreated(calendarId, data)
+	}
+	function eventRemovedListener(calendarId, eventId, data) {
+		eventModel.mergeEvents()
+		eventModel.eventRemoved(calendarId, eventId, data)
+	}
+	function eventDeletedListener(calendarId, eventId, data) {
+		eventModel.eventDeleted(calendarId, eventId, data)
+	}
+	function eventUpdatedListener(calendarId, eventId, data) {
+		eventModel.mergeEvents()
+		eventModel.eventUpdated(calendarId, eventId, data)
+	}
+
+	function bindSignals(calendarManager) {
+		console.log('bindSignals', calendarManager)
+		calendarManager.fetchingData.connect(fetchingDataListener)
+		calendarManager.allDataFetched.connect(allDataFetchedListener)
+		calendarManager.calendarFetched.connect(calendarFetchedListener)
+
+		calendarManager.eventAdded.connect(eventAddedListener)
+		calendarManager.eventCreated.connect(eventCreatedListener)
+		calendarManager.eventRemoved.connect(eventRemovedListener)
+		calendarManager.eventDeleted.connect(eventDeletedListener)
+		calendarManager.eventUpdated.connect(eventUpdatedListener)
+	}
+
 	ICalManager {
 		id: icalManager
-
 		calendarList: appletConfig.icalCalendarList.value
-
-		onFetchingData: eventModel.asyncRequests += 1
-		onAllDataFetched: eventModel.asyncRequestsDone += 1
-		onCalendarFetched: eventModel.setCalendarData(calendarId, data)
 	}
 
 	DebugCalendarManager {
 		id: debugCalendarManager
-
-		onFetchingData: eventModel.asyncRequests += 1
-		onAllDataFetched: eventModel.asyncRequestsDone += 1
-		onCalendarFetched: eventModel.setCalendarData(calendarId, data)
-		onEventUpdated: {
-			eventModel.mergeEvents()
-			eventModel.eventUpdated(calendarId, eventId, data)
-		}
 	}
 
 	GoogleCalendarManager {
 		id: googleCalendarManager
+	}
 
-		onFetchingData: eventModel.asyncRequests += 1
-		onAllDataFetched: eventModel.asyncRequestsDone += 1
-		onCalendarFetched: eventModel.setCalendarData(calendarId, data)
-
-		onEventAdded: {
-			eventModel.mergeEvents()
-			eventModel.eventAdded(calendarId, data)
-		}
-		onEventCreated: eventModel.eventCreated(calendarId, data)
-		onEventRemoved: {
-			eventModel.mergeEvents()
-			eventModel.eventRemoved(calendarId, eventId, data)
-		}
-		onEventDeleted: eventModel.eventDeleted(calendarId, eventId, data)
-		onEventUpdated: {
-			eventModel.mergeEvents()
-			eventModel.eventUpdated(calendarId, eventId, data)
-		}
+	Component.onCompleted: {
+		bindSignals(icalManager)
+		bindSignals(debugCalendarManager)
+		bindSignals(googleCalendarManager)
 	}
 
 	property var deferredUpdate: Timer {
