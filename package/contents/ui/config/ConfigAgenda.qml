@@ -13,6 +13,7 @@ ConfigPage {
     id: page
 
     property alias cfg_widget_show_agenda: widget_show_agenda.checked
+    property bool cfg_agendaWeatherOnRight: false
     property alias cfg_agenda_weather_show_icon: agenda_weather_show_icon.checked
     property alias cfg_agenda_weather_icon_height: agenda_weather_icon_height.value
     property alias cfg_agenda_weather_show_text: agenda_weather_show_text.checked
@@ -77,6 +78,23 @@ ConfigPage {
         CheckBox {
             id: agenda_weather_show_text
             text: i18n("Weather Text")
+        }
+
+        LabeledRowLayout {
+            label: i18n("Position:")
+            ExclusiveGroup { id: agendaWeatherOnRightGroup }
+            RadioButton {
+                text: i18n("Left")
+                exclusiveGroup: agendaWeatherOnRightGroup
+                checked: !cfg_agendaWeatherOnRight
+                onClicked: cfg_agendaWeatherOnRight = false
+            }
+            RadioButton {
+                text: i18n("Right")
+                exclusiveGroup: agendaWeatherOnRightGroup
+                checked: cfg_agendaWeatherOnRight
+                onClicked: cfg_agendaWeatherOnRight = true
+            }
         }
 
         LabeledRowLayout {

@@ -125,6 +125,9 @@
     <entry name="twoColumns" type="bool">
       <default>true</default>
     </entry>
+    <entry name="agendaWeatherOnRight" type="bool">
+      <default>false</default>
+    </entry>
     <entry name="agenda_weather_show_icon" type="bool">
       <default>true</default>
     </entry>

@@ -11,12 +11,12 @@ import "shared.js" as Shared
 import "../code/WeatherApi.js" as WeatherApi
 import "../code/DebugFixtures.js" as DebugFixtures
 
-RowLayout {
+GridLayout {
     id: agendaListItem
     Layout.fillWidth: true
     anchors.left: parent.left
     anchors.right: parent.right
-    spacing: 0
+    columnSpacing: 0
     property date agendaItemDate: model.date
     property bool agendaItemIsToday: false
     function checkIfToday() {
@@ -30,10 +30,12 @@ RowLayout {
         onDateChanged: agendaListItem.checkIfToday()
     }
     property bool agendaItemInProgress: agendaItemIsToday
+    property bool weatherOnRight: plasmoid.configuration.agendaWeatherOnRight
 
     LinkRect {
         visible: agendaModel.showDailyWeather
         Layout.alignment: Qt.AlignTop
+        Layout.column: weatherOnRight ? 2 : 0
 
         Column {
             id: itemWeatherColumn
@@ -95,6 +97,7 @@ RowLayout {
 
     LinkRect {
         Layout.alignment: Qt.AlignTop
+        Layout.column: weatherOnRight ? 0 : 1
         width: appletConfig.agendaDateColumnWidth
         Column {
             id: itemDateColumn
@@ -151,6 +154,7 @@ RowLayout {
 
     ColumnLayout {
         Layout.alignment: Qt.AlignTop | Qt.AlignLeft
+        Layout.column: weatherOnRight ? 1 : 2
         spacing: 0
         Item {
             Layout.fillWidth: true
