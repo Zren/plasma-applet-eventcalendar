@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: eventcalendar \n"
 "Report-Msgid-Bugs-To: https://github.com/Zren/plasma-applets/tree/master/org.kde.plasma.eventcalendar\n"
-"POT-Creation-Date: 2017-10-26 20:24-0400\n"
+"POT-Creation-Date: 2017-10-27 22:17-0400\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -269,7 +269,7 @@ msgstr ""
 msgid "Big Number"
 msgstr ""
 
-#: ../contents/ui/config/ConfigGeneral.qml:78
+#: ../contents/ui/config/ConfigGeneral.qml:78 ../contents/ui/lib/ConfigNotification.qml:59
 msgid "Chose a sound effect"
 msgstr ""
 
@@ -441,6 +441,14 @@ msgid_plural "min"
 msgstr[0] ""
 msgstr[1] ""
 
+#: ../contents/ui/config/ConfigGoogleCalendar.qml:194
+msgid "Notifications"
+msgstr ""
+
+#: ../contents/ui/config/ConfigGoogleCalendar.qml:199
+msgid "Event Starting"
+msgstr ""
+
 #: ../contents/ui/config/ConfigICal.qml:55
 msgid "Add Calendar"
 msgstr ""
@@ -596,11 +604,11 @@ msgstr ""
 msgid "<b>Version:</b> %1"
 msgstr ""
 
-#: ../contents/ui/main.qml:207
+#: ../contents/ui/main.qml:214
 msgid "Adjust Date and Time..."
 msgstr ""
 
-#: ../contents/ui/main.qml:208
+#: ../contents/ui/main.qml:215
 msgid "Set Locale..."
 msgstr ""
 
