@@ -4,7 +4,7 @@
 * Added Portuguese Brazil (pt_BR) translations by clayzanfolin.
 * Added notification sound when an event starts.
 * Added ability to toggle event starting notification and sound, and ability to customize which sound.
-* Fix bug where locales using 24 hour clock weren't used by default.
+* Fix bug where locales using 24 hour clock wasn't used by default.
 * Support creating events for and editing Google Calendar events when you have the "writer" role (instead of "owner").
 * [upstream] Persistent pin open state after relogging. https://phabricator.kde.org/D8252
 
