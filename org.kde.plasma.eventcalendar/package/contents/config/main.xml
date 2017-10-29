@@ -156,10 +156,6 @@
     <entry name="icalCalendarList" type="string" stringType="base64json">
       <default></default>
     </entry>
-  </group>
-
-
-  <group name="Events">
     <entry name="eventStartingNotificationEnabled" type="bool">
       <default>true</default>
     </entry>
