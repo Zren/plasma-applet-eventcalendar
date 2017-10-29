@@ -326,10 +326,10 @@ MouseArea {
     }
 
     PlasmaCore.ToolTipArea {
-        // active: model.showEventBadge || false
         anchors.fill: parent
+        active: root.showTooltips
+        visible: root.showTooltips // Needed with active=false to make sure the ToolTipArea doesn't close a parent ToolTipArea. Eg: DateSelector.
         mainText: Qt.formatDate(thisDate, Locale.LongFormat)
-        
         subText: {
             if (!model.events) {
                 return '';
