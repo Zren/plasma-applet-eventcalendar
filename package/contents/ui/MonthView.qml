@@ -32,6 +32,7 @@ PinchArea {
     property alias selectedYear: calendarBackend.year
     property alias displayedDate: calendarBackend.displayedDate
     property bool showTooltips: true
+    property bool showTodaysDate: true
 
     property QtObject date
     property date currentDate
@@ -342,7 +343,7 @@ PinchArea {
             id: mainDaysCalendar
             title: {
                 if (calendarBackend.displayedDate.getFullYear() == today.getFullYear()) {
-                    if (calendarBackend.displayedDate.getMonth() == today.getMonth()) {
+                    if (showTodaysDate && calendarBackend.displayedDate.getMonth() == today.getMonth()) {
                         return root.selectedMonth + " " + today.getDate() + ", " + root.selectedYear;
                     } else {
                         return root.selectedMonth;
@@ -382,7 +383,6 @@ PinchArea {
                 
             }
             onDoubleClicked: {
-                console.log('MonthView.onDoubleClicked', date);
                 root.dayDoubleClicked(date)
             }
         }
