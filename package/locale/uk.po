@@ -335,9 +335,8 @@ msgid ""
 "\"#77aaadd\"&gt;'ddd'&lt;/font&gt;'</b> to style a section. Note the single "
 "quotes around the tags are used to bypass the time format."
 msgstr ""
-"Ви також можете використовувати <b> '& lt; b & gt;' ddd '& lt; / b & gt;' </ "
-"b> або <b> '& font; color = \"# 77aaadd\" & gt;' ddd '& lt; / font & gt; </ "
-"b>, щоб створити розділ. Зауважте, що окремі лапки навколо тегів "
+"Ви також можете використовувати <b>'&lt;b&gt;'ddd'&lt;/b&gt;'</b> або <b>'&lt;font color="
+"\"#77aaadd\"&gt;'ddd'&lt;/font&gt;'</b>, щоб створити розділ. Зауважте, що окремі лапки навколо тегів "
 "використовуються для обходу формату часу."
 
 #: ../contents/ui/config/ConfigGeneral.qml:169
@@ -427,7 +426,7 @@ msgid ""
 "This will log sensitive information to ~/.xsession-errors"
 msgstr ""
 "Увімкнути налагодження\n"
-"Це буде записувати конфіденційну інформацію до ~ / .xsession-помилок"
+"Це буде записувати конфіденційну інформацію до ~/.xsession-помилок"
 
 #: ../contents/ui/config/ConfigGoogleCalendar.qml:58
 msgid "Login"
@@ -450,8 +449,8 @@ msgid ""
 "Enter the following code at <a href=\"https://www.google.com/device"
 "\">https://www.google.com/device</a>."
 msgstr ""
-"Введіть цей код на <a href=\"https://www.google.com/device\"> https://www."
-"google.com/device </a>."
+"Введіть цей код на <a href=\"https://www.google.com/device"
+"\">https://www.google.com/device</a>."
 
 #: ../contents/ui/config/ConfigGoogleCalendar.qml:87
 msgid "Generating Code..."
@@ -614,8 +613,8 @@ msgid ""
 "Fetched from <a href=\"http://openweathermap.org/help/city_list.txt\">http://"
 "openweathermap.org/help/city_list.txt</a>"
 msgstr ""
-"Отримано з <a href=\"http://openweathermap.org/help/city_list.txt\"> http://"
-"openweathermap.org/help/city_list.txt </a>"
+"Отримано з <a href=\"http://openweathermap.org/help/city_list.txt\">http://"
+"openweathermap.org/help/city_list.txt</a>"
 
 #: ../contents/ui/config/OpenWeatherMapCityDialog.qml:71
 #: ../contents/ui/config/WeatherCanadaCityDialog.qml:91
@@ -647,17 +646,17 @@ msgid ""
 "Fetched from <a href=\"https://weather.gc.ca/canada_e.html\">https://weather."
 "gc.ca/canada_e.html</a>"
 msgstr ""
-"Отримано з <a href=\"https://weather.gc.ca/canada_e.html\"> https://weather."
-"gc.ca/canada_e.html </a>"
+"Отримано з <a href=\"https://weather.gc.ca/canada_e.html\">https://weather."
+"gc.ca/canada_e.html</a>"
 
 #: ../contents/ui/ForecastGraph.qml:333
 #, c-format
 msgid "%1mm"
-msgstr "мм"
+msgstr "%1мм"
 
 #: ../contents/ui/lib/AppletVersion.qml:41
 msgid "<b>Version:</b> %1"
-msgstr "<b> Версія: </ b>% 1"
+msgstr "<b>Версія:</b> %1"
 
 #: ../contents/ui/main.qml:214
 msgid "Adjust Date and Time..."
@@ -743,7 +742,7 @@ msgstr "Таймер закінчився"
 
 #: ../contents/ui/TimerView.qml:252
 msgid "%1 has passed"
-msgstr "% 1 пройшло"
+msgstr "%1 пройшло"
 
 #: ../contents/ui/UpcomingEvents.qml:114
 msgid "Events Starting"
