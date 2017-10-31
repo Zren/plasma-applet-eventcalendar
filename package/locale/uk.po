@@ -34,11 +34,11 @@ msgstr "Календар"
 
 #: ../contents/config/config.qml:26
 msgid "Agenda"
-msgstr "Показати порядок денний"
+msgstr "Порядок денний"
 
 #: ../contents/config/config.qml:31
 msgid "ICalendar (.ics)"
-msgstr "Шлях до iCalendar (.ics)"
+msgstr ""
 
 #: ../contents/config/config.qml:37
 msgid "Google Calendar"
@@ -96,7 +96,7 @@ msgstr "Підтвердити видалення"
 
 #: ../contents/ui/AgendaListItem.qml:400
 msgid "Edit in browser"
-msgstr "Редагувати в оглядачі"
+msgstr "Редагувати в браузері"
 
 #: ../contents/ui/AgendaView.qml:44 ../contents/ui/AgendaView.qml:57
 #: ../contents/ui/UpcomingEvents.qml:129 ../contents/ui/UpcomingEvents.qml:146
@@ -272,7 +272,7 @@ msgstr "Сьогодні:"
 
 #: ../contents/ui/config/ConfigCalendar.qml:141
 msgid "Solid Color (Inverted)"
-msgstr "суцільний колір (інвертований)"
+msgstr "Твердий колір (інвертований)"
 
 #: ../contents/ui/config/ConfigCalendar.qml:147
 msgid "Big Number"
@@ -288,12 +288,8 @@ msgid "Widgets"
 msgstr "Віджети"
 
 #: ../contents/ui/config/ConfigGeneral.qml:105
-msgid ""
-"Show/Hide widgets above the calendar. Toggle Agenda/Calendar on their "
-"respective tabs."
-msgstr ""
-"Показати / сховати віджети над календарем. Перемкнути порядок денний / "
-"календар у відповідних вкладках."
+msgid "Show/Hide widgets above the calendar. Toggle Agenda/Calendar on their respective tabs."
+msgstr "Показати / сховати віджети над календарем. Перемкнути порядок денний / календар у відповідних вкладках."
 
 #: ../contents/ui/config/ConfigGeneral.qml:112
 msgid "Meteogram"
@@ -320,24 +316,12 @@ msgid "Time Format"
 msgstr "Формат часу"
 
 #: ../contents/ui/config/ConfigGeneral.qml:157
-msgid ""
-"The default font for the Breeze theme is Noto Sans which is hard to read "
-"with small text. Try using the Sans Serif font if you find the text too "
-"small when adding a second line."
-msgstr ""
-"Шрифт за замовчуванням для теми Breeze - це Noto Sans, який важко читати з "
-"невеликим текстом. Спробуйте використати шрифт Sans Serif, якщо ви знайдете "
-"текст занадто малий при додаванні другої лінії."
+msgid "The default font for the Breeze theme is Noto Sans which is hard to read with small text. Try using the Sans Serif font if you find the text too small when adding a second line."
+msgstr "Шрифт за замовчуванням для теми Breeze - це Noto Sans, який важко читати з невеликим текстом. Спробуйте використати шрифт Sans Serif, якщо ви знайдете текст занадто малий при додаванні другої лінії."
 
 #: ../contents/ui/config/ConfigGeneral.qml:163
-msgid ""
-"You can also use <b>'&lt;b&gt;'ddd'&lt;/b&gt;'</b> or <b>'&lt;font color="
-"\"#77aaadd\"&gt;'ddd'&lt;/font&gt;'</b> to style a section. Note the single "
-"quotes around the tags are used to bypass the time format."
-msgstr ""
-"Ви також можете використовувати <b>'&lt;b&gt;'ddd'&lt;/b&gt;'</b> або <b>'&lt;font color="
-"\"#77aaadd\"&gt;'ddd'&lt;/font&gt;'</b>, щоб створити розділ. Зауважте, що окремі лапки навколо тегів "
-"використовуються для обходу формату часу."
+msgid "You can also use <b>'&lt;b&gt;'ddd'&lt;/b&gt;'</b> or <b>'&lt;font color=\"#77aaadd\"&gt;'ddd'&lt;/font&gt;'</b> to style a section. Note the single quotes around the tags are used to bypass the time format."
+msgstr "Ви також можете використовувати <b>'&lt;b&gt;'ddd'&lt;/b&gt;'</b> або <b>'&lt;font color=\"#77aaadd\"&gt;'ddd'&lt;/font&gt;'</b>, щоб створити розділ. Зауважте, що окремі лапки навколо тегів використовуються для обходу формату часу."
 
 #: ../contents/ui/config/ConfigGeneral.qml:169
 msgid "Font:"
@@ -401,7 +385,7 @@ msgstr "Прокрутити вниз:"
 
 #: ../contents/ui/config/ConfigGeneral.qml:421
 msgid "Volume (No UI) (amixer)"
-msgstr "Гучність (без інтерфейсу) (amixer)"
+msgstr "Об'єм (без інтерфейсу) (amixer)"
 
 #: ../contents/ui/config/ConfigGeneral.qml:430
 msgid "Volume (UI) (qdbus)"
@@ -445,12 +429,8 @@ msgid "To sync with Google Calendar"
 msgstr "Синхронізувати з Календарем Google"
 
 #: ../contents/ui/config/ConfigGoogleCalendar.qml:81
-msgid ""
-"Enter the following code at <a href=\"https://www.google.com/device"
-"\">https://www.google.com/device</a>."
-msgstr ""
-"Введіть цей код на <a href=\"https://www.google.com/device"
-"\">https://www.google.com/device</a>."
+msgid "Enter the following code at <a href=\"https://www.google.com/device\">https://www.google.com/device</a>."
+msgstr "Введіть цей код на <a href=\"https://www.google.com/device\">https://www.google.com/device</a>."
 
 #: ../contents/ui/config/ConfigGoogleCalendar.qml:87
 msgid "Generating Code..."
@@ -474,7 +454,7 @@ msgstr "Оновити події щотижня:"
 msgctxt "Polling interval in minutes"
 msgid "min"
 msgid_plural "min"
-msgstr[0] "min [ Інтервал опитування в хвилинах ]"
+msgstr[0] "хв"
 msgstr[1] ""
 msgstr[2] ""
 
@@ -484,11 +464,11 @@ msgstr "Сповіщення"
 
 #: ../contents/ui/config/ConfigGoogleCalendar.qml:199
 msgid "Event Starting"
-msgstr "Початок подій"
+msgstr "Початок події"
 
 #: ../contents/ui/config/ConfigICal.qml:55
 msgid "Add Calendar"
-msgstr "Додати у календар"
+msgstr "Додати календар"
 
 #: ../contents/ui/config/ConfigICal.qml:60
 msgid "New Calendar"
@@ -496,15 +476,15 @@ msgstr "Новий календар"
 
 #: ../contents/ui/config/ConfigICal.qml:96
 msgid "Calendar Label"
-msgstr "Помітка у календарі"
+msgstr "Мітка календаря"
 
 #: ../contents/ui/config/ConfigICal.qml:113
 msgid "Browse"
-msgstr "Відобразити"
+msgstr "Перегляд"
 
 #: ../contents/ui/config/ConfigICal.qml:121
 msgid "iCalendar (*.ics)"
-msgstr "Шлях до iCalendar (.ics)"
+msgstr ""
 
 #: ../contents/ui/config/ConfigTimezones.qml:64
 msgid "Tooltip"
@@ -555,7 +535,7 @@ msgstr "Показати наступний"
 #: ../contents/ui/config/ConfigWeather.qml:133
 msgid " hours"
 msgid_plural " hours"
-msgstr[0] "години"
+msgstr[0] "годин"
 msgstr[1] ""
 msgstr[2] ""
 
@@ -609,12 +589,8 @@ msgid "Select city"
 msgstr "Виберіть місто"
 
 #: ../contents/ui/config/OpenWeatherMapCityDialog.qml:65
-msgid ""
-"Fetched from <a href=\"http://openweathermap.org/help/city_list.txt\">http://"
-"openweathermap.org/help/city_list.txt</a>"
-msgstr ""
-"Отримано з <a href=\"http://openweathermap.org/help/city_list.txt\">http://"
-"openweathermap.org/help/city_list.txt</a>"
+msgid "Fetched from <a href=\"http://openweathermap.org/help/city_list.txt\">http://openweathermap.org/help/city_list.txt</a>"
+msgstr "Отримано з <a href=\"http://openweathermap.org/help/city_list.txt\">http://openweathermap.org/help/city_list.txt</a>"
 
 #: ../contents/ui/config/OpenWeatherMapCityDialog.qml:71
 #: ../contents/ui/config/WeatherCanadaCityDialog.qml:91
@@ -629,7 +605,7 @@ msgstr "Ім'я"
 #: ../contents/ui/config/OpenWeatherMapCityDialog.qml:89
 #: ../contents/ui/config/WeatherCanadaCityDialog.qml:109
 msgid "Id"
-msgstr "Ідентифікатор міста:"
+msgstr "Id"
 
 #: ../contents/ui/config/OpenWeatherMapCityDialog.qml:94
 #: ../contents/ui/config/WeatherCanadaCityDialog.qml:114
@@ -642,12 +618,8 @@ msgid "Open Link"
 msgstr "Відкрити посилання"
 
 #: ../contents/ui/config/WeatherCanadaCityDialog.qml:68
-msgid ""
-"Fetched from <a href=\"https://weather.gc.ca/canada_e.html\">https://weather."
-"gc.ca/canada_e.html</a>"
-msgstr ""
-"Отримано з <a href=\"https://weather.gc.ca/canada_e.html\">https://weather."
-"gc.ca/canada_e.html</a>"
+msgid "Fetched from <a href=\"https://weather.gc.ca/canada_e.html\">https://weather.gc.ca/canada_e.html</a>"
+msgstr "Отримано з <a href=\"https://weather.gc.ca/canada_e.html\">https://weather.gc.ca/canada_e.html</a>"
 
 #: ../contents/ui/ForecastGraph.qml:333
 #, c-format
