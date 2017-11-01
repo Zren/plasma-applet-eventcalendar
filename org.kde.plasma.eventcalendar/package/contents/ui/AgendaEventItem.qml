@@ -75,7 +75,7 @@ LinkRect {
                             eventModel.setEventSummary(event.calendarId, event.id, text)
                         }
                         Component.onCompleted: {
-                            forceActiveFocus()
+                            focus = true
                         }
 
                         Keys.onEscapePressed: editSummaryForm.active = false
@@ -109,27 +109,30 @@ LinkRect {
                         ColumnLayout {
                             Layout.fillWidth: true
                             RowLayout {
-                                PlasmaComponents.TextField {
+                                DateSelector {
                                     id: editStartDate
-                                    placeholderText: '31/12/2017' // Note that US/Canada is 12/31/2017
-                                    text: Qt.formatDate(model.start.dateTime)
-
-                                    Component.onCompleted: {
-                                        forceActiveFocus()
-                                    }
-
                                     Layout.fillWidth: true
-                                    Keys.onEscapePressed: editDateTimeForm.active = false
+                                    dateTime: model.start.dateTime
+                                    onDateTimeChanged: {
+                                        var t1 = model.start.dateTime.valueOf()
+                                        var t2 = dateTime.valueOf()
+                                        console.log('dt1', model.start.dateTime)
+                                        console.log('dt2', dateTime)
+                                        var dateDelta = Math.floor((t2 - t1) / (1000*60*60*24))
+                                        console.log('dateDelta', dateDelta)
+
+                                        var shiftedEndDate = new Date(model.end.dateTime)
+                                        shiftedEndDate.setDate(shiftedEndDate.getDate() + dateDelta)
+                                        editEndDate.dateTime = shiftedEndDate
+                                    }
                                 }
 
                                 PlasmaComponents.TextField {
                                     id: editStartTime
+                                    Layout.fillWidth: true
                                     enabled: !isAllDayEvent
                                     placeholderText: '9:00am'
                                     text: Qt.formatTime(model.start.dateTime)
-
-                                    Layout.fillWidth: true
-                                    Keys.onEscapePressed: editDateTimeForm.active = false
                                 }
                             }
                             PlasmaComponents.Label {
@@ -138,23 +141,18 @@ LinkRect {
                                 horizontalAlignment: Text.AlignHCenter
                             }
                             RowLayout {
-                                PlasmaComponents.TextField {
+                                DateSelector {
                                     id: editEndDate
-                                    placeholderText: '31/12/2017' // Note that US/Canada is 12/31/2017
-                                    text: Qt.formatDate(model.end.dateTime)
-
                                     Layout.fillWidth: true
-                                    Keys.onEscapePressed: editDateTimeForm.active = false
+                                    dateTime: model.end.dateTime
                                 }
 
                                 PlasmaComponents.TextField {
                                     id: editEndTime
+                                    Layout.fillWidth: true
                                     enabled: !isAllDayEvent
                                     placeholderText: '10:00am'
                                     text: Qt.formatTime(model.end.dateTime)
-
-                                    Layout.fillWidth: true
-                                    Keys.onEscapePressed: editDateTimeForm.active = false
                                 }
                             }
                         }
