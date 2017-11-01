@@ -33,8 +33,8 @@ Or if you know how to make a pull request
 |Locale | Lines | % Done|
 |-------|-------|-------|
 |Template	|168	|	|
-|uk	|161/168	|95%	|
-|fr	|127/168	|75%	|
-|pt_BR	|152/168	|90%	|
 |de	|142/168	|84%	|
 |es	|145/168	|86%	|
+|fr	|127/168	|75%	|
+|pt_BR	|152/168	|90%	|
+|uk	|161/168	|95%	|

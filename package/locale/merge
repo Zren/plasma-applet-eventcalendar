@@ -78,7 +78,7 @@ echo "[merge] Done extracting messages"
 
 #---
 echo "[merge] Merging messages"
-catalogs=`find . -name '*.po'`
+catalogs=`find . -name '*.po' | sort`
 for cat in $catalogs; do
 	echo "[merge] $cat"
 	catLocale=`basename ${cat%.*}`
