@@ -212,12 +212,12 @@ LinkRect {
         });
         contextMenu.addMenuItem(menuItem);
 
-        // menuItem = contextMenu.newMenuItem();
-        // menuItem.text = i18n("Edit date/time");
-        // menuItem.enabled = event.canEdit
-        // menuItem.clicked.connect(function() {
-        //     editDateTimeForm.active = !editDateTimeForm.active
-        // });
+        menuItem = contextMenu.newMenuItem();
+        menuItem.text = i18n("Edit date/time");
+        menuItem.enabled = event.canEdit
+        menuItem.clicked.connect(function() {
+            editDateTimeForm.active = !editDateTimeForm.active
+        });
         // contextMenu.addMenuItem(menuItem);
 
         var deleteMenuItem = contextMenu.newSubMenu();
