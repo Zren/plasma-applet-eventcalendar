@@ -2,6 +2,8 @@ import os, sys
 import datetime
 from icalendar import Calendar
 import json
+import urllib.parse
+import urllib.request
 
 debugging=False
 def debug(*args):
@@ -69,13 +71,13 @@ def eventWithin(event, startTime, endTime):
 	return eventStart <= endTime and eventEnd >= startTime
 
 class CalendarManager:
-	def __init__(self, filename):
-		self.filename = filename
+	def __init__(self, url):
+		self.url = url
 		self.cal = None
 	
 	def read(self):
-		with open(self.filename, "r") as f:
-			text = f.read()
+		with urllib.request.urlopen(self.url) as sock:
+			text = sock.read()
 			self.cal = Calendar.from_ical(text)
 
 	@property
@@ -109,7 +111,7 @@ if __name__ == '__main__':
 	import argparse
 
 	parser = argparse.ArgumentParser(description="calculate X to the power of Y")
-	parser.add_argument("--file", type=str, required=True, help="The .ics file to read/write")
+	parser.add_argument("--url", type=str, required=True, help="The .ics file to read/write")
 	subparsers = parser.add_subparsers(help='Commands', dest='subcommand')
 
 	query = subparsers.add_parser('query')
@@ -122,11 +124,13 @@ if __name__ == '__main__':
 
 	# debugging = True
 	if debugging:
-		args = parser.parse_args(['--file', 'basic.ics', 'query', '2016-09-15', '2016-09-16'])
+		args = parser.parse_args(['--url', 'basic.ics', 'query', '2016-09-15', '2016-09-16'])
 	else:
 		args = parser.parse_args()
 
-	manager = CalendarManager(args.file)
+	url = urllib.parse.urlparse(args.url, scheme='file').geturl()
+
+	manager = CalendarManager(url)
 	if args.subcommand == 'query':
 		manager.read()
 		eventList = manager.query(args.startTime, args.endTime)

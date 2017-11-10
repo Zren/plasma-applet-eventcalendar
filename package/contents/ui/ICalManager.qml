@@ -30,7 +30,7 @@ CalendarManager {
 	function fetchEvents(calendarData, startTime, endTime, callback) {
 		console.log('fetchEvents', calendarData.url)
 		var cmd = 'python3 ' + plasmoid.file("", "scripts/icsjson.py")
-		cmd += ' --file "' + calendarData.url + '"' // TODO proper argument wrapping
+		cmd += ' --url "' + calendarData.url + '"' // TODO proper argument wrapping
 		cmd += ' query'
 		cmd += ' ' + startTime.getFullYear() + '-' + (startTime.getMonth()+1) + '-' + startTime.getDate()
 		cmd += ' ' + endTime.getFullYear() + '-' + (endTime.getMonth()+1) + '-' + endTime.getDate()
