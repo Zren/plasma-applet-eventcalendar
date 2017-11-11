@@ -1,5 +1,12 @@
 #!/bin/sh
-# Version: 1
+# Version: 2
 
-sh ./merge
-sh ./install
+localeCode="$1"
+if [ -z "$localeCode" ]; then
+	echo "./test [localeCode]"
+	echo "    Eg: ./test fr"
+	echo "    This will reinstall the widget, then restart plasmashell with 'LOCALE=fr plasmashell'"
+	exit 1
+fi
+
+./merge && ./build && kpackagetool5 -t Plasma/Applet -u .. && killall plasmashell; LANGUAGE="$localeCode" kstart5 plasmashell
