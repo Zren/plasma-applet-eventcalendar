@@ -11,7 +11,7 @@ Window {
     property var pulseObject
     width: 600
     height: 600
-    title: pulseObject.name + ' - ' + i18nd("plasma_applet_org.kde.plasma.volume", "Audio Volume")
+    title: pulseObject.name + ' — ' + i18nd("plasma_applet_org.kde.plasma.volume", "Audio Volume")
 
 
     ColumnLayout {
