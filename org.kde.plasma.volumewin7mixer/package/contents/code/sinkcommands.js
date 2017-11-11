@@ -125,6 +125,7 @@ function loadModuleLoopbackCallback(sourceId, command, exitCode, exitStatus, std
 
 // module-echo-cancel
 // https://www.freedesktop.org/wiki/Software/PulseAudio/Documentation/User/Modules/#module-echo-cancel
+// https://github.com/pulseaudio/pulseaudio/blob/master/src/modules/echo-cancel/module-echo-cancel.c
 // We use source.properties['echo_cancel.module_id'] != -1 serialize the state.
 function getEchoCancelModuleId(pulseObject) {
     return getProperty(pulseObject, 'echo_cancel.module_id', -1)
@@ -147,6 +148,10 @@ function enableModuleEchoCancel(sourceId) {
     command += ' source_master=' + sourceId
     command += ' source_properties="echo_cancel.source=' + sourceId + '"'
     command += ' sink_properties="echo_cancel.source=' + sourceId + '"'
+
+    // command += " source_properties=echo_cancel.source=\\'" + sourceId + "\\'application.id=\\'org.PulseAudio.pavucontrol\\'"
+    // command += " sink_properties=echo_cancel.source=\\'" + sourceId + "\\'application.id=\\'org.PulseAudio.pavucontrol\\'"
+    
     console.log('enableModuleEchoCancel.command', command)
     var callback = loadModuleEchoCancelCallback.bind(null, sourceId)
     executable.execAwait(command, callback)
@@ -154,7 +159,10 @@ function enableModuleEchoCancel(sourceId) {
 
 function loadModuleEchoCancelCallback(sourceId, command, exitCode, exitStatus, stdout, stderr) {
     console.log('EchoCancelCallback.sourceId', sourceId)
+    console.log('EchoCancelCallback.stdout', stdout)
     var moduleId = executable.trimOutput(stdout)
     console.log('EchoCancelCallback.moduleId', moduleId)
-    setSourceProperty(sourceId, 'echo_cancel.module_id', moduleId)
+    if (moduleId) {
+        setSourceProperty(sourceId, 'echo_cancel.module_id', moduleId)
+    }
 }
