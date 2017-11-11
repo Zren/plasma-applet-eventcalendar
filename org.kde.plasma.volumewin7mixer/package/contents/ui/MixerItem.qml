@@ -604,7 +604,7 @@ PlasmaComponents.ListItem {
 
             // Mute
             var menuItem = newMenuItem();
-            menuItem.text = i18n("Mute");
+            menuItem.text = i18ndc("plasma_applet_org.kde.plasma.volume", "Checkable switch for (un-)muting sound output.", "Mute");
             menuItem.checkable = true;
             menuItem.checked = PulseObject.muted;
             menuItem.clicked.connect(function() {
@@ -625,7 +625,7 @@ PlasmaComponents.ListItem {
             // Default
             if (typeof PulseObject.default === "boolean") {
                 var menuItem = newMenuItem();
-                menuItem.text = i18n("Default");
+                menuItem.text = i18ndc("plasma_applet_org.kde.plasma.volume", "Checkable switch to change the current default output.", "Default");
                 menuItem.checkable = true;
                 menuItem.checked = PulseObject.default
                 menuItem.clicked.connect(function() {

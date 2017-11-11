@@ -70,7 +70,7 @@ ConfigPage {
                     value: 150
                     maximumValue: 1000
                     stepSize: 10
-                    suffix: '%'
+                    suffix: i18nd("plasma_applet_org.kde.plasma.volume", "%")
                 }
             }
             

@@ -149,7 +149,7 @@ Item {
         // ensure the layout doesn't shift as the numbers change and measure roughly the longest text that could occur with the current song
         TextMetrics {
             id: timeMetrics
-            text: i18nc("Remaining time for song e.g -5:42", "-%1",
+            text: i18ndc("plasma_applet_org.kde.plasma.mediacontroller", "Remaining time for song e.g -5:42", "-%1",
                         KCoreAddons.Format.formatDuration(seekSlider.maximumValue / 1000, KCoreAddons.FormatTypes.FoldHours))
             font: theme.smallestFont
         }

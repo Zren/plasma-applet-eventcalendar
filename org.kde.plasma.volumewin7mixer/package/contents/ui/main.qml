@@ -62,7 +62,7 @@ Item {
     }
 
 
-    property string displayName: i18n("Audio Volume")
+    property string displayName: i18nd("plasma_applet_org.kde.plasma.volume", "Audio Volume")
     property string speakerIcon: sinkModel.defaultSink ? Icon.name(sinkModel.defaultSink.volume, sinkModel.defaultSink.muted) : Icon.name(0, true)
     Plasmoid.icon: {
         if (mpris2Source.hasPlayer && mpris2Source.albumArt) {
@@ -82,14 +82,14 @@ Item {
         var lines = [];
         if (mpris2Source.hasPlayer && mpris2Source.artist) {
             if (mpris2Source.isPaused) {
-                lines.push(mpris2Source.artist ? i18nc("Artist of the song", "by %1 (paused)", mpris2Source.artist) : i18n("Paused"));
+                lines.push(mpris2Source.artist ? i18ndc("plasma_applet_org.kde.plasma.mediacontroller", "Artist of the song", "by %1 (paused)", mpris2Source.artist) : i18nd("plasma_applet_org.kde.plasma.mediacontroller", "Paused"));
             } else if (mpris2Source.artist) {
-                lines.push(i18nc("Artist of the song", "by %1", mpris2Source.artist));
+                lines.push(i18ndc("plasma_applet_org.kde.plasma.mediacontroller", "Artist of the song", "by %1", mpris2Source.artist));
             }
         }
         if (sinkModel.defaultSink) {
             var sinkVolumePercent = Math.round(PulseObjectCommands.volumePercent(sinkModel.defaultSink.volume));
-            lines.push(i18n("Volume at %1%", sinkVolumePercent));
+            lines.push(i18nd("plasma_applet_org.kde.plasma.volume", "Volume at %1%", sinkVolumePercent));
             lines.push(sinkModel.defaultSink.description);
         }
         return lines.join('\n');
@@ -275,37 +275,37 @@ Item {
         displayName: main.displayName
         GlobalAction {
             objectName: "increase_volume"
-            text: i18n("Increase Volume")
+            text: i18nd("plasma_applet_org.kde.plasma.volume", "Increase Volume")
             shortcut: Qt.Key_VolumeUp
             onTriggered: increaseDefaultSinkVolume()
         }
         GlobalAction {
             objectName: "decrease_volume"
-            text: i18n("Decrease Volume")
+            text: i18nd("plasma_applet_org.kde.plasma.volume", "Decrease Volume")
             shortcut: Qt.Key_VolumeDown
             onTriggered: decreaseDefaultSinkVolume()
         }
         GlobalAction {
             objectName: "mute"
-            text: i18n("Mute")
+            text: i18nd("plasma_applet_org.kde.plasma.volume", "Mute")
             shortcut: Qt.Key_VolumeMute
             onTriggered: toggleDefaultSinksMute()
         }
         GlobalAction {
             objectName: "increase_microphone_volume"
-            text: i18n("Increase Microphone Volume")
+            text: i18nd("plasma_applet_org.kde.plasma.volume", "Increase Microphone Volume")
             shortcut: Qt.Key_MicVolumeUp
             onTriggered: increaseDefaultSourceVolume()
         }
         GlobalAction {
             objectName: "decrease_microphone_volume"
-            text: i18n("Decrease Microphone Volume")
+            text: i18nd("plasma_applet_org.kde.plasma.volume", "Decrease Microphone Volume")
             shortcut: Qt.Key_MicVolumeDown
             onTriggered: decreaseDefaultSourceVolume()
         }
         GlobalAction {
             objectName: "mic_mute"
-            text: i18n("Mute Microphone")
+            text: i18nd("plasma_applet_org.kde.plasma.volume", "Mute Microphone")
             shortcut: Qt.Key_MicMute
             onTriggered: toggleDefaultSourceMute()
         }
@@ -580,7 +580,10 @@ Item {
 
         plasmoid.setAction("pavucontrol", i18n("PulseAudio Control"), "configure");
         plasmoid.setAction("alsamixer", i18n("AlsaMixer"), "configure");
-        plasmoid.setAction("configure", i18n("Audio Volume Settings..."), "configure");
+
+        var widgetName = i18nd("plasma_applet_org.kde.plasma.volume", "Audio Volume");
+        var configureText = i18ndc("libplasma5", "%1 is the name of the applet", "%1 Settings...", widgetName); // plasma-framework
+        plasmoid.setAction("configure", configureText, "configure");
 
         // plasmoid.action("configure").trigger();
     }
