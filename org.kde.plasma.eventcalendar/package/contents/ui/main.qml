@@ -206,13 +206,24 @@ Item {
         KCMShell.open("clock");
     }
 
+    function action_KCMTranslations() {
+        KCMShell.open("translations");
+    }
+
     function action_KCMFormats() {
         KCMShell.open("formats");
     }
 
     Component.onCompleted: {
-        plasmoid.setAction("KCMClock", i18n("Adjust Date and Time..."), "preferences-system-time");
-        plasmoid.setAction("KCMFormats", i18n("Set Locale..."), "preferences-desktop-locale");
+        if (KCMShell.authorize("clock.desktop").length > 0) {
+            plasmoid.setAction("KCMClock", i18nd("plasma_applet_org.kde.plasma.digitalclock", "Adjust Date and Time..."), "preferences-system-time");
+        }
+        if (KCMShell.authorize("translations.desktop").length > 0) {
+            plasmoid.setAction("KCMTranslations", i18n("Set Language..."), "preferences-desktop-locale");
+        }
+        if (KCMShell.authorize("formats.desktop").length > 0) {
+            plasmoid.setAction("KCMFormats", i18n("Set Locale..."), "preferences-desktop-locale");
+        }
 
         // plasmoid.action("configure").trigger()
     }
