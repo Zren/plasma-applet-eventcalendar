@@ -11,7 +11,7 @@ A fork of the [default volume plasmoid](https://github.com/KDE/plasma-pa/tree/Pl
 
 ## Screenshot
 
-![](https://i.imgur.com/6s1ZWl7.png)
+![](https://i.imgur.com/OeC9Zhc.png)
 
 
 ## A) Install via KDE
