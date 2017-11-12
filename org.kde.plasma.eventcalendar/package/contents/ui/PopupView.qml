@@ -12,7 +12,7 @@ import "shared.js" as Shared
 import "../code/WeatherApi.js" as WeatherApi
 import "../code/DebugFixtures.js" as DebugFixtures
 
-Item {
+FocusScope {
     id: popup
 
     // use Layout.prefferedHeight instead of height so that the plasmoid resizes.
@@ -315,6 +315,7 @@ Item {
                         width: Math.min(parent.width, implicitWidth)
                         height: Math.min(parent.height, implicitHeight)
                         fontSizeMode: Text.Fit
+                        wrapMode: Text.Wrap
                     }
                 }
             }
