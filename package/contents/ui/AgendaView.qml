@@ -65,16 +65,6 @@ Item {
             })
         }
     }
-
-    // width: 400
-    // height: 400
-
-    // Testing with qmlview
-    Rectangle {
-        visible: typeof popup === 'undefined'
-        color: PlasmaCore.ColorScope.backgroundColor
-        anchors.fill: parent
-    }
     
     ListView {
         id: agendaListView
@@ -87,7 +77,7 @@ Item {
 
         // Don't bother garbage collecting
         // GC or Reloading the weather images is very slow.
-        cacheBuffer: 10000000 
+        cacheBuffer: 1000
 
         delegate: AgendaListItem {}
     }
