@@ -52,9 +52,10 @@ LinkRect {
                 visible: !editSummaryForm.active
                 Layout.fillWidth: true
 
+                // The Following doesn't seem to be applicable anymore (left comment just in case).
                 // Wrapping causes reflow, which causes scroll to selection to miss the selected date
                 // since it reflows after updateUI/scrollToDate is done.
-                // wrapMode: Text.Wrap
+                wrapMode: Text.Wrap
             }
 
             Loader {

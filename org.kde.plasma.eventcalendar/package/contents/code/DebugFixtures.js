@@ -79,6 +79,11 @@ function getEventData() {
 
     // Unicode / Foreign Characters
     addAllDayTestEvent("Unicode Test 1: 'ひらがな'", 0, 1); // Japenese (Hiragana)
+
+    // Long summary
+    addAllDayTestEvent("One Two Three Four Five Six Seven Eight Nine Ten One Two Three Four Five Six Seven Eight Nine Ten One Two Three Four Five Six Seven Eight Nine Ten", 1, 2);
+    addAllDayTestEvent("OneTwoThreeFourFiveSixSevenEightNineTenOneTwoThreeFourFiveSixSevenEightNineTen", -2, -1);
+    addAllDayTestEvent("OneTwoThreeFourFiveSixSevenEightNineTenOneTwoThreeFourFiveSixSevenEightNineTen", -1, 0);
     
     return debugEventData;
 }
