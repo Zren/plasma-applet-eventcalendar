@@ -9,6 +9,9 @@
     <entry name="volumeUpDownSteps" type="int">
       <default>15</default>
     </entry>
+    <entry name="showVirtualStreams" type="bool">
+      <default>false</default>
+    </entry>
     <entry name="showVolumeTickmarks" type="bool">
       <default>true</default>
     </entry>

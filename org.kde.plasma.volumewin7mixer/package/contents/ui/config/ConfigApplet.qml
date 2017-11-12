@@ -23,6 +23,7 @@ ConfigPage {
     property alias cfg_showMediaTotalDuration: showMediaTotalDuration.checked
     property alias cfg_showOsd: showOsd.checked
     property alias cfg_volumeChangeFeedback: volumeChangeFeedback.checked
+    property alias cfg_showVirtualStreams: showVirtualStreams.checked
 
     GroupBox {
         Layout.fillWidth: true
@@ -161,6 +162,11 @@ ConfigPage {
             CheckBox {
                 id: volumeChangeFeedback
                 text: i18n("Volume Feedback: Play popping noise when changing the volume.")
+            }
+
+            CheckBox {
+                id: showVirtualStreams
+                text: i18n("Show virtual streams.")
             }
 
         }
