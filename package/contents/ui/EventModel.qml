@@ -6,6 +6,8 @@ import "../code/ColorIdMap.js" as ColorIdMap
 
 CalendarManager {
 	id: eventModel
+
+	property variant calendarPluginMap: {}
 	property variant eventsData: { "items": [] }
 
 	function fetchingDataListener() { eventModel.asyncRequests += 1 }
@@ -38,11 +40,19 @@ CalendarManager {
 		calendarManager.allDataFetched.connect(allDataFetchedListener)
 		calendarManager.calendarFetched.connect(calendarFetchedListener)
 
+		calendarManager.calendarFetched.connect(function(calendarId, data){
+			eventModel.calendarPluginMap[calendarId] = calendarManager
+		})
+
 		calendarManager.eventAdded.connect(eventAddedListener)
 		calendarManager.eventCreated.connect(eventCreatedListener)
 		calendarManager.eventRemoved.connect(eventRemovedListener)
 		calendarManager.eventDeleted.connect(eventDeletedListener)
 		calendarManager.eventUpdated.connect(eventUpdatedListener)
+	}
+
+	function getCalendarManager(calendarId) {
+		return eventModel.calendarPluginMap[calendarId]
 	}
 
 	ICalManager {
