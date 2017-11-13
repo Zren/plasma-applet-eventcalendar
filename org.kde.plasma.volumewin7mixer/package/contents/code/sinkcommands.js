@@ -58,10 +58,10 @@ function decreaseVolume(pulseObject) {
 // module toggle utils
 function getProperty(pulseObject, key, defaultValue) {
     // Not necessarily a Source
-    if (typeof PulseObject.properties === "undefined")
+    if (typeof pulseObject.properties === "undefined")
         return defaultValue;
 
-    var value = PulseObject.properties[key];
+    var value = pulseObject.properties[key];
     if (value) {
         return parseInt(value, 10);
     } else {
