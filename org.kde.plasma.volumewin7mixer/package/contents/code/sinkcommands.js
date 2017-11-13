@@ -135,7 +135,35 @@ function hasEchoCancelModuleId(pulseObject) {
 }
 function toggleModuleEchoCancel(pulseObject) {
     var moduleId = getEchoCancelModuleId(pulseObject)
+    console.log('toggleModuleEchoCancel.moduleId', moduleId)
     if (moduleId >= 0) {
+
+        // If the generated stream has loopback enabled, we need to...
+        if (true) {
+            // ... disable the other stream first.
+            var loopbackedStream = main.getStream(filteredSourceModel, function(stream) {
+                // console.log('findStream', getProperty(stream, 'echo_cancel.source', -1), pulseObject.index, hasLoopbackModuleId(stream))
+                return getProperty(stream, 'echo_cancel.source', -1) == pulseObject.index // The generated echo cancelled source (microphone)
+                    && hasLoopbackModuleId(stream) // which also has loopback enabled
+            })
+            console.log('toggleModuleEchoCancel.loopbackedStream', loopbackedStream)
+            if (loopbackedStream) {
+                var loopbackModuleId = getLoopbackModuleId(loopbackedStream)
+                console.log('toggleModuleEchoCancel.loopbackModuleId', loopbackModuleId)
+                if (loopbackModuleId >= 0) {
+                    disableModule(loopbackModuleId)
+                    // We don't need to block execution, since if echo cancel is disabled first
+                    // the loopback will attach itself to the microphone directly.
+                    // We should block execution if someone complains a noise when cancelling both.
+                }
+            }
+        } else {
+            // ... move the "loopback.module_id" to the current stream
+            // Since the loopback will automatically attach itself to the echo cancelled source (this stream)
+            // TODO: 
+        }
+        
+
         disableModule(moduleId)
         setSourceProperty(pulseObject.index, 'echo_cancel.module_id', -1)
     } else {

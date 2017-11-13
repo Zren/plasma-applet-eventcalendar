@@ -32,17 +32,6 @@ Item {
     readonly property var selectedMixerItem: hasSelection ? selectedListView.currentItem : null
 
 
-    function findStream(model, predicate) {
-        for (var i = 0; i < model.count; i++) {
-            var stream = model.get(i)
-            stream = stream.PulseObject
-            // console.log(i, stream, predicate(stream, i))
-            if (predicate(stream, i)) {
-                return i
-            }
-        }
-        return -1
-    }
     function setCurrentGroupStreamIndex(streamIndex) {
         if (selectedGroupIndex >= 0) {
             mixerItemGroupList[selectedGroupIndex].view.currentIndex = streamIndex
@@ -58,7 +47,7 @@ Item {
     }
     function selectDefaultSink() {
         // console.log('selectDefaultSink')
-        var defaultSinkIndex = findStream(sinkMixerItemGroup.model, function(stream) { return stream == sinkModel.defaultSink })
+        var defaultSinkIndex = main.findStream(sinkMixerItemGroup.model, function(stream) { return stream == sinkModel.defaultSink })
         select(3, defaultSinkIndex)
     }
     function selectDefault() {

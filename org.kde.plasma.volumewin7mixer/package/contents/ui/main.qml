@@ -361,6 +361,28 @@ Item {
             id: sinkModel
         }
     }
+    function findStream(model, predicate) {
+        for (var i = 0; i < model.count; i++) {
+            var stream = model.get(i)
+            stream = stream.PulseObject
+            // console.log(i, stream, predicate(stream, i))
+            if (predicate(stream, i)) {
+                return i
+            }
+        }
+        return -1
+    }
+    function getStream(model, predicate) {
+        for (var i = 0; i < model.count; i++) {
+            var stream = model.get(i)
+            stream = stream.PulseObject
+            // console.log(i, stream, predicate(stream, i))
+            if (predicate(stream, i)) {
+                return stream
+            }
+        }
+        return null
+    }
 
     // Keyboard Navigation/Controls
     InputManager { id: inputManager }
