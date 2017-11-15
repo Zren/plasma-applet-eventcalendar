@@ -26,6 +26,9 @@ FocusScope {
         for (var i = 0; i < notesRepeater.count; i++) {
             var item = notesRepeater.itemAt(i)
             if (item) {
+                if (!item.ready) {
+                    return; // Not ready yet
+                }
                 maxHeight = Math.max(maxHeight, item.contentHeight)
             }
         }
