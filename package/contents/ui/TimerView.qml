@@ -53,7 +53,7 @@ Item {
             seconds: 45 * 60,
         },
         {
-            label: i18n("60m"),
+            label: i18n("1h"),
             seconds: 60 * 60,
         },
     ]
