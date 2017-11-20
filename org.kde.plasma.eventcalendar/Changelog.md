@@ -1,3 +1,14 @@
+## v51 - November 20 2017
+
+* Ukrainian translations by cappelikan.
+* Add link to set language from context menu.
+* Wrap the event descriptions.
+* Support moving weather icon to the right side in the agenda (like Event Flow Calendar).
+* Don't wrap the calendar title when the widget is small, use an elipsis (...).
+* Dynamically reveal the timer preset buttons if there's enough space. Hidden presets are still available in a context menu when right clicking the timer pause button.
+* Added a 20m timer preset, which will hide the 60m preset by default.
+* Hide the timer toggle button labels when there isn't enough space.
+
 ## v50 - October 27 2017
 
 * [KDE Store] Translations are now bundled without the need to manually install them (requires KDE Frameworks v57).
@@ -5,7 +16,7 @@
 * Added notification sound when an event starts.
 * Added ability to toggle event starting notification and sound, and ability to customize which sound.
 * Fix bug where locales using 24 hour clock wasn't used by default.
-* Support creating events for and editing Google Calendar events when you have the "writer" role (instead of "owner").
+* Support creating events for and editing Google Calendar events when you have the "writer" role (instead of "owner") [patched by lknop].
 * [upstream] Persistent pin open state after relogging. https://phabricator.kde.org/D8252
 
 ## v49 - September 15 2017
