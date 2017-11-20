@@ -161,6 +161,13 @@ Item {
                         isChecked = !isChecked
                         plasmoid.configuration.timer_repeats = isChecked
                     }
+
+                    PlasmaCore.ToolTipArea {
+                        anchors.fill: parent
+                        enabled: !topRow.contentsFit
+                        mainText: i18n("Repeat")
+                        location: PlasmaCore.Types.LeftEdge
+                    }
                 }
 
                 PlasmaComponents.ToolButton {
@@ -171,6 +178,13 @@ Item {
                     onClicked: {
                         isChecked = !isChecked
                         plasmoid.configuration.timer_sfx_enabled = isChecked
+                    }
+
+                    PlasmaCore.ToolTipArea {
+                        anchors.fill: parent
+                        enabled: !topRow.contentsFit
+                        mainText: i18n("Sound")
+                        location: PlasmaCore.Types.LeftEdge
                     }
                 }
             }
