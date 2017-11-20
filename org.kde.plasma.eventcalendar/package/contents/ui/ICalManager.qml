@@ -6,6 +6,7 @@ import "lib"
 CalendarManager {
 	id: icalManager
 
+	calendarManagerId: "ical"
 	ExecUtil { id: executable }
 
 	// property variant eventsData: { "items": [] }

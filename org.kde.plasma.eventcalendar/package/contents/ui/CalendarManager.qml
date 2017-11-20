@@ -4,6 +4,7 @@ import org.kde.plasma.core 2.0 as PlasmaCore
 Item {
 	id: calendarManager
 
+	property string calendarManagerId: ""
 	property variant eventsByCalendar: { return {} } // { "": { "items": [] } }
 
 	property date dateMin: new Date()

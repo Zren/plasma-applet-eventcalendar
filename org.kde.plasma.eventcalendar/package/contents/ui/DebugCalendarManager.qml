@@ -6,6 +6,7 @@ import "../code/DebugFixtures.js" as DebugFixtures
 CalendarManager {
 	id: debugCalendarManager
 
+	calendarManagerId: "debug"
 	property variant debugCalendar: null
 
 	function fetchDebugEvents() {
