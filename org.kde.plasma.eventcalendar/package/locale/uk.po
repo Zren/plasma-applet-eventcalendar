@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: eventcalendar\n"
 "Report-Msgid-Bugs-To: https://github.com/Zren/plasma-applets/tree/master/org.kde.plasma.eventcalendar\n"
-"POT-Creation-Date: 2017-10-31 22:57-0400\n"
+"POT-Creation-Date: 2017-11-20 16:40-0500\n"
 "PO-Revision-Date: 2017-10-31 20:08+0200\n"
 "Last-Translator: Serhii Golovko <cappelikan@gmail.com>\n"
 "Language-Team: \n"
@@ -50,43 +50,43 @@ msgstr "Погода"
 msgid "Advanced"
 msgstr "Розширений"
 
-#: ../contents/ui/AgendaEventItem.qml:68
+#: ../contents/ui/AgendaEventItem.qml:69
 msgid "Event Summary"
 msgstr "Підсумок події"
 
-#: ../contents/ui/AgendaEventItem.qml:139
+#: ../contents/ui/AgendaEventItem.qml:140
 msgid "to"
 msgstr "до"
 
-#: ../contents/ui/AgendaEventItem.qml:164
+#: ../contents/ui/AgendaEventItem.qml:165
 msgid "All Day"
 msgstr "Весь день"
 
-#: ../contents/ui/AgendaEventItem.qml:169
+#: ../contents/ui/AgendaEventItem.qml:170
 msgid "Save"
 msgstr "Зберегти"
 
-#: ../contents/ui/AgendaEventItem.qml:177
+#: ../contents/ui/AgendaEventItem.qml:178
 msgid "Discard"
 msgstr "Відхилити"
 
-#: ../contents/ui/AgendaEventItem.qml:207
+#: ../contents/ui/AgendaEventItem.qml:208
 msgid "Edit description"
 msgstr "Редагувати опис"
 
-#: ../contents/ui/AgendaEventItem.qml:216
+#: ../contents/ui/AgendaEventItem.qml:217
 msgid "Edit date/time"
 msgstr ""
 
-#: ../contents/ui/AgendaEventItem.qml:224
+#: ../contents/ui/AgendaEventItem.qml:225
 msgid "Delete Event"
 msgstr "Видалити подію"
 
-#: ../contents/ui/AgendaEventItem.qml:227
+#: ../contents/ui/AgendaEventItem.qml:228
 msgid "Confirm Deletion"
 msgstr "Підтвердити видалення"
 
-#: ../contents/ui/AgendaEventItem.qml:239
+#: ../contents/ui/AgendaEventItem.qml:240
 msgid "Edit in browser"
 msgstr "Редагувати в браузері"
 
@@ -104,7 +104,7 @@ msgstr "ddd"
 msgid "Event Calendar"
 msgstr "Календар подій"
 
-#: ../contents/ui/CalendarManager.qml:106
+#: ../contents/ui/CalendarManager.qml:107
 msgctxt "event with no summary"
 msgid "(No title)"
 msgstr "(Без назви)"
@@ -301,7 +301,7 @@ msgstr "Показати / сховати віджети над календар
 msgid "Meteogram"
 msgstr "Метеограма"
 
-#: ../contents/ui/config/ConfigGeneral.qml:119 ../contents/ui/TimerView.qml:249
+#: ../contents/ui/config/ConfigGeneral.qml:119 ../contents/ui/TimerView.qml:327
 msgid "Timer"
 msgstr "Таймер"
 
@@ -626,15 +626,30 @@ msgstr "<b>Версія:</b> %1"
 msgid "Set Language..."
 msgstr ""
 
-#: ../contents/ui/main.qml:224
+#: ../contents/ui/main.qml:225
 msgid "Set Locale..."
 msgstr "Встановити мову ..."
 
-#: ../contents/ui/NewEventForm.qml:25
+#: ../contents/ui/MonthView.qml:348
+msgctxt "calendar title format for current month"
+msgid "MMMM d, yyyy"
+msgstr ""
+
+#: ../contents/ui/MonthView.qml:352
+msgctxt "calendar title format for other months of current year"
+msgid "MMMM"
+msgstr ""
+
+#: ../contents/ui/MonthView.qml:355
+msgctxt "calendar title format for months not from current year"
+msgid "MMMM, yyyy"
+msgstr ""
+
+#: ../contents/ui/NewEventForm.qml:24
 msgid "[No Calendars]"
 msgstr "[Без календарів]"
 
-#: ../contents/ui/NewEventForm.qml:32
+#: ../contents/ui/NewEventForm.qml:31
 msgid "Eg: 9am-5pm Work"
 msgstr "Наприклад: 9: 00-17: 00 Робота"
 
@@ -648,63 +663,67 @@ msgstr ""
 "Перейдіть до погоди в налаштуваннях і встановіть своє місто,\n"
 "і / або вимкнути метеограму, щоб приховати цю область."
 
-#: ../contents/ui/TimerView.qml:50
-msgid "Pause Timer"
-msgstr "Призупинити таймер"
-
-#: ../contents/ui/TimerView.qml:52
-msgid "Start Timer"
-msgstr "Запустити таймер"
-
-#: ../contents/ui/TimerView.qml:56
-msgid "Scroll to add to duration"
-msgstr "Прокрутіть, щоб додати тривалість"
-
-#: ../contents/ui/TimerView.qml:94
-msgid "Repeat"
-msgstr "Повторити"
-
-#: ../contents/ui/TimerView.qml:105
-msgid "Sound"
-msgstr "Звук"
-
-#: ../contents/ui/TimerView.qml:119
+#: ../contents/ui/TimerView.qml:24
 msgid "30s"
 msgstr "30с"
 
-#: ../contents/ui/TimerView.qml:123
+#: ../contents/ui/TimerView.qml:28
 msgid "1m"
 msgstr "1м"
 
-#: ../contents/ui/TimerView.qml:127
+#: ../contents/ui/TimerView.qml:32
 msgid "5m"
 msgstr "5м"
 
-#: ../contents/ui/TimerView.qml:131
+#: ../contents/ui/TimerView.qml:36
 msgid "10m"
 msgstr "10 м"
 
-#: ../contents/ui/TimerView.qml:135
+#: ../contents/ui/TimerView.qml:40
 msgid "15m"
 msgstr "15 м"
 
-#: ../contents/ui/TimerView.qml:139
+#: ../contents/ui/TimerView.qml:44
+msgid "20m"
+msgstr "20 м"
+
+#: ../contents/ui/TimerView.qml:48
 msgid "30m"
 msgstr "30 м"
 
-#: ../contents/ui/TimerView.qml:143
+#: ../contents/ui/TimerView.qml:52
 msgid "45m"
 msgstr "45м"
 
-#: ../contents/ui/TimerView.qml:147
+#: ../contents/ui/TimerView.qml:56
 msgid "1h"
 msgstr "1ч"
 
-#: ../contents/ui/TimerView.qml:251
+#: ../contents/ui/TimerView.qml:98
+msgid "Pause Timer"
+msgstr "Призупинити таймер"
+
+#: ../contents/ui/TimerView.qml:100
+msgid "Start Timer"
+msgstr "Запустити таймер"
+
+#: ../contents/ui/TimerView.qml:104
+msgid "Scroll to add to duration"
+msgstr "Прокрутіть, щоб додати тривалість"
+
+#: ../contents/ui/TimerView.qml:159 ../contents/ui/TimerView.qml:168 ../contents/ui/TimerView.qml:355
+msgid "Repeat"
+msgstr "Повторити"
+
+#: ../contents/ui/TimerView.qml:177 ../contents/ui/TimerView.qml:186 ../contents/ui/TimerView.qml:364
+msgid "Sound"
+msgstr "Звук"
+
+#: ../contents/ui/TimerView.qml:329
 msgid "Timer finished"
 msgstr "Таймер закінчився"
 
-#: ../contents/ui/TimerView.qml:252
+#: ../contents/ui/TimerView.qml:330
 msgid "%1 has passed"
 msgstr "%1 пройшло"
 
