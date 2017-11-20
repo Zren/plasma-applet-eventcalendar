@@ -72,9 +72,9 @@ Item {
 
         RowLayout {
             id: topRow
-            spacing: 10
-            // property bool contentsFit: timerView.width >= childrenRect.width + (children.length - 1) * spacing
-            // onContentsFitChanged: console.log('contentsFit', contentsFit, timerView.width, childrenRect.width, children.length)
+            spacing: 10 * units.devicePixelRatio
+            property int contentsWidth: timerLabel.width + topRow.spacing + toggleButtonColumn.Layout.preferredWidth
+            property bool contentsFit: view.width >= contentsWidth
 
             PlasmaComponents.ToolButton {
                 id: timerLabel
@@ -141,13 +141,22 @@ Item {
             }
             
             ColumnLayout {
+                id: toggleButtonColumn
                 anchors.bottom: parent.bottom
+                Layout.minimumWidth: sizingButton.height
+                Layout.preferredWidth: sizingButton.implicitWidth
+
+                PlasmaComponents.ToolButton {
+                    id: sizingButton
+                    text: "Test"
+                    visible: false
+                }
                 
                 PlasmaComponents.ToolButton {
                     id: timerRepeatsButton
                     property bool isChecked: plasmoid.configuration.timer_repeats // New property to avoid checked=pressed theming.
                     iconSource: isChecked ? 'media-playlist-repeat' : 'gtk-stop'
-                    text: i18n("Repeat")
+                    text: topRow.contentsFit ? i18n("Repeat") : ""
                     onClicked: {
                         isChecked = !isChecked
                         plasmoid.configuration.timer_repeats = isChecked
@@ -158,7 +167,7 @@ Item {
                     id: timerSfxEnabledButton
                     property bool isChecked: plasmoid.configuration.timer_sfx_enabled // New property to avoid checked=pressed theming.
                     iconSource: isChecked ? 'audio-volume-high' : 'dialog-cancel'
-                    text: i18n("Sound")
+                    text: topRow.contentsFit ? i18n("Sound") : ""
                     onClicked: {
                         isChecked = !isChecked
                         plasmoid.configuration.timer_sfx_enabled = isChecked
@@ -193,7 +202,7 @@ Item {
                     if (i > 0) {
                         itemWidth += bottomRow.spacing
                     }
-                    if (w + itemWidth < availableWidth) {
+                    if (w + itemWidth <= availableWidth) {
                         item.visible = true
                     } else {
                         item.visible = false
