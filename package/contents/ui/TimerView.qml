@@ -19,14 +19,62 @@ Item {
 
     implicitHeight: view.height
 
+    property variant defaultTimers: [
+        {
+            label: i18n("30s"),
+            seconds: 30,
+        },
+        {
+            label: i18n("1m"),
+            seconds: 60,
+        },
+        {
+            label: i18n("5m"),
+            seconds: 5 * 60,
+        },
+        {
+            label: i18n("10m"),
+            seconds: 10 * 60,
+        },
+        {
+            label: i18n("15m"),
+            seconds: 15 * 60,
+        },
+        {
+            label: i18n("20m"),
+            seconds: 20 * 60,
+        },
+        {
+            label: i18n("30m"),
+            seconds: 30 * 60,
+        },
+        {
+            label: i18n("45m"),
+            seconds: 45 * 60,
+        },
+        {
+            label: i18n("60m"),
+            seconds: 60 * 60,
+        },
+    ]
+
     ColumnLayout {
         id: view
         anchors.left: parent.left
         anchors.right: parent.right
         spacing: 4
 
+        onWidthChanged: {
+            // console.log('view.width', width)
+            bottomRow.updatePresetVisibilities()
+        }
+
+
         RowLayout {
+            id: topRow
             spacing: 10
+            // property bool contentsFit: timerView.width >= childrenRect.width + (children.length - 1) * spacing
+            // onContentsFitChanged: console.log('contentsFit', contentsFit, timerView.width, childrenRect.width, children.length)
 
             PlasmaComponents.ToolButton {
                 id: timerLabel
@@ -65,6 +113,14 @@ Item {
                     } else { // timerSeconds == 0
                         // ignore
                     }
+                }
+
+                MouseArea {
+                    acceptedButtons: Qt.RightButton
+                    anchors.fill: parent
+
+                    // onClicked: contextMenu.show(mouse.x, mouse.y)
+                    onClicked: contextMenu.showBelow(timerLabel)
                 }
 
                 MouseArea {
@@ -113,39 +169,38 @@ Item {
         }
 
         RowLayout {
-            spacing: 2
+            id: bottomRow
+            spacing: Math.floor(2 * units.devicePixelRatio)
 
-            TimerPresetButton {
-                text: i18n("30s")
-                onClicked: setDurationAndStart(30)
+            // onWidthChanged: console.log('row.width', width)
+
+            Repeater {
+                id: defaultTimerRepeater
+                model: defaultTimers
+
+                TimerPresetButton {
+                    text: i18n(modelData.label)
+                    onClicked: setDurationAndStart(modelData.seconds)
+                }
             }
-            TimerPresetButton {
-                text: i18n("1m")
-                onClicked: setDurationAndStart(60)
-            }
-            TimerPresetButton {
-                text: i18n("5m")
-                onClicked: setDurationAndStart(5 * 60)
-            }
-            TimerPresetButton {
-                text: i18n("10m")
-                onClicked: setDurationAndStart(10 * 60)
-            }
-            TimerPresetButton {
-                text: i18n("15m")
-                onClicked: setDurationAndStart(15 * 60)
-            }
-            TimerPresetButton {
-                text: i18n("30m")
-                onClicked: setDurationAndStart(30 * 60)
-            }
-            TimerPresetButton {
-                text: i18n("45m")
-                onClicked: setDurationAndStart(45 * 60)
-            }
-            TimerPresetButton {
-                text: i18n("1h")
-                onClicked: setDurationAndStart(60 * 60)
+
+            function updatePresetVisibilities() {
+                var availableWidth = view.width
+                var w = 0
+                for (var i = 0; i < defaultTimerRepeater.count; i++) {
+                    var item = defaultTimerRepeater.itemAt(i)
+                    var itemWidth = item.Layout.minimumWidth
+                    if (i > 0) {
+                        itemWidth += bottomRow.spacing
+                    }
+                    if (w + itemWidth < availableWidth) {
+                        item.visible = true
+                    } else {
+                        item.visible = false
+                    }
+                    w += itemWidth
+                    // console.log('updatePresetVisibilities', i, item.Layout.minimumWidth, item.visible, itemWidth, availableWidth)
+                }
             }
         }
     }
@@ -253,5 +308,67 @@ Item {
         operation["expireTimeout"] = 2000;
 
         service.startOperationCall(operation);
+    }
+
+
+    // https://github.com/KDE/plasma-framework/blob/master/src/declarativeimports/plasmacomponents/qmenu.cpp
+    // Example: https://github.com/KDE/plasma-desktop/blob/master/applets/taskmanager/package/contents/ui/ContextMenu.qml
+    PlasmaComponents.ContextMenu {
+        id: contextMenu
+
+        function newSeperator() {
+            return Qt.createQmlObject("import org.kde.plasma.components 2.0 as PlasmaComponents; PlasmaComponents.MenuItem { separator: true }", contextMenu)
+        }
+        function newMenuItem() {
+            return Qt.createQmlObject("import org.kde.plasma.components 2.0 as PlasmaComponents; PlasmaComponents.MenuItem {}", contextMenu)
+        }
+
+        function loadDynamicActions() {
+            contextMenu.clearMenuItems()
+
+            // Repeat
+            var menuItem = newMenuItem()
+            menuItem.icon = plasmoid.configuration.timer_repeats ? 'media-playlist-repeat' : 'gtk-stop'
+            menuItem.text = i18n("Repeat")
+            menuItem.clicked.connect(function() {
+                timerRepeatsButton.clicked()
+            })
+            contextMenu.addMenuItem(menuItem)
+
+            // Sound
+            var menuItem = newMenuItem()
+            menuItem.icon = plasmoid.configuration.timer_sfx_enabled ? 'audio-volume-high' : 'gtk-stop'
+            menuItem.text = i18n("Sound")
+            menuItem.clicked.connect(function() {
+                timerSfxEnabledButton.clicked()
+            })
+            contextMenu.addMenuItem(menuItem)
+
+            //
+            contextMenu.addMenuItem(newSeperator())
+
+            for (var i = 0; i < defaultTimers.length; i++) {
+                var timerSeconds = defaultTimers[i].seconds
+
+                var menuItem = newMenuItem()
+                menuItem.icon = 'chronometer'
+                menuItem.text = defaultTimers[i].label
+                menuItem.clicked.connect(timerView.setDurationAndStart.bind(timerView, defaultTimers[i].seconds))
+                contextMenu.addMenuItem(menuItem)
+            }
+
+        }
+
+        function show(x, y) {
+            loadDynamicActions()
+            open(x, y)
+        }
+
+        function showBelow(item) {
+            visualParent = item
+            placement = PlasmaCore.Types.BottomPosedLeftAlignedPopup
+            loadDynamicActions()
+            openRelative()
+        }
     }
 }
