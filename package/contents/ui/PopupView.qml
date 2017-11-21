@@ -289,7 +289,7 @@ FocusScope {
             Layout.margins: popup.padding
 
 
-            ForecastGraph {
+            MeteogramView {
                 id: meteogramView
                 visible: showMeteogram
                 Layout.fillWidth: true
