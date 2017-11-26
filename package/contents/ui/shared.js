@@ -149,7 +149,7 @@ function formatEventDuration(event, args) {
         }
     } else {
         var startStr;
-        if (!relativeDate || isDateEarlier(startTime, relativeDate)) {
+        if (!relativeDate || !isSameDate(startTime, relativeDate)) {
             startStr = formatEventDateTime(startTime, args); // MMM d, h:mm AP
         } else {
             startStr = formatEventTime(startTime, args); // h:mm AP
