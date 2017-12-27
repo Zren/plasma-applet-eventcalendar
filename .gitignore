@@ -1,3 +1,4 @@
 *.plasmoid
 *.qmlc
 *.jsc
+*.mo
