@@ -1,3 +1,5 @@
+.pragma library
+
 function request(opt, callback) {
     if (typeof opt === 'string') {
         opt = {url: opt};

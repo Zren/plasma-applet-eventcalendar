@@ -1,3 +1,5 @@
+.pragma library
+
 function getCalendar() {
     return {
         "id": "debug",

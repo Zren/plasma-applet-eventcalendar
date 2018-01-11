@@ -1,3 +1,5 @@
+.pragma library
+
 var colorIdMap = {
  "calendar": {
   "1": {
