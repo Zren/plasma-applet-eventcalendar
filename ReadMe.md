@@ -6,8 +6,8 @@ Plasmoid for a calendar+agenda with weather that synchs to Google Calendar.
 
 ## Screenshots
 
-![](https://i.imgur.com/C8uSVZf.png)
-![](https://i.imgur.com/mXT23zo.png)
+![](https://i.imgur.com/qdJ71sb.jpg)
+![](https://i.imgur.com/Ow8UlFj.jpg)
 
 
 ## A) Install via KDE
