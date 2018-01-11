@@ -41,7 +41,7 @@ CalendarManager {
 		calendarManager.calendarFetched.connect(calendarFetchedListener)
 
 		calendarManager.calendarFetched.connect(function(calendarId, data){
-			eventModel.calendarPluginMap[calendarId] = calendarManager
+			eventModel.calendarPluginMap[calendarId] = calendarManager // TODO: TypeError: Type error
 		})
 
 		calendarManager.eventAdded.connect(eventAddedListener)
