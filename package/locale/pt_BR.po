@@ -7,7 +7,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: eventcalendar \n"
-"Report-Msgid-Bugs-To: https://github.com/Zren/plasma-applets/tree/master/org.kde.plasma.eventcalendar\n"
+"Report-Msgid-Bugs-To: https://github.com/Zren/plasma-applet-eventcalendar\n"
 "POT-Creation-Date: 2017-11-20 16:40-0500\n"
 "PO-Revision-Date: 2017-06-10 HO:MI+ZONE\n"
 "Last-Translator: Clayton Magalhães <helpdir@gmail.com>\n"

@@ -1,12 +1,14 @@
 > Version 2 of Zren's i18n scripts.
 
+With KDE Frameworks v5.37 and above, translations are bundled with the *.plasmoid file downloaded from the store.
+
 ## Install Translations
 
-Go to `~/.local/share/plasma/plasmoids/{{plasmoidName}}/locale/` and run `sh ./build --restartplasma`.
+Go to `~/.local/share/plasma/plasmoids/org.kde.plasma.eventcalendar/locale/` and run `sh ./build --restartplasma`.
 
 ## New Translations
 
-1. Fill out [`template.pot`](template.pot) with your translations then open a [new issue](https://github.com/Zren/plasma-applets/issues/new), name the file `spanish.txt`, attach the txt file to the issue (drag and drop).
+1. Fill out [`template.pot`](template.pot) with your translations then open a [new issue](https://github.com/Zren/plasma-applet-eventcalendar/issues/new), name the file `spanish.txt`, attach the txt file to the issue (drag and drop).
 
 Or if you know how to make a pull request
 

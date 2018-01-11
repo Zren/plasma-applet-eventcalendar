@@ -11,7 +11,7 @@
 
 ## v50 - October 27 2017
 
-* [KDE Store] Translations are now bundled without the need to manually install them (requires KDE Frameworks v57).
+* [KDE Store] Translations are now bundled without the need to manually install them (requires KDE Frameworks v5.37).
 * Added Portuguese Brazil (pt_BR) translations by clayzanfolin.
 * Added notification sound when an event starts.
 * Added ability to toggle event starting notification and sound, and ability to customize which sound.
