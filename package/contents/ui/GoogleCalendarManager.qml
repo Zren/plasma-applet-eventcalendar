@@ -57,6 +57,42 @@ CalendarManager {
 
 	function fetchGCalEvents(args, callback) {
 		logger.debug('fetchGCalEvents', args.calendarId);
+		var onResponse = fetchGCalEventsPageResponse.bind(this, args, callback, null)
+		fetchGCalEventsPage(args, onResponse)
+	}
+
+	function inPlaceMergeArray(arr1, arr2) {
+		arr1.splice.apply(arr1, [arr1.length, 0].concat(arr2))
+	}
+
+	function fetchGCalEventsPageResponse(args, finishedCallback, allData, err, data, xhr) {
+		logger.debug('fetchGCalEventsPageResponse', args, finishedCallback, allData, err, data, xhr);
+		if (err) {
+			return finishedCallback(err, data, xhr)
+		}
+		if (allData) {
+			// inPlaceMergeArray(allData.items, data.items) // Merge events
+			// delete data.items // Delete old reference
+			data.items = allData.items.concat(data.items)
+			delete allData.items
+			delete allData
+		}
+		allData = data
+		
+		if (allData.nextPageToken) {
+			logger.debug('fetchGCalEventsPageResponse.nextPageToken', allData.nextPageToken)
+			logger.debug('fetchGCalEventsPageResponse.nextPageToken', 'allData.items.length', allData.items.length)
+			args.pageToken = allData.nextPageToken
+			var onResponse = fetchGCalEventsPageResponse.bind(this, args, finishedCallback, allData)
+			fetchGCalEventsPage(args, onResponse)
+		} else {
+			logger.debug('fetchGCalEventsPageResponse.finished', 'allData.items.length', allData.items.length)
+			finishedCallback(err, allData, xhr)
+		}
+	}
+
+	function fetchGCalEventsPage(args, pageCallback) {
+		logger.debug('fetchGCalEventsPage', args.calendarId);
 		var url = 'https://www.googleapis.com/calendar/v3';
 		url += '/calendars/'
 		url += encodeURIComponent(args.calendarId);
@@ -65,18 +101,21 @@ CalendarManager {
 		url += '&timeMax=' + encodeURIComponent(args.end);
 		url += '&singleEvents=' + encodeURIComponent('true');
 		url += '&timeZone=' + encodeURIComponent('Etc/UTC');
+		if (args.pageToken) {
+			url += '&pageToken=' + encodeURIComponent(args.pageToken);
+		}
 		Utils.getJSON({
 			url: url,
 			headers: {
 				"Authorization": "Bearer " + args.access_token,
 			}
 		}, function(err, data, xhr) {
-			logger.debug('fetchGCalEvents.response', args.calendarId, err, data, xhr.status);
+			logger.debug('fetchGCalEventsPage.response', args.calendarId, err, data, xhr.status)
 			if (!err && data && data.error) {
-				return callback(data, null, xhr);
+				return pageCallback(data, null, xhr);
 			}
-			logger.debugJSON('fetchGCalEvents.response', args.calendarId, data)
-			callback(err, data, xhr);
+			logger.debugJSON('fetchGCalEventsPage.response', args.calendarId, data)
+			pageCallback(err, data, xhr);
 		});
 	}
 
