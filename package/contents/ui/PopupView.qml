@@ -69,7 +69,7 @@ FocusScope {
 
     property var eventModel
     property var weatherModel
-    // property alias agendaModel: agendaView.agendaModel
+    property var agendaModel
 
     // Overload with config: plasmoid.configuration
     property variant config: { }
@@ -84,8 +84,6 @@ FocusScope {
     property alias today: monthView.today
     property alias selectedDate: monthView.currentDate
     property alias monthViewDate: monthView.displayedDate
-    property date visibleDateMin: new Date()
-    property date visibleDateMax: new Date()
     property variant dailyWeatherData: { "list": [] }
     property variant hourlyWeatherData: { "list": [] }
     property variant currentWeatherData: null
@@ -122,7 +120,7 @@ FocusScope {
         logger.debug('onMonthViewDateChanged', monthViewDate)
         var startOfMonth = new Date(monthViewDate);
         startOfMonth.setDate(1);
-        agendaView.currentMonth = new Date(startOfMonth);
+        agendaModel.currentMonth = new Date(startOfMonth);
         if (cfg_agenda_scroll_on_monthchange) {
             selectedDate = startOfMonth;
         }
@@ -335,9 +333,6 @@ FocusScope {
                 Layout.fillWidth: true
                 Layout.fillHeight: true
 
-                visibleDateMin: popup.visibleDateMin
-                visibleDateMax: popup.visibleDateMax
-
                 onNewEventFormOpened: {
                     // logger.debug('onNewEventFormOpened')
                     if (plasmoid.configuration.access_token) {
@@ -520,8 +515,8 @@ FocusScope {
         }
 
 
-        popup.visibleDateMin = dateMin
-        popup.visibleDateMax = dateMax
+        agendaModel.visibleDateMin = dateMin
+        agendaModel.visibleDateMax = dateMax
         eventModel.fetchAll(dateMin, dateMax)
     }
 
@@ -602,15 +597,15 @@ FocusScope {
         }
 
         if (monthViewDate.getYear() == now.getYear() && monthViewDate.getMonth() == now.getMonth()) {
-            agendaView.showNextNumDays = 14;
-            agendaView.clipPastEvents = false;
+            agendaModel.showNextNumDays = 14;
+            agendaModel.clipPastEvents = false;
         } else {
-            agendaView.showNextNumDays = 0;
-            agendaView.clipPastEvents = false;
+            agendaModel.showNextNumDays = 0;
+            agendaModel.clipPastEvents = false;
         }
 
-        agendaView.parseGCalEvents(eventModel.eventsData);
-        agendaView.parseWeatherForecast(dailyWeatherData);
+        agendaModel.parseGCalEvents(eventModel.eventsData);
+        agendaModel.parseWeatherForecast(dailyWeatherData);
         monthView.parseGCalEvents(eventModel.eventsData);
         scrollToSelection();
     }

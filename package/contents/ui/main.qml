@@ -32,6 +32,7 @@ Item {
     AgendaModel {
         id: agendaModel
         eventModel: eventModel
+        timeModel: timeModel
         weatherModel: weatherModel
         Component.onCompleted: logger.debug('AgendaModel.onCompleted')
     }
@@ -103,7 +104,7 @@ Item {
 
         eventModel: root.eventModel
         weatherModel: root.weatherModel
-        // agendaModel: root.agendaModel
+        agendaModel: root.agendaModel
 
         // If pin is enabled, we need to add some padding around the popup unless
         // * we're a desktop widget (no need)
