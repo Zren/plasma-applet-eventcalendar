@@ -7,8 +7,8 @@ import "../code/ColorIdMap.js" as ColorIdMap
 CalendarManager {
 	id: eventModel
 
-	property variant calendarPluginMap: { return {} }
-	property variant eventsData: { "items": [] }
+	property var calendarPluginMap: ({}) // Empty Map
+	property var eventsData: { "items": [] }
 
 	function fetchingDataListener() { eventModel.asyncRequests += 1 }
 	function allDataFetchedListener() { eventModel.asyncRequestsDone += 1 }

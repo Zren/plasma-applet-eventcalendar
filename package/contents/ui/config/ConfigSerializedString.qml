@@ -5,7 +5,7 @@ QtObject {
     property string configKey: ''
     readonly property string configValue: configKey ? plasmoid.configuration[configKey] : ''
     property var value: null
-    property var defaultValue: { return {} }
+    property var defaultValue: ({}) // Empty Map
 
     function serialize() {
         plasmoid.configuration[configKey] = Qt.btoa(JSON.stringify(value))

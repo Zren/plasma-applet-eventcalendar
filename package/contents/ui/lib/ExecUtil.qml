@@ -20,7 +20,7 @@ PlasmaCore.DataSource {
 		return stdout.replace('\n', ' ').trim()
 	}
 
-	property var listeners: { return {} }
+	property var listeners: ({}) // Empty Map
 
 	function exec(cmd, callback) {
 		if (typeof callback === 'function') {

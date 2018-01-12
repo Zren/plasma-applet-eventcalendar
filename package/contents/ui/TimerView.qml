@@ -18,7 +18,7 @@ Item {
 
     implicitHeight: view.height
 
-    property variant defaultTimers: [
+    property var defaultTimers: [
         {
             label: i18n("30s"),
             seconds: 30,

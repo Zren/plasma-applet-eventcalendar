@@ -5,7 +5,7 @@ Item {
 	id: calendarManager
 
 	property string calendarManagerId: ""
-	property variant eventsByCalendar: { return {} } // { "": { "items": [] } }
+	property var eventsByCalendar: ({}) // { "": { "items": [] } }
 
 	property date dateMin: new Date()
 	property date dateMax: new Date()

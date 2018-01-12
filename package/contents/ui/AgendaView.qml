@@ -17,8 +17,8 @@ Item {
     property color inProgressColor: appletConfig.agendaInProgressColor
     property int inProgressFontWeight: Font.Bold
 
-    signal newEventFormOpened(variant agendaItem, variant newEventCalendarId)
-    signal submitNewEventForm(variant calendarId, variant date, string text)
+    signal newEventFormOpened(var agendaItem, var newEventCalendarId)
+    signal submitNewEventForm(var calendarId, var date, string text)
 
     property alias agendaModel: agendaListView.model
 

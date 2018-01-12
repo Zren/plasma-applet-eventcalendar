@@ -81,8 +81,8 @@ Item {
         property int gridY2: height - xAxisLabelHeight
         property int gridHeight: gridY2 - gridY
 
-        property variant gridData: []
-        property variant yData: []
+        property var gridData: []
+        property var yData: []
 
         onGridDataChanged: {
             xAxisMax = Math.max(1, gridData.length - 1)

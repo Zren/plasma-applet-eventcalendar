@@ -9,7 +9,7 @@ CalendarManager {
 	calendarManagerId: "ical"
 	ExecUtil { id: executable }
 
-	// property variant eventsData: { "items": [] }
+	// property var eventsData: { "items": [] }
 
 	property var calendarList: [
 		{

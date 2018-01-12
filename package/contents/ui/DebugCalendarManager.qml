@@ -7,7 +7,7 @@ CalendarManager {
 	id: debugCalendarManager
 
 	calendarManagerId: "debug"
-	property variant debugCalendar: null
+	property var debugCalendar: null
 
 	function fetchDebugEvents() {
 		plasmoid.configuration.debugging = true

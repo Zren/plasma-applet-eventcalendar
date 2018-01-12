@@ -71,8 +71,6 @@ FocusScope {
     property var weatherModel
     property var agendaModel
 
-    // Overload with config: plasmoid.configuration
-    property variant config: { }
     property bool showMeteogram: plasmoid.configuration.widget_show_meteogram
     property bool showTimer: plasmoid.configuration.widget_show_timer
     property bool showAgenda: plasmoid.configuration.widget_show_agenda
@@ -84,10 +82,10 @@ FocusScope {
     property alias today: monthView.today
     property alias selectedDate: monthView.currentDate
     property alias monthViewDate: monthView.displayedDate
-    property variant dailyWeatherData: { "list": [] }
-    property variant hourlyWeatherData: { "list": [] }
-    property variant currentWeatherData: null
-    property variant lastForecastAt: null
+    property var dailyWeatherData: { "list": [] }
+    property var hourlyWeatherData: { "list": [] }
+    property var currentWeatherData: null
+    property var lastForecastAt: null
 
     Connections {
         target: monthView

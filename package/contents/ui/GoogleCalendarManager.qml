@@ -8,7 +8,7 @@ CalendarManager {
 	id: googleCalendarManager
 
 	calendarManagerId: "googlecal"
-	property variant calendarIdList: plasmoid.configuration.calendar_id_list ? plasmoid.configuration.calendar_id_list.split(',') : ['primary']
+	property var calendarIdList: plasmoid.configuration.calendar_id_list ? plasmoid.configuration.calendar_id_list.split(',') : ['primary']
 
 	onFetchAllCalendars: {
 		fetchGoogleAccountData()

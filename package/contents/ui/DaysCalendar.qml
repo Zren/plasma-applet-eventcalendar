@@ -58,7 +58,6 @@ Item {
 
     property alias headerModel: days.model
     property alias gridModel: repeater.model
-    property variant gridEventsData: {}
 
     property alias title: heading.text
 

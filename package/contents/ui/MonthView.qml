@@ -56,7 +56,7 @@ PinchArea {
     property alias daysModel : daysModel
 
     signal dateSelected(date selectedDate)
-    signal dayDoubleClicked(variant dayData)
+    signal dayDoubleClicked(var dayData)
 
     property QtObject calendarBackend: calendarBackend
 

@@ -3,7 +3,7 @@ import QtQuick 2.0
 QtObject {
 	property string configKey
 	readonly property string configValue: plasmoid.configuration[configKey]
-	property variant value: null
+	property var value: null
 
 	onConfigValueChanged: deserialize()
 
