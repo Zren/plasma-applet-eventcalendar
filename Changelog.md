@@ -1,3 +1,10 @@
+## v52 - January 12 2018
+
+* Move widget to it's own github repo (https://github.com/Zren/plasma-applet-eventcalendar).
+* Show starting date for multi-day events already in progress.
+* Support more than 250 events in a single month in a calendar.
+* Some minor refactoring / code cleanup.
+
 ## v51 - November 20 2017
 
 * Ukrainian translations by cappelikan.
