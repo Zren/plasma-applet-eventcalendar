@@ -16,8 +16,8 @@ LinkRect {
     // height: eventColumn.height
     property bool eventItemInProgress: false
     function checkIfInProgress() {
-        eventItemInProgress = start && currentTime && end ? start.dateTime <= currentTime && currentTime <= end.dateTime : false
-        // console.log('checkIfInProgress()', start, currentTime, end)
+        eventItemInProgress = start && timeModel.currentTime && end ? start.dateTime <= timeModel.currentTime && timeModel.currentTime <= end.dateTime : false
+        // console.log('checkIfInProgress()', start, timeModel.currentTime, end)
     }
     Connections {
         target: timeModel
