@@ -67,6 +67,18 @@ Item {
         delegate: AgendaListItem {}
     }
 
+    // TODO: properly detect when all events have completed loading
+    Timer {
+        id: scrollToIndexTimer
+        property int itemIndex: -1
+        interval: 400 // Give events time to populate
+        onTriggered: agendaListView.positionViewAtIndex(itemIndex, ListView.Beginning)
+        function scrollTo(i) {
+            itemIndex = i
+            restart()
+        }
+    }
+
     function scrollToTop() {
         agendaListView.positionViewAtBeginning()
     }
@@ -76,11 +88,13 @@ Item {
             var agendaItem = agendaModel.get(i);
             if (Shared.isSameDate(date, agendaItem.date)) {
                 agendaListView.positionViewAtIndex(i, ListView.Beginning);
+                scrollToIndexTimer.scrollTo(i)
                 return;
             } else if (Shared.isDateEarlier(date, agendaItem.date)) {
                 // If the date is smaller than the current agendaItem.date, scroll to the previous agendaItem.
                 if (i > 0) {
                     agendaListView.positionViewAtIndex(i-1, ListView.Beginning);
+                    scrollToIndexTimer.scrollTo(i-1)
                 } else {
                     agendaListView.positionViewAtBeginning()
                 }
