@@ -81,36 +81,7 @@ ListModel {
 		if (!(data && data.items))
 			return;
 
-		// var eventItemList = [];
-		// var timeZoneOffset = new Date().getTimezoneOffset()/60;
-		// timeZoneOffset = 'Z' + (timeZoneOffset > 0 ? '-' : '+') + timeZoneOffset + '00';
-		// console.log(timeZoneOffset);
-		for (var i = 0; i < data.items.length; i++) {
-			var eventItem = data.items[i];
-
-			/*
-			if (eventItem.start.date) {
-				eventItem.start.dateTime = new Date(eventItem.start.date + ' 00:00:00');
-			} else {
-				eventItem.start.dateTime = new Date(eventItem.start.dateTime);
-			}
-			// console.log(eventItem.start.dateTime, eventItem.summary);
-
-			if (eventItem.end.date) {
-				eventItem.end.dateTime = new Date(eventItem.end.date + ' 00:00:00');
-			} else {
-				eventItem.end.dateTime = new Date(eventItem.end.dateTime);
-			}
-			*/
-
-			// eventItemList.push(eventItem);
-		}
 		data.items.sort(function(a,b) { return a.start.dateTime - b.start.dateTime; });
-
-		// for (var i = 0; i < data.items.length; i++) {
-		//     var eventItem = data.items[i];
-		//     console.log(eventItem.start.dateTime, eventItem.summary);
-		// }
 
 		var agendaItemList = [];
 		function getAgendaItemByDate(date) {
