@@ -182,6 +182,17 @@ CalendarManager {
 	function parseEvent(calendar, event) {
 		event.backgroundColor = parseColor(calendar, event)
 		event.canEdit = (calendar.accessRole == 'writer' || calendar.accessRole == 'owner') && !event.recurringEventId // We cannot currently edit repeating events.
+		if (true && event.htmlLink) {
+			// The new material website doesn't open the editor right away.
+			// The htmlLink will select the event in the month view, forcing the
+			// user to click the edit icon after loading the page.
+			var eidRegex = /eid=(\w+)(\&|$)/
+			var eidMatch = eidRegex.exec(event.htmlLink)
+			var eid = eidMatch[1]
+			if (eid) {
+				event.htmlLink = 'https://calendar.google.com/calendar/r/eventedit/' + eid
+			}
+		}
 	}
 
 	function parseColorId(colorIdType, colorId) {
