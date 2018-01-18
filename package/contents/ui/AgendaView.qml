@@ -51,6 +51,9 @@ Item {
         }
     }
     
+    // https://github.com/qt/qtbase/blob/5.10/src/widgets/itemviews/qlistview.h
+    // https://github.com/qt/qtbase/blob/5.10/src/widgets/itemviews/qlistview_p.h
+    // https://github.com/qt/qtbase/blob/5.10/src/widgets/itemviews/qlistview.cpp
     ListView {
         id: agendaListView
         // model: ListModel {}
