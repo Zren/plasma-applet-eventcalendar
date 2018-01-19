@@ -10,6 +10,8 @@ import "../code/DebugFixtures.js" as DebugFixtures
 Item {
     id: agendaView
 
+    readonly property int scrollbarWidth: width - agendaScrollView.contentWidth
+
     property color inProgressColor: appletConfig.agendaInProgressColor
     property int inProgressFontWeight: Font.Bold
 

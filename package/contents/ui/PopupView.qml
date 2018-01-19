@@ -365,6 +365,7 @@ FocusScope {
                     iconSource: 'view-refresh'
                     anchors.bottom: parent.bottom
                     anchors.right: parent.right
+                    anchors.rightMargin: agendaView.scrollbarWidth
                     onClicked: {
                         updateEvents()
                         updateWeather(true)
