@@ -50,7 +50,7 @@ Item {
         anchors.fill: parent
         // clip: true
         readonly property int contentWidth: contentItem ? contentItem.width : width
-        readonly property int contentHeight: contentItem ? contentItem.height : 0
+        readonly property int contentHeight: contentItem ? contentItem.height : 0 // Warning: Binding loop
         readonly property int viewportWidth: viewport ? viewport.width : width
         readonly property int viewportHeight: viewport ? viewport.height : height
 
