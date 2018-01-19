@@ -77,8 +77,7 @@ FocusScope {
     property bool showCalendar: plasmoid.configuration.widget_show_calendar
     property bool agendaScrollOnSelect: true
     property bool cfg_agenda_scroll_on_monthchange: false
-    
-    property alias agendaListView: agendaView.agendaListView
+
     property alias today: monthView.today
     property alias selectedDate: monthView.currentDate
     property alias monthViewDate: monthView.displayedDate

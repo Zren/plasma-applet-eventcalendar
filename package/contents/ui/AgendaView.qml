@@ -10,17 +10,11 @@ import "../code/DebugFixtures.js" as DebugFixtures
 Item {
     id: agendaView
 
-    //anchors.margins: units.largeSpacing
-    property int spacing: units.largeSpacing
-    property alias agendaListView: agendaListView
-
     property color inProgressColor: appletConfig.agendaInProgressColor
     property int inProgressFontWeight: Font.Bold
 
     signal newEventFormOpened(var agendaItem, var newEventCalendarId)
     signal submitNewEventForm(var calendarId, var date, string text)
-
-    property alias agendaModel: agendaListView.model
 
     Connections {
         target: eventModel
@@ -50,24 +44,68 @@ Item {
             })
         }
     }
-    
-    // https://github.com/qt/qtbase/blob/5.10/src/widgets/itemviews/qlistview.h
-    // https://github.com/qt/qtbase/blob/5.10/src/widgets/itemviews/qlistview_p.h
-    // https://github.com/qt/qtbase/blob/5.10/src/widgets/itemviews/qlistview.cpp
-    ListView {
-        id: agendaListView
-        // model: ListModel {}
-        model: root.agendaModel
+
+    ScrollView {
+        id: agendaScrollView
         anchors.fill: parent
-        clip: true
-        spacing: 10
-        boundsBehavior: Flickable.StopAtBounds
+        // clip: true
+        readonly property int contentWidth: contentItem ? contentItem.width : width
+        readonly property int contentHeight: contentItem ? contentItem.height : 0
+        readonly property int viewportWidth: viewport ? viewport.width : width
+        readonly property int viewportHeight: viewport ? viewport.height : height
 
-        // Don't bother garbage collecting
-        // GC or Reloading the weather images is very slow.
-        cacheBuffer: 1000
+        ColumnLayout {
+            id: agendaColumn
+            width: agendaScrollView.viewportWidth
+            spacing: 10 * units.devicePixelRatio
 
-        delegate: AgendaListItem {}
+            Repeater {
+                id: agendaRepeater
+
+                model: root.agendaModel
+                delegate: AgendaListItem {
+                    // Component.onCompleted: console.log('AgendaListItem', index, Date.now())
+                }
+            }
+        }
+
+        function getItemOffsetY(index) {
+            // console.log('getItemOffsetY', index)
+            if (index <= 0) {
+                return 0
+            } else if (index < agendaRepeater.count) {
+                // console.log('\t', index < agendaRepeater.count)
+                var offsetY = 0
+                for (var i = 0; i < Math.min(index, agendaRepeater.count); i++) {
+                    var agendaListItem = agendaRepeater.itemAt(i)
+                    offsetY += agendaListItem ? agendaListItem.height : 0
+                    // console.log('\t', i, agendaListItem, agendaListItem.height)
+                    if (i != agendaRepeater.count-1) {
+                        offsetY += agendaColumn.spacing
+                    }
+                }
+                return offsetY
+            } else { // index >= agendaRepeater.count
+                return agendaScrollView.contentHeight
+            }
+        }
+
+        function scrollToY(offsetY) {
+            flickableItem.contentY = Math.min(offsetY, contentHeight-viewportHeight)
+        }
+
+        function positionViewAtBeginning() {
+            scrollToY(0)
+        }
+
+        function positionViewAtIndex(i, alignement) {
+            var offsetY = getItemOffsetY(i)
+            scrollToY(offsetY)
+        }
+
+        function positionViewAtEnd() {
+            scrollToY(contentHeight)
+        }
     }
 
     // TODO: properly detect when all events have completed loading
@@ -75,7 +113,7 @@ Item {
         id: scrollToIndexTimer
         property int itemIndex: -1
         interval: 400 // Give events time to populate
-        onTriggered: agendaListView.positionViewAtIndex(itemIndex, ListView.Beginning)
+        onTriggered: agendaScrollView.positionViewAtIndex(itemIndex)
         function scrollTo(i) {
             itemIndex = i
             restart()
@@ -83,28 +121,28 @@ Item {
     }
 
     function scrollToTop() {
-        agendaListView.positionViewAtBeginning()
+        agendaScrollView.positionViewAtBeginning()
     }
 
     function scrollToDate(date) {
-        for (var i = 0; i < agendaModel.count; i++) {
-            var agendaItem = agendaModel.get(i);
+        for (var i = 0; i < root.agendaModel.count; i++) {
+            var agendaItem = root.agendaModel.get(i);
             if (Shared.isSameDate(date, agendaItem.date)) {
-                agendaListView.positionViewAtIndex(i, ListView.Beginning);
+                agendaScrollView.positionViewAtIndex(i)
                 scrollToIndexTimer.scrollTo(i)
                 return;
             } else if (Shared.isDateEarlier(date, agendaItem.date)) {
                 // If the date is smaller than the current agendaItem.date, scroll to the previous agendaItem.
                 if (i > 0) {
-                    agendaListView.positionViewAtIndex(i-1, ListView.Beginning);
+                    agendaScrollView.positionViewAtIndex(i-1)
                     scrollToIndexTimer.scrollTo(i-1)
                 } else {
-                    agendaListView.positionViewAtBeginning()
+                    agendaScrollView.positionViewAtBeginning()
                 }
                 return;
             }
         }
         // If the date is greater than any item in the agenda, scroll to the bottom.
-        agendaListView.positionViewAtEnd()
+        agendaScrollView.positionViewAtEnd()
     }
 }
