@@ -1,11 +1,8 @@
 import QtQuick 2.0
 import QtQuick.Controls 1.1
-import QtQuick.Controls.Styles 1.1
 import QtQuick.Layouts 1.1
 
 import "shared.js" as Shared
-import "../code/WeatherApi.js" as WeatherApi
-import "../code/DebugFixtures.js" as DebugFixtures
 
 Item {
     id: agendaView
@@ -67,7 +64,8 @@ Item {
                 model: root.agendaModel
                 delegate: AgendaListItem {
                     width: agendaRepeater.width
-                    // Component.onCompleted: console.log('AgendaListItem', index, Date.now())
+                    // Component.onCompleted: console.log('AgendaListItem.onCompleted', index, Date.now())
+                    // Component.onDestruction: console.log('AgendaListItem.onDestruction', index, Date.now())
                 }
             }
         }
