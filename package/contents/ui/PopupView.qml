@@ -482,19 +482,19 @@ FocusScope {
         }
         onAllDataFetched: {
             // logger.log('onAllDataFetched')
-            popup.updateUI()
+            popup.deferredUpdateUI()
         }
         onEventCreated: {
             logger.logJSON('onEventCreated', calendarId, data)
-            popup.updateUI()
+            popup.deferredUpdateUI()
         }
         onEventUpdated: {
             logger.logJSON('onEventUpdated', calendarId, eventId, data)
-            popup.updateUI()
+            popup.deferredUpdateUI()
         }
         onEventDeleted: {
             logger.logJSON('onEventDeleted', calendarId, eventId, data)
-            popup.updateUI()
+            popup.deferredUpdateUI()
         }
     }
     function deferredUpdateEvents() {
