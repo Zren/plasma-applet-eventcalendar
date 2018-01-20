@@ -10,6 +10,7 @@ Item {
 	property date dateMin: new Date()
 	property date dateMax: new Date()
 
+	property bool clearingData: false
 	property int asyncRequests: 0
 	property int asyncRequestsDone: 0
 	signal dataCleared()
@@ -26,6 +27,9 @@ Item {
 	onAsyncRequestsDoneChanged: checkIfDone()
 
 	function checkIfDone() {
+		if (clearingData) {
+			return
+		}
 		if (asyncRequestsDone >= asyncRequests) {
 			allDataFetched()
 		}
@@ -39,9 +43,11 @@ Item {
 
 	function clear() {
 		logger.debug(calendarManager, 'clear()')
+		calendarManager.clearingData = true
 		calendarManager.asyncRequests = 0
 		calendarManager.asyncRequestsDone = 0
 		calendarManager.eventsByCalendar = {}
+		calendarManager.clearingData = false
 		dataCleared()
 	}
 
