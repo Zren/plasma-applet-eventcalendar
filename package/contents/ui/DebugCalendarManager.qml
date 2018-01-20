@@ -9,6 +9,8 @@ CalendarManager {
 	calendarManagerId: "debug"
 	property var debugCalendar: null
 
+	property bool importGoogleSession: false
+
 	function fetchDebugEvents() {
 		plasmoid.configuration.debugging = true
 		debugCalendar = DebugFixtures.getCalendar()
@@ -67,7 +69,9 @@ CalendarManager {
 
 	onFetchAllCalendars: {
 		fetchDebugEvents()
-		fetchDebugGoogleSession()
+		if (importGoogleSession) {
+			fetchDebugGoogleSession()
+		}
 	}
 
 	onCalendarParsing: {

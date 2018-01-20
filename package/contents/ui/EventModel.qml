@@ -86,6 +86,7 @@ CalendarManager {
 	onFetchAllCalendars: {
 		googleCalendarManager.fetchAll(dateMin, dateMax)
 		// icalManager.fetchAll(dateMin, dateMax)
+		// debugCalendarManager.importGoogleSession = true
 		// debugCalendarManager.fetchAll(dateMin, dateMax)
 	}
 
