@@ -66,6 +66,7 @@ Item {
 
                 model: root.agendaModel
                 delegate: AgendaListItem {
+                    width: agendaRepeater.width
                     // Component.onCompleted: console.log('AgendaListItem', index, Date.now())
                 }
             }

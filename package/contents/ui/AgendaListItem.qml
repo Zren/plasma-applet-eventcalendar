@@ -11,9 +11,6 @@ import "../code/WeatherApi.js" as WeatherApi
 
 GridLayout {
     id: agendaListItem
-    Layout.fillWidth: true
-    anchors.left: parent.left
-    anchors.right: parent.right
     columnSpacing: 0
     property date agendaItemDate: model.date
     property bool agendaItemIsToday: false
