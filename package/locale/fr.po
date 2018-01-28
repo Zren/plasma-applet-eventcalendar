@@ -9,10 +9,10 @@ msgstr ""
 "Project-Id-Version: eventcalendar \n"
 "Report-Msgid-Bugs-To: https://github.com/Zren/plasma-applet-eventcalendar\n"
 "POT-Creation-Date: 2018-01-12 23:23-0500\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"PO-Revision-Date: 2018-01-19 HO:MI+ZONE\n"
 "Last-Translator: Mathieu Provençal <mth.provencal@gmail.com>\n"
-"Language-Team: LANGUAGE <LL@li.org>\n"
-"Language: \n"
+"Language-Team: French <LL@li.org>\n"
+"Language: fr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -24,7 +24,7 @@ msgstr "Général"
 
 #: ../contents/config/config.qml:16
 msgid "Timezones"
-msgstr ""
+msgstr "Fuseaux horaires"
 
 #: ../contents/config/config.qml:21 ../contents/ui/UpcomingEvents.qml:124
 msgid "Calendar"
@@ -76,7 +76,7 @@ msgstr "Modifier la description"
 
 #: ../contents/ui/AgendaEventItem.qml:216
 msgid "Edit date/time"
-msgstr ""
+msgstr "Modifier la date/l'heure"
 
 #: ../contents/ui/AgendaEventItem.qml:224
 msgid "Delete Event"
@@ -135,15 +135,15 @@ msgstr "Texte de la météo"
 
 #: ../contents/ui/config/ConfigAgenda.qml:83
 msgid "Position:"
-msgstr ""
+msgstr "Position:"
 
 #: ../contents/ui/config/ConfigAgenda.qml:86
 msgid "Left"
-msgstr ""
+msgstr "Gauche"
 
 #: ../contents/ui/config/ConfigAgenda.qml:92
 msgid "Right"
-msgstr ""
+msgstr "Droite"
 
 #: ../contents/ui/config/ConfigAgenda.qml:100
 msgid "Click Weather:"
@@ -163,7 +163,7 @@ msgstr "Ouvrir un nouvel événement dans le navigateur"
 
 #: ../contents/ui/config/ConfigAgenda.qml:120
 msgid "Open New Event Form"
-msgstr ""
+msgstr "Ouvrir un nouveau formulaire d'événement"
 
 #: ../contents/ui/config/ConfigAgenda.qml:129
 msgid "Click Event:"
@@ -211,7 +211,7 @@ msgstr "Couleurs"
 
 #: ../contents/ui/config/ConfigAgenda.qml:198
 msgid "In Progress"
-msgstr ""
+msgstr "En progression"
 
 #: ../contents/ui/config/ConfigCalendar.qml:22
 msgid "Show calendar"
@@ -263,7 +263,7 @@ msgstr "Compteur"
 
 #: ../contents/ui/config/ConfigCalendar.qml:110
 msgid "Radius:"
-msgstr ""
+msgstr "Rayon:"
 
 #: ../contents/ui/config/ConfigCalendar.qml:115
 msgid "Selected:"
@@ -327,7 +327,7 @@ msgstr "La police qu'utilise Breeze par défaut est Noto Sans, mais les petits c
 
 #: ../contents/ui/config/ConfigGeneral.qml:162
 msgid "You can also use <b>'&lt;b&gt;'ddd'&lt;/b&gt;'</b> or <b>'&lt;font color=\"#77aaadd\"&gt;'ddd'&lt;/font&gt;'</b> to style a section. Note the single quotes around the tags are used to bypass the time format."
-msgstr ""
+msgstr "Vous pouvez également utiliser <b>'&lt;b&gt;'ddd'&lt;/b&gt;'</b> ou <b>'&lt;font color=\"#77aaadd\"&gt;'ddd'&lt;/font&gt;'</b> pour styliser la section. Notez que l'utilisation de guillemets simples autour des balises est utilisée pour contourner le format horaire."
 
 #: ../contents/ui/config/ConfigGeneral.qml:168
 msgid "Font:"
@@ -404,13 +404,15 @@ msgstr "Widget de bureau: Afficher le fond d'écran"
 
 #: ../contents/ui/config/ConfigGeneral.qml:452
 msgid "Debugging"
-msgstr ""
+msgstr "Débogage"
 
 #: ../contents/ui/config/ConfigGeneral.qml:458
 msgid ""
 "Enable Debugging\n"
 "This will log sensitive information to ~/.xsession-errors"
 msgstr ""
+"Activer le débogage\n"
+"L'information est inscrite dans ~/.xsession-errors"
 
 #: ../contents/ui/config/ConfigGoogleCalendar.qml:58
 msgid "Login"
@@ -457,23 +459,23 @@ msgstr[1] "min"
 
 #: ../contents/ui/config/ConfigGoogleCalendar.qml:194
 msgid "Notifications"
-msgstr ""
+msgstr "Notifications"
 
 #: ../contents/ui/config/ConfigGoogleCalendar.qml:199
 msgid "Event Starting"
-msgstr ""
+msgstr "L'événement commence"
 
 #: ../contents/ui/config/ConfigICal.qml:55
 msgid "Add Calendar"
-msgstr ""
+msgstr "Ajouter un calendrier"
 
 #: ../contents/ui/config/ConfigICal.qml:60
 msgid "New Calendar"
-msgstr ""
+msgstr "Nouveau calendrier"
 
 #: ../contents/ui/config/ConfigICal.qml:96
 msgid "Calendar Label"
-msgstr ""
+msgstr "Étiquette"
 
 #: ../contents/ui/config/ConfigICal.qml:113
 msgid "Browse"
@@ -485,7 +487,7 @@ msgstr ""
 
 #: ../contents/ui/config/ConfigTimezones.qml:64
 msgid "Tooltip"
-msgstr ""
+msgstr "Info-bulle"
 
 #: ../contents/ui/config/ConfigTimezones.qml:73
 msgid "Cannot deselect Local time from the tooltip"
@@ -555,27 +557,27 @@ msgstr "Kelvin"
 
 #: ../contents/ui/config/ConfigWeather.qml:184
 msgid "Text"
-msgstr ""
+msgstr "Texte"
 
 #: ../contents/ui/config/ConfigWeather.qml:189
 msgid "Grid"
-msgstr ""
+msgstr "Grille"
 
 #: ../contents/ui/config/ConfigWeather.qml:194
 msgid "Rain"
-msgstr ""
+msgstr "Pluie"
 
 #: ../contents/ui/config/ConfigWeather.qml:199
 msgid "Positive Temp"
-msgstr ""
+msgstr "Température positive"
 
 #: ../contents/ui/config/ConfigWeather.qml:204
 msgid "Negative Temp"
-msgstr ""
+msgstr "Température négative"
 
 #: ../contents/ui/config/ConfigWeather.qml:209
 msgid "Icons"
-msgstr ""
+msgstr "Icônes"
 
 #: ../contents/ui/config/OpenWeatherMapCityDialog.qml:12 ../contents/ui/config/WeatherCanadaCityDialog.qml:13
 msgid "Select city"
@@ -615,7 +617,7 @@ msgstr "<b>Version:</b> %1"
 
 #: ../contents/ui/main.qml:222
 msgid "Set Language..."
-msgstr ""
+msgstr "Régler la langue..."
 
 #: ../contents/ui/main.qml:225
 msgid "Set Locale..."
@@ -697,11 +699,11 @@ msgstr "1h"
 
 #: ../contents/ui/TimerView.qml:97
 msgid "Pause Timer"
-msgstr ""
+msgstr "Mettre en pause la minuterie"
 
 #: ../contents/ui/TimerView.qml:99
 msgid "Start Timer"
-msgstr ""
+msgstr "Démarrer la minuterie"
 
 #: ../contents/ui/TimerView.qml:103
 msgid "Scroll to add to duration"
@@ -717,11 +719,11 @@ msgstr "Son"
 
 #: ../contents/ui/TimerView.qml:328
 msgid "Timer finished"
-msgstr ""
+msgstr "Minuterie terminée"
 
 #: ../contents/ui/TimerView.qml:329
 msgid "%1 has passed"
-msgstr ""
+msgstr "%1 a passé"
 
 #: ../contents/ui/UpcomingEvents.qml:114
 msgid "Events Starting"
