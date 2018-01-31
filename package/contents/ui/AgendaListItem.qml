@@ -12,6 +12,7 @@ import "../code/WeatherApi.js" as WeatherApi
 GridLayout {
     id: agendaListItem
     columnSpacing: 0
+    property var agendaItemEvents: model.events
     property date agendaItemDate: model.date
     property bool agendaItemIsToday: false
     function checkIfToday() {
@@ -165,7 +166,7 @@ GridLayout {
             Layout.fillWidth: true
 
             Repeater {
-                model: events
+                model: agendaItemEvents
 
                 delegate: AgendaEventItem {
                     id: agendaEventItem
