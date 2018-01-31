@@ -9,6 +9,11 @@ ListModel {
 	property var weatherModel
 	property var timeModel
 
+	dynamicRoles: false
+
+	property bool populating: false
+	// onPopulatingChanged: console.log(Date.now(), 'agendaModel.populating', populating)
+
 	property bool showDailyWeather: false
 
 	property int showNextNumDays: 14
@@ -74,33 +79,36 @@ ListModel {
 		// console.log('uneventfulDay:', day);
 	}
 
+	function getAgendaItemByDate(agendaItemList, date) {
+		for (var i = 0; i < agendaItemList.length; i++) {
+			var agendaItem = agendaItemList[i];
+			if (Shared.isSameDate(agendaItem.date, date)) {
+				return agendaItem;
+			}
+		}
+		return null;
+	}
+	function insertEventAtDate(agendaItemList, date, eventItem) {
+		var agendaItem = getAgendaItemByDate(agendaItemList, date);
+		if (!agendaItem) {
+			agendaItem = buildAgendaItem(date);
+			agendaItemList.push(agendaItem);
+		}
+		agendaItem.events.push(eventItem);
+	}
 	function parseGCalEvents(data) {
-		agendaModel.clear();
-		// currentTime = new Date();
+		agendaModel.populating = true
+		// agendaModel.clear();
 
-		if (!(data && data.items))
+		if (!(data && data.items)) {
+			agendaModel.populating = false
 			return;
+		}
 
 		data.items.sort(function(a,b) { return a.start.dateTime - b.start.dateTime; });
 
 		var agendaItemList = [];
-		function getAgendaItemByDate(date) {
-			for (var i = 0; i < agendaItemList.length; i++) {
-				var agendaItem = agendaItemList[i];
-				if (Shared.isSameDate(agendaItem.date, date)) {
-					return agendaItem;
-				}
-			}
-			return null;
-		}
-		function insertEventAtDate(date, eventItem) {
-			var agendaItem = getAgendaItemByDate(date);
-			if (!agendaItem) {
-				agendaItem = buildAgendaItem(date);
-				agendaItemList.push(agendaItem);
-			}
-			agendaItem.events.push(eventItem);
-		}
+
 		for (var i = 0; i < data.items.length; i++) {
 			var eventItem = data.items[i];
 			if (plasmoid.configuration.agenda_breakup_multiday_events) {
@@ -116,15 +124,15 @@ ListModel {
 					upperLimitDate = agendaModel.visibleDateMax;
 				}
 				for (var eventItemDate = new Date(lowerLimitDate); eventItemDate <= upperLimitDate; eventItemDate.setDate(eventItemDate.getDate() + 1)) {
-					insertEventAtDate(eventItemDate, eventItem);
+					insertEventAtDate(agendaItemList, eventItemDate, eventItem);
 				}
 			} else {
 				var now = new Date(timeModel.currentTime);
 				var inProgress = eventItem.start.dateTime <= now && now <= eventItem.end.dateTime;
 				if (inProgress) {
-					insertEventAtDate(now, eventItem);
+					insertEventAtDate(agendaItemList, now, eventItem);
 				} else {
-					insertEventAtDate(eventItem.start.dateTime, eventItem);
+					insertEventAtDate(agendaItemList, eventItem.start.dateTime, eventItem);
 				}
 			}
 		}
@@ -181,9 +189,29 @@ ListModel {
 		// out of order since the agendaItem is inserted earlier.
 		agendaItemList.sort(function(a,b) { return a.date - b.date; });
 
-		for (var i = 0; i < agendaItemList.length; i++) {
-			agendaModel.append(agendaItemList[i]);
+
+		var minCount = Math.min(agendaItemList.length, agendaModel.count)
+		var maxCount = Math.max(agendaItemList.length, agendaModel.count)
+		// console.log('agendaModel', 'replaced items', minCount)
+		for (var i = 0; i < minCount; i++) {
+			agendaModel.set(i, agendaItemList[i]); // Replace the existing values
 		}
+		if (agendaItemList.length > agendaModel.count) {
+			// console.log('agendaModel', 'append items', minCount, maxCount, maxCount-minCount)
+			for (var i = minCount; i < agendaItemList.length; i++) {
+				agendaModel.append(agendaItemList[i]); // Add the missing delegates
+			}
+		} else if (agendaItemList.length < agendaModel.count) {
+			// console.log('agendaModel', 'removed items', minCount, maxCount, maxCount-minCount)
+			agendaModel.remove(minCount, maxCount-minCount); // Remove the extra delegates
+			// for (var i = 0; i < agendaItemList.length; i++) {
+			// 	agendaModel.remove(i, agendaItemList[i]); // Remove the extra delegates
+			// }
+		} else { // agendaItemList.length == agendaModel.count
+			// console.log('agendaModel', 'skip')
+			// skip
+		}
+		agendaModel.populating = false
 	}
 
 	function parseWeatherForecast(data) {
