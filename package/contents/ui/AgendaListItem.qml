@@ -28,6 +28,18 @@ GridLayout {
     property bool agendaItemInProgress: agendaItemIsToday
     property bool weatherOnRight: plasmoid.configuration.agendaWeatherOnRight
 
+    Connections {
+        target: agendaModel
+        onPopulatingChanged: {
+            if (!agendaModel.populating) {
+                agendaListItem.reset()
+            }
+        }
+    }
+    function reset() {
+        newEventForm.active = false
+    }
+
     LinkRect {
         visible: agendaModel.showDailyWeather
         Layout.alignment: Qt.AlignTop
