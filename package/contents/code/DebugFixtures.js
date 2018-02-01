@@ -86,6 +86,10 @@ function getEventData() {
     addAllDayTestEvent("One Two Three Four Five Six Seven Eight Nine Ten One Two Three Four Five Six Seven Eight Nine Ten One Two Three Four Five Six Seven Eight Nine Ten", 1, 2);
     addAllDayTestEvent("OneTwoThreeFourFiveSixSevenEightNineTenOneTwoThreeFourFiveSixSevenEightNineTen", -2, -1);
     addAllDayTestEvent("OneTwoThreeFourFiveSixSevenEightNineTenOneTwoThreeFourFiveSixSevenEightNineTen", -1, 0);
+
+    for (var i = -30; i <= 30; i++) {
+        addAllDayTestEvent("Day " + i, i, i+1);
+    }
     
     return debugEventData;
 }
