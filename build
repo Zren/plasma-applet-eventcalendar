@@ -1,9 +1,9 @@
 #!/bin/bash
-# Version 5
+# Version 6
 
-if [ -d "package/locale" ]; then
-	echo "[build] locale dir found, running merge."
-	(cd package/locale && sh ./merge)
+if [ -d "package/translate" ]; then
+	echo "[build] translate dir found, running merge."
+	(cd package/translate && sh ./merge)
 	if [ "$(git diff --stat .)" != "" ]; then
 		echo "[build] Changed detected. Cancelling build."
 		git diff --stat .
