@@ -370,6 +370,13 @@ FocusScope {
                         updateEvents()
                         updateWeather(true)
                     }
+
+                    // Timer {
+                    //     running: true
+                    //     repeat: true
+                    //     interval: 2000
+                    //     onTriggered: parent.clicked()
+                    // }
                 }
             }
 
