@@ -37,6 +37,6 @@ Or if you know how to make a pull request
 |Template	|172	|	|
 |de	|143/172	|83%	|
 |es	|146/172	|84%	|
-|fr	|128/172	|74%	|
+|fr	|156/172	|90%	|
 |pt_BR	|153/172	|88%	|
 |uk	|162/172	|94%	|

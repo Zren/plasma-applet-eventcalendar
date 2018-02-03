@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: eventcalendar \n"
 "Report-Msgid-Bugs-To: https://github.com/Zren/plasma-applet-eventcalendar\n"
-"POT-Creation-Date: 2018-01-12 23:23-0500\n"
+"POT-Creation-Date: 2018-02-02 22:22-0500\n"
 "PO-Revision-Date: 2017-06-10 HO:MI+ZONE\n"
 "Last-Translator: Clayton Magalhães <helpdir@gmail.com>\n"
 "Language-Team: SACI <helpdir@gmail.com>\n"
@@ -90,21 +90,21 @@ msgstr "Confirmar a Remoção"
 msgid "Edit in browser"
 msgstr "Editar no navegador"
 
-#: ../contents/ui/AgendaListItem.qml:109
+#: ../contents/ui/AgendaListItem.qml:121
 msgctxt "agenda date format line 1"
 msgid "MMM d"
 msgstr "MMM d"
 
-#: ../contents/ui/AgendaListItem.qml:129
+#: ../contents/ui/AgendaListItem.qml:141
 msgctxt "agenda date format line 2"
 msgid "ddd"
 msgstr "ddd"
 
-#: ../contents/ui/AgendaView.qml:29 ../contents/ui/AgendaView.qml:42 ../contents/ui/UpcomingEvents.qml:129 ../contents/ui/UpcomingEvents.qml:146
+#: ../contents/ui/AgendaView.qml:22 ../contents/ui/AgendaView.qml:35 ../contents/ui/UpcomingEvents.qml:129 ../contents/ui/UpcomingEvents.qml:146
 msgid "Event Calendar"
 msgstr "Calendário de eventos"
 
-#: ../contents/ui/CalendarManager.qml:107
+#: ../contents/ui/CalendarManager.qml:113
 msgctxt "event with no summary"
 msgid "(No title)"
 msgstr ""
@@ -651,7 +651,7 @@ msgstr "[Não há calendários]"
 msgid "Eg: 9am-5pm Work"
 msgstr "EX: 09:00-17:00 Trabalho"
 
-#: ../contents/ui/PopupView.qml:308
+#: ../contents/ui/PopupView.qml:307
 msgid ""
 "Weather not configured.\n"
 "Go to Weather in the config and set your city,\n"
