@@ -1,3 +1,15 @@
+## v53 - Febuary 2 2018
+
+* Fix scrolling to current date after all events have loaded.
+* Recently, google has updated the google calendar website to a material design, editing an event in the browser would link to the month view instead of the full editor. I've changed the link opened so it's now opening the full event editor.
+* Refactored code to draw all event on loading them instead of a slight lag when scrolling when it tries to generate them on demand.
+* Because of the refactor, the agenda now has a scrollbar.
+* When fetching events, it will now wait a little bit for another calendar before redrawing everything.
+* Reuse existing event placeholders instead of deleting them all and generating new ones. This alleviates some of the memory creep (but not all).
+* Fix weather column cells not resizing when too small.
+* Merge fr translations by @Amathadius.
+* Rename the translation folder.
+
 ## v52 - January 12 2018
 
 * Move widget to it's own github repo (https://github.com/Zren/plasma-applet-eventcalendar).
