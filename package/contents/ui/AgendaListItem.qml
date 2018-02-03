@@ -38,6 +38,7 @@ GridLayout {
     }
     function reset() {
         newEventForm.active = false
+        agendaListItem.checkIfToday()
     }
 
     LinkRect {
