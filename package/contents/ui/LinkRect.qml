@@ -7,8 +7,10 @@ import "lib"
 
 Rectangle {
     id: linkRect
-    width: childrenRect.width
-    height: childrenRect.height
+    width: implicitWidth
+    height: implicitHeight
+    implicitWidth: childrenRect.width
+    implicitHeight: childrenRect.height
     property color backgroundColor: "transparent"
     property color backgroundHoverColor: theme.buttonBackgroundColor
     color: enabled && mouseArea.containsMouse ? backgroundHoverColor : backgroundColor
