@@ -306,7 +306,7 @@ FocusScope {
                     PlasmaComponents.Label {
                         text: i18n("Weather not configured.\nGo to Weather in the config and set your city,\nand/or disable the meteogram to hide this area.")
                         anchors.centerIn: parent
-                        width: Math.min(parent.width, implicitWidth)
+                        width: Math.min(parent.width, implicitWidth) // Binding loop detected
                         height: Math.min(parent.height, implicitHeight)
                         fontSizeMode: Text.Fit
                         wrapMode: Text.Wrap
