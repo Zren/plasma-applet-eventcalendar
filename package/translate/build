@@ -1,5 +1,5 @@
 #!/bin/bash
-# Version: 2
+# Version: 3
 
 # This script will convert the *.po files to *.mo files, rebuilding the package/contents/locale folder.
 # Feature discussion: https://phabricator.kde.org/D5209
@@ -13,12 +13,12 @@ packageRoot=".." # Root of translatable sources
 projectName="plasma_applet_${plasmoidName}" # project name
 
 #---
-if [[ -z "$plasmoidName" ]]; then
+if [ -z "$plasmoidName" ]; then
 	echo "[build] Error: Couldn't read plasmoidName."
 	exit
 fi
 
-if [[ -z "$(which msgfmt)" ]]; then
+if [ -z "$(which msgfmt)" ]; then
 	echo "[build] Error: msgfmt command not found. Need to install gettext"
 	echo "[build] Running 'sudo apt install gettext'"
 	sudo apt install gettext
