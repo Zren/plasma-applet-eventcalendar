@@ -61,11 +61,25 @@ Item {
             Repeater {
                 id: agendaRepeater
 
+                property bool populated: false
+                // onPopulatedChanged: console.log(Date.now(), 'agendaRepeater.populated', populated)
                 model: root.agendaModel
                 delegate: AgendaListItem {
+                    // visible: agendaRepeater.populated
                     width: agendaRepeater.width
-                    // Component.onCompleted: console.log('AgendaListItem.onCompleted', index, Date.now())
-                    // Component.onDestruction: console.log('AgendaListItem.onDestruction', index, Date.now())
+                    // Component.onCompleted: console.log(Date.now(), 'AgendaListItem.onCompleted', index)
+                    // Component.onDestruction: console.log(Date.now(), 'AgendaListItem.onDestruction', index)
+                }
+
+                onItemAdded: {
+                    // console.log(Date.now(), 'agendaRepeater.itemAdded', index)
+                    if (index == root.agendaModel.count-1) {
+                        populated = true
+                    }
+                }
+                onItemRemoved: {
+                    // console.log(Date.now(), 'agendaRepeater.onItemRemoved', index)
+                    populated = false
                 }
             }
         }
