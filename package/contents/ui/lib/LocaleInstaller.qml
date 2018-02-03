@@ -18,11 +18,11 @@ ConfigSection {
 
 	property string metadataUrl: plasmoid.file("", "../metadata.desktop")
 	property string packageRootUrl: metadataUrl.substr(0, metadataUrl.length - "contents//../metadata.desktop".length)
-	property string packageLocaleDir: packageRootUrl + "locale"
+	property string packageTranslateDir: packageRootUrl + "translate"
 	property string packageName // TODO: Parse the metadata file for the name.
 
 	FolderListModel {
-		folder: packageLocaleDir
+		folder: packageTranslateDir
 		nameFilters: [ "*.po" ]
 		onCountChanged: {
 			// console.log('poFolder', folder)
@@ -55,7 +55,7 @@ ConfigSection {
 	// onPackageRootUrlChanged: console.log('packageRootUrl', packageRootUrl)
 	// onShareDirChanged: console.log('shareDir', shareDir)
 	// onLocaleDirChanged: console.log('localeDir', localeDir)
-	// onPackageLocaleDirChanged: console.log('packageLocaleDir', packageLocaleDir)
+	// onPackageTranslateDirChanged: console.log('packageTranslateDir', packageTranslateDir)
 
 	KCoreAddons.KUser {
 		id: kuser
@@ -77,7 +77,7 @@ ConfigSection {
 		}
 	}
 
-	property string installCommand: "x-terminal-emulator -e \'sh -c \"(cd " + packageLocaleDir + " && sh ./install)\"\'"
+	property string installCommand: "x-terminal-emulator -e \'sh -c \"(cd " + packageTranslateDir + " && sh ./install)\"\'"
 
 	PlasmaCore.DataSource {
 		id: executable
@@ -123,12 +123,12 @@ ConfigSection {
 		}
 
 		Button {
-			enabled: packageLocaleDir
+			enabled: packageTranslateDir
 			iconName: isInstalled ? "package-reinstall" : "package-install"
 			text: isInstalled ? "Reinstall" : "Install"
 			onClicked: {
 				console.log('translationInstallCommand:', installCommand)
-				if (packageLocaleDir) {
+				if (packageTranslateDir) {
 					executable.exec(installCommand)
 				}
 			}
