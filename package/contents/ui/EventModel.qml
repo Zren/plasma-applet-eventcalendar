@@ -94,6 +94,7 @@ CalendarManager {
 
 	function mergeEvents() {
 		logger.debug('eventModel.mergeEvents')
+		delete eventModel.eventsData
 		eventModel.eventsData = { items: [] }
 		for (var calendarId in eventModel.eventsByCalendar) {
 			eventModel.eventsData.items = eventModel.eventsData.items.concat(eventModel.eventsByCalendar[calendarId].items)
