@@ -141,144 +141,31 @@ MouseArea {
         visible: model.showEventBadge || false
         anchors.fill: parent
 
-        Rectangle {
-            id: eventBadgeBottomBarHighlight
-            visible: parent.visible && (dayStyle.eventBadgeType == 'bottomBarHighlight' || (dayStyle.eventBadgeType == 'bottomBar' && dayStyle.useHightlightColor))
-            anchors.left: parent.left
-            anchors.right: parent.right
-            anchors.bottom: parent.bottom
-            height: parent.height / 8
-            opacity: 0.6
-            color: theme.highlightColor
-        }
-
-        Item {
-            id: eventBadgeBottomBar
-            visible: parent.visible && dayStyle.eventBadgeType == 'bottomBar'
-            anchors.left: parent.left
-            anchors.right: parent.right
-            anchors.bottom: parent.bottom
-            height: parent.height / 8
-            
-            property bool usePadding: !plasmoid.configuration.month_show_border
-            anchors.leftMargin: usePadding ? parent.width/8 : 0
-            anchors.rightMargin: usePadding ? parent.width/8 : 0
-            anchors.bottomMargin: usePadding ? parent.height/16 : 0
-
-            RowLayout {
-                anchors.fill: parent
-                spacing: 0
-
-                Repeater {
-                    model: dayStyle.eventColors
-
-                    Rectangle {
-                        Layout.fillHeight: true
-                        Layout.fillWidth: true
-                        color: modelData
-
-                        Rectangle {
-                            anchors.fill: parent
-                            color: "transparent"
-                            border.width: 1
-                            border.color: theme.backgroundColor
-                            opacity: 0.5
-                        }
-                    }
-                    
-                }
-            }
-        }
-
-        Item {
-            id: eventBadgeDots
-            visible: parent.visible && dayStyle.eventBadgeType == 'dots'
-            anchors.horizontalCenter: parent.horizontalCenter
-            anchors.bottom: parent.bottom
-            anchors.margins: parent.height / 4
-            property int dotSize: (parent.height / 8) + dotBorderWidth*2
-            property color dotColor: theme.highlightColor
-            property int dotBorderWidth: plasmoid.configuration.show_outlines ? 1 : 0
-            property color dotBorderColor: theme.backgroundColor
-
-            Row {
-                anchors.horizontalCenter: parent.horizontalCenter
-                spacing: units.smallSpacing
-
-                Rectangle {
-                    visible: parent.visible && model.events.count >= 1
-                    width: eventBadgeDots.dotSize
-                    height: eventBadgeDots.dotSize
-                    radius: width / 2
-                    color: eventBadgeDots.dotColor
-                    border.width: eventBadgeDots.dotBorderWidth
-                    border.color: eventBadgeDots.dotBorderColor
-                }
-                Rectangle {
-                    visible: parent.visible && model.events.count >= 2
-                    width: eventBadgeDots.dotSize
-                    height: eventBadgeDots.dotSize
-                    radius: width / 2
-                    color: eventBadgeDots.dotColor
-                    border.width: eventBadgeDots.dotBorderWidth
-                    border.color: eventBadgeDots.dotBorderColor
-                }
-                Rectangle {
-                    visible: parent.visible && model.events.count >= 3
-                    width: eventBadgeDots.dotSize
-                    height: eventBadgeDots.dotSize
-                    radius: width / 2
-                    color: eventBadgeDots.dotColor
-                    border.width: eventBadgeDots.dotBorderWidth
-                    border.color: eventBadgeDots.dotBorderColor
-                }
-            }
-        }
-
-        Rectangle {
-            id: eventBadgeCount
-            visible: parent.visible && dayStyle.eventBadgeType == 'count'
-            anchors.right: parent.right
-            anchors.bottom: parent.bottom
-            height: parent.height / 3
-            width: eventBadgeCountText.width
-            color: {
-                if (plasmoid.configuration.show_outlines) {
-                    var c = Qt.darker(theme.backgroundColor, 1); // Cast to color
-                    c.a = 0.6; // 60%
-                    return c;
-                } else {
-                    return "transparent";
-                }
-            }
-
-            Components.Label {
-                id: eventBadgeCountText
-                height: parent.height
-                width: Math.max(paintedWidth, height)
-                anchors.centerIn: parent
-
-                color: theme.highlightColor
-                text: parent.visible ? model.events.count : 0
-                font.weight: Font.Bold
-                font.pointSize: 1024
-                fontSizeMode: Text.VerticalFit
-                wrapMode: Text.NoWrap
-
-                horizontalAlignment: Text.AlignHCenter
-                verticalAlignment: Text.AlignVCenter
-                smooth: true
-            }
-        }
-
         Loader {
-            id: eventBadgeTheme
-            active: parent.visible && dayStyle.eventBadgeType == 'theme'
-            anchors.bottom: parent.bottom
-            anchors.right: parent.right
-            height: parent.height / 3
-            width: height
-            sourceComponent: eventsMarkerComponent
+            id: eventBadgeLoader
+            anchors.fill: parent
+
+            active: parent.visible
+            property Component badgeComponent: {
+                if (dayStyle.eventBadgeType == 'bottomBar') {
+                    return eventColorsBarBadgeComponent
+                } else if (dayStyle.eventBadgeType == 'bottomBarHighlight') {
+                    return highlightBarBadgeComponent
+                } else if (dayStyle.eventBadgeType == 'count') {
+                    return eventCountBadgeComponent
+                } else if (dayStyle.eventBadgeType == 'dots') {
+                    return dotsBadgeComponent
+                } else if (dayStyle.eventBadgeType == 'theme') {
+                    return themeBadgeComponent
+                } else {
+                    return null
+                }
+            }
+            sourceComponent: badgeComponent
+
+            property var modelEvents: model.events
+            property var modelEventsCount: model.events.count
+            property alias dayStyle: dayStyle // aka DayDelegate
         }
     }
 

@@ -26,6 +26,8 @@ import org.kde.plasma.core 2.0 as PlasmaCore
 import org.kde.plasma.components 2.0 as Components
 import org.kde.plasma.extras 2.0 as PlasmaExtras
 
+import "./badges"
+
 Item {
     id: daysCalendar
 
@@ -248,13 +250,39 @@ Item {
     }
 
     Component {
-        id: eventsMarkerComponent
-
-        PlasmaCore.SvgItem {
-            id: eventsMarker
-            svg: calendarSvg
-            elementId: "event"
+        id: themeBadgeComponent
+        Item {
+            id: themeBadge
+            PlasmaCore.SvgItem {
+                id: eventsMarker
+                anchors.bottom: themeBadge.bottom
+                anchors.right: themeBadge.right
+                height: parent.height / 3
+                width: height
+                svg: calendarSvg
+                elementId: "event"
+            }
         }
+    }
+
+    Component {
+        id: highlightBarBadgeComponent
+        HighlightBarBadge {}
+    }
+
+    Component {
+        id: eventColorsBarBadgeComponent
+        EventColorsBarBadge {}
+    }
+
+    Component {
+        id: dotsBadgeComponent
+        DotsBadge {}
+    }
+
+    Component {
+        id: eventCountBadgeComponent
+        EventCountBadge {}
     }
 
     Connections {
