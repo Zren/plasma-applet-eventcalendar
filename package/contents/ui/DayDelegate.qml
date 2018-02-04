@@ -216,8 +216,9 @@ MouseArea {
         anchors.fill: parent
         active: root.showTooltips
         visible: root.showTooltips // Needed with active=false to make sure the ToolTipArea doesn't close a parent ToolTipArea. Eg: DateSelector.
-        mainText: Qt.formatDate(thisDate, Locale.LongFormat)
-        subText: {
+        mainText: containsMouse ? Qt.formatDate(thisDate, Locale.LongFormat) : ""
+        subText: containsMouse ? tooltipBody() : ""
+        function tooltipBody() {
             if (!model.events) {
                 return '';
             }
