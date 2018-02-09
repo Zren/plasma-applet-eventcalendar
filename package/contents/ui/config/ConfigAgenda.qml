@@ -48,6 +48,15 @@ ConfigPage {
     }
 
     ConfigSection {
+        ConfigSpinBox {
+            configKey: 'agenda_fontSize'
+            before: i18n("Font Size:")
+            suffix: i18n("px")
+            after: i18n(" (0px = <b>System Settings > Fonts > General</b>)")
+        }
+    }
+
+    ConfigSection {
         RowLayout {
             CheckBox {
                 id: agenda_weather_show_icon
