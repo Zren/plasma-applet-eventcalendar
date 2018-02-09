@@ -22,11 +22,12 @@ Plasmoid for a calendar+agenda with weather that synchs to Google Calendar.
 ## B) Install via GitHub
 
 ```
-git clone https://github.com/Zren/plasma-applet-eventcalendar.git
-./install
+git clone https://github.com/Zren/plasma-applet-eventcalendar.git eventcalendar
+cd eventcalendar
+sh ./install
 ```
 
-To update, run the `./update` script. It will run a `git pull` then reinstall the applet. Please note this script will restart plasmashell (so you don't have to relog)!
+To update, run the `sh ./update` script. It will run a `git pull` then reinstall the applet. Please note this script will restart plasmashell (so you don't have to relog)!
 
 ## C) Install via Package Manager
 
@@ -46,3 +47,16 @@ There's also a russian who's patched the widget with russian translations.
 3. After the settings window says it's synched, click apply.
 4. Go to the Weather Tab > Enter your city id for OpenWeatherMap. If their search can't find your city, try googling it with [site:openweathermap.org/city](https://www.google.ca/search?q=site%3Aopenweathermap.org%2Fcity+toronto).
 
+
+## Update to GitHub master
+
+If you're asked to test something, open the Terminal and run the following commands.
+
+```
+sudo apt install git
+git clone https://github.com/Zren/plasma-applet-eventcalendar.git eventcalendar
+cd eventcalendar
+sh ./reinstall
+```
+
+Please note this script will restart plasmashell (so you don't have to relog)!
