@@ -72,7 +72,7 @@ GridLayout {
                 }
             }
 
-            Text {
+            PlasmaComponents.Label {
                 id: itemWeatherText
                 visible: showWeather && plasmoid.configuration.agenda_weather_show_text
                 text: weatherText
@@ -82,7 +82,7 @@ GridLayout {
                 horizontalAlignment: Text.AlignHCenter
             }
 
-            Text {
+            PlasmaComponents.Label {
                 id: itemWeatherTemps
                 visible: showWeather
                 text: tempHigh + '° | ' + tempLow + '°'
@@ -109,19 +109,21 @@ GridLayout {
         Layout.alignment: Qt.AlignTop
         Layout.column: weatherOnRight ? 0 : 1
         implicitWidth: appletConfig.agendaDateColumnWidth
-        Column {
+        ColumnLayout {
             id: itemDateColumn
             anchors.left: parent.left
             anchors.right: parent.right
             anchors.leftMargin: appletConfig.agendaColumnSpacing
             anchors.rightMargin: appletConfig.agendaColumnSpacing
+            spacing: 0
 
-            Text {
+            PlasmaComponents.Label {
                 id: itemDate
                 text: Qt.formatDateTime(date, i18nc("agenda date format line 1", "MMM d"))
                 color: agendaItemIsToday ? inProgressColor : PlasmaCore.ColorScope.textColor
                 opacity: agendaItemIsToday ? 1 : 0.75
                 font.weight: agendaItemIsToday ? inProgressFontWeight : Font.Normal
+                height: paintedHeight
                 anchors {
                     left: parent.left
                     right: parent.right
@@ -136,12 +138,13 @@ GridLayout {
                 // }
             }
 
-            Text {
+            PlasmaComponents.Label {
                 id: itemDay
                 text: Qt.formatDateTime(date, i18nc("agenda date format line 2", "ddd"))
                 color: agendaItemIsToday ? inProgressColor : PlasmaCore.ColorScope.textColor
                 opacity: agendaItemIsToday ? 1 : 0.5
                 font.weight: agendaItemIsToday ? inProgressFontWeight : Font.Normal
+                height: paintedHeight
                 anchors {
                     left: parent.left
                     right: parent.right

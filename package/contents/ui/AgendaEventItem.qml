@@ -48,6 +48,7 @@ LinkRect {
                 text: summary
                 color: eventItemInProgress ? inProgressColor : PlasmaCore.ColorScope.textColor
                 font.weight: eventItemInProgress ? inProgressFontWeight : Font.Normal
+                height: paintedHeight
                 visible: !editSummaryForm.active
                 Layout.fillWidth: true
 
@@ -83,7 +84,7 @@ LinkRect {
                 }
             }
 
-            Text {
+            PlasmaComponents.Label {
                 id: eventDateTime
                 text: {
                     Shared.formatEventDuration(model, {
@@ -94,6 +95,7 @@ LinkRect {
                 color: eventItemInProgress ? inProgressColor : PlasmaCore.ColorScope.textColor
                 opacity: eventItemInProgress ? 1 : 0.75
                 font.weight: eventItemInProgress ? inProgressFontWeight : Font.Normal
+                height: paintedHeight
                 visible: !editDateTimeForm.active
             }
 
