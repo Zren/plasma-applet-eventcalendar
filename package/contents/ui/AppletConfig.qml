@@ -40,6 +40,8 @@ QtObject {
 	property int agendaDateColumnWidth: 50 * units.devicePixelRatio + agendaColumnSpacing * 2
 	property int eventIndicatorWidth: 2 * units.devicePixelRatio
 
+	property int agendaFontSize:  plasmoid.configuration.agenda_fontSize == 0 ? theme.defaultFont.pixelSize : plasmoid.configuration.agenda_fontSize * units.devicePixelRatio
+
 	property int timerClockFontHeight: 40 * units.devicePixelRatio
 	property int timerButtonWidth: 48 * units.devicePixelRatio
 

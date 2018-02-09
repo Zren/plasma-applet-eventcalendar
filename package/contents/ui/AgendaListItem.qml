@@ -122,6 +122,8 @@ GridLayout {
                 text: Qt.formatDateTime(date, i18nc("agenda date format line 1", "MMM d"))
                 color: agendaItemIsToday ? inProgressColor : PlasmaCore.ColorScope.textColor
                 opacity: agendaItemIsToday ? 1 : 0.75
+                font.pointSize: -1
+                font.pixelSize: appletConfig.agendaFontSize
                 font.weight: agendaItemIsToday ? inProgressFontWeight : Font.Normal
                 height: paintedHeight
                 anchors {
@@ -143,6 +145,8 @@ GridLayout {
                 text: Qt.formatDateTime(date, i18nc("agenda date format line 2", "ddd"))
                 color: agendaItemIsToday ? inProgressColor : PlasmaCore.ColorScope.textColor
                 opacity: agendaItemIsToday ? 1 : 0.5
+                font.pointSize: -1
+                font.pixelSize: appletConfig.agendaFontSize
                 font.weight: agendaItemIsToday ? inProgressFontWeight : Font.Normal
                 height: paintedHeight
                 anchors {

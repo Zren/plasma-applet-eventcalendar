@@ -47,6 +47,8 @@ LinkRect {
                 id: eventSummary
                 text: summary
                 color: eventItemInProgress ? inProgressColor : PlasmaCore.ColorScope.textColor
+                font.pointSize: -1
+                font.pixelSize: appletConfig.agendaFontSize
                 font.weight: eventItemInProgress ? inProgressFontWeight : Font.Normal
                 height: paintedHeight
                 visible: !editSummaryForm.active
@@ -94,6 +96,8 @@ LinkRect {
                 }
                 color: eventItemInProgress ? inProgressColor : PlasmaCore.ColorScope.textColor
                 opacity: eventItemInProgress ? 1 : 0.75
+                font.pointSize: -1
+                font.pixelSize: appletConfig.agendaFontSize
                 font.weight: eventItemInProgress ? inProgressFontWeight : Font.Normal
                 height: paintedHeight
                 visible: !editDateTimeForm.active

@@ -149,6 +149,9 @@
     <entry name="agenda_inProgressColor" type="string" stringType="color">
       <default></default>
     </entry>
+    <entry name="agenda_fontSize" type="uint">
+      <default>0</default>
+    </entry>
   </group>
 
 
