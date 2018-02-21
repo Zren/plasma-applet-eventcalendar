@@ -67,6 +67,12 @@ Item {
                 delegate: AgendaListItem {
                     // visible: agendaRepeater.populated
                     width: agendaRepeater.width
+                    // onHeightChanged: {
+                    //     if (scrollToIndexTimer.running) {
+                    //         scrollToIndexTimer.updatePosition()
+                    //     }
+                    // }
+                    
                     // Component.onCompleted: console.log(Date.now(), 'AgendaListItem.onCompleted', index)
                     // Component.onDestruction: console.log(Date.now(), 'AgendaListItem.onDestruction', index)
                 }
@@ -128,10 +134,14 @@ Item {
         id: scrollToIndexTimer
         property int itemIndex: -1
         interval: 400 // Give events time to populate
-        onTriggered: agendaScrollView.positionViewAtIndex(itemIndex)
+        onTriggered: updatePosition()
         function scrollTo(i) {
             itemIndex = i
             restart()
+        }
+        function updatePosition() {
+            // console.log('updatePosition', itemIndex, Date.now())
+            agendaScrollView.positionViewAtIndex(itemIndex)
         }
     }
 
