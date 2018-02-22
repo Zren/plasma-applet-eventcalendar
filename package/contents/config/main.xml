@@ -46,6 +46,7 @@
       <default></default>
     </entry>
     <entry name="clock_timeformat" type="string">
+      <!-- For Testing:  '&lt;font color="#888"&gt;'ddd'&lt;&gt;'d'&lt;/font&gt;' h:m:s'&lt;'AP'&gt;' -->
       <default></default>
     </entry>
     <entry name="clock_timeformat_2" type="string">
