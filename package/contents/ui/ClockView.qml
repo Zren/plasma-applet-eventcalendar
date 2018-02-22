@@ -53,61 +53,59 @@ Item {
         spacing: 0
         anchors.centerIn: parent
 
-        // Column {
-            Components.Label {
-                id: timeLabel1
+        Components.Label {
+            id: timeLabel1
 
-                font.family: clock.clock_fontfamily
-                font.weight: clock.cfg_clock_line_1_bold ? Font.Bold : Font.Normal
-                // font.pointSize: -1
-                font.pixelSize: 1024
-                minimumPixelSize: 1
+            font.family: clock.clock_fontfamily
+            font.weight: clock.cfg_clock_line_1_bold ? Font.Bold : Font.Normal
+            // font.pointSize: -1
+            font.pixelSize: 1024
+            minimumPixelSize: 1
 
-                fontSizeMode: Text.VerticalFit
-                wrapMode: Text.NoWrap
+            fontSizeMode: Text.VerticalFit
+            wrapMode: Text.NoWrap
 
-                horizontalAlignment: Text.AlignHCenter
-                verticalAlignment: Text.AlignVCenter
-                smooth: true
+            horizontalAlignment: Text.AlignHCenter
+            verticalAlignment: Text.AlignVCenter
+            smooth: true
 
-                // onWidthChanged: console.log('timeLabel1.width', width)
-                // onPaintedWidthChanged: console.log('timeLabel1.paintedWidth', paintedWidth)
+            // onWidthChanged: console.log('timeLabel1.width', width)
+            // onPaintedWidthChanged: console.log('timeLabel1.paintedWidth', paintedWidth)
 
-                property string timeFormat: {
-                    if (clock.cfg_clock_timeformat) {
-                        return clock.cfg_clock_timeformat
-                    } else {
-                        return Qt.locale().timeFormat(Locale.ShortFormat)
-                    }
+            property string timeFormat: {
+                if (clock.cfg_clock_timeformat) {
+                    return clock.cfg_clock_timeformat
+                } else {
+                    return Qt.locale().timeFormat(Locale.ShortFormat)
                 }
-                text: Qt.formatDateTime(clock.currentTime, timeFormat)
             }
-            Components.Label {
-                id: timeLabel2
-                visible: cfg_clock_line_2
+            text: Qt.formatDateTime(clock.currentTime, timeFormat)
+        }
+        Components.Label {
+            id: timeLabel2
+            visible: cfg_clock_line_2
 
-                font.family: clock.clock_fontfamily
-                font.weight: clock.cfg_clock_line_2_bold ? Font.Bold : Font.Normal
-                // font.pointSize: -1
-                font.pixelSize: 1024
-                minimumPixelSize: 1
+            font.family: clock.clock_fontfamily
+            font.weight: clock.cfg_clock_line_2_bold ? Font.Bold : Font.Normal
+            // font.pointSize: -1
+            font.pixelSize: 1024
+            minimumPixelSize: 1
 
-                fontSizeMode: Text.VerticalFit
-                wrapMode: Text.NoWrap
+            fontSizeMode: Text.VerticalFit
+            wrapMode: Text.NoWrap
 
-                horizontalAlignment: Text.AlignHCenter
-                verticalAlignment: Text.AlignVCenter
-                smooth: true
+            horizontalAlignment: Text.AlignHCenter
+            verticalAlignment: Text.AlignVCenter
+            smooth: true
 
-                property string timeFormat: {
-                    if (clock.cfg_clock_timeformat_2) {
-                        return clock.cfg_clock_timeformat_2
-                    } else {
-                        return Qt.locale().dateFormat(Locale.ShortFormat)
-                    }
+            property string timeFormat: {
+                if (clock.cfg_clock_timeformat_2) {
+                    return clock.cfg_clock_timeformat_2
+                } else {
+                    return Qt.locale().dateFormat(Locale.ShortFormat)
                 }
-                text: Qt.formatDateTime(clock.currentTime, timeFormat)
-            // }
+            }
+            text: Qt.formatDateTime(clock.currentTime, timeFormat)
         }
         
     }
