@@ -28,7 +28,7 @@ Item {
 
     width: labels.width
     Layout.minimumWidth: labels.width
-    // Layout.maximumWidth: timeLabel.width
+    // Layout.maximumWidth: timeLabel1.width
     property int verticalLineHeight: cfg_clock_maxheight > 0 ? cfg_clock_maxheight : 24
     property int verticalDoubleLineHeight: cfg_clock_maxheight > 0 ? cfg_clock_maxheight : 24*2
 
@@ -42,19 +42,20 @@ Item {
     property bool cfg_clock_line_1_bold: plasmoid.configuration.clock_line_1_bold
     property bool cfg_clock_line_2_bold: plasmoid.configuration.clock_line_2_bold
     property int cfg_clock_maxheight: plasmoid.configuration.clock_maxheight
-    
-    property int lineWidth: cfg_clock_line_2 ? Math.max(timeLabel.paintedWidth, timeLabel2.paintedWidth) : timeLabel.paintedWidth
+    property bool cfg_clock_fixedWidth: true // plasmoid.configuration.clock_fixedWidth
+
+    // property int lineWidth: cfg_clock_line_2 ? Math.max(timeLabel.paintedWidth, timeLabel2.paintedWidth) : timeLabel.paintedWidth
     property int lineHeight1: cfg_clock_line_2 ? sizehelper.height - (sizehelper.height * cfg_clock_line_2_height_ratio) : sizehelper.height
     property int lineHeight2: cfg_clock_line_2 ? sizehelper.height * cfg_clock_line_2_height_ratio : sizehelper.height
 
-    Row {
+    Column {
         id: labels
-        spacing: 10
+        spacing: 0
         anchors.centerIn: parent
 
-        Column {
+        // Column {
             Components.Label {
-                id: timeLabel
+                id: timeLabel1
 
                 font.family: clock.clock_fontfamily
                 font.weight: clock.cfg_clock_line_1_bold ? Font.Bold : Font.Normal
@@ -69,13 +70,17 @@ Item {
                 verticalAlignment: Text.AlignVCenter
                 smooth: true
 
-                text: {
+                // onWidthChanged: console.log('timeLabel1.width', width)
+                // onPaintedWidthChanged: console.log('timeLabel1.paintedWidth', paintedWidth)
+
+                property string timeFormat: {
                     if (clock.cfg_clock_timeformat) {
-                        return Qt.formatDateTime(clock.currentTime, clock.cfg_clock_timeformat);
+                        return clock.cfg_clock_timeformat
                     } else {
-                        return Qt.formatTime(clock.currentTime, Qt.locale().timeFormat(Locale.ShortFormat));
+                        return Qt.locale().timeFormat(Locale.ShortFormat)
                     }
                 }
+                text: Qt.formatDateTime(clock.currentTime, timeFormat)
             }
             Components.Label {
                 id: timeLabel2
@@ -94,14 +99,15 @@ Item {
                 verticalAlignment: Text.AlignVCenter
                 smooth: true
 
-                text: {
+                property string timeFormat: {
                     if (clock.cfg_clock_timeformat_2) {
-                        return Qt.formatDateTime(clock.currentTime, clock.cfg_clock_timeformat_2);
+                        return clock.cfg_clock_timeformat_2
                     } else {
-                        return Qt.formatDate(clock.currentTime, Qt.locale().dateFormat(Locale.ShortFormat));
+                        return Qt.locale().dateFormat(Locale.ShortFormat)
                     }
                 }
-            }
+                text: Qt.formatDateTime(clock.currentTime, timeFormat)
+            // }
         }
         
     }
@@ -109,13 +115,23 @@ Item {
     Components.Label {
         id: sizehelper
 
-        font.family: timeLabel.font.family
-        font.weight: timeLabel.font.weight
-        font.italic: timeLabel.font.italic
+        font.family: timeLabel1.font.family
+        font.weight: timeLabel1.font.weight
+        font.italic: timeLabel1.font.italic
         // font.pointSize: -1
         font.pixelSize: 1024
         height: paintedHeight
         visible: false
+    }
+
+    readonly property real fixedWidth: cfg_clock_line_2 ? Math.max(timeFormatSizer1.minWidth, timeFormatSizer2.minWidth) : timeFormatSizer1.minWidth
+    TimeFormatSizeHelper {
+        id: timeFormatSizer1
+        timeLabel: timeLabel1
+    }
+    TimeFormatSizeHelper {
+        id: timeFormatSizer2
+        timeLabel: timeLabel2
     }
 
     state: "verticalPanel"
@@ -129,12 +145,14 @@ Item {
                 height: cfg_clock_maxheight > 0 ? cfg_clock_maxheight : clock.height
                 fontSizeMode: Text.VerticalFit
             }
-            PropertyChanges { target: timeLabel
-                width: clock.lineWidth
+            PropertyChanges { target: timeLabel1
+                // width: clock.lineWidth
+                width: clock.fixedWidth
                 height: clock.lineHeight1
             }
             PropertyChanges { target: timeLabel2
-                width: clock.lineWidth
+                // width: clock.lineWidth
+                width: clock.fixedWidth
                 height: clock.lineHeight2
             }
         },
@@ -160,7 +178,7 @@ Item {
                 fontSizeMode: Text.Fit
                 // horizontalAlignment: Text.AlignHCenter
             }
-            PropertyChanges { target: timeLabel
+            PropertyChanges { target: timeLabel1
                 width: clock.width
                 height: cfg_clock_line_2 ? verticalDoubleLineHeight - (verticalDoubleLineHeight * cfg_clock_line_2_height_ratio) : verticalLineHeight
                 fontSizeMode: Text.Fit
@@ -181,7 +199,7 @@ Item {
                 height: 24
                 fontSizeMode: Text.Fit
             }
-            PropertyChanges { target: timeLabel
+            PropertyChanges { target: timeLabel1
                 width: 300
                 height: 24
                 fontSizeMode: Text.Fit
