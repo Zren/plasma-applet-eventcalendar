@@ -65,7 +65,7 @@ Item {
 	property bool testing: false
 	Component.onCompleted: {
 		if (testing) {
-			currentTime = new Date(2016, 1, 1, 23, 59, 55)
+			currentTime = new Date(2016, 1, 2, 23, 59, 55)
 			timeModel.loaded()
 		}
 	}

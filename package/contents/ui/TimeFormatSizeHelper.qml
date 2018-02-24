@@ -18,7 +18,7 @@ PlasmaComponents.Label {
 	font.italic: timeLabel.font.italic
 	wrapMode: timeLabel.wrapMode
 
-	fontSizeMode: timeLabel.fontSizeMode
+	fontSizeMode: Text.VerticalFit //timeLabel.fontSizeMode
 	// font.pointSize: -1
 	font.pixelSize: 1024
 	height: timeLabel.height
@@ -54,7 +54,7 @@ PlasmaComponents.Label {
 	// property real advanceWidthPm: 0
 	readonly property real minWidth: paintedWidth
 	function updateMinWidth() {
-		var now = new Date()
+		var now = new Date(timeModel.currentTime)
 		var date = new Date(now.getFullYear(), now.getMonth(), now.getDate(), 1, 0, 0)
 		var timeAm = Qt.formatDateTime(date, widestTimeFormat)
 		var advanceWidthAm = fontMetrics.advanceWidth(timeAm)
@@ -73,6 +73,7 @@ PlasmaComponents.Label {
 			timeFromatSizeHelper.text = timePm
 		}
 		// console.log('updateMinWidth', widestTimeFormat, advanceWidthAm, advanceWidthPm, paintedWidth, implicitWidth)
+		// console.log('\ttimeAm', timeAm, 'timePm', timePm)
 	}
 
 	Connections {
@@ -84,5 +85,9 @@ PlasmaComponents.Label {
 		target: timeLabel
 		onHeightChanged: timeFromatSizeHelper.updateMinWidth()
 		onTimeFormatChanged: timeFromatSizeHelper.updateMinWidth()
+	}
+	Connections {
+		target: timeModel
+		onDateChanged: timeFromatSizeHelper.updateMinWidth()
 	}
 }

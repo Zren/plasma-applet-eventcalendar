@@ -123,6 +123,7 @@ Item {
     }
 
     readonly property real fixedWidth: cfg_clock_line_2 ? Math.max(timeFormatSizer1.minWidth, timeFormatSizer2.minWidth) : timeFormatSizer1.minWidth
+    // onFixedWidthChanged: console.log('fixedWidth', cfg_clock_line_2, timeFormatSizer1.minWidth, timeFormatSizer2.minWidth)
     TimeFormatSizeHelper {
         id: timeFormatSizer1
         timeLabel: timeLabel1
