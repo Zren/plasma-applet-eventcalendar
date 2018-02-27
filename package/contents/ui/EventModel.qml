@@ -68,10 +68,15 @@ CalendarManager {
 		id: googleCalendarManager
 	}
 
+	PlasmaCalendarManager {
+		id: plasmaCalendarManager
+	}
+
 	Component.onCompleted: {
 		bindSignals(icalManager)
 		bindSignals(debugCalendarManager)
 		bindSignals(googleCalendarManager)
+		bindSignals(plasmaCalendarManager)
 	}
 
 	property var deferredUpdate: Timer {
@@ -85,6 +90,7 @@ CalendarManager {
 
 	onFetchAllCalendars: {
 		googleCalendarManager.fetchAll(dateMin, dateMax)
+		plasmaCalendarManager.fetchAll(dateMin, dateMax)
 		// icalManager.fetchAll(dateMin, dateMax)
 		// debugCalendarManager.importGoogleSession = true
 		// debugCalendarManager.fetchAll(dateMin, dateMax)

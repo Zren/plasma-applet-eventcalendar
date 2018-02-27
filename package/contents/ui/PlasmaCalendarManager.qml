@@ -1,0 +1,165 @@
+import QtQuick 2.0
+
+import org.kde.plasma.core 2.0 as PlasmaCore
+import org.kde.plasma.calendar 2.0 as PlasmaCalendar
+
+CalendarManager {
+	id: plasmaCalendarManager
+
+	calendarManagerId: "plasma"
+
+	// Default Colors
+	property var plasmaCalendars: [
+		{
+			"calendarId": "plasma_Holidays",
+			"backgroundColor": "" + theme.highlightColor
+		}
+	]
+	function getCalendarById(calendarId) {
+		for (var i = 0; i < plasmaCalendars.length; i++) {
+			var calendar = plasmaCalendars[i]
+			console.log('getCalendarById', calendarId, calendar.calendarId)
+			if (calendar.calendarId == calendarId) {
+				return calendar
+			}
+		}
+		return null
+	}
+
+	// https://github.com/KDE/plasma-framework/blob/master/src/declarativeimports/calendar/eventpluginsmanager.cpp
+	// Plugins are located at: /usr/lib/x86_64-linux-gnu/qt5/plugins/plasmacalendarplugins/
+	// DigitalClock's config in ~/.config/plasma-____-appletsrc is:
+	//   enabledCalendarPlugins=/usr/lib/x86_64-linux-gnu/qt5/plugins/plasmacalendarplugins/holidaysevents.so
+	// Holidays stores the region in:
+	//   ~/.config/plasma_calendar_holiday_regions
+	//     [General]
+	//     selectedRegions=us_en-us,ru_ru
+
+	// PlasmaCalendar.EventPluginsManager.model is EventPluginsManager::pluginsModel()
+	// Which is only useful for the config to select the plugins.
+	// We need EventPluginsManager::plugins() to iterate the plugins, but it isn't exposed to QML.
+	// So we need to use PlasmaCalendar.Calendar which has a DaysModel property that has a function
+	// to get a list of events for a specific day.
+
+	Component.onCompleted: {
+		PlasmaCalendar.EventPluginsManager.enabledPlugins = "/usr/lib/x86_64-linux-gnu/qt5/plugins/plasmacalendarplugins/holidaysevents.so"
+	}
+
+	// From: kdeclarative/.../MonthView.qml
+	PlasmaCalendar.Calendar {
+		id: calendarBackend
+
+		days: 7
+		weeks: 6
+		firstDayOfWeek: Qt.locale().firstDayOfWeek
+		today: timeModel.currentTime
+
+		Component.onCompleted: {
+			//daysModel.connect
+			daysModel.setPluginsManager(PlasmaCalendar.EventPluginsManager)
+		}
+	}
+
+	function dateString(d) {
+		return d.toISOString().substr(0, 10)
+	}
+	function parseEventsForDate(dayEvents) {
+		var items = []
+		for (var i = 0; i < dayEvents.length; i++) {
+			var dayItem = dayEvents[i]
+
+			var startDateTime, endDateTime;
+			var start = {}
+			var end = {}
+			if (dayItem.isAllDay) {
+				start.date = dateString(dayItem.startDateTime) // 2018-01-31
+				startDateTime = new Date(dayItem.startDateTime)
+				// Google Calendar has the event start at midnight, and end at midnight the next day
+				// Plasma has the date end on the same day, so we need to add 1 day to it so
+				// the rest of our code stack works.
+				var endDate = dateString(dayItem.endDateTime) // 2018-01-31
+				endDateTime = new Date(dayItem.endDateTime)
+				endDateTime.setDate(endDateTime.getDate() + 1)
+				end.date = dateString(endDateTime)
+			} else {
+				start.dateTime = dayItem.startDateTime
+				end.dateTime = dayItem.endDateTime
+				startDateTime = new Date(start.dateTime)
+				endDateTime = new Date(end.dateTime)
+			}
+			var calendarId = calendarManagerId + "_" + dayItem.eventType // Eg: "plasma_Holidays"
+			var eventId = calendarId + "_" + startDateTime.getTime() + "_" + endDateTime.getTime()
+
+			var event = {
+				"id": eventId,
+				"calendarId": calendarId,
+				"htmlLink": "",
+				"summary": dayItem.title,
+				"start": start,
+				"end": end,
+			}
+			items.push(event)
+		}
+		return items
+	}
+
+	function filterEventsIntoCalendars() {
+
+	}
+
+	function getEventsForDate(date) {
+		var dayEvents = calendarBackend.daysModel.eventsForDate(new Date())
+		return parseEventsForDate(dayEvents)
+	}
+
+	function getEventsForDuration(dateMin, dateMax) {
+		var items = []
+		for (var day = new Date(dateMin); day < dateMax; day.setDate(day.getDate() + 1)) {
+			var dayEvents = calendarBackend.daysModel.eventsForDate(day)
+			logger.debugJSON(day, dayEvents)
+			items = items.concat(parseEventsForDate(dayEvents))
+		}
+		return items
+	}
+
+
+
+	onFetchAllCalendars: {
+		var allEvents = getEventsForDuration(dateMin, dateMax)
+
+		// Filter events into seperate calendars
+		var calendarIdList = []
+		var calendars = {}
+		for (var i = 0; i < allEvents.length; i++) {
+			var event = allEvents[i]
+			if (calendarIdList.indexOf(event.calendarId) == -1) {
+				calendarIdList.push(event.calendarId)
+				calendars[event.calendarId] = []
+			}
+			calendars[event.calendarId].push(event)
+		}
+		for (var i = 0; i < calendarIdList.length; i++) {
+			var calendarId = calendarIdList[i]
+			var calendarEvents = calendars[calendarId]
+			setCalendarData(calendarId, {
+				"items": calendarEvents
+			})
+		}
+	}
+
+	onCalendarParsing: {
+		var calendar = getCalendarById(calendarId)
+		parseEventList(calendar, data.items)
+	}
+
+	function parseEvent(calendar, event) {
+		event.backgroundColor = calendar.backgroundColor
+		event.canEdit = false
+	}
+
+	function parseEventList(calendar, eventList) {
+		eventList.forEach(function(event) {
+			parseEvent(calendar, event)
+		})
+	}
+}
