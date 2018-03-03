@@ -1,7 +1,7 @@
 import QtQuick 2.0
 import org.kde.plasma.core 2.0 as PlasmaCore
 
-import "lib"
+import "../lib"
 
 CalendarManager {
 	id: icalManager

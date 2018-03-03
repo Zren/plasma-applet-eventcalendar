@@ -1,8 +1,8 @@
 import QtQuick 2.0
 
-import "utils.js" as Utils
-import "shared.js" as Shared
-import "../code/ColorIdMap.js" as ColorIdMap
+import "../utils.js" as Utils
+import "../shared.js" as Shared
+import "../../code/ColorIdMap.js" as ColorIdMap
 
 CalendarManager {
 	id: googleCalendarManager

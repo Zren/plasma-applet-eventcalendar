@@ -1,7 +1,7 @@
 import QtQuick 2.0
 
-import "utils.js" as Utils
-import "../code/DebugFixtures.js" as DebugFixtures
+import "../utils.js" as Utils
+import "../../code/DebugFixtures.js" as DebugFixtures
 
 CalendarManager {
 	id: debugCalendarManager
