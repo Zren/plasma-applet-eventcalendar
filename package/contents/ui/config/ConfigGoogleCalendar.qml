@@ -170,40 +170,6 @@ ConfigPage {
         }
     }
 
-    HeaderText {
-        text: i18n("Misc")
-    }
-    ColumnLayout {
-
-        RowLayout {
-            Label {
-                text: i18n("Refresh events every: ")
-            }
-            
-            SpinBox {
-                id: events_pollinterval
-
-                suffix: i18ncp("Polling interval in minutes", "min", "min", value)
-                minimumValue: 5
-                maximumValue: 90
-            }
-        }
-    }
-
-    HeaderText {
-        text: i18n("Notifications")
-    }
-
-    ConfigSection {
-        ConfigNotification {
-            label: i18n("Event Starting")
-            notificationEnabledKey: 'eventStartingNotificationEnabled'
-            sfxEnabledKey: 'eventStartingSfxEnabled'
-            sfxPathKey: 'eventStartingSfxPath'
-            sfxPathDefaultValue: '/usr/share/sounds/KDE-Im-Nudge.ogg'
-        }
-    }
-
     Component.onCompleted: {
         if (!session.accessToken) {
             session.generateUserCodeAndPoll()
