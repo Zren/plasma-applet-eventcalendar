@@ -148,6 +148,7 @@ Item {
             target: plasmoid.configuration
             onAgenda_breakup_multiday_eventsChanged: { updateUI() }
             onCalendar_id_listChanged: { updateEvents() }
+            onEnabledCalendarPluginsChanged: { updateEvents() }
             onAccess_tokenChanged: { updateEvents() }
             onWeather_app_idChanged: { updateWeather(true) }
             onWeather_city_idChanged: { updateWeather(true) }
