@@ -18,7 +18,7 @@ CalendarManager {
 	function getCalendarById(calendarId) {
 		for (var i = 0; i < plasmaCalendars.length; i++) {
 			var calendar = plasmaCalendars[i]
-			console.log('getCalendarById', calendarId, calendar.calendarId)
+			// console.log('getCalendarById', calendarId, calendar.calendarId)
 			if (calendar.calendarId == calendarId) {
 				return calendar
 			}
@@ -67,6 +67,28 @@ CalendarManager {
 		}
 	}
 
+	readonly property string translatedHolidaysType: i18ndc("libplasma5", "Agenda listview section title", "Holidays")
+	readonly property string translatedEventsType: i18ndc("libplasma5", "Agenda listview section title", "Events")
+	readonly property string translatedTodoType: i18ndc("libplasma5", "Agenda listview section title", "Todo")
+	readonly property string translatedOtherType: i18ndc("libplasma5", "Means 'Other calendar items'", "Other")
+	function parseCalendarId(dayItem) {
+		// dayItem.eventType is translated, but is the only way to tell which plugin it belongs to without
+		// creating a seperate PlasmaCalendar.EventPluginsManager for each plugin (assuming it's not a singleton).
+		// https://github.com/KDE/plasma-framework/blob/master/src/declarativeimports/calendar/eventdatadecorator.cpp#L60
+		// plasma-framework uses the "libplasma5" translation domain.
+		if (dayItem.eventType == translatedHolidaysType) {
+			return calendarManagerId + "_Holidays"
+		} else if (dayItem.eventType == translatedEventsType) {
+			return calendarManagerId + "_Events"
+		} else if (dayItem.eventType == translatedTodoType) {
+			return calendarManagerId + "_Todo"
+		} else if (dayItem.eventType == translatedOtherType) {
+			return calendarManagerId + "_Other"
+		} else {
+			return calendarManagerId + "_NotImplemented"
+		}
+	}
+
 	function dateString(d) {
 		return d.toISOString().substr(0, 10)
 	}
@@ -74,6 +96,7 @@ CalendarManager {
 		var items = []
 		for (var i = 0; i < dayEvents.length; i++) {
 			var dayItem = dayEvents[i]
+			// logger.log(JSON.stringify(dayItem, null, '\t'))
 
 			var startDateTime, endDateTime;
 			var start = {}
@@ -94,7 +117,7 @@ CalendarManager {
 				startDateTime = new Date(start.dateTime)
 				endDateTime = new Date(end.dateTime)
 			}
-			var calendarId = calendarManagerId + "_" + dayItem.eventType // Eg: "plasma_Holidays"
+			var calendarId = parseCalendarId(dayItem)
 			var eventId = calendarId + "_" + startDateTime.getTime() + "_" + endDateTime.getTime()
 
 			var event = {
