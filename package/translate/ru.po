@@ -35,7 +35,7 @@ msgstr "Обзор дня"
 
 #: ../contents/config/config.qml:34
 msgid "Events"
-msgstr ""
+msgstr "События"
 
 #: ../contents/config/config.qml:39 ../contents/ui/config/ConfigEvents.qml:21
 msgid "ICalendar (.ics)"
@@ -126,7 +126,7 @@ msgstr "Обзор дня слева (две колонки)"
 
 #: ../contents/ui/config/ConfigAgenda.qml:53
 msgid "Font Size:"
-msgstr ""
+msgstr "Размер шрифта:"
 
 #: ../contents/ui/config/ConfigAgenda.qml:54 ../contents/ui/config/ConfigGeneral.qml:206
 msgid "px"
@@ -134,7 +134,7 @@ msgstr "px"
 
 #: ../contents/ui/config/ConfigAgenda.qml:55
 msgid " (0px = <b>System Settings > Fonts > General</b>)"
-msgstr ""
+msgstr " (0px = <b>Параметры системы > Шрифты > Главная</b>)"
 
 #: ../contents/ui/config/ConfigAgenda.qml:64
 msgid "Weather Icon"
@@ -302,11 +302,11 @@ msgstr "Жирный шрифт"
 
 #: ../contents/ui/config/ConfigEvents.qml:16
 msgid "Event Calendar Plugins"
-msgstr ""
+msgstr "Плагины календаря событий"
 
 #: ../contents/ui/config/ConfigEvents.qml:35
 msgid "Plasma Calendar Plugins"
-msgstr ""
+msgstr "Плагины календаря Plasma"
 
 #: ../contents/ui/config/ConfigEvents.qml:63 ../contents/ui/config/ConfigGeneral.qml:441
 msgid "Misc"
