@@ -1,3 +1,14 @@
+## v54 - March 16 2018
+
+* Refactor event badges so that we don't create+bind every style.
+* Don't generate calendar tooltip text until hovered over.
+* Make sure agenda follows system settings font size.
+* Support custom font size in the agenda.
+* Update github install and add git master testing instructions.
+* Copy the fixed width code from digitalclock. Modified to work with event calendar's ability to use Rich Text formatting.
+* Support Plasma's event plugin (KHolidays is enabled by default but you still need to select your region in the config).
+* Russian translations by @aliger14.
+
 ## v53 - Febuary 2 2018
 
 * Fix scrolling to current date after all events have loaded.
