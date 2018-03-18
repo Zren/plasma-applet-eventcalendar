@@ -18,9 +18,9 @@ PlasmaComponents.Label {
 	font.italic: timeLabel.font.italic
 	wrapMode: timeLabel.wrapMode
 
-	fontSizeMode: Text.VerticalFit //timeLabel.fontSizeMode
+	// fontSizeMode: Text.VerticalFit //timeLabel.fontSizeMode
 	// font.pointSize: -1
-	font.pixelSize: 1024
+	font.pixelSize: timeLabel.height
 	height: timeLabel.height
 
 	FontMetrics {

@@ -45,12 +45,14 @@ Item {
     property bool cfg_clock_fixedWidth: true // plasmoid.configuration.clock_fixedWidth
 
     // property int lineWidth: cfg_clock_line_2 ? Math.max(timeLabel.paintedWidth, timeLabel2.paintedWidth) : timeLabel.paintedWidth
-    property int lineHeight1: cfg_clock_line_2 ? sizehelper.height - (sizehelper.height * cfg_clock_line_2_height_ratio) : sizehelper.height
-    property int lineHeight2: cfg_clock_line_2 ? sizehelper.height * cfg_clock_line_2_height_ratio : sizehelper.height
+    property int lineHeight1: cfg_clock_line_2 ? sizehelper.availableHeight - (sizehelper.availableHeight * cfg_clock_line_2_height_ratio) : sizehelper.height
+    property int lineHeight2: cfg_clock_line_2 ? sizehelper.availableHeight * cfg_clock_line_2_height_ratio : sizehelper.height
+
+    property int lineSpacing: sizehelper.height * plasmoid.configuration.clock_lineSpacingRatio
 
     Column {
         id: labels
-        spacing: 0
+        spacing: clock.lineSpacing
         anchors.centerIn: parent
 
         Components.Label {
@@ -59,10 +61,10 @@ Item {
             font.family: clock.clock_fontfamily
             font.weight: clock.cfg_clock_line_1_bold ? Font.Bold : Font.Normal
             // font.pointSize: -1
-            font.pixelSize: 1024
+            font.pixelSize: timeFormatSizer1.height
             minimumPixelSize: 1
 
-            fontSizeMode: Text.VerticalFit
+            // fontSizeMode: Text.VerticalFit
             wrapMode: Text.NoWrap
 
             horizontalAlignment: Text.AlignHCenter
@@ -80,6 +82,9 @@ Item {
                 }
             }
             text: Qt.formatDateTime(clock.currentTime, timeFormat)
+
+            Rectangle { border.color: "#f00"; anchors.fill: parent; color: "transparent"; border.width: 1; }
+            Rectangle { border.color: "#ff0"; anchors.centerIn: parent; color: "transparent"; border.width: 1; width: parent.paintedWidth; height: parent.paintedHeight; }
         }
         Components.Label {
             id: timeLabel2
@@ -88,10 +93,10 @@ Item {
             font.family: clock.clock_fontfamily
             font.weight: clock.cfg_clock_line_2_bold ? Font.Bold : Font.Normal
             // font.pointSize: -1
-            font.pixelSize: 1024
+            font.pixelSize: timeFormatSizer2.height
             minimumPixelSize: 1
 
-            fontSizeMode: Text.VerticalFit
+            // fontSizeMode: Text.VerticalFit
             wrapMode: Text.NoWrap
 
             horizontalAlignment: Text.AlignHCenter
@@ -106,6 +111,9 @@ Item {
                 }
             }
             text: Qt.formatDateTime(clock.currentTime, timeFormat)
+
+            Rectangle { border.color: "#f00"; anchors.fill: parent; color: "transparent"; border.width: 1; }
+            Rectangle { border.color: "#ff0"; anchors.centerIn: parent; color: "transparent"; border.width: 1; width: parent.paintedWidth; height: parent.paintedHeight; }
         }
         
     }
@@ -120,6 +128,7 @@ Item {
         font.pixelSize: 1024
         height: paintedHeight
         visible: false
+        readonly property int availableHeight: height - labels.spacing
     }
 
     readonly property real fixedWidth: cfg_clock_line_2 ? Math.max(timeFormatSizer1.minWidth, timeFormatSizer2.minWidth) : timeFormatSizer1.minWidth
@@ -141,7 +150,17 @@ Item {
 
             PropertyChanges { target: sizehelper
                 width: sizehelper.paintedWidth
-                height: cfg_clock_maxheight > 0 ? cfg_clock_maxheight : clock.height
+                height: {
+                    if (cfg_clock_maxheight > 0) {
+                        return cfg_clock_maxheight
+                    } else {
+                        if (clock.cfg_clock_line_2) {
+                            return clock.height
+                        } else {
+                            return clock.height * 0.56
+                        }
+                    }
+                }
                 fontSizeMode: Text.VerticalFit
             }
             PropertyChanges { target: timeLabel1
@@ -168,7 +187,7 @@ Item {
                 // Layout.fillHeight: false
                 // Layout.fillWidth: true
                 Layout.maximumHeight: cfg_clock_line_2 ? verticalDoubleLineHeight : verticalLineHeight
-                Layout.minimumHeight: Layout.maximumHeight
+                Layout.minimumHeight: 0 // Layout.maximumHeight
             }
 
             PropertyChanges { target: sizehelper
@@ -177,15 +196,23 @@ Item {
                 fontSizeMode: Text.Fit
                 // horizontalAlignment: Text.AlignHCenter
             }
+            PropertyChanges { target: timeFormatSizer1
+                width: clock.width
+                fontSizeMode: Text.HorizontalFit
+            }
+            PropertyChanges { target: timeFormatSizer2
+                width: clock.width
+                fontSizeMode: Text.HorizontalFit
+            }
             PropertyChanges { target: timeLabel1
                 width: clock.width
                 height: cfg_clock_line_2 ? verticalDoubleLineHeight - (verticalDoubleLineHeight * cfg_clock_line_2_height_ratio) : verticalLineHeight
-                fontSizeMode: Text.Fit
+                // fontSizeMode: Text.HorizontalFit
             }
             PropertyChanges { target: timeLabel2
                 width: clock.width
                 height: cfg_clock_line_2 ? verticalDoubleLineHeight * cfg_clock_line_2_height_ratio : 0
-                fontSizeMode: Text.Fit
+                // fontSizeMode: Text.HorizontalFit
             }
         },
 

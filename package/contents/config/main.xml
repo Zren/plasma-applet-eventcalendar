@@ -67,6 +67,9 @@
     <entry name="clock_maxheight" type="int">
       <default>0</default>
     </entry>
+    <entry name="clock_lineSpacingRatio" type="double">
+      <default>0</default>
+    </entry>
     <entry name="clock_mousewheel" type="string">
       <default>run_commands</default>
     </entry>

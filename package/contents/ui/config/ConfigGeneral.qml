@@ -24,6 +24,7 @@ ConfigPage {
     property alias cfg_clock_timeformat_2: clock_timeformat_2.text
     property alias cfg_clock_line_2: clock_line_2.checked
     property alias cfg_clock_line_2_height_ratio: clock_line_2_height_ratio.value
+    property alias cfg_clock_lineSpacingRatio: clock_lineSpacingRatio.value
     property alias cfg_clock_line_1_bold: clock_line_1_bold.checked
     property alias cfg_clock_line_2_bold: clock_line_2_bold.checked
     property string cfg_clock_mousewheel: "runcommand"
@@ -369,6 +370,27 @@ ConfigPage {
                 }
                 Label {
                     text: Math.floor(cfg_clock_line_2_height_ratio * 100) + '%'
+                }
+            }
+
+            RowLayout {
+                Layout.fillWidth: true
+                Text { width: indentWidth } // indent
+                Label {
+                    text: i18n("Line Spacing:")
+                }
+                Slider {
+                    id: clock_lineSpacingRatio
+                    minimumValue: 0.0
+                    maximumValue: 0.5
+                    stepSize: 0.01
+                    value: 0.0
+                    Layout.fillWidth: true
+                    // orientation: Qt.Vertical
+                    onValueChanged: plasmoid.configuration.clock_lineSpacingRatio = value
+                }
+                Label {
+                    text: Math.floor(cfg_clock_lineSpacingRatio * 100) + '%'
                 }
             }
         }
