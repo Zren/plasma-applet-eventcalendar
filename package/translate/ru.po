@@ -122,7 +122,7 @@ msgstr "Обзор дня над календарём (в одну колонк�
 
 #: ../contents/ui/config/ConfigAgenda.qml:42
 msgid "Agenda to the left (Two Columns)"
-msgstr "Обзор дня слева (две колонки)"
+msgstr "Обзор дня слева (в две колонки)"
 
 #: ../contents/ui/config/ConfigAgenda.qml:53
 msgid "Font Size:"
@@ -162,7 +162,7 @@ msgstr "Справа"
 
 #: ../contents/ui/config/ConfigAgenda.qml:109
 msgid "Click Weather:"
-msgstr "Щелчок по значку погоды:"
+msgstr "Клик по значку погоды:"
 
 #: ../contents/ui/config/ConfigAgenda.qml:112
 msgid "Open City Forecast In Browser"
@@ -170,7 +170,7 @@ msgstr "Открыть прогноз места в браузере"
 
 #: ../contents/ui/config/ConfigAgenda.qml:121 ../contents/ui/config/ConfigCalendar.qml:27
 msgid "Click Date:"
-msgstr "Одинарный щелчок по дате:"
+msgstr "Клик по дате:"
 
 #: ../contents/ui/config/ConfigAgenda.qml:124 ../contents/ui/config/ConfigCalendar.qml:42
 msgid "Open New Event In Browser"
@@ -182,11 +182,11 @@ msgstr "Открыть форму нового события"
 
 #: ../contents/ui/config/ConfigAgenda.qml:138
 msgid "Click Event:"
-msgstr "Нажмите Событие:"
+msgstr "Клик по событию:"
 
 #: ../contents/ui/config/ConfigAgenda.qml:141
 msgid "Open Event In Browser"
-msgstr "Открыть Событие в браузере"
+msgstr "Открыть событие в браузере"
 
 #: ../contents/ui/config/ConfigAgenda.qml:151
 msgid "Show multi-day events:"
@@ -234,11 +234,11 @@ msgstr "Показать календарь"
 
 #: ../contents/ui/config/ConfigCalendar.qml:30
 msgid "Scroll to event in Agenda"
-msgstr "Выделите событие в обзоре дня"
+msgstr "Выделить событие в обзоре дня"
 
 #: ../contents/ui/config/ConfigCalendar.qml:39
 msgid "DoubleClick Date:"
-msgstr "Двойной щелчок по дате:"
+msgstr "Двойной клик по дате:"
 
 #: ../contents/ui/config/ConfigCalendar.qml:50 ../contents/ui/config/ConfigWeather.qml:120
 msgid "Style"
@@ -342,7 +342,7 @@ msgstr "Виджеты"
 
 #: ../contents/ui/config/ConfigGeneral.qml:104
 msgid "Show/Hide widgets above the calendar. Toggle Agenda/Calendar on their respective tabs."
-msgstr "Показать/скрыть виджеты над календарем. Переключить обзор дня /календарь на соответствующие вкладки."
+msgstr "Показать/скрыть виджеты над календарем. Переключить обзор дня/календарь на соответствующие вкладки."
 
 #: ../contents/ui/config/ConfigGeneral.qml:111
 msgid "Meteogram"
@@ -387,7 +387,7 @@ msgstr "Default"
 
 #: ../contents/ui/config/ConfigGeneral.qml:200
 msgid "Fixed Clock Height: "
-msgstr "Фиксированная высота часов: "
+msgstr "Выставить высоту часов: "
 
 #: ../contents/ui/config/ConfigGeneral.qml:212
 msgid " (0px = scale to fit)"
@@ -419,7 +419,7 @@ msgstr "Колесо мыши"
 
 #: ../contents/ui/config/ConfigGeneral.qml:389
 msgid "Run Commands"
-msgstr "Команда запуска"
+msgstr "Команды запуска"
 
 #: ../contents/ui/config/ConfigGeneral.qml:398
 msgid "Scoll Up:"
@@ -451,7 +451,7 @@ msgid ""
 "This will log sensitive information to ~/.xsession-errors"
 msgstr ""
 "Включить отладку\n"
-"Логи шибок будут записываться в ~/.xsession-errors"
+"Логи ошибок будут записываться в ~/.xsession-errors"
 
 #: ../contents/ui/config/ConfigGoogleCalendar.qml:58
 msgid "Login"
@@ -606,7 +606,7 @@ msgstr "Выбрать город"
 
 #: ../contents/ui/config/OpenWeatherMapCityDialog.qml:65
 msgid "Fetched from <a href=\"http://openweathermap.org/help/city_list.txt\">http://openweathermap.org/help/city_list.txt</a>"
-msgstr "Получить из <a href=\"http://openweathermap.org/help/city_list.txt\">http://openweathermap.org/help/city_list.txt</a>"
+msgstr "Выбрать из <a href=\"http://openweathermap.org/help/city_list.txt\">http://openweathermap.org/help/city_list.txt</a>"
 
 #: ../contents/ui/config/OpenWeatherMapCityDialog.qml:71 ../contents/ui/config/WeatherCanadaCityDialog.qml:91
 msgid "Search"
@@ -630,7 +630,7 @@ msgstr "Открыть ссылку"
 
 #: ../contents/ui/config/WeatherCanadaCityDialog.qml:68
 msgid "Fetched from <a href=\"https://weather.gc.ca/canada_e.html\">https://weather.gc.ca/canada_e.html</a>"
-msgstr "Получить из <a href=\"https://weather.gc.ca/canada_e.html\">https://weather.gc.ca/canada_e.html</a>"
+msgstr "Выбрать из <a href=\"https://weather.gc.ca/canada_e.html\">https://weather.gc.ca/canada_e.html</a>"
 
 #: ../contents/ui/lib/AppletVersion.qml:41
 msgid "<b>Version:</b> %1"

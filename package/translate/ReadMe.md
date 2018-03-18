@@ -39,5 +39,5 @@ Or if you know how to make a pull request
 |es	|146/177	|82%	|
 |fr	|156/177	|88%	|
 |pt_BR	|153/177	|86%	|
-|ru	|177/177	|100%	|
+|ru	|172/177	|97%	|
 |uk	|162/177	|91%	|

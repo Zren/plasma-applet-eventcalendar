@@ -143,6 +143,15 @@ CalendarManager {
 	}
 
 	function getEventsForDuration(dateMin, dateMax) {
+		var numDays = 0
+		for (var day = new Date(dateMin); day < dateMax; day.setDate(day.getDate() + 1)) {
+			numDays += 1;
+		}
+		// CalendarBackend needs the actual month we're looking at. We can't arbitrarily grab events for random days.
+		var middleDay = new Date(dateMin)
+		middleDay.setDate(middleDay.getDate() + Math.floor(numDays/2))
+		calendarBackend.displayedDate = middleDay
+
 		var items = []
 		for (var day = new Date(dateMin); day < dateMax; day.setDate(day.getDate() + 1)) {
 			var dayEvents = calendarBackend.daysModel.eventsForDate(day)
