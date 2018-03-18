@@ -138,7 +138,7 @@ CalendarManager {
 	}
 
 	function getEventsForDate(date) {
-		var dayEvents = calendarBackend.daysModel.eventsForDate(new Date())
+		var dayEvents = calendarBackend.daysModel.eventsForDate(date)
 		return parseEventsForDate(dayEvents)
 	}
 
