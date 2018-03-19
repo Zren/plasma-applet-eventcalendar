@@ -127,6 +127,7 @@ CalendarManager {
 				"summary": dayItem.title,
 				"start": start,
 				"end": end,
+				"backgroundColor": dayItem.eventColor || theme.highlightColor,
 			}
 			items.push(event)
 		}
@@ -224,7 +225,7 @@ CalendarManager {
 	}
 
 	function parseEvent(calendar, event) {
-		event.backgroundColor = calendar.backgroundColor
+		// event.backgroundColor = calendar.backgroundColor
 		event.canEdit = false
 	}
 
