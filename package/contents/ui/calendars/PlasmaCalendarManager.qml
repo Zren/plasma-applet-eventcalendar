@@ -120,6 +120,9 @@ CalendarManager {
 			var calendarId = parseCalendarId(dayItem)
 			var eventId = calendarId + "_" + startDateTime.getTime() + "_" + endDateTime.getTime()
 
+			var eventColor = dayItem.eventColor || theme.highlightColor
+			eventColor = "" + eventColor // Cast to string, as dayItem.eventColor is a QColor which JSON treats as an object
+
 			var event = {
 				"id": eventId,
 				"calendarId": calendarId,
@@ -127,7 +130,7 @@ CalendarManager {
 				"summary": dayItem.title,
 				"start": start,
 				"end": end,
-				"backgroundColor": dayItem.eventColor || theme.highlightColor,
+				"backgroundColor": eventColor,
 			}
 			items.push(event)
 		}
