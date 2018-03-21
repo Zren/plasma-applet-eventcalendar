@@ -1,3 +1,9 @@
+## v55 - March 21 2018
+
+* Fix KHolidays/PIM events not appearing when viewing other months
+* Filter duplicates caused by multi-day events in Plasma plugins (KHolidays/PIM).
+* Use PIM event colors.
+
 ## v54 - March 16 2018
 
 * Refactor event badges so that we don't create+bind every style.
