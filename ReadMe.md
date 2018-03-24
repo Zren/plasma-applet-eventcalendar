@@ -2,7 +2,7 @@
 
 https://store.kde.org/p/998901/
 
-Plasmoid for a calendar+agenda with weather that synchs to Google Calendar.
+Plasmoid for a calendar+agenda with weather that syncs to Google Calendar.
 
 ## Screenshots
 
@@ -36,7 +36,7 @@ Some awesome users seemed to have packaged this applet under `plasma5-applets-ev
 * Arch: https://aur.archlinux.org/packages/plasma5-applets-eventcalendar/
 * Chakra: https://chakralinux.org/ccr/packages.php?ID=7656
 
-There's also a russian who's patched the widget with russian translations.
+(Old) There's also a russian who's patched the widget with russian translations. It's out of date though, and we now bundle russian translations with the rest.
 
 * ABF: https://abf.rosalinux.ru/victorr2007/plasma5-applet-eventcalendar
 
