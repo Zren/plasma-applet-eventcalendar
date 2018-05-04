@@ -1,25 +1,103 @@
 #!/bin/bash
-# Version 7
+# Version 8
 
+startDir=$PWD
+
+
+### Translations
 if [ -d "package/translate" ]; then
 	echo "[build] translate dir found, running merge."
 	(cd package/translate && sh ./merge && sh ./build)
 	if [ "$(git diff --stat .)" != "" ]; then
 		echo "[build] Changed detected. Cancelling build."
 		git diff --stat .
-		exit
+		# exit
 	fi
 fi
 
-plasmoidName=$(kreadconfig5 --file="$PWD/package/metadata.desktop" --group="Desktop Entry" --key="X-KDE-PluginInfo-Name")
-plasmoidName="${plasmoidName##*.}" # Strip namespace (Eg: "org.kde.plasma.")
-plasmoidVersion=$(kreadconfig5 --file="$PWD/package/metadata.desktop" --group="Desktop Entry" --key="X-KDE-PluginInfo-Version")
+
+### Variables
+packageNamespace=$(kreadconfig5 --file="$PWD/package/metadata.desktop" --group="Desktop Entry" --key="X-KDE-PluginInfo-Name")
+packageName="${packageNamespace##*.}" # Strip namespace (Eg: "org.kde.plasma.")
+packageVersion=$(kreadconfig5 --file="$PWD/package/metadata.desktop" --group="Desktop Entry" --key="X-KDE-PluginInfo-Version")
+packageAuthor=$(kreadconfig5 --file="$PWD/package/metadata.desktop" --group="Desktop Entry" --key="X-KDE-PluginInfo-Author")
+packageAuthorEmail=$(kreadconfig5 --file="$PWD/package/metadata.desktop" --group="Desktop Entry" --key="X-KDE-PluginInfo-Email")
+packageWebsite=$(kreadconfig5 --file="$PWD/package/metadata.desktop" --group="Desktop Entry" --key="X-KDE-PluginInfo-Website")
+packageComment=$(kreadconfig5 --file="$PWD/package/metadata.desktop" --group="Desktop Entry" --key="Comment")
+
+
+### *.plasmoid
 filenameTag="-plasma5.6"
-rm ${plasmoidName}-v*.plasmoid
-cd package
-filename=${plasmoidName}-v${plasmoidVersion}${filenameTag}.plasmoid
-zip -r $filename *
-mv $filename ../$filename
-cd ..
-echo "md5: $(md5sum $filename | awk '{ print $1 }')"
-echo "sha256: $(sha256sum $filename | awk '{ print $1 }')"
+filename="${packageName}-v${packageVersion}${filenameTag}.plasmoid"
+rm ${packageName}-v*.plasmoid # Cleanup
+(cd package \
+	&& zip -r $filename * \
+	&& mv $filename $startDir/$filename \
+)
+cd $startDir
+echo "[plasmoid] md5: $(md5sum $filename | awk '{ print $1 }')"
+echo "[plasmoid] sha256: $(sha256sum $filename | awk '{ print $1 }')"
+
+
+
+### *.deb
+debPackageName="plasma5-applets-${packageName}"
+debDirName="${debPackageName}_v${packageVersion}"
+debRootDir=./dist/deb/$debDirName
+debPackageInstallDir="/usr/share/plasma/plasmoids"
+debPackageRootDir=$debRootDir/$debPackageInstallDir/$packageNamespace
+
+echo "[deb] Making '$debDirName.deb'"
+mkdir -p $debRootDir
+
+echo "[deb] Cleaning up deb dir"
+rm -r $debRootDir/*
+
+# ./DEBIAN/control
+cd $debRootDir
+mkdir -p DEBIAN
+cd DEBIAN
+echo "Package: ${debPackageName}
+Version: ${packageVersion}
+Architecture: all
+Maintainer: ${packageAuthor} <${packageAuthorEmail}>
+Depends: plasma-framework
+Section: kde
+Homepage: ${packageWebsite}
+Description: ${packageComment}
+" > ./control
+
+# ./usr/share/...
+cd $startDir
+mkdir -p $debPackageRootDir
+(cd $debPackageRootDir \
+	&& echo "[deb] Copying package contents" \
+	&& cp -r $startDir/package/* . \
+)
+cd $startDir
+
+# .deb
+cd ./dist/deb
+dpkg-deb --build ./$debDirName .
+
+mv ./$debDirName/DEBIAN ./$debDirName/debian
+cd ./$debDirName/debian
+
+
+echo "${debPackageName} (${packageVersion}) xenial; urgency=medium
+
+  * v${packageVersion}
+
+ -- ${packageAuthor} <${packageAuthorEmail}>  $(date +"%a, %d %b %Y %H:%M:%S %z")
+" > ./changelog
+
+
+echo "#!/usr/bin/make -f
+
+%:
+    dh $@
+" > ./rules
+
+
+cd $startDir
+
