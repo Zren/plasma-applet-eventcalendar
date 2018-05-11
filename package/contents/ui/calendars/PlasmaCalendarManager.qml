@@ -90,7 +90,7 @@ CalendarManager {
 	}
 
 	function dateString(d) {
-		return d.toISOString().substr(0, 10)
+		return Qt.formatDateTime(d, 'yyyy-MM-dd')
 	}
 	function parseEventsForDate(dayEvents) {
 		var items = []
@@ -98,24 +98,23 @@ CalendarManager {
 			var dayItem = dayEvents[i]
 			// logger.log(JSON.stringify(dayItem, null, '\t'))
 
-			var startDateTime, endDateTime;
 			var start = {}
 			var end = {}
+			var startDateTime = new Date(dayItem.startDateTime)
+			var endDateTime = new Date(dayItem.endDateTime)
+
 			if (dayItem.isAllDay) {
 				start.date = dateString(dayItem.startDateTime) // 2018-01-31
-				startDateTime = new Date(dayItem.startDateTime)
 				// Google Calendar has the event start at midnight, and end at midnight the next day
 				// Plasma has the date end on the same day, so we need to add 1 day to it so
 				// the rest of our code stack works.
-				var endDate = dateString(dayItem.endDateTime) // 2018-01-31
-				endDateTime = new Date(dayItem.endDateTime)
-				endDateTime.setDate(endDateTime.getDate() + 1)
-				end.date = dateString(endDateTime)
+				var endDate = new Date(dayItem.endDateTime)
+				endDate.setDate(endDate.getDate() + 1)
+				end.date = dateString(endDate) // 2018-01-31
+				endDateTime = new Date(end.date)
 			} else {
-				start.dateTime = dayItem.startDateTime
-				end.dateTime = dayItem.endDateTime
-				startDateTime = new Date(start.dateTime)
-				endDateTime = new Date(end.dateTime)
+				start.dateTime = startDateTime
+				end.dateTime = endDateTime
 			}
 			var calendarId = parseCalendarId(dayItem)
 			var eventId = calendarId + "_" + startDateTime.getTime() + "_" + endDateTime.getTime()
@@ -157,11 +156,19 @@ CalendarManager {
 		calendarBackend.displayedDate = middleDay
 
 		var items = []
-		for (var day = new Date(dateMin); day < dateMax; day.setDate(day.getDate() + 1)) {
+		
+		// 2018-05-24T00:00:00.000Z
+		var dateMinUtcStr = dateString(dateMin) + 'T00:00:00.000Z'
+		var dateMinUtc = new Date(dateMinUtcStr)
+		// logger.debug('getEventsForDuration.dateMinUtcStr', dateMinUtcStr)
+		// logger.debug('getEventsForDuration.dateMinUtc', dateMinUtc)
+
+		for (var day = new Date(dateMinUtc); day < dateMax; day.setDate(day.getDate() + 1)) {
 			var dayEvents = calendarBackend.daysModel.eventsForDate(day)
 			logger.debugJSON(day, dayEvents)
 			items = items.concat(parseEventsForDate(dayEvents))
 		}
+		// logger.debugJSON(items)
 
 		// We need to filter out the repeated items for multi-day events as Plasma creates a new "event item"
 		// for each day of the event.
