@@ -652,7 +652,7 @@ msgstr "%1mm"
 #: ../contents/ui/MonthView.qml:348
 msgctxt "calendar title format for current month"
 msgid "MMMM d, yyyy"
-msgstr "MMMM d, yyyy"
+msgstr "d MMMM, yyyy"
 
 #: ../contents/ui/MonthView.qml:352
 msgctxt "calendar title format for other months of current year"
