@@ -163,8 +163,8 @@ MouseArea {
             }
             sourceComponent: badgeComponent
 
-            property var modelEvents: model.events
-            property var modelEventsCount: model.events.count
+            readonly property var modelEvents: model.events
+            readonly property int modelEventsCount: modelEvents ? modelEvents.count : 0
             property alias dayStyle: dayStyle // aka DayDelegate
         }
     }
