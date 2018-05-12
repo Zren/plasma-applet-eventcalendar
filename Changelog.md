@@ -1,3 +1,8 @@
+## v56 - May 12 2018
+
+* Fix KHolidays/PIM events showing up a day early when in a timezone before GMT (eg: +01:00).
+* Use "day month, year" for calendar title in russian translations.
+
 ## v55 - March 21 2018
 
 * Fix KHolidays/PIM events not appearing when viewing other months
