@@ -9,7 +9,7 @@ function request(opt, callback) {
         console.log('XMLHttpRequest.onerror', e.status, e.statusText, e.message, e);
     }
     req.onreadystatechange = function() {
-        if (req.readyState === 4) {
+        if (req.readyState === XMLHttpRequest.DONE) { // https://xhr.spec.whatwg.org/#dom-xmlhttprequest-done
             if (200 <= req.status && req.status < 400) {
                 callback(null, req.responseText, req);
             } else {
