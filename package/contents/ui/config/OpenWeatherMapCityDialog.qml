@@ -4,7 +4,7 @@ import QtQuick.Layouts 1.2
 import QtQuick.Controls 1.4
 import org.kde.plasma.core 2.0 as PlasmaCore
 
-import "../utils.js" as QmlUtils
+import "../lib/Requests.js" as Requests
 import ".."
 
 Dialog {
@@ -110,8 +110,8 @@ Dialog {
 	function loadCityList() {
 		chooseCityDialog.loadingCityList = true
 		var url = 'http://openweathermap.org/help/city_list.txt';
-		QmlUtils.request(url, function(err, data) {
-		// QmlUtils.getFile('OpenWeatherMapCityList.tsv', function(err, data) {
+		Requests.request(url, function(err, data) {
+		// Requests.getFile('OpenWeatherMapCityList.tsv', function(err, data) {
 			// console.log(data);
 			// tab seperated values
 			var lines = data.split('\n');

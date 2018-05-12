@@ -117,7 +117,7 @@ function getAppletMetadata(callback) {
 		var b = url.indexOf('/', a)
 		// var packageName = url.substr(a, b-a);
 		var metadataUrl = url.substr(0, b) + '/metadata.desktop'
-		Utils.getFile(metadataUrl, function(err, data) {
+		Requests.getFile(metadataUrl, function(err, data) {
 			if (err) {
 				return callback(err)
 			}

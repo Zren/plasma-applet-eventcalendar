@@ -4,7 +4,7 @@ import QtQuick.Layouts 1.2
 import QtQuick.Controls 1.4
 import org.kde.plasma.core 2.0 as PlasmaCore
 
-import "../utils.js" as QmlUtils
+import "../lib/Requests.js" as Requests
 import ".."
 import "../../code/WeatherCanada.js" as WeatherCanada
 
@@ -132,7 +132,7 @@ Dialog {
 		filteredCityListModel.sourceModel = emptyListModel
 		cityListModel.clear()
 
-		QmlUtils.request(provinceUrl, function(err, data) {
+		Requests.request(provinceUrl, function(err, data) {
 			// console.log(data);
 			var cityList = WeatherCanada.parseProvincePage(data);
 			for (var i = 0; i < cityList.length; i++) {

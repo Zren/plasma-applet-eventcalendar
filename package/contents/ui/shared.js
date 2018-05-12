@@ -1,4 +1,4 @@
-.import "utils.js" as Utils
+.import "./lib/Requests.js" as Requests
 
 function openGoogleCalendarNewEventUrl(date) {
     function dateString(year, month, day) {
@@ -24,7 +24,7 @@ function createGCalEvent(args, callback) {
     url += encodeURIComponent(args.calendarId);
     url += '/events/quickAdd';
     url += '?text=' + encodeURIComponent(args.text);
-    Utils.postJSON({
+    Requests.postJSON({
         url: url,
         headers: {
             "Authorization": "Bearer " + args.access_token,
@@ -52,7 +52,7 @@ function fetchHourlyWeatherForecast(args, callback) {
     url += 'forecast?id=' + args.city_id;
     url += '&units=' + (args.units || 'metric');
     url += '&appid=' + args.app_id;
-    Utils.getJSON(url, callback);
+    Requests.getJSON(url, callback);
 }
 
 function fetchDailyWeatherForecast(args, callback) {
@@ -64,7 +64,7 @@ function fetchDailyWeatherForecast(args, callback) {
     url += 'forecast/daily?id=' + args.city_id;
     url += '&units=' + (args.units || 'metric');
     url += '&appid=' + args.app_id;
-    Utils.getJSON(url, callback);
+    Requests.getJSON(url, callback);
 }
 
 // http://openweathermap.org/weather-conditions

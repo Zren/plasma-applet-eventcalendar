@@ -1,7 +1,7 @@
 import QtQuick 2.0
 
 import ".."
-import "../utils.js" as Utils
+import "../lib/Requests.js" as Requests
 
 Item {
     id: session
@@ -55,7 +55,7 @@ Item {
     //---
     function getUserCode(callback) {
         var url = 'https://accounts.google.com/o/oauth2/device/code';
-        Utils.post({
+        Requests.post({
             url: url,
             data: {
                 client_id: clientId,
@@ -90,7 +90,7 @@ Item {
 
     function pollAccessToken() {
         var url = 'https://www.googleapis.com/oauth2/v4/token';
-        Utils.post({
+        Requests.post({
             url: url,
             data: {
                 client_id: clientId,
@@ -135,7 +135,7 @@ Item {
 
     function fetchGCalCalendars(args, callback) {
         var url = 'https://www.googleapis.com/calendar/v3/users/me/calendarList';
-        Utils.getJSON({
+        Requests.getJSON({
             url: url,
             headers: {
                 "Authorization": "Bearer " + args.access_token,

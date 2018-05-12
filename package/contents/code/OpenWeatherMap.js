@@ -1,4 +1,4 @@
-.import "../ui/utils.js" as Utils
+.import "../ui/lib/Requests.js" as Requests
 
 function openOpenWeatherMapCityUrl(cityId) {
     var url = 'http://openweathermap.org/city/';
@@ -14,7 +14,7 @@ function fetchHourlyWeatherForecast(args, callback) {
     url += 'forecast?id=' + args.city_id;
     url += '&units=' + (args.units || 'metric');
     url += '&appid=' + args.app_id;
-    Utils.getJSON(url, callback);
+    Requests.getJSON(url, callback);
 }
 
 function fetchDailyWeatherForecast(args, callback) {
@@ -26,7 +26,7 @@ function fetchDailyWeatherForecast(args, callback) {
     url += 'forecast/daily?id=' + args.city_id;
     url += '&units=' + (args.units || 'metric');
     url += '&appid=' + args.app_id;
-    Utils.getJSON(url, callback);
+    Requests.getJSON(url, callback);
 }
 
 // http://openweathermap.org/weather-conditions

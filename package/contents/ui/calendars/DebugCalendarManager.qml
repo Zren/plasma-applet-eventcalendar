@@ -1,6 +1,6 @@
 import QtQuick 2.0
 
-import "../utils.js" as Utils
+import "../lib/Requests.js" as Requests
 import "../../code/DebugFixtures.js" as DebugFixtures
 
 CalendarManager {
@@ -33,12 +33,12 @@ CalendarManager {
 
 	function fetchCurrentUserConfig(callback) {
 		var url = 'file:///home/chris/.config/plasma-org.kde.plasma.desktop-appletsrc'
-		Utils.getFile(url, function(err, data) {
+		Requests.getFile(url, function(err, data) {
 			if (err) {
 				return callback(err);
 			}
 
-			var metadata = Utils.parseMetadata(data)
+			var metadata = Requests.parseMetadata(data)
 			callback(null, metadata);
 		});
 	}
@@ -49,7 +49,7 @@ CalendarManager {
 	function fetchJsonEventsFile(filename, calendarId) {
 		logger.debug('fetchJsonEventsFile', calendarId)
 		debugCalendarManager.asyncRequests += 1
-		Utils.getFile(filename, function(err, data) {
+		Requests.getFile(filename, function(err, data) {
 			if (err) {
 				return callback(err);
 			}

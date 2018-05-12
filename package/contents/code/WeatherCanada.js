@@ -1,4 +1,4 @@
-.import "../ui/utils.js" as Utils
+.import "../ui/lib/Requests.js" as Requests
 
 /* Note, dd.weatheroffice.ec.gc.ca does exist, but it doesn't contain the hourly forecast,
 nor does the city id match the one used on the website, so it's easier to just parse the html.
@@ -368,7 +368,7 @@ function getCityUrl(cityId) {
 
 function updateDailyWeather(callback) {
     var url = getCityUrl(plasmoid.configuration.weather_canada_city_id);
-    Utils.request(url, function(err, data, xhr) {
+    Requests.request(url, function(err, data, xhr) {
         if (err) return console.log('fetchDailyWeatherForecast.err', err, xhr && xhr.status, data);
         console.log('fetchDailyWeatherForecast.response');
         
@@ -384,7 +384,7 @@ function getCityHourlyUrl(cityId) {
 
 function updateHourlyWeather(callback) {
     var url = getCityHourlyUrl(plasmoid.configuration.weather_canada_city_id);
-    Utils.request(url, function(err, data, xhr) {
+    Requests.request(url, function(err, data, xhr) {
         if (err) return console.log('fetchHourlyWeatherForecast.err', err, xhr && xhr.status, data);
         console.log('fetchHourlyWeatherForecast.response');
         

@@ -7,7 +7,7 @@ import org.kde.plasma.core 2.0 as PlasmaCore
 import org.kde.plasma.components 2.0 as PlasmaComponents
 import org.kde.plasma.extras 2.0 as PlasmaExtras
 
-import "../utils.js" as Utils
+import "../lib/Requests.js" as Requests
 import ".."
 import "../lib"
 

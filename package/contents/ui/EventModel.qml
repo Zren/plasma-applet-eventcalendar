@@ -1,6 +1,6 @@
 import QtQuick 2.0
 
-import "utils.js" as Utils
+import "./lib/Requests.js" as Requests
 import "shared.js" as Shared
 import "./calendars"
 import "../code/ColorIdMap.js" as ColorIdMap
