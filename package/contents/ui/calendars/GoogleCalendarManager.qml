@@ -1,6 +1,6 @@
 import QtQuick 2.0
 
-import "../utils.js" as Utils
+import "../lib/Requests.js" as Requests
 import "../shared.js" as Shared
 import "../../code/ColorIdMap.js" as ColorIdMap
 
@@ -104,7 +104,7 @@ CalendarManager {
 		if (args.pageToken) {
 			url += '&pageToken=' + encodeURIComponent(args.pageToken);
 		}
-		Utils.getJSON({
+		Requests.getJSON({
 			url: url,
 			headers: {
 				"Authorization": "Bearer " + args.access_token,
@@ -182,7 +182,7 @@ CalendarManager {
 	function fetchNewAccessToken(callback) {
 		logger.debug('fetchNewAccessToken');
 		var url = 'https://www.googleapis.com/oauth2/v4/token';
-		Utils.post({
+		Requests.post({
 			url: url,
 			data: {
 				client_id: plasmoid.configuration.client_id,
@@ -320,7 +320,7 @@ CalendarManager {
 		url += encodeURIComponent(args.calendarId);
 		url += '/events/';
 		url += encodeURIComponent(args.eventId);
-		Utils.postJSON({
+		Requests.postJSON({
 			method: 'PUT',
 			url: url,
 			headers: {
@@ -373,7 +373,7 @@ CalendarManager {
 		url += encodeURIComponent(args.calendarId);
 		url += '/events/';
 		url += encodeURIComponent(args.eventId);
-		Utils.postJSON({
+		Requests.postJSON({
 			method: 'DELETE',
 			url: url,
 			headers: {
