@@ -42,12 +42,12 @@ CalendarManager {
 			access_token: accessToken,
 		}, function(err, data, xhr) {
 			if (err) {
-				logger.logJSON('onGCalError: ', err);
+				logger.logJSON('onErrorFetchingEvents: ', err);
 				if (xhr.status === 404) {
 					return;
 				}
 				googleCalendarManager.asyncRequestsDone += 1
-				return onGCalError(err);
+				return onErrorFetchingEvents(err);
 			}
 
 			setCalendarData(calendarId, data)
@@ -119,24 +119,36 @@ CalendarManager {
 		});
 	}
 
-	function onGCalError(err) {
-		logger.logJSON('onGCalError: ', err);
-		deferredUpdateAccessToken.restart()
+	function onErrorFetchingEvents(err) {
+		logger.logJSON('onErrorFetchingEvents: ', err);
+		deferredUpdateAccessTokenThenUpdateEvents.restart()
 	}
-
-
-
-
-
-
 
 	Timer {
-		id: deferredUpdateAccessToken
+		id: deferredUpdateAccessTokenThenUpdateEvents
 		interval: 200
-		onTriggered: updateAccessToken()
+		onTriggered: updateAccessTokenThenUpdateEvents()
 	}
 
-	function updateAccessToken() {
+	function updateAccessTokenThenUpdateEvents() {
+		updateAccessToken(function(err){
+			if (err) {
+				accessTokenError(err)
+			} else {
+				deferredUpdate.restart()
+			}
+		})
+	}
+
+	function checkAccessToken(callback) {
+		if (plasmoid.configuration.access_token_expires_at < Date.now() + 5000) {
+			updateAccessToken(callback)
+		} else {
+			callback(null)
+		}
+	}
+
+	function updateAccessToken(callback) {
 		// logger.debug('access_token_expires_at', plasmoid.configuration.access_token_expires_at);
 		// logger.debug('                    now', Date.now());
 		// logger.debug('refresh_token', plasmoid.configuration.refresh_token);
@@ -144,18 +156,27 @@ CalendarManager {
 			logger.debug('updateAccessToken');
 			fetchNewAccessToken(function(err, data, xhr) {
 				if (err || (!err && data && data.error)) {
-					return logger.log('Error when using refreshToken:', err, data);
+					logger.log('Error when using refreshToken:', err, data)
+					return callback(err)
 				}
-				logger.debug('onAccessToken', data);
-				data = JSON.parse(data);
+				logger.debug('onAccessToken', data)
+				data = JSON.parse(data)
 
-				plasmoid.configuration.access_token = data.access_token;
-				plasmoid.configuration.access_token_type = data.token_type;
-				plasmoid.configuration.access_token_expires_at = Date.now() + data.expires_in * 1000;
+				googleCalendarManager.applyAccessToken(data)
 
-				deferredUpdate.restart()
+				callback(null)
 			});
 		}
+	}
+
+	signal accessTokenError(string msg)
+	signal newAccessToken()
+
+	function applyAccessToken(data) {
+		plasmoid.configuration.access_token = data.access_token
+		plasmoid.configuration.access_token_type = data.token_type
+		plasmoid.configuration.access_token_expires_at = Date.now() + data.expires_in * 1000
+		newAccessToken()
 	}
 
 	function fetchNewAccessToken(callback) {
