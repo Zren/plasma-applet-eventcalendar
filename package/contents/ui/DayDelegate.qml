@@ -24,7 +24,7 @@ import org.kde.plasma.components 2.0 as Components
 
 import org.kde.plasma.calendar 2.0
 
-import "shared.js" as Shared
+import "LocaleFuncs.js" as LocaleFuncs
 
 MouseArea {
     id: dayStyle
@@ -228,7 +228,7 @@ MouseArea {
                 var line = '';
                 line += '<font color="' + eventItem.backgroundColor + '">■</font> ';
                 line += '<b>' + eventItem.summary + ':</b> ';
-                line += Shared.formatEventDuration(eventItem, {
+                line += LocaleFuncs.formatEventDuration(eventItem, {
                     relativeDate: thisDate,
                     clock24h: appletConfig.clock24h,
                 });

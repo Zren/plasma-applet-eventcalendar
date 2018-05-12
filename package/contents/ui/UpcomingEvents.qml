@@ -1,7 +1,7 @@
 import QtQuick 2.0
 import org.kde.plasma.core 2.0 as PlasmaCore
 
-import "shared.js" as Shared
+import "LocaleFuncs.js" as LocaleFuncs
 
 EventModel {
 	id: upcomingEvents
@@ -68,7 +68,7 @@ EventModel {
 		var line = ''
 		line += '<font color="' + eventItem.backgroundColor + '">■</font> '
 		line += '<b>' + eventItem.summary + ':</b> '
-		line += Shared.formatEventDuration(eventItem, {
+		line += LocaleFuncs.formatEventDuration(eventItem, {
 			relativeDate: timeModel.currentTime,
 			clock24h: appletConfig.clock24h,
 		})
@@ -147,7 +147,7 @@ EventModel {
 			appIcon: "view-calendar-upcoming-events",
 			// expireTimeout: 10000,
 			summary: eventItem.summary,
-			body: Shared.formatEventDuration(eventItem, {
+			body: LocaleFuncs.formatEventDuration(eventItem, {
 				relativeDate: timeModel.currentTime,
 				clock24h: appletConfig.clock24h,
 			}),

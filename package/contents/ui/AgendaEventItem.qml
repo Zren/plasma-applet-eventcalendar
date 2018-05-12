@@ -6,7 +6,7 @@ import org.kde.plasma.core 2.0 as PlasmaCore
 import org.kde.plasma.components 2.0 as PlasmaComponents
 import org.kde.plasma.extras 2.0 as PlasmaExtras
 
-import "shared.js" as Shared
+import "LocaleFuncs.js" as LocaleFuncs
 
 LinkRect {
     id: agendaEventItem
@@ -89,7 +89,7 @@ LinkRect {
             PlasmaComponents.Label {
                 id: eventDateTime
                 text: {
-                    Shared.formatEventDuration(model, {
+                    LocaleFuncs.formatEventDuration(model, {
                         relativeDate: agendaItemDate,
                         clock24h: appletConfig.clock24h,
                     })

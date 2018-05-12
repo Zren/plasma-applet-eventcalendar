@@ -3,6 +3,7 @@ import QtQuick.Controls 1.1
 import QtQuick.Layouts 1.1
 
 import "shared.js" as Shared
+import "LocaleFuncs.js" as LocaleFuncs
 
 Item {
     id: agendaView
@@ -23,7 +24,7 @@ Item {
                 appIcon: "resource-calendar-insert",
                 // expireTimeout: 10000,
                 summary: data.summary,
-                body: Shared.formatEventDuration(data, {
+                body: LocaleFuncs.formatEventDuration(data, {
                     relativeDate: timeModel.currentTime,
                     clock24h: appletConfig.clock24h,
                 })
@@ -36,7 +37,7 @@ Item {
                 appIcon: "user-trash-symbolic",
                 // expireTimeout: 10000,
                 summary: data.summary,
-                body: Shared.formatEventDuration(data, {
+                body: LocaleFuncs.formatEventDuration(data, {
                     relativeDate: timeModel.currentTime,
                     clock24h: appletConfig.clock24h,
                 })
