@@ -295,6 +295,11 @@ CalendarManager {
 		updateGoogleCalendarEvent(accessToken, calendarId, eventId, {
 			summary: summary
 		})
+		// patchGoogleCalendarEvent(accessToken, calendarId, eventId, {
+		// 	summary: summary
+		// }, function(err, data, xhr) {
+		// 	logger.debug('setGoogleCalendarEventSummary.done')
+		// })
 	}
 
 	function updateGoogleCalendarEvent(accessToken, calendarId, eventId, args) {
@@ -354,6 +359,23 @@ CalendarManager {
 				return callback(data, null, xhr);
 			}
 			callback(err, data, xhr);
+		})
+	}
+
+	function patchGoogleCalendarEvent(accessToken, calendarId, eventId, eventProps, callback) {
+		logger.debugJSON('patchGoogleCalendarEvent.sent', eventProps)
+		
+		patchGCalEvent({
+			accessToken: accessToken,
+			calendarId: calendarId,
+			eventId: eventId,
+			data: eventProps,
+		}, function(err, data, xhr) {
+			logger.debugJSON('patchGoogleCalendarEvent.response', err, data)
+			
+			parseSingleEvent(calendarId, data)
+			eventUpdated(calendarId, eventId, data)
+			callback(err, data, xhr)
 		})
 	}
 
