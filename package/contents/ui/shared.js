@@ -19,27 +19,6 @@ function openGoogleCalendarNewEventUrl(date) {
     Qt.openUrlExternally(url)
 }
 
-function createGCalEvent(args, callback) {
-    // https://www.googleapis.com/calendar/v3/calendars/calendarId/events/quickAdd
-    var url = 'https://www.googleapis.com/calendar/v3';
-    url += '/calendars/'
-    url += encodeURIComponent(args.calendarId);
-    url += '/events/quickAdd';
-    url += '?text=' + encodeURIComponent(args.text);
-    Requests.postJSON({
-        url: url,
-        headers: {
-            "Authorization": "Bearer " + args.access_token,
-        }
-    }, function(err, data, xhr) {
-        console.log('createGCalEvent.response', err, data, xhr.status);
-        if (!err && data && data.error) {
-            return callback(data, null, xhr);
-        }
-        callback(err, data, xhr);
-    });
-}
-
 function openOpenWeatherMapCityUrl(cityId) {
     var url = 'http://openweathermap.org/city/';
     url += cityId;
