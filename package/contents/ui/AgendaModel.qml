@@ -1,7 +1,7 @@
 import QtQuick 2.0
 import QtQuick.Layouts 1.1
 
-import "shared.js" as Shared
+import "Shared.js" as Shared
 
 ListModel {
 	id: agendaModel

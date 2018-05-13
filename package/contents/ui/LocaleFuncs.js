@@ -1,4 +1,4 @@
-.import "./shared.js" as Shared
+.import "Shared.js" as Shared
 
 function formatEventTime(dateTime, args) {
 	var clock24h = args && args.clock24h

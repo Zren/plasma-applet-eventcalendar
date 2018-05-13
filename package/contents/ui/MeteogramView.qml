@@ -8,7 +8,7 @@ import org.kde.plasma.components 2.0 as PlasmaComponents
 import org.kde.plasma.extras 2.0 as PlasmaExtras
 
 import "./lib/Requests.js" as Requests
-import "shared.js" as Shared
+import "Shared.js" as Shared
 import "../code/WeatherApi.js" as WeatherApi
 
 Item {

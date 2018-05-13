@@ -2,7 +2,7 @@ import QtQuick 2.0
 import QtQuick.Controls 1.1
 import QtQuick.Layouts 1.1
 
-import "shared.js" as Shared
+import "Shared.js" as Shared
 import "LocaleFuncs.js" as LocaleFuncs
 
 Item {
