@@ -243,7 +243,7 @@ CalendarManager {
 		if (accessToken) {
 			var dateString = date.getFullYear() + '-' + (date.getMonth()+1) + '-' + date.getDate()
 			var eventText = dateString + ' ' + text
-			Shared.createGCalEvent({
+			createGCalEvent({
 				access_token: accessToken,
 				calendarId: calendarId,
 				text: eventText,
