@@ -72,11 +72,6 @@ function postJSON(opt, callback) {
 	getJSON(opt, callback)
 }
 
-function patchJSON(opt, callback) {
-	opt.method = opt.method || 'PATCH'
-	postJSON(opt, callback)
-}
-
 function getFile(url, callback) {
 	var req = new XMLHttpRequest()
 	req.onerror = function(e) {
