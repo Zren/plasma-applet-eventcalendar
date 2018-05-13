@@ -358,11 +358,35 @@ CalendarManager {
 	}
 
 	function patchGCalEvent(args, callback) {
-		// Note: Qt 5.7+ still doesn't support the PATCH method type
+		// Requires Qt 5.8 (Plasma 5.12 depends on Qt 5.9)
+		// Note: Qt 5.7 and below doesn't support the PATCH method type.
 		// https://bugreports.qt.io/browse/QTBUG-38175
-		// Qt 5.8 supports it, but KDE depends on Qt 5.7 or less still so we must support it.
-		// Instead, we'll use "update" with PUT.
-		throw new Exception("Qt 5.7+ still doesn't support the PATCH method type")
+
+		// Even though Qt 5.10's qmlscene can send a PATCH request with a body,
+		// plasmashell + plasmoidviewer is doesn't something weird, as while both
+		// send the PATCH request to the server, it does not send the body.
+		// Demo: https://gist.github.com/Zren/3cdee1cd6fce144c234cdca9d3f32fc1
+		throw new Exception("plasmashell with Qt 5.10 still doesn't fully support the PATCH method type")
+
+		// var url = 'https://www.googleapis.com/calendar/v3'
+		// url += '/calendars/'
+		// url += encodeURIComponent(args.calendarId)
+		// url += '/events/'
+		// url += encodeURIComponent(args.eventId)
+		// Requests.postJSON({
+		// 	method: 'PATCH',
+		// 	url: url,
+		// 	headers: {
+		// 		"Authorization": "Bearer " + args.accessToken,
+		// 	},
+		// 	data: args.data,
+		// }, function(err, data, xhr) {
+		// 	logger.debug('patchGCalEvent.response', err, data, xhr.status)
+		// 	if (!err && data && data.error) {
+		// 		return callback(data, null, xhr)
+		// 	}
+		// 	callback(err, data, xhr)
+		// })
 	}
 
 	function deleteEvent(calendarId, eventId) {
