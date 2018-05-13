@@ -9,6 +9,7 @@ CalendarManager {
 	calendarManagerId: "debug"
 	property var debugCalendar: null
 
+	property bool showDebugEvents: false
 	property bool importGoogleSession: false
 
 	function fetchDebugEvents() {
@@ -68,7 +69,9 @@ CalendarManager {
 
 
 	onFetchAllCalendars: {
-		fetchDebugEvents()
+		if (showDebugEvents) {
+			fetchDebugEvents()
+		}
 		if (importGoogleSession) {
 			fetchDebugGoogleSession()
 		}
