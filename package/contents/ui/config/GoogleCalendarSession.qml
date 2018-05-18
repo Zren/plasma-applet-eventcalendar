@@ -109,7 +109,7 @@ Item {
             },
         }, function(err, data) {
             data = JSON.parse(data)
-            logger.debug('/oauth2/v4/token Response', JSON.stringify(data, null, '\t'))
+            logger.debugJSON('/oauth2/v4/token Response', data)
 
             if (data.error) {
                 // Not yet ready
