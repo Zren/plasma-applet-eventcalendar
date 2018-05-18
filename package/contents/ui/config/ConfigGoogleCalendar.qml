@@ -51,11 +51,16 @@ ConfigPage {
             }
             calendarsModel.calendarsShownChanged()
         }
+
+        onErrorFetchingUserCode: messageWidget.err(err)
     }
 
 
     HeaderText {
         text: i18n("Login")
+    }
+    MessageWidget {
+        id: messageWidget
     }
     Column {
         visible: session.accessToken

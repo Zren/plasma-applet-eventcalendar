@@ -50,6 +50,7 @@ Item {
     property alias calendarIdList: calendarIdListData.value
 
     signal newAccessToken()
+    signal errorFetchingUserCode(string err)
 
 
     //---
@@ -65,9 +66,17 @@ Item {
     }
 
     function generateUserCodeAndPoll() {
-        getUserCode(function(err, data) {
+        getUserCode(function(err, data, xhr) {
+            if (err) {
+                if (xhr.status == 0) { // Error connecting
+                    session.errorFetchingUserCode("Http Error 0: Could not connect to https://accounts.google.com")
+                } else {
+                    session.errorFetchingUserCode(err)
+                }
+                return
+            }
             data = JSON.parse(data)
-            logger.debug('/o/oauth2/device/code Response', JSON.stringify(data, null, '\t'))
+            logger.debugJSON('/o/oauth2/device/code Response', data)
 
             deviceCode = data.device_code
             userCode = data.user_code
