@@ -137,7 +137,7 @@ msgstr "πίξελ"
 
 #: ../contents/ui/config/ConfigAgenda.qml:55
 msgid " (0px = <b>System Settings > Fonts > General</b>)"
-msgstr " (0 πίξελ = <b>Ρυθμίσεις Συστήματος > Γραμματοσειρά > Γενικά</b>"
+msgstr " (0 πίξελ = <b>Ρυθμίσεις Συστήματος > Γραμματοσειρά > Γενικά</b>)"
 
 #: ../contents/ui/config/ConfigAgenda.qml:64
 msgid "Weather Icon"
