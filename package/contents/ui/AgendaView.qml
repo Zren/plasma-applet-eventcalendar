@@ -94,6 +94,27 @@ Item {
             }
         }
 
+        function getCurrentAgendaItem() {
+            if (agendaRepeater.count == 0 || scrollY < 0) {
+                return null
+            } else {
+                var offsetY = 0
+                for (var i = 0; i < agendaRepeater.count; i++) {
+                    var agendaListItem = agendaRepeater.itemAt(i)
+                    offsetY += agendaListItem ? agendaListItem.height : 0
+                    // console.log('\t', i, agendaListItem, agendaListItem.height)
+                    if (i != agendaRepeater.count-1) {
+                        offsetY += agendaColumn.spacing
+                    }
+
+                    if (offsetY >= scrollY) {
+                        return agendaListItem
+                    }
+                }
+                return null
+            }
+        }
+
         function getItemOffsetY(index) {
             // console.log('getItemOffsetY', index)
             if (index <= 0) {
