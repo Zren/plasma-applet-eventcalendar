@@ -53,6 +53,9 @@ Item {
         readonly property int contentHeight: contentItem ? contentItem.height : 0 // Warning: Binding loop
         readonly property int viewportWidth: viewport ? viewport.width : width
         readonly property int viewportHeight: viewport ? viewport.height : height
+        readonly property int scrollY: flickableItem ? flickableItem.contentY : 0
+
+        // onScrollYChanged: console.log('scrollY', scrollY)
 
         ColumnLayout {
             id: agendaColumn
