@@ -1,5 +1,5 @@
 #!/bin/sh
-# Version: 5
+# Version: 6
 
 # https://techbase.kde.org/Development/Tutorials/Localization/i18n_Build_Systems
 # Based on: https://github.com/psifidotos/nowdock-plasmoid/blob/master/po/Messages.sh
@@ -71,7 +71,7 @@ fi
 potMessageCount=`expr $(grep -c 'msgstr ""' "template.pot") - 1`
 echo "|Locale | Lines | % Done|" > "./Status.md"
 echo "|-------|-------|-------|" >> "./Status.md"
-echo "|Template\t|${potMessageCount}\t|\t|" >> "./Status.md"
+echo -e "|Template\t|${potMessageCount}\t|\t|" >> "./Status.md"
 
 rm "${DIR}/infiles.list"
 echo "[merge] Done extracting messages"
@@ -93,7 +93,7 @@ for cat in $catalogs; do
 	poEmptyMessageCount=`expr $(grep -Pzo 'msgstr ""\n\n' "$cat.new" | grep -c 'msgstr ""')`
 	poMessagesDoneCount=`expr $potMessageCount - $poEmptyMessageCount`
 	poCompletion=`perl -e "printf(\"%d\", $poMessagesDoneCount * 100 / $potMessageCount)"`
-	echo "|${catLocale}\t|${poMessagesDoneCount}/${potMessageCount}\t|${poCompletion}%\t|" >> "./Status.md"
+	echo -e "|${catLocale}\t|${poMessagesDoneCount}/${potMessageCount}\t|${poCompletion}%\t|" >> "./Status.md"
 
 	# mv "$cat" "$cat.old"
 	mv "$cat.new" "$cat"
