@@ -1,7 +1,7 @@
 ## v57 - June 18 2018
 
 * Always keep current agenda date/weather in view when scrolling.
-* Show a error message when we couldn't connect to google cal server. When generating a user code to login.
+* Show an error message when we couldn't connect to google cal server. When generating a user code to login.
 * Various refactoring.
 * Add Greek translations by @linxtone.
 * Add Dutch translations by @Vistaus.
