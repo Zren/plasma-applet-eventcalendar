@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: eventcalendar \n"
 "Report-Msgid-Bugs-To: https://github.com/Zren/plasma-applet-eventcalendar\n"
-"POT-Creation-Date: 2018-06-17 12:01+0200\n"
+"POT-Creation-Date: 2018-06-17 13:24-0400\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -94,12 +94,12 @@ msgstr ""
 msgid "Edit in browser"
 msgstr ""
 
-#: ../contents/ui/AgendaListItem.qml:122
+#: ../contents/ui/AgendaListItem.qml:134
 msgctxt "agenda date format line 1"
 msgid "MMM d"
 msgstr ""
 
-#: ../contents/ui/AgendaListItem.qml:145
+#: ../contents/ui/AgendaListItem.qml:157
 msgctxt "agenda date format line 2"
 msgid "ddd"
 msgstr ""

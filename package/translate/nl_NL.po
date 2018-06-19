@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: eventcalendar\n"
 "Report-Msgid-Bugs-To: https://github.com/Zren/plasma-applet-eventcalendar\n"
-"POT-Creation-Date: 2018-06-17 12:01+0200\n"
+"POT-Creation-Date: 2018-06-17 13:24-0400\n"
 "PO-Revision-Date: 2018-06-17 12:11+0200\n"
 "Last-Translator: Heimen Stoffels <vistausss@outlook.com>\n"
 "Language-Team: \n"
@@ -94,18 +94,17 @@ msgstr "Verwijderen bevestigen"
 msgid "Edit in browser"
 msgstr "Bewerken in webbrowser"
 
-#: ../contents/ui/AgendaListItem.qml:122
+#: ../contents/ui/AgendaListItem.qml:134
 msgctxt "agenda date format line 1"
 msgid "MMM d"
 msgstr "D MMM"
 
-#: ../contents/ui/AgendaListItem.qml:145
+#: ../contents/ui/AgendaListItem.qml:157
 msgctxt "agenda date format line 2"
 msgid "ddd"
 msgstr "ddd"
 
-#: ../contents/ui/AgendaView.qml:23 ../contents/ui/AgendaView.qml:36
-#: ../contents/ui/UpcomingEvents.qml:129 ../contents/ui/UpcomingEvents.qml:146
+#: ../contents/ui/AgendaView.qml:23 ../contents/ui/AgendaView.qml:36 ../contents/ui/UpcomingEvents.qml:129 ../contents/ui/UpcomingEvents.qml:146
 msgid "Event Calendar"
 msgstr "Gebeurteniskalender"
 
@@ -130,8 +129,7 @@ msgstr "Agenda links tonen (twee kolommen)"
 msgid "Font Size:"
 msgstr "Lettertypegrootte:"
 
-#: ../contents/ui/config/ConfigAgenda.qml:54
-#: ../contents/ui/config/ConfigGeneral.qml:206
+#: ../contents/ui/config/ConfigAgenda.qml:54 ../contents/ui/config/ConfigGeneral.qml:206
 msgid "px"
 msgstr "px"
 
@@ -171,13 +169,11 @@ msgstr "Klikken op weer:"
 msgid "Open City Forecast In Browser"
 msgstr "Weersvoorspelling openen in webbrowser"
 
-#: ../contents/ui/config/ConfigAgenda.qml:121
-#: ../contents/ui/config/ConfigCalendar.qml:27
+#: ../contents/ui/config/ConfigAgenda.qml:121 ../contents/ui/config/ConfigCalendar.qml:27
 msgid "Click Date:"
 msgstr "Klikken op datum:"
 
-#: ../contents/ui/config/ConfigAgenda.qml:124
-#: ../contents/ui/config/ConfigCalendar.qml:42
+#: ../contents/ui/config/ConfigAgenda.qml:124 ../contents/ui/config/ConfigCalendar.qml:42
 msgid "Open New Event In Browser"
 msgstr "Nieuwe gebeurtenis openen in webbrowser"
 
@@ -225,8 +221,7 @@ msgstr "Verlopen gebeurtenissen verbergen"
 msgid "Show all events of the current day (including completed events)"
 msgstr "Alle gebeurtenissen van de huidige dag tonen (inclusief verlopen gebeurtenissen)"
 
-#: ../contents/ui/config/ConfigAgenda.qml:203
-#: ../contents/ui/config/ConfigWeather.qml:177
+#: ../contents/ui/config/ConfigAgenda.qml:203 ../contents/ui/config/ConfigWeather.qml:177
 msgid "Colors"
 msgstr "Kleuren"
 
@@ -246,8 +241,7 @@ msgstr "Scrollen naar gebeurtenis in agenda"
 msgid "DoubleClick Date:"
 msgstr "Dubbelklikken op datum:"
 
-#: ../contents/ui/config/ConfigCalendar.qml:50
-#: ../contents/ui/config/ConfigWeather.qml:120
+#: ../contents/ui/config/ConfigCalendar.qml:50 ../contents/ui/config/ConfigWeather.qml:120
 msgid "Style"
 msgstr "Stijl"
 
@@ -263,9 +257,7 @@ msgstr "Weeknummers tonen"
 msgid "Event Badge:"
 msgstr "Gebeurtenisteller:"
 
-#: ../contents/ui/config/ConfigCalendar.qml:65
-#: ../contents/ui/config/ConfigCalendar.qml:120
-#: ../contents/ui/config/ConfigCalendar.qml:136
+#: ../contents/ui/config/ConfigCalendar.qml:65 ../contents/ui/config/ConfigCalendar.qml:120 ../contents/ui/config/ConfigCalendar.qml:136
 msgid "Theme"
 msgstr "Thema"
 
@@ -317,8 +309,7 @@ msgstr "Gebeurteniskalender-plug-ins"
 msgid "Plasma Calendar Plugins"
 msgstr "Plasma-kalenderplug-ins"
 
-#: ../contents/ui/config/ConfigEvents.qml:63
-#: ../contents/ui/config/ConfigGeneral.qml:441
+#: ../contents/ui/config/ConfigEvents.qml:63 ../contents/ui/config/ConfigGeneral.qml:441
 msgid "Misc"
 msgstr "Overig"
 
@@ -326,8 +317,7 @@ msgstr "Overig"
 msgid "Refresh events every: "
 msgstr "Gebeurtenissen verversen, elke: "
 
-#: ../contents/ui/config/ConfigEvents.qml:75
-#: ../contents/ui/config/ConfigWeather.qml:112
+#: ../contents/ui/config/ConfigEvents.qml:75 ../contents/ui/config/ConfigWeather.qml:112
 msgctxt "Polling interval in minutes"
 msgid "min"
 msgid_plural "min"
@@ -342,8 +332,7 @@ msgstr "Meldingen"
 msgid "Event Starting"
 msgstr "Bij begin van gebeurtenis"
 
-#: ../contents/ui/config/ConfigGeneral.qml:77
-#: ../contents/ui/lib/ConfigNotification.qml:59
+#: ../contents/ui/config/ConfigGeneral.qml:77 ../contents/ui/lib/ConfigNotification.qml:59
 msgid "Chose a sound effect"
 msgstr "Kies een geluidseffect"
 
@@ -408,14 +397,11 @@ msgstr " (0px = passend schalen)"
 msgid "Line 1:"
 msgstr "Regel 1:"
 
-#: ../contents/ui/config/ConfigGeneral.qml:239
-#: ../contents/ui/config/ConfigGeneral.qml:265
-#: ../contents/ui/config/ConfigGeneral.qml:314
+#: ../contents/ui/config/ConfigGeneral.qml:239 ../contents/ui/config/ConfigGeneral.qml:265 ../contents/ui/config/ConfigGeneral.qml:314
 msgid "Preset:"
 msgstr "Voorinstelling:"
 
-#: ../contents/ui/config/ConfigGeneral.qml:287
-#: ../contents/ui/config/ConfigGeneral.qml:351
+#: ../contents/ui/config/ConfigGeneral.qml:287 ../contents/ui/config/ConfigGeneral.qml:351
 msgid "Bold"
 msgstr "Vetgedrukt"
 
@@ -491,8 +477,7 @@ msgstr "Voer de volgende code in op <a href=\"https://www.google.com/device\">ht
 msgid "Generating Code..."
 msgstr "Bezig met genereren van code..."
 
-#: ../contents/ui/config/ConfigGoogleCalendar.qml:111
-#: ../contents/ui/config/ConfigICal.qml:51
+#: ../contents/ui/config/ConfigGoogleCalendar.qml:111 ../contents/ui/config/ConfigICal.qml:51
 msgid "Calendars"
 msgstr "Agenda's"
 
@@ -536,8 +521,7 @@ msgstr "Gegevens"
 msgid "API App Id:"
 msgstr "API App-ID:"
 
-#: ../contents/ui/config/ConfigWeather.qml:53
-#: ../contents/ui/config/ConfigWeather.qml:77
+#: ../contents/ui/config/ConfigWeather.qml:53 ../contents/ui/config/ConfigWeather.qml:77
 msgid "City Id:"
 msgstr "Stad-ID:"
 
@@ -545,8 +529,7 @@ msgstr "Stad-ID:"
 msgid "Eg: 5983720"
 msgstr "Bijv.: 5983720"
 
-#: ../contents/ui/config/ConfigWeather.qml:61
-#: ../contents/ui/config/ConfigWeather.qml:85
+#: ../contents/ui/config/ConfigWeather.qml:61 ../contents/ui/config/ConfigWeather.qml:85
 msgid "Find City"
 msgstr "Stad zoeken"
 
@@ -616,8 +599,7 @@ msgstr "Temperatuur onder vriespunt"
 msgid "Icons"
 msgstr "Pictogrammen"
 
-#: ../contents/ui/config/OpenWeatherMapCityDialog.qml:12
-#: ../contents/ui/config/WeatherCanadaCityDialog.qml:13
+#: ../contents/ui/config/OpenWeatherMapCityDialog.qml:12 ../contents/ui/config/WeatherCanadaCityDialog.qml:13
 msgid "Select city"
 msgstr "Stad selecteren"
 
@@ -625,28 +607,23 @@ msgstr "Stad selecteren"
 msgid "Fetched from <a href=\"http://openweathermap.org/help/city_list.txt\">http://openweathermap.org/help/city_list.txt</a>"
 msgstr "Opgehaald uit <a href=\"http://openweathermap.org/help/city_list.txt\">http://openweathermap.org/help/city_list.txt</a>"
 
-#: ../contents/ui/config/OpenWeatherMapCityDialog.qml:71
-#: ../contents/ui/config/WeatherCanadaCityDialog.qml:91
+#: ../contents/ui/config/OpenWeatherMapCityDialog.qml:71 ../contents/ui/config/WeatherCanadaCityDialog.qml:91
 msgid "Search"
 msgstr "Zoeken"
 
-#: ../contents/ui/config/OpenWeatherMapCityDialog.qml:84
-#: ../contents/ui/config/WeatherCanadaCityDialog.qml:104
+#: ../contents/ui/config/OpenWeatherMapCityDialog.qml:84 ../contents/ui/config/WeatherCanadaCityDialog.qml:104
 msgid "Name"
 msgstr "Naam"
 
-#: ../contents/ui/config/OpenWeatherMapCityDialog.qml:89
-#: ../contents/ui/config/WeatherCanadaCityDialog.qml:109
+#: ../contents/ui/config/OpenWeatherMapCityDialog.qml:89 ../contents/ui/config/WeatherCanadaCityDialog.qml:109
 msgid "Id"
 msgstr "ID"
 
-#: ../contents/ui/config/OpenWeatherMapCityDialog.qml:94
-#: ../contents/ui/config/WeatherCanadaCityDialog.qml:114
+#: ../contents/ui/config/OpenWeatherMapCityDialog.qml:94 ../contents/ui/config/WeatherCanadaCityDialog.qml:114
 msgid "City Webpage"
 msgstr "Webpagina"
 
-#: ../contents/ui/config/OpenWeatherMapCityDialog.qml:96
-#: ../contents/ui/config/WeatherCanadaCityDialog.qml:116
+#: ../contents/ui/config/OpenWeatherMapCityDialog.qml:96 ../contents/ui/config/WeatherCanadaCityDialog.qml:116
 msgid "Open Link"
 msgstr "Link openen"
 
@@ -752,13 +729,11 @@ msgstr "Timer starten"
 msgid "Scroll to add to duration"
 msgstr "Scroll om de duur te verlengen"
 
-#: ../contents/ui/TimerView.qml:158 ../contents/ui/TimerView.qml:167
-#: ../contents/ui/TimerView.qml:354
+#: ../contents/ui/TimerView.qml:158 ../contents/ui/TimerView.qml:167 ../contents/ui/TimerView.qml:354
 msgid "Repeat"
 msgstr "Herhalen"
 
-#: ../contents/ui/TimerView.qml:176 ../contents/ui/TimerView.qml:185
-#: ../contents/ui/TimerView.qml:363
+#: ../contents/ui/TimerView.qml:176 ../contents/ui/TimerView.qml:185 ../contents/ui/TimerView.qml:363
 msgid "Sound"
 msgstr "Geluid"
 

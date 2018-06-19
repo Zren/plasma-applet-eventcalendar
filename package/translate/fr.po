@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: eventcalendar \n"
 "Report-Msgid-Bugs-To: https://github.com/Zren/plasma-applet-eventcalendar\n"
-"POT-Creation-Date: 2018-03-11 19:23-0400\n"
+"POT-Creation-Date: 2018-06-17 13:24-0400\n"
 "PO-Revision-Date: 2018-01-19 HO:MI+ZONE\n"
 "Last-Translator: Mathieu Provençal <mth.provencal@gmail.com>\n"
 "Language-Team: French <LL@li.org>\n"
@@ -94,17 +94,17 @@ msgstr "Confirmer la suppression"
 msgid "Edit in browser"
 msgstr "Modifier dans le navigateur"
 
-#: ../contents/ui/AgendaListItem.qml:122
+#: ../contents/ui/AgendaListItem.qml:134
 msgctxt "agenda date format line 1"
 msgid "MMM d"
 msgstr ""
 
-#: ../contents/ui/AgendaListItem.qml:145
+#: ../contents/ui/AgendaListItem.qml:157
 msgctxt "agenda date format line 2"
 msgid "ddd"
 msgstr ""
 
-#: ../contents/ui/AgendaView.qml:22 ../contents/ui/AgendaView.qml:35 ../contents/ui/UpcomingEvents.qml:129 ../contents/ui/UpcomingEvents.qml:146
+#: ../contents/ui/AgendaView.qml:23 ../contents/ui/AgendaView.qml:36 ../contents/ui/UpcomingEvents.qml:129 ../contents/ui/UpcomingEvents.qml:146
 msgid "Event Calendar"
 msgstr ""
 
@@ -453,35 +453,35 @@ msgstr ""
 "Activer le débogage\n"
 "L'information est inscrite dans ~/.xsession-errors"
 
-#: ../contents/ui/config/ConfigGoogleCalendar.qml:58
+#: ../contents/ui/config/ConfigGoogleCalendar.qml:60
 msgid "Login"
 msgstr "Connexion"
 
-#: ../contents/ui/config/ConfigGoogleCalendar.qml:63
+#: ../contents/ui/config/ConfigGoogleCalendar.qml:68
 msgid "Currently Synched."
 msgstr "Synchronisé"
 
-#: ../contents/ui/config/ConfigGoogleCalendar.qml:67
+#: ../contents/ui/config/ConfigGoogleCalendar.qml:72
 msgid "Logout"
 msgstr "Déconnexion"
 
-#: ../contents/ui/config/ConfigGoogleCalendar.qml:77
+#: ../contents/ui/config/ConfigGoogleCalendar.qml:82
 msgid "To sync with Google Calendar"
 msgstr "Synchroniser avec Google Calendar"
 
-#: ../contents/ui/config/ConfigGoogleCalendar.qml:81
+#: ../contents/ui/config/ConfigGoogleCalendar.qml:86
 msgid "Enter the following code at <a href=\"https://www.google.com/device\">https://www.google.com/device</a>."
 msgstr "Entrer le code sur <a href=\"https://www.google.com/device\">https://www.google.com/device</a>."
 
-#: ../contents/ui/config/ConfigGoogleCalendar.qml:87
+#: ../contents/ui/config/ConfigGoogleCalendar.qml:92
 msgid "Generating Code..."
 msgstr "Génération du code..."
 
-#: ../contents/ui/config/ConfigGoogleCalendar.qml:106 ../contents/ui/config/ConfigICal.qml:51
+#: ../contents/ui/config/ConfigGoogleCalendar.qml:111 ../contents/ui/config/ConfigICal.qml:51
 msgid "Calendars"
 msgstr "Calendriers"
 
-#: ../contents/ui/config/ConfigGoogleCalendar.qml:111
+#: ../contents/ui/config/ConfigGoogleCalendar.qml:116
 msgid "Refresh"
 msgstr "Rafraîchir"
 
