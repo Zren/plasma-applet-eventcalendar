@@ -1,4 +1,4 @@
-> Version 3 of Zren's i18n scripts.
+> Version 4 of Zren's i18n scripts.
 
 With KDE Frameworks v5.37 and above, translations are bundled with the *.plasmoid file downloaded from the store.
 

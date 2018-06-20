@@ -1,5 +1,5 @@
 #!/bin/sh
-# Version: 7
+# Version: 8
 
 # https://techbase.kde.org/Development/Tutorials/Localization/i18n_Build_Systems
 # Based on: https://github.com/psifidotos/nowdock-plasmoid/blob/master/po/Messages.sh
@@ -27,7 +27,7 @@ fi
 
 #---
 echo "[merge] Extracting messages"
-find "${packageRoot}" -name '*.cpp' -o -name '*.h' -o -name '*.c' -o -name '*.qml' | sort > "${DIR}/infiles.list"
+find "${packageRoot}" -name '*.cpp' -o -name '*.h' -o -name '*.c' -o -name '*.qml' -o -name '*.js' | sort > "${DIR}/infiles.list"
 
 xgettext --from-code=UTF-8 -C -kde -ci18n -ki18n:1 -ki18nc:1c,2 -ki18np:1,2 -ki18ncp:1c,2,3 \
 	-ktr2i18n:1 -kI18N_NOOP:1 -kI18N_NOOP2:1c,2  -kN_:1 -kaliasLocale -kki18n:1 -kki18nc:1c,2 \
