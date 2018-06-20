@@ -74,10 +74,7 @@ GridLayout {
                 source: weatherIcon
                 height: appletConfig.agendaWeatherIconSize
                 showOutline: plasmoid.configuration.show_outlines
-                anchors {
-                    left: parent.left
-                    right: parent.right
-                }
+                Layout.fillWidth: true
             }
 
             PlasmaComponents.Label {
@@ -138,10 +135,7 @@ GridLayout {
                 font.pixelSize: appletConfig.agendaFontSize
                 font.weight: agendaItemIsToday ? inProgressFontWeight : Font.Normal
                 height: paintedHeight
-                anchors {
-                    left: parent.left
-                    right: parent.right
-                }
+                Layout.fillWidth: true
                 horizontalAlignment: Text.AlignRight
 
                 // MouseArea {
@@ -161,10 +155,7 @@ GridLayout {
                 font.pixelSize: appletConfig.agendaFontSize
                 font.weight: agendaItemIsToday ? inProgressFontWeight : Font.Normal
                 height: paintedHeight
-                anchors {
-                    left: parent.left
-                    right: parent.right
-                }
+                Layout.fillWidth: true
                 horizontalAlignment: Text.AlignRight
             }
         }

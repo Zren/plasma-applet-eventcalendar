@@ -89,7 +89,7 @@ Item {
                 }
                 font.pixelSize: appletConfig.timerClockFontHeight
                 font.pointSize: -1
-                anchors.verticalCenter: parent.verticalCenter
+                Layout.alignment: Qt.AlignVCenter
                 tooltip: {
                     var s = "";
                     if (timerSeconds > 0) {
@@ -141,7 +141,7 @@ Item {
             
             ColumnLayout {
                 id: toggleButtonColumn
-                anchors.bottom: parent.bottom
+                Layout.alignment: Qt.AlignBottom
                 Layout.minimumWidth: sizingButton.height
                 Layout.preferredWidth: sizingButton.implicitWidth
 
