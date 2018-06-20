@@ -80,6 +80,9 @@ var weatherIconMap = {
     '48': 'wi-tornado', // Waterspout
 };
 
+
+var weatherIconToTextMap = {};
+/* Don't burden translators with these for now.
 var weatherIconToTextMap = {
     'weather-clear': i18n("Clear"),
     'weather-clear-night': i18n("Clear"),
@@ -108,6 +111,7 @@ var weatherIconToTextMap = {
     'wi-tornado': i18n("Tornado"),
     'wi-windy': i18n("Windy"),
 }
+*/
 
 function getInner(html, a, b) {
     var start = html.indexOf(a);
