@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: eventcalendar\n"
 "Report-Msgid-Bugs-To: https://github.com/Zren/plasma-applet-eventcalendar\n"
-"POT-Creation-Date: 2018-06-20 13:18-0400\n"
+"POT-Creation-Date: 2018-06-20 13:24-0400\n"
 "PO-Revision-Date: 2017-04-29 11:18+0100\n"
 "Last-Translator: Hans-Peter Jansen <hpj@urpla.net>\n"
 "Language-Team: de <hpj@urpla.net>\n"
@@ -642,6 +642,7 @@ msgid "h"
 msgstr ""
 
 #: ../contents/ui/LocaleFuncs.js:10
+msgctxt "event time (24 hour clock)"
 msgid "h:mm"
 msgstr ""
 
@@ -651,6 +652,7 @@ msgid "h AP"
 msgstr ""
 
 #: ../contents/ui/LocaleFuncs.js:16
+msgctxt "event time (12 hour clock)"
 msgid "h:mm AP"
 msgstr ""
 
