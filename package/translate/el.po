@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: eventcalendar\n"
 "Report-Msgid-Bugs-To: https://github.com/Zren/plasma-applet-eventcalendar\n"
-"POT-Creation-Date: 2018-06-17 13:24-0400\n"
+"POT-Creation-Date: 2018-06-20 13:18-0400\n"
 "PO-Revision-Date: 2018-06-07 01:37+0300\n"
 "Last-Translator: Chris P <skylin@protonmail.com>\n"
 "Language-Team: Chris P <skylin@protonmail.com>\n"
@@ -62,7 +62,7 @@ msgstr "Σύνοψη Συμβάντων"
 msgid "to"
 msgstr "προς"
 
-#: ../contents/ui/AgendaEventItem.qml:170
+#: ../contents/ui/AgendaEventItem.qml:170 ../contents/ui/LocaleFuncs.js:42
 msgid "All Day"
 msgstr "Όλη την Ημέρα"
 
@@ -94,12 +94,12 @@ msgstr "Επιβεβαίωση Διαγραφής"
 msgid "Edit in browser"
 msgstr "Επεξεργασία στον φυλλομετρητή"
 
-#: ../contents/ui/AgendaListItem.qml:134
+#: ../contents/ui/AgendaListItem.qml:131
 msgctxt "agenda date format line 1"
 msgid "MMM d"
 msgstr "d MMM"
 
-#: ../contents/ui/AgendaListItem.qml:157
+#: ../contents/ui/AgendaListItem.qml:151
 msgctxt "agenda date format line 2"
 msgid "ddd"
 msgstr "ddd"
@@ -634,6 +634,39 @@ msgstr "Ελήφθη από <a href=\"https://weather.gc.ca/canada_e.html\">http
 #: ../contents/ui/lib/AppletVersion.qml:41
 msgid "<b>Version:</b> %1"
 msgstr "<b>Έκδοση:</b> %1"
+
+#: ../contents/ui/LocaleFuncs.js:8
+msgctxt "event time on the hour (24 hour clock)"
+msgid "h"
+msgstr ""
+
+#: ../contents/ui/LocaleFuncs.js:10
+msgid "h:mm"
+msgstr ""
+
+#: ../contents/ui/LocaleFuncs.js:14
+msgctxt "event time on the hour (12 hour clock)"
+msgid "h AP"
+msgstr ""
+
+#: ../contents/ui/LocaleFuncs.js:16
+msgid "h:mm AP"
+msgstr ""
+
+#: ../contents/ui/LocaleFuncs.js:23 ../contents/ui/LocaleFuncs.js:34
+msgctxt "short month+date format"
+msgid "MMM d"
+msgstr ""
+
+#: ../contents/ui/LocaleFuncs.js:26
+msgctxt "date (%1) with time (%2)"
+msgid "%1, %2"
+msgstr ""
+
+#: ../contents/ui/LocaleFuncs.js:46 ../contents/ui/LocaleFuncs.js:67
+msgctxt "from date/time %1 until date/time %2"
+msgid "%1 - %2"
+msgstr ""
 
 #: ../contents/ui/main.qml:223
 msgid "Set Language..."
