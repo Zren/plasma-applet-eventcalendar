@@ -16,7 +16,9 @@ Item {
     property alias timerRepeats: timerRepeatsButton.isChecked
     property alias timerSfxEnabled: timerSfxEnabledButton.isChecked
 
-    implicitHeight: view.height
+    property bool setTimerViewVisible: false
+
+    implicitHeight: timerButtonView.height
 
     property var defaultTimers: [
         {
@@ -58,13 +60,19 @@ Item {
     ]
 
     ColumnLayout {
-        id: view
+        id: timerButtonView
         anchors.left: parent.left
         anchors.right: parent.right
         spacing: 4
+        
+        opacity: timerView.setTimerViewVisible ? 0 : 1
+        visible: opacity > 0
+        Behavior on opacity {
+            NumberAnimation { duration: 200 }
+        }
 
         onWidthChanged: {
-            // console.log('view.width', width)
+            // console.log('timerButtonView.width', width)
             bottomRow.updatePresetVisibilities()
         }
 
@@ -73,7 +81,7 @@ Item {
             id: topRow
             spacing: 10 * units.devicePixelRatio
             property int contentsWidth: timerLabel.width + topRow.spacing + toggleButtonColumn.Layout.preferredWidth
-            property bool contentsFit: view.width >= contentsWidth
+            property bool contentsFit: timerButtonView.width >= contentsWidth
 
             PlasmaComponents.ToolButton {
                 id: timerLabel
@@ -207,7 +215,7 @@ Item {
             }
 
             function updatePresetVisibilities() {
-                var availableWidth = view.width
+                var availableWidth = timerButtonView.width
                 var w = 0
                 for (var i = 0; i < defaultTimerRepeater.count; i++) {
                     var item = defaultTimerRepeater.itemAt(i)
@@ -224,6 +232,18 @@ Item {
                     // console.log('updatePresetVisibilities', i, item.Layout.minimumWidth, item.visible, itemWidth, availableWidth)
                 }
             }
+        }
+    }
+
+    Loader {
+        id: setTimerViewLoader
+        anchors.fill: parent
+        source: "TimerInputView.qml"
+        active: timerView.setTimerViewVisible
+        opacity: timerView.setTimerViewVisible ? 1 : 0
+        visible: opacity > 0
+        Behavior on opacity {
+            NumberAnimation { duration: 200 }
         }
     }
 
@@ -365,6 +385,18 @@ Item {
             menuItem.text = i18n("Sound")
             menuItem.clicked.connect(function() {
                 timerSfxEnabledButton.clicked()
+            })
+            contextMenu.addMenuItem(menuItem)
+
+            //
+            contextMenu.addMenuItem(newSeperator())
+
+            // Set Timer
+            var menuItem = newMenuItem()
+            menuItem.icon = 'text-field'
+            menuItem.text = i18n("Set Timer")
+            menuItem.clicked.connect(function() {
+                timerView.setTimerViewVisible = true
             })
             contextMenu.addMenuItem(menuItem)
 
