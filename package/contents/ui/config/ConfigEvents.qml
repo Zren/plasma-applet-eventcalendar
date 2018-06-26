@@ -64,18 +64,12 @@ ConfigPage {
 	}
 	ColumnLayout {
 
-		RowLayout {
-			Label {
-				text: i18n("Refresh events every: ")
-			}
-			
-			SpinBox {
-				id: events_pollinterval
-
-				suffix: i18ncp("Polling interval in minutes", "min", "min", value)
-				minimumValue: 5
-				maximumValue: 90
-			}
+		ConfigSpinBox {
+			configKey: 'events_pollinterval'
+			before: i18n("Refresh events every: ")
+			suffix: i18ncp("Polling interval in minutes", "min", "min", value)
+			minimumValue: 5
+			maximumValue: 90
 		}
 	}
 
