@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: eventcalendar \n"
 "Report-Msgid-Bugs-To: https://github.com/Zren/plasma-applet-eventcalendar\n"
-"POT-Creation-Date: 2018-06-17 12:01+0200\n"
+"POT-Creation-Date: 2018-06-26 13:56-0400\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -62,7 +62,7 @@ msgstr ""
 msgid "to"
 msgstr ""
 
-#: ../contents/ui/AgendaEventItem.qml:170
+#: ../contents/ui/AgendaEventItem.qml:170 ../contents/ui/LocaleFuncs.js:42
 msgid "All Day"
 msgstr ""
 
@@ -94,12 +94,12 @@ msgstr ""
 msgid "Edit in browser"
 msgstr ""
 
-#: ../contents/ui/AgendaListItem.qml:122
+#: ../contents/ui/AgendaListItem.qml:131
 msgctxt "agenda date format line 1"
 msgid "MMM d"
 msgstr ""
 
-#: ../contents/ui/AgendaListItem.qml:145
+#: ../contents/ui/AgendaListItem.qml:151
 msgctxt "agenda date format line 2"
 msgid "ddd"
 msgstr ""
@@ -317,18 +317,18 @@ msgstr ""
 msgid "Refresh events every: "
 msgstr ""
 
-#: ../contents/ui/config/ConfigEvents.qml:75 ../contents/ui/config/ConfigWeather.qml:112
+#: ../contents/ui/config/ConfigEvents.qml:70 ../contents/ui/config/ConfigWeather.qml:112
 msgctxt "Polling interval in minutes"
 msgid "min"
 msgid_plural "min"
 msgstr[0] ""
 msgstr[1] ""
 
-#: ../contents/ui/config/ConfigEvents.qml:83
+#: ../contents/ui/config/ConfigEvents.qml:77
 msgid "Notifications"
 msgstr ""
 
-#: ../contents/ui/config/ConfigEvents.qml:88
+#: ../contents/ui/config/ConfigEvents.qml:82
 msgid "Event Starting"
 msgstr ""
 
@@ -348,7 +348,7 @@ msgstr ""
 msgid "Meteogram"
 msgstr ""
 
-#: ../contents/ui/config/ConfigGeneral.qml:118 ../contents/ui/TimerView.qml:326
+#: ../contents/ui/config/ConfigGeneral.qml:118 ../contents/ui/TimerView.qml:348
 msgid "Timer"
 msgstr ""
 
@@ -635,6 +635,41 @@ msgstr ""
 msgid "<b>Version:</b> %1"
 msgstr ""
 
+#: ../contents/ui/LocaleFuncs.js:8
+msgctxt "event time on the hour (24 hour clock)"
+msgid "h"
+msgstr ""
+
+#: ../contents/ui/LocaleFuncs.js:10
+msgctxt "event time (24 hour clock)"
+msgid "h:mm"
+msgstr ""
+
+#: ../contents/ui/LocaleFuncs.js:14
+msgctxt "event time on the hour (12 hour clock)"
+msgid "h AP"
+msgstr ""
+
+#: ../contents/ui/LocaleFuncs.js:16
+msgctxt "event time (12 hour clock)"
+msgid "h:mm AP"
+msgstr ""
+
+#: ../contents/ui/LocaleFuncs.js:23 ../contents/ui/LocaleFuncs.js:34
+msgctxt "short month+date format"
+msgid "MMM d"
+msgstr ""
+
+#: ../contents/ui/LocaleFuncs.js:26
+msgctxt "date (%1) with time (%2)"
+msgid "%1, %2"
+msgstr ""
+
+#: ../contents/ui/LocaleFuncs.js:46 ../contents/ui/LocaleFuncs.js:67
+msgctxt "from date/time %1 until date/time %2"
+msgid "%1 - %2"
+msgstr ""
+
 #: ../contents/ui/main.qml:223
 msgid "Set Language..."
 msgstr ""
@@ -678,68 +713,80 @@ msgid ""
 "and/or disable the meteogram to hide this area."
 msgstr ""
 
-#: ../contents/ui/TimerView.qml:23
+#: ../contents/ui/TimerInputView.qml:75
+msgid "Cancel"
+msgstr ""
+
+#: ../contents/ui/TimerInputView.qml:80
+msgid "Start"
+msgstr ""
+
+#: ../contents/ui/TimerView.qml:25
 msgid "30s"
 msgstr ""
 
-#: ../contents/ui/TimerView.qml:27
+#: ../contents/ui/TimerView.qml:29
 msgid "1m"
 msgstr ""
 
-#: ../contents/ui/TimerView.qml:31
+#: ../contents/ui/TimerView.qml:33
 msgid "5m"
 msgstr ""
 
-#: ../contents/ui/TimerView.qml:35
+#: ../contents/ui/TimerView.qml:37
 msgid "10m"
 msgstr ""
 
-#: ../contents/ui/TimerView.qml:39
+#: ../contents/ui/TimerView.qml:41
 msgid "15m"
 msgstr ""
 
-#: ../contents/ui/TimerView.qml:43
+#: ../contents/ui/TimerView.qml:45
 msgid "20m"
 msgstr ""
 
-#: ../contents/ui/TimerView.qml:47
+#: ../contents/ui/TimerView.qml:49
 msgid "30m"
 msgstr ""
 
-#: ../contents/ui/TimerView.qml:51
+#: ../contents/ui/TimerView.qml:53
 msgid "45m"
 msgstr ""
 
-#: ../contents/ui/TimerView.qml:55
+#: ../contents/ui/TimerView.qml:57
 msgid "1h"
 msgstr ""
 
-#: ../contents/ui/TimerView.qml:97
+#: ../contents/ui/TimerView.qml:105
 msgid "Pause Timer"
 msgstr ""
 
-#: ../contents/ui/TimerView.qml:99
+#: ../contents/ui/TimerView.qml:107
 msgid "Start Timer"
 msgstr ""
 
-#: ../contents/ui/TimerView.qml:103
+#: ../contents/ui/TimerView.qml:111
 msgid "Scroll to add to duration"
 msgstr ""
 
-#: ../contents/ui/TimerView.qml:158 ../contents/ui/TimerView.qml:167 ../contents/ui/TimerView.qml:354
+#: ../contents/ui/TimerView.qml:166 ../contents/ui/TimerView.qml:175 ../contents/ui/TimerView.qml:376
 msgid "Repeat"
 msgstr ""
 
-#: ../contents/ui/TimerView.qml:176 ../contents/ui/TimerView.qml:185 ../contents/ui/TimerView.qml:363
+#: ../contents/ui/TimerView.qml:184 ../contents/ui/TimerView.qml:193 ../contents/ui/TimerView.qml:385
 msgid "Sound"
 msgstr ""
 
-#: ../contents/ui/TimerView.qml:328
+#: ../contents/ui/TimerView.qml:350
 msgid "Timer finished"
 msgstr ""
 
-#: ../contents/ui/TimerView.qml:329
+#: ../contents/ui/TimerView.qml:351
 msgid "%1 has passed"
+msgstr ""
+
+#: ../contents/ui/TimerView.qml:397
+msgid "Set Timer"
 msgstr ""
 
 #: ../contents/ui/UpcomingEvents.qml:114

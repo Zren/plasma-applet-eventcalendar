@@ -1,5 +1,5 @@
-#!/bin/bash
-# Version: 2
+#!/bin/sh
+# Version: 3
 
 # TODO: Call a CMakeLists.txt ...
 # OR just find out what env variables it looks at to determine the "/usr/share" dir.
@@ -13,12 +13,12 @@ packageRoot=".." # Root of translatable sources
 projectName="plasma_applet_${plasmoidName}" # project name
 
 #---
-if [[ -z "$plasmoidName" ]]; then
+if [ -z "$plasmoidName" ]; then
 	echo "[install] Error: Couldn't read plasmoidName."
 	exit
 fi
 
-if [[ -z "$(which msgfmt)" ]]; then
+if [ -z "$(which msgfmt)" ]; then
 	echo "[install] Error: msgfmt command not found. Need to install gettext"
 	echo "[install] Running 'sudo apt install gettext'"
 	sudo apt install gettext

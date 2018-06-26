@@ -7,13 +7,13 @@ function formatEventTime(dateTime, args) {
 		if (dateTime.getMinutes() == 0) {
 			timeFormat = i18nc("event time on the hour (24 hour clock)", "h")
 		} else {
-			timeFormat = i18n("h:mm")
+			timeFormat = i18nc("event time (24 hour clock)", "h:mm")
 		}
 	} else { // 12h
 		if (dateTime.getMinutes() == 0) {
 			timeFormat = i18nc("event time on the hour (12 hour clock)", "h AP")
 		} else {
-			timeFormat = i18n("h:mm AP")
+			timeFormat = i18nc("event time (12 hour clock)", "h:mm AP")
 		}
 	}
 	return Qt.formatDateTime(dateTime, timeFormat)

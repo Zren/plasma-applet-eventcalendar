@@ -1,5 +1,5 @@
-#!/bin/bash
-# Version: 3
+#!/bin/sh
+# Version: 4
 
 # This script will convert the *.po files to *.mo files, rebuilding the package/contents/locale folder.
 # Feature discussion: https://phabricator.kde.org/D5209

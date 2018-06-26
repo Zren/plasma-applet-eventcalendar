@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: eventcalendar \n"
 "Report-Msgid-Bugs-To: https://github.com/Zren/plasma-applet-eventcalendar\n"
-"POT-Creation-Date: 2018-03-11 19:23-0400\n"
+"POT-Creation-Date: 2018-06-26 13:56-0400\n"
 "PO-Revision-Date: 2018-01-19 HO:MI+ZONE\n"
 "Last-Translator: Mathieu Provençal <mth.provencal@gmail.com>\n"
 "Language-Team: French <LL@li.org>\n"
@@ -62,7 +62,7 @@ msgstr "Résumé d'événement"
 msgid "to"
 msgstr "à"
 
-#: ../contents/ui/AgendaEventItem.qml:170
+#: ../contents/ui/AgendaEventItem.qml:170 ../contents/ui/LocaleFuncs.js:42
 msgid "All Day"
 msgstr "Toute la journée"
 
@@ -94,17 +94,17 @@ msgstr "Confirmer la suppression"
 msgid "Edit in browser"
 msgstr "Modifier dans le navigateur"
 
-#: ../contents/ui/AgendaListItem.qml:122
+#: ../contents/ui/AgendaListItem.qml:131
 msgctxt "agenda date format line 1"
 msgid "MMM d"
 msgstr ""
 
-#: ../contents/ui/AgendaListItem.qml:145
+#: ../contents/ui/AgendaListItem.qml:151
 msgctxt "agenda date format line 2"
 msgid "ddd"
 msgstr ""
 
-#: ../contents/ui/AgendaView.qml:22 ../contents/ui/AgendaView.qml:35 ../contents/ui/UpcomingEvents.qml:129 ../contents/ui/UpcomingEvents.qml:146
+#: ../contents/ui/AgendaView.qml:23 ../contents/ui/AgendaView.qml:36 ../contents/ui/UpcomingEvents.qml:129 ../contents/ui/UpcomingEvents.qml:146
 msgid "Event Calendar"
 msgstr ""
 
@@ -317,18 +317,18 @@ msgstr "Divers"
 msgid "Refresh events every: "
 msgstr "Rafraîchir les événements à toutes les: "
 
-#: ../contents/ui/config/ConfigEvents.qml:75 ../contents/ui/config/ConfigWeather.qml:112
+#: ../contents/ui/config/ConfigEvents.qml:70 ../contents/ui/config/ConfigWeather.qml:112
 msgctxt "Polling interval in minutes"
 msgid "min"
 msgid_plural "min"
 msgstr[0] "min"
 msgstr[1] "min"
 
-#: ../contents/ui/config/ConfigEvents.qml:83
+#: ../contents/ui/config/ConfigEvents.qml:77
 msgid "Notifications"
 msgstr "Notifications"
 
-#: ../contents/ui/config/ConfigEvents.qml:88
+#: ../contents/ui/config/ConfigEvents.qml:82
 msgid "Event Starting"
 msgstr "L'événement commence"
 
@@ -348,7 +348,7 @@ msgstr ""
 msgid "Meteogram"
 msgstr "Météogramme"
 
-#: ../contents/ui/config/ConfigGeneral.qml:118 ../contents/ui/TimerView.qml:326
+#: ../contents/ui/config/ConfigGeneral.qml:118 ../contents/ui/TimerView.qml:348
 msgid "Timer"
 msgstr "Minuterie"
 
@@ -453,35 +453,35 @@ msgstr ""
 "Activer le débogage\n"
 "L'information est inscrite dans ~/.xsession-errors"
 
-#: ../contents/ui/config/ConfigGoogleCalendar.qml:58
+#: ../contents/ui/config/ConfigGoogleCalendar.qml:60
 msgid "Login"
 msgstr "Connexion"
 
-#: ../contents/ui/config/ConfigGoogleCalendar.qml:63
+#: ../contents/ui/config/ConfigGoogleCalendar.qml:68
 msgid "Currently Synched."
 msgstr "Synchronisé"
 
-#: ../contents/ui/config/ConfigGoogleCalendar.qml:67
+#: ../contents/ui/config/ConfigGoogleCalendar.qml:72
 msgid "Logout"
 msgstr "Déconnexion"
 
-#: ../contents/ui/config/ConfigGoogleCalendar.qml:77
+#: ../contents/ui/config/ConfigGoogleCalendar.qml:82
 msgid "To sync with Google Calendar"
 msgstr "Synchroniser avec Google Calendar"
 
-#: ../contents/ui/config/ConfigGoogleCalendar.qml:81
+#: ../contents/ui/config/ConfigGoogleCalendar.qml:86
 msgid "Enter the following code at <a href=\"https://www.google.com/device\">https://www.google.com/device</a>."
 msgstr "Entrer le code sur <a href=\"https://www.google.com/device\">https://www.google.com/device</a>."
 
-#: ../contents/ui/config/ConfigGoogleCalendar.qml:87
+#: ../contents/ui/config/ConfigGoogleCalendar.qml:92
 msgid "Generating Code..."
 msgstr "Génération du code..."
 
-#: ../contents/ui/config/ConfigGoogleCalendar.qml:106 ../contents/ui/config/ConfigICal.qml:51
+#: ../contents/ui/config/ConfigGoogleCalendar.qml:111 ../contents/ui/config/ConfigICal.qml:51
 msgid "Calendars"
 msgstr "Calendriers"
 
-#: ../contents/ui/config/ConfigGoogleCalendar.qml:111
+#: ../contents/ui/config/ConfigGoogleCalendar.qml:116
 msgid "Refresh"
 msgstr "Rafraîchir"
 
@@ -635,6 +635,41 @@ msgstr "Récupérée depuis <a href=\"https://weather.gc.ca/canada_e.html\">http
 msgid "<b>Version:</b> %1"
 msgstr "<b>Version:</b> %1"
 
+#: ../contents/ui/LocaleFuncs.js:8
+msgctxt "event time on the hour (24 hour clock)"
+msgid "h"
+msgstr ""
+
+#: ../contents/ui/LocaleFuncs.js:10
+msgctxt "event time (24 hour clock)"
+msgid "h:mm"
+msgstr ""
+
+#: ../contents/ui/LocaleFuncs.js:14
+msgctxt "event time on the hour (12 hour clock)"
+msgid "h AP"
+msgstr ""
+
+#: ../contents/ui/LocaleFuncs.js:16
+msgctxt "event time (12 hour clock)"
+msgid "h:mm AP"
+msgstr ""
+
+#: ../contents/ui/LocaleFuncs.js:23 ../contents/ui/LocaleFuncs.js:34
+msgctxt "short month+date format"
+msgid "MMM d"
+msgstr ""
+
+#: ../contents/ui/LocaleFuncs.js:26
+msgctxt "date (%1) with time (%2)"
+msgid "%1, %2"
+msgstr ""
+
+#: ../contents/ui/LocaleFuncs.js:46 ../contents/ui/LocaleFuncs.js:67
+msgctxt "from date/time %1 until date/time %2"
+msgid "%1 - %2"
+msgstr ""
+
 #: ../contents/ui/main.qml:223
 msgid "Set Language..."
 msgstr "Régler la langue..."
@@ -681,69 +716,81 @@ msgstr ""
 "Aller sélectionner votre ville dans les paramètres Météo,\n"
 "et/ou désactiver l'affichage du météogramme."
 
-#: ../contents/ui/TimerView.qml:23
+#: ../contents/ui/TimerInputView.qml:75
+msgid "Cancel"
+msgstr ""
+
+#: ../contents/ui/TimerInputView.qml:80
+msgid "Start"
+msgstr ""
+
+#: ../contents/ui/TimerView.qml:25
 msgid "30s"
 msgstr "30s"
 
-#: ../contents/ui/TimerView.qml:27
+#: ../contents/ui/TimerView.qml:29
 msgid "1m"
 msgstr "1m"
 
-#: ../contents/ui/TimerView.qml:31
+#: ../contents/ui/TimerView.qml:33
 msgid "5m"
 msgstr "5m"
 
-#: ../contents/ui/TimerView.qml:35
+#: ../contents/ui/TimerView.qml:37
 msgid "10m"
 msgstr "10m"
 
-#: ../contents/ui/TimerView.qml:39
+#: ../contents/ui/TimerView.qml:41
 msgid "15m"
 msgstr "15m"
 
-#: ../contents/ui/TimerView.qml:43
+#: ../contents/ui/TimerView.qml:45
 msgid "20m"
 msgstr "20m"
 
-#: ../contents/ui/TimerView.qml:47
+#: ../contents/ui/TimerView.qml:49
 msgid "30m"
 msgstr "30m"
 
-#: ../contents/ui/TimerView.qml:51
+#: ../contents/ui/TimerView.qml:53
 msgid "45m"
 msgstr "45m"
 
-#: ../contents/ui/TimerView.qml:55
+#: ../contents/ui/TimerView.qml:57
 msgid "1h"
 msgstr "1h"
 
-#: ../contents/ui/TimerView.qml:97
+#: ../contents/ui/TimerView.qml:105
 msgid "Pause Timer"
 msgstr "Mettre en pause la minuterie"
 
-#: ../contents/ui/TimerView.qml:99
+#: ../contents/ui/TimerView.qml:107
 msgid "Start Timer"
 msgstr "Démarrer la minuterie"
 
-#: ../contents/ui/TimerView.qml:103
+#: ../contents/ui/TimerView.qml:111
 msgid "Scroll to add to duration"
 msgstr ""
 
-#: ../contents/ui/TimerView.qml:158 ../contents/ui/TimerView.qml:167 ../contents/ui/TimerView.qml:354
+#: ../contents/ui/TimerView.qml:166 ../contents/ui/TimerView.qml:175 ../contents/ui/TimerView.qml:376
 msgid "Repeat"
 msgstr "Répéter"
 
-#: ../contents/ui/TimerView.qml:176 ../contents/ui/TimerView.qml:185 ../contents/ui/TimerView.qml:363
+#: ../contents/ui/TimerView.qml:184 ../contents/ui/TimerView.qml:193 ../contents/ui/TimerView.qml:385
 msgid "Sound"
 msgstr "Son"
 
-#: ../contents/ui/TimerView.qml:328
+#: ../contents/ui/TimerView.qml:350
 msgid "Timer finished"
 msgstr "Minuterie terminée"
 
-#: ../contents/ui/TimerView.qml:329
+#: ../contents/ui/TimerView.qml:351
 msgid "%1 has passed"
 msgstr "%1 a passé"
+
+#: ../contents/ui/TimerView.qml:397
+msgid "Set Timer"
+msgstr ""
 
 #: ../contents/ui/UpcomingEvents.qml:114
 msgid "Events Starting"

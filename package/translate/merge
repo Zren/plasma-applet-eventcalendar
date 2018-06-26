@@ -1,5 +1,5 @@
 #!/bin/sh
-# Version: 5
+# Version: 8
 
 # https://techbase.kde.org/Development/Tutorials/Localization/i18n_Build_Systems
 # Based on: https://github.com/psifidotos/nowdock-plasmoid/blob/master/po/Messages.sh
@@ -27,7 +27,7 @@ fi
 
 #---
 echo "[merge] Extracting messages"
-find "${packageRoot}" -name '*.cpp' -o -name '*.h' -o -name '*.c' -o -name '*.qml' | sort > "${DIR}/infiles.list"
+find "${packageRoot}" -name '*.cpp' -o -name '*.h' -o -name '*.c' -o -name '*.qml' -o -name '*.js' | sort > "${DIR}/infiles.list"
 
 xgettext --from-code=UTF-8 -C -kde -ci18n -ki18n:1 -ki18nc:1c,2 -ki18np:1,2 -ki18ncp:1c,2,3 \
 	-ktr2i18n:1 -kI18N_NOOP:1 -kI18N_NOOP2:1c,2  -kN_:1 -kaliasLocale -kki18n:1 -kki18nc:1c,2 \
@@ -69,9 +69,11 @@ else
 fi
 
 potMessageCount=`expr $(grep -c 'msgstr ""' "template.pot") - 1`
-echo "|Locale | Lines | % Done|" > "./Status.md"
-echo "|-------|-------|-------|" >> "./Status.md"
-echo "|Template\t|${potMessageCount}\t|\t|" >> "./Status.md"
+echo "|  Locale  |  Lines  | % Done|" > "./Status.md"
+echo "|----------|---------|-------|" >> "./Status.md"
+entryFormat="| %-8s | %7s | %5s |"
+templateLine=`perl -e "printf(\"$entryFormat\", \"Template\", \"${potMessageCount}\", \"\")"`
+echo "$templateLine" >> "./Status.md"
 
 rm "${DIR}/infiles.list"
 echo "[merge] Done extracting messages"
@@ -93,7 +95,8 @@ for cat in $catalogs; do
 	poEmptyMessageCount=`expr $(grep -Pzo 'msgstr ""\n\n' "$cat.new" | grep -c 'msgstr ""')`
 	poMessagesDoneCount=`expr $potMessageCount - $poEmptyMessageCount`
 	poCompletion=`perl -e "printf(\"%d\", $poMessagesDoneCount * 100 / $potMessageCount)"`
-	echo "|${catLocale}\t|${poMessagesDoneCount}/${potMessageCount}\t|${poCompletion}%\t|" >> "./Status.md"
+	poLine=`perl -e "printf(\"$entryFormat\", $catLocale, \"${poMessagesDoneCount}/${potMessageCount}\", \"${poCompletion}%\")"`
+	echo "$poLine" >> "./Status.md"
 
 	# mv "$cat" "$cat.old"
 	mv "$cat.new" "$cat"

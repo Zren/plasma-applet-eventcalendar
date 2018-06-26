@@ -41,6 +41,11 @@ GridLayout {
         agendaListItem.checkIfToday()
     }
 
+    readonly property int itemOffset: agendaScrollView.getItemOffsetY(index)
+    readonly property int scrollOffset: agendaScrollView.scrollY - itemOffset
+    readonly property bool isCurrentItem: 0 <= scrollOffset && scrollOffset < height
+    // onItemOffsetChanged: console.log(index, 'itemOffset', itemOffset)
+
     LinkRect {
         visible: agendaModel.showDailyWeather
         Layout.alignment: Qt.AlignTop
@@ -54,6 +59,9 @@ GridLayout {
         }
         implicitHeight: itemWeatherColumn.implicitHeight
 
+        readonly property int maxOffset: agendaListItem.height - height
+        Layout.topMargin: agendaListItem.isCurrentItem ? Math.min(maxOffset, agendaListItem.scrollOffset) : 0
+
         ColumnLayout {
             id: itemWeatherColumn
             Layout.alignment: Qt.AlignTop
@@ -66,10 +74,7 @@ GridLayout {
                 source: weatherIcon
                 height: appletConfig.agendaWeatherIconSize
                 showOutline: plasmoid.configuration.show_outlines
-                anchors {
-                    left: parent.left
-                    right: parent.right
-                }
+                Layout.fillWidth: true
             }
 
             PlasmaComponents.Label {
@@ -109,6 +114,10 @@ GridLayout {
         Layout.alignment: Qt.AlignTop
         Layout.column: weatherOnRight ? 0 : 1
         implicitWidth: appletConfig.agendaDateColumnWidth
+
+        readonly property int maxOffset: agendaListItem.height - height
+        Layout.topMargin: agendaListItem.isCurrentItem ? Math.min(maxOffset, agendaListItem.scrollOffset) : 0
+
         ColumnLayout {
             id: itemDateColumn
             anchors.left: parent.left
@@ -126,10 +135,7 @@ GridLayout {
                 font.pixelSize: appletConfig.agendaFontSize
                 font.weight: agendaItemIsToday ? inProgressFontWeight : Font.Normal
                 height: paintedHeight
-                anchors {
-                    left: parent.left
-                    right: parent.right
-                }
+                Layout.fillWidth: true
                 horizontalAlignment: Text.AlignRight
 
                 // MouseArea {
@@ -149,10 +155,7 @@ GridLayout {
                 font.pixelSize: appletConfig.agendaFontSize
                 font.weight: agendaItemIsToday ? inProgressFontWeight : Font.Normal
                 height: paintedHeight
-                anchors {
-                    left: parent.left
-                    right: parent.right
-                }
+                Layout.fillWidth: true
                 horizontalAlignment: Text.AlignRight
             }
         }

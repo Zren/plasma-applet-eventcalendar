@@ -1,4 +1,4 @@
-> Version 3 of Zren's i18n scripts.
+> Version 4 of Zren's i18n scripts.
 
 With KDE Frameworks v5.37 and above, translations are bundled with the *.plasmoid file downloaded from the store.
 
@@ -32,14 +32,14 @@ Or if you know how to make a pull request
 * https://github.com/kotelnik/plasma-applet-redshift-control/tree/master/translations
 
 ## Status
-|Locale | Lines | % Done|
-|-------|-------|-------|
-|Template\t|177\t|\t|
-|de\t|143/177\t|80%\t|
-|el\t|177/177\t|100%\t|
-|es\t|146/177\t|82%\t|
-|fr\t|156/177\t|88%\t|
-|nl_NL\t|177/177\t|100%\t|
-|pt_BR\t|153/177\t|86%\t|
-|ru\t|177/177\t|100%\t|
-|uk\t|162/177\t|91%\t|
+|  Locale  |  Lines  | % Done|
+|----------|---------|-------|
+| Template |     187 |       |
+| de       | 143/187 |   76% |
+| el       | 177/187 |   94% |
+| es       | 146/187 |   78% |
+| fr       | 156/187 |   83% |
+| nl_NL    | 177/187 |   94% |
+| pt_BR    | 153/187 |   81% |
+| ru       | 177/187 |   94% |
+| uk       | 162/187 |   86% |

@@ -53,6 +53,9 @@ Item {
         readonly property int contentHeight: contentItem ? contentItem.height : 0 // Warning: Binding loop
         readonly property int viewportWidth: viewport ? viewport.width : width
         readonly property int viewportHeight: viewport ? viewport.height : height
+        readonly property int scrollY: flickableItem ? flickableItem.contentY : 0
+
+        // onScrollYChanged: console.log('scrollY', scrollY)
 
         ColumnLayout {
             id: agendaColumn
@@ -88,6 +91,27 @@ Item {
                     // console.log(Date.now(), 'agendaRepeater.onItemRemoved', index)
                     populated = false
                 }
+            }
+        }
+
+        function getCurrentAgendaItem() {
+            if (agendaRepeater.count == 0 || scrollY < 0) {
+                return null
+            } else {
+                var offsetY = 0
+                for (var i = 0; i < agendaRepeater.count; i++) {
+                    var agendaListItem = agendaRepeater.itemAt(i)
+                    offsetY += agendaListItem ? agendaListItem.height : 0
+                    // console.log('\t', i, agendaListItem, agendaListItem.height)
+                    if (i != agendaRepeater.count-1) {
+                        offsetY += agendaColumn.spacing
+                    }
+
+                    if (offsetY >= scrollY) {
+                        return agendaListItem
+                    }
+                }
+                return null
             }
         }
 
