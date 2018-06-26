@@ -261,7 +261,9 @@ Item {
 
     function setDurationAndStart(duration) {
         setDuration(duration)
-        timerTicker.restart()
+        if (duration > 0) {
+            timerTicker.restart()
+        }
     }
 
     onTimerDurationChanged: {
