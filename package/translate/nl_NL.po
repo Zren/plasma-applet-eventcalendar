@@ -638,37 +638,37 @@ msgstr "<b>Versie:</b> %1"
 #: ../contents/ui/LocaleFuncs.js:8
 msgctxt "event time on the hour (24 hour clock)"
 msgid "h"
-msgstr ""
+msgstr "h"
 
 #: ../contents/ui/LocaleFuncs.js:10
 msgctxt "event time (24 hour clock)"
 msgid "h:mm"
-msgstr ""
+msgstr "h:mm"
 
 #: ../contents/ui/LocaleFuncs.js:14
 msgctxt "event time on the hour (12 hour clock)"
 msgid "h AP"
-msgstr ""
+msgstr "h AP"
 
 #: ../contents/ui/LocaleFuncs.js:16
 msgctxt "event time (12 hour clock)"
 msgid "h:mm AP"
-msgstr ""
+msgstr "h:mm AP"
 
 #: ../contents/ui/LocaleFuncs.js:23 ../contents/ui/LocaleFuncs.js:34
 msgctxt "short month+date format"
 msgid "MMM d"
-msgstr ""
+msgstr "MMM d"
 
 #: ../contents/ui/LocaleFuncs.js:26
 msgctxt "date (%1) with time (%2)"
 msgid "%1, %2"
-msgstr ""
+msgstr "%1, %2"
 
 #: ../contents/ui/LocaleFuncs.js:46 ../contents/ui/LocaleFuncs.js:67
 msgctxt "from date/time %1 until date/time %2"
 msgid "%1 - %2"
-msgstr ""
+msgstr "%1 - %2"
 
 #: ../contents/ui/main.qml:223
 msgid "Set Language..."
@@ -718,11 +718,11 @@ msgstr ""
 
 #: ../contents/ui/TimerInputView.qml:75
 msgid "Cancel"
-msgstr ""
+msgstr "Annuleren"
 
 #: ../contents/ui/TimerInputView.qml:80
 msgid "Start"
-msgstr ""
+msgstr "Starten"
 
 #: ../contents/ui/TimerView.qml:25
 msgid "30s"
@@ -790,7 +790,7 @@ msgstr "%1 is verlopen"
 
 #: ../contents/ui/TimerView.qml:397
 msgid "Set Timer"
-msgstr ""
+msgstr "Timer instellen"
 
 #: ../contents/ui/UpcomingEvents.qml:114
 msgid "Events Starting"
