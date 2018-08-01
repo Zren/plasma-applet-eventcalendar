@@ -14,7 +14,11 @@ Dialog {
 	width: 500
 	height: 600
 	property bool loadingCityList: false
-	property bool cityListLoaded: false
+
+	Logger {
+		id: logger
+		showDebug: plasmoid.configuration.debugging
+	}
 
 	ListModel { id: cityListModel }
 	PlasmaCore.SortFilterModel {
@@ -49,20 +53,14 @@ Dialog {
 	Timer {
 		id: debouceApplyFilter
 		interval: 1000
-		onTriggered: filteredCityListModel.filterRegExp = cityNameInput.text
-	}
-
-	onVisibleChanged: {
-		if (!cityListLoaded && !loadingCityList) {
-			loadCityList()
-		}
+		onTriggered: chooseCityDialog.applyCityListSearch()
 	}
 
 
 	ColumnLayout {
 		anchors.fill: parent
 		LinkText { 
-			text: i18n("Fetched from <a href=\"http://openweathermap.org/help/city_list.txt\">http://openweathermap.org/help/city_list.txt</a>")
+			text: i18n("Fetched from <a href=\"https://openweathermap.org/find\">https://openweathermap.org/find</a>")
 		}
 		TextField {
 			id: cityNameInput
@@ -106,33 +104,59 @@ Dialog {
 		}
 	}
 
+	function clearCityList() {
+		// clear list so that each append() doesn't rebuild the UI
+		filteredCityListModel.sourceModel = null
+		cityListModel.clear()
+	}
 
-	function loadCityList() {
-		chooseCityDialog.loadingCityList = true
-		var url = 'http://openweathermap.org/help/city_list.txt';
-		Requests.request(url, function(err, data) {
-		// Requests.getFile('OpenWeatherMapCityList.tsv', function(err, data) {
-			// console.log(data);
-			// tab seperated values
-			var lines = data.split('\n');
-			lines.shift(); //Header: "id	nm	lat	lon	countryCode"
-
-			for (var i = 0; i < lines.length; i++) {
-				var row = lines[i].split('\t');
-				if (row.length >= 2) {
-					var city = {
-						id: row[0],
-						name: row[1] + ', ' + row[4],
-					};
-					cityListModel.append(city);
-				}
+	function parseCityList(data) {
+		for (var i = 0; i < data.list.length; i++) {
+			var item = data.list[i]
+			var city = {
+				id: item.id,
+				name: item.name + ', ' + item.sys.country,
 			}
-			
-			// link after populating so that each append() doesn't attempt to rebuild the UI.
-			filteredCityListModel.sourceModel = cityListModel
-			
-			chooseCityDialog.cityListLoaded = true
-			chooseCityDialog.loadingCityList = false
-		})
+			cityListModel.append(city)
+		}
+	}
+
+	function applyCityListSearch() {
+		searchCityList(cityNameInput.text)
+	}
+
+	function searchCityList(q) {
+		console.log('searchCityList', q)
+		clearCityList()
+		if (q) {
+			chooseCityDialog.loadingCityList = true
+			fetchCityList({
+				app_id: plasmoid.configuration.weather_app_id,
+				q: q,
+			}, function(err, data, xhr) {
+				if (err) return console.log('searchCityList.err', err, xhr && xhr.status, data)
+				logger.log('searchCityList.response')
+				logger.debugJSON('searchCityList.response', data)
+
+				parseCityList(data)
+
+				// link after populating so that each append() doesn't attempt to rebuild the UI.
+				filteredCityListModel.sourceModel = cityListModel
+				
+				chooseCityDialog.loadingCityList = false
+			})
+		}
+	}
+
+	function fetchCityList(args, callback) {
+		if (!args.app_id) return callback('OpenWeatherMap AppId not set');
+		
+		var url = 'http://api.openweathermap.org/data/2.5/'
+		url += 'find?q=' + encodeURIComponent(args.q)
+		url += '&type=like'
+		url += '&sort=population'
+		url += '&cnt=30'
+		url += '&appid=' + args.app_id
+		Requests.getJSON(url, callback);
 	}
 }
