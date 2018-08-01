@@ -605,8 +605,8 @@ msgid "Select city"
 msgstr "Ort auswählen"
 
 #: ../contents/ui/config/OpenWeatherMapCityDialog.qml:65
-msgid "Fetched from <a href=\"http://openweathermap.org/help/city_list.txt\">http://openweathermap.org/help/city_list.txt</a>"
-msgstr "Geladen von <a href=\"http://openweathermap.org/help/city_list.txt\">http://openweathermap.org/help/city_list.txt</a>"
+msgid "Fetched from <a href=\"https://openweathermap.org/find\">https://openweathermap.org/find</a>"
+msgstr "Geladen von <a href=\"https://openweathermap.org/find\">https://openweathermap.org/find</a>"
 
 #: ../contents/ui/config/OpenWeatherMapCityDialog.qml:71 ../contents/ui/config/WeatherCanadaCityDialog.qml:91
 msgid "Search"
