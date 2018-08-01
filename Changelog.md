@@ -1,3 +1,8 @@
+## v59 - August 1 2018
+
+* Fix OpenWeatherMap city selector dialog.
+* Updated Dutch translation by @Vistaus.
+
 ## v58 - June 26 2018
 
 * Add ability to set a custom timer via right clicking the timer > "Set Timer".
