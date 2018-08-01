@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: eventcalendar\n"
 "Report-Msgid-Bugs-To: https://github.com/Zren/plasma-applet-eventcalendar\n"
-"POT-Creation-Date: 2018-06-26 13:56-0400\n"
+"POT-Creation-Date: 2018-08-01 11:08-0400\n"
 "PO-Revision-Date: 2017-04-29 11:18+0100\n"
 "Last-Translator: Hans-Peter Jansen <hpj@urpla.net>\n"
 "Language-Team: de <hpj@urpla.net>\n"
@@ -604,27 +604,27 @@ msgstr ""
 msgid "Select city"
 msgstr "Ort auswählen"
 
-#: ../contents/ui/config/OpenWeatherMapCityDialog.qml:65
+#: ../contents/ui/config/OpenWeatherMapCityDialog.qml:63
 msgid "Fetched from <a href=\"https://openweathermap.org/find\">https://openweathermap.org/find</a>"
 msgstr "Geladen von <a href=\"https://openweathermap.org/find\">https://openweathermap.org/find</a>"
 
-#: ../contents/ui/config/OpenWeatherMapCityDialog.qml:71 ../contents/ui/config/WeatherCanadaCityDialog.qml:91
+#: ../contents/ui/config/OpenWeatherMapCityDialog.qml:69 ../contents/ui/config/WeatherCanadaCityDialog.qml:91
 msgid "Search"
 msgstr "Suchen"
 
-#: ../contents/ui/config/OpenWeatherMapCityDialog.qml:84 ../contents/ui/config/WeatherCanadaCityDialog.qml:104
+#: ../contents/ui/config/OpenWeatherMapCityDialog.qml:82 ../contents/ui/config/WeatherCanadaCityDialog.qml:104
 msgid "Name"
 msgstr "Name"
 
-#: ../contents/ui/config/OpenWeatherMapCityDialog.qml:89 ../contents/ui/config/WeatherCanadaCityDialog.qml:109
+#: ../contents/ui/config/OpenWeatherMapCityDialog.qml:87 ../contents/ui/config/WeatherCanadaCityDialog.qml:109
 msgid "Id"
 msgstr "ID"
 
-#: ../contents/ui/config/OpenWeatherMapCityDialog.qml:94 ../contents/ui/config/WeatherCanadaCityDialog.qml:114
+#: ../contents/ui/config/OpenWeatherMapCityDialog.qml:92 ../contents/ui/config/WeatherCanadaCityDialog.qml:114
 msgid "City Webpage"
 msgstr "Website des Ortes"
 
-#: ../contents/ui/config/OpenWeatherMapCityDialog.qml:96 ../contents/ui/config/WeatherCanadaCityDialog.qml:116
+#: ../contents/ui/config/OpenWeatherMapCityDialog.qml:94 ../contents/ui/config/WeatherCanadaCityDialog.qml:116
 msgid "Open Link"
 msgstr "Verknüpfung öffnen"
 
