@@ -9,7 +9,7 @@ import ".."
 import "../lib"
 
 // Mostly copied from digitalclock
-ConfigPage {
+ColumnLayout { // ConfigPage creates a binding loop when a child uses fillHeight
     id: page
 
     function digitalclock_i18n(message) {
