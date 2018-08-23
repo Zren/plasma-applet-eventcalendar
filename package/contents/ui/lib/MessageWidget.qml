@@ -10,11 +10,7 @@ import org.kde.plasma.components 2.0 as PlasmaComponents
 Rectangle {
     id: messageWidget
 
-    anchors {
-        left: parent.left
-        right: parent.right
-        margins: 1
-    }
+    Layout.fillWidth: true
 
     property alias text: label.text
     property alias wrapMode: label.wrapMode
@@ -120,7 +116,7 @@ Rectangle {
 
     Layout.minimumHeight: 0
     Layout.preferredHeight: Layout.minimumHeight
-    readonly property int expandedHeight: label.implicitHeight + (2 * units.largeSpacing)
+    readonly property int expandedHeight: layout.implicitHeight + (2 * layout.anchors.margins)
     Behavior on visible {
         ParallelAnimation {
             PropertyAnimation {
@@ -145,15 +141,14 @@ Rectangle {
     }
 
     RowLayout {
+        id: layout
         anchors.fill: parent
-        anchors.margins: units.largeSpacing
-        anchors.leftMargin: units.smallSpacing
-        anchors.rightMargin: units.smallSpacing
+        anchors.margins: units.smallSpacing
         spacing: units.smallSpacing
 
         PlasmaCore.IconItem {
             id: iconItem
-            anchors.verticalCenter: parent.verticalCenter
+            Layout.alignment: Qt.AlignVCenter
             Layout.preferredHeight: units.iconSizes.large
             Layout.preferredWidth: units.iconSizes.large
             source: messageWidget.icon
@@ -161,7 +156,7 @@ Rectangle {
 
         Label {
             id: label
-            anchors.verticalCenter: parent.verticalCenter
+            Layout.alignment: Qt.AlignVCenter
             Layout.fillWidth: true
             verticalAlignment: Text.AlignVCenter
             wrapMode: Text.WordWrap
@@ -170,7 +165,7 @@ Rectangle {
 
         PlasmaComponents.ToolButton {
             id: closeButton
-            anchors.verticalCenter: parent.verticalCenter
+            Layout.alignment: Qt.AlignVCenter
             iconName: "dialog-close"
             flat: true
 
