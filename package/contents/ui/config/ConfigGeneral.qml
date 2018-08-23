@@ -322,7 +322,7 @@ ConfigPage {
                         // remove it + the delimiter and space
                         var format = Qt.locale().dateFormat(Locale.LongFormat);
                         format = format.replace(/(^dddd.?\s)|(,?\sdddd$)/, "");
-                        return;
+                        return format; 
                     }
                     text: Qt.formatDate(new Date(), dateFormat)
                     onClicked: cfg_clock_timeformat_2 = dateFormat
