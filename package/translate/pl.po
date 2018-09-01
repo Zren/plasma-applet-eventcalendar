@@ -95,7 +95,7 @@ msgstr ""
 #: ../contents/ui/AgendaListItem.qml:131
 msgctxt "agenda date format line 1"
 msgid "MMM d"
-msgstr ""
+msgstr "d MMM"
 
 #: ../contents/ui/AgendaListItem.qml:151
 msgctxt "agenda date format line 2"
@@ -682,17 +682,17 @@ msgstr ""
 #: ../contents/ui/MonthView.qml:348
 msgctxt "calendar title format for current month"
 msgid "MMMM d, yyyy"
-msgstr ""
+msgstr "d MMMM yyyy"
 
 #: ../contents/ui/MonthView.qml:352
 msgctxt "calendar title format for other months of current year"
 msgid "MMMM"
-msgstr ""
+msgstr "MMMM"
 
 #: ../contents/ui/MonthView.qml:355
 msgctxt "calendar title format for months not from current year"
 msgid "MMMM, yyyy"
-msgstr ""
+msgstr "MMMM yyyy"
 
 #: ../contents/ui/NewEventForm.qml:24
 msgid "[No Calendars]"
