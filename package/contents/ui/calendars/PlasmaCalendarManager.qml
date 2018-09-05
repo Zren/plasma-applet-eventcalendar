@@ -92,7 +92,16 @@ CalendarManager {
 	function dateString(d) {
 		return Qt.formatDateTime(d, 'yyyy-MM-dd')
 	}
-	function parseEventsForDate(dayEvents) {
+	function isValidDate(d) {
+		if (d === null) {
+			return false
+		} else if (isNaN(d)) {
+			return false
+		} else {
+			return true
+		}
+	}
+	function parseEventsForDate(day, dayEvents) {
 		var items = []
 		for (var i = 0; i < dayEvents.length; i++) {
 			var dayItem = dayEvents[i]
@@ -100,15 +109,20 @@ CalendarManager {
 
 			var start = {}
 			var end = {}
-			var startDateTime = new Date(dayItem.startDateTime)
-			var endDateTime = new Date(dayItem.endDateTime)
 
+			// The dayItem.___DateTime might be "Invalid Date"
+			// Eg: the "Astronomical Events" plugin
+			var startDateTime = new Date(isValidDate(dayItem.startDateTime) ? dayItem.startDateTime : day)
+			var endDateTime = new Date(isValidDate(dayItem.endDateTime) ? dayItem.endDateTime : day)
+			// logger.log('\t startDateTime', dayItem.startDateTime, startDateTime)
+			// logger.log('\t endDateTime', dayItem.endDateTime, endDateTime)
+			
 			if (dayItem.isAllDay) {
-				start.date = dateString(dayItem.startDateTime) // 2018-01-31
+				start.date = dateString(startDateTime) // 2018-01-31
 				// Google Calendar has the event start at midnight, and end at midnight the next day
 				// Plasma has the date end on the same day, so we need to add 1 day to it so
 				// the rest of our code stack works.
-				var endDate = new Date(dayItem.endDateTime)
+				var endDate = new Date(endDateTime)
 				endDate.setDate(endDate.getDate() + 1)
 				end.date = dateString(endDate) // 2018-01-31
 				endDateTime = new Date(end.date)
@@ -166,7 +180,7 @@ CalendarManager {
 		for (var day = new Date(dateMinUtc); day < dateMax; day.setDate(day.getDate() + 1)) {
 			var dayEvents = calendarBackend.daysModel.eventsForDate(day)
 			logger.debugJSON(day, dayEvents)
-			items = items.concat(parseEventsForDate(dayEvents))
+			items = items.concat(parseEventsForDate(day, dayEvents))
 		}
 		// logger.debugJSON(items)
 
