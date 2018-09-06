@@ -122,7 +122,7 @@
     </entry>
     <entry name="firstDayOfWeek" type="int">
       <!-- Enum: -1 = Locale default, 0=Sunday, 1=Monday, ..., 6=Saturday -->
-      <default>2</default>
+      <default>-1</default>
     </entry>
   </group>
 
