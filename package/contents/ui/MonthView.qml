@@ -214,10 +214,23 @@ PinchArea {
 
         days: 7
         weeks: 6
-        firstDayOfWeek: Qt.locale().firstDayOfWeek
+        firstDayOfWeek: {
+            if (plasmoid.configuration.firstDayOfWeek == -1) {
+                return Qt.locale().firstDayOfWeek
+            } else {
+                return plasmoid.configuration.firstDayOfWeek
+            }
+        }
 
         Component.onCompleted: {
             // daysModel.setPluginsManager(EventPluginsManager);
+
+            // Bind after configuration is loaded to prevent calling updateMonthOverview a 3rd time.
+            calendarBackend.firstDayOfWeekChanged.connect(function(){
+                // logger.debug('onFirstDayOfWeekChanged', calendarBackend.firstDayOfWeek)
+                updateMonthOverview()
+                // TODO: Note, this resets the MonthView event badges, the user needs to manually update.
+            })
         }
 
         onTodayChanged: {

@@ -50,6 +50,33 @@ ConfigPage {
         text: i18n("Style")
     }
     ConfigSection {
+        LabeledRowLayout {
+            label: i18n("First day of week:")
+            ComboBox {
+                // [-1, 0, 1, 2, 3, 4, 5, 6] // Default = -1, 0..6 = Sun..Sat
+                model: ListModel {}
+                textRole: "text"
+
+                Component.onCompleted: {
+                    model.append({
+                        text: i18n("Default"),
+                        value: -1,
+                    })
+                    for (var i = 0; i < 7; i++) {
+                        model.append({
+                            text: Qt.locale().dayName(i),
+                            value: i,
+                        })
+                    }
+
+                    // The firstDayOfWeek enum starts at -1 instead of 0
+                    currentIndex = plasmoid.configuration.firstDayOfWeek + 1
+                    currentIndexChanged.connect(function(){
+                        plasmoid.configuration.firstDayOfWeek = currentIndex - 1
+                    })
+                }
+            }
+        }
         CheckBox {
             id: month_show_border
             text: i18n("Show Borders")

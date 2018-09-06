@@ -120,6 +120,10 @@
     <entry name="month_cell_radius" type="double">
       <default>0</default>
     </entry>
+    <entry name="firstDayOfWeek" type="int">
+      <!-- Enum: -1 = Locale default, 0=Sunday, 1=Monday, ..., 6=Saturday -->
+      <default>2</default>
+    </entry>
   </group>
 
   <group name="Agenda">

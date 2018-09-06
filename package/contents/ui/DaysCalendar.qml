@@ -354,7 +354,7 @@ Item {
             Components.Label {
                 width: daysCalendar.cellWidth
                 height: daysCalendar.cellHeight
-                text: Qt.locale().dayName(calendarBackend.firstDayOfWeek + index, Locale.ShortFormat)
+                text: Qt.locale().dayName((calendarBackend.firstDayOfWeek + index) % 7, Locale.ShortFormat)
                 font.pixelSize: Math.max(theme.smallestFont.pixelSize, Math.min(daysCalendar.cellHeight / 3, daysCalendar.cellWidth * 5/8))
                 // This is to avoid the "Both point size and
                 // pixel size set. Using pixel size" warnings
