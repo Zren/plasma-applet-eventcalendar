@@ -50,8 +50,18 @@ ConfigPage {
         text: i18n("Style")
     }
     ConfigSection {
-        LabeledRowLayout {
-            label: i18n("First day of week:")
+        CheckBox {
+            id: month_show_border
+            text: i18n("Show Borders")
+        }
+        CheckBox {
+            id: month_show_weeknumbers
+            text: i18n("Show Week Numbers")
+        }
+        RowLayout {
+            Label {
+                text: i18n("First day of week:")
+            }
             ComboBox {
                 // [-1, 0, 1, 2, 3, 4, 5, 6] // Default = -1, 0..6 = Sun..Sat
                 model: ListModel {}
@@ -76,14 +86,6 @@ ConfigPage {
                     })
                 }
             }
-        }
-        CheckBox {
-            id: month_show_border
-            text: i18n("Show Borders")
-        }
-        CheckBox {
-            id: month_show_weeknumbers
-            text: i18n("Show Week Numbers")
         }
         LabeledRowLayout {
             label: i18n("Event Badge:")
