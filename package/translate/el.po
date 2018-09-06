@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: eventcalendar\n"
 "Report-Msgid-Bugs-To: https://github.com/Zren/plasma-applet-eventcalendar\n"
-"POT-Creation-Date: 2018-08-01 11:08-0400\n"
+"POT-Creation-Date: 2018-09-05 23:15-0400\n"
 "PO-Revision-Date: 2018-06-07 01:37+0300\n"
 "Last-Translator: Chris P <skylin@protonmail.com>\n"
 "Language-Team: Chris P <skylin@protonmail.com>\n"
@@ -253,51 +253,59 @@ msgstr "Εμφάνιση Περιθωρίων"
 msgid "Show Week Numbers"
 msgstr "Εμφάνιση Αριθμών Εβδομάδων στο Ημερολόγιο"
 
-#: ../contents/ui/config/ConfigCalendar.qml:62
+#: ../contents/ui/config/ConfigCalendar.qml:63
+msgid "First day of week:"
+msgstr ""
+
+#: ../contents/ui/config/ConfigCalendar.qml:72
+msgid "Default"
+msgstr ""
+
+#: ../contents/ui/config/ConfigCalendar.qml:91
 msgid "Event Badge:"
 msgstr "Σήμα Συμβάντος:"
 
-#: ../contents/ui/config/ConfigCalendar.qml:65 ../contents/ui/config/ConfigCalendar.qml:120 ../contents/ui/config/ConfigCalendar.qml:136
+#: ../contents/ui/config/ConfigCalendar.qml:94 ../contents/ui/config/ConfigCalendar.qml:149 ../contents/ui/config/ConfigCalendar.qml:165
 msgid "Theme"
 msgstr "Θέμα"
 
-#: ../contents/ui/config/ConfigCalendar.qml:73
+#: ../contents/ui/config/ConfigCalendar.qml:102
 msgid "Dots (3 Maximum)"
 msgstr "Κουκίδες (Μέγιστο 3)"
 
-#: ../contents/ui/config/ConfigCalendar.qml:81
+#: ../contents/ui/config/ConfigCalendar.qml:110
 msgid "Bottom Bar (Event Color)"
 msgstr "Κάτω Μπάρα (Χρώμα Συμβάντος)"
 
-#: ../contents/ui/config/ConfigCalendar.qml:89
+#: ../contents/ui/config/ConfigCalendar.qml:118
 msgid "Bottom Bar (Highlight)"
 msgstr "Κάτω Μπάρα (Τονισμένο)"
 
-#: ../contents/ui/config/ConfigCalendar.qml:97
+#: ../contents/ui/config/ConfigCalendar.qml:126
 msgid "Count"
 msgstr "Μέτρημα"
 
-#: ../contents/ui/config/ConfigCalendar.qml:110
+#: ../contents/ui/config/ConfigCalendar.qml:139
 msgid "Radius:"
 msgstr "Ακτίνα:"
 
-#: ../contents/ui/config/ConfigCalendar.qml:115
+#: ../contents/ui/config/ConfigCalendar.qml:144
 msgid "Selected:"
 msgstr "Επιλεγμένα:"
 
-#: ../contents/ui/config/ConfigCalendar.qml:124
+#: ../contents/ui/config/ConfigCalendar.qml:153
 msgid "Solid Color (Highlight)"
 msgstr "Συμπαγές Χρώμα (Τονισμένο)"
 
-#: ../contents/ui/config/ConfigCalendar.qml:131
+#: ../contents/ui/config/ConfigCalendar.qml:160
 msgid "Today:"
 msgstr "Σήμερα:"
 
-#: ../contents/ui/config/ConfigCalendar.qml:140
+#: ../contents/ui/config/ConfigCalendar.qml:169
 msgid "Solid Color (Inverted)"
 msgstr "Συμπαγές Χρώμα (Ανεστραμένο)"
 
-#: ../contents/ui/config/ConfigCalendar.qml:146
+#: ../contents/ui/config/ConfigCalendar.qml:175
 msgid "Big Number"
 msgstr "Μεγάλος Αριθμός"
 
@@ -683,17 +691,17 @@ msgstr "Ρύθμιση Τοπικότητας..."
 msgid "%1mm"
 msgstr "%1mm"
 
-#: ../contents/ui/MonthView.qml:348
+#: ../contents/ui/MonthView.qml:361
 msgctxt "calendar title format for current month"
 msgid "MMMM d, yyyy"
 msgstr "d MMMM, yyyy"
 
-#: ../contents/ui/MonthView.qml:352
+#: ../contents/ui/MonthView.qml:365
 msgctxt "calendar title format for other months of current year"
 msgid "MMMM"
 msgstr "MMMM"
 
-#: ../contents/ui/MonthView.qml:355
+#: ../contents/ui/MonthView.qml:368
 msgctxt "calendar title format for months not from current year"
 msgid "MMMM, yyyy"
 msgstr "MMMM, yyyy"

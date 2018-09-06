@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: eventcalendar\n"
 "Report-Msgid-Bugs-To: https://github.com/Zren/plasma-applet-eventcalendar\n"
-"POT-Creation-Date: 2018-08-01 11:08-0400\n"
+"POT-Creation-Date: 2018-09-05 23:15-0400\n"
 "PO-Revision-Date: 2017-10-31 20:08+0200\n"
 "Last-Translator: Serhii Golovko <cappelikan@gmail.com>\n"
 "Language-Team: \n"
@@ -253,51 +253,59 @@ msgstr "Показати кордони"
 msgid "Show Week Numbers"
 msgstr "Показати номери тижня"
 
-#: ../contents/ui/config/ConfigCalendar.qml:62
+#: ../contents/ui/config/ConfigCalendar.qml:63
+msgid "First day of week:"
+msgstr ""
+
+#: ../contents/ui/config/ConfigCalendar.qml:72
+msgid "Default"
+msgstr ""
+
+#: ../contents/ui/config/ConfigCalendar.qml:91
 msgid "Event Badge:"
 msgstr "Значок події:"
 
-#: ../contents/ui/config/ConfigCalendar.qml:65 ../contents/ui/config/ConfigCalendar.qml:120 ../contents/ui/config/ConfigCalendar.qml:136
+#: ../contents/ui/config/ConfigCalendar.qml:94 ../contents/ui/config/ConfigCalendar.qml:149 ../contents/ui/config/ConfigCalendar.qml:165
 msgid "Theme"
 msgstr "Тема"
 
-#: ../contents/ui/config/ConfigCalendar.qml:73
+#: ../contents/ui/config/ConfigCalendar.qml:102
 msgid "Dots (3 Maximum)"
 msgstr "Точки (3 Максимум)"
 
-#: ../contents/ui/config/ConfigCalendar.qml:81
+#: ../contents/ui/config/ConfigCalendar.qml:110
 msgid "Bottom Bar (Event Color)"
 msgstr "Нижній бар (колір події)"
 
-#: ../contents/ui/config/ConfigCalendar.qml:89
+#: ../contents/ui/config/ConfigCalendar.qml:118
 msgid "Bottom Bar (Highlight)"
 msgstr "Нижня панель (виділити)"
 
-#: ../contents/ui/config/ConfigCalendar.qml:97
+#: ../contents/ui/config/ConfigCalendar.qml:126
 msgid "Count"
 msgstr "Рахувати"
 
-#: ../contents/ui/config/ConfigCalendar.qml:110
+#: ../contents/ui/config/ConfigCalendar.qml:139
 msgid "Radius:"
 msgstr "Радіус:"
 
-#: ../contents/ui/config/ConfigCalendar.qml:115
+#: ../contents/ui/config/ConfigCalendar.qml:144
 msgid "Selected:"
 msgstr "Вибрано:"
 
-#: ../contents/ui/config/ConfigCalendar.qml:124
+#: ../contents/ui/config/ConfigCalendar.qml:153
 msgid "Solid Color (Highlight)"
 msgstr "Solid Color (виділити)"
 
-#: ../contents/ui/config/ConfigCalendar.qml:131
+#: ../contents/ui/config/ConfigCalendar.qml:160
 msgid "Today:"
 msgstr "Сьогодні:"
 
-#: ../contents/ui/config/ConfigCalendar.qml:140
+#: ../contents/ui/config/ConfigCalendar.qml:169
 msgid "Solid Color (Inverted)"
 msgstr "Твердий колір (інвертований)"
 
-#: ../contents/ui/config/ConfigCalendar.qml:146
+#: ../contents/ui/config/ConfigCalendar.qml:175
 msgid "Big Number"
 msgstr "Велике число"
 
@@ -685,17 +693,17 @@ msgstr "Встановити мову ..."
 msgid "%1mm"
 msgstr "%1мм"
 
-#: ../contents/ui/MonthView.qml:348
+#: ../contents/ui/MonthView.qml:361
 msgctxt "calendar title format for current month"
 msgid "MMMM d, yyyy"
 msgstr ""
 
-#: ../contents/ui/MonthView.qml:352
+#: ../contents/ui/MonthView.qml:365
 msgctxt "calendar title format for other months of current year"
 msgid "MMMM"
 msgstr ""
 
-#: ../contents/ui/MonthView.qml:355
+#: ../contents/ui/MonthView.qml:368
 msgctxt "calendar title format for months not from current year"
 msgid "MMMM, yyyy"
 msgstr ""
