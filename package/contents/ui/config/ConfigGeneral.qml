@@ -176,7 +176,7 @@ ConfigPage {
                     Component.onCompleted: {
                         // org.kde.plasma.digitalclock
                         var arr = [] // use temp array to avoid constant binding stuff
-                        arr.push({text: i18nc("Use default font", "Default"), value: ""})
+                        arr.push({text: i18n("Default"), value: ""})
 
                         var fonts = Qt.fontFamilies()
                         var foundIndex = 0

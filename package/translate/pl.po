@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: eventcalendar \n"
 "Report-Msgid-Bugs-To: https://github.com/Zren/plasma-applet-eventcalendar\n"
-"POT-Creation-Date: 2018-09-05 23:15-0400\n"
+"POT-Creation-Date: 2018-09-05 23:18-0400\n"
 "PO-Revision-Date: 2018-09-03 HO:MI+ZONE\n"
 "Last-Translator: Jakub Starzyk <jstarzyk98@gmail.com>\n"
 "Language-Team: Jakub Starzyk <jstarzyk98@gmail.com>\n"
@@ -255,9 +255,9 @@ msgstr "Pokaż numery tygodni"
 msgid "First day of week:"
 msgstr ""
 
-#: ../contents/ui/config/ConfigCalendar.qml:72
+#: ../contents/ui/config/ConfigCalendar.qml:72 ../contents/ui/config/ConfigGeneral.qml:179
 msgid "Default"
-msgstr ""
+msgstr "Domyślna"
 
 #: ../contents/ui/config/ConfigCalendar.qml:91
 msgid "Event Badge:"
@@ -385,11 +385,6 @@ msgstr "Możesz również użyć <b>'&lt;b&gt;'ddd'&lt;/b&gt;'</b> lub <b>'&lt;f
 #: ../contents/ui/config/ConfigGeneral.qml:168
 msgid "Font:"
 msgstr "Czcionka:"
-
-#: ../contents/ui/config/ConfigGeneral.qml:179
-msgctxt "Use default font"
-msgid "Default"
-msgstr "Domyślna"
 
 #: ../contents/ui/config/ConfigGeneral.qml:200
 msgid "Fixed Clock Height: "

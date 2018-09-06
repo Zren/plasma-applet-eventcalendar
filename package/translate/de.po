@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: eventcalendar\n"
 "Report-Msgid-Bugs-To: https://github.com/Zren/plasma-applet-eventcalendar\n"
-"POT-Creation-Date: 2018-09-05 23:15-0400\n"
+"POT-Creation-Date: 2018-09-05 23:18-0400\n"
 "PO-Revision-Date: 2017-04-29 11:18+0100\n"
 "Last-Translator: Hans-Peter Jansen <hpj@urpla.net>\n"
 "Language-Team: de <hpj@urpla.net>\n"
@@ -258,9 +258,9 @@ msgstr "Wochennummern anzeigen"
 msgid "First day of week:"
 msgstr ""
 
-#: ../contents/ui/config/ConfigCalendar.qml:72
+#: ../contents/ui/config/ConfigCalendar.qml:72 ../contents/ui/config/ConfigGeneral.qml:179
 msgid "Default"
-msgstr ""
+msgstr "Standard"
 
 #: ../contents/ui/config/ConfigCalendar.qml:91
 msgid "Event Badge:"
@@ -388,11 +388,6 @@ msgstr "Genau so kann <b>'&lt;b&gt;'ddd'&lt;/b&gt;'</b> oder <b>'&lt;font color=
 #: ../contents/ui/config/ConfigGeneral.qml:168
 msgid "Font:"
 msgstr "Zeichensatz:"
-
-#: ../contents/ui/config/ConfigGeneral.qml:179
-msgctxt "Use default font"
-msgid "Default"
-msgstr "Standard"
 
 #: ../contents/ui/config/ConfigGeneral.qml:200
 msgid "Fixed Clock Height: "
