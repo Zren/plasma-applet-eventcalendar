@@ -1,3 +1,11 @@
+## v60 - September 5 2018
+
+* Fix "D" in date formatting with Dutch translations.
+* Add ability to change first day of the week without changing the System locale/formats (Issue #32).
+* Add Polish translations by @jstarzyk (PR #34).
+* Fix "Astrological Events" duration formatting (Issue #25).
+* Fix one of the Date presets in the config showing up blank.
+
 ## v59 - August 1 2018
 
 * Fix OpenWeatherMap city selector dialog.
