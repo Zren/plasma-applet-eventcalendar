@@ -201,6 +201,7 @@ CalendarManager {
 	}
 
 	function parseEvent(calendar, event) {
+		event.description = event.description || "";
 		event.backgroundColor = parseColor(calendar, event)
 		event.canEdit = (calendar.accessRole == 'writer' || calendar.accessRole == 'owner') && !event.recurringEventId // We cannot currently edit repeating events.
 		if (true && event.htmlLink) {
@@ -283,6 +284,7 @@ CalendarManager {
 	function cloneRawEvent(event) {
 		// Clone the event data and clean up the extra stuff we added when parsing the event.
 		var data = JSON.parse(JSON.stringify(event)) // clone
+		if (data.description == "") delete data.description;
 		if (data.start.date) delete data.start.dateTime;
 		if (data.end.date) delete data.end.dateTime;
 		if (data.end.calendarId) delete data.end.calendarId;

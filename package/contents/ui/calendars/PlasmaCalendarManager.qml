@@ -141,6 +141,7 @@ CalendarManager {
 				"calendarId": calendarId,
 				"htmlLink": "",
 				"summary": dayItem.title,
+				"description": dayItem.description,
 				"start": start,
 				"end": end,
 				"backgroundColor": eventColor,

@@ -188,6 +188,32 @@ LinkRect {
                     } // RowLayout
                 } // Component
             } // Loader
+
+            PlasmaComponents.Label {
+                id: eventDescription
+                text: description
+                color: PlasmaCore.ColorScope.textColor
+                opacity: 0.75
+                font.pointSize: -1
+                font.pixelSize: appletConfig.agendaFontSize
+                height: paintedHeight
+                visible: description // && !editDescriptionForm.active
+                Layout.fillWidth: true
+                linkColor: PlasmaCore.ColorScope.highlightColor
+                wrapMode: Text.Wrap // See warning at eventSummary.wrapMode
+            }
+
+            // Loader {
+            //     id: editDescriptionForm
+            //     active: false
+            //     visible: active
+            //     Layout.fillWidth: true
+            //     sourceComponent: Component {
+            //         RowLayout {
+            //             //... TODO
+            //         }
+            //     }
+            // }
         } // eventColumn
     }
     
