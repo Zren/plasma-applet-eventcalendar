@@ -63,7 +63,6 @@ PlasmaComponents.TextField {
 	PlasmaCore.ToolTipArea {
 		id: toolTipArea
 		anchors.fill: parent
-		location: dateSelector.dialogLocation
 		interactive: true
 		
 		mainItem: Loader {
