@@ -157,6 +157,12 @@
     <entry name="agenda_fontSize" type="uint">
       <default>0</default>
     </entry>
+    <entry name="agendaShowEventDescription" type="bool">
+      <default>true</default>
+    </entry>
+    <entry name="agendaShowEventHangoutLink" type="bool">
+      <default>true</default>
+    </entry>
   </group>
 
 

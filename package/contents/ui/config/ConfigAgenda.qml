@@ -16,6 +16,8 @@ ConfigPage {
     property alias cfg_agenda_weather_show_icon: agenda_weather_show_icon.checked
     property alias cfg_agenda_weather_icon_height: agenda_weather_icon_height.value
     property alias cfg_agenda_weather_show_text: agenda_weather_show_text.checked
+    property alias cfg_agendaShowEventDescription: agendaShowEventDescription.checked
+    property alias cfg_agendaShowEventHangoutLink: agendaShowEventHangoutLink.checked
     property bool cfg_agenda_breakup_multiday_events: false
     property alias cfg_agenda_newevent_remember_calendar: agenda_newevent_remember_calendar.checked
     property alias cfg_show_outlines: show_outlines.checked
@@ -134,6 +136,14 @@ ConfigPage {
     }
 
     ConfigSection {
+        CheckBox {
+            id: agendaShowEventDescription
+            text: i18n("Event description")
+        }
+        CheckBox {
+            id: agendaShowEventHangoutLink
+            text: i18n("Google Hangouts link")
+        }
         LabeledRowLayout {
             label: i18n("Click Event:")
             ExclusiveGroup { id: agenda_event_clickGroup }
