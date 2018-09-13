@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: eventcalendar \n"
 "Report-Msgid-Bugs-To: https://github.com/Zren/plasma-applet-eventcalendar\n"
-"POT-Creation-Date: 2018-09-05 23:18-0400\n"
+"POT-Creation-Date: 2018-09-13 18:53-0400\n"
 "PO-Revision-Date: 2017-06-10 HO:MI+ZONE\n"
 "Last-Translator: Kepa Badiola <badiol@yahoo.es>\n"
 "Language-Team: Spanish <LL@li.org>\n"
@@ -74,23 +74,27 @@ msgstr "Guardar"
 msgid "Discard"
 msgstr "Descartar"
 
-#: ../contents/ui/AgendaEventItem.qml:213
+#: ../contents/ui/AgendaEventItem.qml:234
+msgid "Hangout"
+msgstr ""
+
+#: ../contents/ui/AgendaEventItem.qml:261
 msgid "Edit description"
 msgstr "Editar descripción"
 
-#: ../contents/ui/AgendaEventItem.qml:222
+#: ../contents/ui/AgendaEventItem.qml:270
 msgid "Edit date/time"
 msgstr ""
 
-#: ../contents/ui/AgendaEventItem.qml:230
+#: ../contents/ui/AgendaEventItem.qml:278
 msgid "Delete Event"
 msgstr "Remover Evento"
 
-#: ../contents/ui/AgendaEventItem.qml:233
+#: ../contents/ui/AgendaEventItem.qml:281
 msgid "Confirm Deletion"
 msgstr "Confirmar Eliminación"
 
-#: ../contents/ui/AgendaEventItem.qml:245
+#: ../contents/ui/AgendaEventItem.qml:293
 msgid "Edit in browser"
 msgstr "Editar en navegador"
 
@@ -113,119 +117,127 @@ msgctxt "event with no summary"
 msgid "(No title)"
 msgstr "(Sin título)"
 
-#: ../contents/ui/config/ConfigAgenda.qml:29
+#: ../contents/ui/config/ConfigAgenda.qml:31
 msgid "Show agenda"
 msgstr "Mostrar agenda"
 
-#: ../contents/ui/config/ConfigAgenda.qml:35
+#: ../contents/ui/config/ConfigAgenda.qml:37
 msgid "Agenda above the month (Single Column)"
 msgstr "Agenda sobre el més (Comlumna Única)"
 
-#: ../contents/ui/config/ConfigAgenda.qml:42
+#: ../contents/ui/config/ConfigAgenda.qml:44
 msgid "Agenda to the left (Two Columns)"
 msgstr "Agenda a la izquierda (Dos Columnas)"
 
-#: ../contents/ui/config/ConfigAgenda.qml:53
+#: ../contents/ui/config/ConfigAgenda.qml:55
 msgid "Font Size:"
 msgstr ""
 
-#: ../contents/ui/config/ConfigAgenda.qml:54 ../contents/ui/config/ConfigGeneral.qml:206
+#: ../contents/ui/config/ConfigAgenda.qml:56 ../contents/ui/config/ConfigGeneral.qml:206
 msgid "px"
 msgstr "px"
 
-#: ../contents/ui/config/ConfigAgenda.qml:55
+#: ../contents/ui/config/ConfigAgenda.qml:57
 msgid " (0px = <b>System Settings > Fonts > General</b>)"
 msgstr ""
 
-#: ../contents/ui/config/ConfigAgenda.qml:64
+#: ../contents/ui/config/ConfigAgenda.qml:66
 msgid "Weather Icon"
 msgstr "Icono de Tiempo"
 
-#: ../contents/ui/config/ConfigAgenda.qml:82
+#: ../contents/ui/config/ConfigAgenda.qml:84
 msgid "Icon Outline"
 msgstr "Contorno del Icono"
 
-#: ../contents/ui/config/ConfigAgenda.qml:88
+#: ../contents/ui/config/ConfigAgenda.qml:90
 msgid "Weather Text"
 msgstr "Texto del Tiempo"
 
-#: ../contents/ui/config/ConfigAgenda.qml:92
+#: ../contents/ui/config/ConfigAgenda.qml:94
 msgid "Position:"
 msgstr ""
 
-#: ../contents/ui/config/ConfigAgenda.qml:95
+#: ../contents/ui/config/ConfigAgenda.qml:97
 msgid "Left"
 msgstr ""
 
-#: ../contents/ui/config/ConfigAgenda.qml:101
+#: ../contents/ui/config/ConfigAgenda.qml:103
 msgid "Right"
 msgstr ""
 
-#: ../contents/ui/config/ConfigAgenda.qml:109
+#: ../contents/ui/config/ConfigAgenda.qml:111
 msgid "Click Weather:"
 msgstr "Click en Tiempo:"
 
-#: ../contents/ui/config/ConfigAgenda.qml:112
+#: ../contents/ui/config/ConfigAgenda.qml:114
 msgid "Open City Forecast In Browser"
 msgstr "Abrir Open City Forecast en el Navegador"
 
-#: ../contents/ui/config/ConfigAgenda.qml:121 ../contents/ui/config/ConfigCalendar.qml:27
+#: ../contents/ui/config/ConfigAgenda.qml:123 ../contents/ui/config/ConfigCalendar.qml:27
 msgid "Click Date:"
 msgstr "Click en Fecha:"
 
-#: ../contents/ui/config/ConfigAgenda.qml:124 ../contents/ui/config/ConfigCalendar.qml:42
+#: ../contents/ui/config/ConfigAgenda.qml:126 ../contents/ui/config/ConfigCalendar.qml:42
 msgid "Open New Event In Browser"
 msgstr "Abrir Nuevo Evento en el Navegador"
 
-#: ../contents/ui/config/ConfigAgenda.qml:129
+#: ../contents/ui/config/ConfigAgenda.qml:131
 msgid "Open New Event Form"
 msgstr "Abrir Nuevo Formulario de Eventos"
 
-#: ../contents/ui/config/ConfigAgenda.qml:138
+#: ../contents/ui/config/ConfigAgenda.qml:141
+msgid "Event description"
+msgstr ""
+
+#: ../contents/ui/config/ConfigAgenda.qml:145
+msgid "Google Hangouts link"
+msgstr ""
+
+#: ../contents/ui/config/ConfigAgenda.qml:148
 msgid "Click Event:"
 msgstr "Click en Evento:"
 
-#: ../contents/ui/config/ConfigAgenda.qml:141
+#: ../contents/ui/config/ConfigAgenda.qml:151
 msgid "Open Event In Browser"
 msgstr "Abrir Eventos en el Navegador"
 
-#: ../contents/ui/config/ConfigAgenda.qml:151
+#: ../contents/ui/config/ConfigAgenda.qml:161
 msgid "Show multi-day events:"
 msgstr "Mostrar eventos multi-día:"
 
-#: ../contents/ui/config/ConfigAgenda.qml:156
+#: ../contents/ui/config/ConfigAgenda.qml:166
 msgid "On all days"
 msgstr "Sobre todos los días"
 
-#: ../contents/ui/config/ConfigAgenda.qml:164
+#: ../contents/ui/config/ConfigAgenda.qml:174
 msgid "Only on the first and current day"
 msgstr "Solo sobre el primero y actual día"
 
-#: ../contents/ui/config/ConfigAgenda.qml:177
+#: ../contents/ui/config/ConfigAgenda.qml:187
 msgid "Remember selected calendar in New Event Form"
 msgstr "Recordar el calendario seleccionado en Formulario de Nuevo Evento"
 
-#: ../contents/ui/config/ConfigAgenda.qml:182
+#: ../contents/ui/config/ConfigAgenda.qml:192
 msgid "Current Month"
 msgstr "Mes Actual"
 
-#: ../contents/ui/config/ConfigAgenda.qml:187
+#: ../contents/ui/config/ConfigAgenda.qml:197
 msgid "Always show next 14 days"
 msgstr "Mostrar siempre los próximos 14 días"
 
-#: ../contents/ui/config/ConfigAgenda.qml:192
+#: ../contents/ui/config/ConfigAgenda.qml:202
 msgid "Hide completed events"
 msgstr "Ocultar eventos completos"
 
-#: ../contents/ui/config/ConfigAgenda.qml:197
+#: ../contents/ui/config/ConfigAgenda.qml:207
 msgid "Show all events of the current day (including completed events)"
 msgstr "Mostrar todos los eventos del día actual (incluyendo los eventos completados)"
 
-#: ../contents/ui/config/ConfigAgenda.qml:203 ../contents/ui/config/ConfigWeather.qml:177
+#: ../contents/ui/config/ConfigAgenda.qml:213 ../contents/ui/config/ConfigWeather.qml:177
 msgid "Colors"
 msgstr "Colores"
 
-#: ../contents/ui/config/ConfigAgenda.qml:207
+#: ../contents/ui/config/ConfigAgenda.qml:217
 msgid "In Progress"
 msgstr ""
 
