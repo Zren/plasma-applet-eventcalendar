@@ -227,6 +227,15 @@ LinkRect {
             //         }
             //     }
             // }
+
+            PlasmaComponents.ToolButton {
+                id: eventHangoutLink
+                visible: !!model.hangoutLink
+                text: i18n("Hangout")
+                iconSource: plasmoid.file("", "icons/hangouts.svg")
+                onClicked: Qt.openUrlExternally(model.hangoutLink)
+            }
+
         } // eventColumn
     }
     
