@@ -1,3 +1,7 @@
+## v61 - September 13 2018
+
+* Show the event description and hangout link.
+
 ## v60 - September 5 2018
 
 * Fix "D" in date formatting with Dutch translations.
