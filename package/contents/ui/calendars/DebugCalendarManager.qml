@@ -82,6 +82,7 @@ CalendarManager {
 	}
 
 	function parseEvent(calendar, event) {
+		event.description = event.description || ""
 		event.backgroundColor = calendar.backgroundColor
 		event.canEdit = true
 	}

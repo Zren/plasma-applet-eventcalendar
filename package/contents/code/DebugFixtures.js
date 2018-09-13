@@ -12,8 +12,8 @@ function getEventData() {
     var debugEventData = {
         "items": []
     };
-    function addEvent(summary, start, end) {
-        debugEventData.items.push({
+    function addEvent(summary, start, end, description) {
+        var newEvent = {
             "kind": "calendar#event",
             "etag": "\"2561779720126000\"",
             "id": "debug_" + start.dateTime.getTime() + "_" + end.dateTime.getTime(),
@@ -34,7 +34,12 @@ function getEventData() {
             "reminders": {
                 "useDefault": false
             },
-        });
+        }
+        if (typeof description !== "undefined") {
+            newEvent.description = description
+        }
+        debugEventData.items.push(newEvent)
+        return newEvent
     }
 
     function dateString(d) {
@@ -49,7 +54,7 @@ function getEventData() {
     function addAllDayTestEvent(summary, startDaysFromNow, endDaysFromNow) {
         var start = nowPlus(startDaysFromNow)
         var end = nowPlus(endDaysFromNow)
-        addEvent(summary, {
+        return addEvent(summary, {
             date: dateString(start),
             dateTime: start,
         }, {
@@ -63,7 +68,7 @@ function getEventData() {
         start.setMinutes(start.getMinutes() + startMinutesFromNow)
         var end = new Date(start)
         end.setMinutes(end.getMinutes() + 1)
-        addEvent(summary, {dateTime: start }, {dateTime: end });
+        return addEvent(summary, {dateTime: start }, {dateTime: end })
     }
 
     addAllDayTestEvent("Dude's Birthday", 0, 1);
@@ -86,6 +91,15 @@ function getEventData() {
     addAllDayTestEvent("One Two Three Four Five Six Seven Eight Nine Ten One Two Three Four Five Six Seven Eight Nine Ten One Two Three Four Five Six Seven Eight Nine Ten", 1, 2);
     addAllDayTestEvent("OneTwoThreeFourFiveSixSevenEightNineTenOneTwoThreeFourFiveSixSevenEightNineTen", -2, -1);
     addAllDayTestEvent("OneTwoThreeFourFiveSixSevenEightNineTenOneTwoThreeFourFiveSixSevenEightNineTen", -1, 0);
+
+
+    // Description
+    var event = addAllDayTestEvent("Description Test", 4, 5)
+    event.description = "Short description."
+
+    // Long description
+    event = addAllDayTestEvent("Long RichText Description Test", 4, 5)
+    event.description = "Lorem <b>ipsum</b> dolor sit amet, consectetur <u>adipiscing</u> elit, sed do eiusmod tempor incididunt ut labore et dolore magna <a href=\"https://www.google.com\">aliqua</a>. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.<br><br>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.<br><ul><li>Apples<br></li><li>Oranges<br></li><li>Carrots<br></li></ul>"
 
     for (var i = -30; i <= 30; i++) {
         addAllDayTestEvent("Day " + i, i, i+1);
