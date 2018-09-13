@@ -189,6 +189,12 @@ LinkRect {
                 } // Component
             } // Loader
 
+            Item {
+                id: eventDescriptionSpacing
+                visible: eventDescription.visible
+                Layout.preferredHeight: 4 * units.devicePixelRatio
+            }
+
             PlasmaComponents.Label {
                 id: eventDescription
                 text: description
@@ -199,8 +205,15 @@ LinkRect {
                 height: paintedHeight
                 visible: description // && !editDescriptionForm.active
                 Layout.fillWidth: true
-                linkColor: PlasmaCore.ColorScope.highlightColor
                 wrapMode: Text.Wrap // See warning at eventSummary.wrapMode
+                
+                linkColor: PlasmaCore.ColorScope.highlightColor
+                onLinkActivated: Qt.openUrlExternally(link)
+                MouseArea {
+                    anchors.fill: parent
+                    acceptedButtons: Qt.NoButton // we don't want to eat clicks on the Text
+                    cursorShape: parent.hoveredLink ? Qt.PointingHandCursor : Qt.ArrowCursor
+                }
             }
 
             // Loader {
