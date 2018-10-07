@@ -186,11 +186,11 @@ msgstr "Открыть форму нового события"
 
 #: ../contents/ui/config/ConfigAgenda.qml:141
 msgid "Event description"
-msgstr ""
+msgstr "Описание события"
 
 #: ../contents/ui/config/ConfigAgenda.qml:145
 msgid "Google Hangouts link"
-msgstr ""
+msgstr "Переход на Google Hangouts"
 
 #: ../contents/ui/config/ConfigAgenda.qml:148
 msgid "Click Event:"
@@ -266,7 +266,7 @@ msgstr "Показать номера недель"
 
 #: ../contents/ui/config/ConfigCalendar.qml:63
 msgid "First day of week:"
-msgstr ""
+msgstr "Первый день недели:"
 
 #: ../contents/ui/config/ConfigCalendar.qml:72 ../contents/ui/config/ConfigGeneral.qml:179
 msgid "Default"
@@ -402,7 +402,7 @@ msgstr "Шрифт:"
 
 #: ../contents/ui/config/ConfigGeneral.qml:200
 msgid "Fixed Clock Height: "
-msgstr "Выставить высоту часов: "
+msgstr "Высота часов: "
 
 #: ../contents/ui/config/ConfigGeneral.qml:212
 msgid " (0px = scale to fit)"
@@ -426,7 +426,7 @@ msgstr "Строка 2:"
 
 #: ../contents/ui/config/ConfigGeneral.qml:359
 msgid "Height:"
-msgstr "Высота:"
+msgstr "Соотношение Время/Дата:"
 
 #: ../contents/ui/config/ConfigGeneral.qml:379
 msgid "Mouse Wheel"
@@ -581,15 +581,15 @@ msgstr "Единица измерения:"
 
 #: ../contents/ui/config/ConfigWeather.qml:150
 msgid "Celsius"
-msgstr "Цельсий"
+msgstr "°C Цельсия"
 
 #: ../contents/ui/config/ConfigWeather.qml:158
 msgid "Fahrenheit"
-msgstr "Фаренгейт"
+msgstr "°F Фаренгейта"
 
 #: ../contents/ui/config/ConfigWeather.qml:166
 msgid "Kelvin"
-msgstr "Кельвин"
+msgstr "°K Кельвина"
 
 #: ../contents/ui/config/ConfigWeather.qml:184
 msgid "Text"
@@ -734,11 +734,11 @@ msgstr ""
 
 #: ../contents/ui/TimerInputView.qml:75
 msgid "Cancel"
-msgstr ""
+msgstr "Отменить"
 
 #: ../contents/ui/TimerInputView.qml:80
 msgid "Start"
-msgstr ""
+msgstr "Пуск"
 
 #: ../contents/ui/TimerView.qml:25
 msgid "30s"
@@ -806,7 +806,7 @@ msgstr "%1 прошло"
 
 #: ../contents/ui/TimerView.qml:397
 msgid "Set Timer"
-msgstr ""
+msgstr "Выставить таймер"
 
 #: ../contents/ui/UpcomingEvents.qml:114
 msgid "Events Starting"
