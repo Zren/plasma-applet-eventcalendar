@@ -1,0 +1,84 @@
+#!/bin/bash
+# Version 2
+# Requires plasmoidviewer v5.13.0
+
+function checkIfLangInstalled {
+	if [ -x "$(command -v dpkg)" ]; then
+		dpkg -l ${1} >/dev/null 2>&1 || ( \
+			echo -e "${1} not installed.\nInstalling now before continuing.\n" \
+			; sudo apt install ${1} \
+		) || ( \
+			echo -e "\nError trying to install ${1}\nPlease run 'sudo apt install ${1}'\n" \
+			; exit 1 \
+		)
+	elif [ -x "$(command -v pacman)" ]; then
+		# TODO: run `locale -a` and check if the locale is enabled.
+		if false; then
+			# https://wiki.archlinux.org/index.php/Locale
+			# Uncomment the locale in /etc/locale.gen
+			# Then run `locale-gen`
+			echo -e "\nPlease install this locale in System Settings first.\n"
+			exit 1
+		else
+			echo ""
+		fi
+	else
+		echo -e "\nPackage manager not recognized. If the widget is not translated, please install the package '${1}'\n"
+	fi
+}
+
+lang="${1}"
+languagePack="language-pack-$lang"
+
+
+if [ "$lang" == *":"* ]; then # String contains a colon so assume it's a locale code.
+	IFS=: read -r l1 l2 <<< "${lang}"
+elif [ "$lang" == "bg" ]; then lang="bg_BG:bg" # Bulgarian (Bulgaria)
+elif [ "$lang" == "de" ]; then lang="de_DE:de" # German (Germany)
+elif [ "$lang" == "el" ]; then lang="el_GR:el" # Greek (Greece)
+elif [ "$lang" == "es" ]; then lang="es_MX:es" # Spanish (Mexico)
+elif [ "$lang" == "fr" ]; then lang="fr_CA:fr" # French (Canada)
+elif [ "$lang" == "ko" ]; then lang="ko_KR:ko" # Korean (South Korea)
+elif [ "$lang" == "nl" ]; then lang="nl_NL:nl" # Dutch (Netherlands)
+elif [ "$lang" == "pl" ]; then lang="pl_PL:pl" # Polish (Poland)
+elif [ "$lang" == "pt" ]; then lang="pt_BR:pt" # Portuguese (Brazil)
+elif [ "$lang" == "ru" ]; then lang="ru_RU:ru" # Russian (Russia)
+elif [ "$lang" == "uk" ]; then lang="uk_UA:uk" # Ukrainian (Ukraine)
+elif [ "$lang" == "zh_CN" ]; then # Chinese (China)
+	lang="zh_CN:zh"
+	languagePack="language-pack-zh-hans"
+else
+	echo "plasmoidlocaletest doesn't recognize the language '$lang'"
+	echo "Eg:"
+	scriptcmd='sh ./plasmoidlocaletest'
+	echo "    $scriptcmd bg     | Bulgarian (Bulgaria)"
+	echo "    $scriptcmd de     | German (Germany)"
+	echo "    $scriptcmd el     | Greek (Greece)"
+	echo "    $scriptcmd es     | Spanish (Mexico)"
+	echo "    $scriptcmd fr     | French (Canada)"
+	echo "    $scriptcmd ko     | Korean (South Korea)"
+	echo "    $scriptcmd nl     | Dutch (Netherlands)"
+	echo "    $scriptcmd pl     | Polish (Poland)"
+	echo "    $scriptcmd pt     | Portuguese (Brazil)"
+	echo "    $scriptcmd ru     | Russian (Russia)"
+	echo "    $scriptcmd uk     | Ukrainian (Ukraine)"
+	echo "    $scriptcmd zh_CN  | Chinese (China)"
+	exit 1
+fi
+
+IFS=: read -r l1 l2 <<< "${lang}"
+l1="${l1}.UTF-8"
+
+# Check if language is installed
+checkIfLangInstalled "$languagePack" || exit 1
+
+echo "LANGUAGE=\"${lang}\""
+echo "LANG=\"${l1}\""
+
+scriptDir="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+packageDir="${scriptDir}/.."
+
+# Build local translations for plasmoidviewer
+sh "${scriptDir}/build"
+
+LANGUAGE="${lang}" LANG="${l1}" QML_DISABLE_DISK_CACHE=true plasmoidviewer -a "$packageDir" -l topedge -f horizontal -x 0 -y 0

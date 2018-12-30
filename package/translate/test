@@ -1,5 +1,0 @@
-#!/bin/sh
-# Version: 1
-
-sh ./merge
-sh ./install
