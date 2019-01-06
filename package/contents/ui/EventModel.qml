@@ -36,7 +36,7 @@ CalendarManager {
 	}
 
 	function bindSignals(calendarManager) {
-		console.log('bindSignals', calendarManager)
+		logger.debug('bindSignals', calendarManager)
 		calendarManager.fetchingData.connect(fetchingDataListener)
 		calendarManager.allDataFetched.connect(allDataFetchedListener)
 		calendarManager.calendarFetched.connect(calendarFetchedListener)
