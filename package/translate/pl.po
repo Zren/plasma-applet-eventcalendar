@@ -351,7 +351,7 @@ msgid "Event Starting"
 msgstr "Rozpoczęcie wydarzenia"
 
 #: ../contents/ui/config/ConfigGeneral.qml:77 ../contents/ui/lib/ConfigNotification.qml:59
-msgid "Chose a sound effect"
+msgid "Choose a sound effect"
 msgstr "Wybierz efekt dźwiękowy"
 
 #: ../contents/ui/config/ConfigGeneral.qml:98
