@@ -122,6 +122,46 @@ Item {
         });
     }
 
+    readonly property string authorizationCodeUrl: {
+        var url = 'https://accounts.google.com/o/oauth2/v2/auth';
+        url += '?scope=' + encodeURIComponent('https://www.googleapis.com/auth/calendar https://www.googleapis.com/auth/tasks')
+        url += '&response_type=code'
+        url += '&redirect_uri=' + encodeURIComponent('urn:ietf:wg:oauth:2.0:oob')
+        url += '&client_id=' + encodeURIComponent(clientId)
+        return url
+    }
+
+    function fetchAccessToken(args) {
+        var url = 'https://www.googleapis.com/oauth2/v4/token';
+        Requests.post({
+            url: url,
+            data: {
+                client_id: clientId,
+                client_secret: clientSecret,
+                code: args.authorizationCode,
+                grant_type: 'authorization_code',
+                redirect_uri: 'urn:ietf:wg:oauth:2.0:oob',
+            },
+        }, function(err, data) {
+            data = JSON.parse(data)
+            logger.debugJSON('/oauth2/v4/token Response', data)
+
+            // Check for errors
+            if (data.error) {
+                var errorMessage = '' + data.error + ' (' + data.error_description + ')'
+                session.errorFetchingUserCode(errorMessage)
+                return
+            }
+            if (err) {
+                session.errorFetchingUserCode(err)
+                return
+            }
+
+            // Ready
+            updateAccessToken(data)
+        });
+    }
+
     function updateAccessToken(data) {
         plasmoid.configuration.access_token = data.access_token
         plasmoid.configuration.access_token_type = data.token_type
@@ -171,6 +211,6 @@ Item {
         calendarList = []
         calendarIdList = []
 
-        generateUserCodeAndPoll()
+        // generateUserCodeAndPoll()
     }
 }
