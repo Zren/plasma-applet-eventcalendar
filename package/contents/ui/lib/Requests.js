@@ -1,4 +1,5 @@
 .pragma library
+// Version 3
 
 function request(opt, callback) {
 	if (typeof opt === 'string') {
@@ -30,26 +31,43 @@ function request(opt, callback) {
 	req.send(opt.data)
 }
 
+function encodeFormData(opt) {
+	opt.headers = opt.headers || {}
+	opt.headers['Content-Type'] = 'application/x-www-form-urlencoded'
+	if (opt.data) {
+		var s = ''
+		var i = 0
+		for (var key in opt.data) {
+			if (i > 0) {
+				s += '&'
+			}
+			var value = opt.data[key]
+			if (typeof value === "object") {
+				// TODO: Flatten obj={list: [1, 2]} as
+				// obj[list][0]=1
+				// obj[list][1]=2
+			}
+			s += encodeURIComponent(key) + '=' + encodeURIComponent(value)
+			i += 1
+		}
+		opt.data = s
+	}
+	return opt
+}
 
 function post(opt, callback) {
 	if (typeof opt === 'string') {
 		opt = { url: opt }
 	}
 	opt.method = 'POST'
-	opt.headers = opt.headers || {}
-	opt.headers['Content-Type'] = 'application/x-www-form-urlencoded'
-	if (opt.data) {
-		var s = '';
-		for (var key in opt.data) {
-			s += encodeURIComponent(key) + '=' + encodeURIComponent(opt.data[key]) + '&'
-		}
-		opt.data = s
-	}
+	encodeFormData(opt)
 	request(opt, callback)
 }
 
 
 function getJSON(opt, callback) {
+	opt.headers = opt.headers || {}
+	opt.headers['Accept'] = 'application/json'
 	request(opt, function(err, data, req) {
 		if (!err && data) {
 			data = JSON.parse(data)
