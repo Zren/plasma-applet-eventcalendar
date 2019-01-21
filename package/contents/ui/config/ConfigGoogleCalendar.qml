@@ -62,11 +62,13 @@ ConfigPage {
     MessageWidget {
         id: messageWidget
     }
-    Column {
+    ColumnLayout {
         visible: session.accessToken
-        Text {
+        Label {
+            Layout.fillWidth: true
             text: i18n("Currently Synched.")
             color: "#3c763d"
+            wrapMode: Text.Wrap
         }
         Button {
             text: i18n("Logout")
@@ -76,32 +78,42 @@ ConfigPage {
             }
         }
     }
-    Column {
+    ColumnLayout {
         visible: !session.accessToken
-        Text {
+        Label {
+            Layout.fillWidth: true
             text: i18n("To sync with Google Calendar")
             color: "#8a6d3b"
+            wrapMode: Text.Wrap
         }
         LinkText {
-            text: i18n("Enter the following code at <a href=\"https://www.google.com/device\">https://www.google.com/device</a>.")
+            Layout.fillWidth: true
+            text: i18n("Visit <a href=\"%1\">%2</a> (opens in your web browser). After you login and give permission to acess your calendar, it will give you a code to paste below.", session.authorizationCodeUrl, 'https://accounts.google.com/...')
             color: "#8a6d3b"
+            wrapMode: Text.Wrap
         }
-        TextField {
-            id: userCodeInput
+        RowLayout {
+            TextField {
+                id: authorizationCodeInput
+                Layout.fillWidth: true
 
-            placeholderText: i18n("Generating Code...")
-            text: session.userCode
-            readOnly: true
-
-            onFocusChanged: selectAll()
-
-            style: TextFieldStyle {
-                textColor: "#111"
-                background: Rectangle {
-                    color: "#eee"
+                placeholderText: i18n("Enter code here (Eg: %1)", '1/2B3C4defghijklmnopqrst-uvwxyz123456789ab-cdeFGHIJKlmnio')
+                text: ""
+            }
+            Button {
+                text: i18n("Submit")
+                onClicked: {
+                    if (authorizationCodeInput.text) {
+                        session.fetchAccessToken({
+                            authorizationCode: authorizationCodeInput.text,
+                        })
+                    } else {
+                        messageWidget.err(i18n("Invalid Google Authorization Code"))
+                    }
                 }
             }
         }
+        
     }
 
     RowLayout {
@@ -177,7 +189,7 @@ ConfigPage {
 
     Component.onCompleted: {
         if (!session.accessToken) {
-            session.generateUserCodeAndPoll()
+            // session.generateUserCodeAndPoll()
         } else {
             session.calendarListChanged()
         }
