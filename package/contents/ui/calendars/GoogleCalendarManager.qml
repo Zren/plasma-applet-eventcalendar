@@ -17,9 +17,12 @@ CalendarManager {
 	function fetchGoogleAccountData() {
 		if (plasmoid.configuration.access_token) {
 			fetchGoogleAccountEvents(plasmoid.configuration.access_token, calendarIdList)
+			// fetchGoogleTasks(plasmoid.configuration.access_token, '@default')
 		}
 	}
 
+	//-------------------------
+	// Events
 	function fetchGoogleAccountEvents(accessToken, calendarIdList) {
 		if (accessToken) {
 			for (var i = 0; i < calendarIdList.length; i++) {
@@ -28,10 +31,6 @@ CalendarManager {
 		}
 	}
 
-	// @param accessToken string
-	// @param calendarId string
-	// @param dateMin Date
-	// @param dateMax Date
 	function fetchGoogleCalendarEvents(accessToken, calendarId) {
 		logger.debug('fetchGoogleCalendarEvents', calendarId)
 		googleCalendarManager.asyncRequests += 1
@@ -460,6 +459,8 @@ CalendarManager {
 
 
 
+	//-------------------------
+	// CalendarManager
 	function getCalendarList() {
 		var calendarList = plasmoid.configuration.calendar_list ? JSON.parse(Qt.atob(plasmoid.configuration.calendar_list)) : [];
 		return calendarList;
@@ -474,5 +475,67 @@ CalendarManager {
 			}
 		}
 		return null
+	}
+
+
+	//-------------------------
+	// Tasks
+	function fetchGoogleTasks(accessToken, tasklistId) {
+		logger.debug('fetchGoogleTasks', tasklistId)
+		googleCalendarManager.asyncRequests += 1
+		fetchTaskList({
+			tasklistId: tasklistId,
+			// start: googleCalendarManager.dateMin.toISOString(),
+			// end: googleCalendarManager.dateMax.toISOString(),
+			access_token: accessToken,
+		}, function(err, data, xhr) {
+			if (err) {
+				logger.logJSON('fetchGoogleTasks.onError: ', err)
+				if (xhr.status === 404) {
+					return
+				}
+				googleCalendarManager.asyncRequestsDone += 1
+				return onErrorFetchingTasks(err)
+			}
+
+			// setCalendarData(tasklistId, data)
+			googleCalendarManager.asyncRequestsDone += 1
+		});
+	}
+
+	function fetchTaskList(args, callback) {
+		logger.debug('fetchTaskList', args.tasklistId);
+		var onResponse = fetchTaskListPage.bind(this, args, callback, null)
+		fetchTaskListPage(args, onResponse)
+	}
+
+	function fetchTaskListPage(args, pageCallback) {
+		logger.debug('fetchTaskListPage', args.tasklistId)
+		var url = 'https://www.googleapis.com/tasks/v1'
+		url += '/lists/'
+		url += encodeURIComponent(args.tasklistId)
+		url += '/tasks'
+		// url += '?dueMin=' + encodeURIComponent(args.start)
+		// url += '&dueMax=' + encodeURIComponent(args.end)
+		if (args.pageToken) {
+			url += '&pageToken=' + encodeURIComponent(args.pageToken)
+		}
+		Requests.getJSON({
+			url: url,
+			headers: {
+				"Authorization": "Bearer " + args.access_token,
+			}
+		}, function(err, data, xhr) {
+			logger.debug('fetchTaskListPage.response', args.calendarId, err, data, xhr.status)
+			if (!err && data && data.error) {
+				return pageCallback(data, null, xhr)
+			}
+			logger.debugJSON('fetchTaskListPage.response', args.calendarId, data)
+			pageCallback(err, data, xhr)
+		});
+	}
+	function onErrorFetchingTasks(err) {
+		logger.logJSON('onErrorFetchingTasks: ', err);
+		deferredUpdateAccessTokenThenUpdateEvents.restart()
 	}
 }
