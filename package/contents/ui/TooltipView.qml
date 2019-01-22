@@ -6,130 +6,130 @@ import org.kde.plasma.extras 2.0 as PlasmaExtras
 import org.kde.plasma.private.digitalclock 1.0 as DigitalClock
 
 Item {
-    id: tooltipContentItem
+	id: tooltipContentItem
 
-    property int preferredTextWidth: units.gridUnit * 20
+	property int preferredTextWidth: units.gridUnit * 20
 
-    width: childrenRect.width + units.gridUnit
-    height: childrenRect.height + units.gridUnit
+	width: childrenRect.width + units.gridUnit
+	height: childrenRect.height + units.gridUnit
 
-    LayoutMirroring.enabled: Qt.application.layoutDirection === Qt.RightToLeft
-    LayoutMirroring.childrenInherit: true
+	LayoutMirroring.enabled: Qt.application.layoutDirection === Qt.RightToLeft
+	LayoutMirroring.childrenInherit: true
 
-    property var dataSource: timeModel.dataSource
+	property var dataSource: timeModel.dataSource
 
-    function timeForZone(zone) {
-        var compactRepresentationItem = plasmoid.compactRepresentationItem;
-        if (!compactRepresentationItem) {
-            return "";
-        }
+	function timeForZone(zone) {
+		var compactRepresentationItem = plasmoid.compactRepresentationItem
+		if (!compactRepresentationItem) {
+			return ""
+		}
 
-        // get the time for the given timezone from the dataengine
-        var now = dataSource.data[zone]["DateTime"];
-        // get current UTC time
-        var msUTC = now.getTime() + (now.getTimezoneOffset() * 60000);
-        // add the dataengine TZ offset to it
-        var dateTime = new Date(msUTC + (dataSource.data[zone]["Offset"] * 1000));
+		// get the time for the given timezone from the dataengine
+		var now = dataSource.data[zone]["DateTime"]
+		// get current UTC time
+		var msUTC = now.getTime() + (now.getTimezoneOffset() * 60000)
+		// add the dataengine TZ offset to it
+		var dateTime = new Date(msUTC + (dataSource.data[zone]["Offset"] * 1000))
 
-        var formattedTime = Qt.formatTime(dateTime, 1);
+		var formattedTime = Qt.formatTime(dateTime, 1)
 
-        if (dateTime.getDay() != dataSource.data["Local"]["DateTime"].getDay()) {
-            formattedTime += " (" + Qt.formatDate(dateTime, 1) + ")";
-        }
+		if (dateTime.getDay() != dataSource.data["Local"]["DateTime"].getDay()) {
+			formattedTime += " (" + Qt.formatDate(dateTime, 1) + ")"
+		}
 
-        return formattedTime;
-    }
+		return formattedTime
+	}
 
-    function nameForZone(zone) {
-        if (plasmoid.configuration.displayTimezoneAsCode) {
-            return dataSource.data[zone]["Timezone Abbreviation"]
-        } else {
-            return DigitalClock.TimezonesI18n.i18nCity(dataSource.data[zone]["Timezone City"])
-        }
-    }
+	function nameForZone(zone) {
+		if (plasmoid.configuration.displayTimezoneAsCode) {
+			return dataSource.data[zone]["Timezone Abbreviation"]
+		} else {
+			return DigitalClock.TimezonesI18n.i18nCity(dataSource.data[zone]["Timezone City"])
+		}
+	}
 
-    ColumnLayout {
-        anchors {
-            left: parent.left
-            top: parent.top
-            margins: units.gridUnit / 2
-        }
-        spacing: units.largeSpacing
+	ColumnLayout {
+		anchors {
+			left: parent.left
+			top: parent.top
+			margins: units.gridUnit / 2
+		}
+		spacing: units.largeSpacing
 
-        RowLayout {
-            spacing: units.largeSpacing
+		RowLayout {
+			spacing: units.largeSpacing
 
-            PlasmaCore.IconItem {
-                id: tooltipIcon
-                source: "preferences-system-time"
-                Layout.alignment: Qt.AlignTop
-                visible: true
-                implicitWidth: units.iconSizes.medium
-                Layout.preferredWidth: implicitWidth
-                Layout.preferredHeight: implicitWidth
-            }
+			PlasmaCore.IconItem {
+				id: tooltipIcon
+				source: "preferences-system-time"
+				Layout.alignment: Qt.AlignTop
+				visible: true
+				implicitWidth: units.iconSizes.medium
+				Layout.preferredWidth: implicitWidth
+				Layout.preferredHeight: implicitWidth
+			}
 
-            ColumnLayout {
-                PlasmaExtras.Heading {
-                    id: tooltipMaintext
-                    level: 3
-                    Layout.minimumWidth: Math.min(implicitWidth, preferredTextWidth)
-                    Layout.maximumWidth: preferredTextWidth
-                    elide: Text.ElideRight
-                    text: Qt.formatTime(timeModel.currentTime, Qt.locale().timeFormat(Locale.LongFormat))
-                }
+			ColumnLayout {
+				PlasmaExtras.Heading {
+					id: tooltipMaintext
+					level: 3
+					Layout.minimumWidth: Math.min(implicitWidth, preferredTextWidth)
+					Layout.maximumWidth: preferredTextWidth
+					elide: Text.ElideRight
+					text: Qt.formatTime(timeModel.currentTime, Qt.locale().timeFormat(Locale.LongFormat))
+				}
 
-                PlasmaComponents.Label {
-                    id: tooltipSubtext
-                    Layout.minimumWidth: Math.min(implicitWidth, preferredTextWidth)
-                    Layout.maximumWidth: preferredTextWidth
-                    text: Qt.formatDate(timeModel.currentTime, Qt.locale().dateFormat(Locale.LongFormat))
-                    opacity: 0.6
-                }
-            }
-        }
+				PlasmaComponents.Label {
+					id: tooltipSubtext
+					Layout.minimumWidth: Math.min(implicitWidth, preferredTextWidth)
+					Layout.maximumWidth: preferredTextWidth
+					text: Qt.formatDate(timeModel.currentTime, Qt.locale().dateFormat(Locale.LongFormat))
+					opacity: 0.6
+				}
+			}
+		}
 
 
-        GridLayout {
-            Layout.minimumWidth: Math.min(implicitWidth, preferredTextWidth)
-            Layout.maximumWidth: preferredTextWidth
-            // Layout.maximumHeight: childrenRect.height // Causes binding loop
-            columns: 2
-            visible: timezoneRepeater.count > 0
+		GridLayout {
+			Layout.minimumWidth: Math.min(implicitWidth, preferredTextWidth)
+			Layout.maximumWidth: preferredTextWidth
+			// Layout.maximumHeight: childrenRect.height // Causes binding loop
+			columns: 2
+			visible: timezoneRepeater.count > 0
 
-            Repeater {
-                id: timezoneRepeater
-                model: {
-                    // The timezones need to be duplicated in the array
-                    // because we need their data twice - once for the name
-                    // and once for the time and the Repeater delegate cannot
-                    // be one Item with two Labels because that wouldn't work
-                    // in a grid then
-                    var timezones = [];
-                    for (var i = 0; i < plasmoid.configuration.selectedTimeZones.length; i++) {
-                        var timezone = plasmoid.configuration.selectedTimeZones[i]
-                        if (timezone != 'Local') {
-                            timezones.push(timezone)
-                            timezones.push(timezone)
-                        }
-                    }
+			Repeater {
+				id: timezoneRepeater
+				model: {
+					// The timezones need to be duplicated in the array
+					// because we need their data twice - once for the name
+					// and once for the time and the Repeater delegate cannot
+					// be one Item with two Labels because that wouldn't work
+					// in a grid then
+					var timezones = [];
+					for (var i = 0; i < plasmoid.configuration.selectedTimeZones.length; i++) {
+						var timezone = plasmoid.configuration.selectedTimeZones[i]
+						if (timezone != 'Local') {
+							timezones.push(timezone)
+							timezones.push(timezone)
+						}
+					}
 
-                    return timezones;
-                }
+					return timezones;
+				}
 
-                PlasmaComponents.Label {
-                    id: timezone
-                    // Layout.fillWidth is buggy here
-                    Layout.alignment: index % 2 === 0 ? Qt.AlignRight : Qt.AlignLeft
-                    Layout.fillWidth: index % 2 === 1
+				PlasmaComponents.Label {
+					id: timezone
+					// Layout.fillWidth is buggy here
+					Layout.alignment: index % 2 === 0 ? Qt.AlignRight : Qt.AlignLeft
+					Layout.fillWidth: index % 2 === 1
 
-                    wrapMode: Text.NoWrap
-                    text: index % 2 == 0 ? nameForZone(modelData) : timeForZone(modelData)
-                    height: paintedHeight
-                    elide: Text.ElideNone
-                    opacity: 0.6
-                }
-            }
-        }
-    }
+					wrapMode: Text.NoWrap
+					text: index % 2 == 0 ? nameForZone(modelData) : timeForZone(modelData)
+					height: paintedHeight
+					elide: Text.ElideNone
+					opacity: 0.6
+				}
+			}
+		}
+	}
 }
