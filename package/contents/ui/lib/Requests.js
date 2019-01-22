@@ -1,5 +1,5 @@
 .pragma library
-// Version 4
+// Version 5
 
 function request(opt, callback) {
 	if (typeof opt === 'string') {
@@ -76,7 +76,7 @@ function getJSON(opt, callback) {
 			data = JSON.parse(data)
 		}
 		callback(err, data, req)
-	});
+	})
 }
 
 
@@ -131,7 +131,7 @@ function getAppletMetadata(callback) {
 	if (index >= 0) {
 		var a = index + s.length
 		var b = url.indexOf('/', a)
-		// var packageName = url.substr(a, b-a);
+		// var packageName = url.substr(a, b-a)
 		var metadataUrl = url.substr(0, b) + '/metadata.desktop'
 		Requests.getFile(metadataUrl, function(err, data) {
 			if (err) {
@@ -140,7 +140,7 @@ function getAppletMetadata(callback) {
 
 			var metadata = parseMetadata(data)
 			callback(null, metadata)
-		});
+		})
 	} else {
 		return callback('Could not parse version.')
 	}
@@ -151,5 +151,5 @@ function getAppletVersion(callback) {
 		if (err) return callback(err)
 
 		callback(err, metadata['X-KDE-PluginInfo-Version'])
-	});
+	})
 }
