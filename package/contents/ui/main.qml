@@ -22,18 +22,15 @@ Item {
     NotificationManager { id: notificationManager }
 
     property alias eventModel: eventModel
-    property alias weatherModel: weatherModel
     property alias agendaModel: agendaModel
     
     TimeModel { id: timeModel }
     EventModel { id: eventModel }
     UpcomingEvents { id: upcomingEvents }
-    WeatherModel { id: weatherModel }
     AgendaModel {
         id: agendaModel
         eventModel: eventModel
         timeModel: timeModel
-        weatherModel: weatherModel
         Component.onCompleted: logger.debug('AgendaModel.onCompleted')
     }
 
@@ -103,7 +100,6 @@ Item {
         id: popup
 
         eventModel: root.eventModel
-        weatherModel: root.weatherModel
         agendaModel: root.agendaModel
 
         // If pin is enabled, we need to add some padding around the popup unless

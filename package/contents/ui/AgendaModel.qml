@@ -6,7 +6,6 @@ import "Shared.js" as Shared
 ListModel {
 	id: agendaModel
 	property var eventModel
-	property var weatherModel
 	property var timeModel
 
 	dynamicRoles: false

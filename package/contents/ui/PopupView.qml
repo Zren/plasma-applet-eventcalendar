@@ -68,7 +68,6 @@ FocusScope {
     // Layout.maximumHeight: plasmoid.screenGeometry.height
 
     property var eventModel
-    property var weatherModel
     property var agendaModel
 
     property bool showMeteogram: plasmoid.configuration.widget_show_meteogram
