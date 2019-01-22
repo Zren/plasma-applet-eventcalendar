@@ -186,7 +186,9 @@ CalendarManager {
 
 		for (var day = new Date(dateMinUtc); day < dateMax; day.setDate(day.getDate() + 1)) {
 			var dayEvents = calendarBackend.daysModel.eventsForDate(day)
-			logger.debugJSON(day, dayEvents)
+			if (dayEvents.length) {
+				logger.debugJSON(day, dayEvents)
+			}
 			items = items.concat(parseEventsForDate(day, dayEvents))
 		}
 		// logger.debugJSON(items)
