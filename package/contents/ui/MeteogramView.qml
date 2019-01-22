@@ -81,12 +81,12 @@ Item {
 			xAxisMax = Math.max(1, gridData.length - 1)
 
 			yData = []
-			var yDataMin = 0;
-			var yDataMax = 1;
-			yAxisRainMax = yAxisRainMinScale;
+			var yDataMin = 0
+			var yDataMax = 1
+			yAxisRainMax = yAxisRainMinScale
 			for (var i = 0; i < gridData.length; i++) {
-				var y = gridData[i].y;
-				yData.push(y);
+				var y = gridData[i].y
+				yData.push(y)
 				if (i == 0 || y < yDataMin) {
 					yDataMin = y
 				}
@@ -113,7 +113,7 @@ Item {
 			for (var i = Math.max(0, s); i <= e && i < gData.length; i++) {
 				out.push(gData[i].weatherIcon)
 			}
-			return out;
+			return out
 		}
 
 		function getAggregatedIcon(gData, s, e) {
@@ -131,7 +131,7 @@ Item {
 				area.areaY = a.y
 				area.areaWidth = b.x - a.x
 				area.areaHeight = graph.gridHeight
-				// console.log(JSON.stringify(area));
+				// console.log(JSON.stringify(area))
 				area.gridItem = gridData[i]
 				if (area.areaWidth <= appletConfig.meteogramColumnWidth) {
 					// Show icon representing 3 hours.
