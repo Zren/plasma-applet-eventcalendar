@@ -1,4 +1,4 @@
-// Version 3
+// Version 4
 
 import QtQuick 2.0
 import QtQuick.Layouts 1.0
@@ -20,7 +20,7 @@ Item {
 		// Still affecting Qt 5.7.0
 		Component.onDestruction: {
 			while (children.length > 0) {
-				children[children.length - 1].parent = page;
+				children[children.length - 1].parent = page
 			}
 		}
 	}
