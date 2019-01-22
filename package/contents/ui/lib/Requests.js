@@ -1,5 +1,5 @@
 .pragma library
-// Version 3
+// Version 4
 
 function request(opt, callback) {
 	if (typeof opt === 'string') {
@@ -66,6 +66,9 @@ function post(opt, callback) {
 
 
 function getJSON(opt, callback) {
+	if (typeof opt === 'string') {
+		opt = { url: opt }
+	}
 	opt.headers = opt.headers || {}
 	opt.headers['Accept'] = 'application/json'
 	request(opt, function(err, data, req) {
