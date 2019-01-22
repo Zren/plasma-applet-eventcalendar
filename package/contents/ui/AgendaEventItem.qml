@@ -196,7 +196,7 @@ LinkRect {
 			PlasmaComponents.Label {
 				id: eventDescription
 				visible: plasmoid.configuration.agendaShowEventDescription && text // && !editDescriptionForm.active
-				text: model.description
+				text: model.description || ""
 				color: PlasmaCore.ColorScope.textColor
 				opacity: 0.75
 				font.pointSize: -1
