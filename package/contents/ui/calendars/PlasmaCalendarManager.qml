@@ -27,9 +27,11 @@ CalendarManager {
 	}
 
 	// https://github.com/KDE/plasma-framework/blob/master/src/declarativeimports/calendar/eventpluginsmanager.cpp
-	// Plugins are located at: /usr/lib/x86_64-linux-gnu/qt5/plugins/plasmacalendarplugins/
+	// Plugins are located at:
+	//     * (Ubuntu) /usr/lib/x86_64-linux-gnu/qt5/plugins/plasmacalendarplugins/
+	//     * (Arch) /usr/lib/qt/plugins/plasmacalendarplugins/
 	// DigitalClock's config in ~/.config/plasma-____-appletsrc is:
-	//   enabledCalendarPlugins=/usr/lib/x86_64-linux-gnu/qt5/plugins/plasmacalendarplugins/holidaysevents.so
+	//   enabledCalendarPlugins=/usr/lib/.../plugins/plasmacalendarplugins/holidaysevents.so
 	// Holidays stores the region in:
 	//   ~/.config/plasma_calendar_holiday_regions
 	//     [General]
