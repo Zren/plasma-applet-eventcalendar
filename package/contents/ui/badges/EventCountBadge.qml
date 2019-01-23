@@ -18,11 +18,11 @@ Item {
 		width: eventBadgeCountText.width
 		color: {
 			if (plasmoid.configuration.show_outlines) {
-				var c = Qt.darker(theme.backgroundColor, 1); // Cast to color
-				c.a = 0.6; // 60%
-				return c;
+				var c = Qt.darker(theme.backgroundColor, 1) // Cast to color
+				c.a = 0.6 // 60%
+				return c
 			} else {
-				return "transparent";
+				return "transparent"
 			}
 		}
 
