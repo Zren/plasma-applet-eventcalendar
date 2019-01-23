@@ -4,8 +4,8 @@ import QtQuick.Layouts 1.2
 import QtQuick.Controls 1.4
 import org.kde.plasma.core 2.0 as PlasmaCore
 
-import "../lib/Requests.js" as Requests
 import ".."
+import "../lib/Requests.js" as Requests
 
 Dialog {
 	id: chooseCityDialog
@@ -35,7 +35,7 @@ Dialog {
 		
 		onSelectionChanged: {
 			tableView.selection.forEach(function(row) {
-				var city = filteredCityListModel.get(row);
+				var city = filteredCityListModel.get(row)
 				chooseCityDialog.selectedCityId = city.id
 				// console.log('selectedCityId', city.id, city.name)
 			})
@@ -149,7 +149,7 @@ Dialog {
 	}
 
 	function fetchCityList(args, callback) {
-		if (!args.app_id) return callback('OpenWeatherMap AppId not set');
+		if (!args.app_id) return callback('OpenWeatherMap AppId not set')
 		
 		var url = 'http://api.openweathermap.org/data/2.5/'
 		url += 'find?q=' + encodeURIComponent(args.q)
@@ -157,6 +157,6 @@ Dialog {
 		url += '&sort=population'
 		url += '&cnt=30'
 		url += '&appid=' + args.app_id
-		Requests.getJSON(url, callback);
+		Requests.getJSON(url, callback)
 	}
 }

@@ -34,7 +34,7 @@ Dialog {
 		
 		onSelectionChanged: {
 			tableView.selection.forEach(function(row) {
-				var city = filteredCityListModel.get(row);
+				var city = filteredCityListModel.get(row)
 				chooseCityDialog.selectedCityId = city.id
 				// console.log('selectedCityId', city.id, city.name)
 			})
@@ -133,10 +133,10 @@ Dialog {
 		cityListModel.clear()
 
 		Requests.request(provinceUrl, function(err, data) {
-			// console.log(data);
-			var cityList = WeatherCanada.parseProvincePage(data);
+			// console.log(data)
+			var cityList = WeatherCanada.parseProvincePage(data)
 			for (var i = 0; i < cityList.length; i++) {
-				cityListModel.append(cityList[i]);
+				cityListModel.append(cityList[i])
 			}
 			
 			// link after populating so that each append() doesn't attempt to rebuild the UI.
@@ -149,13 +149,13 @@ Dialog {
 
 	property alias provinceIdList: provinceRepeater.model
 	function loadProvinceCityList() {
-		var provinceId = provinceIdList[0];
+		var provinceId = provinceIdList[0]
 		if (provinceTabView.currentIndex >= 0) {
-			provinceId = provinceIdList[provinceTabView.currentIndex];
+			provinceId = provinceIdList[provinceTabView.currentIndex]
 		}
 		
-		var provinceUrl = 'https://weather.gc.ca/forecast/canada/index_e.html?id=' + provinceId;
-		loadCityList(provinceUrl);
+		var provinceUrl = 'https://weather.gc.ca/forecast/canada/index_e.html?id=' + provinceId
+		loadCityList(provinceUrl)
 	}
 
 	Component.onCompleted: loadProvinceCityList()
