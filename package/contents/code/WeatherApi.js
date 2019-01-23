@@ -1,30 +1,30 @@
 .import "OpenWeatherMap.js" as OpenWeatherMap
 .import "WeatherCanada.js" as WeatherCanada
 
-// var weatherService = 'OpenWeatherMap';
-// var dataPointDuration = 3;
-// var weatherService = 'WeatherCanada';
-// var dataPointDuration = 1;
+// var weatherService = 'OpenWeatherMap'
+// var dataPointDuration = 3
+// var weatherService = 'WeatherCanada'
+// var dataPointDuration = 1
 
 /* How many hours each data point represents */
 function getDataPointDuration() {
-	var weatherService = plasmoid.configuration.weather_service;
+	var weatherService = plasmoid.configuration.weather_service
 	if (weatherService == 'OpenWeatherMap') {
-		return 3;
+		return 3
 	} else if (weatherService == 'WeatherCanada') {
-		return 1;
+		return 1
 	} else {
-		return 1;
+		return 1
 	}
 }
 
 /* Open the city's webpage using Qt.openUrlExternally(url) */
 function openCityUrl() {
-	var weatherService = plasmoid.configuration.weather_service;
+	var weatherService = plasmoid.configuration.weather_service
 	if (weatherService == 'OpenWeatherMap') {
-		OpenWeatherMap.openOpenWeatherMapCityUrl(plasmoid.configuration.weather_city_id);
+		OpenWeatherMap.openOpenWeatherMapCityUrl(plasmoid.configuration.weather_city_id)
 	} else if (weatherService == 'WeatherCanada') {
-		Qt.openUrlExternally(WeatherCanada.getCityUrl(plasmoid.configuration.weather_canada_city_id));
+		Qt.openUrlExternally(WeatherCanada.getCityUrl(plasmoid.configuration.weather_canada_city_id))
 	}
 }
 
@@ -55,13 +55,13 @@ function openCityUrl() {
 */
 function updateDailyWeather(callback) {
 	if (!weatherIsSetup()) {
-		return callback('Weather configuration not setup');
+		return callback('Weather configuration not setup')
 	}
-	var weatherService = plasmoid.configuration.weather_service;
+	var weatherService = plasmoid.configuration.weather_service
 	if (weatherService == 'OpenWeatherMap') {
-		OpenWeatherMap.updateDailyWeather(callback);
+		OpenWeatherMap.updateDailyWeather(callback)
 	} else if (weatherService == 'WeatherCanada') {
-		WeatherCanada.updateDailyWeather(callback);
+		WeatherCanada.updateDailyWeather(callback)
 	}
 }
 
@@ -86,25 +86,25 @@ function updateDailyWeather(callback) {
 */
 function updateHourlyWeather(callback) {
 	if (!weatherIsSetup()) {
-		return callback('Weather configuration not setup');
+		return callback('Weather configuration not setup')
 	}
-	var weatherService = plasmoid.configuration.weather_service;
+	var weatherService = plasmoid.configuration.weather_service
 	if (weatherService == 'OpenWeatherMap') {
-		OpenWeatherMap.updateHourlyWeather(callback);
+		OpenWeatherMap.updateHourlyWeather(callback)
 	} else if (weatherService == 'WeatherCanada') {
-		WeatherCanada.updateHourlyWeather(callback);
+		WeatherCanada.updateHourlyWeather(callback)
 	}
 }
 
 /* Return true if all configuration has been setup. */
 function weatherIsSetup() {
-	var weatherService = plasmoid.configuration.weather_service;
+	var weatherService = plasmoid.configuration.weather_service
 	if (weatherService == 'OpenWeatherMap') {
-		return !!plasmoid.configuration.weather_city_id;
+		return !!plasmoid.configuration.weather_city_id
 	} else if (weatherService == 'WeatherCanada') {
-		return !!plasmoid.configuration.weather_canada_city_id;
+		return !!plasmoid.configuration.weather_canada_city_id
 	} else {
-		return false;
+		return false
 	}
 }
 
@@ -132,16 +132,16 @@ var weatherIconBySeverity = [
 	'weather-storm',
 	'weather-severe-alert',
 	// Most severe
-];
+]
 
 function getMostSevereIcon(weatherIconList) {
-	var mostSevereIndex = weatherIconBySeverity.indexOf(weatherIconList[0]);
+	var mostSevereIndex = weatherIconBySeverity.indexOf(weatherIconList[0])
 	for (var i = 1; i < weatherIconList.length; i++) {
-		var index = weatherIconBySeverity.indexOf(weatherIconList[i]);
-		mostSevereIndex = Math.max(mostSevereIndex, index);
+		var index = weatherIconBySeverity.indexOf(weatherIconList[i])
+		mostSevereIndex = Math.max(mostSevereIndex, index)
 	}
 	if (mostSevereIndex === -1) {
-		return weatherIconList[0];
+		return weatherIconList[0]
 	}
-	return weatherIconBySeverity[mostSevereIndex];
+	return weatherIconBySeverity[mostSevereIndex]
 }
