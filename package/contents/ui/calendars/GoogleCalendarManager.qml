@@ -41,21 +41,21 @@ CalendarManager {
 			access_token: accessToken,
 		}, function(err, data, xhr) {
 			if (err) {
-				logger.logJSON('onErrorFetchingEvents: ', err);
+				logger.logJSON('onErrorFetchingEvents: ', err)
 				if (xhr.status === 404) {
-					return;
+					return
 				}
 				googleCalendarManager.asyncRequestsDone += 1
-				return onErrorFetchingEvents(err);
+				return onErrorFetchingEvents(err)
 			}
 
 			setCalendarData(calendarId, data)
 			googleCalendarManager.asyncRequestsDone += 1
-		});
+		})
 	}
 
 	function fetchGCalEvents(args, callback) {
-		logger.debug('fetchGCalEvents', args.calendarId);
+		logger.debug('fetchGCalEvents', args.calendarId)
 		var onResponse = fetchGCalEventsPageResponse.bind(this, args, callback, null)
 		fetchGCalEventsPage(args, onResponse)
 	}
@@ -65,7 +65,7 @@ CalendarManager {
 	}
 
 	function fetchGCalEventsPageResponse(args, finishedCallback, allData, err, data, xhr) {
-		logger.debug('fetchGCalEventsPageResponse', args, finishedCallback, allData, err, data, xhr);
+		logger.debug('fetchGCalEventsPageResponse', args, finishedCallback, allData, err, data, xhr)
 		if (err) {
 			return finishedCallback(err, data, xhr)
 		}
@@ -91,17 +91,17 @@ CalendarManager {
 	}
 
 	function fetchGCalEventsPage(args, pageCallback) {
-		logger.debug('fetchGCalEventsPage', args.calendarId);
-		var url = 'https://www.googleapis.com/calendar/v3';
+		logger.debug('fetchGCalEventsPage', args.calendarId)
+		var url = 'https://www.googleapis.com/calendar/v3'
 		url += '/calendars/'
-		url += encodeURIComponent(args.calendarId);
-		url += '/events';
-		url += '?timeMin=' + encodeURIComponent(args.start);
-		url += '&timeMax=' + encodeURIComponent(args.end);
-		url += '&singleEvents=' + encodeURIComponent('true');
-		url += '&timeZone=' + encodeURIComponent('Etc/UTC');
+		url += encodeURIComponent(args.calendarId)
+		url += '/events'
+		url += '?timeMin=' + encodeURIComponent(args.start)
+		url += '&timeMax=' + encodeURIComponent(args.end)
+		url += '&singleEvents=' + encodeURIComponent('true')
+		url += '&timeZone=' + encodeURIComponent('Etc/UTC')
 		if (args.pageToken) {
-			url += '&pageToken=' + encodeURIComponent(args.pageToken);
+			url += '&pageToken=' + encodeURIComponent(args.pageToken)
 		}
 		Requests.getJSON({
 			url: url,
@@ -111,15 +111,15 @@ CalendarManager {
 		}, function(err, data, xhr) {
 			logger.debug('fetchGCalEventsPage.response', args.calendarId, err, data, xhr.status)
 			if (!err && data && data.error) {
-				return pageCallback(data, null, xhr);
+				return pageCallback(data, null, xhr)
 			}
 			logger.debugJSON('fetchGCalEventsPage.response', args.calendarId, data)
-			pageCallback(err, data, xhr);
-		});
+			pageCallback(err, data, xhr)
+		})
 	}
 
 	function onErrorFetchingEvents(err) {
-		logger.logJSON('onErrorFetchingEvents: ', err);
+		logger.logJSON('onErrorFetchingEvents: ', err)
 		deferredUpdateAccessTokenThenUpdateEvents.restart()
 	}
 
@@ -148,11 +148,11 @@ CalendarManager {
 	}
 
 	function updateAccessToken(callback) {
-		// logger.debug('access_token_expires_at', plasmoid.configuration.access_token_expires_at);
-		// logger.debug('                    now', Date.now());
-		// logger.debug('refresh_token', plasmoid.configuration.refresh_token);
+		// logger.debug('access_token_expires_at', plasmoid.configuration.access_token_expires_at)
+		// logger.debug('                    now', Date.now())
+		// logger.debug('refresh_token', plasmoid.configuration.refresh_token)
 		if (plasmoid.configuration.refresh_token) {
-			logger.debug('updateAccessToken');
+			logger.debug('updateAccessToken')
 			fetchNewAccessToken(function(err, data, xhr) {
 				if (err || (!err && data && data.error)) {
 					logger.log('Error when using refreshToken:', err, data)
@@ -164,7 +164,7 @@ CalendarManager {
 				googleCalendarManager.applyAccessToken(data)
 
 				callback(null)
-			});
+			})
 		}
 	}
 
@@ -179,8 +179,8 @@ CalendarManager {
 	}
 
 	function fetchNewAccessToken(callback) {
-		logger.debug('fetchNewAccessToken');
-		var url = 'https://www.googleapis.com/oauth2/v4/token';
+		logger.debug('fetchNewAccessToken')
+		var url = 'https://www.googleapis.com/oauth2/v4/token'
 		Requests.post({
 			url: url,
 			data: {
@@ -189,7 +189,7 @@ CalendarManager {
 				refresh_token: plasmoid.configuration.refresh_token,
 				grant_type: 'refresh_token',
 			},
-		}, callback);
+		}, callback)
 	}
 
 	onCalendarParsing: {
@@ -200,7 +200,7 @@ CalendarManager {
 	}
 
 	function parseEvent(calendar, event) {
-		event.description = event.description || "";
+		event.description = event.description || ""
 		event.backgroundColor = parseColor(calendar, event)
 		event.canEdit = (calendar.accessRole == 'writer' || calendar.accessRole == 'owner') && !event.recurringEventId // We cannot currently edit repeating events.
 		if (true && event.htmlLink) {
@@ -248,7 +248,7 @@ CalendarManager {
 				calendarId: calendarId,
 				text: eventText,
 			}, function(err, data) {
-				// logger.debug(err, JSON.stringify(data, null, '\t'));
+				// logger.debug(err, JSON.stringify(data, null, '\t'))
 				if (googleCalendarManager.calendarIdList.indexOf(calendarId) >= 0) {
 					parseSingleEvent(calendarId, data)
 					addEvent(calendarId, data)
@@ -260,36 +260,36 @@ CalendarManager {
 
 	function createGCalEvent(args, callback) {
 		// https://www.googleapis.com/calendar/v3/calendars/calendarId/events/quickAdd
-		var url = 'https://www.googleapis.com/calendar/v3';
+		var url = 'https://www.googleapis.com/calendar/v3'
 		url += '/calendars/'
-		url += encodeURIComponent(args.calendarId);
-		url += '/events/quickAdd';
-		url += '?text=' + encodeURIComponent(args.text);
+		url += encodeURIComponent(args.calendarId)
+		url += '/events/quickAdd'
+		url += '?text=' + encodeURIComponent(args.text)
 		Requests.postJSON({
 			url: url,
 			headers: {
 				"Authorization": "Bearer " + args.access_token,
 			}
 		}, function(err, data, xhr) {
-			console.log('createGCalEvent.response', err, data, xhr.status);
+			console.log('createGCalEvent.response', err, data, xhr.status)
 			if (!err && data && data.error) {
-				return callback(data, null, xhr);
+				return callback(data, null, xhr)
 			}
-			callback(err, data, xhr);
-		});
+			callback(err, data, xhr)
+		})
 	}
 
 
 	function cloneRawEvent(event) {
 		// Clone the event data and clean up the extra stuff we added when parsing the event.
 		var data = JSON.parse(JSON.stringify(event)) // clone
-		if (data.description == "") delete data.description;
-		if (data.start.date) delete data.start.dateTime;
-		if (data.end.date) delete data.end.dateTime;
-		if (data.end.calendarId) delete data.end.calendarId;
-		delete data.canEdit;
-		delete data._summary;
-		return data;
+		if (data.description == "") delete data.description
+		if (data.start.date) delete data.start.dateTime
+		if (data.end.date) delete data.end.dateTime
+		if (data.end.calendarId) delete data.end.calendarId
+		delete data.canEdit
+		delete data._summary
+		return data
 	}
 
 	function setGoogleCalendarEventSummary(accessToken, calendarId, eventId, summary) {
@@ -304,10 +304,10 @@ CalendarManager {
 	}
 
 	function updateGoogleCalendarEvent(accessToken, calendarId, eventId, args) {
-		var event = getEvent(calendarId, eventId);
+		var event = getEvent(calendarId, eventId)
 		if (!event) {
 			logger.log('error, trying to update event that doesn\'t exist')
-			return;
+			return
 		}
 		
 		// Merge assigned values into a cloned object
@@ -342,11 +342,11 @@ CalendarManager {
 
 	function updateGCalEvent(args, callback) {
 		// PUT https://www.googleapis.com/calendar/v3/calendars/calendarId/events/eventId
-		var url = 'https://www.googleapis.com/calendar/v3';
+		var url = 'https://www.googleapis.com/calendar/v3'
 		url += '/calendars/'
-		url += encodeURIComponent(args.calendarId);
-		url += '/events/';
-		url += encodeURIComponent(args.eventId);
+		url += encodeURIComponent(args.calendarId)
+		url += '/events/'
+		url += encodeURIComponent(args.eventId)
 		Requests.postJSON({
 			method: 'PUT',
 			url: url,
@@ -355,11 +355,11 @@ CalendarManager {
 			},
 			data: args.data,
 		}, function(err, data, xhr) {
-			logger.debug('updateGCalEvent.response', err, data, xhr.status);
+			logger.debug('updateGCalEvent.response', err, data, xhr.status)
 			if (!err && data && data.error) {
-				return callback(data, null, xhr);
+				return callback(data, null, xhr)
 			}
-			callback(err, data, xhr);
+			callback(err, data, xhr)
 		})
 	}
 
@@ -436,11 +436,11 @@ CalendarManager {
 	function deleteGCalEvent(args, callback) {
 		// DELETE https://www.googleapis.com/calendar/v3/calendars/calendarId/events/eventId
 		// Note: Success means a response of xhr.status == 204 (No Content)
-		var url = 'https://www.googleapis.com/calendar/v3';
+		var url = 'https://www.googleapis.com/calendar/v3'
 		url += '/calendars/'
-		url += encodeURIComponent(args.calendarId);
-		url += '/events/';
-		url += encodeURIComponent(args.eventId);
+		url += encodeURIComponent(args.calendarId)
+		url += '/events/'
+		url += encodeURIComponent(args.eventId)
 		Requests.postJSON({
 			method: 'DELETE',
 			url: url,
@@ -448,11 +448,11 @@ CalendarManager {
 				"Authorization": "Bearer " + args.accessToken,
 			},
 		}, function(err, data, xhr) {
-			logger.debug('deleteGCalEvent.response', err, data, xhr.status);
+			logger.debug('deleteGCalEvent.response', err, data, xhr.status)
 			if (!err && data && data.error) {
-				return callback(data, null, xhr);
+				return callback(data, null, xhr)
 			}
-			callback(err, data, xhr);
+			callback(err, data, xhr)
 		})
 	}
 
@@ -462,8 +462,8 @@ CalendarManager {
 	//-------------------------
 	// CalendarManager
 	function getCalendarList() {
-		var calendarList = plasmoid.configuration.calendar_list ? JSON.parse(Qt.atob(plasmoid.configuration.calendar_list)) : [];
-		return calendarList;
+		var calendarList = plasmoid.configuration.calendar_list ? JSON.parse(Qt.atob(plasmoid.configuration.calendar_list)) : []
+		return calendarList
 	}
 
 	function getCalendar(calendarId) {
@@ -500,11 +500,11 @@ CalendarManager {
 
 			// setCalendarData(tasklistId, data)
 			googleCalendarManager.asyncRequestsDone += 1
-		});
+		})
 	}
 
 	function fetchTaskList(args, callback) {
-		logger.debug('fetchTaskList', args.tasklistId);
+		logger.debug('fetchTaskList', args.tasklistId)
 		var onResponse = fetchTaskListPage.bind(this, args, callback, null)
 		fetchTaskListPage(args, onResponse)
 	}
@@ -532,10 +532,10 @@ CalendarManager {
 			}
 			logger.debugJSON('fetchTaskListPage.response', args.calendarId, data)
 			pageCallback(err, data, xhr)
-		});
+		})
 	}
 	function onErrorFetchingTasks(err) {
-		logger.logJSON('onErrorFetchingTasks: ', err);
+		logger.logJSON('onErrorFetchingTasks: ', err)
 		deferredUpdateAccessTokenThenUpdateEvents.restart()
 	}
 }

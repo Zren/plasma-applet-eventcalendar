@@ -55,7 +55,7 @@ Item {
 		var events = calendarManager.eventsByCalendar[calendarId].items
 		for (var i = 0; i < events.length; i++) {
 			if (events[i].id == eventId) {
-				return events[i];
+				return events[i]
 			}
 		}
 	}

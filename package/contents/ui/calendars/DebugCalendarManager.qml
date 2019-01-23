@@ -36,12 +36,12 @@ CalendarManager {
 		var url = 'file:///home/chris/.config/plasma-org.kde.plasma.desktop-appletsrc'
 		Requests.getFile(url, function(err, data) {
 			if (err) {
-				return callback(err);
+				return callback(err)
 			}
 
 			var metadata = Requests.parseMetadata(data)
-			callback(null, metadata);
-		});
+			callback(null, metadata)
+		})
 	}
 
 	// Note: Not in use
@@ -52,13 +52,13 @@ CalendarManager {
 		debugCalendarManager.asyncRequests += 1
 		Requests.getFile(filename, function(err, data) {
 			if (err) {
-				return callback(err);
+				return callback(err)
 			}
 
-			var obj = JSON.parse(data);
+			var obj = JSON.parse(data)
 			setCalendarData(calendarId, obj)
 			debugCalendarManager.asyncRequestsDone += 1
-		});
+		})
 	}
 
 	function deleteEvent(calendarId, eventId) {
@@ -95,10 +95,10 @@ CalendarManager {
 
 	function setEventSummary(calendarId, eventId, summary) {
 		console.log('debugCalendarManager.setEventSummary', calendarId, eventId, summary)
-		var event = getEvent(calendarId, eventId);
+		var event = getEvent(calendarId, eventId)
 		if (!event) {
 			logger.log('error, trying to update event that doesn\'t exist')
-			return;
+			return
 		}
 		event.summary = summary
 		eventUpdated(calendarId, eventId, event)
