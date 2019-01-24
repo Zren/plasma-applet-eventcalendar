@@ -58,7 +58,7 @@ ColumnLayout {
 
 			FileDialog {
 				id: sfxPathDialog
-				title: i18n("Chose a sound effect")
+				title: i18n("Choose a sound effect")
 				folder: '/usr/share/sounds'
 				nameFilters: [ "Sound files (*.wav *.mp3 *.oga *.ogg)", "All files (*)" ]
 				onAccepted: {
