@@ -1,5 +1,5 @@
 #!/bin/bash
-# Version 3
+# Version 4
 # Requires plasmoidviewer v5.13.0
 
 function checkIfLangInstalled {
@@ -83,4 +83,4 @@ packageDir="${scriptDir}/.."
 # Build local translations for plasmoidviewer
 sh "${scriptDir}/build"
 
-LANGUAGE="${lang}" LANG="${l1}" QML_DISABLE_DISK_CACHE=true plasmoidviewer -a "$packageDir" -l topedge -f horizontal -x 0 -y 0
+LANGUAGE="${lang}" LANG="${l1}" LC_TIME="${l1}" QML_DISABLE_DISK_CACHE=true plasmoidviewer -a "$packageDir" -l topedge -f horizontal -x 0 -y 0
