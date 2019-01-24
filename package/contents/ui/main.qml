@@ -224,9 +224,9 @@ Item {
 		// plasmoid.action("configure").trigger()
 	}
 
-	Timer {
-		interval: 400
-		running: true
-		onTriggered: plasmoid.expanded = true
-	}
+	// Timer {
+	// 	interval: 400
+	// 	running: true
+	// 	onTriggered: plasmoid.expanded = true
+	// }
 }
