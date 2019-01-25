@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: eventcalendar\n"
 "Report-Msgid-Bugs-To: https://github.com/Zren/plasma-applet-eventcalendar\n"
 "POT-Creation-Date: 2019-01-24 17:34-0500\n"
-"PO-Revision-Date: 2018-06-17 12:11+0200\n"
+"PO-Revision-Date: 2019-01-25 12:15+0100\n"
 "Last-Translator: Heimen Stoffels <vistausss@outlook.com>\n"
 "Language-Team: \n"
 "Language: nl_NL\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 2.0.8\n"
+"X-Generator: Poedit 2.1.1\n"
 
 #: ../contents/config/config.qml:9
 msgid "General"
@@ -56,7 +56,7 @@ msgstr "Geavanceerd"
 
 #: ../contents/ui/AgendaEventItem.qml:69
 msgid "Event Summary"
-msgstr "Samenvatting van gebeurtenissen"
+msgstr "Gebeurtenisoverzicht"
 
 #: ../contents/ui/AgendaEventItem.qml:143
 msgid "to"
@@ -76,11 +76,11 @@ msgstr "Verwerpen"
 
 #: ../contents/ui/AgendaEventItem.qml:232
 msgid "Hangout"
-msgstr ""
+msgstr "Hangout"
 
 #: ../contents/ui/AgendaEventItem.qml:259
 msgid "Edit description"
-msgstr "Omschrijving bewerken"
+msgstr "Omschrijving aanpassen"
 
 #: ../contents/ui/AgendaEventItem.qml:268
 msgid "Edit date/time"
@@ -108,7 +108,8 @@ msgctxt "agenda date format line 2"
 msgid "ddd"
 msgstr "ddd"
 
-#: ../contents/ui/AgendaView.qml:23 ../contents/ui/AgendaView.qml:36 ../contents/ui/UpcomingEvents.qml:129 ../contents/ui/UpcomingEvents.qml:146
+#: ../contents/ui/AgendaView.qml:23 ../contents/ui/AgendaView.qml:36
+#: ../contents/ui/UpcomingEvents.qml:129 ../contents/ui/UpcomingEvents.qml:146
 msgid "Event Calendar"
 msgstr "Gebeurteniskalender"
 
@@ -127,13 +128,14 @@ msgstr "Agenda boven maand tonen (één kolom)"
 
 #: ../contents/ui/config/ConfigAgenda.qml:42
 msgid "Agenda to the left (Two Columns)"
-msgstr "Agenda links tonen (twee kolommen)"
+msgstr "Agenda aan linkerkant tonen (twee kolommen)"
 
 #: ../contents/ui/config/ConfigAgenda.qml:53
 msgid "Font Size:"
 msgstr "Lettertypegrootte:"
 
-#: ../contents/ui/config/ConfigAgenda.qml:54 ../contents/ui/config/ConfigGeneral.qml:204
+#: ../contents/ui/config/ConfigAgenda.qml:54
+#: ../contents/ui/config/ConfigGeneral.qml:204
 msgid "px"
 msgstr "px"
 
@@ -167,35 +169,37 @@ msgstr "Rechts"
 
 #: ../contents/ui/config/ConfigAgenda.qml:109
 msgid "Click Weather:"
-msgstr "Klikken op weer:"
+msgstr "Bij klikken op weer:"
 
 #: ../contents/ui/config/ConfigAgenda.qml:112
 msgid "Open City Forecast In Browser"
 msgstr "Weersvoorspelling openen in webbrowser"
 
-#: ../contents/ui/config/ConfigAgenda.qml:121 ../contents/ui/config/ConfigCalendar.qml:25
+#: ../contents/ui/config/ConfigAgenda.qml:121
+#: ../contents/ui/config/ConfigCalendar.qml:25
 msgid "Click Date:"
-msgstr "Klikken op datum:"
+msgstr "Bij klikken op datum:"
 
-#: ../contents/ui/config/ConfigAgenda.qml:124 ../contents/ui/config/ConfigCalendar.qml:40
+#: ../contents/ui/config/ConfigAgenda.qml:124
+#: ../contents/ui/config/ConfigCalendar.qml:40
 msgid "Open New Event In Browser"
 msgstr "Nieuwe gebeurtenis openen in webbrowser"
 
 #: ../contents/ui/config/ConfigAgenda.qml:129
 msgid "Open New Event Form"
-msgstr "Nieuwe gebeurtenis in pop-up openen"
+msgstr "Nieuwe gebeurtenis openen in pop-up"
 
 #: ../contents/ui/config/ConfigAgenda.qml:139
 msgid "Event description"
-msgstr ""
+msgstr "Omschrijving"
 
 #: ../contents/ui/config/ConfigAgenda.qml:143
 msgid "Google Hangouts link"
-msgstr ""
+msgstr "Google Hangouts-link"
 
 #: ../contents/ui/config/ConfigAgenda.qml:146
 msgid "Click Event:"
-msgstr "Klikken op gebeurtenis:"
+msgstr "Bij klikken op gebeurtenis:"
 
 #: ../contents/ui/config/ConfigAgenda.qml:149
 msgid "Open Event In Browser"
@@ -203,7 +207,7 @@ msgstr "Gebeurtenis openen in webbrowser"
 
 #: ../contents/ui/config/ConfigAgenda.qml:159
 msgid "Show multi-day events:"
-msgstr "Gebeurtenissen tonen die meerdere dagen duren:"
+msgstr "Meerdaagse gebeurtenissen tonen:"
 
 #: ../contents/ui/config/ConfigAgenda.qml:164
 msgid "On all days"
@@ -215,7 +219,7 @@ msgstr "Alleen op de eerste en huidige dag"
 
 #: ../contents/ui/config/ConfigAgenda.qml:185
 msgid "Remember selected calendar in New Event Form"
-msgstr "Geselecteerde agenda onthouden in nieuwe gebeurtenis-pop-up"
+msgstr "Gekozen agenda onthouden in pop-up 'Nieuwe gebeurtenis'"
 
 #: ../contents/ui/config/ConfigAgenda.qml:190
 msgid "Current Month"
@@ -231,9 +235,12 @@ msgstr "Verlopen gebeurtenissen verbergen"
 
 #: ../contents/ui/config/ConfigAgenda.qml:205
 msgid "Show all events of the current day (including completed events)"
-msgstr "Alle gebeurtenissen van de huidige dag tonen (inclusief verlopen gebeurtenissen)"
+msgstr ""
+"Alle gebeurtenissen van de huidige dag tonen (inclusief verlopen "
+"gebeurtenissen)"
 
-#: ../contents/ui/config/ConfigAgenda.qml:211 ../contents/ui/config/ConfigWeather.qml:177
+#: ../contents/ui/config/ConfigAgenda.qml:211
+#: ../contents/ui/config/ConfigWeather.qml:177
 msgid "Colors"
 msgstr "Kleuren"
 
@@ -253,7 +260,8 @@ msgstr "Scrollen naar gebeurtenis in agenda"
 msgid "DoubleClick Date:"
 msgstr "Dubbelklikken op datum:"
 
-#: ../contents/ui/config/ConfigCalendar.qml:48 ../contents/ui/config/ConfigWeather.qml:120
+#: ../contents/ui/config/ConfigCalendar.qml:48
+#: ../contents/ui/config/ConfigWeather.qml:120
 msgid "Style"
 msgstr "Stijl"
 
@@ -267,9 +275,10 @@ msgstr "Weeknummers tonen"
 
 #: ../contents/ui/config/ConfigCalendar.qml:61
 msgid "First day of week:"
-msgstr ""
+msgstr "Eerste dag van de week:"
 
-#: ../contents/ui/config/ConfigCalendar.qml:70 ../contents/ui/config/ConfigGeneral.qml:177
+#: ../contents/ui/config/ConfigCalendar.qml:70
+#: ../contents/ui/config/ConfigGeneral.qml:177
 msgid "Default"
 msgstr "Standaard"
 
@@ -277,7 +286,9 @@ msgstr "Standaard"
 msgid "Event Badge:"
 msgstr "Gebeurtenisteller:"
 
-#: ../contents/ui/config/ConfigCalendar.qml:92 ../contents/ui/config/ConfigCalendar.qml:147 ../contents/ui/config/ConfigCalendar.qml:163
+#: ../contents/ui/config/ConfigCalendar.qml:92
+#: ../contents/ui/config/ConfigCalendar.qml:147
+#: ../contents/ui/config/ConfigCalendar.qml:163
 msgid "Theme"
 msgstr "Thema"
 
@@ -329,15 +340,17 @@ msgstr "Gebeurteniskalender-plug-ins"
 msgid "Plasma Calendar Plugins"
 msgstr "Plasma-kalenderplug-ins"
 
-#: ../contents/ui/config/ConfigEvents.qml:61 ../contents/ui/config/ConfigGeneral.qml:439
+#: ../contents/ui/config/ConfigEvents.qml:61
+#: ../contents/ui/config/ConfigGeneral.qml:439
 msgid "Misc"
 msgstr "Overig"
 
 #: ../contents/ui/config/ConfigEvents.qml:67
 msgid "Refresh events every: "
-msgstr "Gebeurtenissen verversen, elke: "
+msgstr "Ververs gebeurtenissen elke: "
 
-#: ../contents/ui/config/ConfigEvents.qml:68 ../contents/ui/config/ConfigWeather.qml:112
+#: ../contents/ui/config/ConfigEvents.qml:68
+#: ../contents/ui/config/ConfigWeather.qml:112
 msgctxt "Polling interval in minutes"
 msgid "min"
 msgid_plural "min"
@@ -352,7 +365,8 @@ msgstr "Meldingen"
 msgid "Event Starting"
 msgstr "Bij begin van gebeurtenis"
 
-#: ../contents/ui/config/ConfigGeneral.qml:75 ../contents/ui/lib/ConfigNotification.qml:61
+#: ../contents/ui/config/ConfigGeneral.qml:75
+#: ../contents/ui/lib/ConfigNotification.qml:61
 msgid "Choose a sound effect"
 msgstr "Kies een geluidseffect"
 
@@ -361,8 +375,12 @@ msgid "Widgets"
 msgstr "Widgets"
 
 #: ../contents/ui/config/ConfigGeneral.qml:102
-msgid "Show/Hide widgets above the calendar. Toggle Agenda/Calendar on their respective tabs."
-msgstr "Widgets boven de kalender tonen/verbergen. Schakel tussen agenda en kalender middels hun resp. tabbladen."
+msgid ""
+"Show/Hide widgets above the calendar. Toggle Agenda/Calendar on their "
+"respective tabs."
+msgstr ""
+"Widgets boven de kalender tonen/verbergen. Schakel tussen agenda en kalender "
+"middels hun resp. tabbladen."
 
 #: ../contents/ui/config/ConfigGeneral.qml:109
 msgid "Meteogram"
@@ -389,12 +407,25 @@ msgid "Time Format"
 msgstr "Tijdsopmaak"
 
 #: ../contents/ui/config/ConfigGeneral.qml:154
-msgid "The default font for the Breeze theme is Noto Sans which is hard to read with small text. Try using the Sans Serif font if you find the text too small when adding a second line."
-msgstr "Het standaard lettertype bij het Breeze-thema is Noto Sans. Dit lettertype maakt kleine tekst moeilijk leesbaar. Gebruik het schreefloze lettertype als je tekst op de tweede regel te klein vindt."
+msgid ""
+"The default font for the Breeze theme is Noto Sans which is hard to read "
+"with small text. Try using the Sans Serif font if you find the text too "
+"small when adding a second line."
+msgstr ""
+"Het standaard lettertype van het Breeze-thema is Noto Sans. Dit lettertype "
+"maakt kleine tekst moeilijk leesbaar. Gebruik het schreefloze lettertype als "
+"je tekst op de tweede regel te klein vindt."
 
 #: ../contents/ui/config/ConfigGeneral.qml:160
-msgid "You can also use <b>'&lt;b&gt;'ddd'&lt;/b&gt;'</b> or <b>'&lt;font color=\"#77aaadd\"&gt;'ddd'&lt;/font&gt;'</b> to style a section. Note the single quotes around the tags are used to bypass the time format."
-msgstr "Je kunt ook <b>'&lt;b&gt;'ddd'&lt;/b&gt;'</b> or <b>'&lt;font color=\"#77aaadd\"&gt;'ddd'&lt;/font&gt;'</b> gebruiken om een sectie van een andere stijl te voorzien. Let op: de enkele aanhalingstekens worden gebruikt om de tijdsopmaak te omzeilen."
+msgid ""
+"You can also use <b>'&lt;b&gt;'ddd'&lt;/b&gt;'</b> or <b>'&lt;font color="
+"\"#77aaadd\"&gt;'ddd'&lt;/font&gt;'</b> to style a section. Note the single "
+"quotes around the tags are used to bypass the time format."
+msgstr ""
+"Je kunt ook <b>'&lt;b&gt;'ddd'&lt;/b&gt;'</b> of <b>'&lt;font color="
+"\"#77aaadd\"&gt;'ddd'&lt;/font&gt;'</b> gebruiken om een sectie van een "
+"andere stijl te voorzien. Let op: de enkele aanhalingstekens worden gebruikt "
+"om de tijdsopmaak te omzeilen."
 
 #: ../contents/ui/config/ConfigGeneral.qml:166
 msgid "Font:"
@@ -412,11 +443,14 @@ msgstr " (0px = passend schalen)"
 msgid "Line 1:"
 msgstr "Regel 1:"
 
-#: ../contents/ui/config/ConfigGeneral.qml:237 ../contents/ui/config/ConfigGeneral.qml:263 ../contents/ui/config/ConfigGeneral.qml:312
+#: ../contents/ui/config/ConfigGeneral.qml:237
+#: ../contents/ui/config/ConfigGeneral.qml:263
+#: ../contents/ui/config/ConfigGeneral.qml:312
 msgid "Preset:"
 msgstr "Voorinstelling:"
 
-#: ../contents/ui/config/ConfigGeneral.qml:285 ../contents/ui/config/ConfigGeneral.qml:349
+#: ../contents/ui/config/ConfigGeneral.qml:285
+#: ../contents/ui/config/ConfigGeneral.qml:349
 msgid "Bold"
 msgstr "Vetgedrukt"
 
@@ -485,22 +519,29 @@ msgid "To sync with Google Calendar"
 msgstr "Synchroniseren met Google Agenda"
 
 #: ../contents/ui/config/ConfigGoogleCalendar.qml:90
-msgid "Visit <a href=\"%1\">%2</a> (opens in your web browser). After you login and give permission to acess your calendar, it will give you a code to paste below."
+msgid ""
+"Visit <a href=\"%1\">%2</a> (opens in your web browser). After you login and "
+"give permission to acess your calendar, it will give you a code to paste "
+"below."
 msgstr ""
+"Ga naar <a href=\"%1\">%2</a> (de link opent in je browser). Als je hebt "
+"ingelogd en de vereiste machtiging hebt afgegeven, dan verschijnt er een "
+"code die je hieronder moet plakken."
 
 #: ../contents/ui/config/ConfigGoogleCalendar.qml:99
 msgid "Enter code here (Eg: %1)"
-msgstr ""
+msgstr "Voer hier de code in (bijv.: %1)"
 
 #: ../contents/ui/config/ConfigGoogleCalendar.qml:103
 msgid "Submit"
-msgstr ""
+msgstr "Versturen"
 
 #: ../contents/ui/config/ConfigGoogleCalendar.qml:110
 msgid "Invalid Google Authorization Code"
-msgstr ""
+msgstr "Ongeldige Google-autorisatiecode"
 
-#: ../contents/ui/config/ConfigGoogleCalendar.qml:122 ../contents/ui/config/ConfigICal.qml:49
+#: ../contents/ui/config/ConfigGoogleCalendar.qml:122
+#: ../contents/ui/config/ConfigICal.qml:49
 msgid "Calendars"
 msgstr "Agenda's"
 
@@ -544,15 +585,17 @@ msgstr "Gegevens"
 msgid "API App Id:"
 msgstr "API App-ID:"
 
-#: ../contents/ui/config/ConfigWeather.qml:53 ../contents/ui/config/ConfigWeather.qml:77
+#: ../contents/ui/config/ConfigWeather.qml:53
+#: ../contents/ui/config/ConfigWeather.qml:77
 msgid "City Id:"
-msgstr "Stad-ID:"
+msgstr "ID van stad:"
 
 #: ../contents/ui/config/ConfigWeather.qml:58
 msgid "Eg: 5983720"
 msgstr "Bijv.: 5983720"
 
-#: ../contents/ui/config/ConfigWeather.qml:61 ../contents/ui/config/ConfigWeather.qml:85
+#: ../contents/ui/config/ConfigWeather.qml:61
+#: ../contents/ui/config/ConfigWeather.qml:85
 msgid "Find City"
 msgstr "Stad zoeken"
 
@@ -566,7 +609,7 @@ msgstr "Instellingen"
 
 #: ../contents/ui/config/ConfigWeather.qml:105
 msgid "Update forecast every: "
-msgstr "Weersvoorspelling bijwerken, elke: "
+msgstr "Werk de voorspelling bij, elke: "
 
 #: ../contents/ui/config/ConfigWeather.qml:126
 msgid "Show next "
@@ -622,37 +665,51 @@ msgstr "Temperatuur onder vriespunt"
 msgid "Icons"
 msgstr "Pictogrammen"
 
-#: ../contents/ui/config/OpenWeatherMapCityDialog.qml:12 ../contents/ui/config/WeatherCanadaCityDialog.qml:13
+#: ../contents/ui/config/OpenWeatherMapCityDialog.qml:12
+#: ../contents/ui/config/WeatherCanadaCityDialog.qml:13
 msgid "Select city"
-msgstr "Stad selecteren"
+msgstr "Stad kiezen"
 
 #: ../contents/ui/config/OpenWeatherMapCityDialog.qml:63
-msgid "Fetched from <a href=\"https://openweathermap.org/find\">https://openweathermap.org/find</a>"
-msgstr "Opgehaald uit <a href=\"https://openweathermap.org/find\">https://openweathermap.org/find</a>"
+msgid ""
+"Fetched from <a href=\"https://openweathermap.org/find\">https://"
+"openweathermap.org/find</a>"
+msgstr ""
+"Opgehaald uit <a href=\"https://openweathermap.org/find\">https://"
+"openweathermap.org/find</a>"
 
-#: ../contents/ui/config/OpenWeatherMapCityDialog.qml:69 ../contents/ui/config/WeatherCanadaCityDialog.qml:91
+#: ../contents/ui/config/OpenWeatherMapCityDialog.qml:69
+#: ../contents/ui/config/WeatherCanadaCityDialog.qml:91
 msgid "Search"
 msgstr "Zoeken"
 
-#: ../contents/ui/config/OpenWeatherMapCityDialog.qml:82 ../contents/ui/config/WeatherCanadaCityDialog.qml:104
+#: ../contents/ui/config/OpenWeatherMapCityDialog.qml:82
+#: ../contents/ui/config/WeatherCanadaCityDialog.qml:104
 msgid "Name"
 msgstr "Naam"
 
-#: ../contents/ui/config/OpenWeatherMapCityDialog.qml:87 ../contents/ui/config/WeatherCanadaCityDialog.qml:109
+#: ../contents/ui/config/OpenWeatherMapCityDialog.qml:87
+#: ../contents/ui/config/WeatherCanadaCityDialog.qml:109
 msgid "Id"
 msgstr "ID"
 
-#: ../contents/ui/config/OpenWeatherMapCityDialog.qml:92 ../contents/ui/config/WeatherCanadaCityDialog.qml:114
+#: ../contents/ui/config/OpenWeatherMapCityDialog.qml:92
+#: ../contents/ui/config/WeatherCanadaCityDialog.qml:114
 msgid "City Webpage"
 msgstr "Webpagina"
 
-#: ../contents/ui/config/OpenWeatherMapCityDialog.qml:94 ../contents/ui/config/WeatherCanadaCityDialog.qml:116
+#: ../contents/ui/config/OpenWeatherMapCityDialog.qml:94
+#: ../contents/ui/config/WeatherCanadaCityDialog.qml:116
 msgid "Open Link"
 msgstr "Link openen"
 
 #: ../contents/ui/config/WeatherCanadaCityDialog.qml:68
-msgid "Fetched from <a href=\"https://weather.gc.ca/canada_e.html\">https://weather.gc.ca/canada_e.html</a>"
-msgstr "Opgehaald uit <a href=\"https://weather.gc.ca/canada_e.html\">https://weather.gc.ca/canada_e.html</a>"
+msgid ""
+"Fetched from <a href=\"https://weather.gc.ca/canada_e.html\">https://weather."
+"gc.ca/canada_e.html</a>"
+msgstr ""
+"Opgehaald uit <a href=\"https://weather.gc.ca/canada_e.html\">https://"
+"weather.gc.ca/canada_e.html</a>"
 
 #: ../contents/ui/lib/AppletVersion.qml:41
 msgid "<b>Version:</b> %1"
@@ -736,7 +793,7 @@ msgid ""
 "and/or disable the meteogram to hide this area."
 msgstr ""
 "Het weer is niet ingesteld.\n"
-"Ga naar de Weer-pagina in de instellingen en stel je stad in\n"
+"Ga naar de pagina 'Weer' in de instellingen en stel je stad in\n"
 "en/of schakel de weergrafiek uit om deze sectie te verbergen."
 
 #: ../contents/ui/TimerInputView.qml:75
@@ -795,11 +852,13 @@ msgstr "Timer starten"
 msgid "Scroll to add to duration"
 msgstr "Scroll om de duur te verlengen"
 
-#: ../contents/ui/TimerView.qml:163 ../contents/ui/TimerView.qml:172 ../contents/ui/TimerView.qml:373
+#: ../contents/ui/TimerView.qml:163 ../contents/ui/TimerView.qml:172
+#: ../contents/ui/TimerView.qml:373
 msgid "Repeat"
 msgstr "Herhalen"
 
-#: ../contents/ui/TimerView.qml:181 ../contents/ui/TimerView.qml:190 ../contents/ui/TimerView.qml:382
+#: ../contents/ui/TimerView.qml:181 ../contents/ui/TimerView.qml:190
+#: ../contents/ui/TimerView.qml:382
 msgid "Sound"
 msgstr "Geluid"
 
@@ -817,18 +876,22 @@ msgstr "Timer instellen"
 
 #: ../contents/ui/UpcomingEvents.qml:114
 msgid "Events Starting"
-msgstr "Beginnende gebeurtenissen"
+msgstr "Te starten gebeurtenissen"
 
 #: ../contents/ui/UpcomingEvents.qml:117
 msgid "Events In Progress"
-msgstr "Uitvoerende gebeurtenissen"
+msgstr "Gebeurtenissen in uitvoering"
 
 #: ../contents/ui/UpcomingEvents.qml:120
 msgid "Upcoming Events"
 msgstr "Aankomende gebeurtenissen"
 
-#~ msgid "Enter the following code at <a href=\"https://www.google.com/device\">https://www.google.com/device</a>."
-#~ msgstr "Voer de volgende code in op <a href=\"https://www.google.com/device\">https://www.google.com/device</a>."
+#~ msgid ""
+#~ "Enter the following code at <a href=\"https://www.google.com/device"
+#~ "\">https://www.google.com/device</a>."
+#~ msgstr ""
+#~ "Voer de volgende code in op <a href=\"https://www.google.com/device"
+#~ "\">https://www.google.com/device</a>."
 
 #~ msgid "Generating Code..."
 #~ msgstr "Bezig met genereren van code..."
