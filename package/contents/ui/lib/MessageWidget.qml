@@ -1,4 +1,4 @@
-// Version 2
+// Version 3
 
 import QtQuick 2.0
 import QtQuick.Controls 1.2
@@ -18,6 +18,7 @@ Rectangle {
 	property alias wrapMode: label.wrapMode
 	property alias closeButtonVisible: closeButton.visible
 	property alias animate: visibleAnimation.enabled
+	property int iconSize: units.iconSizes.large
 
 	property int messageType: warning
 	property int positive: 0
@@ -125,7 +126,11 @@ Rectangle {
 		// Remove bindings
 		visible = visible
 		opacity = opacity
-		implicitHeight = implicitHeight
+		if (visible) {
+			implicitHeight = Qt.binding(function(){ return messageWidget.expandedHeight })
+		} else {
+			implicitHeight = 0
+		}
 	}
 
 	Behavior on visible {
@@ -156,8 +161,8 @@ Rectangle {
 		PlasmaCore.IconItem {
 			id: iconItem
 			Layout.alignment: Qt.AlignVCenter
-			Layout.preferredHeight: units.iconSizes.large
-			Layout.preferredWidth: units.iconSizes.large
+			implicitHeight: messageWidget.iconSize
+			implicitWidth: messageWidget.iconSize
 			source: messageWidget.icon
 		}
 

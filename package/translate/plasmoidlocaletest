@@ -67,6 +67,9 @@ else
 	echo "    $scriptcmd ru     | Russian (Russia)"
 	echo "    $scriptcmd uk     | Ukrainian (Ukraine)"
 	echo "    $scriptcmd zh_CN  | Chinese (China)"
+	echo ""
+	echo "For other lanuages use:"
+	echo "    $scriptcmd en_US:en"
 	exit 1
 fi
 
