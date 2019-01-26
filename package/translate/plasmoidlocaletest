@@ -39,6 +39,7 @@ elif [ "$lang" == "de" ]; then lang="de_DE:de" # German (Germany)
 elif [ "$lang" == "el" ]; then lang="el_GR:el" # Greek (Greece)
 elif [ "$lang" == "es" ]; then lang="es_MX:es" # Spanish (Mexico)
 elif [ "$lang" == "fr" ]; then lang="fr_CA:fr" # French (Canada)
+elif [ "$lang" == "id" ]; then lang="id_ID:id" # Indonesian (Indonesia)
 elif [ "$lang" == "ko" ]; then lang="ko_KR:ko" # Korean (South Korea)
 elif [ "$lang" == "nl" ]; then lang="nl_NL:nl" # Dutch (Netherlands)
 elif [ "$lang" == "pl" ]; then lang="pl_PL:pl" # Polish (Poland)
@@ -58,6 +59,7 @@ else
 	echo "    $scriptcmd el     | Greek (Greece)"
 	echo "    $scriptcmd es     | Spanish (Mexico)"
 	echo "    $scriptcmd fr     | French (Canada)"
+	echo "    $scriptcmd id     | Indonesian (Indonesia)"
 	echo "    $scriptcmd ko     | Korean (South Korea)"
 	echo "    $scriptcmd nl     | Dutch (Netherlands)"
 	echo "    $scriptcmd pl     | Polish (Poland)"
