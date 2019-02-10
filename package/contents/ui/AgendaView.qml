@@ -144,7 +144,7 @@ Item {
 			scrollToY(0)
 		}
 
-		function positionViewAtIndex(i, alignement) {
+		function positionViewAtIndex(i) {
 			var offsetY = getItemOffsetY(i)
 			scrollToY(offsetY)
 		}
