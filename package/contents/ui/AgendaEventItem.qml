@@ -8,6 +8,7 @@ import "LocaleFuncs.js" as LocaleFuncs
 
 LinkRect {
 	id: agendaEventItem
+	readonly property int eventItemIndex: index
 	width: undefined
 	Layout.fillWidth: true
 	Layout.preferredHeight: eventColumn.height
@@ -65,11 +66,11 @@ LinkRect {
 				Layout.fillWidth: true
 				sourceComponent: Component {
 					PlasmaComponents.TextField {
-						id: editEventText
+						id: editSummaryTextField
 						placeholderText: i18n("Event Title")
 						text: summary
 						onAccepted: {
-							console.log('editEventText.onAccepted', text)
+							console.log('editSummaryTextField.onAccepted', text)
 							var event = events.get(index)
 							console.log(event)
 							console.log(JSON.stringify(event))
@@ -214,17 +215,56 @@ LinkRect {
 				}
 			}
 
-			// Loader {
-			// 	id: editDescriptionForm
-			// 	active: false
-			// 	visible: active
-			// 	Layout.fillWidth: true
-			// 	sourceComponent: Component {
-			// 		RowLayout {
-			// 			//... TODO
-			// 		}
-			// 	}
-			// }
+			Loader {
+				id: editDescriptionForm
+				active: false
+				visible: active
+				Layout.fillWidth: true
+				sourceComponent: Component {
+					ColumnLayout {
+						id: editDescriptionItem
+
+						PlasmaComponents.TextArea {
+							id: editDescriptionTextField
+							placeholderText: i18n("Event Description")
+							text: model.description
+
+							Layout.fillWidth: true
+							Layout.preferredHeight: contentHeight + (20 * units.devicePixelRatio)
+
+
+							Component.onCompleted: {
+								focus = true
+							}
+
+							Keys.onEscapePressed: editDescriptionItem.cancel()
+							Keys.onEnterPressed: console.log('onEnterPressed', event.key, event.modifiers)
+						}
+						RowLayout {
+							Item {
+								Layout.fillWidth: true
+							}
+							PlasmaComponents.Button {
+								text: i18n("Submit")
+								implicitWidth: minimumWidth
+							}
+						}
+
+						function submit() {
+							var text = editDescriptionTextField.text
+							console.log('editDescriptionForm.submit()', text)
+							var event = events.get(index)
+							console.log(event)
+							console.log(JSON.stringify(event))
+							eventModel.setEventDescription(event.calendarId, event.id, text)
+						}
+
+						function cancel() {
+							editDescriptionForm.active = false
+						}
+					}
+				}
+			}
 
 			PlasmaComponents.ToolButton {
 				id: eventHangoutLink
@@ -271,6 +311,15 @@ LinkRect {
 			editDateTimeForm.active = !editDateTimeForm.active
 		})
 		// contextMenu.addMenuItem(menuItem)
+
+		menuItem = contextMenu.newMenuItem()
+		menuItem.text = i18n("Edit description")
+		menuItem.icon = "edit-rename"
+		menuItem.enabled = event.canEdit
+		menuItem.clicked.connect(function() {
+			editDescriptionForm.active = !editDescriptionForm.active
+		})
+		contextMenu.addMenuItem(menuItem)
 
 		var deleteMenuItem = contextMenu.newSubMenu()
 		deleteMenuItem.text = i18n("Delete Event")
