@@ -174,9 +174,6 @@ GridLayout {
 		Layout.alignment: Qt.AlignTop | Qt.AlignLeft
 		Layout.column: weatherOnRight ? 1 : 2
 		spacing: 0
-		Item {
-			Layout.fillWidth: true
-		}
 
 		NewEventForm {
 			id: newEventForm
