@@ -183,6 +183,7 @@ GridLayout {
 		}
 
 		ColumnLayout {
+			id: eventsLayout
 			spacing: appletConfig.agendaRowSpacing
 			Layout.fillWidth: true
 
@@ -212,6 +213,9 @@ GridLayout {
 		var yOffset = newEventForm.height
 		for (var i = 0; i < index && i < eventsRepeater.count; i++) {
 			var item = eventsRepeater.itemAt(i)
+			if (i > 0) {
+				yOffset += eventsLayout.spacing
+			}
 			yOffset += item.height
 		}
 		return yOffset
