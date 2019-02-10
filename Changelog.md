@@ -1,4 +1,4 @@
-## v62 - February 9 2019
+## v62 - February 10 2019
 
 * Update Russian translations by @aliger14 (Pull Request #44)
 * Bundle the google calendar icon for the config tab icon.
@@ -7,6 +7,7 @@
 * Rewrite the google login code to use a different login method. Instead of pasting a code into the web browser, you now paste a (longer) code into the widget. This change will allow us to possibly use the Google Keep/Reminder APIs in the future.
 * Tabify/Cleanup all code.
 * Use correct date format in tooltip (by @jstarzyk)
+* Disable "Always keep current agenda date/weather in view when scrolling" to confirm it's not causing issues.
 
 ## v61 - September 13 2018
 
