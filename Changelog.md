@@ -1,3 +1,13 @@
+## v62 - February 9 2019
+
+* Update Russian translations by @aliger14 (Pull Request #44)
+* Bundle the google calendar icon for the config tab icon.
+* Add the plasmoidlocaletest script for testing translations
+* Fix Typo. "Chose" is past tense, "Choose" is present.
+* Rewrite the google login code to use a different login method. Instead of pasting a code into the web browser, you now paste a (longer) code into the widget. This change will allow us to possibly use the Google Keep/Reminder APIs in the future.
+* Tabify/Cleanup all code.
+* Use correct date format in tooltip (by @jstarzyk)
+
 ## v61 - September 13 2018
 
 * Show the event description and hangout link.
