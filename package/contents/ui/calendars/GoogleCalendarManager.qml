@@ -285,7 +285,7 @@ CalendarManager {
 		if (data.description == "") delete data.description
 		if (data.start.date) delete data.start.dateTime
 		if (data.end.date) delete data.end.dateTime
-		if (data.end.calendarId) delete data.end.calendarId
+		if (data.calendarId) delete data.calendarId
 		delete data.canEdit
 		delete data._summary
 		return data
