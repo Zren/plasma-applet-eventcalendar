@@ -202,4 +202,23 @@ Item {
 		// If the date is greater than any item in the agenda, scroll to the bottom.
 		agendaScrollView.positionViewAtEnd()
 	}
+
+	// [Note] This function is untested!
+	function scrollToEvent(date, eventId) {
+		for (var i = 0; i < agendaRepeater.model.count; i++) {
+			var agendaItem = agendaRepeater.model.get(i)
+			if (Shared.isSameDate(date, agendaItem.date)) {
+				var agendaListItem = agendaRepeater.itemAt(i)
+				var eventIndex = agendaListItem.indexOfEvent(eventId)
+				if (eventIndex >= 0) {
+					scrollToIndexTimer.scrollTo(i)
+				}
+				return
+			} else if (Shared.isDateEarlier(date, agendaItem.date)) {
+				// If the date is smaller than the current agendaItem.date, then we've iterated past the target date.
+				return
+			}
+		}
+		// The date was greater than any item in the agenda.
+	}
 }
