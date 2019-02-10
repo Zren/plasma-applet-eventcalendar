@@ -200,6 +200,7 @@ CalendarManager {
 
 	function parseEvent(calendar, event) {
 		event.description = event.description || ""
+		event.hangoutLink = event.hangoutLink || "";
 		event.backgroundColor = parseColor(calendar, event)
 		event.canEdit = (calendar.accessRole == 'writer' || calendar.accessRole == 'owner') && !event.recurringEventId // We cannot currently edit repeating events.
 		if (true && event.htmlLink) {
