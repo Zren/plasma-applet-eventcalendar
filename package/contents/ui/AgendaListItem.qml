@@ -9,6 +9,7 @@ import "../code/WeatherApi.js" as WeatherApi
 
 GridLayout {
 	id: agendaListItem
+	readonly property int agendaItemIndex: index
 	columnSpacing: 0
 	property var agendaItemEvents: model.events
 	property date agendaItemDate: model.date
@@ -25,6 +26,7 @@ GridLayout {
 	}
 	property bool agendaItemInProgress: agendaItemIsToday
 	property bool weatherOnRight: plasmoid.configuration.agendaWeatherOnRight
+	property alias eventsRepeater: eventsRepeater
 
 	Connections {
 		target: agendaModel
@@ -185,6 +187,7 @@ GridLayout {
 			Layout.fillWidth: true
 
 			Repeater {
+				id: eventsRepeater
 				model: agendaItemEvents
 
 				delegate: AgendaEventItem {
@@ -193,5 +196,24 @@ GridLayout {
 			}
 		}
 
+	}
+
+	function indexOfEvent(eventId) {
+		for (var i = 0; i < eventsRepeater.model; i++) {
+			var event = eventsRepeater.model[i]
+			if (event.id == eventId) {
+				return i
+			}
+		}
+		return -1
+	}
+
+	function getEventOffset(index) {
+		var yOffset = newEventForm.height
+		for (var i = 0; i < index && i < eventsRepeater.count; i++) {
+			var item = eventsRepeater.itemAt(i)
+			yOffset += item.height
+		}
+		return yOffset
 	}
 }
