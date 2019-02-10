@@ -176,11 +176,11 @@ Item {
 
 	function scrollToDate(date) {
 		for (var i = 0; i < root.agendaModel.count; i++) {
-			var agendaItem = root.agendaModel.get(i);
+			var agendaItem = root.agendaModel.get(i)
 			if (Shared.isSameDate(date, agendaItem.date)) {
 				agendaScrollView.positionViewAtIndex(i)
 				scrollToIndexTimer.scrollTo(i)
-				return;
+				return
 			} else if (Shared.isDateEarlier(date, agendaItem.date)) {
 				// If the date is smaller than the current agendaItem.date, scroll to the previous agendaItem.
 				if (i > 0) {
@@ -189,7 +189,7 @@ Item {
 				} else {
 					agendaScrollView.positionViewAtBeginning()
 				}
-				return;
+				return
 			}
 		}
 		// If the date is greater than any item in the agenda, scroll to the bottom.
