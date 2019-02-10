@@ -39,9 +39,9 @@ GridLayout {
 		agendaListItem.checkIfToday()
 	}
 
-	readonly property int itemOffset: agendaScrollView.getItemOffsetY(index)
-	readonly property int scrollOffset: agendaScrollView.scrollY - itemOffset
-	readonly property bool isCurrentItem: 0 <= scrollOffset && scrollOffset < height
+	// readonly property int itemOffset: agendaScrollView.getItemOffsetY(index)
+	// readonly property int scrollOffset: agendaScrollView.scrollY - itemOffset
+	// readonly property bool isCurrentItem: 0 <= scrollOffset && scrollOffset < height
 	// onItemOffsetChanged: console.log(index, 'itemOffset', itemOffset)
 
 	LinkRect {
@@ -57,8 +57,8 @@ GridLayout {
 		}
 		implicitHeight: itemWeatherColumn.implicitHeight
 
-		readonly property int maxOffset: agendaListItem.height - height
-		Layout.topMargin: agendaListItem.isCurrentItem ? Math.min(maxOffset, agendaListItem.scrollOffset) : 0
+		// readonly property int maxOffset: agendaListItem.height - height
+		// Layout.topMargin: agendaListItem.isCurrentItem ? Math.min(maxOffset, agendaListItem.scrollOffset) : 0
 
 		ColumnLayout {
 			id: itemWeatherColumn
@@ -113,8 +113,8 @@ GridLayout {
 		Layout.column: weatherOnRight ? 0 : 1
 		implicitWidth: appletConfig.agendaDateColumnWidth
 
-		readonly property int maxOffset: agendaListItem.height - height
-		Layout.topMargin: agendaListItem.isCurrentItem ? Math.min(maxOffset, agendaListItem.scrollOffset) : 0
+		// readonly property int maxOffset: agendaListItem.height - height
+		// Layout.topMargin: agendaListItem.isCurrentItem ? Math.min(maxOffset, agendaListItem.scrollOffset) : 0
 
 		ColumnLayout {
 			id: itemDateColumn
