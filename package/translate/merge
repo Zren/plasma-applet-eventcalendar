@@ -1,5 +1,5 @@
 #!/bin/sh
-# Version: 8
+# Version: 9
 
 # https://techbase.kde.org/Development/Tutorials/Localization/i18n_Build_Systems
 # Based on: https://github.com/psifidotos/nowdock-plasmoid/blob/master/po/Messages.sh
@@ -68,7 +68,7 @@ else
 	mv "template.pot.new" "template.pot"
 fi
 
-potMessageCount=`expr $(grep -c 'msgstr ""' "template.pot") - 1`
+potMessageCount=`expr $(grep -Pzo 'msgstr ""\n(\n|$)' "template.pot" | grep -c 'msgstr ""')`
 echo "|  Locale  |  Lines  | % Done|" > "./Status.md"
 echo "|----------|---------|-------|" >> "./Status.md"
 entryFormat="| %-8s | %7s | %5s |"
@@ -92,7 +92,7 @@ for cat in $catalogs; do
 	sed -i 's/# Translation of '"${widgetName}"' in LANGUAGE/'"# Translation of ${widgetName} in ${catLocale}"'/' "$cat.new"
 	sed -i 's/# Copyright (C) YEAR THE PACKAGE'"'"'S COPYRIGHT HOLDER/'"# Copyright (C) $(date +%Y)"'/' "$cat.new"
 
-	poEmptyMessageCount=`expr $(grep -Pzo 'msgstr ""\n\n' "$cat.new" | grep -c 'msgstr ""')`
+	poEmptyMessageCount=`expr $(grep -Pzo 'msgstr ""\n(\n|$)' "$cat.new" | grep -c 'msgstr ""')`
 	poMessagesDoneCount=`expr $potMessageCount - $poEmptyMessageCount`
 	poCompletion=`perl -e "printf(\"%d\", $poMessagesDoneCount * 100 / $potMessageCount)"`
 	poLine=`perl -e "printf(\"$entryFormat\", $catLocale, \"${poMessagesDoneCount}/${potMessageCount}\", \"${poCompletion}%\")"`
