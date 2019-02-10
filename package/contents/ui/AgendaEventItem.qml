@@ -78,6 +78,7 @@ LinkRect {
 						}
 						Component.onCompleted: {
 							focus = true
+							agendaScrollView.positionViewAtEvent(agendaItemIndex, eventItemIndex)
 						}
 
 						Keys.onEscapePressed: editSummaryForm.active = false
@@ -235,6 +236,7 @@ LinkRect {
 
 							Component.onCompleted: {
 								focus = true
+								agendaScrollView.positionViewAtEvent(agendaItemIndex, eventItemIndex)
 							}
 
 							Keys.onEscapePressed: editDescriptionItem.cancel()
