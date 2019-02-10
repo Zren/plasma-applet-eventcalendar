@@ -256,7 +256,7 @@ LinkRect {
 		var event = events.get(index)
 
 		menuItem = contextMenu.newMenuItem()
-		menuItem.text = i18n("Edit description")
+		menuItem.text = i18n("Edit title")
 		menuItem.icon = "edit-rename"
 		menuItem.enabled = event.canEdit
 		menuItem.clicked.connect(function() {
