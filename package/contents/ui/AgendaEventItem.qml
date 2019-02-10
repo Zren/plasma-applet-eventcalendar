@@ -66,7 +66,7 @@ LinkRect {
 				sourceComponent: Component {
 					PlasmaComponents.TextField {
 						id: editEventText
-						placeholderText: i18n("Event Summary")
+						placeholderText: i18n("Event Title")
 						text: summary
 						onAccepted: {
 							console.log('editEventText.onAccepted', text)
