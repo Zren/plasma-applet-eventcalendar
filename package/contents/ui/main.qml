@@ -20,6 +20,13 @@ Item {
 	}
 
 	AppletConfig { id: appletConfig }
+	LocalDb {
+		id: localDb
+		name: plasmoid.pluginName
+		version: "1" // DB version, not Widget version
+		showDebug: logger.showDebug
+		estimatedSize: 20 * 1024 * 1024 // 20 MiB
+	}
 	NotificationManager { id: notificationManager }
 
 	property alias eventModel: eventModel
@@ -222,6 +229,8 @@ Item {
 		if (KCMShell.authorize("formats.desktop").length > 0) {
 			plasmoid.setAction("KCMFormats", i18n("Set Locale..."), "preferences-desktop-locale")
 		}
+
+		localDb.initDb(function(err){ })
 
 		// plasmoid.action("configure").trigger()
 	}

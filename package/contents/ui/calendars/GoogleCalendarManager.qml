@@ -55,8 +55,16 @@ CalendarManager {
 
 	function fetchGCalEvents(args, callback) {
 		logger.debug('fetchGCalEvents', args.calendarId)
-		var onResponse = fetchGCalEventsPageResponse.bind(this, args, callback, null)
-		fetchGCalEventsPage(args, onResponse)
+		logger.debug('\t args.start', args.start, '    args.end', args.end)
+		var self = this
+
+		var cacheKey = '' + args.calendarId + ' ' + args.start + ' ' + args.end
+		var cacheTtl = 1000 * 60 * 5 // 5 min
+		localDb.keyValue.getOrFetchJSON(cacheKey, cacheTtl, function(populateCallback){
+			logger.debug('fetchGCalEvents.populate')
+			var onResponse = fetchGCalEventsPageResponse.bind(self, args, populateCallback, null)
+			fetchGCalEventsPage(args, onResponse)
+		}, callback)
 	}
 
 	function inPlaceMergeArray(arr1, arr2) {
@@ -112,7 +120,7 @@ CalendarManager {
 			if (!err && data && data.error) {
 				return pageCallback(data, null, xhr)
 			}
-			logger.debugJSON('fetchGCalEventsPage.response', args.calendarId, data)
+			// logger.debugJSON('fetchGCalEventsPage.response', args.calendarId, data)
 			pageCallback(err, data, xhr)
 		})
 	}
