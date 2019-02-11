@@ -5,6 +5,7 @@ import QtQuick.Controls 1.4
 import org.kde.plasma.core 2.0 as PlasmaCore
 
 import ".."
+import "../lib"
 import "../lib/Requests.js" as Requests
 
 Dialog {
