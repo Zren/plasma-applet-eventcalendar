@@ -1,5 +1,5 @@
 .pragma library
-// Version 5
+// Version 6
 
 function request(opt, callback) {
 	if (typeof opt === 'string') {
@@ -7,7 +7,13 @@ function request(opt, callback) {
 	}
 	var req = new XMLHttpRequest()
 	req.onerror = function(e) {
-		console.log('XMLHttpRequest.onerror', e.status, e.statusText, e.message, e)
+		console.log('XMLHttpRequest.onerror', e)
+		if (e) {
+			console.log('\t', e.status, e.statusText, e.message)
+			callback(e.message)
+		} else {
+			callback('XMLHttpRequest.onerror(undefined)')
+		}
 	}
 	req.onreadystatechange = function() {
 		if (req.readyState === XMLHttpRequest.DONE) { // https://xhr.spec.whatwg.org/#dom-xmlhttprequest-done
@@ -96,7 +102,13 @@ function postJSON(opt, callback) {
 function getFile(url, callback) {
 	var req = new XMLHttpRequest()
 	req.onerror = function(e) {
-		console.log('XMLHttpRequest.onerror', e.status, e.statusText, e.message, e)
+		console.log('XMLHttpRequest.onerror', e)
+		if (e) {
+			console.log('\t', e.status, e.statusText, e.message)
+			callback(e.message)
+		} else {
+			callback('XMLHttpRequest.onerror(undefined)')
+		}
 	}
 	req.onreadystatechange = function() {
 		if (req.readyState === 4) {
