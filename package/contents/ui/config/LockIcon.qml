@@ -18,6 +18,8 @@ Canvas {
 		}
 	}
 
+	onFillColorChanged: requestPaint()
+
 	onPaint: {
 		context.reset()
 		context.translate(width/2-size/2, height/2-size/2)
