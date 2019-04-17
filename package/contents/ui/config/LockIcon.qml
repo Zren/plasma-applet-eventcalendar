@@ -1,10 +1,11 @@
 import QtQuick 2.0
+import org.kde.kirigami 2.0 as Kirigami
 
 // We need to use this pattern in order to use the SystemPalette colors
 Canvas {
 	contextType: "2d"
 	property real size: Math.min(width, height)
-	property color fillColor: syspal.text
+	property color fillColor: Kirigami.Theme.textColor
 	property int iconSize: 22 // Used for scaling the icon
 	readonly property real scale: size/iconSize // Math.floor(size/iconSize)
 	property alias path: iconPathSvg.path
