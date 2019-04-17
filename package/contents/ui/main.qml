@@ -7,6 +7,8 @@ import org.kde.plasma.components 2.0 as PlasmaComponents
 
 import org.kde.kquickcontrolsaddons 2.0 // KCMShell
 
+import "./lib"
+
 Item {
 	id: root
 

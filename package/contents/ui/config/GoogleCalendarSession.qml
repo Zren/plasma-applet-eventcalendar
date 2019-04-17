@@ -1,6 +1,6 @@
 import QtQuick 2.0
 
-import ".."
+import "../lib"
 import "../lib/Requests.js" as Requests
 
 Item {
