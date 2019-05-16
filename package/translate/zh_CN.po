@@ -1,4 +1,4 @@
-# Translation of eventcalendar in LANGUAGE
+# Translation of eventcalendar in zh_CN
 # Copyright (C) 2019
 # This file is distributed under the same license as the eventcalendar package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
@@ -7,15 +7,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: eventcalendar\n"
 "Report-Msgid-Bugs-To: https://github.com/Zren/plasma-applet-eventcalendar\n"
-"POT-Creation-Date: 2019-01-24 17:34-0500\n"
+"POT-Creation-Date: 2019-05-16 16:25-0400\n"
 "PO-Revision-Date: 2019-04-17 16:43+0800\n"
+"Last-Translator: Core小睿 <i@coreja.com>\n"
+"Language-Team: \n"
 "Language: zh_CN\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"Last-Translator: Core小睿 <i@coreja.com>\n"
-"Language-Team: \n"
 "X-Generator: Poedit 2.2.1\n"
 
 #: ../contents/config/config.qml:9
@@ -54,56 +54,68 @@ msgstr "天气"
 msgid "Advanced"
 msgstr "高级"
 
-#: ../contents/ui/AgendaEventItem.qml:69
-msgid "Event Summary"
-msgstr "添加标题"
+#: ../contents/ui/AgendaEventItem.qml:70
+msgid "Event Title"
+msgstr ""
 
-#: ../contents/ui/AgendaEventItem.qml:143
+#: ../contents/ui/AgendaEventItem.qml:145
 msgid "to"
 msgstr ""
 
-#: ../contents/ui/AgendaEventItem.qml:168 ../contents/ui/LocaleFuncs.js:42
+#: ../contents/ui/AgendaEventItem.qml:170 ../contents/ui/LocaleFuncs.js:42
 msgid "All Day"
 msgstr "全天"
 
-#: ../contents/ui/AgendaEventItem.qml:173
+#: ../contents/ui/AgendaEventItem.qml:175
 msgid "Save"
 msgstr "保存"
 
-#: ../contents/ui/AgendaEventItem.qml:181
+#: ../contents/ui/AgendaEventItem.qml:183
 msgid "Discard"
 msgstr "忽略"
 
-#: ../contents/ui/AgendaEventItem.qml:232
+#: ../contents/ui/AgendaEventItem.qml:230
+msgid "Event Description"
+msgstr ""
+
+#: ../contents/ui/AgendaEventItem.qml:250 ../contents/ui/config/ConfigGoogleCalendar.qml:103
+msgid "Submit"
+msgstr "提交"
+
+#: ../contents/ui/AgendaEventItem.qml:274
 msgid "Hangout"
 msgstr ""
 
-#: ../contents/ui/AgendaEventItem.qml:259
-msgid "Edit description"
-msgstr "编辑"
+#: ../contents/ui/AgendaEventItem.qml:301
+msgid "Edit title"
+msgstr ""
 
-#: ../contents/ui/AgendaEventItem.qml:268
+#: ../contents/ui/AgendaEventItem.qml:310
 msgid "Edit date/time"
 msgstr "编辑日期/时间"
 
-#: ../contents/ui/AgendaEventItem.qml:276
+#: ../contents/ui/AgendaEventItem.qml:318
+msgid "Edit description"
+msgstr "编辑"
+
+#: ../contents/ui/AgendaEventItem.qml:327
 msgid "Delete Event"
 msgstr "删除事件"
 
-#: ../contents/ui/AgendaEventItem.qml:279
+#: ../contents/ui/AgendaEventItem.qml:330
 msgid "Confirm Deletion"
 msgstr "确认删除"
 
-#: ../contents/ui/AgendaEventItem.qml:291
+#: ../contents/ui/AgendaEventItem.qml:342
 msgid "Edit in browser"
 msgstr "在浏览器中编辑"
 
-#: ../contents/ui/AgendaListItem.qml:129
+#: ../contents/ui/AgendaListItem.qml:131
 msgctxt "agenda date format line 1"
 msgid "MMM d"
 msgstr ""
 
-#: ../contents/ui/AgendaListItem.qml:149
+#: ../contents/ui/AgendaListItem.qml:151
 msgctxt "agenda date format line 2"
 msgid "ddd"
 msgstr ""
@@ -392,9 +404,7 @@ msgid "The default font for the Breeze theme is Noto Sans which is hard to read 
 msgstr "Breeze的默认字体Noto Sans在小字体下很难辨别。如果当加入第二行的时候感觉字体太小的话，可以试试用Sans Serif字体。"
 
 #: ../contents/ui/config/ConfigGeneral.qml:160
-msgid ""
-"You can also use <b>'&lt;b&gt;'ddd'&lt;/b&gt;'</b> or <b>'&lt;font color=\"#77aaadd\"&gt;'ddd'&lt;/font&gt;'</b> to style a section. Note the single quotes around the tags are used to bypass the "
-"time format."
+msgid "You can also use <b>'&lt;b&gt;'ddd'&lt;/b&gt;'</b> or <b>'&lt;font color=\"#77aaadd\"&gt;'ddd'&lt;/font&gt;'</b> to style a section. Note the single quotes around the tags are used to bypass the time format."
 msgstr "你也可以使用 <b>'&lt;b&gt;'ddd'&lt;/b&gt;'</b> 或者 <b>'&lt;font color=\"#77aaadd\"&gt;'ddd'&lt;/font&gt;'</b> 自己定制时间格式。注意在标签旁的单引号是用来转义的，防止和时间格式混淆。"
 
 #: ../contents/ui/config/ConfigGeneral.qml:166
@@ -492,10 +502,6 @@ msgstr "访问 <a href=\"%1\">%2</a> （会在浏览器中打开）。在你登�
 #: ../contents/ui/config/ConfigGoogleCalendar.qml:99
 msgid "Enter code here (Eg: %1)"
 msgstr "请在此输入授权码 （例如： %1）"
-
-#: ../contents/ui/config/ConfigGoogleCalendar.qml:103
-msgid "Submit"
-msgstr "提交"
 
 #: ../contents/ui/config/ConfigGoogleCalendar.qml:110
 msgid "Invalid Google Authorization Code"
@@ -622,31 +628,31 @@ msgstr "零下温度"
 msgid "Icons"
 msgstr "图标"
 
-#: ../contents/ui/config/OpenWeatherMapCityDialog.qml:12 ../contents/ui/config/WeatherCanadaCityDialog.qml:13
+#: ../contents/ui/config/OpenWeatherMapCityDialog.qml:13 ../contents/ui/config/WeatherCanadaCityDialog.qml:13
 msgid "Select city"
 msgstr "选择城市"
 
-#: ../contents/ui/config/OpenWeatherMapCityDialog.qml:63
+#: ../contents/ui/config/OpenWeatherMapCityDialog.qml:64
 msgid "Fetched from <a href=\"https://openweathermap.org/find\">https://openweathermap.org/find</a>"
 msgstr "数据来源于网站 <a href=\"https://openweathermap.org/find\">https://openweathermap.org/find</a>"
 
-#: ../contents/ui/config/OpenWeatherMapCityDialog.qml:69 ../contents/ui/config/WeatherCanadaCityDialog.qml:91
+#: ../contents/ui/config/OpenWeatherMapCityDialog.qml:70 ../contents/ui/config/WeatherCanadaCityDialog.qml:91
 msgid "Search"
 msgstr "查找"
 
-#: ../contents/ui/config/OpenWeatherMapCityDialog.qml:82 ../contents/ui/config/WeatherCanadaCityDialog.qml:104
+#: ../contents/ui/config/OpenWeatherMapCityDialog.qml:83 ../contents/ui/config/WeatherCanadaCityDialog.qml:104
 msgid "Name"
 msgstr "名字"
 
-#: ../contents/ui/config/OpenWeatherMapCityDialog.qml:87 ../contents/ui/config/WeatherCanadaCityDialog.qml:109
+#: ../contents/ui/config/OpenWeatherMapCityDialog.qml:88 ../contents/ui/config/WeatherCanadaCityDialog.qml:109
 msgid "Id"
 msgstr ""
 
-#: ../contents/ui/config/OpenWeatherMapCityDialog.qml:92 ../contents/ui/config/WeatherCanadaCityDialog.qml:114
+#: ../contents/ui/config/OpenWeatherMapCityDialog.qml:93 ../contents/ui/config/WeatherCanadaCityDialog.qml:114
 msgid "City Webpage"
 msgstr "城市网页"
 
-#: ../contents/ui/config/OpenWeatherMapCityDialog.qml:94 ../contents/ui/config/WeatherCanadaCityDialog.qml:116
+#: ../contents/ui/config/OpenWeatherMapCityDialog.qml:95 ../contents/ui/config/WeatherCanadaCityDialog.qml:116
 msgid "Open Link"
 msgstr "打开链接"
 
@@ -693,11 +699,11 @@ msgctxt "from date/time %1 until date/time %2"
 msgid "%1 - %2"
 msgstr ""
 
-#: ../contents/ui/main.qml:218
+#: ../contents/ui/main.qml:220
 msgid "Set Language..."
 msgstr "设置语言..."
 
-#: ../contents/ui/main.qml:221
+#: ../contents/ui/main.qml:223
 msgid "Set Locale..."
 msgstr "设置本地化..."
 
@@ -826,3 +832,6 @@ msgstr "正在进行的事件"
 #: ../contents/ui/UpcomingEvents.qml:120
 msgid "Upcoming Events"
 msgstr "即将到来的事件"
+
+#~ msgid "Event Summary"
+#~ msgstr "添加标题"

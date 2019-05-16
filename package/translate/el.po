@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: eventcalendar\n"
 "Report-Msgid-Bugs-To: https://github.com/Zren/plasma-applet-eventcalendar\n"
-"POT-Creation-Date: 2019-01-24 17:34-0500\n"
+"POT-Creation-Date: 2019-05-16 16:25-0400\n"
 "PO-Revision-Date: 2018-06-07 01:37+0300\n"
 "Last-Translator: Chris P <skylin@protonmail.com>\n"
 "Language-Team: Chris P <skylin@protonmail.com>\n"
@@ -54,56 +54,68 @@ msgstr "Καιρός"
 msgid "Advanced"
 msgstr "Προχωρημένα"
 
-#: ../contents/ui/AgendaEventItem.qml:69
-msgid "Event Summary"
-msgstr "Σύνοψη Συμβάντων"
+#: ../contents/ui/AgendaEventItem.qml:70
+msgid "Event Title"
+msgstr ""
 
-#: ../contents/ui/AgendaEventItem.qml:143
+#: ../contents/ui/AgendaEventItem.qml:145
 msgid "to"
 msgstr "προς"
 
-#: ../contents/ui/AgendaEventItem.qml:168 ../contents/ui/LocaleFuncs.js:42
+#: ../contents/ui/AgendaEventItem.qml:170 ../contents/ui/LocaleFuncs.js:42
 msgid "All Day"
 msgstr "Όλη την Ημέρα"
 
-#: ../contents/ui/AgendaEventItem.qml:173
+#: ../contents/ui/AgendaEventItem.qml:175
 msgid "Save"
 msgstr "Αποθήκευση"
 
-#: ../contents/ui/AgendaEventItem.qml:181
+#: ../contents/ui/AgendaEventItem.qml:183
 msgid "Discard"
 msgstr "Απόρριψη"
 
-#: ../contents/ui/AgendaEventItem.qml:232
+#: ../contents/ui/AgendaEventItem.qml:230
+msgid "Event Description"
+msgstr ""
+
+#: ../contents/ui/AgendaEventItem.qml:250 ../contents/ui/config/ConfigGoogleCalendar.qml:103
+msgid "Submit"
+msgstr ""
+
+#: ../contents/ui/AgendaEventItem.qml:274
 msgid "Hangout"
 msgstr ""
 
-#: ../contents/ui/AgendaEventItem.qml:259
-msgid "Edit description"
-msgstr "Επεξεργασία περιγραφής"
+#: ../contents/ui/AgendaEventItem.qml:301
+msgid "Edit title"
+msgstr ""
 
-#: ../contents/ui/AgendaEventItem.qml:268
+#: ../contents/ui/AgendaEventItem.qml:310
 msgid "Edit date/time"
 msgstr "Ρύθμιση ημερομηνίας και ώρας"
 
-#: ../contents/ui/AgendaEventItem.qml:276
+#: ../contents/ui/AgendaEventItem.qml:318
+msgid "Edit description"
+msgstr "Επεξεργασία περιγραφής"
+
+#: ../contents/ui/AgendaEventItem.qml:327
 msgid "Delete Event"
 msgstr "Διαγραφή Συμβάντος"
 
-#: ../contents/ui/AgendaEventItem.qml:279
+#: ../contents/ui/AgendaEventItem.qml:330
 msgid "Confirm Deletion"
 msgstr "Επιβεβαίωση Διαγραφής"
 
-#: ../contents/ui/AgendaEventItem.qml:291
+#: ../contents/ui/AgendaEventItem.qml:342
 msgid "Edit in browser"
 msgstr "Επεξεργασία στον φυλλομετρητή"
 
-#: ../contents/ui/AgendaListItem.qml:129
+#: ../contents/ui/AgendaListItem.qml:131
 msgctxt "agenda date format line 1"
 msgid "MMM d"
 msgstr "d MMM"
 
-#: ../contents/ui/AgendaListItem.qml:149
+#: ../contents/ui/AgendaListItem.qml:151
 msgctxt "agenda date format line 2"
 msgid "ddd"
 msgstr "ddd"
@@ -492,10 +504,6 @@ msgstr ""
 msgid "Enter code here (Eg: %1)"
 msgstr ""
 
-#: ../contents/ui/config/ConfigGoogleCalendar.qml:103
-msgid "Submit"
-msgstr ""
-
 #: ../contents/ui/config/ConfigGoogleCalendar.qml:110
 msgid "Invalid Google Authorization Code"
 msgstr ""
@@ -622,31 +630,31 @@ msgstr "Αρνητική Θερμοκρασία"
 msgid "Icons"
 msgstr "Εικονίδια"
 
-#: ../contents/ui/config/OpenWeatherMapCityDialog.qml:12 ../contents/ui/config/WeatherCanadaCityDialog.qml:13
+#: ../contents/ui/config/OpenWeatherMapCityDialog.qml:13 ../contents/ui/config/WeatherCanadaCityDialog.qml:13
 msgid "Select city"
 msgstr "Επιλέξτε Πόλη"
 
-#: ../contents/ui/config/OpenWeatherMapCityDialog.qml:63
+#: ../contents/ui/config/OpenWeatherMapCityDialog.qml:64
 msgid "Fetched from <a href=\"https://openweathermap.org/find\">https://openweathermap.org/find</a>"
 msgstr "Ελήφθη από <a href=\"https://openweathermap.org/find\">https://openweathermap.org/find</a>"
 
-#: ../contents/ui/config/OpenWeatherMapCityDialog.qml:69 ../contents/ui/config/WeatherCanadaCityDialog.qml:91
+#: ../contents/ui/config/OpenWeatherMapCityDialog.qml:70 ../contents/ui/config/WeatherCanadaCityDialog.qml:91
 msgid "Search"
 msgstr "Αναζήτηση"
 
-#: ../contents/ui/config/OpenWeatherMapCityDialog.qml:82 ../contents/ui/config/WeatherCanadaCityDialog.qml:104
+#: ../contents/ui/config/OpenWeatherMapCityDialog.qml:83 ../contents/ui/config/WeatherCanadaCityDialog.qml:104
 msgid "Name"
 msgstr "Όνομα"
 
-#: ../contents/ui/config/OpenWeatherMapCityDialog.qml:87 ../contents/ui/config/WeatherCanadaCityDialog.qml:109
+#: ../contents/ui/config/OpenWeatherMapCityDialog.qml:88 ../contents/ui/config/WeatherCanadaCityDialog.qml:109
 msgid "Id"
 msgstr "Αναγνωριστικό"
 
-#: ../contents/ui/config/OpenWeatherMapCityDialog.qml:92 ../contents/ui/config/WeatherCanadaCityDialog.qml:114
+#: ../contents/ui/config/OpenWeatherMapCityDialog.qml:93 ../contents/ui/config/WeatherCanadaCityDialog.qml:114
 msgid "City Webpage"
 msgstr "Ιστοσελίδα Πόλης"
 
-#: ../contents/ui/config/OpenWeatherMapCityDialog.qml:94 ../contents/ui/config/WeatherCanadaCityDialog.qml:116
+#: ../contents/ui/config/OpenWeatherMapCityDialog.qml:95 ../contents/ui/config/WeatherCanadaCityDialog.qml:116
 msgid "Open Link"
 msgstr "Άνοιγμα Συνδέσμου"
 
@@ -693,11 +701,11 @@ msgctxt "from date/time %1 until date/time %2"
 msgid "%1 - %2"
 msgstr ""
 
-#: ../contents/ui/main.qml:218
+#: ../contents/ui/main.qml:220
 msgid "Set Language..."
 msgstr "Ορισμός Γλώσσας..."
 
-#: ../contents/ui/main.qml:221
+#: ../contents/ui/main.qml:223
 msgid "Set Locale..."
 msgstr "Ρύθμιση Τοπικότητας..."
 
@@ -826,6 +834,9 @@ msgstr "Συμβάντα Σε Εξέλιξη"
 #: ../contents/ui/UpcomingEvents.qml:120
 msgid "Upcoming Events"
 msgstr "Επόμενα Συμβάντα"
+
+#~ msgid "Event Summary"
+#~ msgstr "Σύνοψη Συμβάντων"
 
 #~ msgid "Enter the following code at <a href=\"https://www.google.com/device\">https://www.google.com/device</a>."
 #~ msgstr "Καταχωρίστε τον ακόλουθο κωδικό στο <a href=\"https://www.google.com/device\">https://www.google.com/device</a>."

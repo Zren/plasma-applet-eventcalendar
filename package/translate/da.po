@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: eventcalendar\n"
 "Report-Msgid-Bugs-To: https://github.com/Zren/plasma-applet-eventcalendar\n"
-"POT-Creation-Date: 2019-01-24 17:34-0500\n"
+"POT-Creation-Date: 2019-05-16 16:25-0400\n"
 "PO-Revision-Date: 2019-05-04 00:48-0400\n"
 "Last-Translator: Chris Darnell <chris@cedeel.com>\n"
 "Language-Team: Chris Darnell <chris@cedeel.com>\n"
@@ -54,56 +54,68 @@ msgstr "Vejr"
 msgid "Advanced"
 msgstr "Avanceret"
 
-#: ../contents/ui/AgendaEventItem.qml:69
-msgid "Event Summary"
-msgstr "Begivenhedsoversigt"
+#: ../contents/ui/AgendaEventItem.qml:70
+msgid "Event Title"
+msgstr ""
 
-#: ../contents/ui/AgendaEventItem.qml:143
+#: ../contents/ui/AgendaEventItem.qml:145
 msgid "to"
 msgstr "til"
 
-#: ../contents/ui/AgendaEventItem.qml:168 ../contents/ui/LocaleFuncs.js:42
+#: ../contents/ui/AgendaEventItem.qml:170 ../contents/ui/LocaleFuncs.js:42
 msgid "All Day"
 msgstr "Hele dagen"
 
-#: ../contents/ui/AgendaEventItem.qml:173
+#: ../contents/ui/AgendaEventItem.qml:175
 msgid "Save"
 msgstr "Gem"
 
-#: ../contents/ui/AgendaEventItem.qml:181
+#: ../contents/ui/AgendaEventItem.qml:183
 msgid "Discard"
 msgstr "Annuler"
 
-#: ../contents/ui/AgendaEventItem.qml:232
+#: ../contents/ui/AgendaEventItem.qml:230
+msgid "Event Description"
+msgstr ""
+
+#: ../contents/ui/AgendaEventItem.qml:250 ../contents/ui/config/ConfigGoogleCalendar.qml:103
+msgid "Submit"
+msgstr "Indsend"
+
+#: ../contents/ui/AgendaEventItem.qml:274
 msgid "Hangout"
 msgstr "Hangout"
 
-#: ../contents/ui/AgendaEventItem.qml:259
-msgid "Edit description"
-msgstr "Rediger beskrivelse"
+#: ../contents/ui/AgendaEventItem.qml:301
+msgid "Edit title"
+msgstr ""
 
-#: ../contents/ui/AgendaEventItem.qml:268
+#: ../contents/ui/AgendaEventItem.qml:310
 msgid "Edit date/time"
 msgstr "Rediger dato/tid"
 
-#: ../contents/ui/AgendaEventItem.qml:276
+#: ../contents/ui/AgendaEventItem.qml:318
+msgid "Edit description"
+msgstr "Rediger beskrivelse"
+
+#: ../contents/ui/AgendaEventItem.qml:327
 msgid "Delete Event"
 msgstr "Slet begivenhed"
 
-#: ../contents/ui/AgendaEventItem.qml:279
+#: ../contents/ui/AgendaEventItem.qml:330
 msgid "Confirm Deletion"
 msgstr "Bekræft sletning"
 
-#: ../contents/ui/AgendaEventItem.qml:291
+#: ../contents/ui/AgendaEventItem.qml:342
 msgid "Edit in browser"
 msgstr "Rediger i webbrowser"
 
-#: ../contents/ui/AgendaListItem.qml:129
+#: ../contents/ui/AgendaListItem.qml:131
 msgctxt "agenda date format line 1"
 msgid "MMM d"
 msgstr "d. MMM"
 
-#: ../contents/ui/AgendaListItem.qml:149
+#: ../contents/ui/AgendaListItem.qml:151
 msgctxt "agenda date format line 2"
 msgid "ddd"
 msgstr "ddd"
@@ -231,8 +243,7 @@ msgstr "Skjul afsluttede begivenheder"
 
 #: ../contents/ui/config/ConfigAgenda.qml:205
 msgid "Show all events of the current day (including completed events)"
-msgstr ""
-"Vis alle begivenheder for den nuværende dag (inklusiv afsluttede begivenheder)"
+msgstr "Vis alle begivenheder for den nuværende dag (inklusiv afsluttede begivenheder)"
 
 #: ../contents/ui/config/ConfigAgenda.qml:211 ../contents/ui/config/ConfigWeather.qml:177
 msgid "Colors"
@@ -362,12 +373,8 @@ msgid "Widgets"
 msgstr "Widgets"
 
 #: ../contents/ui/config/ConfigGeneral.qml:102
-msgid ""
-"Show/Hide widgets above the calendar. Toggle Agenda/Calendar on their"
-" respective tabs."
-msgstr ""
-"Vis/skjul widgets over kalenderen. Skift agenda/kalender mellem deres"
-" faneblade."
+msgid "Show/Hide widgets above the calendar. Toggle Agenda/Calendar on their respective tabs."
+msgstr "Vis/skjul widgets over kalenderen. Skift agenda/kalender mellem deres faneblade."
 
 #: ../contents/ui/config/ConfigGeneral.qml:109
 msgid "Meteogram"
@@ -394,24 +401,12 @@ msgid "Time Format"
 msgstr "Tidsformat"
 
 #: ../contents/ui/config/ConfigGeneral.qml:154
-msgid ""
-"The default font for the Breeze theme is Noto Sans which is hard to read with"
-" small text. Try using the Sans Serif font if you find the text too small"
-" when adding a second line."
-msgstr ""
-"Standardskrifttypen for Breeze-temaet er Noto Sans. Denne skrifttype kan være"
-" vanskelig at læse i små størrelser. Prøv at bruge en anden skrifttype hvis"
-" du har svært ved at læse teksten når en anden linje tilføjes."
+msgid "The default font for the Breeze theme is Noto Sans which is hard to read with small text. Try using the Sans Serif font if you find the text too small when adding a second line."
+msgstr "Standardskrifttypen for Breeze-temaet er Noto Sans. Denne skrifttype kan være vanskelig at læse i små størrelser. Prøv at bruge en anden skrifttype hvis du har svært ved at læse teksten når en anden linje tilføjes."
 
 #: ../contents/ui/config/ConfigGeneral.qml:160
-msgid ""
-"You can also use <b>'&lt;b&gt;'ddd'&lt;/b&gt;'</b> or <b>'&lt;font"
-" color=\"#77aaadd\"&gt;'ddd'&lt;/font&gt;'</b> to style a section. Note the"
-" single quotes around the tags are used to bypass the time format."
-msgstr ""
-"Du kan også bruge <b>'&lt;b&gt;'ddd'&lt;/b&gt;'</b> eller <b>'&lt;font"
-" color=\"#77aaadd\"&gt;'ddd'&lt;/font&gt;'</b> til at personliggøre en"
-" sektion. Bemærk: de enkelte gåseøjne bruges til at omgås tidsformatet."
+msgid "You can also use <b>'&lt;b&gt;'ddd'&lt;/b&gt;'</b> or <b>'&lt;font color=\"#77aaadd\"&gt;'ddd'&lt;/font&gt;'</b> to style a section. Note the single quotes around the tags are used to bypass the time format."
+msgstr "Du kan også bruge <b>'&lt;b&gt;'ddd'&lt;/b&gt;'</b> eller <b>'&lt;font color=\"#77aaadd\"&gt;'ddd'&lt;/font&gt;'</b> til at personliggøre en sektion. Bemærk: de enkelte gåseøjne bruges til at omgås tidsformatet."
 
 #: ../contents/ui/config/ConfigGeneral.qml:166
 msgid "Font:"
@@ -502,22 +497,12 @@ msgid "To sync with Google Calendar"
 msgstr "Synkroniser med Google Kalender"
 
 #: ../contents/ui/config/ConfigGoogleCalendar.qml:90
-msgid ""
-"Visit <a href=\"%1\">%2</a> (opens in your web browser). After you login and"
-" give permission to acess your calendar, it will give you a code to paste"
-" below."
-msgstr ""
-"Besøg <a href=\"%1\">%2</a> (åbner i din  webbrowser). Når du er logget ind"
-" og giver tilladelse til, at tilgå din kalender, får du en kode som skal"
-" skrives nedenfor."
+msgid "Visit <a href=\"%1\">%2</a> (opens in your web browser). After you login and give permission to acess your calendar, it will give you a code to paste below."
+msgstr "Besøg <a href=\"%1\">%2</a> (åbner i din  webbrowser). Når du er logget ind og giver tilladelse til, at tilgå din kalender, får du en kode som skal skrives nedenfor."
 
 #: ../contents/ui/config/ConfigGoogleCalendar.qml:99
 msgid "Enter code here (Eg: %1)"
 msgstr "Indtast koden her (fx.: %1)"
-
-#: ../contents/ui/config/ConfigGoogleCalendar.qml:103
-msgid "Submit"
-msgstr "Indsend"
 
 #: ../contents/ui/config/ConfigGoogleCalendar.qml:110
 msgid "Invalid Google Authorization Code"
@@ -645,45 +630,37 @@ msgstr "Temperatur under frysepunktet"
 msgid "Icons"
 msgstr "Ikoner"
 
-#: ../contents/ui/config/OpenWeatherMapCityDialog.qml:12 ../contents/ui/config/WeatherCanadaCityDialog.qml:13
+#: ../contents/ui/config/OpenWeatherMapCityDialog.qml:13 ../contents/ui/config/WeatherCanadaCityDialog.qml:13
 msgid "Select city"
 msgstr "Vælg by"
 
-#: ../contents/ui/config/OpenWeatherMapCityDialog.qml:63
-msgid ""
-"Fetched from <a href=\"https://openweathermap.org/find\""
-">https://openweathermap.org/find</a>"
-msgstr ""
-"Taget fra <a href=\"https://openweathermap.org/find\""
-">https://openweathermap.org/find</a>"
+#: ../contents/ui/config/OpenWeatherMapCityDialog.qml:64
+msgid "Fetched from <a href=\"https://openweathermap.org/find\">https://openweathermap.org/find</a>"
+msgstr "Taget fra <a href=\"https://openweathermap.org/find\">https://openweathermap.org/find</a>"
 
-#: ../contents/ui/config/OpenWeatherMapCityDialog.qml:69 ../contents/ui/config/WeatherCanadaCityDialog.qml:91
+#: ../contents/ui/config/OpenWeatherMapCityDialog.qml:70 ../contents/ui/config/WeatherCanadaCityDialog.qml:91
 msgid "Search"
 msgstr "Søg"
 
-#: ../contents/ui/config/OpenWeatherMapCityDialog.qml:82 ../contents/ui/config/WeatherCanadaCityDialog.qml:104
+#: ../contents/ui/config/OpenWeatherMapCityDialog.qml:83 ../contents/ui/config/WeatherCanadaCityDialog.qml:104
 msgid "Name"
 msgstr "Navn"
 
-#: ../contents/ui/config/OpenWeatherMapCityDialog.qml:87 ../contents/ui/config/WeatherCanadaCityDialog.qml:109
+#: ../contents/ui/config/OpenWeatherMapCityDialog.qml:88 ../contents/ui/config/WeatherCanadaCityDialog.qml:109
 msgid "Id"
 msgstr "Id"
 
-#: ../contents/ui/config/OpenWeatherMapCityDialog.qml:92 ../contents/ui/config/WeatherCanadaCityDialog.qml:114
+#: ../contents/ui/config/OpenWeatherMapCityDialog.qml:93 ../contents/ui/config/WeatherCanadaCityDialog.qml:114
 msgid "City Webpage"
 msgstr "By-websted"
 
-#: ../contents/ui/config/OpenWeatherMapCityDialog.qml:94 ../contents/ui/config/WeatherCanadaCityDialog.qml:116
+#: ../contents/ui/config/OpenWeatherMapCityDialog.qml:95 ../contents/ui/config/WeatherCanadaCityDialog.qml:116
 msgid "Open Link"
 msgstr "Åbn link"
 
 #: ../contents/ui/config/WeatherCanadaCityDialog.qml:68
-msgid ""
-"Fetched from <a href=\"https://weather.gc.ca/canada_e.html\""
-">https://weather.gc.ca/canada_e.html</a>"
-msgstr ""
-"Taget fra <a href=\"https://weather.gc.ca/canada_e.html\""
-">https://weather.gc.ca/canada_e.html</a>"
+msgid "Fetched from <a href=\"https://weather.gc.ca/canada_e.html\">https://weather.gc.ca/canada_e.html</a>"
+msgstr "Taget fra <a href=\"https://weather.gc.ca/canada_e.html\">https://weather.gc.ca/canada_e.html</a>"
 
 #: ../contents/ui/lib/AppletVersion.qml:41
 msgid "<b>Version:</b> %1"
@@ -724,11 +701,11 @@ msgctxt "from date/time %1 until date/time %2"
 msgid "%1 - %2"
 msgstr "%1 - %2"
 
-#: ../contents/ui/main.qml:218
+#: ../contents/ui/main.qml:220
 msgid "Set Language..."
 msgstr "Vælg sprog..."
 
-#: ../contents/ui/main.qml:221
+#: ../contents/ui/main.qml:223
 msgid "Set Locale..."
 msgstr "Regionale indstillinger..."
 
@@ -858,3 +835,5 @@ msgstr "Begivenheder igang"
 msgid "Upcoming Events"
 msgstr "Kommende begivenheder"
 
+#~ msgid "Event Summary"
+#~ msgstr "Begivenhedsoversigt"
