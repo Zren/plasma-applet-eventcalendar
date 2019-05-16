@@ -17,3 +17,9 @@ X-KDE-ServiceTypes=Plasma/Applet
 X-Plasma-API=declarativeappletscript
 X-Plasma-MainScript=ui/main.qml
 X-Plasma-Provides=org.kde.plasma.time,org.kde.plasma.date
+
+Name[pt]=Calendário de Eventos
+Name[pt_BR]=Calendário de Eventos
+Name[es]=Calendario de Eventos
+Name[nl]=Gebeurteniskalender
+Name[de]=Ereigniskalender
