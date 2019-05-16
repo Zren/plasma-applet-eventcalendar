@@ -448,7 +448,7 @@ msgid "Run Commands"
 msgstr "运行命令"
 
 #: ../contents/ui/config/ConfigGeneral.qml:396
-msgid "Scoll Up:"
+msgid "Scroll Up:"
 msgstr "上滑："
 
 #: ../contents/ui/config/ConfigGeneral.qml:407

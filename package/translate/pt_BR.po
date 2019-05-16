@@ -449,7 +449,7 @@ msgid "Run Commands"
 msgstr "Executar Comandos"
 
 #: ../contents/ui/config/ConfigGeneral.qml:396
-msgid "Scoll Up:"
+msgid "Scroll Up:"
 msgstr "Roda do mouse para cima:"
 
 #: ../contents/ui/config/ConfigGeneral.qml:407

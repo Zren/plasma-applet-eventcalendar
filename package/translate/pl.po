@@ -447,7 +447,7 @@ msgid "Run Commands"
 msgstr "Wykonaj polecenia"
 
 #: ../contents/ui/config/ConfigGeneral.qml:396
-msgid "Scoll Up:"
+msgid "Scroll Up:"
 msgstr "Przewiń w górę:"
 
 #: ../contents/ui/config/ConfigGeneral.qml:407

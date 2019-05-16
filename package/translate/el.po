@@ -449,7 +449,7 @@ msgid "Run Commands"
 msgstr "Εκτέλεση Εντολών"
 
 #: ../contents/ui/config/ConfigGeneral.qml:396
-msgid "Scoll Up:"
+msgid "Scroll Up:"
 msgstr "Κύλιση προς τα πάνω:"
 
 #: ../contents/ui/config/ConfigGeneral.qml:407

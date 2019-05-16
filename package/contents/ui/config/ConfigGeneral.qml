@@ -393,7 +393,7 @@ ConfigPage {
 				Layout.fillWidth: true
 				Text { width: indentWidth } // indent
 				Label {
-					text: i18n("Scoll Up:")
+					text: i18n("Scroll Up:")
 				}
 				TextField {
 					Layout.fillWidth: true

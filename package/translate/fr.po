@@ -449,7 +449,7 @@ msgid "Run Commands"
 msgstr "Exécuter"
 
 #: ../contents/ui/config/ConfigGeneral.qml:396
-msgid "Scoll Up:"
+msgid "Scroll Up:"
 msgstr "Défiler vers le haut:"
 
 #: ../contents/ui/config/ConfigGeneral.qml:407
