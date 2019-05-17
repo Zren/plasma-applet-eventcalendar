@@ -74,7 +74,7 @@ LinkRect {
 							var event = events.get(index)
 							console.log(event)
 							console.log(JSON.stringify(event))
-							eventModel.setEventSummary(event.calendarId, event.id, text)
+							eventModel.setEventProperty(event.calendarId, event.id, 'summary', text)
 						}
 						Component.onCompleted: {
 							focus = true
@@ -258,7 +258,7 @@ LinkRect {
 							var event = events.get(index)
 							console.log(event)
 							console.log(JSON.stringify(event))
-							eventModel.setEventDescription(event.calendarId, event.id, text)
+							eventModel.setEventProperty(event.calendarId, event.id, 'description', text)
 						}
 
 						function cancel() {
