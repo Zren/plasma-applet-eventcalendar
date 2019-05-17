@@ -208,9 +208,11 @@ CalendarManager {
 			// user to click the edit icon after loading the page.
 			var eidRegex = /eid=(\w+)(\&|$)/
 			var eidMatch = eidRegex.exec(event.htmlLink)
-			var eid = eidMatch[1]
-			if (eid) {
-				event.htmlLink = 'https://calendar.google.com/calendar/r/eventedit/' + eid
+			if (eidMatch) {
+				var eid = eidMatch[1]
+				if (eid) {
+					event.htmlLink = 'https://calendar.google.com/calendar/r/eventedit/' + eid
+				}
 			}
 		}
 	}
