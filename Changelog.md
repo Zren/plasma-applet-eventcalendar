@@ -30,7 +30,7 @@
 
 * Add ability to set a custom timer via right clicking the timer > "Set Timer".
 * Fix regression where the "event update interval" was not saving.
-* Make sure we translate *.js files too.
+* Make sure we translate `*.js` files too.
 
 ## v57 - June 18 2018
 
