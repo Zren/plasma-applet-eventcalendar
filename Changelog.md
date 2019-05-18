@@ -1,3 +1,14 @@
+## v63 - May 17 2019
+
+* Add 'Edit Description' to context menu to quickly edit the description.
+* Scroll to top of event when we edit the summary/description instead of the day.
+* Fix heading colors (Issue #70)
+* Add Chinese translation by @Core00077 (Pull Request #71)
+* Add Danish translation by @cedeel (Pull Request #73)
+* Updated Portuguese Brazilian translations by @herzenschein (Pull Request #75)
+* Translate widget name in es, de, nl, pt, pt_BR (Pull Request #78)
+* Updated Dutch translation by @Vistaus (Pull Request #79)
+
 ## v62 - February 10 2019
 
 * Update Russian translations by @aliger14 (Pull Request #44)
