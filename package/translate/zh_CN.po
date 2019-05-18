@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: eventcalendar\n"
 "Report-Msgid-Bugs-To: https://github.com/Zren/plasma-applet-eventcalendar\n"
-"POT-Creation-Date: 2019-05-17 20:58-0400\n"
+"POT-Creation-Date: 2019-05-16 16:25-0400\n"
 "PO-Revision-Date: 2019-04-17 16:43+0800\n"
 "Last-Translator: Core小睿 <i@coreja.com>\n"
 "Language-Team: \n"
@@ -56,7 +56,7 @@ msgstr "高级"
 
 #: ../contents/ui/AgendaEventItem.qml:70
 msgid "Event Title"
-msgstr ""
+msgstr "事件标题"
 
 #: ../contents/ui/AgendaEventItem.qml:145
 msgid "to"
@@ -76,7 +76,7 @@ msgstr "忽略"
 
 #: ../contents/ui/AgendaEventItem.qml:230
 msgid "Event Description"
-msgstr ""
+msgstr "事件描述"
 
 #: ../contents/ui/AgendaEventItem.qml:260 ../contents/ui/config/ConfigGoogleCalendar.qml:103
 msgid "Submit"
@@ -88,7 +88,7 @@ msgstr ""
 
 #: ../contents/ui/AgendaEventItem.qml:312
 msgid "Edit title"
-msgstr ""
+msgstr "编辑标题"
 
 #: ../contents/ui/AgendaEventItem.qml:321
 msgid "Edit date/time"
@@ -96,7 +96,7 @@ msgstr "编辑日期/时间"
 
 #: ../contents/ui/AgendaEventItem.qml:329
 msgid "Edit description"
-msgstr "编辑"
+msgstr "编辑详情"
 
 #: ../contents/ui/AgendaEventItem.qml:338
 msgid "Delete Event"
