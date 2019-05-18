@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: eventcalendar \n"
 "Report-Msgid-Bugs-To: https://github.com/Zren/plasma-applet-eventcalendar\n"
-"POT-Creation-Date: 2019-05-16 16:25-0400\n"
+"POT-Creation-Date: 2019-05-17 20:58-0400\n"
 "PO-Revision-Date: 2017-06-10 HO:MI+ZONE\n"
 "Last-Translator: Kepa Badiola <badiol@yahoo.es>\n"
 "Language-Team: Spanish <LL@li.org>\n"
@@ -78,35 +78,35 @@ msgstr "Descartar"
 msgid "Event Description"
 msgstr ""
 
-#: ../contents/ui/AgendaEventItem.qml:250 ../contents/ui/config/ConfigGoogleCalendar.qml:103
+#: ../contents/ui/AgendaEventItem.qml:260 ../contents/ui/config/ConfigGoogleCalendar.qml:103
 msgid "Submit"
 msgstr ""
 
-#: ../contents/ui/AgendaEventItem.qml:274
+#: ../contents/ui/AgendaEventItem.qml:285
 msgid "Hangout"
 msgstr ""
 
-#: ../contents/ui/AgendaEventItem.qml:301
+#: ../contents/ui/AgendaEventItem.qml:312
 msgid "Edit title"
 msgstr ""
 
-#: ../contents/ui/AgendaEventItem.qml:310
+#: ../contents/ui/AgendaEventItem.qml:321
 msgid "Edit date/time"
 msgstr ""
 
-#: ../contents/ui/AgendaEventItem.qml:318
+#: ../contents/ui/AgendaEventItem.qml:329
 msgid "Edit description"
 msgstr "Editar descripción"
 
-#: ../contents/ui/AgendaEventItem.qml:327
+#: ../contents/ui/AgendaEventItem.qml:338
 msgid "Delete Event"
 msgstr "Remover Evento"
 
-#: ../contents/ui/AgendaEventItem.qml:330
+#: ../contents/ui/AgendaEventItem.qml:341
 msgid "Confirm Deletion"
 msgstr "Confirmar Eliminación"
 
-#: ../contents/ui/AgendaEventItem.qml:342
+#: ../contents/ui/AgendaEventItem.qml:353
 msgid "Edit in browser"
 msgstr "Editar en navegador"
 
