@@ -27,48 +27,50 @@ function checkIfLangInstalled {
 	fi
 }
 
-lang="${1}"
-languagePack="language-pack-$lang"
+langInput="${1}"
+lang=""
+languagePack=""
 
-
-if [ "$lang" == *":"* ]; then # String contains a colon so assume it's a locale code.
+if [ "$langInput" == *":"* ]; then # String contains a colon so assume it's a locale code.
+	lang="${langInput}"
 	IFS=: read -r l1 l2 <<< "${lang}"
-elif [ "$lang" == "ar" ]; then lang="ar_EG:ar" # Arabic (Egypt)
-elif [ "$lang" == "bg" ]; then lang="bg_BG:bg" # Bulgarian (Bulgaria)
-elif [ "$lang" == "de" ]; then lang="de_DE:de" # German (Germany)
-elif [ "$lang" == "el" ]; then lang="el_GR:el" # Greek (Greece)
-elif [ "$lang" == "es" ]; then lang="es_MX:es" # Spanish (Mexico)
-elif [ "$lang" == "fr" ]; then lang="fr_CA:fr" # French (Canada)
-elif [ "$lang" == "id" ]; then lang="id_ID:id" # Indonesian (Indonesia)
-elif [ "$lang" == "ko" ]; then lang="ko_KR:ko" # Korean (South Korea)
-elif [ "$lang" == "nl" ]; then lang="nl_NL:nl" # Dutch (Netherlands)
-elif [ "$lang" == "pl" ]; then lang="pl_PL:pl" # Polish (Poland)
-elif [ "$lang" == "pt" ]; then lang="pt_BR:pt" # Portuguese (Brazil)
-elif [ "$lang" == "ru" ]; then lang="ru_RU:ru" # Russian (Russia)
-elif [ "$lang" == "tr" ]; then lang="tr_TR:tr" # Turkish (Turkey)
-elif [ "$lang" == "uk" ]; then lang="uk_UA:uk" # Ukrainian (Ukraine)
-elif [ "$lang" == "zh_CN" ]; then # Chinese (China)
-	lang="zh_CN:zh"
-	languagePack="language-pack-zh-hans"
-else
+	languagePack="language-pack-${l2}"
+fi
+
+declare -a langArr=(
+	"ar_EG:ar:Arabic (Egypt)"
+	"bg_BG:bg:Bulgarian (Bulgaria)"
+	"de_DE:de:German (Germany)"
+	"el_GR:el:Greek (Greece)"
+	"es_MX:es:Spanish (Mexico)"
+	"fr_CA:fr:French (Canada)"
+	"id_ID:id:Indonesian (Indonesia)"
+	"ko_KR:ko:Korean (South Korea)"
+	"nl_NL:nl:Dutch (Netherlands)"
+	"pl_PL:pl:Polish (Poland)"
+	"pt_BR:pt:Portuguese (Brazil)"
+	"ru_RU:ru:Russian (Russia)"
+	"tr_TR:tr:Turkish (Turkey)"
+	"uk_UA:uk:Ukrainian (Ukraine)"
+	"zh_CN:zh:Chinese (China)"
+)
+
+for i in "${langArr[@]}"; do
+	IFS=: read -r l1 l2 l3 <<< "$i"
+	if [ "$langInput" == "$l2" ]; then
+		lang="${l1}:${l2}"
+		languagePack="language-pack-${l2}"
+	fi
+done
+
+if [ -z "$lang" ]; then
 	echo "plasmoidlocaletest doesn't recognize the language '$lang'"
 	echo "Eg:"
 	scriptcmd='sh ./plasmoidlocaletest'
-	echo "    $scriptcmd ar     | Arabic (Egypt)"
-	echo "    $scriptcmd bg     | Bulgarian (Bulgaria)"
-	echo "    $scriptcmd de     | German (Germany)"
-	echo "    $scriptcmd el     | Greek (Greece)"
-	echo "    $scriptcmd es     | Spanish (Mexico)"
-	echo "    $scriptcmd fr     | French (Canada)"
-	echo "    $scriptcmd id     | Indonesian (Indonesia)"
-	echo "    $scriptcmd ko     | Korean (South Korea)"
-	echo "    $scriptcmd nl     | Dutch (Netherlands)"
-	echo "    $scriptcmd pl     | Polish (Poland)"
-	echo "    $scriptcmd pt     | Portuguese (Brazil)"
-	echo "    $scriptcmd ru     | Russian (Russia)"
-	echo "    $scriptcmd uk     | Ukrainian (Ukraine)"
-	echo "    $scriptcmd tr     | Turkish (Turkey)"
-	echo "    $scriptcmd zh_CN  | Chinese (China)"
+	for i in "${langArr[@]}"; do
+		IFS=: read -r l1 l2 l3 <<< "$i"
+		echo "    ${scriptcmd} ${l2}     | ${l3}"
+	done
 	exit 1
 fi
 
@@ -76,7 +78,13 @@ IFS=: read -r l1 l2 <<< "${lang}"
 l1="${l1}.UTF-8"
 
 # Check if language is installed
-checkIfLangInstalled "$languagePack" || exit 1
+if [ ! -z "$languagePack" ]; then
+	if [ "$lang" == "zh_CN:zh" ]; then languagePack="language-pack-zh-hans"
+	fi
+
+	checkIfLangInstalled "$languagePack" || exit 1
+fi
+
 
 echo "LANGUAGE=\"${lang}\""
 echo "LANG=\"${l1}\""
