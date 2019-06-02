@@ -1,5 +1,5 @@
 #!/bin/bash
-# Version 4
+# Version 5
 # Requires plasmoidviewer v5.13.0
 
 function checkIfLangInstalled {
@@ -71,6 +71,9 @@ if [ -z "$lang" ]; then
 		IFS=: read -r l1 l2 l3 <<< "$i"
 		echo "    ${scriptcmd} ${l2}     | ${l3}"
 	done
+	echo ""
+	echo "Or use a the full locale code:"
+	echo "    ${scriptcmd} ar_EG:ar"
 	exit 1
 fi
 
