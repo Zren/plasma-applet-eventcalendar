@@ -45,6 +45,7 @@ elif [ "$lang" == "nl" ]; then lang="nl_NL:nl" # Dutch (Netherlands)
 elif [ "$lang" == "pl" ]; then lang="pl_PL:pl" # Polish (Poland)
 elif [ "$lang" == "pt" ]; then lang="pt_BR:pt" # Portuguese (Brazil)
 elif [ "$lang" == "ru" ]; then lang="ru_RU:ru" # Russian (Russia)
+elif [ "$lang" == "tr" ]; then lang="tr_TR:tr" # Turkish (Turkey)
 elif [ "$lang" == "uk" ]; then lang="uk_UA:uk" # Ukrainian (Ukraine)
 elif [ "$lang" == "zh_CN" ]; then # Chinese (China)
 	lang="zh_CN:zh"
@@ -66,6 +67,7 @@ else
 	echo "    $scriptcmd pt     | Portuguese (Brazil)"
 	echo "    $scriptcmd ru     | Russian (Russia)"
 	echo "    $scriptcmd uk     | Ukrainian (Ukraine)"
+	echo "    $scriptcmd tr     | Turkish (Turkey)"
 	echo "    $scriptcmd zh_CN  | Chinese (China)"
 	exit 1
 fi
