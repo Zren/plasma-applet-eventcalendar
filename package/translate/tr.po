@@ -725,27 +725,27 @@ msgstr "<b>Sürüm:</b> %1"
 #: ../contents/ui/LocaleFuncs.js:8
 msgctxt "event time on the hour (24 hour clock)"
 msgid "h"
-msgstr "s"
+msgstr "h"
 
 #: ../contents/ui/LocaleFuncs.js:10
 msgctxt "event time (24 hour clock)"
 msgid "h:mm"
-msgstr "s:dk"
+msgstr "h:mm"
 
 #: ../contents/ui/LocaleFuncs.js:14
 msgctxt "event time on the hour (12 hour clock)"
 msgid "h AP"
-msgstr "s AP"
+msgstr "h AP"
 
 #: ../contents/ui/LocaleFuncs.js:16
 msgctxt "event time (12 hour clock)"
 msgid "h:mm AP"
-msgstr "s:dk AP"
+msgstr "h:mm AP"
 
 #: ../contents/ui/LocaleFuncs.js:23 ../contents/ui/LocaleFuncs.js:34
 msgctxt "short month+date format"
 msgid "MMM d"
-msgstr "AAA g"
+msgstr "MMM d"
 
 #: ../contents/ui/LocaleFuncs.js:26
 msgctxt "date (%1) with time (%2)"
@@ -773,17 +773,17 @@ msgstr "%1mm"
 #: ../contents/ui/MonthView.qml:363
 msgctxt "calendar title format for current month"
 msgid "MMMM d, yyyy"
-msgstr "AAAA g, yyyy"
+msgstr "MMMM d, yyyy"
 
 #: ../contents/ui/MonthView.qml:367
 msgctxt "calendar title format for other months of current year"
 msgid "MMMM"
-msgstr "AAAA"
+msgstr "MMMM"
 
 #: ../contents/ui/MonthView.qml:370
 msgctxt "calendar title format for months not from current year"
 msgid "MMMM, yyyy"
-msgstr "AAAA, yyyy"
+msgstr "MMMM, yyyy"
 
 #: ../contents/ui/NewEventForm.qml:24
 msgid "[No Calendars]"
