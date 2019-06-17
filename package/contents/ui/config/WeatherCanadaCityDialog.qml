@@ -56,8 +56,8 @@ Dialog {
 	}
 
 	onVisibleChanged: {
-		if (!cityListLoaded && !loadingCityList) {
-			// loadCityList('https://weather.gc.ca/forecast/canada/index_e.html?id=AB')
+		if (visible && !cityListLoaded && !loadingCityList) {
+			loadProvinceCityList()
 		}
 	}
 
@@ -157,6 +157,4 @@ Dialog {
 		var provinceUrl = 'https://weather.gc.ca/forecast/canada/index_e.html?id=' + provinceId
 		loadCityList(provinceUrl)
 	}
-
-	Component.onCompleted: loadProvinceCityList()
 }
