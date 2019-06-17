@@ -84,7 +84,7 @@ Item {
 				wheelDelta += delta;
 				
 				// Magic number 120 for common "one click"
-				// See: http://qt-project.org/doc/qt-5/qml-qtquick-wheelevent.html#angleDelta-prop
+				// See: https://doc.qt.io/qt-5/qml-qtquick-wheelevent.html#angleDelta-prop
 				while (wheelDelta >= 120) {
 					wheelDelta -= 120;
 					executable.exec(plasmoid.configuration.clock_mousewheel_up)

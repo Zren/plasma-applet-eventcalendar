@@ -105,7 +105,7 @@ PinchArea {
 		stack.pop(null)
 	}
 
-	// http://stackoverflow.com/questions/1184334/get-number-days-in-a-specified-month-using-javascript
+	// https://stackoverflow.com/questions/1184334/get-number-days-in-a-specified-month-using-javascript
 	function daysInMonth(year, month) {
 		return new Date(year, month+1, 0).getDate()
 	}

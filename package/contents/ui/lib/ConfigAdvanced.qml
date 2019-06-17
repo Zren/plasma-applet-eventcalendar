@@ -162,7 +162,7 @@ ColumnLayout {
 
 		signal updated()
 
-		// http://stackoverflow.com/a/29881855/947742
+		// https://stackoverflow.com/a/29881855/947742
 		function fetch() {
 			var doc = new XMLHttpRequest()
 			doc.onreadystatechange = function() {
@@ -210,7 +210,7 @@ ColumnLayout {
 			}
 		}
 
-		// http://doc.qt.io/qt-5/qdomnode.html
+		// https://doc.qt.io/qt-5/qdomnode.html
 		function parse(rootNode) {
 			clear()
 			findAll(rootNode, 'group', function(group) {
@@ -242,7 +242,7 @@ ColumnLayout {
 
 	// plasmoid.configuration is a KDeclarative::ConfigPropertyMap which inherits QQmlPropertyMap
 	// https://github.com/KDE/kdeclarative/blob/master/src/kdeclarative/configpropertymap.h
-	// http://doc.qt.io/qt-5/qqmlpropertymap.html
+	// https://doc.qt.io/qt-5/qqmlpropertymap.html
 	ListModel {
 		id: configTableModel
 		dynamicRoles: true

@@ -180,7 +180,7 @@ Item {
 					// console.log(JSON.stringify(p1), JSON.stringify(p2))
 				}
 
-				// http://stackoverflow.com/questions/7054272/how-to-draw-smooth-curve-through-n-points-using-javascript-html5-canvas
+				// https://stackoverflow.com/questions/7054272/how-to-draw-smooth-curve-through-n-points-using-javascript-html5-canvas
 				function drawCurve(path) {
 					if (path.length < 3) return
 
