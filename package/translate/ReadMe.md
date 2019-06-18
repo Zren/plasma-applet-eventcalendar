@@ -44,5 +44,6 @@ Or if you know how to make a pull request
 | pl       | 159/195 |   81% |
 | pt_BR    | 192/195 |   98% |
 | ru       | 180/195 |   92% |
+| tr       | 195/195 |  100% |
 | uk       | 159/195 |   81% |
-| zh_CN    | 164/195 |   84% |
+| zh_CN    | 167/195 |   85% |

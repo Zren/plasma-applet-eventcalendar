@@ -1,4 +1,4 @@
-# Translation of eventcalendar in LANGUAGE
+# Translation of eventcalendar in tr
 # Copyright (C) 2019
 # This file is distributed under the same license as the eventcalendar package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
@@ -9,14 +9,14 @@ msgstr ""
 "Report-Msgid-Bugs-To: https://github.com/Zren/plasma-applet-eventcalendar\n"
 "POT-Creation-Date: 2019-05-17 20:58-0400\n"
 "PO-Revision-Date: 2019-06-02 22:28+0300\n"
+"Last-Translator: \n"
 "Language-Team: \n"
+"Language: tr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Poedit 2.2.1\n"
-"Last-Translator: \n"
-"Language: tr\n"
 
 #: ../contents/config/config.qml:9
 msgid "General"
@@ -78,8 +78,7 @@ msgstr "İptal"
 msgid "Event Description"
 msgstr "Etkinlik Açıklaması"
 
-#: ../contents/ui/AgendaEventItem.qml:260
-#: ../contents/ui/config/ConfigGoogleCalendar.qml:103
+#: ../contents/ui/AgendaEventItem.qml:260 ../contents/ui/config/ConfigGoogleCalendar.qml:103
 msgid "Submit"
 msgstr "Gönder"
 
@@ -121,8 +120,7 @@ msgctxt "agenda date format line 2"
 msgid "ddd"
 msgstr "ddd"
 
-#: ../contents/ui/AgendaView.qml:23 ../contents/ui/AgendaView.qml:36
-#: ../contents/ui/UpcomingEvents.qml:129 ../contents/ui/UpcomingEvents.qml:146
+#: ../contents/ui/AgendaView.qml:23 ../contents/ui/AgendaView.qml:36 ../contents/ui/UpcomingEvents.qml:129 ../contents/ui/UpcomingEvents.qml:146
 msgid "Event Calendar"
 msgstr "Etkinlik Takvimi"
 
@@ -147,8 +145,7 @@ msgstr "Ajanda sola (İki Sütun)"
 msgid "Font Size:"
 msgstr "Yazı Boyutu:"
 
-#: ../contents/ui/config/ConfigAgenda.qml:54
-#: ../contents/ui/config/ConfigGeneral.qml:204
+#: ../contents/ui/config/ConfigAgenda.qml:54 ../contents/ui/config/ConfigGeneral.qml:204
 msgid "px"
 msgstr "px"
 
@@ -188,13 +185,11 @@ msgstr "Hava Durumuna Tıklama:"
 msgid "Open City Forecast In Browser"
 msgstr "Güncel Durumu Tarayıcıda Aç"
 
-#: ../contents/ui/config/ConfigAgenda.qml:121
-#: ../contents/ui/config/ConfigCalendar.qml:25
+#: ../contents/ui/config/ConfigAgenda.qml:121 ../contents/ui/config/ConfigCalendar.qml:25
 msgid "Click Date:"
 msgstr "Tarihe Tıklama:"
 
-#: ../contents/ui/config/ConfigAgenda.qml:124
-#: ../contents/ui/config/ConfigCalendar.qml:40
+#: ../contents/ui/config/ConfigAgenda.qml:124 ../contents/ui/config/ConfigCalendar.qml:40
 msgid "Open New Event In Browser"
 msgstr "Tarayıcıda Yeni Etkinlik Oluşturmayı Aç"
 
@@ -250,8 +245,7 @@ msgstr "Tamamlanmış etkinlikleri gizle"
 msgid "Show all events of the current day (including completed events)"
 msgstr "Geçerli günün tüm etkinliklerini göster (tamamlanmışlar dahil)"
 
-#: ../contents/ui/config/ConfigAgenda.qml:211
-#: ../contents/ui/config/ConfigWeather.qml:177
+#: ../contents/ui/config/ConfigAgenda.qml:211 ../contents/ui/config/ConfigWeather.qml:177
 msgid "Colors"
 msgstr "Renkler"
 
@@ -271,8 +265,7 @@ msgstr "Ajanda da etkinliğe kaydır"
 msgid "DoubleClick Date:"
 msgstr "Tarihe Çift Tıklama:"
 
-#: ../contents/ui/config/ConfigCalendar.qml:48
-#: ../contents/ui/config/ConfigWeather.qml:120
+#: ../contents/ui/config/ConfigCalendar.qml:48 ../contents/ui/config/ConfigWeather.qml:120
 msgid "Style"
 msgstr "Tarz"
 
@@ -288,8 +281,7 @@ msgstr "Hafta Numaralarını Göster"
 msgid "First day of week:"
 msgstr "Haftanın ilk günü:"
 
-#: ../contents/ui/config/ConfigCalendar.qml:70
-#: ../contents/ui/config/ConfigGeneral.qml:177
+#: ../contents/ui/config/ConfigCalendar.qml:70 ../contents/ui/config/ConfigGeneral.qml:177
 msgid "Default"
 msgstr "Varsayılan"
 
@@ -297,9 +289,7 @@ msgstr "Varsayılan"
 msgid "Event Badge:"
 msgstr "Etkinlik Rozeti:"
 
-#: ../contents/ui/config/ConfigCalendar.qml:92
-#: ../contents/ui/config/ConfigCalendar.qml:147
-#: ../contents/ui/config/ConfigCalendar.qml:163
+#: ../contents/ui/config/ConfigCalendar.qml:92 ../contents/ui/config/ConfigCalendar.qml:147 ../contents/ui/config/ConfigCalendar.qml:163
 msgid "Theme"
 msgstr "Tema"
 
@@ -351,8 +341,7 @@ msgstr "Etkinlik Takvimi Eklentileri"
 msgid "Plasma Calendar Plugins"
 msgstr "Plasma Takvimi Eklentileri"
 
-#: ../contents/ui/config/ConfigEvents.qml:61
-#: ../contents/ui/config/ConfigGeneral.qml:439
+#: ../contents/ui/config/ConfigEvents.qml:61 ../contents/ui/config/ConfigGeneral.qml:439
 msgid "Misc"
 msgstr "Ekstra"
 
@@ -360,8 +349,7 @@ msgstr "Ekstra"
 msgid "Refresh events every: "
 msgstr "Etkinlikleri her ... sürede yenile: "
 
-#: ../contents/ui/config/ConfigEvents.qml:68
-#: ../contents/ui/config/ConfigWeather.qml:112
+#: ../contents/ui/config/ConfigEvents.qml:68 ../contents/ui/config/ConfigWeather.qml:112
 msgctxt "Polling interval in minutes"
 msgid "min"
 msgid_plural "min"
@@ -376,8 +364,7 @@ msgstr "Bildirimler"
 msgid "Event Starting"
 msgstr "Etkinlik Başlarken"
 
-#: ../contents/ui/config/ConfigGeneral.qml:75
-#: ../contents/ui/lib/ConfigNotification.qml:61
+#: ../contents/ui/config/ConfigGeneral.qml:75 ../contents/ui/lib/ConfigNotification.qml:61
 msgid "Choose a sound effect"
 msgstr "Bir ses efekti seçin"
 
@@ -386,12 +373,8 @@ msgid "Widgets"
 msgstr "Eklentiler"
 
 #: ../contents/ui/config/ConfigGeneral.qml:102
-msgid ""
-"Show/Hide widgets above the calendar. Toggle Agenda/Calendar on their "
-"respective tabs."
-msgstr ""
-"Takvimin üzerindeki eklentileri göster/gizle. Ajanda/takvim sekmelerini aç/"
-"kapat."
+msgid "Show/Hide widgets above the calendar. Toggle Agenda/Calendar on their respective tabs."
+msgstr "Takvimin üzerindeki eklentileri göster/gizle. Ajanda/takvim sekmelerini aç/kapat."
 
 #: ../contents/ui/config/ConfigGeneral.qml:109
 msgid "Meteogram"
@@ -418,25 +401,12 @@ msgid "Time Format"
 msgstr "Zaman Formatı"
 
 #: ../contents/ui/config/ConfigGeneral.qml:154
-msgid ""
-"The default font for the Breeze theme is Noto Sans which is hard to read "
-"with small text. Try using the Sans Serif font if you find the text too "
-"small when adding a second line."
-msgstr ""
-"Breeze teması için varsayılan tazı tipi okuması zor olan Noto Sans'dır. Eğer "
-"yazıyı çok küçük ve okuması zor buluyorsanız ikinci satırı eklerken Sans "
-"Serif yazı tipini kullanmayı deneyin."
+msgid "The default font for the Breeze theme is Noto Sans which is hard to read with small text. Try using the Sans Serif font if you find the text too small when adding a second line."
+msgstr "Breeze teması için varsayılan tazı tipi okuması zor olan Noto Sans'dır. Eğer yazıyı çok küçük ve okuması zor buluyorsanız ikinci satırı eklerken Sans Serif yazı tipini kullanmayı deneyin."
 
 #: ../contents/ui/config/ConfigGeneral.qml:160
-msgid ""
-"You can also use <b>'&lt;b&gt;'ddd'&lt;/b&gt;'</b> or <b>'&lt;font color="
-"\"#77aaadd\"&gt;'ddd'&lt;/font&gt;'</b> to style a section. Note the single "
-"quotes around the tags are used to bypass the time format."
-msgstr ""
-"Bölümleri kişiselleştirmek için aynı zamanda <b>'&lt;b&gt;'ddd'&lt;/b&gt;'</"
-"b> or <b>'&lt;font color=\"#77aaadd\"&gt;'ddd'&lt;/font&gt;'</b> komutlarını "
-"da kullanabilirsiniz. Tırnak işaretlerinin zaman formatından ayrıştırılmak "
-"için koyulduğunu unutmayın."
+msgid "You can also use <b>'&lt;b&gt;'ddd'&lt;/b&gt;'</b> or <b>'&lt;font color=\"#77aaadd\"&gt;'ddd'&lt;/font&gt;'</b> to style a section. Note the single quotes around the tags are used to bypass the time format."
+msgstr "Bölümleri kişiselleştirmek için aynı zamanda <b>'&lt;b&gt;'ddd'&lt;/b&gt;'</b> or <b>'&lt;font color=\"#77aaadd\"&gt;'ddd'&lt;/font&gt;'</b> komutlarını da kullanabilirsiniz. Tırnak işaretlerinin zaman formatından ayrıştırılmak için koyulduğunu unutmayın."
 
 #: ../contents/ui/config/ConfigGeneral.qml:166
 msgid "Font:"
@@ -454,14 +424,11 @@ msgstr " (0px = genişliğe göre ayarla)"
 msgid "Line 1:"
 msgstr "1. Satır:"
 
-#: ../contents/ui/config/ConfigGeneral.qml:237
-#: ../contents/ui/config/ConfigGeneral.qml:263
-#: ../contents/ui/config/ConfigGeneral.qml:312
+#: ../contents/ui/config/ConfigGeneral.qml:237 ../contents/ui/config/ConfigGeneral.qml:263 ../contents/ui/config/ConfigGeneral.qml:312
 msgid "Preset:"
 msgstr "Ön Tanımlı:"
 
-#: ../contents/ui/config/ConfigGeneral.qml:285
-#: ../contents/ui/config/ConfigGeneral.qml:349
+#: ../contents/ui/config/ConfigGeneral.qml:285 ../contents/ui/config/ConfigGeneral.qml:349
 msgid "Bold"
 msgstr "Kalın"
 
@@ -530,14 +497,8 @@ msgid "To sync with Google Calendar"
 msgstr "Google Calendar ile senkronizeleşmek için"
 
 #: ../contents/ui/config/ConfigGoogleCalendar.qml:90
-msgid ""
-"Visit <a href=\"%1\">%2</a> (opens in your web browser). After you login and "
-"give permission to acess your calendar, it will give you a code to paste "
-"below."
-msgstr ""
-"Tarayıcınızdan <a href=\"%1\">%2</a> adresini ziyaret edin. Giriş yaptıktan "
-"ve gerekli izinleri verdikten sonra size verilen kodu aşağıdaki alana "
-"yapıştırın."
+msgid "Visit <a href=\"%1\">%2</a> (opens in your web browser). After you login and give permission to acess your calendar, it will give you a code to paste below."
+msgstr "Tarayıcınızdan <a href=\"%1\">%2</a> adresini ziyaret edin. Giriş yaptıktan ve gerekli izinleri verdikten sonra size verilen kodu aşağıdaki alana yapıştırın."
 
 #: ../contents/ui/config/ConfigGoogleCalendar.qml:99
 msgid "Enter code here (Eg: %1)"
@@ -547,8 +508,7 @@ msgstr "Kodu buraya girin (Örn: %1)"
 msgid "Invalid Google Authorization Code"
 msgstr "Geçersiz Google Doğrulama Kodu"
 
-#: ../contents/ui/config/ConfigGoogleCalendar.qml:122
-#: ../contents/ui/config/ConfigICal.qml:49
+#: ../contents/ui/config/ConfigGoogleCalendar.qml:122 ../contents/ui/config/ConfigICal.qml:49
 msgid "Calendars"
 msgstr "Takvimler"
 
@@ -592,8 +552,7 @@ msgstr "Veri"
 msgid "API App Id:"
 msgstr "API Uygulama ID'si:"
 
-#: ../contents/ui/config/ConfigWeather.qml:53
-#: ../contents/ui/config/ConfigWeather.qml:77
+#: ../contents/ui/config/ConfigWeather.qml:53 ../contents/ui/config/ConfigWeather.qml:77
 msgid "City Id:"
 msgstr "Şehir ID'si:"
 
@@ -601,8 +560,7 @@ msgstr "Şehir ID'si:"
 msgid "Eg: 5983720"
 msgstr "Örn: 5983720"
 
-#: ../contents/ui/config/ConfigWeather.qml:61
-#: ../contents/ui/config/ConfigWeather.qml:85
+#: ../contents/ui/config/ConfigWeather.qml:61 ../contents/ui/config/ConfigWeather.qml:85
 msgid "Find City"
 msgstr "Şehir Bul"
 
@@ -672,51 +630,37 @@ msgstr "Negatif Sıcaklık"
 msgid "Icons"
 msgstr "İkonlar"
 
-#: ../contents/ui/config/OpenWeatherMapCityDialog.qml:13
-#: ../contents/ui/config/WeatherCanadaCityDialog.qml:13
+#: ../contents/ui/config/OpenWeatherMapCityDialog.qml:13 ../contents/ui/config/WeatherCanadaCityDialog.qml:13
 msgid "Select city"
 msgstr "Şehir seç"
 
 #: ../contents/ui/config/OpenWeatherMapCityDialog.qml:64
-msgid ""
-"Fetched from <a href=\"https://openweathermap.org/find\">https://"
-"openweathermap.org/find</a>"
-msgstr ""
-"Bilgiler <a href=\"https://openweathermap.org/find\">https://openweathermap."
-"org/find</a> sitesinden alınmaktadır."
+msgid "Fetched from <a href=\"https://openweathermap.org/find\">https://openweathermap.org/find</a>"
+msgstr "Bilgiler <a href=\"https://openweathermap.org/find\">https://openweathermap.org/find</a> sitesinden alınmaktadır."
 
-#: ../contents/ui/config/OpenWeatherMapCityDialog.qml:70
-#: ../contents/ui/config/WeatherCanadaCityDialog.qml:91
+#: ../contents/ui/config/OpenWeatherMapCityDialog.qml:70 ../contents/ui/config/WeatherCanadaCityDialog.qml:91
 msgid "Search"
 msgstr "Ara"
 
-#: ../contents/ui/config/OpenWeatherMapCityDialog.qml:83
-#: ../contents/ui/config/WeatherCanadaCityDialog.qml:104
+#: ../contents/ui/config/OpenWeatherMapCityDialog.qml:83 ../contents/ui/config/WeatherCanadaCityDialog.qml:104
 msgid "Name"
 msgstr "İsim"
 
-#: ../contents/ui/config/OpenWeatherMapCityDialog.qml:88
-#: ../contents/ui/config/WeatherCanadaCityDialog.qml:109
+#: ../contents/ui/config/OpenWeatherMapCityDialog.qml:88 ../contents/ui/config/WeatherCanadaCityDialog.qml:109
 msgid "Id"
 msgstr "ID"
 
-#: ../contents/ui/config/OpenWeatherMapCityDialog.qml:93
-#: ../contents/ui/config/WeatherCanadaCityDialog.qml:114
+#: ../contents/ui/config/OpenWeatherMapCityDialog.qml:93 ../contents/ui/config/WeatherCanadaCityDialog.qml:114
 msgid "City Webpage"
 msgstr "Şehir Sayfası"
 
-#: ../contents/ui/config/OpenWeatherMapCityDialog.qml:95
-#: ../contents/ui/config/WeatherCanadaCityDialog.qml:116
+#: ../contents/ui/config/OpenWeatherMapCityDialog.qml:95 ../contents/ui/config/WeatherCanadaCityDialog.qml:116
 msgid "Open Link"
 msgstr "Linki Aç"
 
 #: ../contents/ui/config/WeatherCanadaCityDialog.qml:68
-msgid ""
-"Fetched from <a href=\"https://weather.gc.ca/canada_e.html\">https://weather."
-"gc.ca/canada_e.html</a>"
-msgstr ""
-"Bilgiler <a href=\"https://weather.gc.ca/canada_e.html\">https://weather.gc."
-"ca/canada_e.html</a> sitesinden alınmaktadır."
+msgid "Fetched from <a href=\"https://weather.gc.ca/canada_e.html\">https://weather.gc.ca/canada_e.html</a>"
+msgstr "Bilgiler <a href=\"https://weather.gc.ca/canada_e.html\">https://weather.gc.ca/canada_e.html</a> sitesinden alınmaktadır."
 
 #: ../contents/ui/lib/AppletVersion.qml:41
 msgid "<b>Version:</b> %1"
@@ -859,13 +803,11 @@ msgstr "Zamanlayıcıyı Başlat"
 msgid "Scroll to add to duration"
 msgstr "Süre eklemek için kaydırın"
 
-#: ../contents/ui/TimerView.qml:163 ../contents/ui/TimerView.qml:172
-#: ../contents/ui/TimerView.qml:373
+#: ../contents/ui/TimerView.qml:163 ../contents/ui/TimerView.qml:172 ../contents/ui/TimerView.qml:373
 msgid "Repeat"
 msgstr "Tekrarla"
 
-#: ../contents/ui/TimerView.qml:181 ../contents/ui/TimerView.qml:190
-#: ../contents/ui/TimerView.qml:382
+#: ../contents/ui/TimerView.qml:181 ../contents/ui/TimerView.qml:190 ../contents/ui/TimerView.qml:382
 msgid "Sound"
 msgstr "Ses"
 
