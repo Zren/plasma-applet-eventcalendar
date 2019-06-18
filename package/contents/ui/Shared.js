@@ -19,28 +19,6 @@ function openGoogleCalendarNewEventUrl(date) {
 	Qt.openUrlExternally(url)
 }
 
-// https://openweathermap.org/weather-conditions
-var weatherIconMap = {
-	'01d': 'weather-clear',
-	'02d': 'weather-few-clouds',
-	'03d': 'weather-clouds',
-	'04d': 'weather-overcast',
-	'09d': 'weather-showers-scattered',
-	'10d': 'weather-showers',
-	'11d': 'weather-storm',
-	'13d': 'weather-snow',
-	'50d': 'weather-fog',
-	'01n': 'weather-clear-night',
-	'02n': 'weather-few-clouds-night',
-	'03n': 'weather-clouds-night',
-	'04n': 'weather-overcast',
-	'09n': 'weather-showers-scattered-night',
-	'10n': 'weather-showers-night',
-	'11n': 'weather-storm-night',
-	'13n': 'weather-snow',
-	'50n': 'weather-fog',
-}
-
 function isSameDate(a, b) {
 	// console.log('isSameDate', a, b)
 	return a.getFullYear() == b.getFullYear() && a.getMonth() == b.getMonth() && a.getDate() == b.getDate()
