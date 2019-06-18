@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: eventcalendar \n"
 "Report-Msgid-Bugs-To: https://github.com/Zren/plasma-applet-eventcalendar\n"
-"POT-Creation-Date: 2019-05-17 20:58-0400\n"
+"POT-Creation-Date: 2019-06-17 20:34-0400\n"
 "PO-Revision-Date: 2017-06-10 HO:MI+ZONE\n"
 "Last-Translator: Clayton Magalhães <helpdir@gmail.com>\n"
 "Language-Team: SACI <helpdir@gmail.com>\n"
@@ -634,9 +634,9 @@ msgstr "Ícones"
 msgid "Select city"
 msgstr "Selecione a cidade"
 
-#: ../contents/ui/config/OpenWeatherMapCityDialog.qml:64
-msgid "Fetched from <a href=\"https://openweathermap.org/find\">https://openweathermap.org/find</a>"
-msgstr "Dados obtidos do <a href=\"https://openweathermap.org/find\">https://openweathermap.org/find</a>"
+#: ../contents/ui/config/OpenWeatherMapCityDialog.qml:64 ../contents/ui/config/WeatherCanadaCityDialog.qml:68
+msgid "Fetched from <a href=\"%1\">%1</a>"
+msgstr "Dados obtidos do <a href=\"%1\">%1</a>"
 
 #: ../contents/ui/config/OpenWeatherMapCityDialog.qml:70 ../contents/ui/config/WeatherCanadaCityDialog.qml:91
 msgid "Search"
@@ -657,10 +657,6 @@ msgstr "Página web da cidade"
 #: ../contents/ui/config/OpenWeatherMapCityDialog.qml:95 ../contents/ui/config/WeatherCanadaCityDialog.qml:116
 msgid "Open Link"
 msgstr "Abir link"
-
-#: ../contents/ui/config/WeatherCanadaCityDialog.qml:68
-msgid "Fetched from <a href=\"https://weather.gc.ca/canada_e.html\">https://weather.gc.ca/canada_e.html</a>"
-msgstr "Dados obtidos do <a href=\"https://weather.gc.ca/canada_e.html\">https://weather.gc.ca/canada_e.html</a>"
 
 #: ../contents/ui/lib/AppletVersion.qml:41
 msgid "<b>Version:</b> %1"

@@ -60,8 +60,8 @@ Dialog {
 
 	ColumnLayout {
 		anchors.fill: parent
-		LinkText { 
-			text: i18n("Fetched from <a href=\"https://openweathermap.org/find\">https://openweathermap.org/find</a>")
+		LinkText {
+			text: i18n("Fetched from <a href=\"%1\">%1</a>", "https://openweathermap.org/find")
 		}
 		TextField {
 			id: cityNameInput
