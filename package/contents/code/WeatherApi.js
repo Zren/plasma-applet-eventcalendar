@@ -29,25 +29,22 @@ function openCityUrl() {
 }
 
 /* Update the weather shown in the agenda. */
-/* @return { // Based on the OpenWeatherMap schema (for now)
+/* @return {
 	list: [
 		{
 			dt: 1474831800, // seconds
 			temp: {
 				min: 14.5,
 				max: 14.5,
-				morn: 14.5,
-				day: 14.5,
-				eve: 14.5,
-				night: 14.5,
+				morn: 14.5, // (Optional)
+				day: 14.5, // (Optional)
+				eve: 14.5, // (Optional)
+				night: 14.5, // (Optional)
 			},
-			weather: [
-				{
-					iconName: 'weather-clear',
-					main: 'Clear', // Word/Short description (the "Weather Text" shown in the agenda)
-					description: 'clear sky',  // Sentence (shown in the tooltip)
-				}
-			],
+			iconName: 'weather-clear',
+			text: 'Clear', // Word/Short description (the "Weather Text" shown in the agenda)
+			description: 'clear sky',  // Sentence (shown in the tooltip)
+			notes: 'Morning: 13°\nEvening: 5°', // Tooltip subtext (Optional)
 		},
 		...
 	]
@@ -66,19 +63,14 @@ function updateDailyWeather(callback) {
 }
 
 /* Update the meteogram dataset. Will not be called if the meteogram isn't enabled. */
-/* @return { // Based on the OpenWeatherMap schema (for now)
+/* @return {
 	list: [
 		{
 			dt: 1474831800, // seconds
-			main: {
-				temp: 14.5,
-			},
-			weather: [
-				{
-					iconName: 'weather-clear',
-					description: 'clear sky', // Sentence
-				}
-			],
+			temp: 14.5,
+			iconName: 'weather-clear',
+			description: 'clear sky', // Sentence (Tooltip)
+			precipitation: 20, // Can represent 20mm or 20%
 		},
 		...
 	]

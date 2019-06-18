@@ -320,13 +320,7 @@ Item {
 							context.fillStyle = appletConfig.meteogramPrecipitationTextColor
 							context.font = "12px sans-serif"
 							context.textAlign = 'end'
-							var labelValue = formatDecimal(item.precipitation, 1)
-							var labelText
-							if (graph.rainUnits == 'mm') {
-								labelText = i18n("%1mm", labelValue)
-							} else { // rainUnits == '%'
-								labelText = i18n('%1%%', labelValue)
-							}
+							var labelText = formatPrecipitation(item.precipitation)
 							context.strokeStyle = appletConfig.meteogramPrecipitationTextOutlineColor
 							context.lineWidth = 3
 
@@ -422,34 +416,30 @@ Item {
 		// console.log(JSON.stringify(data, null, '\t'))
 		var gData = []
 
-		function parseDailyWeatherItem(item) {
-			var rain = item.rain && item.rain['3h'] || 0
-			var snow = item.snow && item.snow['3h'] || 0
-			var mm = rain + snow
-
-			// console.log(JSON.stringify(item))
-			var tooltipSubText = item.weather[0].description
-			if (mm) {
-				tooltipSubText += ' (' + formatDecimal(mm, 2) + 'mm)'
+		function parseHourlyWeatherItem(item) {
+			// console.log('parseHourlyWeatherItem', JSON.stringify(item))
+			var tooltipSubText = item.description
+			if (item.precipitation) {
+				tooltipSubText += ' (' + formatPrecipitation(item.precipitation) + ')'
 			}
-			tooltipSubText += '<br>' + item.main.temp + '°'
+			tooltipSubText += '<br>' + item.temp + '°'
 
 			return {
-				y: item.main.temp,
+				y: item.temp,
 				xTimestamp: item.dt * 1000,
-				precipitation: mm || item.precipitation,
+				precipitation: item.precipitation,
 				tooltipMainText: new Date(item.dt * 1000),
 				tooltipSubText: tooltipSubText,
-				weatherIcon: item.weather[0].iconName || Shared.weatherIconMap[item.weather[0].icon] || 'question',
+				weatherIcon: item.iconName || 'question',
 			}
 		}
 
 		if (currentWeatherData) {
-			gData.push(parseDailyWeatherItem(currentWeatherData))
+			gData.push(parseHourlyWeatherItem(currentWeatherData))
 		} else {
 			if (data.list.length > 0) {
 				gData.push({
-					y: data.list[0].main.temp,
+					y: data.list[0].temp,
 					xTimestamp: Date.now(),
 					precipitation: 0,
 				})
@@ -458,7 +448,7 @@ Item {
 
 		for (var i = 0; i < data.list.length; i++) {
 			var item = data.list[i]
-			gData.push(parseDailyWeatherItem(item))
+			gData.push(parseHourlyWeatherItem(item))
 		}
 
 		// console.log(JSON.stringify(gData, null, '\t'))
@@ -500,5 +490,13 @@ Item {
 
 	function formatDecimal(x, afterDecimal) {
 		return x >= 1 ? Math.round(x) : x.toFixed(afterDecimal)
+	}
+	function formatPrecipitation(value) {
+		var valueText = formatDecimal(value, 1)
+		if (graph.rainUnits == 'mm') {
+			return i18n("%1mm", valueText)
+		} else { // rainUnits == '%'
+			return i18n('%1%%', valueText)
+		}
 	}
 }

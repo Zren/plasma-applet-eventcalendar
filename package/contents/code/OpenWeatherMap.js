@@ -18,7 +18,6 @@ function fetchHourlyWeatherForecast(args, callback) {
 }
 
 function fetchDailyWeatherForecast(args, callback) {
-	console.log('fetchWeatherForecast')
 	if (!args.app_id) return callback('OpenWeatherMap AppId not set')
 	if (!args.city_id) return callback('OpenWeatherMap CityId not set')
 	
@@ -74,9 +73,15 @@ function parseHourlyData(weatherData) {
 	for (var j = 0; j < weatherData.list.length; j++) {
 		var forecastItem = weatherData.list[j]
 		
+		forecastItem.temp = forecastItem.main.temp
 		forecastItem.iconName = weatherIconMap[forecastItem.weather[0].icon]
-		forecastItem.text = forecastItem.weather[0].main
+		// forecastItem.text = forecastItem.weather[0].main
 		forecastItem.description = forecastItem.weather[0].description
+
+		var rain = forecastItem.rain && forecastItem.rain['3h'] || 0
+		var snow = forecastItem.snow && forecastItem.snow['3h'] || 0
+		var mm = rain + snow
+		forecastItem.precipitation = mm
 	}
 
 	return weatherData

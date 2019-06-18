@@ -305,20 +305,13 @@ function parseHourlyTbody(html) {
 			var conditions = parseHourlyConditions(trHtml)
 			var dt = Math.floor(new Date(dateStr + ' ' + timeStr).getTime() / 1000)
 			var precipitation = parseHourlyPrecipitation(trHtml)
-			console.log(dt, timeStr, conditions.icon, conditions.id, conditions.description, precipitation)
+			// console.log(dt, timeStr, conditions.icon, conditions.id, conditions.description, precipitation)
 
 			weatherData.list.push({
 				dt: dt,
-				main: {
-					temp: temp,
-				},
-				weather: [
-					{
-						icon: '',
-						iconName: conditions.icon,
-						description: conditions.description,
-					}
-				],
+				temp: temp,
+				iconName: conditions.icon,
+				description: conditions.description,
 				precipitation: precipitation,
 			})
 		}
