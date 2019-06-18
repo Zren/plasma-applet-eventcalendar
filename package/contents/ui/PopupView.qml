@@ -286,7 +286,7 @@ FocusScope {
 				Layout.fillWidth: true
 				Layout.minimumHeight: popup.topRowHeight
 				Layout.preferredHeight: parent.height / 5
-				cfg_meteogram_hours: plasmoid.configuration.meteogram_hours
+				visibleDuration: plasmoid.configuration.meteogram_hours
 				showIconOutline: plasmoid.configuration.show_outlines
 				xAxisScale: 1 / hoursPerDataPoint
 				xAxisLabelEvery: Math.ceil(3 / hoursPerDataPoint)

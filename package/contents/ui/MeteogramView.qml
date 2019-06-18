@@ -9,7 +9,7 @@ Item {
 	width: 400
 	height: 100
 	property bool clock24h: appletConfig.clock24h
-	property int cfg_meteogram_hours: 9
+	property int visibleDuration: 9
 	property bool showIconOutline: false
 	property bool showGridlines: true
 	property alias xAxisScale: graph.xAxisScale
@@ -20,7 +20,7 @@ Item {
 		graph.update()
 	}
 
-	onCfg_meteogram_hoursChanged: {
+	onVisibleDurationChanged: {
 		graph.update()
 	}
 
@@ -454,7 +454,7 @@ Item {
 		// console.log(JSON.stringify(gData, null, '\t'))
 
 		// Only forcast next _ hours
-		gData = gData.slice(0, Math.max(3, Math.ceil(meteogramView.cfg_meteogram_hours * meteogramView.xAxisScale) + 1))
+		gData = gData.slice(0, Math.max(3, Math.ceil(meteogramView.visibleDuration * meteogramView.xAxisScale) + 1))
 
 		// Format xAxis Labels
 		gData = formatXAxisLabels(gData)
