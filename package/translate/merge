@@ -1,5 +1,5 @@
 #!/bin/sh
-# Version: 9
+# Version: 10
 
 # https://techbase.kde.org/Development/Tutorials/Localization/i18n_Build_Systems
 # Based on: https://github.com/psifidotos/nowdock-plasmoid/blob/master/po/Messages.sh
@@ -95,7 +95,7 @@ for cat in $catalogs; do
 	poEmptyMessageCount=`expr $(grep -Pzo 'msgstr ""\n(\n|$)' "$cat.new" | grep -c 'msgstr ""')`
 	poMessagesDoneCount=`expr $potMessageCount - $poEmptyMessageCount`
 	poCompletion=`perl -e "printf(\"%d\", $poMessagesDoneCount * 100 / $potMessageCount)"`
-	poLine=`perl -e "printf(\"$entryFormat\", $catLocale, \"${poMessagesDoneCount}/${potMessageCount}\", \"${poCompletion}%\")"`
+	poLine=`perl -e "printf(\"$entryFormat\", \"$catLocale\", \"${poMessagesDoneCount}/${potMessageCount}\", \"${poCompletion}%\")"`
 	echo "$poLine" >> "./Status.md"
 
 	# mv "$cat" "$cat.old"
