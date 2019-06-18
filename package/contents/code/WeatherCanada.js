@@ -373,7 +373,7 @@ function updateDailyWeather(callback) {
 	var url = getCityUrl(plasmoid.configuration.weather_canada_city_id)
 	Requests.request(url, function(err, data, xhr) {
 		if (err) return console.log('fetchDailyWeatherForecast.err', err, xhr && xhr.status, data)
-		console.log('fetchDailyWeatherForecast.response')
+		logger.debug('fetchDailyWeatherForecast.response')
 		
 		var weatherData = parseDailyHtml(data)
 		// console.log(JSON.stringify(weatherData, null, '\t'))
@@ -389,7 +389,7 @@ function updateHourlyWeather(callback) {
 	var url = getCityHourlyUrl(plasmoid.configuration.weather_canada_city_id)
 	Requests.request(url, function(err, data, xhr) {
 		if (err) return console.log('fetchHourlyWeatherForecast.err', err, xhr && xhr.status, data)
-		console.log('fetchHourlyWeatherForecast.response')
+		logger.debug('fetchHourlyWeatherForecast.response')
 		
 		var weatherData = parseHourlyHtml(data)
 		// console.log(JSON.stringify(weatherData, null, '\t'))
