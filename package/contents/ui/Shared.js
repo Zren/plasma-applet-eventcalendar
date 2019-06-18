@@ -19,35 +19,6 @@ function openGoogleCalendarNewEventUrl(date) {
 	Qt.openUrlExternally(url)
 }
 
-function openOpenWeatherMapCityUrl(cityId) {
-	var url = 'https://openweathermap.org/city/'
-	url += cityId
-	Qt.openUrlExternally(url)
-}
-
-function fetchHourlyWeatherForecast(args, callback) {
-	if (!args.app_id) return callback('OpenWeatherMap AppId not set')
-	if (!args.city_id) return callback('OpenWeatherMap CityId not set')
-	
-	var url = 'https://api.openweathermap.org/data/2.5/'
-	url += 'forecast?id=' + args.city_id
-	url += '&units=' + (args.units || 'metric')
-	url += '&appid=' + args.app_id
-	Requests.getJSON(url, callback)
-}
-
-function fetchDailyWeatherForecast(args, callback) {
-	console.log('fetchWeatherForecast')
-	if (!args.app_id) return callback('OpenWeatherMap AppId not set')
-	if (!args.city_id) return callback('OpenWeatherMap CityId not set')
-	
-	var url = 'https://api.openweathermap.org/data/2.5/'
-	url += 'forecast/daily?id=' + args.city_id
-	url += '&units=' + (args.units || 'metric')
-	url += '&appid=' + args.app_id
-	Requests.getJSON(url, callback)
-}
-
 // https://openweathermap.org/weather-conditions
 var weatherIconMap = {
 	'01d': 'weather-clear',
