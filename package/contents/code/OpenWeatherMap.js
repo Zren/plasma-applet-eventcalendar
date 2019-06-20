@@ -9,7 +9,9 @@ function openOpenWeatherMapCityUrl(cityId) {
 function fetchHourlyWeatherForecast(args, callback) {
 	if (!args.app_id) return callback('OpenWeatherMap AppId not set')
 	if (!args.city_id) return callback('OpenWeatherMap CityId not set')
-	
+
+	// return testRateLimitError(callback)
+
 	var url = 'https://api.openweathermap.org/data/2.5/'
 	url += 'forecast?id=' + args.city_id
 	url += '&units=' + (args.units || 'metric')
@@ -20,7 +22,9 @@ function fetchHourlyWeatherForecast(args, callback) {
 function fetchDailyWeatherForecast(args, callback) {
 	if (!args.app_id) return callback('OpenWeatherMap AppId not set')
 	if (!args.city_id) return callback('OpenWeatherMap CityId not set')
-	
+
+	// return testRateLimitError(callback)
+
 	var url = 'https://api.openweathermap.org/data/2.5/'
 	url += 'forecast/daily?id=' + args.city_id
 	url += '&units=' + (args.units || 'metric')
@@ -124,4 +128,15 @@ function updateHourlyWeather(callback) {
 
 		callback(err, data, xhr)
 	})
+}
+
+//--- Tests
+function testRateLimitError(callback) {
+	var err = 'HTTP Error 429: '
+	var data = {
+		"cod":429,
+		"message": "Your account is temporary blocked due to exceeding of requests limitation of your subscription type. Please choose the proper subscription http://openweathermap.org/price"
+	}
+	var xhr = { status: 429 }
+	return callback(err, data, xhr)
 }
