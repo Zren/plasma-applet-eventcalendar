@@ -365,7 +365,7 @@ FocusScope {
 					anchors.rightMargin: agendaView.scrollbarWidth
 					onClicked: {
 						updateEvents()
-						updateWeather(true)
+						updateWeather()
 					}
 
 					// Timer {
