@@ -123,7 +123,7 @@ CalendarManager {
 				logger.log('attempting to create an event without an access token set')
 			}
 		} else {
-			logger.log('cannot create an new event for the calendar', calendarId)
+			logger.log('cannot create a new event for the calendar', calendarId)
 		}
 	}
 
