@@ -3,6 +3,8 @@ import QtQuick 2.0
 import "../lib/Requests.js" as Requests
 import "../../code/ColorIdMap.js" as ColorIdMap
 
+// import "./GoogleCalendarTests.js" as GoogleCalendarTests
+
 CalendarManager {
 	id: googleCalendarManager
 
@@ -55,6 +57,11 @@ CalendarManager {
 
 	function fetchGCalEvents(args, callback) {
 		logger.debug('fetchGCalEvents', args.calendarId)
+
+		// return GoogleCalendarTests.testInvalidCredentials(callback)
+		// return GoogleCalendarTests.testDailyLimitExceeded(callback)
+		// return GoogleCalendarTests.testBackendError(callback)
+
 		var onResponse = fetchGCalEventsPageResponse.bind(this, args, callback, null)
 		fetchGCalEventsPage(args, onResponse)
 	}
