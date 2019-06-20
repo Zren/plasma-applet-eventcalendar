@@ -370,7 +370,7 @@ function updateDailyWeather(callback) {
 		
 		var weatherData = parseDailyHtml(data)
 		// console.log(JSON.stringify(weatherData, null, '\t'))
-		callback(err, weatherData)
+		callback(err, weatherData, xhr)
 	})
 }
 
@@ -386,7 +386,7 @@ function updateHourlyWeather(callback) {
 		
 		var weatherData = parseHourlyHtml(data)
 		// console.log(JSON.stringify(weatherData, null, '\t'))
-		callback(err, weatherData)
+		callback(err, weatherData, xhr)
 	})
 }
 

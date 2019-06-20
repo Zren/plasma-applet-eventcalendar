@@ -29,7 +29,7 @@ function openCityUrl() {
 }
 
 /* Update the weather shown in the agenda. */
-/* @return {
+/* @returns: callback(err, {
 	list: [
 		{
 			dt: 1474831800, // seconds
@@ -48,7 +48,7 @@ function openCityUrl() {
 		},
 		...
 	]
-}
+}, xhr)
 */
 function updateDailyWeather(callback) {
 	if (!weatherIsSetup()) {
@@ -63,7 +63,7 @@ function updateDailyWeather(callback) {
 }
 
 /* Update the meteogram dataset. Will not be called if the meteogram isn't enabled. */
-/* @return {
+/* @returns: callback(err, {
 	list: [
 		{
 			dt: 1474831800, // seconds
@@ -74,7 +74,7 @@ function updateDailyWeather(callback) {
 		},
 		...
 	]
-}
+}, xhr)
 */
 function updateHourlyWeather(callback) {
 	if (!weatherIsSetup()) {
