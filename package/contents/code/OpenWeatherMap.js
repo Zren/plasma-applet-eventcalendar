@@ -87,6 +87,11 @@ function parseHourlyData(weatherData) {
 	return weatherData
 }
 
+function handleError(funcName, callback, err, data, xhr) {
+	logger.logJSON(funcName + '.err', err, xhr && xhr.status, data)
+	return callback(err, data, xhr)
+}
+
 function updateDailyWeather(callback) {
 	logger.debug('fetchDailyWeatherForecast', lastForecastAt, Date.now())
 	fetchDailyWeatherForecast({
@@ -94,7 +99,7 @@ function updateDailyWeather(callback) {
 		city_id: plasmoid.configuration.weather_city_id,
 		units: plasmoid.configuration.weather_units,
 	}, function(err, data, xhr) {
-		if (err) return console.log('fetchDailyWeatherForecast.err', err, xhr && xhr.status, data)
+		if (err) return handleError('fetchDailyWeatherForecast', callback, err, data, xhr)
 		logger.debug('fetchDailyWeatherForecast.response')
 		// logger.debugJSON('fetchDailyWeatherForecast.response', data)
 
@@ -111,12 +116,12 @@ function updateHourlyWeather(callback) {
 		city_id: plasmoid.configuration.weather_city_id,
 		units: plasmoid.configuration.weather_units,
 	}, function(err, data, xhr) {
-		if (err) return console.log('fetchHourlyWeatherForecast.err', err, xhr && xhr.status, data)
+		if (err) return handleError('updateHourlyWeather', callback, err, data, xhr)
 		logger.debug('fetchHourlyWeatherForecast.response')
 		// logger.debugJSON('fetchHourlyWeatherForecast.response', data)
 
 		data = parseHourlyData(data)
 
-		callback(err, data)
+		callback(err, data, xhr)
 	})
 }
