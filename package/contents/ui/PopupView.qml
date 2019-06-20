@@ -557,10 +557,15 @@ FocusScope {
 		}
 	}
 
+	function handleWeatherError(funcName, err, data, xhr) {
+		logger.log(funcName + '.err', err, xhr && xhr.status, data)
+		lastForecastAt = Date.now() // If there's an error, don't bother the API for another hour.
+	}
+
 	function updateDailyWeather() {
 		logger.debug('updateDailyWeather', lastForecastAt, Date.now())
 		WeatherApi.updateDailyWeather(function(err, data, xhr) {
-			if (err) return logger.log('updateDailyWeather.err', err, xhr && xhr.status, data)
+			if (err) return handleWeatherError('updateDailyWeather', err, data, xhr)
 			logger.debugJSON('updateDailyWeather.response', data)
 
 			lastForecastAt = Date.now()
@@ -572,7 +577,7 @@ FocusScope {
 	function updateHourlyWeather() {
 		logger.debug('updateHourlyWeather', lastForecastAt, Date.now())
 		WeatherApi.updateHourlyWeather(function(err, data, xhr) {
-			if (err) return logger.log('updateHourlyWeather.err', err, xhr && xhr.status, data)
+			if (err) return handleWeatherError('updateHourlyWeather', err, data, xhr)
 			logger.debugJSON('updateHourlyWeather.response', data)
 
 			lastForecastAt = Date.now()
