@@ -80,17 +80,17 @@ Item {
 			}
 
 			onWheel: {
-				var delta = wheel.angleDelta.y || wheel.angleDelta.x;
-				wheelDelta += delta;
+				var delta = wheel.angleDelta.y || wheel.angleDelta.x
+				wheelDelta += delta
 				
 				// Magic number 120 for common "one click"
 				// See: https://doc.qt.io/qt-5/qml-qtquick-wheelevent.html#angleDelta-prop
 				while (wheelDelta >= 120) {
-					wheelDelta -= 120;
+					wheelDelta -= 120
 					executable.exec(plasmoid.configuration.clock_mousewheel_up)
 				}
 				while (wheelDelta <= -120) {
-					wheelDelta += 120;
+					wheelDelta += 120
 					executable.exec(plasmoid.configuration.clock_mousewheel_down)
 				}
 			}
@@ -120,7 +120,7 @@ Item {
 
 		property bool isExpanded: plasmoid.expanded
 		onIsExpandedChanged: {
-			logger.debug('isExpanded', isExpanded);
+			logger.debug('isExpanded', isExpanded)
 			if (isExpanded) {
 				updateToday()
 				updateWeather()
