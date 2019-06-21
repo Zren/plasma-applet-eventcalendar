@@ -80,6 +80,7 @@ FocusScope {
 	property var hourlyWeatherData: { "list": [] }
 	property var currentWeatherData: null
 	property var lastForecastAt: null
+	property var lastForecastErr: null
 
 	Connections {
 		target: monthView
@@ -293,15 +294,27 @@ FocusScope {
 				property int hoursPerDataPoint: WeatherApi.getDataPointDuration()
 
 				Rectangle {
+					id: meteogramMessageBox
 					anchors.fill: parent
 					anchors.margins: 10
 					color: "transparent"
 					border.color: theme.buttonBackgroundColor
 					border.width: 1
-					visible: !WeatherApi.weatherIsSetup()
+
+					readonly property string message: {
+						if (!WeatherApi.weatherIsSetup()) {
+							return i18n("Weather not configured.\nGo to Weather in the config and set your city,\nand/or disable the meteogram to hide this area.")
+						} else if (lastForecastErr) {
+							return i18n("Error fetching weather.") + '\n' + lastForecastErr
+						} else {
+							return ''
+						}
+					}
+
+					visible: !!mesage
 
 					PlasmaComponents.Label {
-						text: i18n("Weather not configured.\nGo to Weather in the config and set your city,\nand/or disable the meteogram to hide this area.")
+						text: meteogramMessageBox.message
 						anchors.fill: parent
 						fontSizeMode: Text.Fit
 						wrapMode: Text.Wrap
@@ -560,6 +573,11 @@ FocusScope {
 	function handleWeatherError(funcName, err, data, xhr) {
 		logger.log(funcName + '.err', err, xhr && xhr.status, data)
 		lastForecastAt = Date.now() // If there's an error, don't bother the API for another hour.
+		if (xhr && xhr.status == 429) {
+			lastForecastErr = i18n("Weather API limit reached, will try again soon.")
+		} else {
+			lastForecastErr = err
+		}
 	}
 
 	function updateDailyWeather() {
@@ -569,6 +587,7 @@ FocusScope {
 			logger.debugJSON('updateDailyWeather.response', data)
 
 			lastForecastAt = Date.now()
+			lastForecastErr = null
 			dailyWeatherData = data
 			updateUI()
 		})
@@ -581,6 +600,7 @@ FocusScope {
 			logger.debugJSON('updateHourlyWeather.response', data)
 
 			lastForecastAt = Date.now()
+			lastForecastErr = null
 			hourlyWeatherData = data
 			currentWeatherData = data.list[0]
 			meteogramView.parseWeatherForecast(currentWeatherData, hourlyWeatherData)
