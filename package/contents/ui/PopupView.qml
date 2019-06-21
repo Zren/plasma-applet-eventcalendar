@@ -304,7 +304,7 @@ FocusScope {
 					readonly property string message: {
 						if (!WeatherApi.weatherIsSetup()) {
 							return i18n("Weather not configured.\nGo to Weather in the config and set your city,\nand/or disable the meteogram to hide this area.")
-						} else if (lastForecastErr) {
+						} else if (lastForecastErr && !meteogramView.populated) {
 							return i18n("Error fetching weather.") + '\n' + lastForecastErr
 						} else {
 							return ''

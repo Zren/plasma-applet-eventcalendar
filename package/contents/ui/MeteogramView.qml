@@ -15,6 +15,8 @@ Item {
 	property alias xAxisScale: graph.xAxisScale
 	property int xAxisLabelEvery: 1
 
+	property bool populated: false
+
 	onClock24hChanged: {
 		graph.gridData = formatXAxisLabels(graph.gridData)
 		graph.update()
@@ -461,6 +463,7 @@ Item {
 
 		graph.gridData = gData
 		graph.update()
+		meteogramView.populated = true
 	}
 
 	function formatXAxisLabels(gData) {
