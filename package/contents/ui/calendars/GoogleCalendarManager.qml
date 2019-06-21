@@ -66,18 +66,12 @@ CalendarManager {
 		fetchGCalEventsPage(args, onResponse)
 	}
 
-	function inPlaceMergeArray(arr1, arr2) {
-		arr1.splice.apply(arr1, [arr1.length, 0].concat(arr2))
-	}
-
 	function fetchGCalEventsPageResponse(args, finishedCallback, allData, err, data, xhr) {
 		logger.debug('fetchGCalEventsPageResponse', args, finishedCallback, allData, err, data, xhr)
 		if (err) {
 			return finishedCallback(err, data, xhr)
 		}
 		if (allData) {
-			// inPlaceMergeArray(allData.items, data.items) // Merge events
-			// delete data.items // Delete old reference
 			data.items = allData.items.concat(data.items)
 			delete allData.items
 			delete allData
