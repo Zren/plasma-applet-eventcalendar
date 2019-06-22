@@ -187,9 +187,7 @@ ConfigPage {
 	}
 
 	Component.onCompleted: {
-		if (!session.accessToken) {
-			// session.generateUserCodeAndPoll()
-		} else {
+		if (session.accessToken) {
 			session.calendarListChanged()
 		}
 	}
