@@ -311,7 +311,7 @@ FocusScope {
 						}
 					}
 
-					visible: !!mesage
+					visible: !!message
 
 					PlasmaComponents.Label {
 						text: meteogramMessageBox.message
