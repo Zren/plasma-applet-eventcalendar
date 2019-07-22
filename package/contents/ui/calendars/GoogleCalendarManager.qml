@@ -1,5 +1,6 @@
 import QtQuick 2.0
 
+import "../lib/Async.js" as Async
 import "../lib/Requests.js" as Requests
 import "../../code/ColorIdMap.js" as ColorIdMap
 
@@ -25,17 +26,50 @@ CalendarManager {
 
 	//-------------------------
 	// Events
-	function fetchGoogleAccountEvents(accessToken, calendarIdList) {
-		if (accessToken) {
-			for (var i = 0; i < calendarIdList.length; i++) {
-				fetchGoogleCalendarEvents(accessToken, calendarIdList[i])
-			}
+	function fetchGoogleAccountEvents(calendarIdList) {
+		console.log('fetchGoogleAccountEvents', calendarIdList)
+		console.log('\taccessToken', accessToken)
+		if (!accessToken) return
+
+		console.log('plasmoid.configuration.access_token_expires_at', plasmoid.configuration.access_token_expires_at)
+		console.log('Date.now()', Date.now())
+
+		// for (var i = 0; i < calendarIdList.length; i++) {
+		// 	fetchGoogleCalendarEvents(calendarIdList[i])
+		// }
+
+		var tasks = []
+		for (var i = 0; i < calendarIdList.length; i++) {
+			var calendarId = calendarIdList[i]
+			var task = fetchGoogleCalendarEvents.bind(this, calendarId)
+			tasks.push(task)
+			break
 		}
+
+		googleCalendarManager.asyncRequests += 1
+		Async.parallel(tasks, function(err, results){
+			if (err) {
+				logger.debug('fetchGoogleAccountEvents.err', err)
+				googleCalendarManager.asyncRequestsDone += 1
+				return handleError(err.err, err.data, err.xhr)
+			}
+
+			for (var i = 0; i < results.length; i++) {
+				var calendarId = results[i].calendarId
+				var calendarData = results[i].data
+				setCalendarData(calendarId, calendarData)
+			}
+			googleCalendarManager.asyncRequestsDone += 1
+		})
 	}
 
-	function fetchGoogleCalendarEvents(accessToken, calendarId) {
+	function fetchGoogleCalendarEvents(calendarId, callback) {
 		logger.debug('fetchGoogleCalendarEvents', calendarId)
-		googleCalendarManager.asyncRequests += 1
+		// return callback({
+		// 	err: 'test',
+		// 	data: null,
+		// 	xhr: null,
+		// })
 		fetchGCalEvents({
 			calendarId: calendarId,
 			start: googleCalendarManager.dateMin.toISOString(),
@@ -44,15 +78,17 @@ CalendarManager {
 		}, function(err, data, xhr) {
 			if (err) {
 				logger.logJSON('onErrorFetchingEvents: ', err)
-				if (xhr.status === 404) {
-					return
-				}
-				googleCalendarManager.asyncRequestsDone += 1
-				return onErrorFetchingEvents(err)
+				return callback({
+					err: err,
+					data: data,
+					xhr: xhr,
+				})
 			}
 
-			setCalendarData(calendarId, data)
-			googleCalendarManager.asyncRequestsDone += 1
+			return callback(null, {
+				calendarId: calendarId,
+				data: data,
+			})
 		})
 	}
 
@@ -311,6 +347,14 @@ CalendarManager {
 			}
 			callback(err, data, xhr)
 		})
+	}
+
+	function handleError(err, data, xhr) {
+		// https://developers.google.com/calendar/v3/errors
+		if (err.error && err.error.errors && err.error.errors.length >= 1) {
+			var err0 = err.error.errors[0]
+			
+		}
 	}
 
 
