@@ -27,6 +27,8 @@ CalendarManager {
 		fetchCurrentUserConfig(function(err, metadata) {
 			plasmoid.configuration.refresh_token = metadata['refresh_token']
 			plasmoid.configuration.access_token = metadata['access_token']
+			plasmoid.configuration.access_token_type = metadata['access_token_type']
+			plasmoid.configuration.access_token_expires_at = metadata['access_token_expires_at']
 			plasmoid.configuration.calendar_id_list = metadata['calendar_id_list']
 			plasmoid.configuration.calendar_list = metadata['calendar_list']
 		})
