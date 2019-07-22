@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: eventcalendar\n"
 "Report-Msgid-Bugs-To: https://github.com/Zren/plasma-applet-eventcalendar\n"
-"POT-Creation-Date: 2019-06-17 20:34-0400\n"
+"POT-Creation-Date: 2019-07-22 18:35-0400\n"
 "PO-Revision-Date: 2019-05-04 00:48-0400\n"
 "Last-Translator: Chris Darnell <chris@cedeel.com>\n"
 "Language-Team: Chris Darnell <chris@cedeel.com>\n"
@@ -705,7 +705,7 @@ msgstr "Vælg sprog..."
 msgid "Set Locale..."
 msgstr "Regionale indstillinger..."
 
-#: ../contents/ui/MeteogramView.qml:326
+#: ../contents/ui/MeteogramView.qml:500
 #, c-format
 msgid "%1mm"
 msgstr "%1mm"
@@ -733,7 +733,7 @@ msgstr "[Ingen kalendere]"
 msgid "Eg: 9am-5pm Work"
 msgstr "Fx.: 9-17 Arbejde"
 
-#: ../contents/ui/PopupView.qml:304
+#: ../contents/ui/PopupView.qml:306
 msgid ""
 "Weather not configured.\n"
 "Go to Weather in the config and set your city,\n"
@@ -742,6 +742,14 @@ msgstr ""
 "Vejrudsigten er ikke konfigureret.\n"
 "Gå til fanen 'Vejr' i indstillingerne, og indstil din by\n"
 "og/eller slå vejrgrafikken fra for at skjule dette område."
+
+#: ../contents/ui/PopupView.qml:308
+msgid "Error fetching weather."
+msgstr ""
+
+#: ../contents/ui/PopupView.qml:577
+msgid "Weather API limit reached, will try again soon."
+msgstr ""
 
 #: ../contents/ui/TimerInputView.qml:75
 msgid "Cancel"

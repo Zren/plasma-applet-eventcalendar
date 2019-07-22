@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: eventcalendar\n"
 "Report-Msgid-Bugs-To: https://github.com/Zren/plasma-applet-eventcalendar\n"
-"POT-Creation-Date: 2019-06-17 20:34-0400\n"
+"POT-Creation-Date: 2019-07-22 18:35-0400\n"
 "PO-Revision-Date: 2018-06-07 01:37+0300\n"
 "Last-Translator: Chris P <skylin@protonmail.com>\n"
 "Language-Team: Chris P <skylin@protonmail.com>\n"
@@ -705,7 +705,7 @@ msgstr "Ορισμός Γλώσσας..."
 msgid "Set Locale..."
 msgstr "Ρύθμιση Τοπικότητας..."
 
-#: ../contents/ui/MeteogramView.qml:326
+#: ../contents/ui/MeteogramView.qml:500
 #, c-format
 msgid "%1mm"
 msgstr "%1mm"
@@ -733,7 +733,7 @@ msgstr "[Χωρίς Ημερολόγια]"
 msgid "Eg: 9am-5pm Work"
 msgstr "Πχ: 9πμ-5μμ Εργασία"
 
-#: ../contents/ui/PopupView.qml:304
+#: ../contents/ui/PopupView.qml:306
 msgid ""
 "Weather not configured.\n"
 "Go to Weather in the config and set your city,\n"
@@ -742,6 +742,14 @@ msgstr ""
 "Ο καιρός δεν έχει ρυθμιστεί.\n"
 "Πηγαίνετε στο Καιρός στις ρυθμίσεις του Event Calendar και ορίστε την πόλη σας,\n"
 "και / ή απενεργοποιήστε το μετεωρογράφημα για να αποκρύψετε αυτήν την περιοχή."
+
+#: ../contents/ui/PopupView.qml:308
+msgid "Error fetching weather."
+msgstr ""
+
+#: ../contents/ui/PopupView.qml:577
+msgid "Weather API limit reached, will try again soon."
+msgstr ""
 
 #: ../contents/ui/TimerInputView.qml:75
 msgid "Cancel"

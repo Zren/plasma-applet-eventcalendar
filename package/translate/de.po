@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: eventcalendar\n"
 "Report-Msgid-Bugs-To: https://github.com/Zren/plasma-applet-eventcalendar\n"
-"POT-Creation-Date: 2019-06-17 20:34-0400\n"
+"POT-Creation-Date: 2019-07-22 18:35-0400\n"
 "PO-Revision-Date: 2017-04-29 11:18+0100\n"
 "Last-Translator: Hans-Peter Jansen <hpj@urpla.net>\n"
 "Language-Team: de <hpj@urpla.net>\n"
@@ -706,7 +706,7 @@ msgstr ""
 msgid "Set Locale..."
 msgstr "Region einstellen..."
 
-#: ../contents/ui/MeteogramView.qml:326
+#: ../contents/ui/MeteogramView.qml:500
 #, c-format
 msgid "%1mm"
 msgstr "%1mm"
@@ -734,7 +734,7 @@ msgstr "[Keine Kalender]"
 msgid "Eg: 9am-5pm Work"
 msgstr "z.B.: 9-17 Arbeit"
 
-#: ../contents/ui/PopupView.qml:304
+#: ../contents/ui/PopupView.qml:306
 msgid ""
 "Weather not configured.\n"
 "Go to Weather in the config and set your city,\n"
@@ -743,6 +743,14 @@ msgstr ""
 "Wettervorhersage nicht konfiguriert.\n"
 "Ort in der Konfiguration zur Wettervorhersage einstellen,\n"
 "oder das Meteogramm ausschalten."
+
+#: ../contents/ui/PopupView.qml:308
+msgid "Error fetching weather."
+msgstr ""
+
+#: ../contents/ui/PopupView.qml:577
+msgid "Weather API limit reached, will try again soon."
+msgstr ""
 
 #: ../contents/ui/TimerInputView.qml:75
 msgid "Cancel"
