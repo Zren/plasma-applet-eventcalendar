@@ -9,16 +9,17 @@ CalendarManager {
 	id: googleCalendarManager
 
 	calendarManagerId: "googlecal"
-	property var calendarIdList: plasmoid.configuration.calendar_id_list ? plasmoid.configuration.calendar_id_list.split(',') : ['primary']
+	readonly property var calendarIdList: plasmoid.configuration.calendar_id_list ? plasmoid.configuration.calendar_id_list.split(',') : ['primary']
+	readonly property string accessToken: plasmoid.configuration.access_token
 
 	onFetchAllCalendars: {
 		fetchGoogleAccountData()
 	}
 
 	function fetchGoogleAccountData() {
-		if (plasmoid.configuration.access_token) {
-			fetchGoogleAccountEvents(plasmoid.configuration.access_token, calendarIdList)
-			// fetchGoogleTasks(plasmoid.configuration.access_token, '@default')
+		if (accessToken) {
+			fetchGoogleAccountEvents(calendarIdList)
+			// fetchGoogleTasks('@default')
 		}
 	}
 
