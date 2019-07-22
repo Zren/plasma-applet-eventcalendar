@@ -80,7 +80,7 @@ msgstr "Description de l'évenement"
 
 #: ../contents/ui/AgendaEventItem.qml:260 ../contents/ui/config/ConfigGoogleCalendar.qml:103
 msgid "Submit"
-msgstr "soumettre"
+msgstr "Soumettre"
 
 #: ../contents/ui/AgendaEventItem.qml:285
 msgid "Hangout"
@@ -88,7 +88,7 @@ msgstr ""
 
 #: ../contents/ui/AgendaEventItem.qml:312
 msgid "Edit title"
-msgstr "édition du titre"
+msgstr "Édition du titre"
 
 #: ../contents/ui/AgendaEventItem.qml:321
 msgid "Edit date/time"
@@ -127,7 +127,7 @@ msgstr "Calendrier des événements"
 #: ../contents/ui/calendars/CalendarManager.qml:113
 msgctxt "event with no summary"
 msgid "(No title)"
-msgstr "(aucun titre)"
+msgstr "(Aucun titre)"
 
 #: ../contents/ui/config/ConfigAgenda.qml:29
 msgid "Show agenda"
@@ -143,7 +143,7 @@ msgstr "Agenda à gauche du mois"
 
 #: ../contents/ui/config/ConfigAgenda.qml:53
 msgid "Font Size:"
-msgstr "Taille de Police"
+msgstr "Taille de Police:"
 
 #: ../contents/ui/config/ConfigAgenda.qml:54 ../contents/ui/config/ConfigGeneral.qml:204
 msgid "px"
@@ -374,7 +374,7 @@ msgstr ""
 
 #: ../contents/ui/config/ConfigGeneral.qml:102
 msgid "Show/Hide widgets above the calendar. Toggle Agenda/Calendar on their respective tabs."
-msgstr "Afficher/Masquer les widgets au-dessus du calendrier. Basculer entre Agenda/Calendrier sur leurs onglets respectifs"
+msgstr "Afficher/Masquer les widgets au-dessus du calendrier. Basculer entre Agenda/Calendrier sur leurs onglets respectifs."
 
 #: ../contents/ui/config/ConfigGeneral.qml:109
 msgid "Meteogram"
@@ -502,7 +502,7 @@ msgstr ""
 
 #: ../contents/ui/config/ConfigGoogleCalendar.qml:99
 msgid "Enter code here (Eg: %1)"
-msgstr "Entrez le code ici"
+msgstr "Entrez le code ici (Ex: %1)"
 
 #: ../contents/ui/config/ConfigGoogleCalendar.qml:110
 msgid "Invalid Google Authorization Code"
