@@ -1,6 +1,7 @@
 import QtQuick 2.0
 import QtQuick.Controls 1.1
 import QtQuick.Controls.Styles 1.1
+import QtQuick.Controls 2.5 as QQC2
 import QtQuick.Layouts 1.1
 import org.kde.plasma.core 2.0 as PlasmaCore
 
@@ -90,6 +91,44 @@ ConfigPage {
 			text: i18n("Visit <a href=\"%1\">%2</a> (opens in your web browser). After you login and give permission to acess your calendar, it will give you a code to paste below.", session.authorizationCodeUrl, 'https://accounts.google.com/...')
 			color: "#8a6d3b"
 			wrapMode: Text.Wrap
+
+			// Tooltip
+			// QQC2.ToolTip.visible: !!hoveredLink
+			// QQC2.ToolTip.text: session.authorizationCodeUrl
+
+			// ContextMenu
+			MouseArea {
+				anchors.fill: parent
+				acceptedButtons: Qt.RightButton
+				onClicked: {
+					if (mouse.button === Qt.RightButton) {
+						contextMenu.popup()
+					}
+				}
+				onPressAndHold: {
+					if (mouse.source === Qt.MouseEventNotSynthesized) {
+						contextMenu.popup()
+					}
+				}
+
+				QQC2.Menu {
+					id: contextMenu
+					QQC2.MenuItem {
+						text: i18n("Copy Link")
+						onTriggered: clipboardHelper.copyText(session.authorizationCodeUrl)
+					}
+				}
+
+				TextEdit {
+					id: clipboardHelper
+					visible: false
+					function copyText(text) {
+						clipboardHelper.text = text
+						clipboardHelper.selectAll()
+						clipboardHelper.copy()
+					}
+				}
+			}
 		}
 		RowLayout {
 			TextField {
