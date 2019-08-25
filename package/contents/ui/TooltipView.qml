@@ -110,7 +110,7 @@ Item {
 					// and once for the time and the Repeater delegate cannot
 					// be one Item with two Labels because that wouldn't work
 					// in a grid then
-					var timezones = [];
+					var timezones = []
 					for (var i = 0; i < plasmoid.configuration.selectedTimeZones.length; i++) {
 						var timezone = plasmoid.configuration.selectedTimeZones[i]
 						if (timezone != 'Local') {
@@ -119,7 +119,7 @@ Item {
 						}
 					}
 
-					return timezones;
+					return timezones
 				}
 
 				PlasmaComponents.Label {
