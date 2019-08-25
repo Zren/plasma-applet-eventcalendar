@@ -17,6 +17,7 @@ Item {
 	LayoutMirroring.childrenInherit: true
 
 	property var dataSource: timeModel.dataSource
+	readonly property string timezoneTimeFormat: Qt.locale().timeFormat(Locale.ShortFormat)
 
 	function timeForZone(zone) {
 		var compactRepresentationItem = plasmoid.compactRepresentationItem
@@ -31,7 +32,7 @@ Item {
 		// add the dataengine TZ offset to it
 		var dateTime = new Date(msUTC + (dataSource.data[zone]["Offset"] * 1000))
 
-		var formattedTime = Qt.formatTime(dateTime, 1)
+		var formattedTime = Qt.formatTime(dateTime, timezoneTimeFormat)
 
 		if (dateTime.getDay() != dataSource.data["Local"]["DateTime"].getDay()) {
 			formattedTime += " (" + Qt.formatDate(dateTime, 1) + ")"
