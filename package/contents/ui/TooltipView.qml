@@ -50,6 +50,7 @@ Item {
 	}
 
 	ColumnLayout {
+		id: columnLayout
 		anchors {
 			left: parent.left
 			top: parent.top
@@ -71,6 +72,8 @@ Item {
 			}
 
 			ColumnLayout {
+				spacing: 0
+
 				PlasmaExtras.Heading {
 					id: tooltipMaintext
 					level: 3
@@ -92,6 +95,7 @@ Item {
 
 
 		GridLayout {
+			id: timezoneLayout
 			Layout.minimumWidth: Math.min(implicitWidth, preferredTextWidth)
 			Layout.maximumWidth: preferredTextWidth
 			// Layout.maximumHeight: childrenRect.height // Causes binding loop
@@ -120,12 +124,11 @@ Item {
 
 				PlasmaComponents.Label {
 					id: timezone
-					// Layout.fillWidth is buggy here
 					Layout.alignment: index % 2 === 0 ? Qt.AlignRight : Qt.AlignLeft
-					Layout.fillWidth: index % 2 === 1
 
 					wrapMode: Text.NoWrap
 					text: index % 2 == 0 ? nameForZone(modelData) : timeForZone(modelData)
+					font.weight: index % 2 == 0 ? Font.Bold : Font.Normal
 					height: paintedHeight
 					elide: Text.ElideNone
 					opacity: 0.6
