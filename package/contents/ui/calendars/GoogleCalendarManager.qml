@@ -233,6 +233,8 @@ CalendarManager {
 
 				callback(null)
 			})
+		} else {
+			callback('No refresh token. Cannot update access token.')
 		}
 	}
 
