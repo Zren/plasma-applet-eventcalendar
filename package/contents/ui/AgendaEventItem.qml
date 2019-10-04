@@ -77,7 +77,7 @@ LinkRect {
 							eventModel.setEventProperty(event.calendarId, event.id, 'summary', text)
 						}
 						Component.onCompleted: {
-							focus = true
+							forceActiveFocus()
 							agendaScrollView.positionViewAtEvent(agendaItemIndex, eventItemIndex)
 						}
 
@@ -274,7 +274,7 @@ LinkRect {
 
 
 							Component.onCompleted: {
-								focus = true
+								forceActiveFocus()
 								agendaScrollView.positionViewAtEvent(agendaItemIndex, eventItemIndex)
 							}
 
