@@ -198,7 +198,7 @@ LinkRect {
 			PlasmaComponents.Label {
 				id: eventDescription
 				visible: plasmoid.configuration.agendaShowEventDescription && text && !editDescriptionForm.active
-				text: model.description || ""
+				text: renderText(model.description)
 				color: PlasmaCore.ColorScope.textColor
 				opacity: 0.75
 				font.pointSize: -1
@@ -213,6 +213,45 @@ LinkRect {
 					anchors.fill: parent
 					acceptedButtons: Qt.NoButton // we don't want to eat clicks on the Text
 					cursorShape: parent.hoveredLink ? Qt.PointingHandCursor : Qt.ArrowCursor
+				}
+
+				function renderText(text) {
+					// console.log('renderText')
+					if (typeof text === 'undefined') {
+						return ''
+					}
+					var out = text
+					// text && console.log('renderText', text)
+					
+					// Render links
+					// Google doesn't auto-convert links to anchor tags when you paste a link in the description.
+					// However, we should treat it as a link. This simple regex replacement works when we're not
+					// dealing with HTML. So if we see an HTML anchor tag, skip it and assume the link has been
+					// formatted.
+					if (out.indexOf('<a href') == -1) {
+						var rUrl = /(http|https):\/\/[\w-]+(\.[\w-]+)+([\w.,@?^=%&amp;:\/~+#-]*[\w@?^=%&amp;\/~+#-])?/gi
+						out = out.replace(rUrl, function(m) {
+							// Google replaces ampersands with HTML the entity in the url text.
+							var encodedUrl = m.replace(/\&/g, '&amp;')
+
+							// console.log('        m', m)
+							// console.log('      enc', encodedUrl)
+
+							// Add extra space at the end to prevent styling entire text as a link when ending with a link.
+							return '<a href="' + m + '">' + encodedUrl + '</a>' + '&nbsp;'
+						})
+					}
+					// text && console.log('    Links', out)
+
+					// Render new lines
+					// out = out.replace(/\n/g, '<br>')
+					// text && console.log('    Newlines', out)
+
+					// Remove leading new line, as Google sometimes adds them.
+					out = out.replace(/^(\<br\>)+/, '')
+					// text && console.log('    LeadingBR', out)
+
+					return out
 				}
 			}
 
