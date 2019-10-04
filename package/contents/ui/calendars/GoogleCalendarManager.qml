@@ -38,16 +38,7 @@ CalendarManager {
 		checkAccessToken(func)
 	}
 	function fetchGoogleAccountEvents_run(calendarIdList, callback) {
-		console.log('fetchGoogleAccountEvents_run', calendarIdList)
-		console.log('\taccessToken', accessToken)
-		if (!accessToken) return
-
-		console.log('plasmoid.configuration.access_token_expires_at', plasmoid.configuration.access_token_expires_at)
-		console.log('Date.now()', Date.now())
-
-		// for (var i = 0; i < calendarIdList.length; i++) {
-		// 	fetchGoogleCalendarEvents(calendarIdList[i])
-		// }
+		logger.debug('fetchGoogleAccountEvents_run', calendarIdList)
 
 		var tasks = []
 		for (var i = 0; i < calendarIdList.length; i++) {
