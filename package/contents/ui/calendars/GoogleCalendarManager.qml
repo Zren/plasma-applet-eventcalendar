@@ -535,24 +535,46 @@ CalendarManager {
 
 	//---
 	function deleteEvent(calendarId, eventId) {
-		if (plasmoid.configuration.access_token) {
-			deleteGCalEvent({
-				accessToken: plasmoid.configuration.access_token,
-				calendarId: calendarId,
-				eventId: eventId,
-			}, function(err, data, xhr) {
-				// Note: No data is returned on success
-				// logger.debugJSON('deleteEvent.response', err, data, xhr.status)
-				var event = getEvent(calendarId, eventId)
-				logger.debugJSON('deleteEvent.success', calendarId, eventId, event)
-				if (event) {
-					removeEvent(calendarId, eventId)
-					eventDeleted(calendarId, eventId, event)
+		if (accessToken) {
+			var event = getEvent(calendarId, eventId)
+			if (!event) {
+				transactionError('attempting to "delete an event" for an event that doesn\'t exist')
+				return
+			}
+
+			var func = deleteEvent_run.bind(this, calendarId, eventId, function(err, data) {
+				if (err) {
+					deleteEvent_err(err)
+				} else {
+					deleteEvent_done(calendarId, eventId, data)
 				}
 			})
+			checkAccessToken(func)
 		} else {
-			logger.log('attempting to delete an event without an access token set')
+			transactionError('attempting to "delete an event" without an access token set')
 		}
+	}
+	function deleteEvent_run(calendarId, eventId, callback) {
+		logger.debugJSON('deleteEvent_run', calendarId, eventId)
+
+		deleteGCalEvent({
+			accessToken: accessToken,
+			calendarId: calendarId,
+			eventId: eventId,
+		}, callback)
+	}
+	function deleteEvent_done(calendarId, eventId, data) {
+		logger.debugJSON('deleteEvent_done', calendarId, eventId, data)
+
+		// Note: No data is returned on success
+		var event = getEvent(calendarId, eventId)
+		if (event) {
+			removeEvent(calendarId, eventId)
+			eventDeleted(calendarId, eventId, event)
+		}
+	}
+	function deleteEvent_err(err) {
+		logger.log('deleteEvent_err', err)
 	}
 
 	function deleteGCalEvent(args, callback) {
