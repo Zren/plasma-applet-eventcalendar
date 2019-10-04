@@ -142,7 +142,7 @@ CalendarManager {
 		if (calendarId == "debug") {
 			debugCalendarManager.setEventProperty(calendarId, eventId, key, value)
 		} else if (true) { // Google Calendar
-			googleCalendarManager.setEventProperty(plasmoid.configuration.access_token, calendarId, eventId, key, value)
+			googleCalendarManager.setEventProperty(calendarId, eventId, key, value)
 		} else {
 			logger.log('cannot edit the event property for the calendar', calendarId, eventId)
 		}
