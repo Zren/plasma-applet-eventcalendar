@@ -27,7 +27,18 @@ CalendarManager {
 	//-------------------------
 	// Events
 	function fetchGoogleAccountEvents(calendarIdList) {
-		console.log('fetchGoogleAccountEvents', calendarIdList)
+		googleCalendarManager.asyncRequests += 1
+		var func = fetchGoogleAccountEvents_run.bind(this, calendarIdList, function(err, data) {
+			if (err) {
+				fetchGoogleAccountEvents_err(err)
+			} else {
+				fetchGoogleAccountEvents_done(data)
+			}
+		})
+		checkAccessToken(func)
+	}
+	function fetchGoogleAccountEvents_run(calendarIdList, callback) {
+		console.log('fetchGoogleAccountEvents_run', calendarIdList)
 		console.log('\taccessToken', accessToken)
 		if (!accessToken) return
 
@@ -43,24 +54,22 @@ CalendarManager {
 			var calendarId = calendarIdList[i]
 			var task = fetchGoogleCalendarEvents.bind(this, calendarId)
 			tasks.push(task)
-			break
 		}
 
-		googleCalendarManager.asyncRequests += 1
-		Async.parallel(tasks, function(err, results){
-			if (err) {
-				logger.debug('fetchGoogleAccountEvents.err', err)
-				googleCalendarManager.asyncRequestsDone += 1
-				return handleError(err.err, err.data, err.xhr)
-			}
-
-			for (var i = 0; i < results.length; i++) {
-				var calendarId = results[i].calendarId
-				var calendarData = results[i].data
-				setCalendarData(calendarId, calendarData)
-			}
-			googleCalendarManager.asyncRequestsDone += 1
-		})
+		Async.parallel(tasks, callback)
+	}
+	function fetchGoogleAccountEvents_err(err) {
+		logger.debug('fetchGoogleAccountEvents.err', err)
+		googleCalendarManager.asyncRequestsDone += 1
+		return handleError(err.err, err.data, err.xhr)
+	}
+	function fetchGoogleAccountEvents_done(results) {
+		for (var i = 0; i < results.length; i++) {
+			var calendarId = results[i].calendarId
+			var calendarData = results[i].data
+			setCalendarData(calendarId, calendarData)
+		}
+		googleCalendarManager.asyncRequestsDone += 1
 	}
 
 	function fetchGoogleCalendarEvents(calendarId, callback) {
@@ -150,7 +159,7 @@ CalendarManager {
 			if (!err && data && data.error) {
 				return pageCallback(data, null, xhr)
 			}
-			logger.debugJSON('fetchGCalEventsPage.response', args.calendarId, data)
+			// logger.debugJSON('fetchGCalEventsPage.response', args.calendarId, data)
 			pageCallback(err, data, xhr)
 		})
 	}
@@ -208,6 +217,7 @@ CalendarManager {
 	}
 
 	function checkAccessToken(callback) {
+		logger.debug('checkAccessToken')
 		if (plasmoid.configuration.access_token_expires_at < Date.now() + 5000) {
 			updateAccessToken(callback)
 		} else {
@@ -240,6 +250,9 @@ CalendarManager {
 
 	signal accessTokenError(string msg)
 	signal newAccessToken()
+	signal transactionError(string msg)
+
+	onTransactionError: logger.log(msg)
 
 	function applyAccessToken(data) {
 		plasmoid.configuration.access_token = data.access_token
@@ -311,23 +324,41 @@ CalendarManager {
 
 
 
-	function createGoogleCalendarEvent(accessToken, calendarId, date, text) {
+	function createGoogleCalendarEvent(calendarId, date, text) {
 		if (accessToken) {
 			var dateString = date.getFullYear() + '-' + (date.getMonth()+1) + '-' + date.getDate()
 			var eventText = dateString + ' ' + text
-			createGCalEvent({
-				access_token: accessToken,
-				calendarId: calendarId,
-				text: eventText,
-			}, function(err, data) {
-				// logger.debug(err, JSON.stringify(data, null, '\t'))
-				if (googleCalendarManager.calendarIdList.indexOf(calendarId) >= 0) {
-					parseSingleEvent(calendarId, data)
-					addEvent(calendarId, data)
-					eventCreated(calendarId, data)
+
+			var func = createGoogleCalendarEvent_run.bind(this, calendarId, eventText, function(err, data) {
+				if (err) {
+					createGoogleCalendarEvent_err(err)
+				} else {
+					createGoogleCalendarEvent_done(calendarId, data)
 				}
 			})
+			checkAccessToken(func)
+		} else {
+			transactionError('attempting to create an event without an access token set')
 		}
+	}
+	function createGoogleCalendarEvent_run(calendarId, eventText, callback) {
+		logger.debugJSON('createGoogleCalendarEvent_run', calendarId, eventText)
+		createGCalEvent({
+			access_token: accessToken,
+			calendarId: calendarId,
+			text: eventText,
+		}, callback)
+	}
+	function createGoogleCalendarEvent_done(calendarId, data) {
+		logger.debugJSON('createGoogleCalendarEvent_done', calendarId, data)
+		if (googleCalendarManager.calendarIdList.indexOf(calendarId) >= 0) {
+			parseSingleEvent(calendarId, data)
+			addEvent(calendarId, data)
+			eventCreated(calendarId, data)
+		}
+	}
+	function createGoogleCalendarEvent_err(err) {
+		logger.log('createGoogleCalendarEvent_err', err)
 	}
 
 	function createGCalEvent(args, callback) {

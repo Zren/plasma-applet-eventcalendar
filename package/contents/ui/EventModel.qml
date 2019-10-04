@@ -117,8 +117,8 @@ CalendarManager {
 		if (calendarId == "debug") {
 
 		} else if (true) { // Google Calendar
-			if (plasmoid.configuration.access_token) {
-				googleCalendarManager.createGoogleCalendarEvent(plasmoid.configuration.access_token, calendarId, date, text)
+			if (googleCalendarManager.accessToken) {
+				googleCalendarManager.createGoogleCalendarEvent(calendarId, date, text)
 			} else {
 				logger.log('attempting to create an event without an access token set')
 			}
