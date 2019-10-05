@@ -402,6 +402,9 @@ CalendarManager {
 		var args = {}
 		args[key] = value
 		updateGoogleCalendarEvent(calendarId, eventId, args)
+
+		// Note: Make sure switching between all day event (event.start.date) and a date+time
+		// event (event.start.dateTime) works properly before switching to PATCH.
 		// patchGoogleCalendarEvent(accessToken, calendarId, eventId, args, callback)
 	}
 
