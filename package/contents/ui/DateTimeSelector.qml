@@ -23,12 +23,10 @@ GridLayout {
 		id: dateSelector
 		text: Qt.formatDateTime(dateTimeSelector.dateTime, dateTimeSelector.dateFormat)
 		enabled: dateTimeSelector.enabled
-		opacity: 1 // Override disabled opacity effect.
-		// defaultMinimumWidth: 0
+		// opacity: 1 // Override disabled opacity effect.
 		Layout.column: dateTimeSelector.dateFirst ? 0 : 1
 
-		// property int defaultMinimumWidth: units.gridUnit * 8
-		property int defaultMinimumWidth: 0
+		property int defaultMinimumWidth: 80 * units.devicePixelRatio
 		readonly property int implicitContentWidth: contentWidth + leftPadding + rightPadding
 		implicitWidth: Math.max(defaultMinimumWidth, implicitContentWidth)
 	}
@@ -36,13 +34,11 @@ GridLayout {
 		id: timeSelector
 		text: Qt.formatDateTime(dateTimeSelector.dateTime, dateTimeSelector.timeFormat)
 		enabled: dateTimeSelector.enabled && dateTimeSelector.showTime
-		opacity: 1 // Override disabled opacity effect.
+		// opacity: 1 // Override disabled opacity effect.
 		visible: dateTimeSelector.showTime
-		// defaultMinimumWidth: 0
 		Layout.column: dateTimeSelector.dateFirst ? 1 : 0
 
-		// property int defaultMinimumWidth: units.gridUnit * 8
-		property int defaultMinimumWidth: 0
+		property int defaultMinimumWidth: 80 * units.devicePixelRatio
 		readonly property int implicitContentWidth: contentWidth + leftPadding + rightPadding
 		implicitWidth: Math.max(defaultMinimumWidth, implicitContentWidth)
 	}
