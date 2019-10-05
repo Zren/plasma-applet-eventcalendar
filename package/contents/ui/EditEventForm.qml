@@ -39,11 +39,6 @@ Loader {
 
 			//----
 
-			MouseArea {
-				anchors.fill: parent
-				acceptedButtons: Qt.AllButtons // Eat all clicks so we don't triger the event onclick signal.
-			}
-
 			GridLayout {
 				id: editEventGrid
 				anchors.left: parent.left

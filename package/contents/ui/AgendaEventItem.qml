@@ -25,7 +25,7 @@ LinkRect {
 	}
 	Component.onCompleted: agendaEventItem.checkIfInProgress()
 
-	property bool isEditing: editSummaryForm.active || editDateTimeForm.active
+	property bool isEditing: editSummaryForm.active || editDateTimeForm.active || editDescriptionForm.active || editEventForm.active
 	enabled: !isEditing
 
 	RowLayout {
