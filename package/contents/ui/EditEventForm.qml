@@ -82,7 +82,7 @@ Loader {
 						id: isAllDayCheckBox
 						text: i18n("All day")
 						checked: !!event.start.date
-						enabled: false
+						enabled: durationSelector.enabled
 					}
 				}
 

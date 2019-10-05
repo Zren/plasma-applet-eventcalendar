@@ -6,7 +6,7 @@ import org.kde.plasma.core 2.0 as PlasmaCore
 import org.kde.plasma.components 2.0 as PlasmaComponents
 import org.kde.plasma.components 3.0 as PlasmaComponents3
 
-RowLayout {
+Flow {
 	id: durationSelector
 
 	property alias startTimeSelector: startTimeSelector
@@ -19,7 +19,7 @@ RowLayout {
 	property bool showTime: false
 
 	spacing: 0
-	Layout.minimumWidth: startTimeSelector.minimumWidth + seperatorLabel.implicitWidth + endTimeSelector.minimumWidth
+	// Layout.minimumWidth: startTimeSelector.minimumWidth + seperatorLabel.implicitWidth + endTimeSelector.minimumWidth
 
 	DateTimeSelector {
 		id: startTimeSelector
@@ -38,10 +38,5 @@ RowLayout {
 		enabled: durationSelector.enabled
 		showTime: durationSelector.showTime
 		dateFirst: false
-	}
-
-	Item {
-		Layout.fillWidth: true
-		Layout.fillHeight: true
 	}
 }
