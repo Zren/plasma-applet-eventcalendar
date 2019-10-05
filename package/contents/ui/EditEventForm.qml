@@ -3,6 +3,7 @@ import QtQuick.Controls 1.1
 import QtQuick.Layouts 1.1
 import org.kde.plasma.core 2.0 as PlasmaCore
 import org.kde.plasma.components 2.0 as PlasmaComponents
+import org.kde.plasma.components 3.0 as PlasmaComponents3
 
 Loader {
 	id: editEventForm
@@ -20,7 +21,7 @@ Loader {
 
 			Component.onCompleted: {
 				agendaScrollView.positionViewAtEvent(agendaItemIndex, eventItemIndex)
-				editLocationTextField.forceActiveFocus()
+				editSummaryTextField.forceActiveFocus()
 			}
 
 			function submit() {
@@ -51,7 +52,7 @@ Loader {
 
 				//---
 
-				PlasmaComponents.TextField {
+				PlasmaComponents3.TextField {
 					id: editSummaryTextField
 					Layout.fillWidth: true
 					Layout.columnSpan: 2
@@ -82,10 +83,11 @@ Loader {
 				RowLayout {
 					Layout.columnSpan: 2
 
-					PlasmaComponents.CheckBox {
+					PlasmaComponents3.CheckBox {
 						id: isAllDayCheckBox
 						text: i18n("All day")
 						checked: !!event.start.date
+						enabled: false
 					}
 				}
 
@@ -94,7 +96,7 @@ Loader {
 				EventPropertyIcon {
 					source: "mark-location-symbolic"
 				}
-				PlasmaComponents.TextField {
+				PlasmaComponents3.TextField {
 					id: editLocationTextField
 					Layout.fillWidth: true
 					placeholderText: i18n("Add Location")
@@ -128,7 +130,7 @@ Loader {
 					Layout.fillHeight: false
 					Layout.alignment: Qt.AlignTop
 				}
-				PlasmaComponents.TextArea {
+				PlasmaComponents3.TextArea {
 					id: editDescriptionTextField
 					placeholderText: i18n("Add description")
 					text: model.description || ""
