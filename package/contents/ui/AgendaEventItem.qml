@@ -89,10 +89,15 @@ LinkRect {
 			PlasmaComponents.Label {
 				id: eventDateTime
 				text: {
-					LocaleFuncs.formatEventDuration(model, {
+					var eventTimestamp = LocaleFuncs.formatEventDuration(model, {
 						relativeDate: agendaItemDate,
 						clock24h: appletConfig.clock24h,
 					})
+					if (model.location) {
+						return eventTimestamp + " | " + model.location
+					} else {
+						return eventTimestamp
+					}
 				}
 				color: eventItemInProgress ? inProgressColor : PlasmaCore.ColorScope.textColor
 				opacity: eventItemInProgress ? 1 : 0.75
