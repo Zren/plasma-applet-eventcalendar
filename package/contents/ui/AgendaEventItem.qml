@@ -50,7 +50,7 @@ LinkRect {
 				font.pixelSize: appletConfig.agendaFontSize
 				font.weight: eventItemInProgress ? inProgressFontWeight : Font.Normal
 				height: paintedHeight
-				visible: !editSummaryForm.active
+				visible: !(editSummaryForm.active || editEventForm.active)
 				Layout.fillWidth: true
 
 				// The Following doesn't seem to be applicable anymore (left comment just in case).
@@ -105,7 +105,7 @@ LinkRect {
 				font.pixelSize: appletConfig.agendaFontSize
 				font.weight: eventItemInProgress ? inProgressFontWeight : Font.Normal
 				height: paintedHeight
-				visible: !editDateTimeForm.active
+				visible: !(editDateTimeForm.active || editEventForm.active)
 			}
 
 			Loader {
@@ -202,7 +202,8 @@ LinkRect {
 
 			PlasmaComponents.Label {
 				id: eventDescription
-				visible: plasmoid.configuration.agendaShowEventDescription && text && !editDescriptionForm.active
+				readonly property bool showProperty: plasmoid.configuration.agendaShowEventDescription && text
+				visible: showProperty && !(editDescriptionForm.active || editEventForm.active)
 				text: renderText(model.description)
 				color: PlasmaCore.ColorScope.textColor
 				opacity: 0.75
