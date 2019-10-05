@@ -25,7 +25,7 @@ LinkRect {
 	}
 	Component.onCompleted: agendaEventItem.checkIfInProgress()
 
-	property bool isEditing: editSummaryForm.active || editDateTimeForm.active || editDescriptionForm.active || editEventForm.active
+	property bool isEditing: editSummaryForm.active || editDescriptionForm.active || editEventForm.active
 	enabled: !isEditing
 
 	RowLayout {
@@ -105,94 +105,8 @@ LinkRect {
 				font.pixelSize: appletConfig.agendaFontSize
 				font.weight: eventItemInProgress ? inProgressFontWeight : Font.Normal
 				height: paintedHeight
-				visible: !(editDateTimeForm.active || editEventForm.active)
+				visible: !editEventForm.active
 			}
-
-			Loader {
-				id: editDateTimeForm
-				active: false
-				visible: active
-				Layout.fillWidth: true
-				sourceComponent: Component {
-					RowLayout {
-						property alias isAllDayEvent: editAllDay.checked
-
-						ColumnLayout {
-							Layout.fillWidth: true
-							RowLayout {
-								DateSelector {
-									id: editStartDate
-									Layout.fillWidth: true
-									dateTime: model.start.dateTime
-									onDateTimeChanged: {
-										var t1 = model.start.dateTime.valueOf()
-										var t2 = dateTime.valueOf()
-										console.log('dt1', model.start.dateTime)
-										console.log('dt2', dateTime)
-										var dateDelta = Math.floor((t2 - t1) / (1000*60*60*24))
-										console.log('dateDelta', dateDelta)
-
-										var shiftedEndDate = new Date(model.end.dateTime)
-										shiftedEndDate.setDate(shiftedEndDate.getDate() + dateDelta)
-										editEndDate.dateTime = shiftedEndDate
-									}
-								}
-
-								PlasmaComponents.TextField {
-									id: editStartTime
-									Layout.fillWidth: true
-									enabled: !isAllDayEvent
-									placeholderText: '9:00am'
-									text: Qt.formatTime(model.start.dateTime)
-								}
-							}
-							PlasmaComponents.Label {
-								text: i18n("to")
-								Layout.fillWidth: true
-								horizontalAlignment: Text.AlignHCenter
-							}
-							RowLayout {
-								DateSelector {
-									id: editEndDate
-									Layout.fillWidth: true
-									dateTime: model.end.dateTime
-								}
-
-								PlasmaComponents.TextField {
-									id: editEndTime
-									Layout.fillWidth: true
-									enabled: !isAllDayEvent
-									placeholderText: '10:00am'
-									text: Qt.formatTime(model.end.dateTime)
-								}
-							}
-						}
-
-						ColumnLayout {
-							Layout.alignment: Qt.AlignTop
-							PlasmaComponents.CheckBox {
-								id: editAllDay
-								text: i18n("All Day")
-								Layout.minimumWidth: 0
-								checked: !!model.start.date
-							}
-							PlasmaComponents.Button {
-								text: i18n("Save")
-								Layout.minimumWidth: 0
-								onClicked: {
-									// ...
-									editDateTimeForm.active = false
-								}
-							}
-							PlasmaComponents.Button {
-								text: i18n("Discard")
-								Layout.minimumWidth: 0
-								onClicked: editDateTimeForm.active = false
-							}
-						}
-					} // RowLayout
-				} // Component
-			} // Loader
 
 			Item {
 				id: eventDescriptionSpacing
@@ -380,21 +294,13 @@ LinkRect {
 		contextMenu.addMenuItem(menuItem)
 
 		menuItem = contextMenu.newMenuItem()
-		menuItem.text = i18n("Edit date/time")
-		menuItem.enabled = event.canEdit
-		menuItem.clicked.connect(function() {
-			editDateTimeForm.active = !editDateTimeForm.active
-		})
-		// contextMenu.addMenuItem(menuItem)
-
-		menuItem = contextMenu.newMenuItem()
 		menuItem.text = i18n("Edit description")
 		menuItem.icon = "edit-rename"
 		menuItem.enabled = event.canEdit
 		menuItem.clicked.connect(function() {
 			editDescriptionForm.active = !editDescriptionForm.active
 		})
-		// contextMenu.addMenuItem(menuItem)
+		contextMenu.addMenuItem(menuItem)
 
 		menuItem = contextMenu.newMenuItem()
 		menuItem.text = i18n("Edit")
