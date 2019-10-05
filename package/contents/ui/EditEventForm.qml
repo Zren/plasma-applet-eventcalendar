@@ -10,9 +10,11 @@ Loader {
 	visible: active
 	Layout.fillWidth: true
 	sourceComponent: Component {
-		GridLayout {
+		Item {
 			id: editEventItem
-			columns: 2
+
+			implicitWidth: editEventGrid.implicitWidth
+			implicitHeight: editEventGrid.implicitHeight
 
 			readonly property var event: events.get(index)
 
@@ -32,6 +34,36 @@ Loader {
 
 			function cancel() {
 				editEventForm.active = false
+			}
+
+			//----
+
+			MouseArea {
+				anchors.fill: parent
+				acceptedButtons: Qt.AllButtons // Eat all clicks so we don't triger the event onclick signal.
+			}
+
+		GridLayout {
+			id: editEventGrid
+			anchors.left: parent.left
+			anchors.right: parent.right
+			columns: 2
+
+			//---
+
+			PlasmaComponents.TextField {
+				id: editSummaryTextField
+				Layout.fillWidth: true
+				Layout.columnSpan: 2
+				placeholderText: i18n("Event Title")
+				text: model.summary
+				onAccepted: {
+					logger.log('editSummaryTextField.onAccepted', text)
+					var event = events.get(index)
+					eventModel.setEventProperty(event.calendarId, event.id, 'summary', text)
+				}
+
+				Keys.onEscapePressed: editSummaryForm.active = false
 			}
 
 			//---
@@ -86,7 +118,7 @@ Loader {
 				enabled: false
 				Component.onCompleted: {
 					// AgendaView.__
-					console.log('populateCalendarSelector', eventCalendarId, event.calendarId)
+					// logger.debug('populateCalendarSelector', eventCalendarId, event.calendarId)
 					populateCalendarSelector(eventCalendarId, event.calendarId)
 				}
 			}
@@ -129,6 +161,8 @@ Loader {
 					onClicked: editEventItem.submit()
 				}
 			}
+		}
+
 		}
 	}
 }

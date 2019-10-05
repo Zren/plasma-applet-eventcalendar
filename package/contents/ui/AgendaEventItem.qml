@@ -323,9 +323,21 @@ LinkRect {
 				}
 			}
 
+			Item {
+				id: eventEditorSpacing
+				visible: editEventForm.visible
+				Layout.preferredHeight: 4 * units.devicePixelRatio
+			}
+
 			EditEventForm {
 				id: editEventForm
 				// active: true
+			}
+
+			Item {
+				id: eventEditorSpacingBelow
+				visible: editEventForm.visible
+				Layout.preferredHeight: 4 * units.devicePixelRatio
 			}
 
 			PlasmaComponents.ToolButton {
