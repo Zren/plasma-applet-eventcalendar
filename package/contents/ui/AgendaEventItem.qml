@@ -323,6 +323,11 @@ LinkRect {
 				}
 			}
 
+			EditEventForm {
+				id: editEventForm
+				// active: true
+			}
+
 			PlasmaComponents.ToolButton {
 				id: eventHangoutLink
 				visible: plasmoid.configuration.agendaShowEventHangoutLink && !!model.hangoutLink
@@ -375,6 +380,15 @@ LinkRect {
 		menuItem.enabled = event.canEdit
 		menuItem.clicked.connect(function() {
 			editDescriptionForm.active = !editDescriptionForm.active
+		})
+		// contextMenu.addMenuItem(menuItem)
+
+		menuItem = contextMenu.newMenuItem()
+		menuItem.text = i18n("Edit")
+		menuItem.icon = "edit-rename"
+		menuItem.enabled = event.canEdit
+		menuItem.clicked.connect(function() {
+			editEventForm.active = !editEventForm.active
 		})
 		contextMenu.addMenuItem(menuItem)
 
