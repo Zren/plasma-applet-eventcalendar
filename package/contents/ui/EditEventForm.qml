@@ -149,13 +149,21 @@ Loader {
 
 				RowLayout {
 					Layout.columnSpan: 2
+					spacing: 4 * units.devicePixelRatio
 					Item {
 						Layout.fillWidth: true
 					}
 					PlasmaComponents.Button {
-						text: i18n("Submit")
+						iconName: "document-save"
+						text: i18n("&Save")
 						implicitWidth: minimumWidth
 						onClicked: editEventItem.submit()
+					}
+					PlasmaComponents.Button {
+						iconName: "dialog-cancel"
+						text: i18n("Cancel")
+						implicitWidth: minimumWidth
+						onClicked: editEventItem.cancel()
 					}
 				}
 			}
