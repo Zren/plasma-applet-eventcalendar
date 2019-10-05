@@ -340,8 +340,7 @@ FocusScope {
 				Layout.fillWidth: true
 				Layout.fillHeight: true
 
-				onNewEventFormOpened: {
-					// logger.debug('onNewEventFormOpened')
+				function populateCalendarSelector(calendarSelector, selectedCalendarId) {
 					if (plasmoid.configuration.access_token) {
 						var calendarIdList = plasmoid.configuration.calendar_id_list ? plasmoid.configuration.calendar_id_list.split(',') : ['primary']
 						var calendarList = plasmoid.configuration.calendar_list ? JSON.parse(Qt.atob(plasmoid.configuration.calendar_list)) : []
@@ -349,19 +348,31 @@ FocusScope {
 						var list = []
 						var selectedIndex = 0
 						calendarList.forEach(function(calendar){
-							if (calendar.accessRole == 'writer' || calendar.accessRole == 'owner') {
-								if (plasmoid.configuration.agenda_newevent_remember_calendar && calendar.id === plasmoid.configuration.agenda_newevent_last_calendar_id) {
-									selectedIndex = list.length // index after insertion
-								}
+							var canEditCalendar = calendar.accessRole == 'writer' || calendar.accessRole == 'owner'
+							var isSelected = calendar.id === selectedCalendarId
+
+							if (isSelected) {
+								selectedIndex = list.length // index after insertion
+							}
+
+							if (canEditCalendar || isSelected) {
 								list.push({
 									'calendarId': calendar.id,
 									'text': calendar.summary,
 								})
 							}
 						})
-						newEventCalendarId.model = list
-						newEventCalendarId.currentIndex = selectedIndex
+						calendarSelector.model = list
+						calendarSelector.currentIndex = selectedIndex
 					}
+				}
+				onNewEventFormOpened: {
+					// logger.debug('onNewEventFormOpened')
+					var selectedCalendarId = ""
+					if (plasmoid.configuration.agenda_newevent_remember_calendar) {
+						selectedCalendarId = plasmoid.configuration.agenda_newevent_last_calendar_id
+					}
+					populateCalendarSelector(newEventCalendarId, selectedCalendarId)
 				}
 				onSubmitNewEventForm: {
 					// logger.debug('onSubmitNewEventForm', calendarId)
