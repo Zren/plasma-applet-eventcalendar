@@ -63,7 +63,7 @@ Loader {
 						eventModel.setEventProperty(event.calendarId, event.id, 'summary', text)
 					}
 
-					Keys.onEscapePressed: editSummaryForm.active = false
+					Keys.onEscapePressed: editEventItem.cancel()
 				}
 
 				//---
@@ -105,7 +105,7 @@ Loader {
 						eventModel.setEventProperty(event.calendarId, event.id, 'location', text)
 					}
 
-					Keys.onEscapePressed: editEventForm.active = false
+					Keys.onEscapePressed: editEventItem.cancel()
 				}
 
 				EventPropertyIcon {
