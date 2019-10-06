@@ -120,7 +120,7 @@ Loader {
 
 					PlasmaComponents3.CheckBox {
 						id: isAllDayCheckBox
-						text: i18n("All day")
+						text: i18n("All Day")
 						checked: !!event.start.date
 						enabled: durationSelector.enabled
 					}
@@ -134,7 +134,7 @@ Loader {
 				PlasmaComponents3.TextField {
 					id: editLocationTextField
 					Layout.fillWidth: true
-					placeholderText: i18n("Add Location")
+					placeholderText: i18n("Add location")
 					text: model.location || ""
 					onAccepted: {
 						logger.debug('editLocationTextField.onAccepted', text)
