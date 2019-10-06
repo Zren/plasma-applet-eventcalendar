@@ -1,5 +1,5 @@
 #!/bin/sh
-# Version: 10
+# Version: 11
 
 # https://techbase.kde.org/Development/Tutorials/Localization/i18n_Build_Systems
 # Based on: https://github.com/psifidotos/nowdock-plasmoid/blob/master/po/Messages.sh
@@ -84,8 +84,15 @@ catalogs=`find . -name '*.po' | sort`
 for cat in $catalogs; do
 	echo "[merge] $cat"
 	catLocale=`basename ${cat%.*}`
+
+	widthArg=""
+	catUsesGenerator=`grep "X-Generator:" "$cat"`
+	if [ -z "$catUsesGenerator" ]; then
+		widthArg="--width=400"
+	fi
+
 	msgmerge \
-		--width=400 \
+		${widthArg} \
 		--no-fuzzy-matching \
 		-o "$cat.new" "$cat" "${DIR}/template.pot"
 	sed -i 's/# SOME DESCRIPTIVE TITLE./'"# Translation of ${widgetName} in ${catLocale}"'/' "$cat.new"
