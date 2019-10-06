@@ -297,7 +297,7 @@ LinkRect {
 		menuItem.clicked.connect(function() {
 			editSummaryForm.active = !editSummaryForm.active
 		})
-		contextMenu.addMenuItem(menuItem)
+		// contextMenu.addMenuItem(menuItem)
 
 		menuItem = contextMenu.newMenuItem()
 		menuItem.text = i18n("Edit description")
@@ -306,7 +306,7 @@ LinkRect {
 		menuItem.clicked.connect(function() {
 			editDescriptionForm.active = !editDescriptionForm.active
 		})
-		contextMenu.addMenuItem(menuItem)
+		// contextMenu.addMenuItem(menuItem)
 
 		menuItem = contextMenu.newMenuItem()
 		menuItem.text = i18n("Edit")
