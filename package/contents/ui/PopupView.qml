@@ -7,8 +7,10 @@ import org.kde.plasma.components 2.0 as PlasmaComponents
 import "Shared.js" as Shared
 import "../code/WeatherApi.js" as WeatherApi
 
-FocusScope {
+MouseArea {
 	id: popup
+
+	onClicked: focus = true
 
 	// use Layout.prefferedHeight instead of height so that the plasmoid resizes.
 	// width: columnWidth + 10 + columnWidth
