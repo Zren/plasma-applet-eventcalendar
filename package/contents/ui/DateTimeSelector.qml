@@ -31,6 +31,7 @@ GridLayout {
 		Layout.column: dateTimeSelector.dateFirst ? 0 : 1
 
 		dateTime: dateTimeSelector.dateTime
+		dateFormat: i18nc("event editor date format", "d MMM, yyyy")
 
 		onDateTimeShifted: {
 			dateTimeSelector.dateTimeShifted(oldDateTime, deltaDateTime, newDateTime)
