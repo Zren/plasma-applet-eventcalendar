@@ -229,6 +229,10 @@ Item {
 	// Timer {
 	// 	interval: 400
 	// 	running: true
-	// 	onTriggered: plasmoid.expanded = true
+	// 	onTriggered: {
+	// 		plasmoid.expanded = true
+	// 		root.Plasmoid.fullRepresentationItem.Layout.minimumWidth = 1000
+	// 		root.Plasmoid.fullRepresentationItem.Layout.minimumHeight = 600
+	// 	}
 	// }
 }
