@@ -1,5 +1,6 @@
 import QtQuick 2.0
 import QtQuick.Controls 1.4
+import QtQuick.Controls 2.1 as QQC2
 import QtQuick.Layouts 1.1
 import QtQuick.Window 2.2
 
@@ -19,9 +20,22 @@ GridLayout {
 	columnSpacing: units.smallSpacing
 	readonly property int minimumWidth: dateSelector.implicitWidth + columnSpacing + timeSelector.implicitWidth
 
+	signal dateTimeShifted(date oldDateTime, int deltaDateTime, date newDateTime)
+	onDateTimeShifted: {
+		dateTimeSelector.dateTime = newDateTime
+	}
+
+	// DateSelector {
+	// 	id: dateSelector
+	// 	// dateFormat: dateTimeSelector.dateFormat
+	// 	dateTime: dateTimeSelector.dateTime
+	// 	onDateTimeShifted: {
+	// 		dateTimeSelector.dateTimeShifted(oldDateTime, deltaDateTime, dateSelector.dateTime)
+	// 	}
 	PlasmaComponents3.TextField {
 		id: dateSelector
 		text: Qt.formatDateTime(dateTimeSelector.dateTime, dateTimeSelector.dateFormat)
+
 		enabled: dateTimeSelector.enabled
 		// opacity: 1 // Override disabled opacity effect.
 		Layout.column: dateTimeSelector.dateFirst ? 0 : 1
@@ -30,17 +44,19 @@ GridLayout {
 		readonly property int implicitContentWidth: contentWidth + leftPadding + rightPadding
 		implicitWidth: Math.max(defaultMinimumWidth, implicitContentWidth)
 	}
-	PlasmaComponents3.TextField {
+
+	TimeSelector {
 		id: timeSelector
-		text: Qt.formatDateTime(dateTimeSelector.dateTime, dateTimeSelector.timeFormat)
 		enabled: dateTimeSelector.enabled && dateTimeSelector.showTime
 		// opacity: 1 // Override disabled opacity effect.
 		visible: dateTimeSelector.showTime
 		Layout.column: dateTimeSelector.dateFirst ? 1 : 0
 
-		property int defaultMinimumWidth: 80 * units.devicePixelRatio
-		readonly property int implicitContentWidth: contentWidth + leftPadding + rightPadding
-		implicitWidth: Math.max(defaultMinimumWidth, implicitContentWidth)
+		dateTime: dateTimeSelector.dateTime
+
+		onDateTimeShifted: {
+			dateTimeSelector.dateTimeShifted(oldDateTime, deltaDateTime, newDateTime)
+		}
 	}
 
 
