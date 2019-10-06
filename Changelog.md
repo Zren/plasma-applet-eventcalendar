@@ -1,14 +1,16 @@
-## v64 - October __ 2019
+## v64 - October 6 2019
 
 * Notice: On June 18-19, Google Calendar suffered an outage, exposing a bug in the widget. The widget was caught in a loop trying to update. A symptom of this was 100% usage causing a the taskbar to not be responsive. (Issue #85)
-* Fix: Properly detect google calendar access token has expired errors. No longer assumes every error is an access token error. Detect when the rate limit has been reached and use an exponential retry method to avoid burning through the daily quota. (Issue #85)
+* Fix: Properly detect google calendar access token has expired errors. No longer assumes every error is an access token error. Detect when the rate limit has been reached. (Issue #85)
 * Check if the access token has expired before editing the event summary/description, or creating/deleting an event. You no longer need to refresh the events first if it's been a long time since the last access token was fetched.
-* Use HTTPS when connecting to OpenWeatherMap. When the widget was made, HTTPS was not available. Note that Google Calendar has always used HTTPS. (Issue #83)
-* The refresh button will no longer force a refresh of the weather data, it will only update if it's been over an hour.
+* Use HTTPS when connecting to OpenWeatherMap. When the widget was made, HTTPS was not available. Note that Google Calendar integration has always used HTTPS. (Issue #83)
+* The refresh button will no longer force a refresh of the weather data. Weather will only manually update if it's been over an hour.
 * Show an error message where the meteogram should be if there's an error at login. If the meteogram was populated, it will not show the error message as the user still has 3 days of hourly data to use.
 * Only fetch the Weather Canada city data when the dialog opens. It was opening every time the weather config tab was selected.
 * Refactor the weather code.
 * Show event location next to event start/end time (Issue #68)
+* Add a more complete edit event form that can edit the location. Editing date/time, or moving the event to another calendar are not yet implemented and are disabled.
+* Show calendar color in New Event Form.
 * Use short time format in tooltip for extra timezones like digitalclock.
 * Can right click the link to sync login with google calendar in order to copy the url if you use the Brave web browser (Issue #87)
 * Updated Chinese translation by @Core00077 (Pull Request #80)
