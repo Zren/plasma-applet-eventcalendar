@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: eventcalendar\n"
 "Report-Msgid-Bugs-To: https://github.com/Zren/plasma-applet-eventcalendar\n"
-"POT-Creation-Date: 2019-07-22 18:35-0400\n"
+"POT-Creation-Date: 2019-10-06 15:31-0400\n"
 "PO-Revision-Date: 2017-10-31 20:08+0200\n"
 "Last-Translator: Serhii Golovko <cappelikan@gmail.com>\n"
 "Language-Team: \n"
@@ -54,59 +54,43 @@ msgstr "Погода"
 msgid "Advanced"
 msgstr "Розширений"
 
-#: ../contents/ui/AgendaEventItem.qml:70
+#: ../contents/ui/AgendaEventItem.qml:76 ../contents/ui/EditEventForm.qml:73
 msgid "Event Title"
 msgstr ""
 
-#: ../contents/ui/AgendaEventItem.qml:145
-msgid "to"
-msgstr "до"
-
-#: ../contents/ui/AgendaEventItem.qml:170 ../contents/ui/LocaleFuncs.js:42
-msgid "All Day"
-msgstr "Весь день"
-
-#: ../contents/ui/AgendaEventItem.qml:175
-msgid "&Save"
-msgstr "Зберегти"
-
-#: ../contents/ui/AgendaEventItem.qml:183
-msgid "Discard"
-msgstr "Відхилити"
-
-#: ../contents/ui/AgendaEventItem.qml:230
+#: ../contents/ui/AgendaEventItem.qml:195
 msgid "Event Description"
 msgstr ""
 
-#: ../contents/ui/AgendaEventItem.qml:260 ../contents/ui/config/ConfigGoogleCalendar.qml:103
+#: ../contents/ui/AgendaEventItem.qml:225 ../contents/ui/config/ConfigGoogleCalendar.qml:142
 msgid "Submit"
 msgstr ""
 
-#: ../contents/ui/AgendaEventItem.qml:285
+#: ../contents/ui/AgendaEventItem.qml:267
 msgid "Hangout"
 msgstr ""
 
-#: ../contents/ui/AgendaEventItem.qml:312
+#: ../contents/ui/AgendaEventItem.qml:294
 msgid "Edit title"
 msgstr ""
 
-#: ../contents/ui/AgendaEventItem.qml:321
-msgid "Edit date/time"
-msgstr ""
-
-#: ../contents/ui/AgendaEventItem.qml:329
+#: ../contents/ui/AgendaEventItem.qml:303
 msgid "Edit description"
 msgstr "Редагувати опис"
 
-#: ../contents/ui/AgendaEventItem.qml:338
+#: ../contents/ui/AgendaEventItem.qml:312
+msgid "Edit"
+msgstr ""
+
+#: ../contents/ui/AgendaEventItem.qml:321
 msgid "Delete Event"
 msgstr "Видалити подію"
 
-#: ../contents/ui/AgendaEventItem.qml:341
+#: ../contents/ui/AgendaEventItem.qml:324
 msgid "Confirm Deletion"
 msgstr "Підтвердити видалення"
 
-#: ../contents/ui/AgendaEventItem.qml:353
+#: ../contents/ui/AgendaEventItem.qml:336
 msgid "Edit in browser"
 msgstr "Редагувати в браузері"
 
@@ -481,39 +465,43 @@ msgstr ""
 "Увімкнути налагодження\n"
 "Це буде записувати конфіденційну інформацію до ~/.xsession-помилок"
 
-#: ../contents/ui/config/ConfigGoogleCalendar.qml:59
+#: ../contents/ui/config/ConfigGoogleCalendar.qml:60
 msgid "Login"
 msgstr "Увійти"
 
-#: ../contents/ui/config/ConfigGoogleCalendar.qml:68
+#: ../contents/ui/config/ConfigGoogleCalendar.qml:69
 msgid "Currently Synched."
 msgstr "В даний час синхронізовано."
 
-#: ../contents/ui/config/ConfigGoogleCalendar.qml:73
+#: ../contents/ui/config/ConfigGoogleCalendar.qml:74
 msgid "Logout"
 msgstr "Вийти"
 
-#: ../contents/ui/config/ConfigGoogleCalendar.qml:84
+#: ../contents/ui/config/ConfigGoogleCalendar.qml:85
 msgid "To sync with Google Calendar"
 msgstr "Синхронізувати з Календарем Google"
 
-#: ../contents/ui/config/ConfigGoogleCalendar.qml:90
+#: ../contents/ui/config/ConfigGoogleCalendar.qml:91
 msgid "Visit <a href=\"%1\">%2</a> (opens in your web browser). After you login and give permission to acess your calendar, it will give you a code to paste below."
 msgstr ""
 
-#: ../contents/ui/config/ConfigGoogleCalendar.qml:99
+#: ../contents/ui/config/ConfigGoogleCalendar.qml:117
+msgid "Copy Link"
+msgstr ""
+
+#: ../contents/ui/config/ConfigGoogleCalendar.qml:138
 msgid "Enter code here (Eg: %1)"
 msgstr ""
 
-#: ../contents/ui/config/ConfigGoogleCalendar.qml:110
+#: ../contents/ui/config/ConfigGoogleCalendar.qml:149
 msgid "Invalid Google Authorization Code"
 msgstr ""
 
-#: ../contents/ui/config/ConfigGoogleCalendar.qml:122 ../contents/ui/config/ConfigICal.qml:49
+#: ../contents/ui/config/ConfigGoogleCalendar.qml:161 ../contents/ui/config/ConfigICal.qml:49
 msgid "Calendars"
 msgstr "Календарі"
 
-#: ../contents/ui/config/ConfigGoogleCalendar.qml:127
+#: ../contents/ui/config/ConfigGoogleCalendar.qml:166
 msgid "Refresh"
 msgstr "Оновити"
 
@@ -660,6 +648,39 @@ msgstr "Міська веб-сторінка"
 msgid "Open Link"
 msgstr "Відкрити посилання"
 
+#: ../contents/ui/DateTimeSelector.qml:34
+msgctxt "event editor date format"
+msgid "d MMM, yyyy"
+msgstr ""
+
+#: ../contents/ui/DurationSelector.qml:43
+msgid "to"
+msgstr "до"
+
+#: ../contents/ui/EditEventForm.qml:123 ../contents/ui/LocaleFuncs.js:42
+msgid "All Day"
+msgstr "Весь день"
+
+#: ../contents/ui/EditEventForm.qml:137
+msgid "Add location"
+msgstr ""
+
+#: ../contents/ui/EditEventForm.qml:153 ../contents/ui/NewEventForm.qml:36
+msgid "[No Calendars]"
+msgstr "[Без календарів]"
+
+#: ../contents/ui/EditEventForm.qml:169
+msgid "Add description"
+msgstr ""
+
+#: ../contents/ui/EditEventForm.qml:197
+msgid "&Save"
+msgstr "Зберегти"
+
+#: ../contents/ui/EditEventForm.qml:203 ../contents/ui/TimerInputView.qml:75
+msgid "&Cancel"
+msgstr ""
+
 #: ../contents/ui/lib/AppletVersion.qml:41
 msgid "<b>Version:</b> %1"
 msgstr "<b>Версія:</b> %1"
@@ -712,30 +733,26 @@ msgstr "Встановити мову ..."
 msgid "%1mm"
 msgstr "%1мм"
 
-#: ../contents/ui/MonthView.qml:363
+#: ../contents/ui/MonthView.qml:365
 msgctxt "calendar title format for current month"
 msgid "MMMM d, yyyy"
 msgstr ""
 
-#: ../contents/ui/MonthView.qml:367
+#: ../contents/ui/MonthView.qml:369
 msgctxt "calendar title format for other months of current year"
 msgid "MMMM"
 msgstr ""
 
-#: ../contents/ui/MonthView.qml:370
+#: ../contents/ui/MonthView.qml:372
 msgctxt "calendar title format for months not from current year"
 msgid "MMMM, yyyy"
 msgstr ""
 
-#: ../contents/ui/NewEventForm.qml:24
-msgid "[No Calendars]"
-msgstr "[Без календарів]"
-
-#: ../contents/ui/NewEventForm.qml:31
+#: ../contents/ui/NewEventForm.qml:45
 msgid "Eg: 9am-5pm Work"
 msgstr "Наприклад: 9: 00-17: 00 Робота"
 
-#: ../contents/ui/PopupView.qml:306
+#: ../contents/ui/PopupView.qml:308
 msgid ""
 "Weather not configured.\n"
 "Go to Weather in the config and set your city,\n"
@@ -745,20 +762,16 @@ msgstr ""
 "Перейдіть до погоди в налаштуваннях і встановіть своє місто,\n"
 "і / або вимкнути метеограму, щоб приховати цю область."
 
-#: ../contents/ui/PopupView.qml:308
+#: ../contents/ui/PopupView.qml:310
 msgid "Error fetching weather."
 msgstr ""
 
-#: ../contents/ui/PopupView.qml:577
+#: ../contents/ui/PopupView.qml:590
 msgid "Weather API limit reached, will try again soon."
 msgstr ""
 
-#: ../contents/ui/TimerInputView.qml:75
-msgid "&Cancel"
-msgstr ""
-
 #: ../contents/ui/TimerInputView.qml:80
-msgid "Start"
+msgid "&Start"
 msgstr ""
 
 #: ../contents/ui/TimerView.qml:22
@@ -840,6 +853,9 @@ msgstr "Події в процесі"
 #: ../contents/ui/UpcomingEvents.qml:120
 msgid "Upcoming Events"
 msgstr "Майбутні події"
+
+#~ msgid "Discard"
+#~ msgstr "Відхилити"
 
 #~ msgid "Event Summary"
 #~ msgstr "Підсумок події"
