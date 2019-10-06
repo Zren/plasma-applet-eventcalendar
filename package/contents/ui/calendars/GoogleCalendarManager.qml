@@ -436,7 +436,7 @@ CalendarManager {
 		var keys = Object.keys(args)
 		for (var i = 0; i < keys.length; i++) {
 			var key = keys[i]
-			data[key] = args[keys]
+			data[key] = args[key]
 		}
 		logger.debugJSON('updateGoogleCalendarEvent', 'sent', data)
 		
@@ -448,7 +448,7 @@ CalendarManager {
 		}, callback)
 	}
 	function updateGoogleCalendarEvent_done(calendarId, eventId, event, data) {
-		logger.debugJSON('createGoogleCalendarEvent_done', calendarId, data)
+		logger.debugJSON('updateGoogleCalendarEvent_done', calendarId, data)
 
 		// Merge serialized values
 		var keys = Object.keys(data)
