@@ -26,6 +26,17 @@ Flow {
 		enabled: durationSelector.enabled
 		showTime: durationSelector.showTime
 		dateFirst: true
+
+		onDateTimeShifted: {
+			logger.debug('onDateTimeShifted')
+			logger.debug('    dt1', oldDateTime)
+			logger.debug('    dt2', dateTime)
+			logger.debug('  delta', deltaDateTime)
+
+			var shiftedEndDate = new Date(endTimeSelector.dateTime.valueOf() + deltaDateTime)
+			logger.debug('    t3', shiftedEndDate)
+			endTimeSelector.dateTime = shiftedEndDate
+		}
 	}
 	PlasmaComponents.Label {
 		id: seperatorLabel
