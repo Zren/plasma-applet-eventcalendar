@@ -40,7 +40,7 @@ Flow {
 	}
 	PlasmaComponents.Label {
 		id: seperatorLabel
-		text: i18n(" to ")
+		text: ' ' + i18n("to") + ' '
 		font.weight: Font.Bold
 		Layout.alignment: Qt.AlignRight
 	}
