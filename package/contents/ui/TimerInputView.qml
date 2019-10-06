@@ -72,12 +72,12 @@ ColumnLayout {
 			Layout.fillWidth: true
 		}
 		PlasmaComponents.Button {
-			text: i18n("Cancel")
+			text: i18n("&Cancel")
 			implicitWidth: minimumWidth
 			onClicked: timerInputView.cancel()
 		}
 		PlasmaComponents.Button {
-			text: i18n("Start")
+			text: i18n("&Start")
 			implicitWidth: minimumWidth
 			onClicked: timerInputView.start()
 		}

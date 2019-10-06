@@ -67,7 +67,7 @@ msgid "All Day"
 msgstr "Tüm Gün"
 
 #: ../contents/ui/AgendaEventItem.qml:175
-msgid "Save"
+msgid "&Save"
 msgstr "Kaydet"
 
 #: ../contents/ui/AgendaEventItem.qml:183
@@ -752,7 +752,7 @@ msgid "Weather API limit reached, will try again soon."
 msgstr ""
 
 #: ../contents/ui/TimerInputView.qml:75
-msgid "Cancel"
+msgid "&Cancel"
 msgstr "İptal"
 
 #: ../contents/ui/TimerInputView.qml:80

@@ -200,7 +200,7 @@ Loader {
 					}
 					PlasmaComponents.Button {
 						iconName: "dialog-cancel"
-						text: i18n("Cancel")
+						text: i18n("&Cancel")
 						implicitWidth: minimumWidth
 						onClicked: editEventItem.cancel()
 					}

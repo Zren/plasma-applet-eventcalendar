@@ -67,8 +67,8 @@ msgid "All Day"
 msgstr "Todo o dia"
 
 #: ../contents/ui/AgendaEventItem.qml:175
-msgid "Save"
-msgstr "Salvar"
+msgid "&Save"
+msgstr "&Salvar"
 
 #: ../contents/ui/AgendaEventItem.qml:183
 msgid "Discard"
@@ -752,7 +752,7 @@ msgid "Weather API limit reached, will try again soon."
 msgstr ""
 
 #: ../contents/ui/TimerInputView.qml:75
-msgid "Cancel"
+msgid "&Cancel"
 msgstr "Cancelar"
 
 #: ../contents/ui/TimerInputView.qml:80
