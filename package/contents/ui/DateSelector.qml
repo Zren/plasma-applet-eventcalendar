@@ -27,8 +27,13 @@ PlasmaComponents3.TextField {
 	signal dateTimeShifted(date oldDateTime, int deltaDateTime, date newDateTime)
 	signal dateSelected(date newDateTime)
 
-	function setDateTime(newDateTime) {
+	function setDateTime(dt) {
 		var oldDateTime = new Date(dateTime)
+
+		var newDateTime = new Date(dt)
+		newDateTime.setHours(oldDateTime.getHours())
+		newDateTime.setMinutes(oldDateTime.getMinutes())
+
 		var deltaDateTime = newDateTime.valueOf() - oldDateTime.valueOf()
 		dateTimeShifted(oldDateTime, deltaDateTime, newDateTime)
 	}
@@ -46,7 +51,7 @@ PlasmaComponents3.TextField {
 
 	onTextEdited: {
 		var dt = Date.fromLocaleDateString(Qt.locale(), text, dateSelector.dateFormat)
-		console.log('onTextEdited', text, dt)
+		// console.log('onTextEdited', text, dt)
 		if (!isNaN(dt)) {
 			setDateTime(dt)
 		}

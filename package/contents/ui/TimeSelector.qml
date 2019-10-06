@@ -70,7 +70,7 @@ PlasmaComponents3.TextField {
 
 	onTextEdited: {
 		var dt = Date.fromLocaleTimeString(Qt.locale(), text, timeSelector.timeFormat)
-		console.log('onTextEdited', text, dt)
+		// console.log('onTextEdited', text, dt)
 		if (!isNaN(dt)) {
 			setDateTime(dt)
 		}
