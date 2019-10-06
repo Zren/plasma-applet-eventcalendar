@@ -14,7 +14,7 @@ Item {
 	property int inProgressFontWeight: Font.Bold
 
 	signal newEventFormOpened(var agendaItem, var newEventCalendarId)
-	signal submitNewEventForm(var calendarId, var date, string text)
+	signal submitNewEventForm(string calendarId, var date, string text)
 
 	Connections {
 		target: eventModel

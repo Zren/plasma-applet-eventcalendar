@@ -35,6 +35,7 @@ LinkRect {
 
 	RowLayout {
 		width: parent.width
+		spacing: 4 * units.devicePixelRatio
 
 		Rectangle {
 			Layout.preferredWidth: appletConfig.eventIndicatorWidth

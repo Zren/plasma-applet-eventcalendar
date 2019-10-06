@@ -361,6 +361,7 @@ MouseArea {
 								list.push({
 									'calendarId': calendar.id,
 									'text': calendar.summary,
+									'backgroundColor': calendar.backgroundColor,
 								})
 							}
 						})
@@ -379,8 +380,7 @@ MouseArea {
 				onSubmitNewEventForm: {
 					// logger.debug('onSubmitNewEventForm', calendarId)
 					if (plasmoid.configuration.access_token) {
-						logger.debug(calendarId, calendarId.calendarId)
-						calendarId = calendarId.calendarId ? calendarId.calendarId : calendarId
+						logger.debug(calendarId)
 						eventModel.createEvent(calendarId, date, text)
 					}
 				}
