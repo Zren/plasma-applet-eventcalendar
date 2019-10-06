@@ -59,7 +59,10 @@ PlasmaComponents3.TextField {
 		return l
 	}
 
-	onPressed: popup.open()
+	onPressed: {
+		popup.open()
+		highlightDateTime(dateTime)
+	}
 
 	onEntryActivated: {
 		if (0 <= index && index < model.length) {
@@ -73,7 +76,21 @@ PlasmaComponents3.TextField {
 		// console.log('onTextEdited', text, dt)
 		if (!isNaN(dt)) {
 			setDateTime(dt)
+			highlightDateTime(dt)
 		}
+	}
+
+	function highlightDateTime(dt) {
+		for (var i = 0; i < model.length; i++) {
+			var entry = model[i]
+			var eDT = entry[valueRole]
+			if (dt.getHours() == eDT.getHours() && dt.getMinutes() == eDT.getMinutes()) {
+				listView.currentIndex = i
+				listView.positionViewAtIndex(i, ListView.Contain)
+				return
+			}
+		}
+		listView.currentIndex = -1 // Unselect
 	}
 
 	onEditingFinished: updateText()
@@ -82,8 +99,8 @@ PlasmaComponents3.TextField {
 	property Component delegate: PlasmaComponents3.ItemDelegate {
 		width: control.popup.width
 		text: control.textRole ? (Array.isArray(control.model) ? modelData[control.textRole] : model[control.textRole]) : modelData
-		// highlighted: mouseArea.pressed ? listView.currentIndex == index : control.highlightedIndex == index
 		property bool separatorVisible: false
+		highlighted: listView.currentIndex === index
 
 		onClicked: {
 			listView.currentIndex = index
