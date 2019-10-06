@@ -23,7 +23,12 @@ LinkRect {
 		onLoaded: agendaEventItem.checkIfInProgress()
 		onMinuteChanged: agendaEventItem.checkIfInProgress()
 	}
-	Component.onCompleted: agendaEventItem.checkIfInProgress()
+	Component.onCompleted: {
+		agendaEventItem.checkIfInProgress()
+
+		//--- Debugging
+		// editEventForm.active = eventItemInProgress && !model.start.date
+	}
 
 	property bool isEditing: editSummaryForm.active || editDescriptionForm.active || editEventForm.active
 	enabled: !isEditing
