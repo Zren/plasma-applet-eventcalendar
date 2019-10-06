@@ -105,7 +105,7 @@ Item {
 
 			Layout.fillWidth: true
 
-			level: 1
+			level: root.headingFontLevel
 			wrapMode: Text.NoWrap
 			elide: Text.ElideRight
 			font.capitalization: Font.Capitalize

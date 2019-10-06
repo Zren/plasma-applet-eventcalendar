@@ -39,6 +39,7 @@ PinchArea {
 
 	property int borderWidth: 1
 	property real borderOpacity: 0.4
+	property int headingFontLevel: 1
 
 	property int columns: calendarBackend.days
 	property int rows: calendarBackend.weeks

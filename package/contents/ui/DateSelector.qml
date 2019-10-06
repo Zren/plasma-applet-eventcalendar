@@ -83,6 +83,7 @@ PlasmaComponents3.TextField {
 
 			showTooltips: false
 			showTodaysDate: false
+			headingFontLevel: 3
 
 			onDateClicked: {
 				// console.log('onDateSelected', currentDate, '(popup.visible: ', popup.visible, ')')
