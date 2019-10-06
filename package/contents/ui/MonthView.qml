@@ -54,6 +54,7 @@ PinchArea {
 	property alias daysModel : daysModel
 
 	signal dateSelected(date selectedDate)
+	signal dateClicked(date clickedDate)
 	signal dayDoubleClicked(var dayData)
 
 	property QtObject calendarBackend: calendarBackend
@@ -398,7 +399,9 @@ PinchArea {
 				var rowNumber = Math.floor(index / columns)
 				week = 1 + calendarBackend.weeksModel[rowNumber]
 				root.date = date
-				root.setSelectedDate(new Date(date.yearNumber, date.monthNumber - 1, date.dayNumber))
+				var dt = new Date(date.yearNumber, date.monthNumber - 1, date.dayNumber)
+				root.setSelectedDate(dt)
+				root.dateClicked(dt)
 			}
 			onDoubleClicked: {
 				root.dayDoubleClicked(date)

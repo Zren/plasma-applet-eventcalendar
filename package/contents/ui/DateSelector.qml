@@ -79,9 +79,9 @@ PlasmaComponents3.TextField {
 			showTooltips: false
 			showTodaysDate: false
 
-			onDateSelected: {
-				console.log('onDateSelected', currentDate)
-				dateSelector.dateSelected(currentDate)
+			onDateClicked: {
+				// console.log('onDateSelected', currentDate, '(popup.visible: ', popup.visible, ')')
+				dateSelector.dateSelected(clickedDate)
 				popup.close()
 			}
 		}
