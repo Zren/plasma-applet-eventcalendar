@@ -24,24 +24,17 @@ GridLayout {
 		dateTimeSelector.dateTime = newDateTime
 	}
 
-	// DateSelector {
-	// 	id: dateSelector
-	// 	// dateFormat: dateTimeSelector.dateFormat
-	// 	dateTime: dateTimeSelector.dateTime
-	// 	onDateTimeShifted: {
-	// 		dateTimeSelector.dateTimeShifted(oldDateTime, deltaDateTime, dateSelector.dateTime)
-	// 	}
-	PlasmaComponents3.TextField {
+	DateSelector {
 		id: dateSelector
-		text: Qt.formatDateTime(dateTimeSelector.dateTime, dateTimeSelector.dateFormat)
-
 		enabled: dateTimeSelector.enabled
 		// opacity: 1 // Override disabled opacity effect.
 		Layout.column: dateTimeSelector.dateFirst ? 0 : 1
 
-		property int defaultMinimumWidth: 80 * units.devicePixelRatio
-		readonly property int implicitContentWidth: contentWidth + leftPadding + rightPadding
-		implicitWidth: Math.max(defaultMinimumWidth, implicitContentWidth)
+		dateTime: dateTimeSelector.dateTime
+
+		onDateTimeShifted: {
+			dateTimeSelector.dateTimeShifted(oldDateTime, deltaDateTime, newDateTime)
+		}
 	}
 
 	TimeSelector {

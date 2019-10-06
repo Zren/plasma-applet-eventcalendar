@@ -1,98 +1,108 @@
 import QtQuick 2.0
-import QtQuick.Controls 1.1
-import QtQuick.Layouts 1.1
+import QtQuick.Window 2.2
+
 import org.kde.plasma.core 2.0 as PlasmaCore
-import org.kde.plasma.components 2.0 as PlasmaComponents
+import org.kde.plasma.components 3.0 as PlasmaComponents3
 
-PlasmaComponents.TextField {
+import QtQuick.Templates 2.1 as T
+import QtQuick.Controls 2.1 as Controls
+import QtGraphicalEffects 1.0 // DropShadow
+
+// Based on:
+// https://github.com/KDE/plasma-framework/blob/master/src/declarativeimports/plasmacomponents3/ComboBox.qml
+// https://doc.qt.io/archives/qt-5.11/qml-qtquick-controls2-combobox.html
+// https://github.com/qt/qtquickcontrols2/blob/dev/src/quicktemplates2/qquickcombobox.cpp
+
+PlasmaComponents3.TextField {
 	id: dateSelector
-	placeholderText: '31/12/2017' // Note that US/Canada is 12/31/2017
-	function formatDate(dt) {
-		return dt.toLocaleDateString(Locale.ShortFormat)
-	}
+	readonly property Item control: dateSelector
 
-	text: dateSelector.formatDate(dateSelector.dateTime)
-	onTextChanged: {
-		console.log('onTextChanged', text, '(focus = ', focus, ')')
-		if (focus) {
-			var l = Qt.locale()
-			// var dateFormat = l.dateFormat(Locale.ShortFormat)
-			var dt = Date.fromLocaleDateString(l, text, Locale.ShortFormat)
-			var t = dt.valueOf()
-			if (isNaN(t)) {
-				console.log('parsed invalid date', dt)
-			} else {
-				// uk (ukrainian) formats to "31.10.17" but is parsed as 31 Oct 1917
-				// So if the year is before 1970, just add 100 years.
-				// We'll also just check <1969 in case there's a timezone bug.
-				// Hopefully this code isn't still in use in 50 years.
-				if (dt.getFullYear() < 1969) {
-					console.log('Parsed year to before 1970 (we probably wanted 20xx)', dt)
-					dt.setYear(dt.getFullYear() + 100)
-				}
-
-				console.log('new date', dt)
-				dateSelector.dateTime = dt
-			}
-
-			
-			// var t = Date.parse(text)
-			// if (isNaN(t)) {
-			// } else {
-			// 	dateSelector.dateTime = new Date(t)
-			// }
-			// console.log('new date', new Date(text), dateSelector.dateTime)
-		}
-	}
+	property int defaultMinimumWidth: 80 * units.devicePixelRatio
+	readonly property int implicitContentWidth: contentWidth + leftPadding + rightPadding
+	implicitWidth: Math.max(defaultMinimumWidth, implicitContentWidth)
 
 	property var dateTime: new Date()
-	onDateTimeChanged: {
-		console.log('onDateTimeChanged', dateTime, '(focus = ', focus, ')')
-		if (!focus) {
-			
+
+	signal dateTimeShifted(date oldDateTime, int deltaDateTime, date newDateTime)
+	signal dateSelected(date newDateTime)
+
+	function setDateTime(newDateTime) {
+		var oldDateTime = new Date(dateTime)
+		var deltaDateTime = newDateTime.valueOf() - oldDateTime.valueOf()
+		dateTimeShifted(oldDateTime, deltaDateTime, newDateTime)
+	}
+	function updateText() {
+		text = Qt.binding(function(){
+			return dateSelector.dateTime.toLocaleDateString(Qt.locale(), Locale.ShortFormat)
+		})
+	}
+
+	onPressed: popup.open()
+
+	onDateSelected: {
+		setDateTime(newDateTime)
+	}
+
+	onTextEdited: {
+		var dt = Date.fromLocaleDateString(Qt.locale(), text, Locale.ShortFormat)
+		// console.log('onTextEdited', text, dt)
+		if (!isNaN(dt)) {
+			setDateTime(dt)
 		}
 	}
 
-	onEditingFinished: {
-		dateSelector.text = Qt.binding(function(){ return dateSelector.formatDate(dateSelector.dateTime) })
-	}
+	onEditingFinished: updateText()
+	Component.onCompleted: updateText()
 
-	property alias dialogContents: dialogLoader.item
-	property alias dialogLocation: toolTipArea.location
+	property Controls.Popup popup: T.Popup {
+		x: control.mirrored ? control.width - width : 0
+		y: control.height
 
-	PlasmaCore.ToolTipArea {
-		id: toolTipArea
-		anchors.fill: parent
-		interactive: true
-		
-		mainItem: Loader {
-			id: dialogLoader
-			sourceComponent: Component {
-				FocusScope {
-					id: focusScope
-					width: 300 * units.devicePixelRatio
-					height: 300 * units.devicePixelRatio
+		implicitWidth: contentItem.implicitWidth
+		implicitHeight: contentItem.implicitHeight
 
-					MonthView {
-						id: dateSelectorMonthView
-						anchors.fill: parent
-						today: popup.today
-						currentDate: dateSelector.dateTime
-						displayedDate: dateSelector.dateTime
+		topMargin: 6 * units.devicePixelRatio
+		bottomMargin: 6 * units.devicePixelRatio
 
-						showTooltips: false
-						showTodaysDate: false
+		// https://github.com/KDE/plasma-framework/blob/master/src/declarativeimports/calendar/qml/MonthView.qml
+		contentItem: MonthView {
+			id: dateSelectorMonthView
 
-						onDateSelected: {
-							console.log('onDateSelected', currentDate)
-							dateSelector.dateTime = currentDate
-						}
-					}
-				}
+			implicitWidth: 280 * units.devicePixelRatio
+			implicitHeight: 280 * units.devicePixelRatio
+
+			today: new Date()
+			currentDate: dateSelector.dateTime
+			displayedDate: dateSelector.dateTime
+
+			showTooltips: false
+			showTodaysDate: false
+
+			onDateSelected: {
+				console.log('onDateSelected', currentDate)
+				dateSelector.dateSelected(currentDate)
+				popup.close()
 			}
 		}
-	}
 
-	
-	
+		background: Rectangle {
+			anchors {
+				fill: parent
+				margins: -1
+			}
+			radius: 2
+			color: theme.viewBackgroundColor
+			border.color: Qt.rgba(theme.textColor.r, theme.textColor.g, theme.textColor.b, 0.3)
+			layer.enabled: true
+
+			layer.effect: DropShadow {
+				transparentBorder: true
+				radius: 4
+				samples: 8
+				horizontalOffset: 2
+				verticalOffset: 2
+				color: Qt.rgba(0, 0, 0, 0.3)
+			}
+		}
+	} // Popup
 }
