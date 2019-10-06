@@ -11,8 +11,10 @@ Loader {
 	visible: active
 	Layout.fillWidth: true
 	sourceComponent: Component {
-		Item {
+		MouseArea {
 			id: editEventItem
+
+			onClicked: focus = true
 
 			implicitWidth: editEventGrid.implicitWidth
 			implicitHeight: editEventGrid.implicitHeight
@@ -24,13 +26,30 @@ Loader {
 				editSummaryTextField.forceActiveFocus()
 			}
 
+			function populateIfChanged(args, propKey, newValue) {
+				if (event[propKey] != newValue) {
+					args[propKey] = newValue
+				}
+			}
 			function submit() {
 				logger.log('editEventItem.submit()')
 				var event = events.get(index)
 				logger.debugJSON('event', event)
 
-				logger.debug('editDescriptionForm.text', editDescriptionTextField.text)
-				// eventModel.setEventProperty(event.calendarId, event.id, 'description', editDescriptionTextField.text)
+				if (event.calendarId != calendarSelector.selectedCalendarId) {
+					// TODO: Move event
+					// TODO: Call setProperties after moving or vice versa.
+					// https://developers.google.com/calendar/v3/reference/events/move
+				}
+
+				var args = {}
+				populateIfChanged(args, 'summary', editSummaryTextField.text)
+				// args.start = durationSelector.getStartObj() // Hard to compare
+				// args.end = durationSelector.getStartObj() // Hard to compare
+				populateIfChanged(args, 'location', editLocationTextField.text)
+				populateIfChanged(args, 'description', editDescriptionTextField.text)
+
+				eventModel.setEventProperties(event.calendarId, event.id, args)
 			}
 
 			function cancel() {
@@ -54,9 +73,8 @@ Loader {
 					placeholderText: i18n("Event Title")
 					text: model.summary
 					onAccepted: {
-						logger.log('editSummaryTextField.onAccepted', text)
-						var event = events.get(index)
-						eventModel.setEventProperty(event.calendarId, event.id, 'summary', text)
+						logger.debug('editSummaryTextField.onAccepted', text)
+						editEventItem.submit()
 					}
 
 					Keys.onEscapePressed: editEventItem.cancel()
@@ -73,6 +91,28 @@ Loader {
 
 					startDateTime: model.start.dateTime || new Date()
 					endDateTime: model.end.dateTime || new Date()
+
+					function dateString(d) {
+						return Qt.formatDateTime(d, 'yyyy-MM-dd')
+					}
+					function getStartObj() {
+						if (showTime) {
+							return { dateTime: startDateTime.toString() }
+						} else { // All day
+							return { date: dateString(startDateTime) }
+						}
+					}
+					function getEndObj() {
+						if (showTime) {
+							return { dateTime: startDateTime.toString() }
+						} else { // All day
+							// Events end at "midnight" the next day.
+							// See parseEventsForDate() functions for more info.
+							var dt = new Date(endDateTime)
+							dt.setDate(dt.getDate() + 1)
+							return { date: dateString(dt) }
+						}
+					}
 				}
 
 				RowLayout {
@@ -97,9 +137,8 @@ Loader {
 					placeholderText: i18n("Add Location")
 					text: model.location || ""
 					onAccepted: {
-						logger.log('editLocationTextField.onAccepted', text)
-						var event = events.get(index)
-						eventModel.setEventProperty(event.calendarId, event.id, 'location', text)
+						logger.debug('editLocationTextField.onAccepted', text)
+						editEventItem.submit()
 					}
 
 					Keys.onEscapePressed: editEventItem.cancel()
@@ -109,14 +148,14 @@ Loader {
 					source: "view-calendar-day"
 				}
 				PlasmaComponents.ComboBox {
-					id: eventCalendarId
+					id: calendarSelector
 					Layout.fillWidth: true
 					model: [i18n("[No Calendars]")]
 					enabled: false
 					Component.onCompleted: {
 						// AgendaView.__
-						// logger.debug('populateCalendarSelector', eventCalendarId, event.calendarId)
-						populateCalendarSelector(eventCalendarId, event.calendarId)
+						// logger.debug('populateCalendarSelector', calendarSelector, event.calendarId)
+						populateCalendarSelector(calendarSelector, event.calendarId)
 					}
 				}
 
