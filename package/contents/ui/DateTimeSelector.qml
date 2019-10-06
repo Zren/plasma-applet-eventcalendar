@@ -12,8 +12,8 @@ GridLayout {
 	property var dateTime: new Date()
 	property bool enabled: true
 	property bool showTime: true
-	property string dateFormat: "d MMM, yyyy"
-	property string timeFormat: "HH:mm AP"
+	property alias dateFormat: dateSelector.dateFormat
+	property alias timeFormat: timeSelector.timeFormat
 	property bool dateFirst: true
 	columns: 2
 	columnSpacing: units.smallSpacing

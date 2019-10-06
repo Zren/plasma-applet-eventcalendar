@@ -22,6 +22,7 @@ PlasmaComponents3.TextField {
 	implicitWidth: Math.max(defaultMinimumWidth, implicitContentWidth)
 
 	property var dateTime: new Date()
+	property var timeFormat: Locale.ShortFormat
 
 	signal dateTimeShifted(date oldDateTime, int deltaDateTime, date newDateTime)
 	signal entryActivated(int index)
@@ -33,8 +34,7 @@ PlasmaComponents3.TextField {
 	}
 	function updateText() {
 		text = Qt.binding(function(){
-			// return Qt.formatDateTime(timeSelector.dateTime, Locale.ShortFormat)
-			return timeSelector.dateTime.toLocaleTimeString(Qt.locale(), Locale.ShortFormat)
+			return timeSelector.dateTime.toLocaleTimeString(Qt.locale(), timeSelector.timeFormat)
 		})
 	}
 
@@ -52,7 +52,7 @@ PlasmaComponents3.TextField {
 			var entryDateTime = new Date(midnight.valueOf() + deltaT)
 			var entry = {
 				dt: entryDateTime,
-				label: entryDateTime.toLocaleTimeString(Qt.locale(), Locale.ShortFormat)
+				label: entryDateTime.toLocaleTimeString(Qt.locale(), timeSelector.timeFormat)
 			}
 			l.push(entry)
 		}
@@ -69,8 +69,8 @@ PlasmaComponents3.TextField {
 	}
 
 	onTextEdited: {
-		var dt = Date.fromLocaleTimeString(Qt.locale(), text, Locale.ShortFormat)
-		// console.log('onTextEdited', text, dt)
+		var dt = Date.fromLocaleTimeString(Qt.locale(), text, timeSelector.timeFormat)
+		console.log('onTextEdited', text, dt)
 		if (!isNaN(dt)) {
 			setDateTime(dt)
 		}
