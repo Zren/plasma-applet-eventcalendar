@@ -1,18 +1,20 @@
-// Version 2
+// Version 3
 
 import QtQuick 2.0
 import QtQuick.Controls 1.1
 import QtQuick.Controls.Styles 1.1
 import QtQuick.Dialogs 1.0
 import QtQuick.Layouts 1.1
-import QtMultimedia 5.4
 
 ColumnLayout {
+	id: configNotification
 	property alias label: notificationEnabled.text
 	property alias notificationEnabledKey: notificationEnabled.configKey
 	property alias sfxEnabledKey: sfxEnabled.configKey
 	property alias sfxPathKey: sfxPath.configKey
 	property alias sfxPathDefaultValue: sfxPath.defaultValue
+
+	property var sfxTest: Qt.createQmlObject("import QtMultimedia 5.4; Audio {}", configNotification)
 
 	RowLayout {
 		id: row1
@@ -41,11 +43,10 @@ ColumnLayout {
 		}
 		Button {
 			iconName: "media-playback-start-symbolic"
-			onClicked: sfxTest.play()
-
-			Audio {
-				id: sfxTest
-				source: sfxPath.value
+			enabled: !!sfxTest
+			onClicked: {
+				sfxTest.source = sfxPath.value
+				sfxTest.play()
 			}
 		}
 		ConfigString {
