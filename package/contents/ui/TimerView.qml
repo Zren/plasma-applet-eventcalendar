@@ -1,7 +1,6 @@
 import QtQuick 2.0
 import QtQuick.Controls 1.1
 import QtQuick.Layouts 1.1
-import QtMultimedia 5.4
 import org.kde.plasma.core 2.0 as PlasmaCore
 import org.kde.plasma.components 2.0 as PlasmaComponents
 
@@ -312,22 +311,10 @@ Item {
 	function onTimerFinished() {
 		timerTicker.stop()
 		createNotification()
-		if (timerSfxEnabled) {
-			notificationSound.source = plasmoid.configuration.timer_sfx_filepath
-			notificationSound.play()
-		}
 
 		if (timerRepeats) {
 			timerSeconds = timerDuration
 			timerTicker.start()
-		}
-	}
-
-	Audio {
-		id: notificationSound
-
-		onStopped: {
-			// source = ""
 		}
 	}
 
@@ -338,17 +325,17 @@ Item {
 	}
 
 	function createNotification() {
-		// https://github.com/KDE/plasma-workspace/blob/master/dataengines/notifications/notifications.operations
-		var service = notificationSource.serviceForSource("notification")
-		var operation = service.operationDescription("createNotification")
-
-		operation.appName = i18n("Timer")
-		operation["appIcon"] = "chronometer"
-		operation.summary = i18n("Timer finished")
-		operation["body"] = i18n("%1 has passed", formatTimer(timerDuration))
-		operation["expireTimeout"] = 2000
-
-		service.startOperationCall(operation)
+		var args = {
+			appName: i18n("Timer"),
+			appIcon: "chronometer",
+			summary: i18n("Timer finished"),
+			body: i18n("%1 has passed", formatTimer(timerDuration)),
+			expireTimeout: 2000,
+		}
+		if (timerSfxEnabled) {
+			args.soundFile = plasmoid.configuration.timer_sfx_filepath
+		}
+		notificationManager.createNotification(args)
 	}
 
 
