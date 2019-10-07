@@ -49,7 +49,7 @@ GridLayout {
 	LinkRect {
 		visible: agendaModel.showDailyWeather
 		Layout.alignment: Qt.AlignTop
-		Layout.column: weatherOnRight ? 2 : 0
+		Layout.row: weatherOnRight ? 2 : 0
 		Layout.minimumWidth: appletConfig.agendaDateColumnWidth
 		implicitWidth: itemWeatherColumn.implicitWidth
 		onWidthChanged: {
@@ -112,7 +112,7 @@ GridLayout {
 
 	LinkRect {
 		Layout.alignment: Qt.AlignTop
-		Layout.column: weatherOnRight ? 0 : 1
+		Layout.row: weatherOnRight ? 0 : 1
 		implicitWidth: appletConfig.agendaDateColumnWidth
 
 		// readonly property int maxOffset: agendaListItem.height - height
@@ -136,7 +136,7 @@ GridLayout {
 				font.weight: agendaItemIsToday ? inProgressFontWeight : Font.Normal
 				height: paintedHeight
 				Layout.fillWidth: true
-				horizontalAlignment: Text.AlignRight
+				horizontalAlignment: Text.AlignHCenter
 
 				// MouseArea {
 				// 	anchors.fill: itemDateColumn
@@ -156,7 +156,7 @@ GridLayout {
 				font.weight: agendaItemIsToday ? inProgressFontWeight : Font.Normal
 				height: paintedHeight
 				Layout.fillWidth: true
-				horizontalAlignment: Text.AlignRight
+				horizontalAlignment: Text.AlignHCenter
 			}
 		}
 
@@ -174,7 +174,7 @@ GridLayout {
 
 	ColumnLayout {
 		Layout.alignment: Qt.AlignTop | Qt.AlignLeft
-		Layout.column: weatherOnRight ? 1 : 2
+		Layout.row: weatherOnRight ? 1 : 2
 		spacing: 0
 
 		NewEventForm {
@@ -193,6 +193,7 @@ GridLayout {
 
 				delegate: AgendaEventItem {
 					id: agendaEventItem
+					implicitWidth: 120 * units.devicePixelRatio
 				}
 			}
 		}

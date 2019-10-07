@@ -93,9 +93,9 @@ CalendarManager {
 		googleCalendarManager.fetchAll(dateMin, dateMax)
 		plasmaCalendarManager.fetchAll(dateMin, dateMax)
 		// icalManager.fetchAll(dateMin, dateMax)
-		// debugCalendarManager.showDebugEvents = true
+		debugCalendarManager.showDebugEvents = true
 		// debugCalendarManager.importGoogleSession = true
-		// debugCalendarManager.fetchAll(dateMin, dateMax)
+		debugCalendarManager.fetchAll(dateMin, dateMax)
 	}
 
 	onAllDataFetched: mergeEvents()

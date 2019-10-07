@@ -57,9 +57,10 @@ Item {
 
 		// onScrollYChanged: console.log('scrollY', scrollY)
 
-		ColumnLayout {
+		RowLayout {
 			id: agendaColumn
-			width: agendaScrollView.viewportWidth
+			// width: agendaScrollView.viewportWidth
+			height: agendaScrollView.viewportHeight
 			spacing: 10 * units.devicePixelRatio
 
 			Repeater {
@@ -70,7 +71,8 @@ Item {
 				model: root.agendaModel
 				delegate: AgendaListItem {
 					// visible: agendaRepeater.populated
-					width: agendaRepeater.width
+					// width: agendaRepeater.width
+					Layout.alignment: Qt.AlignTop
 					// onHeightChanged: {
 					// 	if (scrollToIndexTimer.running) {
 					// 		scrollToIndexTimer.updatePosition()
