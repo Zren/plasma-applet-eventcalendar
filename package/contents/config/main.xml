@@ -178,7 +178,7 @@
 		</entry>
 		<entry name="enabledCalendarPlugins" type="StringList">
 			<label>A list of plugins where additional calendar event data can be sourced.</label>
-			<default>/usr/lib/x86_64-linux-gnu/qt5/plugins/plasmacalendarplugins/holidaysevents.so</default>
+			<default>/usr/lib/x86_64-linux-gnu/qt5/plugins/plasmacalendarplugins/holidaysevents.so,/usr/lib/qt/plugins/plasmacalendarplugins/holidaysevents.so</default>
 		</entry>
 	</group>
 
