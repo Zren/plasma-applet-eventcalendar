@@ -1,4 +1,4 @@
-// Version 1
+// Version 2
 
 import QtQuick 2.0
 
@@ -40,10 +40,8 @@ Item {
 	}
 
 	function logJSON() {
-		if (showDebug) {
-			var args = prettifyArguments(arguments)
-			args.unshift('[' + name + ']')
-			console.log.apply(console, args)
-		}
+		var args = prettifyArguments(arguments)
+		args.unshift('[' + name + ']')
+		console.log.apply(console, args)
 	}
 }
