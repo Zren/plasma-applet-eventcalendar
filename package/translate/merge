@@ -1,10 +1,10 @@
 #!/bin/sh
-# Version: 11
+# Version: 14
 
 # https://techbase.kde.org/Development/Tutorials/Localization/i18n_Build_Systems
 # Based on: https://github.com/psifidotos/nowdock-plasmoid/blob/master/po/Messages.sh
 
-DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+DIR=`cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd`
 plasmoidName=`kreadconfig5 --file="$DIR/../metadata.desktop" --group="Desktop Entry" --key="X-KDE-PluginInfo-Name"`
 widgetName="${plasmoidName##*.}" # Strip namespace
 website=`kreadconfig5 --file="$DIR/../metadata.desktop" --group="Desktop Entry" --key="X-KDE-PluginInfo-Website"`
@@ -91,10 +91,15 @@ for cat in $catalogs; do
 		widthArg="--width=400"
 	fi
 
+	cp "$cat" "$cat.new"
+	sed -i 's/"Content-Type: text\/plain; charset=CHARSET\\n"/"Content-Type: text\/plain; charset=UTF-8\\n"/' "$cat.new"
+
 	msgmerge \
 		${widthArg} \
 		--no-fuzzy-matching \
-		-o "$cat.new" "$cat" "${DIR}/template.pot"
+		-o "$cat.new" \
+		"$cat.new" "${DIR}/template.pot"
+
 	sed -i 's/# SOME DESCRIPTIVE TITLE./'"# Translation of ${widgetName} in ${catLocale}"'/' "$cat.new"
 	sed -i 's/# Translation of '"${widgetName}"' in LANGUAGE/'"# Translation of ${widgetName} in ${catLocale}"'/' "$cat.new"
 	sed -i 's/# Copyright (C) YEAR THE PACKAGE'"'"'S COPYRIGHT HOLDER/'"# Copyright (C) $(date +%Y)"'/' "$cat.new"
@@ -109,6 +114,11 @@ for cat in $catalogs; do
 	mv "$cat.new" "$cat"
 done
 
+# Populate ReadMe.md
+sed -i -E 's`share\/plasma\/plasmoids\/(.+)\/translate`share/plasma/plasmoids/'"${plasmoidName}"'/translate`' ./ReadMe.md
+if [[ "$website" == *"github.com"* ]]; then
+	sed -i -E 's`\[new issue\]\(https:\/\/github\.com\/(.+)\/(.+)\/issues\/new\)`[new issue]('"${website}"'/issues/new)`' ./ReadMe.md
+fi
 sed -i '/^|/ d' ./ReadMe.md # Remove status table from ReadMe
 cat ./Status.md >> ./ReadMe.md
 rm ./Status.md
