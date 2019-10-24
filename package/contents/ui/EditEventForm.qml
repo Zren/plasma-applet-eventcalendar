@@ -92,19 +92,22 @@ Loader {
 					startDateTime: model.start.dateTime || new Date()
 					endDateTime: model.end.dateTime || new Date()
 
+					function dateTimeString(d) {
+						return d.toISOString()
+					}
 					function dateString(d) {
-						return Qt.formatDateTime(d, 'yyyy-MM-dd')
+						return d.toISOString().substr(0, 10)
 					}
 					function getStartObj() {
 						if (showTime) {
-							return { dateTime: startDateTime.toString() }
+							return { dateTime: dateTimeString(startDateTime), timeZone: event.start.timeZone }
 						} else { // All day
 							return { date: dateString(startDateTime) }
 						}
 					}
 					function getEndObj() {
 						if (showTime) {
-							return { dateTime: startDateTime.toString() }
+							return { dateTime: dateTimeString(endDateTime), timeZone: event.end.timeZone }
 						} else { // All day
 							// Events end at "midnight" the next day.
 							// See parseEventsForDate() functions for more info.
