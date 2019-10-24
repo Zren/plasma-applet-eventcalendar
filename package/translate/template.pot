@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: eventcalendar \n"
 "Report-Msgid-Bugs-To: https://github.com/Zren/plasma-applet-eventcalendar\n"
-"POT-Creation-Date: 2019-10-06 15:31-0400\n"
+"POT-Creation-Date: 2019-10-24 13:05-0400\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -348,7 +348,7 @@ msgstr ""
 msgid "Event Starting"
 msgstr ""
 
-#: ../contents/ui/config/ConfigGeneral.qml:75 ../contents/ui/lib/ConfigNotification.qml:61
+#: ../contents/ui/config/ConfigGeneral.qml:75 ../contents/ui/lib/ConfigNotification.qml:62
 msgid "Choose a sound effect"
 msgstr ""
 
@@ -364,7 +364,7 @@ msgstr ""
 msgid "Meteogram"
 msgstr ""
 
-#: ../contents/ui/config/ConfigGeneral.qml:116 ../contents/ui/TimerView.qml:345
+#: ../contents/ui/config/ConfigGeneral.qml:116 ../contents/ui/TimerView.qml:329
 msgid "Timer"
 msgstr ""
 
@@ -769,71 +769,71 @@ msgstr ""
 msgid "&Start"
 msgstr ""
 
-#: ../contents/ui/TimerView.qml:22
+#: ../contents/ui/TimerView.qml:21
 msgid "30s"
 msgstr ""
 
-#: ../contents/ui/TimerView.qml:26
+#: ../contents/ui/TimerView.qml:25
 msgid "1m"
 msgstr ""
 
-#: ../contents/ui/TimerView.qml:30
+#: ../contents/ui/TimerView.qml:29
 msgid "5m"
 msgstr ""
 
-#: ../contents/ui/TimerView.qml:34
+#: ../contents/ui/TimerView.qml:33
 msgid "10m"
 msgstr ""
 
-#: ../contents/ui/TimerView.qml:38
+#: ../contents/ui/TimerView.qml:37
 msgid "15m"
 msgstr ""
 
-#: ../contents/ui/TimerView.qml:42
+#: ../contents/ui/TimerView.qml:41
 msgid "20m"
 msgstr ""
 
-#: ../contents/ui/TimerView.qml:46
+#: ../contents/ui/TimerView.qml:45
 msgid "30m"
 msgstr ""
 
-#: ../contents/ui/TimerView.qml:50
+#: ../contents/ui/TimerView.qml:49
 msgid "45m"
 msgstr ""
 
-#: ../contents/ui/TimerView.qml:54
+#: ../contents/ui/TimerView.qml:53
 msgid "1h"
 msgstr ""
 
-#: ../contents/ui/TimerView.qml:102
+#: ../contents/ui/TimerView.qml:101
 msgid "Pause Timer"
 msgstr ""
 
-#: ../contents/ui/TimerView.qml:104
+#: ../contents/ui/TimerView.qml:103
 msgid "Start Timer"
 msgstr ""
 
-#: ../contents/ui/TimerView.qml:108
+#: ../contents/ui/TimerView.qml:107
 msgid "Scroll to add to duration"
 msgstr ""
 
-#: ../contents/ui/TimerView.qml:163 ../contents/ui/TimerView.qml:172 ../contents/ui/TimerView.qml:373
+#: ../contents/ui/TimerView.qml:162 ../contents/ui/TimerView.qml:171 ../contents/ui/TimerView.qml:360
 msgid "Repeat"
 msgstr ""
 
-#: ../contents/ui/TimerView.qml:181 ../contents/ui/TimerView.qml:190 ../contents/ui/TimerView.qml:382
+#: ../contents/ui/TimerView.qml:180 ../contents/ui/TimerView.qml:189 ../contents/ui/TimerView.qml:369
 msgid "Sound"
 msgstr ""
 
-#: ../contents/ui/TimerView.qml:347
+#: ../contents/ui/TimerView.qml:331
 msgid "Timer finished"
 msgstr ""
 
-#: ../contents/ui/TimerView.qml:348
+#: ../contents/ui/TimerView.qml:332
 msgid "%1 has passed"
 msgstr ""
 
-#: ../contents/ui/TimerView.qml:394
+#: ../contents/ui/TimerView.qml:381
 msgid "Set Timer"
 msgstr ""
 
