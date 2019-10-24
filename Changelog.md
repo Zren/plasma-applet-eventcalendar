@@ -1,9 +1,9 @@
-## v65 - October __ 2019
+## v65 - October 24 2019
 
+* We only need QQC2 v2.0 for the google cal config page ContextMenu (Issue #102).
 * Dynamically load the Audio sound effects so that it should fail if GStreamer or QtMultimedia crash (Issue #84).
 * Updated Dutch translation by @Vistaus (Pull Request #97)
 * Updated Spanish translation by @V3ct0r (Pull Request #100)
-* We only need QQC2 v2.0 for the google cal config page ContextMenu (Issue #102).
 
 ## v64 - October 6 2019
 
