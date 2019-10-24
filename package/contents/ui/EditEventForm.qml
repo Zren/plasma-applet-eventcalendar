@@ -26,10 +26,41 @@ Loader {
 				editSummaryTextField.forceActiveFocus()
 			}
 
+			function isEmpty(s) {
+				return typeof s === "undefined" || s === ""
+			}
+			function hasChanged(a, b) {
+				// logger.log('hasChanged', a != b)
+				// logger.log('\t', JSON.stringify(a), typeof a, isEmpty(a))
+				// logger.log('\t', JSON.stringify(b), typeof b, isEmpty(b))
+				return a != b && !(isEmpty(a) && isEmpty(b))
+			}
 			function populateIfChanged(args, propKey, newValue) {
-				if (event[propKey] != newValue) {
+				var changed = hasChanged(event[propKey], newValue)
+				// logger.log(propKey, changed, event[propKey], newValue)
+				if (changed) {
 					args[propKey] = newValue
 				}
+			}
+			function populateIfDateChanged(args, propKey, newValue) {
+				var changedDate = hasChanged(event[propKey]['date'], newValue['date'])
+				var changedDateTime = hasChanged(event[propKey]['dateTime'].toISOString(), newValue['dateTime'])
+				var changedTimeZone = hasChanged(event[propKey]['timeZone'], newValue['timeZone'])
+				var changed = changedDate || changedDateTime || changedTimeZone
+				// logger.logJSON('populateIfDateChanged', propKey, changed, event[propKey], newValue)
+				// logger.log('\t', changedDate, changedDateTime, changedTimeZone)
+				if (changed) {
+					args[propKey] = newValue
+				}
+			}
+			function getChanges() {
+				var args = {}
+				populateIfChanged(args, 'summary', editSummaryTextField.text)
+				// populateIfDateChanged(args, 'start', durationSelector.getStartObj())
+				// populateIfDateChanged(args, 'end', durationSelector.getEndObj())
+				populateIfChanged(args, 'location', editLocationTextField.text)
+				populateIfChanged(args, 'description', editDescriptionTextField.text)
+				return args
 			}
 			function submit() {
 				logger.log('editEventItem.submit()')
@@ -42,13 +73,7 @@ Loader {
 					// https://developers.google.com/calendar/v3/reference/events/move
 				}
 
-				var args = {}
-				populateIfChanged(args, 'summary', editSummaryTextField.text)
-				// args.start = durationSelector.getStartObj() // Hard to compare
-				// args.end = durationSelector.getStartObj() // Hard to compare
-				populateIfChanged(args, 'location', editLocationTextField.text)
-				populateIfChanged(args, 'description', editDescriptionTextField.text)
-
+				var args = getChanges()
 				eventModel.setEventProperties(event.calendarId, event.id, args)
 			}
 
@@ -56,8 +81,14 @@ Loader {
 				editEventForm.active = false
 			}
 
-			//----
+			//---- Testing
+			// Connections {
+			// 	target: durationSelector
+			// 	onStartDateTimeChanged: logger.logJSON('onStartDateTimeChanged', editEventItem.getChanges())
+			// 	onEndDateTimeChanged: logger.logJSON('onEndDateTimeChanged', editEventItem.getChanges())
+			// }
 
+			//----
 			GridLayout {
 				id: editEventGrid
 				anchors.left: parent.left
