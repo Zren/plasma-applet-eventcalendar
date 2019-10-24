@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: eventcalendar \n"
 "Report-Msgid-Bugs-To: https://github.com/Zren/plasma-applet-eventcalendar\n"
-"POT-Creation-Date: 2019-10-24 13:05-0400\n"
+"POT-Creation-Date: 2019-10-24 13:27-0400\n"
 "PO-Revision-Date: 2017-06-10 HO:MI+ZONE\n"
 "Last-Translator: Clayton Magalhães <helpdir@gmail.com>\n"
 "Language-Team: SACI <helpdir@gmail.com>\n"
@@ -389,8 +389,8 @@ msgid "The default font for the Breeze theme is Noto Sans which is hard to read 
 msgstr "A fonte padrão para o tema Breeze é a Noto Sans, que é difícil de ler usando tamanho de fonte pequena. Caso o texto fique muito pequeno ao adicionar uma linha, tente usar a fonte Sans Serif."
 
 #: ../contents/ui/config/ConfigGeneral.qml:160
-msgid "You can also use <b>'&lt;b&gt;'ddd'&lt;/b&gt;'</b> or <b>'&lt;font color=\"#77aaadd\"&gt;'ddd'&lt;/font&gt;'</b> to style a section. Note the single quotes around the tags are used to bypass the time format."
-msgstr "Você também pode usar <b>'&lt;b&gt;'ddd'&lt;/b&gt;'</b> ou <b>'&lt;font color=\"#77aaadd\"&gt;'ddd'&lt;/font&gt;'</b> para mudar o estilo de apresentação. Note que as aspas envolvendo as tags são usadas para permitir o formato de horas."
+msgid "You can also use %1 or %2 to style a section. Note the single quotes around the tags are used to bypass the time format."
+msgstr "Você também pode usar %1 ou %2 para mudar o estilo de apresentação. Note que as aspas envolvendo as tags são usadas para permitir o formato de horas."
 
 #: ../contents/ui/config/ConfigGeneral.qml:166
 msgid "Font:"

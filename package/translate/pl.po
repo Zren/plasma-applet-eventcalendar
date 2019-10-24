@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: eventcalendar \n"
 "Report-Msgid-Bugs-To: https://github.com/Zren/plasma-applet-eventcalendar\n"
-"POT-Creation-Date: 2019-10-24 13:05-0400\n"
+"POT-Creation-Date: 2019-10-24 13:27-0400\n"
 "PO-Revision-Date: 2018-09-03 HO:MI+ZONE\n"
 "Last-Translator: Jakub Starzyk <jstarzyk98@gmail.com>\n"
 "Language-Team: Jakub Starzyk <jstarzyk98@gmail.com>\n"
@@ -387,8 +387,8 @@ msgid "The default font for the Breeze theme is Noto Sans which is hard to read 
 msgstr "Domyślną czcionką dla motywu Bryza jest Noto Sans, które może być słabo widoczne przy małym rozmiarze tekstu. Wypróbuj czcionkę bezszeryfową, jeśli tekst okaże się za mały po dodaniu drugiej lini."
 
 #: ../contents/ui/config/ConfigGeneral.qml:160
-msgid "You can also use <b>'&lt;b&gt;'ddd'&lt;/b&gt;'</b> or <b>'&lt;font color=\"#77aaadd\"&gt;'ddd'&lt;/font&gt;'</b> to style a section. Note the single quotes around the tags are used to bypass the time format."
-msgstr "Możesz również użyć <b>'&lt;b&gt;'ddd'&lt;/b&gt;'</b> lub <b>'&lt;font color=\"#77aaadd\"&gt;'ddd'&lt;/font&gt;'</b>, by nadać styl fragmentowi tekstu. Uwaga: pojedyncze apostrofy na zewnątrz tagów służą do ominięcia rozpoznania jako format czasu."
+msgid "You can also use %1 or %2 to style a section. Note the single quotes around the tags are used to bypass the time format."
+msgstr "Możesz również użyć %1 lub %2, by nadać styl fragmentowi tekstu. Uwaga: pojedyncze apostrofy na zewnątrz tagów służą do ominięcia rozpoznania jako format czasu."
 
 #: ../contents/ui/config/ConfigGeneral.qml:166
 msgid "Font:"

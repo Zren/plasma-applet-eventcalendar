@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: eventcalendar \n"
 "Report-Msgid-Bugs-To: https://github.com/Zren/plasma-applet-eventcalendar\n"
-"POT-Creation-Date: 2019-10-24 13:05-0400\n"
+"POT-Creation-Date: 2019-10-24 13:27-0400\n"
 "PO-Revision-Date: 2018-01-19 HO:MI+ZONE\n"
 "Last-Translator: Mathieu Provençal <mth.provencal@gmail.com>\n"
 "Language-Team: French <LL@li.org>\n"
@@ -389,8 +389,8 @@ msgid "The default font for the Breeze theme is Noto Sans which is hard to read 
 msgstr "La police qu'utilise Breeze par défaut est Noto Sans, mais les petits caractères sont difficiles à lire. Essayer Sans Serif si la deuxième ligne paraît illisible."
 
 #: ../contents/ui/config/ConfigGeneral.qml:160
-msgid "You can also use <b>'&lt;b&gt;'ddd'&lt;/b&gt;'</b> or <b>'&lt;font color=\"#77aaadd\"&gt;'ddd'&lt;/font&gt;'</b> to style a section. Note the single quotes around the tags are used to bypass the time format."
-msgstr "Vous pouvez également utiliser <b>'&lt;b&gt;'ddd'&lt;/b&gt;'</b> ou <b>'&lt;font color=\"#77aaadd\"&gt;'ddd'&lt;/font&gt;'</b> pour styliser la section. Notez que l'utilisation de guillemets simples autour des balises est utilisée pour contourner le format horaire."
+msgid "You can also use %1 or %2 to style a section. Note the single quotes around the tags are used to bypass the time format."
+msgstr "Vous pouvez également utiliser %1 ou %2 pour styliser la section. Notez que l'utilisation de guillemets simples autour des balises est utilisée pour contourner le format horaire."
 
 #: ../contents/ui/config/ConfigGeneral.qml:166
 msgid "Font:"
