@@ -113,15 +113,15 @@ Item {
 		event.summary = event.summary || i18nc("event with no summary", "(No title)")
 
 		if (event.start.date) {
-			event.start.dateTime = new Date(event.start.date + ' 00:00:00')
+			event.startDateTime = new Date(event.start.date + ' 00:00:00')
 		} else {
-			event.start.dateTime = new Date(event.start.dateTime)
+			event.startDateTime = new Date(event.start.dateTime)
 		}
 
 		if (event.end.date) {
-			event.end.dateTime = new Date(event.end.date + ' 00:00:00')
+			event.endDateTime = new Date(event.end.date + ' 00:00:00')
 		} else {
-			event.end.dateTime = new Date(event.end.dateTime)
+			event.endDateTime = new Date(event.end.dateTime)
 		}
 	}
 

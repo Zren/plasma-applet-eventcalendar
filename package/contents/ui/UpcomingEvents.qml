@@ -22,8 +22,8 @@ EventModel {
 	}
 
 	function isUpcomingEvent(eventItem) {
-		console.log(eventItem.start.dateTime, timeModel.currentTime, eventItem.start.dateTime - timeModel.currentTime, eventItem.summary)
-		var dt = eventItem.start.dateTime - timeModel.currentTime
+		console.log(eventItem.startDateTime, timeModel.currentTime, eventItem.startDateTime - timeModel.currentTime, eventItem.summary)
+		var dt = eventItem.startDateTime - timeModel.currentTime
 		return -30 * 1000 <= dt && dt <= 90 * 60 * 1000 // starting within 90 minutes
 	}
 
@@ -36,11 +36,11 @@ EventModel {
 	}
 
 	function isEventStarting(eventItem) {
-		return isSameMinute(timeModel.currentTime, eventItem.start.dateTime) // starting this minute
+		return isSameMinute(timeModel.currentTime, eventItem.startDateTime) // starting this minute
 	}
 
 	function isEventInProgress(eventItem) {
-		return eventItem.start.dateTime <= timeModel.currentTime && timeModel.currentTime < eventItem.end.dateTime
+		return eventItem.startDateTime <= timeModel.currentTime && timeModel.currentTime < eventItem.endDateTime
 	}
 
 	function filterEvents(predicate) {

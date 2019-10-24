@@ -103,7 +103,7 @@ ListModel {
 			return
 		}
 
-		data.items.sort(function(a,b) { return a.start.dateTime - b.start.dateTime })
+		data.items.sort(function(a,b) { return a.startDateTime - b.startDateTime })
 
 		var agendaItemList = []
 
@@ -111,14 +111,14 @@ ListModel {
 			var eventItem = data.items[i]
 			if (plasmoid.configuration.agenda_breakup_multiday_events) {
 				// for Max(start, visibleMin) .. Min(end, visibleMax)
-				var lowerLimitDate = (agendaModel.clipEventsOutsideLimits && eventItem.start.dateTime < agendaModel.visibleDateMin
+				var lowerLimitDate = (agendaModel.clipEventsOutsideLimits && eventItem.startDateTime < agendaModel.visibleDateMin
 					? agendaModel.visibleDateMin
-					: eventItem.start.dateTime
+					: eventItem.startDateTime
 				)
-				var upperLimitDate = eventItem.end.dateTime
+				var upperLimitDate = eventItem.endDateTime
 				if (eventItem.end.date) {
 					// All Day event "ends" day before.
-					upperLimitDate = new Date(eventItem.end.dateTime)
+					upperLimitDate = new Date(eventItem.endDateTime)
 					upperLimitDate.setDate(upperLimitDate.getDate() - 1)
 				}
 				if (agendaModel.clipEventsOutsideLimits && upperLimitDate > agendaModel.visibleDateMax) {
@@ -128,12 +128,12 @@ ListModel {
 					insertEventAtDate(agendaItemList, eventItemDate, eventItem)
 				}
 			} else {
-				var now = new Date(timeModel.currentTime);
-				var inProgress = eventItem.start.dateTime <= now && now <= eventItem.end.dateTime
+				var now = new Date(timeModel.currentTime)
+				var inProgress = eventItem.startDateTime <= now && now <= eventItem.endDateTime
 				if (inProgress) {
 					insertEventAtDate(agendaItemList, now, eventItem)
 				} else {
-					insertEventAtDate(agendaItemList, eventItem.start.dateTime, eventItem)
+					insertEventAtDate(agendaItemList, eventItem.startDateTime, eventItem)
 				}
 			}
 		}

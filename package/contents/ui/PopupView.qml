@@ -433,8 +433,8 @@ MouseArea {
 					// https://github.com/KDE/plasma-framework/blob/master/src/declarativeimports/calendar/daysmodel.h
 					for (var j = 0; j < data.items.length; j++) {
 						var eventItem = data.items[j]
-						var eventItemStartDate = new Date(eventItem.start.dateTime.getFullYear(), eventItem.start.dateTime.getMonth(), eventItem.start.dateTime.getDate())
-						var eventItemEndDate = new Date(eventItem.end.dateTime.getFullYear(), eventItem.end.dateTime.getMonth(), eventItem.end.dateTime.getDate())
+						var eventItemStartDate = new Date(eventItem.startDateTime.getFullYear(), eventItem.startDateTime.getMonth(), eventItem.startDateTime.getDate())
+						var eventItemEndDate = new Date(eventItem.endDateTime.getFullYear(), eventItem.endDateTime.getMonth(), eventItem.endDateTime.getDate())
 						if (eventItem.end.date) {
 							// All day events end at midnight which is technically the next day.
 							eventItemEndDate.setDate(eventItemEndDate.getDate() - 1)

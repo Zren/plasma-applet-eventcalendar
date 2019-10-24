@@ -120,8 +120,8 @@ Loader {
 					Layout.columnSpan: 2
 					enabled: false
 
-					startDateTime: model.start.dateTime || new Date()
-					endDateTime: model.end.dateTime || new Date()
+					startDateTime: model.startDateTime || new Date()
+					endDateTime: model.endDateTime || new Date()
 
 					function dateTimeString(d) {
 						return d.toISOString()

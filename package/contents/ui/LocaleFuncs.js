@@ -29,8 +29,8 @@ function formatEventDateTime(dateTime, args) {
 function formatEventDuration(event, args) {
 	var relativeDate = args && args.relativeDate
 	var clock24h = args && args.clock24h
-	var startTime = event.start.dateTime
-	var endTime = event.end.dateTime
+	var startTime = event.startDateTime
+	var endTime = event.endDateTime
 	var shortDateFormat = i18nc("short month+date format", "MMM d")
 
 	if (event.start.date) {
