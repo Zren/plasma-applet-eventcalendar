@@ -98,6 +98,9 @@ CalendarManager {
 	}
 
 	function dateString(d) {
+		return d.toISOString().substr(0, 10)
+	}
+	function localeDateString(d) {
 		return Qt.formatDateTime(d, 'yyyy-MM-dd')
 	}
 	function isValidDate(d) {
@@ -126,13 +129,13 @@ CalendarManager {
 			// logger.log('\t endDateTime', dayItem.endDateTime, endDateTime)
 			
 			if (dayItem.isAllDay) {
-				start.date = dateString(startDateTime) // 2018-01-31
+				start.date = localeDateString(startDateTime) // 2018-01-31
 				// Google Calendar has the event start at midnight, and end at midnight the next day
 				// Plasma has the date end on the same day, so we need to add 1 day to it so
 				// the rest of our code stack works.
 				var endDate = new Date(endDateTime)
 				endDate.setDate(endDate.getDate() + 1)
-				end.date = dateString(endDate) // 2018-01-31
+				end.date = localeDateString(endDate) // 2018-01-31
 				endDateTime = new Date(end.date)
 			} else {
 				start.dateTime = startDateTime
@@ -181,7 +184,7 @@ CalendarManager {
 		var items = []
 		
 		// 2018-05-24T00:00:00.000Z
-		var dateMinUtcStr = dateString(dateMin) + 'T00:00:00.000Z'
+		var dateMinUtcStr = localeDateString(dateMin) + 'T00:00:00.000Z'
 		var dateMinUtc = new Date(dateMinUtcStr)
 		// logger.debug('getEventsForDuration.dateMinUtcStr', dateMinUtcStr)
 		// logger.debug('getEventsForDuration.dateMinUtc', dateMinUtc)
