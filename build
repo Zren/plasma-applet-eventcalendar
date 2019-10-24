@@ -27,7 +27,7 @@ packageComment=$(kreadconfig5 --file="$PWD/package/metadata.desktop" --group="De
 
 
 ### *.plasmoid
-filenameTag="-plasma5.6"
+filenameTag="-plasma5.12"
 filename="${packageName}-v${packageVersion}${filenameTag}.plasmoid"
 rm ${packageName}-v*.plasmoid # Cleanup
 (cd package \
