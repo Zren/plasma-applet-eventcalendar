@@ -1,3 +1,10 @@
+## v65 - October __ 2019
+
+* Dynamically load the Audio sound effects so that it should fail if GStreamer or QtMultimedia crash (Issue #84).
+* Updated Dutch translation by @Vistaus (Pull Request #97)
+* Updated Spanish translation by @V3ct0r (Pull Request #100)
+* We only need QQC2 v2.0 for the google cal config page ContextMenu (Issue #102).
+
 ## v64 - October 6 2019
 
 * Notice: On June 18-19, Google Calendar suffered an outage, exposing a bug in the widget. The widget was caught in a loop trying to update. A symptom of this was 100% usage causing a the taskbar to not be responsive. (Issue #85)
