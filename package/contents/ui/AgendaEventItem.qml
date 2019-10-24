@@ -15,8 +15,8 @@ LinkRect {
 	// height: eventColumn.height
 	property bool eventItemInProgress: false
 	function checkIfInProgress() {
-		eventItemInProgress = start && timeModel.currentTime && end ? start.dateTime <= timeModel.currentTime && timeModel.currentTime <= end.dateTime : false
-		// console.log('checkIfInProgress()', start, timeModel.currentTime, end)
+		eventItemInProgress = model.startDateTime && timeModel.currentTime && model.endDateTime ? model.startDateTime <= timeModel.currentTime && timeModel.currentTime <= model.endDateTime : false
+		// console.log('checkIfInProgress()', model.start, timeModel.currentTime, model.end)
 	}
 	Connections {
 		target: timeModel
@@ -27,7 +27,7 @@ LinkRect {
 		agendaEventItem.checkIfInProgress()
 
 		//--- Debugging
-		// editEventForm.active = eventItemInProgress && !model.start.date
+		// editEventForm.active = eventItemInProgress && !model.startDateTime
 	}
 
 	property bool isEditing: editSummaryForm.active || editDescriptionForm.active || editEventForm.active
@@ -273,7 +273,7 @@ LinkRect {
 	}
 	
 	onLeftClicked: {
-		// console.log('agendaItem.event.leftClicked', start.date, mouse)
+		// console.log('agendaItem.event.leftClicked', model.startDateTime, mouse)
 		if (false) {
 			var event = events.get(index)
 			console.log("event", JSON.stringify(event, null, '\t'))
