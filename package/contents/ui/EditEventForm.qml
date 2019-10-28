@@ -24,6 +24,8 @@ Loader {
 			Component.onCompleted: {
 				agendaScrollView.positionViewAtEvent(agendaItemIndex, eventItemIndex)
 				editSummaryTextField.forceActiveFocus()
+
+				logger.debugJSON('EditEventForm.event', event)
 			}
 
 			function isEmpty(s) {
@@ -44,7 +46,7 @@ Loader {
 			}
 			function populateIfDateChanged(args, propKey, newValue) {
 				var changedDate = hasChanged(event[propKey]['date'], newValue['date'])
-				var changedDateTime = hasChanged(event[propKey]['dateTime'].toISOString(), newValue['dateTime'])
+				var changedDateTime = hasChanged(event[propKey]['dateTime'], newValue['dateTime'])
 				var changedTimeZone = hasChanged(event[propKey]['timeZone'], newValue['timeZone'])
 				var changed = changedDate || changedDateTime || changedTimeZone
 				// logger.logJSON('populateIfDateChanged', propKey, changed, event[propKey], newValue)
@@ -56,8 +58,8 @@ Loader {
 			function getChanges() {
 				var args = {}
 				populateIfChanged(args, 'summary', editSummaryTextField.text)
-				// populateIfDateChanged(args, 'start', durationSelector.getStartObj())
-				// populateIfDateChanged(args, 'end', durationSelector.getEndObj())
+				populateIfDateChanged(args, 'start', durationSelector.getStartObj())
+				populateIfDateChanged(args, 'end', durationSelector.getEndObj())
 				populateIfChanged(args, 'location', editLocationTextField.text)
 				populateIfChanged(args, 'description', editDescriptionTextField.text)
 				return args
@@ -118,7 +120,6 @@ Loader {
 					showTime: !isAllDayCheckBox.checked
 					Layout.fillWidth: true
 					Layout.columnSpan: 2
-					enabled: false
 
 					startDateTime: model.startDateTime || new Date()
 					endDateTime: model.endDateTime || new Date()
