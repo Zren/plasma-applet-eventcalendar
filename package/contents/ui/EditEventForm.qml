@@ -121,8 +121,39 @@ Loader {
 					Layout.fillWidth: true
 					Layout.columnSpan: 2
 
-					startDateTime: model.startDateTime || new Date()
-					endDateTime: model.endDateTime || new Date()
+					startDateTime: {
+						if (event.startDateTime) {
+							if (event.start.date) {
+								var d = new Date(event.startDateTime)
+								// Set to 9-10am in case user unchecks All Day
+								d.setHours(9)
+								d.setMinutes(0)
+								return d
+							} else {
+								return event.endDateTime
+							}
+						} else {
+							return new Date()
+						}
+					}
+					endDateTime: {
+						if (event.endDateTime) {
+							if (event.end.date) {
+								// Events end at "midnight" the next day.
+								// See parseEventsForDate() functions for more info.
+								var d = new Date(event.endDateTime)
+								d.setDate(d.getDate() - 1)
+								// Set to 9-10am in case user unchecks All Day
+								d.setHours(10)
+								d.setMinutes(0)
+								return d
+							} else {
+								return event.startDateTime
+							}
+						} else {
+							return new Date()
+						}
+					}
 
 					function dateTimeString(d) {
 						return d.toISOString()
