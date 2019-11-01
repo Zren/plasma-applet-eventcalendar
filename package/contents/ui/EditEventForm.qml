@@ -66,7 +66,6 @@ Loader {
 			}
 			function submit() {
 				logger.log('editEventItem.submit()')
-				var event = events.get(index)
 				logger.debugJSON('event', event)
 
 				if (event.calendarId != calendarSelector.selectedCalendarId) {
@@ -104,7 +103,7 @@ Loader {
 					Layout.fillWidth: true
 					Layout.columnSpan: 2
 					placeholderText: i18n("Event Title")
-					text: model.summary
+					text: event.summary
 					onAccepted: {
 						logger.debug('editSummaryTextField.onAccepted', text)
 						editEventItem.submit()
@@ -201,7 +200,7 @@ Loader {
 					id: editLocationTextField
 					Layout.fillWidth: true
 					placeholderText: i18n("Add location")
-					text: model.location || ""
+					text: event.location || ""
 					onAccepted: {
 						logger.debug('editLocationTextField.onAccepted', text)
 						editEventItem.submit()
@@ -233,7 +232,7 @@ Loader {
 				PlasmaComponents3.TextArea {
 					id: editDescriptionTextField
 					placeholderText: i18n("Add description")
-					text: model.description || ""
+					text: event.description || ""
 
 					Layout.fillWidth: true
 					Layout.preferredHeight: contentHeight + (20 * units.devicePixelRatio)
