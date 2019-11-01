@@ -130,7 +130,7 @@ Loader {
 								d.setMinutes(0)
 								return d
 							} else {
-								return event.endDateTime
+								return event.startDateTime
 							}
 						} else {
 							return new Date()
@@ -148,7 +148,7 @@ Loader {
 								d.setMinutes(0)
 								return d
 							} else {
-								return event.startDateTime
+								return event.endDateTime
 							}
 						} else {
 							return new Date()
