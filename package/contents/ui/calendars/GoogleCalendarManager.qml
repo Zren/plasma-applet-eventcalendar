@@ -26,6 +26,8 @@ CalendarManager {
 
 	//-------------------------
 	// Events
+
+	//--- List Events
 	function fetchGoogleAccountEvents(calendarIdList) {
 		googleCalendarManager.asyncRequests += 1
 		var func = fetchGoogleAccountEvents_run.bind(this, calendarIdList, function(err, data) {
@@ -160,6 +162,50 @@ CalendarManager {
 		deferredUpdateAccessTokenThenUpdateEvents.restart()
 	}
 
+	//--- Get Single Event
+	function fetchGoogleCalendarEvent(calendarId, eventId, callback) {
+		logger.debug('fetchGoogleCalendarEvent', calendarId, eventId)
+		if (accessToken) {
+			var func = fetchGoogleCalendarEvent_run.bind(this, calendarId, eventId, callback)
+			checkAccessToken(func)
+		} else {
+			transactionError('attempting to "fetch an event" without an access token set')
+		}
+	}
+	function fetchGoogleCalendarEvent_run(calendarId, eventId, callback) {
+		logger.debugJSON('fetchGoogleCalendarEvent_run', calendarId, eventId)
+		fetchGCalEvent({
+			access_token: accessToken,
+			calendarId: calendarId,
+			eventId: eventId,
+		}, callback)
+	}
+	function fetchGCalEvent(args, callback) {
+		logger.debug('fetchGCalEvent', args.calendarId, args.eventId)
+
+		var url = 'https://www.googleapis.com/calendar/v3'
+		url += '/calendars/'
+		url += encodeURIComponent(args.calendarId)
+		url += '/events/'
+		url += encodeURIComponent(args.eventId)
+		url += '?timeZone=' + encodeURIComponent('Etc/UTC')
+		Requests.getJSON({
+			url: url,
+			headers: {
+				"Authorization": "Bearer " + args.access_token,
+			}
+		}, function(err, data, xhr) {
+			logger.debug('fetchGCalEvent.response', args.calendarId, args.eventId, err, data, xhr.status)
+			if (!err && data && data.error) {
+				return callback(data, null, xhr)
+			}
+			logger.debugJSON('\t data:', data)
+			callback(err, data, xhr)
+		})
+	}
+
+
+	//---
 	property int errorCount: 0
 	function getErrorTimeout(n) {
 		// Exponential Backoff
@@ -191,6 +237,7 @@ CalendarManager {
 		})
 	}
 
+	//---
 	Timer {
 		id: deferredUpdateAccessTokenThenUpdateEvents
 		interval: 200
@@ -207,6 +254,7 @@ CalendarManager {
 		})
 	}
 
+	//--- Refresh Credentials
 	function checkAccessToken(callback) {
 		logger.debug('checkAccessToken')
 		if (plasmoid.configuration.access_token_expires_at < Date.now() + 5000) {
@@ -266,6 +314,7 @@ CalendarManager {
 		}, callback)
 	}
 
+	//--- Parsing Events
 	onCalendarParsing: {
 		var calendar = getCalendar(calendarId)
 		data.items.forEach(function(event){
@@ -314,7 +363,7 @@ CalendarManager {
 	}
 
 
-	//---
+	//--- Create / POST
 	function createGoogleCalendarEvent(calendarId, date, text) {
 		if (accessToken) {
 			var dateString = date.getFullYear() + '-' + (date.getMonth()+1) + '-' + date.getDate()
@@ -396,7 +445,7 @@ CalendarManager {
 		return data
 	}
 
-	//---
+	//--- Update Event
 	function setEventProperty(calendarId, eventId, key, value) {
 		console.log('googleCalendarManager.setEventProperty', calendarId, eventId, key, value)
 		var args = {}
@@ -536,7 +585,7 @@ CalendarManager {
 		// })
 	}
 
-	//---
+	//--- Delete Event
 	function deleteEvent(calendarId, eventId) {
 		if (accessToken) {
 			var event = getEvent(calendarId, eventId)
