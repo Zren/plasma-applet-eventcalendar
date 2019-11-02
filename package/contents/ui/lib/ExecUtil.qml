@@ -42,7 +42,6 @@ PlasmaCore.DataSource {
 	}
 
 	function execCallback(callback, cmd, exitCode, exitStatus, stdout, stderr) {
-		console.log('execCallback', listeners[cmd], cmd)
 		delete listeners[cmd]
 		callback(cmd, exitCode, exitStatus, stdout, stderr)
 	}
