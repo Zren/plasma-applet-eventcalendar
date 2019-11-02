@@ -1,4 +1,4 @@
-// Version 3
+// Version 4
 
 import QtQuick 2.0
 import org.kde.plasma.core 2.0 as PlasmaCore
@@ -8,11 +8,16 @@ PlasmaCore.DataSource {
 	engine: "executable"
 	connectedSources: []
 	onNewData: {
+		var cmd = sourceName
 		var exitCode = data["exit code"]
 		var exitStatus = data["exit status"]
 		var stdout = data["stdout"]
 		var stderr = data["stderr"]
-		exited(sourceName, exitCode, exitStatus, stdout, stderr)
+		var listener = listeners[cmd]
+		if (listener) {
+			listener(cmd, exitCode, exitStatus, stdout, stderr)
+		}
+		exited(cmd, exitCode, exitStatus, stdout, stderr)
 		disconnectSource(sourceName) // cmd finished
 	}
 
@@ -31,14 +36,13 @@ PlasmaCore.DataSource {
 				delete listeners[cmd]
 			}
 			var listener = execCallback.bind(executable, callback)
-			exited.connect(listener)
 			listeners[cmd] = listener
 		}
 		connectSource(cmd)
 	}
 
 	function execCallback(callback, cmd, exitCode, exitStatus, stdout, stderr) {
-		exited.disconnect(listeners[cmd])
+		console.log('execCallback', listeners[cmd], cmd)
 		delete listeners[cmd]
 		callback(cmd, exitCode, exitStatus, stdout, stderr)
 	}
