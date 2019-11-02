@@ -36,42 +36,35 @@ QtObject {
 
 	property var executable: ExecUtil { id: executable }
 
-	function wrapToken(token) {
-		token = "" + token
-		// ' => '"'"' to escape the single quotes
-		token = token.replace("\'", "\'\"\'\"\'")
-		token = "\'" + token + "\'"
-		return token
-	}
-	function formatArg(name, value) {
-		return ' ' + name + ' ' + wrapToken(value)
-	}
 	function notify(args, callback) {
 		logger.debugJSON('NotificationMananger.notify', args)
 		args.sound = args.sound || args.soundFile
 
-		var cmd = 'python3' + ' ' + wrapToken(plasmoid.file("", "scripts/notification.py"))
+		var cmd = [
+			'python3',
+			plasmoid.file("", "scripts/notification.py"),
+		]		
 		if (args.appName) {
-			cmd += formatArg('--app-name', args.appName)
+			cmd.push('--app-name', args.appName)
 		}
 		if (args.appIcon) {
-			cmd += formatArg('--icon', args.appIcon)
+			cmd.push('--icon', args.appIcon)
 		}
 		if (args.sound) {
-			cmd += formatArg('--sound', args.sound)
+			cmd.push('--sound', args.sound)
 			if (args.loop) {
-				cmd += formatArg('--loop', args.loop)
+				cmd.push('--loop', args.loop)
 			}
 		}
 		if (args.actions) {
 			for (var i = 0; i < args.actions.length; i++) {
 				var action = args.actions[i]
-				cmd += formatArg('--action', action)
+				cmd.push('--action', action)
 			}
 		}
-		cmd += formatArg('--metadata', "" + Date.now() + " $(notify-send escape1)\'; notify-send escape2") // Make sure cmd is unique.
-		cmd += ' ' + wrapToken(args.summary)
-		cmd += ' ' + wrapToken(args.body)
+		cmd.push('--metadata', '' + Date.now())
+		cmd.push(args.summary)
+		cmd.push(args.body)
 		executable.exec(cmd, function(cmd, exitCode, exitStatus, stdout, stderr) {
 			var actionId = stdout.replace('\n', ' ').trim()
 			callback(actionId)
