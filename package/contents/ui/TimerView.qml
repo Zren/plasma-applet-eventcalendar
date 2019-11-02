@@ -16,43 +16,47 @@ Item {
 
 	implicitHeight: timerButtonView.height
 
+	function getHours(t) {
+		var hours = Math.floor(t / (60 * 60 * 1000))
+		return hours
+	}
+	function getMinutes(t) {
+		var millisLeftInHour = t % (60 * 60 * 1000)
+		var minutes = millisLeftInHour / (60 * 1000)
+		return minutes
+	}
+	function getSeconds(t) {
+		var millisLeftInMinute = t % (60 * 1000)
+		var seconds = millisLeftInMinute / 1000
+		return seconds
+	}
+	function durationShortFormat(totalSeconds) {
+		var t = totalSeconds * 1000
+		var str = ''
+		var hours = Math.floor(getHours(t))
+		if (hours > 0) {
+			str += i18nc("short form for %1 hours", "%1h", hours)
+		}
+		var minutes = Math.floor(getMinutes(t))
+		if (minutes > 0) {
+			str += i18nc("short form for %1 minutes", "%1m", minutes)
+		}
+		var seconds = Math.floor(getSeconds(t))
+		if (seconds > 0) {
+			str += i18nc("short form for %1 seconds", "%1s", seconds)
+		}
+		return str
+	}
 	property var defaultTimers: [
-		{
-			label: i18n("30s"),
-			seconds: 30,
-		},
-		{
-			label: i18n("1m"),
-			seconds: 60,
-		},
-		{
-			label: i18n("5m"),
-			seconds: 5 * 60,
-		},
-		{
-			label: i18n("10m"),
-			seconds: 10 * 60,
-		},
-		{
-			label: i18n("15m"),
-			seconds: 15 * 60,
-		},
-		{
-			label: i18n("20m"),
-			seconds: 20 * 60,
-		},
-		{
-			label: i18n("30m"),
-			seconds: 30 * 60,
-		},
-		{
-			label: i18n("45m"),
-			seconds: 45 * 60,
-		},
-		{
-			label: i18n("1h"),
-			seconds: 60 * 60,
-		},
+		{ seconds: 30 },
+		{ seconds: 60 },
+		{ seconds: 5 * 60 },
+		{ seconds: 10 * 60 },
+		{ seconds: 15 * 60 },
+		{ seconds: 20 * 60 },
+		{ seconds: 30 * 60 },
+		{ seconds: 45 * 60 },
+		{ seconds: 60 * 60 },
 	]
 
 	ColumnLayout {
@@ -205,7 +209,7 @@ Item {
 				model: defaultTimers
 
 				TimerPresetButton {
-					text: i18n(modelData.label)
+					text: durationShortFormat(modelData.seconds)
 					onClicked: setDurationAndStart(modelData.seconds)
 				}
 			}
@@ -392,7 +396,7 @@ Item {
 
 				var menuItem = newMenuItem()
 				menuItem.icon = 'chronometer'
-				menuItem.text = defaultTimers[i].label
+				menuItem.text = durationShortFormat(defaultTimers[i].seconds)
 				menuItem.clicked.connect(timerView.setDurationAndStart.bind(timerView, defaultTimers[i].seconds))
 				contextMenu.addMenuItem(menuItem)
 			}
