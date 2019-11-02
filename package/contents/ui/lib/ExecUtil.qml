@@ -29,7 +29,8 @@ PlasmaCore.DataSource {
 
 	property var listeners: ({}) // Empty Map
 
-	// Note that this is not tested.
+	// Note that this has not gone under a security audit.
+	// You probably shouldn't trust 3rd party input.
 	function wrapToken(token) {
 		token = "" + token
 		// ' => '"'"' to escape the single quotes
@@ -67,5 +68,5 @@ PlasmaCore.DataSource {
 		exec(['notify-send', 'test', '\'; notify-send escape3;\''])
 		exec(['notify-send', 'test', '\\\'; notify-send escape4;\\\''])
 	}
-	Component.onCompleted: test()
+	// Component.onCompleted: test()
 }
