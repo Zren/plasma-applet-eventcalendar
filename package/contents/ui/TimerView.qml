@@ -312,13 +312,17 @@ Item {
 		return s
 	}
 
+	function repeatTimer() {
+		timerSeconds = timerDuration
+		timerTicker.start()
+	}
+
 	function onTimerFinished() {
 		timerTicker.stop()
 		createNotification()
 
 		if (timerRepeats) {
-			timerSeconds = timerDuration
-			timerTicker.start()
+			repeatTimer()
 		}
 	}
 
@@ -339,7 +343,18 @@ Item {
 		if (timerSfxEnabled) {
 			args.soundFile = plasmoid.configuration.timer_sfx_filepath
 		}
-		notificationManager.createNotification(args)
+		// notificationManager.createNotification(args)
+
+		args.actions = []
+		if (!plasmoid.configuration.timer_repeats) {
+			var action = 'repeat' + ',' + i18n("Repeat")
+			args.actions.push(action)
+		}
+		notificationManager.notify(args, function(actionId){
+			if (actionId == 'repeat') {
+				repeatTimer()
+			}
+		})
 	}
 
 

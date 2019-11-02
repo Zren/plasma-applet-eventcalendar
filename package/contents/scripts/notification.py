@@ -72,6 +72,7 @@ def main():
 	parser.add_argument('--sound')
 	parser.add_argument('--loop')
 	parser.add_argument('--action', dest='actions', action='append')
+	parser.add_argument('--metadata')
 
 
 	try:
