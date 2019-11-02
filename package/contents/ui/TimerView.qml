@@ -215,7 +215,7 @@ Item {
 				var w = 0
 				for (var i = 0; i < defaultTimerRepeater.count; i++) {
 					var item = defaultTimerRepeater.itemAt(i)
-					var itemWidth = item.Layout.minimumWidth
+					var itemWidth = item.width
 					if (i > 0) {
 						itemWidth += bottomRow.spacing
 					}
