@@ -1,4 +1,4 @@
-// Version 4
+// Version 5
 
 import QtQuick 2.0
 import org.kde.plasma.core 2.0 as PlasmaCore
@@ -24,12 +24,25 @@ PlasmaCore.DataSource {
 	signal exited(string cmd, int exitCode, int exitStatus, string stdout, string stderr)
 
 	function trimOutput(stdout) {
-		return stdout.replace('\n', ' ').trim()
+		return stdout.replace(/\n/g, ' ').trim()
 	}
 
 	property var listeners: ({}) // Empty Map
 
+	// Note that this is not tested.
+	function wrapToken(token) {
+		token = "" + token
+		// ' => '"'"' to escape the single quotes
+		token = token.replace(/\'/g, "\'\"\'\"\'")
+		token = "\'" + token + "\'"
+		return token
+	}
+
 	function exec(cmd, callback) {
+		if (Array.isArray(cmd)) {
+			cmd = cmd.map(wrapToken)
+			cmd = cmd.join(' ')
+		}
 		if (typeof callback === 'function') {
 			if (listeners[cmd]) { // Our implementation only allows 1 callback per command.
 				exited.disconnect(listeners[cmd])
@@ -38,6 +51,7 @@ PlasmaCore.DataSource {
 			var listener = execCallback.bind(executable, callback)
 			listeners[cmd] = listener
 		}
+		// console.log('cmd', cmd)
 		connectSource(cmd)
 	}
 
@@ -45,4 +59,13 @@ PlasmaCore.DataSource {
 		delete listeners[cmd]
 		callback(cmd, exitCode, exitStatus, stdout, stderr)
 	}
+
+	//--- Tests
+	function test() {
+		exec(['notify-send', 'test', '$(notify-send escape1)'])
+		exec(['notify-send', 'test', '`notify-send escape2`'])
+		exec(['notify-send', 'test', '\'; notify-send escape3;\''])
+		exec(['notify-send', 'test', '\\\'; notify-send escape4;\\\''])
+	}
+	Component.onCompleted: test()
 }
