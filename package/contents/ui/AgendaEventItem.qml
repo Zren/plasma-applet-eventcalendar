@@ -30,7 +30,7 @@ LinkRect {
 		// editEventForm.active = eventItemInProgress && !model.startDateTime
 	}
 
-	property bool isEditing: editSummaryForm.active || editDescriptionForm.active || editEventForm.active
+	property alias isEditing: editEventForm.active
 	enabled: !isEditing
 
 	RowLayout {
@@ -56,40 +56,13 @@ LinkRect {
 				font.pixelSize: appletConfig.agendaFontSize
 				font.weight: eventItemInProgress ? inProgressFontWeight : Font.Normal
 				height: paintedHeight
-				visible: !(editSummaryForm.active || editEventForm.active)
+				visible: !editEventForm.visible
 				Layout.fillWidth: true
 
 				// The Following doesn't seem to be applicable anymore (left comment just in case).
 				// Wrapping causes reflow, which causes scroll to selection to miss the selected date
 				// since it reflows after updateUI/scrollToDate is done.
 				wrapMode: Text.Wrap
-			}
-
-			Loader {
-				id: editSummaryForm
-				active: false
-				visible: active
-				Layout.fillWidth: true
-				sourceComponent: Component {
-					PlasmaComponents.TextField {
-						id: editSummaryTextField
-						placeholderText: i18n("Event Title")
-						text: summary
-						onAccepted: {
-							console.log('editSummaryTextField.onAccepted', text)
-							var event = events.get(index)
-							console.log(event)
-							console.log(JSON.stringify(event))
-							eventModel.setEventProperty(event.calendarId, event.id, 'summary', text)
-						}
-						Component.onCompleted: {
-							forceActiveFocus()
-							agendaScrollView.positionViewAtEvent(agendaItemIndex, eventItemIndex)
-						}
-
-						Keys.onEscapePressed: editSummaryForm.active = false
-					}
-				}
 			}
 
 			PlasmaComponents.Label {
@@ -111,7 +84,7 @@ LinkRect {
 				font.pixelSize: appletConfig.agendaFontSize
 				font.weight: eventItemInProgress ? inProgressFontWeight : Font.Normal
 				height: paintedHeight
-				visible: !editEventForm.active
+				visible: !editEventForm.visible
 			}
 
 			Item {
@@ -123,7 +96,7 @@ LinkRect {
 			PlasmaComponents.Label {
 				id: eventDescription
 				readonly property bool showProperty: plasmoid.configuration.agendaShowEventDescription && text
-				visible: showProperty && !(editDescriptionForm.active || editEventForm.active)
+				visible: showProperty && !editEventForm.visible
 				text: renderText(model.description)
 				color: PlasmaCore.ColorScope.textColor
 				opacity: 0.75
@@ -181,69 +154,6 @@ LinkRect {
 				}
 			}
 
-			Loader {
-				id: editDescriptionForm
-				active: false
-				visible: active
-				Layout.fillWidth: true
-				sourceComponent: Component {
-					ColumnLayout {
-						id: editDescriptionItem
-
-						PlasmaComponents.TextArea {
-							id: editDescriptionTextField
-							placeholderText: i18n("Event Description")
-							text: model.description
-
-							Layout.fillWidth: true
-							Layout.preferredHeight: contentHeight + (20 * units.devicePixelRatio)
-
-
-							Component.onCompleted: {
-								forceActiveFocus()
-								agendaScrollView.positionViewAtEvent(agendaItemIndex, eventItemIndex)
-							}
-
-							Keys.onEscapePressed: editDescriptionItem.cancel()
-
-							Keys.onEnterPressed: _onEnterPressed(event) // ?
-							Keys.onReturnPressed: _onEnterPressed(event) // What's triggered on a US Keyboard
-							function _onEnterPressed(event) {
-								// console.log('onEnterPressed', event.key, event.modifiers)
-								if ((event.modifiers & Qt.ShiftModifier) || (event.modifiers & Qt.ControlModifier)) {
-									editDescriptionItem.submit()
-								} else {
-									event.accepted = false
-								}
-							}
-						}
-						RowLayout {
-							Item {
-								Layout.fillWidth: true
-							}
-							PlasmaComponents.Button {
-								text: i18n("Submit")
-								implicitWidth: minimumWidth
-								onClicked: editDescriptionItem.submit()
-							}
-						}
-
-						function submit() {
-							var text = editDescriptionTextField.text
-							console.log('editDescriptionForm.submit()', text)
-							var event = events.get(index)
-							console.log(event)
-							console.log(JSON.stringify(event))
-							eventModel.setEventProperty(event.calendarId, event.id, 'description', text)
-						}
-
-						function cancel() {
-							editDescriptionForm.active = false
-						}
-					}
-				}
-			}
-
 			Item {
 				id: eventEditorSpacing
 				visible: editEventForm.visible
@@ -291,29 +201,12 @@ LinkRect {
 		var event = events.get(index)
 
 		menuItem = contextMenu.newMenuItem()
-		menuItem.text = i18n("Edit title")
-		menuItem.icon = "edit-rename"
-		menuItem.enabled = event.canEdit
-		menuItem.clicked.connect(function() {
-			editSummaryForm.active = !editSummaryForm.active
-		})
-		// contextMenu.addMenuItem(menuItem)
-
-		menuItem = contextMenu.newMenuItem()
-		menuItem.text = i18n("Edit description")
-		menuItem.icon = "edit-rename"
-		menuItem.enabled = event.canEdit
-		menuItem.clicked.connect(function() {
-			editDescriptionForm.active = !editDescriptionForm.active
-		})
-		// contextMenu.addMenuItem(menuItem)
-
-		menuItem = contextMenu.newMenuItem()
 		menuItem.text = i18n("Edit")
 		menuItem.icon = "edit-rename"
 		menuItem.enabled = event.canEdit
 		menuItem.clicked.connect(function() {
 			editEventForm.active = !editEventForm.active
+			agendaScrollView.positionViewAtEvent(agendaItemIndex, eventItemIndex)
 		})
 		contextMenu.addMenuItem(menuItem)
 
