@@ -50,7 +50,8 @@ Item {
 	property alias calendarIdList: calendarIdListData.value
 
 	signal newAccessToken()
-	signal errorFetchingUserCode(string err)
+	signal sessionReset()
+	signal error(string err)
 
 
 	//---
@@ -79,13 +80,8 @@ Item {
 			logger.debugJSON('/oauth2/v4/token Response', data)
 
 			// Check for errors
-			if (data.error) {
-				var errorMessage = '' + data.error + ' (' + data.error_description + ')'
-				session.errorFetchingUserCode(errorMessage)
-				return
-			}
-			if (err) {
-				session.errorFetchingUserCode(err)
+			if (err || data.error) {
+				handleError(err, data)
 				return
 			}
 
@@ -110,6 +106,11 @@ Item {
 		fetchGCalCalendars({
 			access_token: accessToken,
 		}, function(err, data, xhr) {
+			// Check for errors
+			if (err || data.error) {
+				handleError(err, data)
+				return
+			}
 			calendarListData.value = data.items
 		})
 	}
@@ -124,7 +125,7 @@ Item {
 		}, function(err, data, xhr) {
 			// console.log('fetchGCalCalendars.response', err, data, xhr.status)
 			if (!err && data && data.error) {
-				return callback(data, null, xhr)
+				return callback('fetchGCalCalendars error', data, xhr)
 			}
 			callback(err, data, xhr)
 		})
@@ -142,7 +143,19 @@ Item {
 		plasmoid.configuration.agenda_newevent_last_calendar_id = ''
 		calendarList = []
 		calendarIdList = []
+		sessionReset()
+	}
 
-		// generateUserCodeAndPoll()
+	// https://developers.google.com/calendar/v3/errors
+	function handleError(err, data) {
+		if (data.error && data.error_description) {
+			var errorMessage = '' + data.error + ' (' + data.error_description + ')'
+			session.error(errorMessage)
+		} else if (data.error && data.error.message && typeof data.error.code !== "undefined") {
+			var errorMessage = '' + data.error.message + ' (' + data.error.code + ')'
+			session.error(errorMessage)
+		} else if (err) {
+			session.error(err)
+		}
 	}
 }

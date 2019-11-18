@@ -52,7 +52,7 @@ ConfigPage {
 			calendarsModel.calendarsShownChanged()
 		}
 
-		onErrorFetchingUserCode: messageWidget.err(err)
+		onError: messageWidget.err(err)
 	}
 
 
