@@ -60,7 +60,7 @@ PlasmaComponents3.TextField {
 	onEditingFinished: updateText()
 	Component.onCompleted: updateText()
 
-	property Controls.Popup popup: T.Popup {
+	property T.Popup popup: T.Popup {
 		x: control.mirrored ? control.width - width : 0
 		y: control.height
 
