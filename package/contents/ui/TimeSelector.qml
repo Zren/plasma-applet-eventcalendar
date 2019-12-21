@@ -109,7 +109,7 @@ PlasmaComponents3.TextField {
 		}
 	}
 
-	property Controls.Popup popup: T.Popup {
+	property T.Popup popup: T.Popup {
 		x: control.mirrored ? control.width - width : 0
 		y: control.height
 		property int minWidth: 120 * units.devicePixelRatio
