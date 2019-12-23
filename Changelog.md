@@ -1,3 +1,14 @@
+## v66 - December 22 2019
+
+* Fix problem with Qt 5.14 (Issue #99) by @fedeliallalinea (Pull Request #110)
+* Refactor event timestamp handling.
+* Show kholiday events by default in Arch/Manjaro.
+* Allow timer buttons to grow wider (Issue #103)
+* Use reusable translations for labels in timer.
+* Use a python3 script to show timer is done notifications, which allows us to add a repeat (once) button to the notification.
+* Show error message if there's an error when fetching the calendar list in the config window (Issue #18)
+* Updated French translation by @gabriel-tessier (Pull Request #105)
+
 ## v65 - October 24 2019
 
 * We only need QQC2 v2.0 for the google cal config page ContextMenu (Issue #102).
