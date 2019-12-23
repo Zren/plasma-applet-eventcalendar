@@ -800,19 +800,19 @@ msgstr ""
 #: ../contents/ui/TimerView.qml
 msgctxt "short form for %1 hours"
 msgid "%1h"
-msgstr ""
+msgstr "%1ч"
 
 #: ../contents/ui/TimerView.qml
 #, c-format
 msgctxt "short form for %1 minutes"
 msgid "%1m"
-msgstr ""
+msgstr "%1м"
 
 #: ../contents/ui/TimerView.qml
 #, c-format
 msgctxt "short form for %1 seconds"
 msgid "%1s"
-msgstr ""
+msgstr "%1с"
 
 #: ../contents/ui/TimerView.qml
 msgid "Pause Timer"
@@ -860,33 +860,6 @@ msgstr "Майбутні події"
 
 #~ msgid "Edit description"
 #~ msgstr "Редагувати опис"
-
-#~ msgid "30s"
-#~ msgstr "30с"
-
-#~ msgid "1m"
-#~ msgstr "1м"
-
-#~ msgid "5m"
-#~ msgstr "5м"
-
-#~ msgid "10m"
-#~ msgstr "10 м"
-
-#~ msgid "15m"
-#~ msgstr "15 м"
-
-#~ msgid "20m"
-#~ msgstr "20 м"
-
-#~ msgid "30m"
-#~ msgstr "30 м"
-
-#~ msgid "45m"
-#~ msgstr "45м"
-
-#~ msgid "1h"
-#~ msgstr "1ч"
 
 #~ msgid "Discard"
 #~ msgstr "Відхилити"

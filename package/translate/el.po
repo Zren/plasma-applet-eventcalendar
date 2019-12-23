@@ -804,19 +804,19 @@ msgstr ""
 #: ../contents/ui/TimerView.qml
 msgctxt "short form for %1 hours"
 msgid "%1h"
-msgstr ""
+msgstr "%1ώ"
 
 #: ../contents/ui/TimerView.qml
 #, c-format
 msgctxt "short form for %1 minutes"
 msgid "%1m"
-msgstr ""
+msgstr "%1λ"
 
 #: ../contents/ui/TimerView.qml
 #, c-format
 msgctxt "short form for %1 seconds"
 msgid "%1s"
-msgstr ""
+msgstr "%1δ"
 
 #: ../contents/ui/TimerView.qml
 msgid "Pause Timer"
@@ -864,33 +864,6 @@ msgstr "Επόμενα Συμβάντα"
 
 #~ msgid "Edit description"
 #~ msgstr "Επεξεργασία περιγραφής"
-
-#~ msgid "30s"
-#~ msgstr "30δ"
-
-#~ msgid "1m"
-#~ msgstr "1λ"
-
-#~ msgid "5m"
-#~ msgstr "5λ"
-
-#~ msgid "10m"
-#~ msgstr "10λ"
-
-#~ msgid "15m"
-#~ msgstr "15λ"
-
-#~ msgid "20m"
-#~ msgstr "20λ"
-
-#~ msgid "30m"
-#~ msgstr "30λ"
-
-#~ msgid "45m"
-#~ msgstr "45λ"
-
-#~ msgid "1h"
-#~ msgstr "1ώ"
 
 #~ msgid "Discard"
 #~ msgstr "Απόρριψη"

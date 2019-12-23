@@ -801,19 +801,19 @@ msgstr "&Starten"
 #: ../contents/ui/TimerView.qml
 msgctxt "short form for %1 hours"
 msgid "%1h"
-msgstr ""
+msgstr "%1u"
 
 #: ../contents/ui/TimerView.qml
 #, c-format
 msgctxt "short form for %1 minutes"
 msgid "%1m"
-msgstr ""
+msgstr "%1m"
 
 #: ../contents/ui/TimerView.qml
 #, c-format
 msgctxt "short form for %1 seconds"
 msgid "%1s"
-msgstr ""
+msgstr "%1s"
 
 #: ../contents/ui/TimerView.qml
 msgid "Pause Timer"
@@ -867,33 +867,6 @@ msgstr "Ingeplande afspraken"
 
 #~ msgid "Edit description"
 #~ msgstr "Omschrijving aanpassen"
-
-#~ msgid "30s"
-#~ msgstr "30s"
-
-#~ msgid "1m"
-#~ msgstr "1m"
-
-#~ msgid "5m"
-#~ msgstr "5m"
-
-#~ msgid "10m"
-#~ msgstr "10m"
-
-#~ msgid "15m"
-#~ msgstr "15m"
-
-#~ msgid "20m"
-#~ msgstr "20m"
-
-#~ msgid "30m"
-#~ msgstr "30m"
-
-#~ msgid "45m"
-#~ msgstr "45m"
-
-#~ msgid "1h"
-#~ msgstr "1u"
 
 #~ msgid "Discard"
 #~ msgstr "Verwerpen"

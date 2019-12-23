@@ -801,19 +801,19 @@ msgstr ""
 #: ../contents/ui/TimerView.qml
 msgctxt "short form for %1 hours"
 msgid "%1h"
-msgstr ""
+msgstr "%1s"
 
 #: ../contents/ui/TimerView.qml
 #, c-format
 msgctxt "short form for %1 minutes"
 msgid "%1m"
-msgstr ""
+msgstr "%1dk"
 
 #: ../contents/ui/TimerView.qml
 #, c-format
 msgctxt "short form for %1 seconds"
 msgid "%1s"
-msgstr ""
+msgstr "%1sn"
 
 #: ../contents/ui/TimerView.qml
 msgid "Pause Timer"
@@ -867,33 +867,6 @@ msgstr "Gelecek Etkinlikler"
 
 #~ msgid "Edit description"
 #~ msgstr "Açıklamayı düzenle"
-
-#~ msgid "30s"
-#~ msgstr "30sn"
-
-#~ msgid "1m"
-#~ msgstr "1dk"
-
-#~ msgid "5m"
-#~ msgstr "5dk"
-
-#~ msgid "10m"
-#~ msgstr "10dk"
-
-#~ msgid "15m"
-#~ msgstr "15dk"
-
-#~ msgid "20m"
-#~ msgstr "20dk"
-
-#~ msgid "30m"
-#~ msgstr "30dk"
-
-#~ msgid "45m"
-#~ msgstr "45dk"
-
-#~ msgid "1h"
-#~ msgstr "1s"
 
 #~ msgid "Discard"
 #~ msgstr "İptal"
