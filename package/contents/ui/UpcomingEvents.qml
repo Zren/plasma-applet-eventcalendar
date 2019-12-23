@@ -13,11 +13,11 @@ EventModel {
 		return d
 	}
 	onFetchingData: {
-		console.log('upcomingEvents.onFetchingData')
+		logger.log('upcomingEvents.onFetchingData')
 
 	}
 	onAllDataFetched: {
-		console.log('upcomingEvents.onAllDataFetched')
+		logger.log('upcomingEvents.onAllDataFetched')
 		// sendEventListNotification()
 	}
 
