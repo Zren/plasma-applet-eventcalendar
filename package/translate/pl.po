@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: eventcalendar \n"
 "Report-Msgid-Bugs-To: https://github.com/Zren/plasma-applet-eventcalendar\n"
-"POT-Creation-Date: 2019-10-24 13:27-0400\n"
+"POT-Creation-Date: 2019-12-22 20:33-0500\n"
 "PO-Revision-Date: 2018-09-03 HO:MI+ZONE\n"
 "Last-Translator: Jakub Starzyk <jstarzyk98@gmail.com>\n"
 "Language-Team: Jakub Starzyk <jstarzyk98@gmail.com>\n"
@@ -16,445 +16,425 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
 
-#: ../contents/config/config.qml:9
+#: ../contents/config/config.qml
 msgid "General"
 msgstr "Ogólne"
 
-#: ../contents/config/config.qml:19
+#: ../contents/config/config.qml
 msgid "Timezones"
 msgstr "Strefy czasowe"
 
-#: ../contents/config/config.qml:24 ../contents/ui/UpcomingEvents.qml:124
+#: ../contents/config/config.qml ../contents/ui/UpcomingEvents.qml
 msgid "Calendar"
 msgstr "Kalendarz"
 
-#: ../contents/config/config.qml:29
+#: ../contents/config/config.qml
 msgid "Agenda"
 msgstr "Harmonogram"
 
-#: ../contents/config/config.qml:34
+#: ../contents/config/config.qml
 msgid "Events"
 msgstr "Wydarzenia"
 
-#: ../contents/config/config.qml:39 ../contents/ui/config/ConfigEvents.qml:19
+#: ../contents/config/config.qml ../contents/ui/config/ConfigEvents.qml
 msgid "ICalendar (.ics)"
 msgstr ""
 
-#: ../contents/config/config.qml:45 ../contents/ui/config/ConfigEvents.qml:25
+#: ../contents/config/config.qml ../contents/ui/config/ConfigEvents.qml
 msgid "Google Calendar"
 msgstr "Kalendarz Google"
 
-#: ../contents/config/config.qml:50
+#: ../contents/config/config.qml
 msgid "Weather"
 msgstr "Pogoda"
 
-#: ../contents/config/config.qml:55
+#: ../contents/config/config.qml
 msgid "Advanced"
 msgstr "Zaawansowane"
 
-#: ../contents/ui/AgendaEventItem.qml:76 ../contents/ui/EditEventForm.qml:73
-msgid "Event Title"
-msgstr ""
-
-#: ../contents/ui/AgendaEventItem.qml:195
-msgid "Event Description"
-msgstr ""
-
-#: ../contents/ui/AgendaEventItem.qml:225 ../contents/ui/config/ConfigGoogleCalendar.qml:142
-msgid "Submit"
-msgstr ""
-
-#: ../contents/ui/AgendaEventItem.qml:267
+#: ../contents/ui/AgendaEventItem.qml
 msgid "Hangout"
 msgstr ""
 
-#: ../contents/ui/AgendaEventItem.qml:294
-msgid "Edit title"
-msgstr ""
-
-#: ../contents/ui/AgendaEventItem.qml:303
-msgid "Edit description"
-msgstr "Edytuj opis"
-
-#: ../contents/ui/AgendaEventItem.qml:312
+#: ../contents/ui/AgendaEventItem.qml
 msgid "Edit"
 msgstr ""
 
-#: ../contents/ui/AgendaEventItem.qml:321
+#: ../contents/ui/AgendaEventItem.qml
 msgid "Delete Event"
 msgstr "Usuń wydarzenie"
 
-#: ../contents/ui/AgendaEventItem.qml:324
+#: ../contents/ui/AgendaEventItem.qml
 msgid "Confirm Deletion"
 msgstr "Potwierdź usunięcie"
 
-#: ../contents/ui/AgendaEventItem.qml:336
+#: ../contents/ui/AgendaEventItem.qml
 msgid "Edit in browser"
 msgstr "Edytuj w przeglądarce"
 
-#: ../contents/ui/AgendaListItem.qml:131
+#: ../contents/ui/AgendaListItem.qml
 msgctxt "agenda date format line 1"
 msgid "MMM d"
 msgstr "d MMM"
 
-#: ../contents/ui/AgendaListItem.qml:151
+#: ../contents/ui/AgendaListItem.qml
 msgctxt "agenda date format line 2"
 msgid "ddd"
 msgstr "ddd"
 
-#: ../contents/ui/AgendaView.qml:23 ../contents/ui/AgendaView.qml:36 ../contents/ui/UpcomingEvents.qml:129 ../contents/ui/UpcomingEvents.qml:146
+#: ../contents/ui/AgendaView.qml ../contents/ui/UpcomingEvents.qml
 msgid "Event Calendar"
 msgstr ""
 
-#: ../contents/ui/calendars/CalendarManager.qml:113
+#: ../contents/ui/calendars/CalendarManager.qml
 msgctxt "event with no summary"
 msgid "(No title)"
 msgstr "(Brak tytułu)"
 
-#: ../contents/ui/config/ConfigAgenda.qml:29
+#: ../contents/ui/config/ConfigAgenda.qml
 msgid "Show agenda"
 msgstr "Pokaż harmonogram"
 
-#: ../contents/ui/config/ConfigAgenda.qml:35
+#: ../contents/ui/config/ConfigAgenda.qml
 msgid "Agenda above the month (Single Column)"
 msgstr "Harmonogram nad kalendarzem (pojedyncza kolumna)"
 
-#: ../contents/ui/config/ConfigAgenda.qml:42
+#: ../contents/ui/config/ConfigAgenda.qml
 msgid "Agenda to the left (Two Columns)"
 msgstr "Harmonogram po lewej stronie (dwie kolumny)"
 
-#: ../contents/ui/config/ConfigAgenda.qml:53
+#: ../contents/ui/config/ConfigAgenda.qml
 msgid "Font Size:"
 msgstr "Rozmiar czcionki:"
 
-#: ../contents/ui/config/ConfigAgenda.qml:54 ../contents/ui/config/ConfigGeneral.qml:204
+#: ../contents/ui/config/ConfigAgenda.qml ../contents/ui/config/ConfigGeneral.qml
 msgid "px"
 msgstr " px"
 
-#: ../contents/ui/config/ConfigAgenda.qml:55
+#: ../contents/ui/config/ConfigAgenda.qml
 msgid " (0px = <b>System Settings > Fonts > General</b>)"
 msgstr " (0 px = <b>Ustawienia systemowe > Czcionki > Ogólne</b>)"
 
-#: ../contents/ui/config/ConfigAgenda.qml:64
+#: ../contents/ui/config/ConfigAgenda.qml
 msgid "Weather Icon"
 msgstr "Ikona pogody"
 
-#: ../contents/ui/config/ConfigAgenda.qml:82
+#: ../contents/ui/config/ConfigAgenda.qml
 msgid "Icon Outline"
 msgstr "Zarys ikony"
 
-#: ../contents/ui/config/ConfigAgenda.qml:88
+#: ../contents/ui/config/ConfigAgenda.qml
 msgid "Weather Text"
 msgstr "Opis pogody"
 
-#: ../contents/ui/config/ConfigAgenda.qml:92
+#: ../contents/ui/config/ConfigAgenda.qml
 msgid "Position:"
 msgstr "Położenie:"
 
-#: ../contents/ui/config/ConfigAgenda.qml:95
+#: ../contents/ui/config/ConfigAgenda.qml
 msgid "Left"
 msgstr "Po lewej"
 
-#: ../contents/ui/config/ConfigAgenda.qml:101
+#: ../contents/ui/config/ConfigAgenda.qml
 msgid "Right"
 msgstr "Po prawej"
 
-#: ../contents/ui/config/ConfigAgenda.qml:109
+#: ../contents/ui/config/ConfigAgenda.qml
 msgid "Click Weather:"
 msgstr "Kliknięcie ikony pogody:"
 
-#: ../contents/ui/config/ConfigAgenda.qml:112
+#: ../contents/ui/config/ConfigAgenda.qml
 msgid "Open City Forecast In Browser"
 msgstr "Otwórz prognozę pogody w przeglądarce"
 
-#: ../contents/ui/config/ConfigAgenda.qml:121 ../contents/ui/config/ConfigCalendar.qml:25
+#: ../contents/ui/config/ConfigAgenda.qml ../contents/ui/config/ConfigCalendar.qml
 msgid "Click Date:"
 msgstr "Kliknięcie daty:"
 
-#: ../contents/ui/config/ConfigAgenda.qml:124 ../contents/ui/config/ConfigCalendar.qml:40
+#: ../contents/ui/config/ConfigAgenda.qml ../contents/ui/config/ConfigCalendar.qml
 msgid "Open New Event In Browser"
 msgstr "Otwórz nowe wydarzenie w przeglądarce"
 
-#: ../contents/ui/config/ConfigAgenda.qml:129
+#: ../contents/ui/config/ConfigAgenda.qml
 msgid "Open New Event Form"
 msgstr "Otwórz formularz nowego wydarzenia"
 
-#: ../contents/ui/config/ConfigAgenda.qml:139
+#: ../contents/ui/config/ConfigAgenda.qml
 msgid "Event description"
 msgstr ""
 
-#: ../contents/ui/config/ConfigAgenda.qml:143
+#: ../contents/ui/config/ConfigAgenda.qml
 msgid "Google Hangouts link"
 msgstr ""
 
-#: ../contents/ui/config/ConfigAgenda.qml:146
+#: ../contents/ui/config/ConfigAgenda.qml
 msgid "Click Event:"
 msgstr "Kliknięcie wydarzenia:"
 
-#: ../contents/ui/config/ConfigAgenda.qml:149
+#: ../contents/ui/config/ConfigAgenda.qml
 msgid "Open Event In Browser"
 msgstr "Otwórz wydarzenie w przeglądarce"
 
-#: ../contents/ui/config/ConfigAgenda.qml:159
+#: ../contents/ui/config/ConfigAgenda.qml
 msgid "Show multi-day events:"
 msgstr "Pokazuj wielodniowe wydarzenia:"
 
-#: ../contents/ui/config/ConfigAgenda.qml:164
+#: ../contents/ui/config/ConfigAgenda.qml
 msgid "On all days"
 msgstr "We wszystkie dni"
 
-#: ../contents/ui/config/ConfigAgenda.qml:172
+#: ../contents/ui/config/ConfigAgenda.qml
 msgid "Only on the first and current day"
 msgstr "Tylko w pierwszym i obecnym dniu"
 
-#: ../contents/ui/config/ConfigAgenda.qml:185
+#: ../contents/ui/config/ConfigAgenda.qml
 msgid "Remember selected calendar in New Event Form"
 msgstr "Zapamiętaj ostatnio wybrany kalendarz w formularzu nowego wydarzenia"
 
-#: ../contents/ui/config/ConfigAgenda.qml:190
+#: ../contents/ui/config/ConfigAgenda.qml
 msgid "Current Month"
 msgstr "Bieżący miesiąc"
 
-#: ../contents/ui/config/ConfigAgenda.qml:195
+#: ../contents/ui/config/ConfigAgenda.qml
 msgid "Always show next 14 days"
 msgstr "Zawsze pokazuj najbliższe 14 dni"
 
-#: ../contents/ui/config/ConfigAgenda.qml:200
+#: ../contents/ui/config/ConfigAgenda.qml
 msgid "Hide completed events"
 msgstr "Ukryj zakończone wydarzenia"
 
-#: ../contents/ui/config/ConfigAgenda.qml:205
+#: ../contents/ui/config/ConfigAgenda.qml
 msgid "Show all events of the current day (including completed events)"
 msgstr "Pokazuj wszystkie wydarzenia bieżącego dnia (razem z zakończonymi wydarzeniami)"
 
-#: ../contents/ui/config/ConfigAgenda.qml:211 ../contents/ui/config/ConfigWeather.qml:177
+#: ../contents/ui/config/ConfigAgenda.qml ../contents/ui/config/ConfigWeather.qml
 msgid "Colors"
 msgstr "Kolory"
 
-#: ../contents/ui/config/ConfigAgenda.qml:215
+#: ../contents/ui/config/ConfigAgenda.qml
 msgid "In Progress"
 msgstr "Trwające"
 
-#: ../contents/ui/config/ConfigCalendar.qml:20
+#: ../contents/ui/config/ConfigCalendar.qml
 msgid "Show calendar"
 msgstr "Pokaż kalendarz"
 
-#: ../contents/ui/config/ConfigCalendar.qml:28
+#: ../contents/ui/config/ConfigCalendar.qml
 msgid "Scroll to event in Agenda"
 msgstr "Przewiń do wydarzenia w harmonogramie"
 
-#: ../contents/ui/config/ConfigCalendar.qml:37
+#: ../contents/ui/config/ConfigCalendar.qml
 msgid "DoubleClick Date:"
 msgstr "Podwójne kliknięcie daty:"
 
-#: ../contents/ui/config/ConfigCalendar.qml:48 ../contents/ui/config/ConfigWeather.qml:120
+#: ../contents/ui/config/ConfigCalendar.qml ../contents/ui/config/ConfigWeather.qml
 msgid "Style"
 msgstr "Styl"
 
-#: ../contents/ui/config/ConfigCalendar.qml:53
+#: ../contents/ui/config/ConfigCalendar.qml
 msgid "Show Borders"
 msgstr "Pokaż obramowanie"
 
-#: ../contents/ui/config/ConfigCalendar.qml:57
+#: ../contents/ui/config/ConfigCalendar.qml
 msgid "Show Week Numbers"
 msgstr "Pokaż numery tygodni"
 
-#: ../contents/ui/config/ConfigCalendar.qml:61
+#: ../contents/ui/config/ConfigCalendar.qml
 msgid "First day of week:"
 msgstr ""
 
-#: ../contents/ui/config/ConfigCalendar.qml:70 ../contents/ui/config/ConfigGeneral.qml:177
+#: ../contents/ui/config/ConfigCalendar.qml ../contents/ui/config/ConfigGeneral.qml
 msgid "Default"
 msgstr "Domyślna"
 
-#: ../contents/ui/config/ConfigCalendar.qml:89
+#: ../contents/ui/config/ConfigCalendar.qml
 msgid "Event Badge:"
 msgstr "Oznaczenie wydarzenia:"
 
-#: ../contents/ui/config/ConfigCalendar.qml:92 ../contents/ui/config/ConfigCalendar.qml:147 ../contents/ui/config/ConfigCalendar.qml:163
+#: ../contents/ui/config/ConfigCalendar.qml
 msgid "Theme"
 msgstr "Motyw"
 
-#: ../contents/ui/config/ConfigCalendar.qml:100
+#: ../contents/ui/config/ConfigCalendar.qml
 msgid "Dots (3 Maximum)"
 msgstr "Kropki (maks. 3)"
 
-#: ../contents/ui/config/ConfigCalendar.qml:108
+#: ../contents/ui/config/ConfigCalendar.qml
 msgid "Bottom Bar (Event Color)"
 msgstr "Dolny pasek (kolor wydarzenia)"
 
-#: ../contents/ui/config/ConfigCalendar.qml:116
+#: ../contents/ui/config/ConfigCalendar.qml
 msgid "Bottom Bar (Highlight)"
 msgstr "Dolny pasek (podkreślenie)"
 
-#: ../contents/ui/config/ConfigCalendar.qml:124
+#: ../contents/ui/config/ConfigCalendar.qml
 msgid "Count"
 msgstr "Liczba"
 
-#: ../contents/ui/config/ConfigCalendar.qml:137
+#: ../contents/ui/config/ConfigCalendar.qml
 msgid "Radius:"
 msgstr "Promień:"
 
-#: ../contents/ui/config/ConfigCalendar.qml:142
+#: ../contents/ui/config/ConfigCalendar.qml
 msgid "Selected:"
 msgstr "Wybrany dzień:"
 
-#: ../contents/ui/config/ConfigCalendar.qml:151
+#: ../contents/ui/config/ConfigCalendar.qml
 msgid "Solid Color (Highlight)"
 msgstr "Jednolity kolor (podświetlenie)"
 
-#: ../contents/ui/config/ConfigCalendar.qml:158
+#: ../contents/ui/config/ConfigCalendar.qml
 msgid "Today:"
 msgstr "Bieżący dzień:"
 
-#: ../contents/ui/config/ConfigCalendar.qml:167
+#: ../contents/ui/config/ConfigCalendar.qml
 msgid "Solid Color (Inverted)"
 msgstr "Jednolity kolor (odwrócenie)"
 
-#: ../contents/ui/config/ConfigCalendar.qml:173
+#: ../contents/ui/config/ConfigCalendar.qml
 msgid "Big Number"
 msgstr "Duża liczba"
 
-#: ../contents/ui/config/ConfigEvents.qml:14
+#: ../contents/ui/config/ConfigEvents.qml
 msgid "Event Calendar Plugins"
 msgstr "Wtyczki Event Calendar"
 
-#: ../contents/ui/config/ConfigEvents.qml:33
+#: ../contents/ui/config/ConfigEvents.qml
 msgid "Plasma Calendar Plugins"
 msgstr "Wtyczki kalendarza Plazmy"
 
-#: ../contents/ui/config/ConfigEvents.qml:61 ../contents/ui/config/ConfigGeneral.qml:439
+#: ../contents/ui/config/ConfigEvents.qml ../contents/ui/config/ConfigGeneral.qml
 msgid "Misc"
 msgstr "Różne"
 
-#: ../contents/ui/config/ConfigEvents.qml:67
+#: ../contents/ui/config/ConfigEvents.qml
 msgid "Refresh events every: "
 msgstr "Odświeżaj wydarzenia co: "
 
-#: ../contents/ui/config/ConfigEvents.qml:68 ../contents/ui/config/ConfigWeather.qml:112
+#: ../contents/ui/config/ConfigEvents.qml ../contents/ui/config/ConfigWeather.qml
 msgctxt "Polling interval in minutes"
 msgid "min"
 msgid_plural "min"
 msgstr[0] " min"
 msgstr[1] " min"
 
-#: ../contents/ui/config/ConfigEvents.qml:75
+#: ../contents/ui/config/ConfigEvents.qml
 msgid "Notifications"
 msgstr "Powiadomienia"
 
-#: ../contents/ui/config/ConfigEvents.qml:80
+#: ../contents/ui/config/ConfigEvents.qml
 msgid "Event Starting"
 msgstr "Rozpoczęcie wydarzenia"
 
-#: ../contents/ui/config/ConfigGeneral.qml:75 ../contents/ui/lib/ConfigNotification.qml:62
+#: ../contents/ui/config/ConfigGeneral.qml ../contents/ui/lib/ConfigNotification.qml
 msgid "Choose a sound effect"
 msgstr "Wybierz efekt dźwiękowy"
 
-#: ../contents/ui/config/ConfigGeneral.qml:96
+#: ../contents/ui/config/ConfigGeneral.qml
 msgid "Widgets"
 msgstr "Elementy interfejsu"
 
-#: ../contents/ui/config/ConfigGeneral.qml:102
+#: ../contents/ui/config/ConfigGeneral.qml
 msgid "Show/Hide widgets above the calendar. Toggle Agenda/Calendar on their respective tabs."
 msgstr "Pokaż/ukryj elementy interfejsu nad kalendarzem. Przełączaj harmonogram/kalendarz w ich zakładkach."
 
-#: ../contents/ui/config/ConfigGeneral.qml:109
+#: ../contents/ui/config/ConfigGeneral.qml
 msgid "Meteogram"
 msgstr "Wykres prognozy pogody"
 
-#: ../contents/ui/config/ConfigGeneral.qml:116 ../contents/ui/TimerView.qml:329
+#: ../contents/ui/config/ConfigGeneral.qml ../contents/ui/TimerView.qml
 msgid "Timer"
 msgstr "Minutnik"
 
-#: ../contents/ui/config/ConfigGeneral.qml:122
+#: ../contents/ui/config/ConfigGeneral.qml
 msgid "SFX:"
 msgstr ""
 
-#: ../contents/ui/config/ConfigGeneral.qml:125
+#: ../contents/ui/config/ConfigGeneral.qml
 msgid "Choose"
 msgstr "Wybierz"
 
-#: ../contents/ui/config/ConfigGeneral.qml:139
+#: ../contents/ui/config/ConfigGeneral.qml
 msgid "Clock"
 msgstr "Zegar"
 
-#: ../contents/ui/config/ConfigGeneral.qml:143
+#: ../contents/ui/config/ConfigGeneral.qml
 msgid "Time Format"
 msgstr "Format czasu"
 
-#: ../contents/ui/config/ConfigGeneral.qml:154
+#: ../contents/ui/config/ConfigGeneral.qml
 msgid "The default font for the Breeze theme is Noto Sans which is hard to read with small text. Try using the Sans Serif font if you find the text too small when adding a second line."
 msgstr "Domyślną czcionką dla motywu Bryza jest Noto Sans, które może być słabo widoczne przy małym rozmiarze tekstu. Wypróbuj czcionkę bezszeryfową, jeśli tekst okaże się za mały po dodaniu drugiej lini."
 
-#: ../contents/ui/config/ConfigGeneral.qml:160
+#: ../contents/ui/config/ConfigGeneral.qml
 msgid "You can also use %1 or %2 to style a section. Note the single quotes around the tags are used to bypass the time format."
 msgstr "Możesz również użyć %1 lub %2, by nadać styl fragmentowi tekstu. Uwaga: pojedyncze apostrofy na zewnątrz tagów służą do ominięcia rozpoznania jako format czasu."
 
-#: ../contents/ui/config/ConfigGeneral.qml:166
+#: ../contents/ui/config/ConfigGeneral.qml
 msgid "Font:"
 msgstr "Czcionka:"
 
-#: ../contents/ui/config/ConfigGeneral.qml:198
+#: ../contents/ui/config/ConfigGeneral.qml
 msgid "Fixed Clock Height: "
 msgstr "Wysokość zegara: "
 
-#: ../contents/ui/config/ConfigGeneral.qml:210
+#: ../contents/ui/config/ConfigGeneral.qml
 msgid " (0px = scale to fit)"
 msgstr " (0 px = najlepsze dopasowanie)"
 
-#: ../contents/ui/config/ConfigGeneral.qml:220
+#: ../contents/ui/config/ConfigGeneral.qml
 msgid "Line 1:"
 msgstr "Linia 1:"
 
-#: ../contents/ui/config/ConfigGeneral.qml:237 ../contents/ui/config/ConfigGeneral.qml:263 ../contents/ui/config/ConfigGeneral.qml:312
+#: ../contents/ui/config/ConfigGeneral.qml
 msgid "Preset:"
 msgstr "Przykłady:"
 
-#: ../contents/ui/config/ConfigGeneral.qml:285 ../contents/ui/config/ConfigGeneral.qml:349
+#: ../contents/ui/config/ConfigGeneral.qml
 msgid "Bold"
 msgstr "Pogrubiona"
 
-#: ../contents/ui/config/ConfigGeneral.qml:296
+#: ../contents/ui/config/ConfigGeneral.qml
 msgid "Line 2:"
 msgstr "Linia 2:"
 
-#: ../contents/ui/config/ConfigGeneral.qml:357
+#: ../contents/ui/config/ConfigGeneral.qml
 msgid "Height:"
 msgstr "Wysokość:"
 
-#: ../contents/ui/config/ConfigGeneral.qml:377
+#: ../contents/ui/config/ConfigGeneral.qml
 msgid "Mouse Wheel"
 msgstr "Kółko myszy"
 
-#: ../contents/ui/config/ConfigGeneral.qml:387
+#: ../contents/ui/config/ConfigGeneral.qml
 msgid "Run Commands"
 msgstr "Wykonaj polecenia"
 
-#: ../contents/ui/config/ConfigGeneral.qml:396
+#: ../contents/ui/config/ConfigGeneral.qml
 msgid "Scroll Up:"
 msgstr "Przewiń w górę:"
 
-#: ../contents/ui/config/ConfigGeneral.qml:407
+#: ../contents/ui/config/ConfigGeneral.qml
 msgid "Scroll Down:"
 msgstr "Przewiń w dół:"
 
-#: ../contents/ui/config/ConfigGeneral.qml:418
+#: ../contents/ui/config/ConfigGeneral.qml
 msgid "Volume (No UI) (amixer)"
 msgstr "Zmień głośność dźwięku (No UI) (amixer)"
 
-#: ../contents/ui/config/ConfigGeneral.qml:427
+#: ../contents/ui/config/ConfigGeneral.qml
 msgid "Volume (UI) (qdbus)"
 msgstr "Zmień głośność dźwięku (UI) (qdbus)"
 
-#: ../contents/ui/config/ConfigGeneral.qml:445
+#: ../contents/ui/config/ConfigGeneral.qml
 msgid "Desktop Widget: Show background"
 msgstr "Desktop Widget: Pokaż tło"
 
-#: ../contents/ui/config/ConfigGeneral.qml:450
+#: ../contents/ui/config/ConfigGeneral.qml
 msgid "Debugging"
 msgstr "Debugowanie"
 
-#: ../contents/ui/config/ConfigGeneral.qml:456
+#: ../contents/ui/config/ConfigGeneral.qml
 msgid ""
 "Enable Debugging\n"
 "This will log sensitive information to ~/.xsession-errors"
@@ -462,293 +442,301 @@ msgstr ""
 "Włącz debugowanie\n"
 "Informacje będą zapisywane do ~/.xsession-errors"
 
-#: ../contents/ui/config/ConfigGoogleCalendar.qml:60
+#: ../contents/ui/config/ConfigGoogleCalendar.qml
 msgid "Login"
 msgstr "Logowanie"
 
-#: ../contents/ui/config/ConfigGoogleCalendar.qml:69
+#: ../contents/ui/config/ConfigGoogleCalendar.qml
 msgid "Currently Synched."
 msgstr "Zsynchronizowane."
 
-#: ../contents/ui/config/ConfigGoogleCalendar.qml:74
+#: ../contents/ui/config/ConfigGoogleCalendar.qml
 msgid "Logout"
 msgstr "Wyloguj się"
 
-#: ../contents/ui/config/ConfigGoogleCalendar.qml:85
+#: ../contents/ui/config/ConfigGoogleCalendar.qml
 msgid "To sync with Google Calendar"
 msgstr "Aby zsynchronizować z Kalendarzem Google"
 
-#: ../contents/ui/config/ConfigGoogleCalendar.qml:91
+#: ../contents/ui/config/ConfigGoogleCalendar.qml
 msgid "Visit <a href=\"%1\">%2</a> (opens in your web browser). After you login and give permission to acess your calendar, it will give you a code to paste below."
 msgstr ""
 
-#: ../contents/ui/config/ConfigGoogleCalendar.qml:117
+#: ../contents/ui/config/ConfigGoogleCalendar.qml
 msgid "Copy Link"
 msgstr ""
 
-#: ../contents/ui/config/ConfigGoogleCalendar.qml:138
+#: ../contents/ui/config/ConfigGoogleCalendar.qml
 msgid "Enter code here (Eg: %1)"
 msgstr ""
 
-#: ../contents/ui/config/ConfigGoogleCalendar.qml:149
+#: ../contents/ui/config/ConfigGoogleCalendar.qml
+msgid "Submit"
+msgstr ""
+
+#: ../contents/ui/config/ConfigGoogleCalendar.qml
 msgid "Invalid Google Authorization Code"
 msgstr ""
 
-#: ../contents/ui/config/ConfigGoogleCalendar.qml:161 ../contents/ui/config/ConfigICal.qml:49
+#: ../contents/ui/config/ConfigGoogleCalendar.qml ../contents/ui/config/ConfigICal.qml
 msgid "Calendars"
 msgstr "Kalendarze"
 
-#: ../contents/ui/config/ConfigGoogleCalendar.qml:166
+#: ../contents/ui/config/ConfigGoogleCalendar.qml
 msgid "Refresh"
 msgstr "Odśwież"
 
-#: ../contents/ui/config/ConfigICal.qml:53
+#: ../contents/ui/config/ConfigICal.qml
 msgid "Add Calendar"
 msgstr "Dodaj kalendarz"
 
-#: ../contents/ui/config/ConfigICal.qml:58
+#: ../contents/ui/config/ConfigICal.qml
 msgid "New Calendar"
 msgstr "Nowy kalendarz"
 
-#: ../contents/ui/config/ConfigICal.qml:94
+#: ../contents/ui/config/ConfigICal.qml
 msgid "Calendar Label"
 msgstr "Etykieta kalendarza"
 
-#: ../contents/ui/config/ConfigICal.qml:111
+#: ../contents/ui/config/ConfigICal.qml
 msgid "Browse"
 msgstr "Przeglądaj"
 
-#: ../contents/ui/config/ConfigICal.qml:119
+#: ../contents/ui/config/ConfigICal.qml
 msgid "iCalendar (*.ics)"
 msgstr ""
 
-#: ../contents/ui/config/ConfigTimezones.qml:64
+#: ../contents/ui/config/ConfigTimezones.qml
 msgid "Tooltip"
 msgstr ""
 
-#: ../contents/ui/config/ConfigTimezones.qml:73
+#: ../contents/ui/config/ConfigTimezones.qml
 msgid "Cannot deselect Local time from the tooltip"
 msgstr ""
 
-#: ../contents/ui/config/ConfigWeather.qml:23
+#: ../contents/ui/config/ConfigWeather.qml
 msgid "Data"
 msgstr "Dane"
 
-#: ../contents/ui/config/ConfigWeather.qml:41
+#: ../contents/ui/config/ConfigWeather.qml
 msgid "API App Id:"
 msgstr ""
 
-#: ../contents/ui/config/ConfigWeather.qml:53 ../contents/ui/config/ConfigWeather.qml:77
+#: ../contents/ui/config/ConfigWeather.qml
 msgid "City Id:"
 msgstr "ID miasta:"
 
-#: ../contents/ui/config/ConfigWeather.qml:58
+#: ../contents/ui/config/ConfigWeather.qml
 msgid "Eg: 5983720"
 msgstr "Np.: 5983720"
 
-#: ../contents/ui/config/ConfigWeather.qml:61 ../contents/ui/config/ConfigWeather.qml:85
+#: ../contents/ui/config/ConfigWeather.qml
 msgid "Find City"
 msgstr "Znajdź miasto"
 
-#: ../contents/ui/config/ConfigWeather.qml:82
+#: ../contents/ui/config/ConfigWeather.qml
 msgid "Eg: on-14"
 msgstr "Np.: on-14"
 
-#: ../contents/ui/config/ConfigWeather.qml:99
+#: ../contents/ui/config/ConfigWeather.qml
 msgid "Settings"
 msgstr "Ustawienia"
 
-#: ../contents/ui/config/ConfigWeather.qml:105
+#: ../contents/ui/config/ConfigWeather.qml
 msgid "Update forecast every: "
 msgstr "Aktualizuj prognozę co: "
 
-#: ../contents/ui/config/ConfigWeather.qml:126
+#: ../contents/ui/config/ConfigWeather.qml
 msgid "Show next "
 msgstr "Pokazuj najbliższe "
 
-#: ../contents/ui/config/ConfigWeather.qml:133
+#: ../contents/ui/config/ConfigWeather.qml
 msgid " hours"
 msgid_plural " hours"
 msgstr[0] " godzin"
 msgstr[1] " godzin"
 
-#: ../contents/ui/config/ConfigWeather.qml:140
+#: ../contents/ui/config/ConfigWeather.qml
 msgid " in the meteogram."
 msgstr " na wykresie prognozy pogody."
 
-#: ../contents/ui/config/ConfigWeather.qml:147
+#: ../contents/ui/config/ConfigWeather.qml
 msgid "Units:"
 msgstr "Jednostki:"
 
-#: ../contents/ui/config/ConfigWeather.qml:150
+#: ../contents/ui/config/ConfigWeather.qml
 msgid "Celsius"
 msgstr ""
 
-#: ../contents/ui/config/ConfigWeather.qml:158
+#: ../contents/ui/config/ConfigWeather.qml
 msgid "Fahrenheit"
 msgstr ""
 
-#: ../contents/ui/config/ConfigWeather.qml:166
+#: ../contents/ui/config/ConfigWeather.qml
 msgid "Kelvin"
 msgstr ""
 
-#: ../contents/ui/config/ConfigWeather.qml:184
+#: ../contents/ui/config/ConfigWeather.qml
 msgid "Text"
 msgstr "Tekst"
 
-#: ../contents/ui/config/ConfigWeather.qml:189
+#: ../contents/ui/config/ConfigWeather.qml
 msgid "Grid"
 msgstr "Siatka"
 
-#: ../contents/ui/config/ConfigWeather.qml:194
+#: ../contents/ui/config/ConfigWeather.qml
 msgid "Rain"
 msgstr "Deszcz"
 
-#: ../contents/ui/config/ConfigWeather.qml:199
+#: ../contents/ui/config/ConfigWeather.qml
 msgid "Positive Temp"
 msgstr "Dodatnia temp."
 
-#: ../contents/ui/config/ConfigWeather.qml:204
+#: ../contents/ui/config/ConfigWeather.qml
 msgid "Negative Temp"
 msgstr "Ujemna temp."
 
-#: ../contents/ui/config/ConfigWeather.qml:209
+#: ../contents/ui/config/ConfigWeather.qml
 msgid "Icons"
 msgstr "Ikony"
 
-#: ../contents/ui/config/OpenWeatherMapCityDialog.qml:13 ../contents/ui/config/WeatherCanadaCityDialog.qml:13
+#: ../contents/ui/config/OpenWeatherMapCityDialog.qml ../contents/ui/config/WeatherCanadaCityDialog.qml
 msgid "Select city"
 msgstr "Wybierz miasto"
 
-#: ../contents/ui/config/OpenWeatherMapCityDialog.qml:64 ../contents/ui/config/WeatherCanadaCityDialog.qml:68
+#: ../contents/ui/config/OpenWeatherMapCityDialog.qml ../contents/ui/config/WeatherCanadaCityDialog.qml
 msgid "Fetched from <a href=\"%1\">%1</a>"
 msgstr "Pobrano z <a href=\"%1\">%1</a>"
 
-#: ../contents/ui/config/OpenWeatherMapCityDialog.qml:70 ../contents/ui/config/WeatherCanadaCityDialog.qml:91
+#: ../contents/ui/config/OpenWeatherMapCityDialog.qml ../contents/ui/config/WeatherCanadaCityDialog.qml
 msgid "Search"
 msgstr "Szukaj"
 
-#: ../contents/ui/config/OpenWeatherMapCityDialog.qml:83 ../contents/ui/config/WeatherCanadaCityDialog.qml:104
+#: ../contents/ui/config/OpenWeatherMapCityDialog.qml ../contents/ui/config/WeatherCanadaCityDialog.qml
 msgid "Name"
 msgstr "Nazwa"
 
-#: ../contents/ui/config/OpenWeatherMapCityDialog.qml:88 ../contents/ui/config/WeatherCanadaCityDialog.qml:109
+#: ../contents/ui/config/OpenWeatherMapCityDialog.qml ../contents/ui/config/WeatherCanadaCityDialog.qml
 msgid "Id"
 msgstr "ID"
 
-#: ../contents/ui/config/OpenWeatherMapCityDialog.qml:93 ../contents/ui/config/WeatherCanadaCityDialog.qml:114
+#: ../contents/ui/config/OpenWeatherMapCityDialog.qml ../contents/ui/config/WeatherCanadaCityDialog.qml
 msgid "City Webpage"
 msgstr "Strona miasta"
 
-#: ../contents/ui/config/OpenWeatherMapCityDialog.qml:95 ../contents/ui/config/WeatherCanadaCityDialog.qml:116
+#: ../contents/ui/config/OpenWeatherMapCityDialog.qml ../contents/ui/config/WeatherCanadaCityDialog.qml
 msgid "Open Link"
 msgstr "Otwórz łącze"
 
-#: ../contents/ui/DateTimeSelector.qml:34
+#: ../contents/ui/DateTimeSelector.qml
 msgctxt "event editor date format"
 msgid "d MMM, yyyy"
 msgstr ""
 
-#: ../contents/ui/DurationSelector.qml:43
+#: ../contents/ui/DurationSelector.qml
 msgid "to"
 msgstr "do"
 
-#: ../contents/ui/EditEventForm.qml:123 ../contents/ui/LocaleFuncs.js:42
+#: ../contents/ui/EditEventForm.qml
+msgid "Event Title"
+msgstr ""
+
+#: ../contents/ui/EditEventForm.qml ../contents/ui/LocaleFuncs.js
 msgid "All Day"
 msgstr "Cały dzień"
 
-#: ../contents/ui/EditEventForm.qml:137
+#: ../contents/ui/EditEventForm.qml
 msgid "Add location"
 msgstr ""
 
-#: ../contents/ui/EditEventForm.qml:153 ../contents/ui/NewEventForm.qml:36
+#: ../contents/ui/EditEventForm.qml ../contents/ui/NewEventForm.qml
 msgid "[No Calendars]"
 msgstr "[Brak kalendarzy]"
 
-#: ../contents/ui/EditEventForm.qml:169
+#: ../contents/ui/EditEventForm.qml
 msgid "Add description"
 msgstr ""
 
-#: ../contents/ui/EditEventForm.qml:197
+#: ../contents/ui/EditEventForm.qml
 msgid "&Save"
 msgstr "Zapisz"
 
-#: ../contents/ui/EditEventForm.qml:203 ../contents/ui/TimerInputView.qml:75
+#: ../contents/ui/EditEventForm.qml ../contents/ui/TimerInputView.qml
 msgid "&Cancel"
 msgstr "Anuluj"
 
-#: ../contents/ui/lib/AppletVersion.qml:41
+#: ../contents/ui/lib/AppletVersion.qml
 msgid "<b>Version:</b> %1"
 msgstr "<b>Wersja:</b> %1"
 
-#: ../contents/ui/LocaleFuncs.js:8
+#: ../contents/ui/LocaleFuncs.js
 msgctxt "event time on the hour (24 hour clock)"
 msgid "h"
 msgstr ""
 
-#: ../contents/ui/LocaleFuncs.js:10
+#: ../contents/ui/LocaleFuncs.js
 msgctxt "event time (24 hour clock)"
 msgid "h:mm"
 msgstr ""
 
-#: ../contents/ui/LocaleFuncs.js:14
+#: ../contents/ui/LocaleFuncs.js
 msgctxt "event time on the hour (12 hour clock)"
 msgid "h AP"
 msgstr ""
 
-#: ../contents/ui/LocaleFuncs.js:16
+#: ../contents/ui/LocaleFuncs.js
 msgctxt "event time (12 hour clock)"
 msgid "h:mm AP"
 msgstr ""
 
-#: ../contents/ui/LocaleFuncs.js:23 ../contents/ui/LocaleFuncs.js:34
+#: ../contents/ui/LocaleFuncs.js
 msgctxt "short month+date format"
 msgid "MMM d"
 msgstr "d MMM"
 
-#: ../contents/ui/LocaleFuncs.js:26
+#: ../contents/ui/LocaleFuncs.js
 msgctxt "date (%1) with time (%2)"
 msgid "%1, %2"
 msgstr ""
 
-#: ../contents/ui/LocaleFuncs.js:46 ../contents/ui/LocaleFuncs.js:67
+#: ../contents/ui/LocaleFuncs.js
 msgctxt "from date/time %1 until date/time %2"
 msgid "%1 - %2"
 msgstr ""
 
-#: ../contents/ui/main.qml:220
+#: ../contents/ui/main.qml
 msgid "Set Language..."
 msgstr "Ustaw język..."
 
-#: ../contents/ui/main.qml:223
+#: ../contents/ui/main.qml
 msgid "Set Locale..."
 msgstr "Ustaw formaty..."
 
-#: ../contents/ui/MeteogramView.qml:500
+#: ../contents/ui/MeteogramView.qml
 #, c-format
 msgid "%1mm"
 msgstr "%1 mm"
 
-#: ../contents/ui/MonthView.qml:365
+#: ../contents/ui/MonthView.qml
 msgctxt "calendar title format for current month"
 msgid "MMMM d, yyyy"
 msgstr "d MMMM yyyy"
 
-#: ../contents/ui/MonthView.qml:369
+#: ../contents/ui/MonthView.qml
 msgctxt "calendar title format for other months of current year"
 msgid "MMMM"
 msgstr "MMMM"
 
-#: ../contents/ui/MonthView.qml:372
+#: ../contents/ui/MonthView.qml
 msgctxt "calendar title format for months not from current year"
 msgid "MMMM, yyyy"
 msgstr "MMMM yyyy"
 
-#: ../contents/ui/NewEventForm.qml:45
+#: ../contents/ui/NewEventForm.qml
 msgid "Eg: 9am-5pm Work"
 msgstr "Np.: 9-17 Praca"
 
-#: ../contents/ui/PopupView.qml:308
+#: ../contents/ui/PopupView.qml
 msgid ""
 "Weather not configured.\n"
 "Go to Weather in the config and set your city,\n"
@@ -758,97 +746,81 @@ msgstr ""
 "Przejdź do zakładki Pogoda w ustawieniach i wybierz miasto\n"
 "i/lub wyłącz wykres prognozy pogody, by ukryć ten obszar."
 
-#: ../contents/ui/PopupView.qml:310
+#: ../contents/ui/PopupView.qml
 msgid "Error fetching weather."
 msgstr ""
 
-#: ../contents/ui/PopupView.qml:590
+#: ../contents/ui/PopupView.qml
 msgid "Weather API limit reached, will try again soon."
 msgstr ""
 
-#: ../contents/ui/TimerInputView.qml:80
+#: ../contents/ui/TimerInputView.qml
 msgid "&Start"
 msgstr ""
 
-#: ../contents/ui/TimerView.qml:21
-msgid "30s"
+#: ../contents/ui/TimerView.qml
+msgctxt "short form for %1 hours"
+msgid "%1h"
 msgstr ""
 
-#: ../contents/ui/TimerView.qml:25
-msgid "1m"
+#: ../contents/ui/TimerView.qml
+#, c-format
+msgctxt "short form for %1 minutes"
+msgid "%1m"
 msgstr ""
 
-#: ../contents/ui/TimerView.qml:29
-msgid "5m"
+#: ../contents/ui/TimerView.qml
+#, c-format
+msgctxt "short form for %1 seconds"
+msgid "%1s"
 msgstr ""
 
-#: ../contents/ui/TimerView.qml:33
-msgid "10m"
-msgstr ""
-
-#: ../contents/ui/TimerView.qml:37
-msgid "15m"
-msgstr ""
-
-#: ../contents/ui/TimerView.qml:41
-msgid "20m"
-msgstr ""
-
-#: ../contents/ui/TimerView.qml:45
-msgid "30m"
-msgstr ""
-
-#: ../contents/ui/TimerView.qml:49
-msgid "45m"
-msgstr ""
-
-#: ../contents/ui/TimerView.qml:53
-msgid "1h"
-msgstr ""
-
-#: ../contents/ui/TimerView.qml:101
+#: ../contents/ui/TimerView.qml
 msgid "Pause Timer"
 msgstr "Zatrzymaj minutnik"
 
-#: ../contents/ui/TimerView.qml:103
+#: ../contents/ui/TimerView.qml
 msgid "Start Timer"
 msgstr "Uruchom minutnik"
 
-#: ../contents/ui/TimerView.qml:107
+#: ../contents/ui/TimerView.qml
 msgid "Scroll to add to duration"
 msgstr "Przewiń, by zmienić czas odmierzania"
 
-#: ../contents/ui/TimerView.qml:162 ../contents/ui/TimerView.qml:171 ../contents/ui/TimerView.qml:360
+#: ../contents/ui/TimerView.qml
 msgid "Repeat"
 msgstr "Powtarzaj"
 
-#: ../contents/ui/TimerView.qml:180 ../contents/ui/TimerView.qml:189 ../contents/ui/TimerView.qml:369
+#: ../contents/ui/TimerView.qml
 msgid "Sound"
 msgstr "Dźwięk"
 
-#: ../contents/ui/TimerView.qml:331
+#: ../contents/ui/TimerView.qml
 msgid "Timer finished"
 msgstr "Minutnik zakończył odmierzanie"
 
-#: ../contents/ui/TimerView.qml:332
+#: ../contents/ui/TimerView.qml
 msgid "%1 has passed"
 msgstr "Upłynęło %1"
 
-#: ../contents/ui/TimerView.qml:381
+#: ../contents/ui/TimerView.qml
 msgid "Set Timer"
 msgstr "Ustaw minutnik"
 
-#: ../contents/ui/UpcomingEvents.qml:114
+#: ../contents/ui/UpcomingEvents.qml
 msgid "Events Starting"
 msgstr "Wydarzenia zaczynające się"
 
-#: ../contents/ui/UpcomingEvents.qml:117
+#: ../contents/ui/UpcomingEvents.qml
 msgid "Events In Progress"
 msgstr "Trwające wydarzenia"
 
-#: ../contents/ui/UpcomingEvents.qml:120
+#: ../contents/ui/UpcomingEvents.qml
 msgid "Upcoming Events"
 msgstr "Nadchodzące wydarzenia"
+
+#~ msgid "Edit description"
+#~ msgstr "Edytuj opis"
 
 #~ msgid "Discard"
 #~ msgstr "Odrzuć"
