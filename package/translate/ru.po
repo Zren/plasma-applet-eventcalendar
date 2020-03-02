@@ -2,12 +2,14 @@
 # Copyright (C) 2017
 # This file is distributed under the same license as the eventcalendar package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+# aliger14 <aliger14@mail.ru>, 2020.
+#
 msgid ""
 msgstr ""
 "Project-Id-Version: eventcalendar\n"
 "Report-Msgid-Bugs-To: https://github.com/Zren/plasma-applet-eventcalendar\n"
 "POT-Creation-Date: 2019-12-22 20:33-0500\n"
-"PO-Revision-Date: 2018-03-11 18:37+0300\n"
+"PO-Revision-Date: 2020-01-05 22:01+0300\n"
 "Last-Translator: aliger14 <aliger14@mail.ru>\n"
 "Language-Team: ru\n"
 "Language: ru\n"
@@ -16,7 +18,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
 "%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
-"X-Generator: Poedit 2.0.2\n"
+"X-Generator: Poedit 2.2.3\n"
 
 #: ../contents/config/config.qml
 msgid "General"
@@ -56,11 +58,11 @@ msgstr "Расширенные"
 
 #: ../contents/ui/AgendaEventItem.qml
 msgid "Hangout"
-msgstr ""
+msgstr "Hangout"
 
 #: ../contents/ui/AgendaEventItem.qml
 msgid "Edit"
-msgstr ""
+msgstr "Редактировать"
 
 #: ../contents/ui/AgendaEventItem.qml
 msgid "Delete Event"
@@ -385,8 +387,8 @@ msgid ""
 "small when adding a second line."
 msgstr ""
 "Шрифт по умолчанию для темы Breeze - Noto Sans, его трудно читать в мелком "
-"тексте. Попробуйте использовать шрифт Sans Serif, если текст слишком мал при "
-"добавлении второй строки."
+"тексте. Если при добавлении второй строки текст слишком мал, то попробуйте "
+"использовать шрифт Sans Serif."
 
 #: ../contents/ui/config/ConfigGeneral.qml
 msgid ""
@@ -459,7 +461,7 @@ msgstr "Виджет рабочего стола: показать фон"
 
 #: ../contents/ui/config/ConfigGeneral.qml
 msgid "Debugging"
-msgstr "Отладка"
+msgstr "Режим отладки"
 
 #: ../contents/ui/config/ConfigGeneral.qml
 msgid ""
@@ -483,7 +485,7 @@ msgstr "Выйти"
 
 #: ../contents/ui/config/ConfigGoogleCalendar.qml
 msgid "To sync with Google Calendar"
-msgstr "Синхронизация с календарем Google"
+msgstr "Синхронизация с календарём Google"
 
 #: ../contents/ui/config/ConfigGoogleCalendar.qml
 msgid ""
@@ -491,22 +493,25 @@ msgid ""
 "give permission to acess your calendar, it will give you a code to paste "
 "below."
 msgstr ""
+"Посетите <a href=\"%1\">%2</a> (открывается в вашем веб-браузере). После "
+"того, как вы войдете в систему и дадите разрешение на доступ к своему "
+"календарю, он даст вам код для вставки ниже."
 
 #: ../contents/ui/config/ConfigGoogleCalendar.qml
 msgid "Copy Link"
-msgstr ""
+msgstr "Копировать ссылку"
 
 #: ../contents/ui/config/ConfigGoogleCalendar.qml
 msgid "Enter code here (Eg: %1)"
-msgstr ""
+msgstr "Введите код сюда (Например: %1)"
 
 #: ../contents/ui/config/ConfigGoogleCalendar.qml
 msgid "Submit"
-msgstr ""
+msgstr "Отправить"
 
 #: ../contents/ui/config/ConfigGoogleCalendar.qml
 msgid "Invalid Google Authorization Code"
-msgstr ""
+msgstr "Неверный код Google авторизации"
 
 #: ../contents/ui/config/ConfigGoogleCalendar.qml
 #: ../contents/ui/config/ConfigICal.qml
@@ -547,7 +552,7 @@ msgstr "Невозможно отменить локальное время из
 
 #: ../contents/ui/config/ConfigWeather.qml
 msgid "Data"
-msgstr "Дата"
+msgstr "Данные"
 
 #: ../contents/ui/config/ConfigWeather.qml
 msgid "API App Id:"
@@ -594,7 +599,7 @@ msgstr " на метеограмме."
 
 #: ../contents/ui/config/ConfigWeather.qml
 msgid "Units:"
-msgstr "Единица измерения:"
+msgstr "Единицы измерения:"
 
 #: ../contents/ui/config/ConfigWeather.qml
 msgid "Celsius"
@@ -602,11 +607,11 @@ msgstr "°C Цельсия"
 
 #: ../contents/ui/config/ConfigWeather.qml
 msgid "Fahrenheit"
-msgstr "°F Фаренгейта"
+msgstr "°F Фаренгейт"
 
 #: ../contents/ui/config/ConfigWeather.qml
 msgid "Kelvin"
-msgstr "°K Кельвина"
+msgstr "°K Кельвин"
 
 #: ../contents/ui/config/ConfigWeather.qml
 msgid "Text"
@@ -622,11 +627,11 @@ msgstr "Осадки"
 
 #: ../contents/ui/config/ConfigWeather.qml
 msgid "Positive Temp"
-msgstr "Темп плюс"
+msgstr "Температура « + »"
 
 #: ../contents/ui/config/ConfigWeather.qml
 msgid "Negative Temp"
-msgstr "Темп минус"
+msgstr "Температура « - »"
 
 #: ../contents/ui/config/ConfigWeather.qml
 msgid "Icons"
@@ -670,7 +675,7 @@ msgstr "Открыть ссылку"
 #: ../contents/ui/DateTimeSelector.qml
 msgctxt "event editor date format"
 msgid "d MMM, yyyy"
-msgstr ""
+msgstr "d MMM, yyyy"
 
 #: ../contents/ui/DurationSelector.qml
 msgid "to"
@@ -678,7 +683,7 @@ msgstr "до"
 
 #: ../contents/ui/EditEventForm.qml
 msgid "Event Title"
-msgstr ""
+msgstr "Название мероприятия"
 
 #: ../contents/ui/EditEventForm.qml ../contents/ui/LocaleFuncs.js
 msgid "All Day"
@@ -686,7 +691,7 @@ msgstr "Весь день"
 
 #: ../contents/ui/EditEventForm.qml
 msgid "Add location"
-msgstr ""
+msgstr "Добавить местоположение"
 
 #: ../contents/ui/EditEventForm.qml ../contents/ui/NewEventForm.qml
 msgid "[No Calendars]"
@@ -694,15 +699,15 @@ msgstr "[Без календарей]"
 
 #: ../contents/ui/EditEventForm.qml
 msgid "Add description"
-msgstr ""
+msgstr "Добавить описание"
 
 #: ../contents/ui/EditEventForm.qml
 msgid "&Save"
-msgstr "Сохранить"
+msgstr "&Сохранить"
 
 #: ../contents/ui/EditEventForm.qml ../contents/ui/TimerInputView.qml
 msgid "&Cancel"
-msgstr "Отменить"
+msgstr "&Отменить"
 
 #: ../contents/ui/lib/AppletVersion.qml
 msgid "<b>Version:</b> %1"
@@ -711,37 +716,37 @@ msgstr "<b>Версия:</b> %1"
 #: ../contents/ui/LocaleFuncs.js
 msgctxt "event time on the hour (24 hour clock)"
 msgid "h"
-msgstr ""
+msgstr "h"
 
 #: ../contents/ui/LocaleFuncs.js
 msgctxt "event time (24 hour clock)"
 msgid "h:mm"
-msgstr ""
+msgstr "h:mm"
 
 #: ../contents/ui/LocaleFuncs.js
 msgctxt "event time on the hour (12 hour clock)"
 msgid "h AP"
-msgstr ""
+msgstr "h AP"
 
 #: ../contents/ui/LocaleFuncs.js
 msgctxt "event time (12 hour clock)"
 msgid "h:mm AP"
-msgstr ""
+msgstr "h:mm AP"
 
 #: ../contents/ui/LocaleFuncs.js
 msgctxt "short month+date format"
 msgid "MMM d"
-msgstr ""
+msgstr "MMM d"
 
 #: ../contents/ui/LocaleFuncs.js
 msgctxt "date (%1) with time (%2)"
 msgid "%1, %2"
-msgstr ""
+msgstr "%1, %2"
 
 #: ../contents/ui/LocaleFuncs.js
 msgctxt "from date/time %1 until date/time %2"
 msgid "%1 - %2"
-msgstr ""
+msgstr "%1 - %2"
 
 #: ../contents/ui/main.qml
 msgid "Set Language..."
@@ -782,25 +787,25 @@ msgid ""
 "and/or disable the meteogram to hide this area."
 msgstr ""
 "Погода не настроена.\n"
-"Перейдите в раздел «Погода» и установите своё место,\n"
-"и/или отключите метеограмму, чтобы скрыть эту область."
+"Перейдите в раздел «Погода» и установите своё местоположение,\n"
+"или отключите метеограмму, чтобы скрыть эту область."
 
 #: ../contents/ui/PopupView.qml
 msgid "Error fetching weather."
-msgstr ""
+msgstr "Ошибка получения погоды."
 
 #: ../contents/ui/PopupView.qml
 msgid "Weather API limit reached, will try again soon."
-msgstr ""
+msgstr "Достигнут погодный лимит API, обновится чуть позже."
 
 #: ../contents/ui/TimerInputView.qml
 msgid "&Start"
-msgstr ""
+msgstr "&Пуск"
 
 #: ../contents/ui/TimerView.qml
 msgctxt "short form for %1 hours"
 msgid "%1h"
-msgstr "%1ч"
+msgstr "%1h"
 
 #: ../contents/ui/TimerView.qml
 #, c-format
@@ -836,7 +841,7 @@ msgstr "Звук"
 
 #: ../contents/ui/TimerView.qml
 msgid "Timer finished"
-msgstr "Таймер-Отсчёт закончен"
+msgstr "Таймер - Стоп"
 
 #: ../contents/ui/TimerView.qml
 msgid "%1 has passed"
