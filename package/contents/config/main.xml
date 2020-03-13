@@ -160,6 +160,9 @@
 		<entry name="agendaShowEventHangoutLink" type="bool">
 			<default>true</default>
 		</entry>
+		<entry name="agendaCondensedAllDayEvent" type="bool">
+			<default>true</default>
+		</entry>
 	</group>
 
 

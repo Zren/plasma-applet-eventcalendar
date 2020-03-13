@@ -33,6 +33,13 @@ LinkRect {
 	property alias isEditing: editEventForm.active
 	enabled: !isEditing
 
+	readonly property string eventTimestamp: LocaleFuncs.formatEventDuration(model, {
+		relativeDate: agendaItemDate,
+		clock24h: appletConfig.clock24h,
+	})
+	readonly property bool isAllDay: eventTimestamp == i18n("All Day") // TODO: Remove string comparison.
+	readonly property bool isCondensed: plasmoid.configuration.agendaCondensedAllDayEvent && isAllDay
+
 	RowLayout {
 		width: parent.width
 		spacing: 4 * units.devicePixelRatio
@@ -68,10 +75,6 @@ LinkRect {
 			PlasmaComponents.Label {
 				id: eventDateTime
 				text: {
-					var eventTimestamp = LocaleFuncs.formatEventDuration(model, {
-						relativeDate: agendaItemDate,
-						clock24h: appletConfig.clock24h,
-					})
 					if (model.location) {
 						return eventTimestamp + " | " + model.location
 					} else {
@@ -84,7 +87,7 @@ LinkRect {
 				font.pixelSize: appletConfig.agendaFontSize
 				font.weight: eventItemInProgress ? inProgressFontWeight : Font.Normal
 				height: paintedHeight
-				visible: !editEventForm.visible
+				visible: !editEventForm.visible && !isCondensed
 			}
 
 			Item {
