@@ -34,7 +34,8 @@ QtObject {
 	property color agendaInProgressColor: plasmoid.configuration.agenda_inProgressColor || agendaInProgressColorDefault
 
 	property int agendaColumnSpacing: 10 * units.devicePixelRatio
-	property int agendaRowSpacing: 10 * units.devicePixelRatio
+	property int agendaDaySpacing: plasmoid.configuration.agendaDaySpacing * units.devicePixelRatio
+	property int agendaEventSpacing: plasmoid.configuration.agendaEventSpacing * units.devicePixelRatio
 	property int agendaWeatherColumnWidth: 60 * units.devicePixelRatio
 	property int agendaWeatherIconSize: plasmoid.configuration.agenda_weather_icon_height * units.devicePixelRatio
 	property int agendaDateColumnWidth: 50 * units.devicePixelRatio + agendaColumnSpacing * 2

@@ -10,10 +10,6 @@ Loader {
 	visible: active
 
 	sourceComponent: Component {
-
-		ColumnLayout {
-			spacing: 0
-
 			RowLayout {
 				spacing: 4 * units.devicePixelRatio
 
@@ -24,7 +20,7 @@ Loader {
 				}
 
 				ColumnLayout {
-					spacing: appletConfig.agendaRowSpacing
+					spacing: 10 * units.devicePixelRatio
 
 					Component.onCompleted: {
 						newEventText.forceActiveFocus()
@@ -58,12 +54,5 @@ Loader {
 				}
 
 			}
-
-
-			Item {
-				Layout.fillWidth: true
-				height: appletConfig.agendaRowSpacing // Effectively twice the padding below the form.
-			}
-		}
 	}
 }

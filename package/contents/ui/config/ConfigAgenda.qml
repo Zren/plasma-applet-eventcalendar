@@ -222,4 +222,17 @@ ConfigPage {
 		}
 	}
 
+	ConfigSection {
+		ConfigSpinBox {
+			configKey: 'agendaDaySpacing'
+			before: i18n("Day Spacing:")
+			suffix: i18n("px")
+		}
+		ConfigSpinBox {
+			configKey: 'agendaEventSpacing'
+			before: i18n("Event Spacing:")
+			suffix: i18n("px")
+		}
+	}
+
 }

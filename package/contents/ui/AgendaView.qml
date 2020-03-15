@@ -60,7 +60,7 @@ Item {
 		ColumnLayout {
 			id: agendaColumn
 			width: agendaScrollView.viewportWidth
-			spacing: 10 * units.devicePixelRatio
+			spacing: appletConfig.agendaDaySpacing
 
 			Repeater {
 				id: agendaRepeater

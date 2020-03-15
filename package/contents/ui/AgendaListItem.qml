@@ -175,7 +175,7 @@ GridLayout {
 	ColumnLayout {
 		Layout.alignment: Qt.AlignTop | Qt.AlignLeft
 		Layout.column: weatherOnRight ? 1 : 2
-		spacing: 0
+		spacing: appletConfig.agendaEventSpacing
 
 		NewEventForm {
 			id: newEventForm
@@ -184,7 +184,7 @@ GridLayout {
 
 		ColumnLayout {
 			id: eventsLayout
-			spacing: appletConfig.agendaRowSpacing
+			spacing: appletConfig.agendaEventSpacing
 			Layout.fillWidth: true
 
 			Repeater {
