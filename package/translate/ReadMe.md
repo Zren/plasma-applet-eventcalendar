@@ -1,4 +1,4 @@
-> Version 6 of Zren's i18n scripts.
+> Version 7 of Zren's i18n scripts.
 
 With KDE Frameworks v5.37 and above, translations are bundled with the `*.plasmoid` file downloaded from the store.
 
@@ -22,11 +22,13 @@ Or if you know how to make a pull request
 
 ## Links
 
+* https://zren.github.io/kde/docs/widget/#translations-i18n
 * https://techbase.kde.org/Development/Tutorials/Localization/i18n_Build_Systems
+* https://api.kde.org/frameworks/ki18n/html/prg_guide.html
 
 ## Examples
 
-* https://websvn.kde.org/trunk/l10n-kf5/fr/messages/kde-workspace/
+* https://l10n.kde.org/stats/gui/trunk-kf5/team/fr/plasma-desktop/
 * https://github.com/psifidotos/nowdock-plasmoid/tree/master/po
 * https://github.com/kotelnik/plasma-applet-redshift-control/tree/master/translations
 

@@ -1,5 +1,5 @@
 #!/bin/bash
-# Version 6
+# Version 7
 # Requires plasmoidviewer v5.13.0
 
 function checkIfLangInstalled {
@@ -37,6 +37,7 @@ if [[ "$langInput" =~ ":" ]]; then # String contains a colon so assume it's a lo
 	languagePack="language-pack-${l2}"
 fi
 
+# https://stackoverflow.com/questions/3191664/list-of-all-locales-and-their-short-codes/28357857#28357857
 declare -a langArr=(
 	"ar_EG:ar:Arabic (Egypt)"
 	"bg_BG:bg:Bulgarian (Bulgaria)"
@@ -51,6 +52,7 @@ declare -a langArr=(
 	"nl_NL:nl:Dutch (Netherlands)"
 	"pl_PL:pl:Polish (Poland)"
 	"pt_BR:pt:Portuguese (Brazil)"
+	"ro_RO:ro:Romanian (Romania)"
 	"ru_RU:ru:Russian (Russia)"
 	"tr_TR:tr:Turkish (Turkey)"
 	"uk_UA:uk:Ukrainian (Ukraine)"
