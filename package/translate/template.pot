@@ -1,5 +1,5 @@
 # Translation of eventcalendar in LANGUAGE
-# Copyright (C) 2019
+# Copyright (C) 2020
 # This file is distributed under the same license as the eventcalendar package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: eventcalendar \n"
 "Report-Msgid-Bugs-To: https://github.com/Zren/plasma-applet-eventcalendar\n"
-"POT-Creation-Date: 2019-12-22 20:33-0500\n"
+"POT-Creation-Date: 2020-06-12 18:07-0400\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -52,6 +52,10 @@ msgstr ""
 
 #: ../contents/config/config.qml
 msgid "Advanced"
+msgstr ""
+
+#: ../contents/ui/AgendaEventItem.qml ../contents/ui/EditEventForm.qml ../contents/ui/LocaleFuncs.js
+msgid "All Day"
 msgstr ""
 
 #: ../contents/ui/AgendaEventItem.qml
@@ -166,6 +170,10 @@ msgid "Event description"
 msgstr ""
 
 #: ../contents/ui/config/ConfigAgenda.qml
+msgid "Hide 'All Day' text"
+msgstr ""
+
+#: ../contents/ui/config/ConfigAgenda.qml
 msgid "Google Hangouts link"
 msgstr ""
 
@@ -215,6 +223,14 @@ msgstr ""
 
 #: ../contents/ui/config/ConfigAgenda.qml
 msgid "In Progress"
+msgstr ""
+
+#: ../contents/ui/config/ConfigAgenda.qml
+msgid "Day Spacing:"
+msgstr ""
+
+#: ../contents/ui/config/ConfigAgenda.qml
+msgid "Event Spacing:"
 msgstr ""
 
 #: ../contents/ui/config/ConfigCalendar.qml
@@ -639,10 +655,6 @@ msgstr ""
 
 #: ../contents/ui/EditEventForm.qml
 msgid "Event Title"
-msgstr ""
-
-#: ../contents/ui/EditEventForm.qml ../contents/ui/LocaleFuncs.js
-msgid "All Day"
 msgstr ""
 
 #: ../contents/ui/EditEventForm.qml

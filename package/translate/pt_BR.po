@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: eventcalendar \n"
 "Report-Msgid-Bugs-To: https://github.com/Zren/plasma-applet-eventcalendar\n"
-"POT-Creation-Date: 2019-12-22 20:33-0500\n"
+"POT-Creation-Date: 2020-06-12 18:07-0400\n"
 "PO-Revision-Date: 2020-03-02 15:08-0300\n"
 "Last-Translator: Thiago Masato Costa Sueto <herzenschein@gmail.com>\n"
 "Language-Team: Portuguese <kde-i18n-pt_BR@kde.org>\n"
@@ -53,6 +53,11 @@ msgstr "Clima"
 #: ../contents/config/config.qml
 msgid "Advanced"
 msgstr "Avançado"
+
+#: ../contents/ui/AgendaEventItem.qml ../contents/ui/EditEventForm.qml
+#: ../contents/ui/LocaleFuncs.js
+msgid "All Day"
+msgstr "Todo o dia"
 
 #: ../contents/ui/AgendaEventItem.qml
 msgid "Hangout"
@@ -109,7 +114,8 @@ msgstr "Agenda do mês à esquerda (duas colunas)"
 msgid "Font Size:"
 msgstr "Tamanho da fonte:"
 
-#: ../contents/ui/config/ConfigAgenda.qml ../contents/ui/config/ConfigGeneral.qml
+#: ../contents/ui/config/ConfigAgenda.qml
+#: ../contents/ui/config/ConfigGeneral.qml
 msgid "px"
 msgstr "px"
 
@@ -149,11 +155,13 @@ msgstr "Clicar no clima:"
 msgid "Open City Forecast In Browser"
 msgstr "Abre a previsão para a cidade no navegador"
 
-#: ../contents/ui/config/ConfigAgenda.qml ../contents/ui/config/ConfigCalendar.qml
+#: ../contents/ui/config/ConfigAgenda.qml
+#: ../contents/ui/config/ConfigCalendar.qml
 msgid "Click Date:"
 msgstr "Clicar na data:"
 
-#: ../contents/ui/config/ConfigAgenda.qml ../contents/ui/config/ConfigCalendar.qml
+#: ../contents/ui/config/ConfigAgenda.qml
+#: ../contents/ui/config/ConfigCalendar.qml
 msgid "Open New Event In Browser"
 msgstr "Abre novo evento no navegador"
 
@@ -164,6 +172,10 @@ msgstr "Abre novo evento"
 #: ../contents/ui/config/ConfigAgenda.qml
 msgid "Event description"
 msgstr "Descrição do evento"
+
+#: ../contents/ui/config/ConfigAgenda.qml
+msgid "Hide 'All Day' text"
+msgstr ""
 
 #: ../contents/ui/config/ConfigAgenda.qml
 msgid "Google Hangouts link"
@@ -209,13 +221,22 @@ msgstr "Ocultar eventos concluídos"
 msgid "Show all events of the current day (including completed events)"
 msgstr "Mostrar todos os eventos do dia atual (incluindo eventos concluídos)"
 
-#: ../contents/ui/config/ConfigAgenda.qml ../contents/ui/config/ConfigWeather.qml
+#: ../contents/ui/config/ConfigAgenda.qml
+#: ../contents/ui/config/ConfigWeather.qml
 msgid "Colors"
 msgstr "Cores"
 
 #: ../contents/ui/config/ConfigAgenda.qml
 msgid "In Progress"
 msgstr "Em andamento"
+
+#: ../contents/ui/config/ConfigAgenda.qml
+msgid "Day Spacing:"
+msgstr ""
+
+#: ../contents/ui/config/ConfigAgenda.qml
+msgid "Event Spacing:"
+msgstr ""
 
 #: ../contents/ui/config/ConfigCalendar.qml
 msgid "Show calendar"
@@ -229,7 +250,8 @@ msgstr "Ir para evento no Calendário"
 msgid "DoubleClick Date:"
 msgstr "Clicar duas vezes na data:"
 
-#: ../contents/ui/config/ConfigCalendar.qml ../contents/ui/config/ConfigWeather.qml
+#: ../contents/ui/config/ConfigCalendar.qml
+#: ../contents/ui/config/ConfigWeather.qml
 msgid "Style"
 msgstr "Estilo"
 
@@ -245,7 +267,8 @@ msgstr "Mostrar número da semana"
 msgid "First day of week:"
 msgstr "Primeiro dia da semana:"
 
-#: ../contents/ui/config/ConfigCalendar.qml ../contents/ui/config/ConfigGeneral.qml
+#: ../contents/ui/config/ConfigCalendar.qml
+#: ../contents/ui/config/ConfigGeneral.qml
 msgid "Default"
 msgstr "Padrão"
 
@@ -305,7 +328,8 @@ msgstr "Plugins do Calendário de eventos"
 msgid "Plasma Calendar Plugins"
 msgstr "Plugins do Calendário do Plasma"
 
-#: ../contents/ui/config/ConfigEvents.qml ../contents/ui/config/ConfigGeneral.qml
+#: ../contents/ui/config/ConfigEvents.qml
+#: ../contents/ui/config/ConfigGeneral.qml
 msgid "Misc"
 msgstr "Diversos"
 
@@ -313,7 +337,8 @@ msgstr "Diversos"
 msgid "Refresh events every: "
 msgstr "Atualize eventos a cada:"
 
-#: ../contents/ui/config/ConfigEvents.qml ../contents/ui/config/ConfigWeather.qml
+#: ../contents/ui/config/ConfigEvents.qml
+#: ../contents/ui/config/ConfigWeather.qml
 msgctxt "Polling interval in minutes"
 msgid "min"
 msgid_plural "min"
@@ -328,7 +353,8 @@ msgstr "Notificações"
 msgid "Event Starting"
 msgstr "Evento começou"
 
-#: ../contents/ui/config/ConfigGeneral.qml ../contents/ui/lib/ConfigNotification.qml
+#: ../contents/ui/config/ConfigGeneral.qml
+#: ../contents/ui/lib/ConfigNotification.qml
 msgid "Choose a sound effect"
 msgstr "Escolha um efeito sonoro"
 
@@ -338,11 +364,11 @@ msgstr "Interface"
 
 #: ../contents/ui/config/ConfigGeneral.qml
 msgid ""
-"Show/Hide widgets above the calendar. Toggle Agenda/Calendar on their"
-" respective tabs."
+"Show/Hide widgets above the calendar. Toggle Agenda/Calendar on their "
+"respective tabs."
 msgstr ""
-"Mostrar ou ocultar funções extras acima do calendário. Alternar entre Agenda"
-" e Calendário em suas respectivas guias."
+"Mostrar ou ocultar funções extras acima do calendário. Alternar entre Agenda "
+"e Calendário em suas respectivas guias."
 
 #: ../contents/ui/config/ConfigGeneral.qml
 msgid "Meteogram"
@@ -370,22 +396,22 @@ msgstr "Formato de hora"
 
 #: ../contents/ui/config/ConfigGeneral.qml
 msgid ""
-"The default font for the Breeze theme is Noto Sans which is hard to read with"
-" small text. Try using the Sans Serif font if you find the text too small"
-" when adding a second line."
+"The default font for the Breeze theme is Noto Sans which is hard to read "
+"with small text. Try using the Sans Serif font if you find the text too "
+"small when adding a second line."
 msgstr ""
-"A fonte padrão para o tema Breeze é a Noto Sans, que é difícil de ler usando"
-" tamanho de fonte pequena. Caso o texto fique muito pequeno ao adicionar uma"
-" linha, tente usar a fonte Sans Serif."
+"A fonte padrão para o tema Breeze é a Noto Sans, que é difícil de ler usando "
+"tamanho de fonte pequena. Caso o texto fique muito pequeno ao adicionar uma "
+"linha, tente usar a fonte Sans Serif."
 
 #: ../contents/ui/config/ConfigGeneral.qml
 msgid ""
-"You can also use %1 or %2 to style a section. Note the single quotes around"
-" the tags are used to bypass the time format."
+"You can also use %1 or %2 to style a section. Note the single quotes around "
+"the tags are used to bypass the time format."
 msgstr ""
-"Você também pode usar %1 ou %2 para mudar o estilo de apresentação. Note que"
-" as aspas envolvendo as tags são usadas para permitir o formato de horas"
-" literal."
+"Você também pode usar %1 ou %2 para mudar o estilo de apresentação. Note que "
+"as aspas envolvendo as tags são usadas para permitir o formato de horas "
+"literal."
 
 #: ../contents/ui/config/ConfigGeneral.qml
 msgid "Font:"
@@ -477,13 +503,13 @@ msgstr "Sincronizar com o Google Calendar"
 
 #: ../contents/ui/config/ConfigGoogleCalendar.qml
 msgid ""
-"Visit <a href=\"%1\">%2</a> (opens in your web browser). After you login and"
-" give permission to acess your calendar, it will give you a code to paste"
-" below."
+"Visit <a href=\"%1\">%2</a> (opens in your web browser). After you login and "
+"give permission to acess your calendar, it will give you a code to paste "
+"below."
 msgstr ""
-"Visite <a href=\"%1\">%2</a> (abrirá no seu navegador). Após logar e dar"
-" permissão de acesso ao seu calendário, você irá receber um código para colar"
-" abaixo."
+"Visite <a href=\"%1\">%2</a> (abrirá no seu navegador). Após logar e dar "
+"permissão de acesso ao seu calendário, você irá receber um código para colar "
+"abaixo."
 
 #: ../contents/ui/config/ConfigGoogleCalendar.qml
 msgid "Copy Link"
@@ -501,7 +527,8 @@ msgstr "Enviar"
 msgid "Invalid Google Authorization Code"
 msgstr "Código de autorização da Google inválido"
 
-#: ../contents/ui/config/ConfigGoogleCalendar.qml ../contents/ui/config/ConfigICal.qml
+#: ../contents/ui/config/ConfigGoogleCalendar.qml
+#: ../contents/ui/config/ConfigICal.qml
 msgid "Calendars"
 msgstr "Calendários"
 
@@ -623,31 +650,38 @@ msgstr "Clima ruim"
 msgid "Icons"
 msgstr "Ícones"
 
-#: ../contents/ui/config/OpenWeatherMapCityDialog.qml ../contents/ui/config/WeatherCanadaCityDialog.qml
+#: ../contents/ui/config/OpenWeatherMapCityDialog.qml
+#: ../contents/ui/config/WeatherCanadaCityDialog.qml
 msgid "Select city"
 msgstr "Selecione a cidade"
 
-#: ../contents/ui/config/OpenWeatherMapCityDialog.qml ../contents/ui/config/WeatherCanadaCityDialog.qml
+#: ../contents/ui/config/OpenWeatherMapCityDialog.qml
+#: ../contents/ui/config/WeatherCanadaCityDialog.qml
 msgid "Fetched from <a href=\"%1\">%1</a>"
 msgstr "Dados obtidos do <a href=\"%1\">%1</a>"
 
-#: ../contents/ui/config/OpenWeatherMapCityDialog.qml ../contents/ui/config/WeatherCanadaCityDialog.qml
+#: ../contents/ui/config/OpenWeatherMapCityDialog.qml
+#: ../contents/ui/config/WeatherCanadaCityDialog.qml
 msgid "Search"
 msgstr "Pesquisar"
 
-#: ../contents/ui/config/OpenWeatherMapCityDialog.qml ../contents/ui/config/WeatherCanadaCityDialog.qml
+#: ../contents/ui/config/OpenWeatherMapCityDialog.qml
+#: ../contents/ui/config/WeatherCanadaCityDialog.qml
 msgid "Name"
 msgstr "Nome"
 
-#: ../contents/ui/config/OpenWeatherMapCityDialog.qml ../contents/ui/config/WeatherCanadaCityDialog.qml
+#: ../contents/ui/config/OpenWeatherMapCityDialog.qml
+#: ../contents/ui/config/WeatherCanadaCityDialog.qml
 msgid "Id"
 msgstr "Id"
 
-#: ../contents/ui/config/OpenWeatherMapCityDialog.qml ../contents/ui/config/WeatherCanadaCityDialog.qml
+#: ../contents/ui/config/OpenWeatherMapCityDialog.qml
+#: ../contents/ui/config/WeatherCanadaCityDialog.qml
 msgid "City Webpage"
 msgstr "Página web da cidade"
 
-#: ../contents/ui/config/OpenWeatherMapCityDialog.qml ../contents/ui/config/WeatherCanadaCityDialog.qml
+#: ../contents/ui/config/OpenWeatherMapCityDialog.qml
+#: ../contents/ui/config/WeatherCanadaCityDialog.qml
 msgid "Open Link"
 msgstr "Abir link"
 
@@ -663,10 +697,6 @@ msgstr "Para"
 #: ../contents/ui/EditEventForm.qml
 msgid "Event Title"
 msgstr "Título do evento"
-
-#: ../contents/ui/EditEventForm.qml ../contents/ui/LocaleFuncs.js
-msgid "All Day"
-msgstr "Todo o dia"
 
 #: ../contents/ui/EditEventForm.qml
 msgid "Add location"
@@ -858,8 +888,12 @@ msgstr "Próximos eventos"
 #~ msgid "Event Summary"
 #~ msgstr "Resumo de eventos"
 
-#~ msgid "Enter the following code at <a href=\"https://www.google.com/device\">https://www.google.com/device</a>."
-#~ msgstr "Digite o seguinte código em <a href=\"https://www.google.com/device\">https://www.google.com/device</a>."
+#~ msgid ""
+#~ "Enter the following code at <a href=\"https://www.google.com/device"
+#~ "\">https://www.google.com/device</a>."
+#~ msgstr ""
+#~ "Digite o seguinte código em <a href=\"https://www.google.com/device"
+#~ "\">https://www.google.com/device</a>."
 
 #~ msgid "Generating Code..."
 #~ msgstr "Gerando código..."

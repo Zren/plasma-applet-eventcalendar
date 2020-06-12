@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: eventcalendar\n"
 "Report-Msgid-Bugs-To: https://github.com/Zren/plasma-applet-eventcalendar\n"
-"POT-Creation-Date: 2019-12-22 20:33-0500\n"
+"POT-Creation-Date: 2020-06-12 18:07-0400\n"
 "PO-Revision-Date: 2019-10-30 13:29+0900\n"
 "Last-Translator: Mathieu Provençal <mth.provencal@gmail.com>\n"
 "Language-Team: French <LL@li.org>\n"
@@ -53,6 +53,11 @@ msgstr "Météo"
 #: ../contents/config/config.qml
 msgid "Advanced"
 msgstr "Avancé"
+
+#: ../contents/ui/AgendaEventItem.qml ../contents/ui/EditEventForm.qml
+#: ../contents/ui/LocaleFuncs.js
+msgid "All Day"
+msgstr "Toute la journée"
 
 #: ../contents/ui/AgendaEventItem.qml
 msgid "Hangout"
@@ -169,6 +174,10 @@ msgid "Event description"
 msgstr "Description de l'événement"
 
 #: ../contents/ui/config/ConfigAgenda.qml
+msgid "Hide 'All Day' text"
+msgstr ""
+
+#: ../contents/ui/config/ConfigAgenda.qml
 msgid "Google Hangouts link"
 msgstr "Lien Google Hangouts"
 
@@ -224,6 +233,14 @@ msgstr "Couleurs"
 #: ../contents/ui/config/ConfigAgenda.qml
 msgid "In Progress"
 msgstr "En cours"
+
+#: ../contents/ui/config/ConfigAgenda.qml
+msgid "Day Spacing:"
+msgstr ""
+
+#: ../contents/ui/config/ConfigAgenda.qml
+msgid "Event Spacing:"
+msgstr ""
 
 #: ../contents/ui/config/ConfigCalendar.qml
 msgid "Show calendar"
@@ -684,10 +701,6 @@ msgstr "à"
 #: ../contents/ui/EditEventForm.qml
 msgid "Event Title"
 msgstr "Titre de l'événement"
-
-#: ../contents/ui/EditEventForm.qml ../contents/ui/LocaleFuncs.js
-msgid "All Day"
-msgstr "Toute la journée"
 
 #: ../contents/ui/EditEventForm.qml
 msgid "Add location"
