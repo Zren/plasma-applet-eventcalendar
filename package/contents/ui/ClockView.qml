@@ -53,9 +53,12 @@ Item {
 			return cfg_clock_maxheight
 		} else {
 			if (cfg_clock_line_2) {
-				return verticalFixedLineHeight * 2
+				var timeHeight = verticalFixedLineHeight
+				var dateHeight = timeHeight * 0.8
+				return timeHeight + dateHeight
 			} else {
-				return verticalFixedLineHeight
+				var timeHeight = verticalFixedLineHeight
+				return timeHeight
 			}
 		}
 	}
@@ -112,10 +115,11 @@ Item {
 					}
 				}
 				text: Qt.formatDateTime(clock.currentTime, timeFormat)
-
-				// Rectangle { border.color: "#f00"; anchors.fill: parent; border.width: 1; color: "transparent"; visible: plasmoid.configuration.debugging }
 			}
+
+			// Debugging
 			// Rectangle { border.color: "#ff0"; anchors.fill: parent; border.width: 1; color: "transparent"; visible: plasmoid.configuration.debugging }
+			// Rectangle { border.color: "#f00"; anchors.fill: timeLabel1; border.width: 1; color: "transparent"; visible: plasmoid.configuration.debugging }
 		}
 		Item {
 			id: timeContainer2
@@ -145,10 +149,11 @@ Item {
 					}
 				}
 				text: Qt.formatDateTime(clock.currentTime, timeFormat)
-
-				// Rectangle { border.color: "#f00"; anchors.fill: parent; border.width: 1; color: "transparent"; visible: plasmoid.configuration.debugging }
 			}
+
+			// Debugging
 			// Rectangle { border.color: "#ff0"; anchors.fill: parent; border.width: 1; color: "transparent"; visible: plasmoid.configuration.debugging }
+			// Rectangle { border.color: "#f00"; anchors.fill: timeLabel2; border.width: 1; color: "transparent"; visible: plasmoid.configuration.debugging }
 		}
 	}
 
@@ -190,9 +195,9 @@ Item {
 			when: plasmoid.formFactor == PlasmaCore.Types.Vertical
 
 			PropertyChanges { target: clock
-				height: clock.verticalHeight
-				Layout.minimumHeight: clock.verticalHeight
-				Layout.maximumHeight: clock.verticalHeight
+				targetHeight: clock.verticalHeight
+				Layout.minimumHeight: clock.targetHeight
+				Layout.preferredHeight: clock.targetHeight
 			}
 			PropertyChanges { target: timeContainer1
 				width: clock.width

@@ -54,9 +54,9 @@ Item {
 		} else {
 			formattedSizeHelper.text = timePm
 		}
-		console.log('updateMinWidth', minWidth)
-		console.log('\t', 'timeAm', timeAm, advanceWidthAm)
-		console.log('\t', 'timePm', timePm, advanceWidthPm)
+		// console.log('updateMinWidth', minWidth)
+		// console.log('\t', 'timeAm', timeAm, advanceWidthAm)
+		// console.log('\t', 'timePm', timePm, advanceWidthPm)
 	}
 
 	PlasmaComponents.Label {
