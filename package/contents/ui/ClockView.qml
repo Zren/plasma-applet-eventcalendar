@@ -221,13 +221,18 @@ Item {
 			name: "floating"
 			when: plasmoid.formFactor == PlasmaCore.Types.Planar
 
-			PropertyChanges { target: timeContainer1
+			PropertyChanges { target: clock
+				targetHeight: clock.verticalHeight
 				width: clock.horizontalFixedLineHeight
-				height: clock.verticalFixedLineHeight
+				Layout.preferredWidth: clock.horizontalFixedLineHeight
+			}
+			PropertyChanges { target: timeContainer1
+				width: clock.width
+				height: clock.lineHeight1
 			}
 			PropertyChanges { target: timeContainer2
-				width: clock.horizontalFixedLineHeight
-				height: clock.verticalFixedLineHeight
+				width: clock.width
+				height: clock.lineHeight2
 			}
 			PropertyChanges { target: timeLabel1
 				width: timeContainer1.width
