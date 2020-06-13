@@ -1,3 +1,11 @@
+## v67 - June __ 2020
+
+* Workaround hardcoded top/bottom padding in clock text (Issue #6). Note that fixing this has made "Fixed Font Height" text larger so you will need to manually adjust it smaller after the update. Scale to fit now uses the same size as Digital Clock, where 1 line is 71% panel height, and 2 lines uses the entire height.
+* Add option to hide 'All Day' text in the agenda so all day events take up less vertical space.
+* Configurable spacing between days/events. Doubled day spacing to 20px.
+* Update ru translations by @aliger14 (Pull Request #124)
+* Update pt_BR translations by @herzenschein (Pull Request #125)
+
 ## v66 - December 22 2019
 
 * Fix problem with Qt 5.14 (Issue #99) by @fedeliallalinea (Pull Request #110)
