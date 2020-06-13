@@ -20,14 +20,9 @@ ConfigPage {
 	property string cfg_clock_fontfamily: ""
 	property alias cfg_clock_timeformat: clock_timeformat.text
 	property alias cfg_clock_timeformat_2: clock_timeformat_2.text
-	property alias cfg_clock_line_2: clock_line_2.checked
-	property alias cfg_clock_line_2_height_ratio: clock_line_2_height_ratio.value
-	property alias cfg_clock_line_1_bold: clock_line_1_bold.checked
-	property alias cfg_clock_line_2_bold: clock_line_2_bold.checked
 	property string cfg_clock_mousewheel: "runcommand"
 	property alias cfg_clock_mousewheel_up: clock_mousewheel_up.text
 	property alias cfg_clock_mousewheel_down: clock_mousewheel_down.text
-	property alias cfg_clock_maxheight: clock_maxheight.value
 	property alias cfg_showBackground: showBackground.checked
 
 	readonly property string localeTimeFormat: Qt.locale().timeFormat(Locale.ShortFormat)
@@ -53,14 +48,6 @@ ConfigPage {
 				}
 			}
 		}
-	}
-
-	// Apply on change
-	onCfg_clock_line_2_height_ratioChanged: {
-		plasmoid.configuration.clock_line_2_height_ratio = cfg_clock_line_2_height_ratio
-	}
-	onCfg_clock_maxheightChanged: {
-		plasmoid.configuration.clock_maxheight = cfg_clock_maxheight
 	}
 
 	function setMouseWheelCommands(up, down) {
@@ -198,12 +185,10 @@ ConfigPage {
 					text: i18n("Fixed Clock Height: ")
 				}
 				
-				SpinBox {
-					id: clock_maxheight
-					
+				ConfigSpinBox {
+					configKey: 'clock_maxheight'
 					suffix: i18n("px")
 					minimumValue: 0
-					maximumValue: 1000000
 				}
 
 				Label {
@@ -280,8 +265,8 @@ ConfigPage {
 			RowLayout {
 				Layout.fillWidth: true
 				Text { width: indentWidth } // indent
-				CheckBox {
-					id: clock_line_1_bold
+				ConfigCheckBox {
+					configKey: 'clock_line_1_bold'
 					text: i18n("Bold")
 				}
 			}
@@ -290,9 +275,8 @@ ConfigPage {
 		ConfigSection {
 			RowLayout {
 				Layout.fillWidth: true
-				CheckBox {
-					id: clock_line_2
-					checked: false
+				ConfigCheckBox {
+					configKey: 'clock_line_2'
 					text: i18n("Line 2:")
 				}
 				TextField {
@@ -344,8 +328,8 @@ ConfigPage {
 			RowLayout {
 				Layout.fillWidth: true
 				Text { width: indentWidth } // indent
-				CheckBox {
-					id: clock_line_2_bold
+				ConfigCheckBox {
+					configKey: 'clock_line_2_bold'
 					text: i18n("Bold")
 				}
 			}
@@ -353,20 +337,13 @@ ConfigPage {
 			RowLayout {
 				Layout.fillWidth: true
 				Text { width: indentWidth } // indent
-				Label {
-					text: i18n("Height:")
-				}
-				Slider {
-					id: clock_line_2_height_ratio
+				ConfigSlider {
+					configKey: 'clock_line_2_height_ratio'
+					before: i18n("Height:")
+					after: Math.floor(value * 100) + '%'
 					minimumValue: 0.3
 					maximumValue: 0.7
 					stepSize: 0.01
-					value: 0.4
-					Layout.fillWidth: true
-					// orientation: Qt.Vertical
-				}
-				Label {
-					text: Math.floor(cfg_clock_line_2_height_ratio * 100) + '%'
 				}
 			}
 		}
