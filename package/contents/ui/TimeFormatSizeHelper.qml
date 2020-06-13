@@ -1,32 +1,17 @@
 import QtQuick 2.4
 import org.kde.plasma.components 2.0 as PlasmaComponents
 
-PlasmaComponents.Label {
+Item {
 	id: timeFromatSizeHelper
 	visible: false
 
 	property Text timeLabel
-	readonly property string widestTimeFormat: {
-		var maximumWidthNumber = getWidestNumber(fontMetrics)
-		// replace all placeholders with the widest number (two digits)
-		var format = timeLabel.timeFormat.replace(/(h+|m+|s+)/g, "" + maximumWidthNumber + maximumWidthNumber) // make sure maximumWidthNumber is formatted as string
-		return format
-	}
-
-	font.family: timeLabel.font.family
-	font.weight: timeLabel.font.weight
-	font.italic: timeLabel.font.italic
-	wrapMode: timeLabel.wrapMode
-
-	fontSizeMode: Text.VerticalFit //timeLabel.fontSizeMode
-	// font.pointSize: -1
-	font.pixelSize: 1024
-	height: timeLabel.height
 
 	FontMetrics {
 		id: fontMetrics
 
-		font.pixelSize: timeLabel.fontInfo.pixelSize
+		font.pointSize: -1
+		font.pixelSize: timeLabel.font.pixelSize
 		font.family: timeLabel.font.family
 		font.weight: timeLabel.font.weight
 		font.italic: timeLabel.font.italic
@@ -46,34 +31,44 @@ PlasmaComponents.Label {
 		// console.log('getWidestNumber', maximumWidthNumber)
 		return maximumWidthNumber
 	}
-	function getFixedWidth(fontMetrics, widestTimeFormat) {
-		
+
+	readonly property string widestTimeFormat: {
+		var maximumWidthNumber = getWidestNumber(fontMetrics)
+		// replace all placeholders with the widest number (two digits)
+		var format = timeLabel.timeFormat.replace(/(h+|m+|s+)/g, "" + maximumWidthNumber + maximumWidthNumber) // make sure maximumWidthNumber is formatted as string
+		return format
 	}
 
-	// property real advanceWidthAm: 0
-	// property real advanceWidthPm: 0
-	readonly property real minWidth: paintedWidth
+	readonly property real minWidth: formattedSizeHelper.paintedWidth
 	function updateMinWidth() {
 		var now = new Date(timeModel.currentTime)
 		var date = new Date(now.getFullYear(), now.getMonth(), now.getDate(), 1, 0, 0)
 		var timeAm = Qt.formatDateTime(date, widestTimeFormat)
 		var advanceWidthAm = fontMetrics.advanceWidth(timeAm)
-		// timeFromatSizeHelper.text = timeAm
-		// var advanceWidthAm = timeFromatSizeHelper.paintedWidth
 		date.setHours(13)
 		var timePm = Qt.formatDateTime(date, widestTimeFormat)
 		var advanceWidthPm = fontMetrics.advanceWidth(timePm)
-		// timeFromatSizeHelper.text = timePm
-		// var advanceWidthPm = timeFromatSizeHelper.paintedWidth
 
-		// set the sizehelper's text to the widest time string
 		if (advanceWidthAm > advanceWidthPm) {
-			timeFromatSizeHelper.text = timeAm
+			formattedSizeHelper.text = timeAm
 		} else {
-			timeFromatSizeHelper.text = timePm
+			formattedSizeHelper.text = timePm
 		}
-		// console.log('updateMinWidth', widestTimeFormat, advanceWidthAm, advanceWidthPm, paintedWidth, implicitWidth)
-		// console.log('\ttimeAm', timeAm, 'timePm', timePm)
+		console.log('updateMinWidth', minWidth)
+		console.log('\t', 'timeAm', timeAm, advanceWidthAm)
+		console.log('\t', 'timePm', timePm, advanceWidthPm)
+	}
+
+	PlasmaComponents.Label {
+		id: formattedSizeHelper
+
+		font.pointSize: -1
+		font.pixelSize: timeLabel.font.pixelSize
+		font.family: timeLabel.font.family
+		font.weight: timeLabel.font.weight
+		font.italic: timeLabel.font.italic
+		wrapMode: timeLabel.wrapMode
+		fontSizeMode: Text.FixedSize
 	}
 
 	Connections {

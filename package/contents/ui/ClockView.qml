@@ -26,11 +26,39 @@ import org.kde.plasma.components 2.0 as PlasmaComponents
 Item {
 	id: clock
 
-	width: labels.width
-	Layout.minimumWidth: labels.width
-	// Layout.maximumWidth: timeLabel1.width
-	property int verticalLineHeight: cfg_clock_maxheight > 0 ? cfg_clock_maxheight : 24
-	property int verticalDoubleLineHeight: cfg_clock_maxheight > 0 ? cfg_clock_maxheight : 24*2
+	property int horizontalFixedLineHeight: 300 * units.devicePixelRatio
+	property int verticalFixedLineHeight: 24 * units.devicePixelRatio
+
+	property int targetHeight: verticalFixedLineHeight
+
+	property int horizontalHeight: {
+		if (cfg_clock_maxheight) {
+			return cfg_clock_maxheight
+		} else {
+			if (cfg_clock_line_2) {
+				// DigitalClock default
+				var timeHeight = clock.height * 0.56
+				var dateHeight = timeHeight * 0.8
+				return timeHeight + dateHeight
+			} else {
+				// DigitalClock default
+				var timeHeight = clock.height * 0.71
+				return timeHeight
+			}
+		}
+	}
+
+	property int verticalHeight: {
+		if (cfg_clock_maxheight) {
+			return cfg_clock_maxheight
+		} else {
+			if (cfg_clock_line_2) {
+				return verticalFixedLineHeight * 2
+			} else {
+				return verticalFixedLineHeight
+			}
+		}
+	}
 
 	property date currentTime: new Date()
 
@@ -45,81 +73,83 @@ Item {
 	property bool cfg_clock_fixedWidth: true // plasmoid.configuration.clock_fixedWidth
 
 	// property int lineWidth: cfg_clock_line_2 ? Math.max(timeLabel.paintedWidth, timeLabel2.paintedWidth) : timeLabel.paintedWidth
-	property int lineHeight1: cfg_clock_line_2 ? sizehelper.height - (sizehelper.height * cfg_clock_line_2_height_ratio) : sizehelper.height
-	property int lineHeight2: cfg_clock_line_2 ? sizehelper.height * cfg_clock_line_2_height_ratio : sizehelper.height
+	property int lineHeight2: targetHeight * cfg_clock_line_2_height_ratio
+	property int lineHeight1: cfg_clock_line_2 ? targetHeight - lineHeight2 : targetHeight
 
 	Column {
 		id: labels
 		spacing: 0
 		anchors.centerIn: parent
 
-		PlasmaComponents.Label {
-			id: timeLabel1
+		Item {
+			id: timeContainer1
 
-			font.family: clock.clock_fontfamily
-			font.weight: clock.cfg_clock_line_1_bold ? Font.Bold : Font.Normal
-			// font.pointSize: -1
-			font.pixelSize: 1024
-			minimumPixelSize: 1
+			PlasmaComponents.Label {
+				id: timeLabel1
+				anchors.centerIn: parent
 
-			fontSizeMode: Text.VerticalFit
-			wrapMode: Text.NoWrap
+				font.family: clock.clock_fontfamily
+				font.weight: clock.cfg_clock_line_1_bold ? Font.Bold : Font.Normal
+				font.pointSize: -1
+				font.pixelSize: timeContainer1.height
+				minimumPixelSize: 1
 
-			horizontalAlignment: Text.AlignHCenter
-			verticalAlignment: Text.AlignVCenter
-			smooth: true
+				fontSizeMode: Text.FixedSize
+				wrapMode: Text.NoWrap
 
-			// onWidthChanged: console.log('timeLabel1.width', width)
-			// onPaintedWidthChanged: console.log('timeLabel1.paintedWidth', paintedWidth)
+				horizontalAlignment: Text.AlignHCenter
+				verticalAlignment: Text.AlignVCenter
+				smooth: true
 
-			property string timeFormat: {
-				if (clock.cfg_clock_timeformat) {
-					return clock.cfg_clock_timeformat
-				} else {
-					return Qt.locale().timeFormat(Locale.ShortFormat)
+				// onWidthChanged: console.log('timeLabel1.width', width)
+				// onPaintedWidthChanged: console.log('timeLabel1.paintedWidth', paintedWidth)
+
+				property string timeFormat: {
+					if (clock.cfg_clock_timeformat) {
+						return clock.cfg_clock_timeformat
+					} else {
+						return Qt.locale().timeFormat(Locale.ShortFormat)
+					}
 				}
+				text: Qt.formatDateTime(clock.currentTime, timeFormat)
+
+				// Rectangle { border.color: "#f00"; anchors.fill: parent; border.width: 1; color: "transparent"; visible: plasmoid.configuration.debugging }
 			}
-			text: Qt.formatDateTime(clock.currentTime, timeFormat)
+			// Rectangle { border.color: "#ff0"; anchors.fill: parent; border.width: 1; color: "transparent"; visible: plasmoid.configuration.debugging }
 		}
-		PlasmaComponents.Label {
-			id: timeLabel2
+		Item {
+			id: timeContainer2
 			visible: cfg_clock_line_2
 
-			font.family: clock.clock_fontfamily
-			font.weight: clock.cfg_clock_line_2_bold ? Font.Bold : Font.Normal
-			// font.pointSize: -1
-			font.pixelSize: 1024
-			minimumPixelSize: 1
+			PlasmaComponents.Label {
+				id: timeLabel2
+				anchors.centerIn: parent
+				font.family: clock.clock_fontfamily
+				font.weight: clock.cfg_clock_line_2_bold ? Font.Bold : Font.Normal
+				font.pointSize: -1
+				font.pixelSize: timeContainer2.height
+				minimumPixelSize: 1
 
-			fontSizeMode: Text.VerticalFit
-			wrapMode: Text.NoWrap
+				fontSizeMode: Text.FixedSize
+				wrapMode: Text.NoWrap
 
-			horizontalAlignment: Text.AlignHCenter
-			verticalAlignment: Text.AlignVCenter
-			smooth: true
+				horizontalAlignment: Text.AlignHCenter
+				verticalAlignment: Text.AlignVCenter
+				smooth: true
 
-			property string timeFormat: {
-				if (clock.cfg_clock_timeformat_2) {
-					return clock.cfg_clock_timeformat_2
-				} else {
-					return Qt.locale().dateFormat(Locale.ShortFormat)
+				property string timeFormat: {
+					if (clock.cfg_clock_timeformat_2) {
+						return clock.cfg_clock_timeformat_2
+					} else {
+						return Qt.locale().dateFormat(Locale.ShortFormat)
+					}
 				}
+				text: Qt.formatDateTime(clock.currentTime, timeFormat)
+
+				// Rectangle { border.color: "#f00"; anchors.fill: parent; border.width: 1; color: "transparent"; visible: plasmoid.configuration.debugging }
 			}
-			text: Qt.formatDateTime(clock.currentTime, timeFormat)
+			// Rectangle { border.color: "#ff0"; anchors.fill: parent; border.width: 1; color: "transparent"; visible: plasmoid.configuration.debugging }
 		}
-		
-	}
-
-	PlasmaComponents.Label {
-		id: sizehelper
-
-		font.family: timeLabel1.font.family
-		font.weight: timeLabel1.font.weight
-		font.italic: timeLabel1.font.italic
-		// font.pointSize: -1
-		font.pixelSize: 1024
-		height: paintedHeight
-		visible: false
 	}
 
 	readonly property real fixedWidth: cfg_clock_line_2 ? Math.max(timeFormatSizer1.minWidth, timeFormatSizer2.minWidth) : timeFormatSizer1.minWidth
@@ -139,18 +169,17 @@ Item {
 			name: "horizontalPanel"
 			when: plasmoid.formFactor == PlasmaCore.Types.Horizontal
 
-			PropertyChanges { target: sizehelper
-				width: sizehelper.paintedWidth
-				height: cfg_clock_maxheight > 0 ? cfg_clock_maxheight : clock.height
-				fontSizeMode: Text.VerticalFit
+			PropertyChanges { target: clock
+				targetHeight: clock.horizontalHeight
+				width: clock.fixedWidth
+				Layout.minimumWidth: clock.fixedWidth
+				Layout.preferredWidth: clock.fixedWidth
 			}
-			PropertyChanges { target: timeLabel1
-				// width: clock.lineWidth
+			PropertyChanges { target: timeContainer1
 				width: clock.fixedWidth
 				height: clock.lineHeight1
 			}
-			PropertyChanges { target: timeLabel2
-				// width: clock.lineWidth
+			PropertyChanges { target: timeContainer2
 				width: clock.fixedWidth
 				height: clock.lineHeight2
 			}
@@ -161,31 +190,25 @@ Item {
 			when: plasmoid.formFactor == PlasmaCore.Types.Vertical
 
 			PropertyChanges { target: clock
-				height: cfg_clock_line_2 ? verticalDoubleLineHeight : verticalLineHeight
-				// Layout.minimumHeight: 1
-				// Layout.preferredHeight: clock.height
-				// Layout.maximumHeight: clock.height
-				// Layout.fillHeight: false
-				// Layout.fillWidth: true
-				Layout.maximumHeight: cfg_clock_line_2 ? verticalDoubleLineHeight : verticalLineHeight
-				Layout.minimumHeight: Layout.maximumHeight
+				height: clock.verticalHeight
+				Layout.minimumHeight: clock.verticalHeight
+				Layout.maximumHeight: clock.verticalHeight
 			}
-
-			PropertyChanges { target: sizehelper
+			PropertyChanges { target: timeContainer1
 				width: clock.width
-				height: cfg_clock_line_2 ? verticalDoubleLineHeight : verticalLineHeight
-				fontSizeMode: Text.Fit
-				// horizontalAlignment: Text.AlignHCenter
+				height: clock.lineHeight1
+			}
+			PropertyChanges { target: timeContainer2
+				width: clock.width
+				height: clock.lineHeight2
 			}
 			PropertyChanges { target: timeLabel1
-				width: clock.width
-				height: cfg_clock_line_2 ? verticalDoubleLineHeight - (verticalDoubleLineHeight * cfg_clock_line_2_height_ratio) : verticalLineHeight
-				fontSizeMode: Text.Fit
+				width: timeContainer1.width
+				fontSizeMode: Text.HorizontalFit
 			}
 			PropertyChanges { target: timeLabel2
-				width: clock.width
-				height: cfg_clock_line_2 ? verticalDoubleLineHeight * cfg_clock_line_2_height_ratio : 0
-				fontSizeMode: Text.Fit
+				width: timeContainer2.width
+				fontSizeMode: Text.HorizontalFit
 			}
 		},
 
@@ -193,20 +216,21 @@ Item {
 			name: "floating"
 			when: plasmoid.formFactor == PlasmaCore.Types.Planar
 
-			PropertyChanges { target: sizehelper
-				width: 300
-				height: 24
-				fontSizeMode: Text.Fit
+			PropertyChanges { target: timeContainer1
+				width: clock.horizontalFixedLineHeight
+				height: clock.verticalFixedLineHeight
+			}
+			PropertyChanges { target: timeContainer2
+				width: clock.horizontalFixedLineHeight
+				height: clock.verticalFixedLineHeight
 			}
 			PropertyChanges { target: timeLabel1
-				width: 300
-				height: 24
-				fontSizeMode: Text.Fit
+				width: timeContainer1.width
+				fontSizeMode: Text.HorizontalFit
 			}
 			PropertyChanges { target: timeLabel2
-				width: 300
-				height: 24
-				fontSizeMode: Text.Fit
+				width: timeContainer2.width
+				fontSizeMode: Text.HorizontalFit
 			}
 		}
 	]
