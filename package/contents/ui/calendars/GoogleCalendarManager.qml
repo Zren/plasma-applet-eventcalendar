@@ -30,9 +30,9 @@ CalendarManager {
 	//--- List Events
 	function fetchGoogleAccountEvents(calendarIdList) {
 		googleCalendarManager.asyncRequests += 1
-		var func = fetchGoogleAccountEvents_run.bind(this, calendarIdList, function(err, data) {
-			if (err) {
-				fetchGoogleAccountEvents_err(err)
+		var func = fetchGoogleAccountEvents_run.bind(this, calendarIdList, function(errObj, data) {
+			if (errObj) {
+				fetchGoogleAccountEvents_err(errObj.err, errObj.data, errObj.xhr)
 			} else {
 				fetchGoogleAccountEvents_done(data)
 			}
@@ -51,10 +51,10 @@ CalendarManager {
 
 		Async.parallel(tasks, callback)
 	}
-	function fetchGoogleAccountEvents_err(err) {
-		logger.debug('fetchGoogleAccountEvents.err', err)
+	function fetchGoogleAccountEvents_err(err, data, xhr) {
+		logger.debug('fetchGoogleAccountEvents_err', err, data, xhr)
 		googleCalendarManager.asyncRequestsDone += 1
-		return handleError(err.err, err.data, err.xhr)
+		return handleError(err, data, xhr)
 	}
 	function fetchGoogleAccountEvents_done(results) {
 		for (var i = 0; i < results.length; i++) {
@@ -67,11 +67,6 @@ CalendarManager {
 
 	function fetchGoogleCalendarEvents(calendarId, callback) {
 		logger.debug('fetchGoogleCalendarEvents', calendarId)
-		// return callback({
-		// 	err: 'test',
-		// 	data: null,
-		// 	xhr: null,
-		// })
 		fetchGCalEvents({
 			calendarId: calendarId,
 			start: googleCalendarManager.dateMin.toISOString(),
@@ -80,11 +75,12 @@ CalendarManager {
 		}, function(err, data, xhr) {
 			if (err) {
 				logger.logJSON('onErrorFetchingEvents: ', err)
-				return callback({
+				var errObj = {
 					err: err,
 					data: data,
 					xhr: xhr,
-				})
+				}
+				return callback(errObj, null)
 			}
 
 			return callback(null, {
@@ -369,9 +365,9 @@ CalendarManager {
 			var dateString = date.getFullYear() + '-' + (date.getMonth()+1) + '-' + date.getDate()
 			var eventText = dateString + ' ' + text
 
-			var func = createGoogleCalendarEvent_run.bind(this, calendarId, eventText, function(err, data) {
+			var func = createGoogleCalendarEvent_run.bind(this, calendarId, eventText, function(err, data, xhr) {
 				if (err) {
-					createGoogleCalendarEvent_err(err)
+					createGoogleCalendarEvent_err(err, data, xhr)
 				} else {
 					createGoogleCalendarEvent_done(calendarId, data)
 				}
@@ -397,8 +393,9 @@ CalendarManager {
 			eventCreated(calendarId, data)
 		}
 	}
-	function createGoogleCalendarEvent_err(err) {
-		logger.log('createGoogleCalendarEvent_err', err)
+	function createGoogleCalendarEvent_err(err, data, xhr) {
+		logger.log('createGoogleCalendarEvent_err', err, data, xhr)
+		return handleError(err, data, xhr)
 	}
 
 	function createGCalEvent(args, callback) {
@@ -465,9 +462,9 @@ CalendarManager {
 				return
 			}
 
-			var func = updateGoogleCalendarEvent_run.bind(this, calendarId, eventId, event, args, function(err, data) {
+			var func = updateGoogleCalendarEvent_run.bind(this, calendarId, eventId, event, args, function(err, data, xhr) {
 				if (err) {
-					updateGoogleCalendarEvent_err(err)
+					updateGoogleCalendarEvent_err(err, data, xhr)
 				} else {
 					updateGoogleCalendarEvent_done(calendarId, eventId, event, data)
 				}
@@ -509,8 +506,9 @@ CalendarManager {
 		parseSingleEvent(calendarId, event)
 		eventUpdated(calendarId, eventId, event)
 	}
-	function updateGoogleCalendarEvent_err(err) {
-		logger.log('updateGoogleCalendarEvent_err', err)
+	function updateGoogleCalendarEvent_err(err, data, xhr) {
+		logger.log('updateGoogleCalendarEvent_err', err, data, xhr)
+		return handleError(err, data, xhr)
 	}
 
 	function updateGCalEvent(args, callback) {
@@ -594,9 +592,9 @@ CalendarManager {
 				return
 			}
 
-			var func = deleteEvent_run.bind(this, calendarId, eventId, function(err, data) {
+			var func = deleteEvent_run.bind(this, calendarId, eventId, function(err, data, xhr) {
 				if (err) {
-					deleteEvent_err(err)
+					deleteEvent_err(err, data, xhr)
 				} else {
 					deleteEvent_done(calendarId, eventId, data)
 				}
@@ -625,8 +623,9 @@ CalendarManager {
 			eventDeleted(calendarId, eventId, event)
 		}
 	}
-	function deleteEvent_err(err) {
-		logger.log('deleteEvent_err', err)
+	function deleteEvent_err(err, data, xhr) {
+		logger.log('deleteEvent_err', err, data, xhr)
+		return handleError(err, data, xhr)
 	}
 
 	function deleteGCalEvent(args, callback) {
