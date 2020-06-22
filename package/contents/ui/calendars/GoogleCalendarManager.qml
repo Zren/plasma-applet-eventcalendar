@@ -409,7 +409,8 @@ CalendarManager {
 			url: url,
 			headers: {
 				"Authorization": "Bearer " + args.access_token,
-			}
+			},
+			data: "",
 		}, function(err, data, xhr) {
 			console.log('createGCalEvent.response', err, data, xhr.status)
 			if (!err && data && data.error) {
