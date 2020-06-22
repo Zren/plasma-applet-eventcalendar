@@ -57,7 +57,13 @@ LinkRect {
 
 			PlasmaComponents.Label {
 				id: eventSummary
-				text: summary
+				text: {
+					if (isCondensed && model.location) {
+						return model.summary + " | " + model.location
+					} else {
+						return model.summary
+					}
+				}
 				color: eventItemInProgress ? inProgressColor : PlasmaCore.ColorScope.textColor
 				font.pointSize: -1
 				font.pixelSize: appletConfig.agendaFontSize
