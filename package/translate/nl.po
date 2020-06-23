@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: eventcalendar\n"
 "Report-Msgid-Bugs-To: https://github.com/Zren/plasma-applet-eventcalendar\n"
 "POT-Creation-Date: 2020-06-12 18:07-0400\n"
-"PO-Revision-Date: 2019-10-06 22:02+0200\n"
+"PO-Revision-Date: 2020-06-23 14:14+0200\n"
 "Last-Translator: Heimen Stoffels <vistausss@outlook.com>\n"
 "Language-Team: Dutch <kde-i18n-doc@kde.org>\n"
 "Language: nl\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Lokalize 19.11.70\n"
+"X-Generator: Poedit 2.3.1\n"
 
 #: ../contents/config/config.qml
 msgid "General"
@@ -77,7 +77,7 @@ msgstr "Verwijderen bevestigen"
 
 #: ../contents/ui/AgendaEventItem.qml
 msgid "Edit in browser"
-msgstr "Bewerken in webbrowser"
+msgstr "Aanpassen in webbrowser"
 
 #: ../contents/ui/AgendaListItem.qml
 msgctxt "agenda date format line 1"
@@ -108,11 +108,11 @@ msgstr "Agenda boven maand tonen (één kolom)"
 
 #: ../contents/ui/config/ConfigAgenda.qml
 msgid "Agenda to the left (Two Columns)"
-msgstr "Agenda aan linkerkant tonen (twee kolommen)"
+msgstr "Agenda links tonen (twee kolommen)"
 
 #: ../contents/ui/config/ConfigAgenda.qml
 msgid "Font Size:"
-msgstr "Lettertypegrootte:"
+msgstr "Lettergrootte:"
 
 #: ../contents/ui/config/ConfigAgenda.qml
 #: ../contents/ui/config/ConfigGeneral.qml
@@ -175,7 +175,7 @@ msgstr "Omschrijving"
 
 #: ../contents/ui/config/ConfigAgenda.qml
 msgid "Hide 'All Day' text"
-msgstr ""
+msgstr "Tekst 'Hele dag' verbergen"
 
 #: ../contents/ui/config/ConfigAgenda.qml
 msgid "Google Hangouts link"
@@ -219,8 +219,7 @@ msgstr "Afgeronde afspraken verbergen"
 
 #: ../contents/ui/config/ConfigAgenda.qml
 msgid "Show all events of the current day (including completed events)"
-msgstr ""
-"Alle afspraken van de huidige dag tonen (inclusief afgeronde afspraken)"
+msgstr "Alle afspraken van de huidige dag tonen (inclusief afgeronde)"
 
 #: ../contents/ui/config/ConfigAgenda.qml
 #: ../contents/ui/config/ConfigWeather.qml
@@ -233,11 +232,11 @@ msgstr "Lopend"
 
 #: ../contents/ui/config/ConfigAgenda.qml
 msgid "Day Spacing:"
-msgstr ""
+msgstr "Ruimte tussen dagen:"
 
 #: ../contents/ui/config/ConfigAgenda.qml
 msgid "Event Spacing:"
-msgstr ""
+msgstr "Ruimte tussen afspraken:"
 
 #: ../contents/ui/config/ConfigCalendar.qml
 msgid "Show calendar"
@@ -249,7 +248,7 @@ msgstr "Scrollen naar afspraak in agenda"
 
 #: ../contents/ui/config/ConfigCalendar.qml
 msgid "DoubleClick Date:"
-msgstr "Dubbelklikken op datum:"
+msgstr "Bij dubbelklikken op datum:"
 
 #: ../contents/ui/config/ConfigCalendar.qml
 #: ../contents/ui/config/ConfigWeather.qml
@@ -323,11 +322,11 @@ msgstr "Groot getal"
 
 #: ../contents/ui/config/ConfigEvents.qml
 msgid "Event Calendar Plugins"
-msgstr "Afsprakenboek-plug-ins"
+msgstr "Afsprakenboek-uitbreidingen"
 
 #: ../contents/ui/config/ConfigEvents.qml
 msgid "Plasma Calendar Plugins"
-msgstr "Plasma-kalenderplug-ins"
+msgstr "Plasma-kalenderuitbreidingen"
 
 #: ../contents/ui/config/ConfigEvents.qml
 #: ../contents/ui/config/ConfigGeneral.qml
@@ -423,7 +422,7 @@ msgstr "Vaste klokhoogte: "
 
 #: ../contents/ui/config/ConfigGeneral.qml
 msgid " (0px = scale to fit)"
-msgstr " (0px = passend schalen)"
+msgstr " (0px = automatisch inpassen)"
 
 #: ../contents/ui/config/ConfigGeneral.qml
 msgid "Line 1:"
@@ -483,7 +482,7 @@ msgid ""
 "This will log sensitive information to ~/.xsession-errors"
 msgstr ""
 "Foutopsporing inschakelen\n"
-"Dit legt gevoelige informatie vast in ~/.xsession-errors"
+"Hiermee leg je gevoelige informatie vast in ~/.xsession-errors"
 
 #: ../contents/ui/config/ConfigGoogleCalendar.qml
 msgid "Login"
@@ -507,9 +506,9 @@ msgid ""
 "give permission to acess your calendar, it will give you a code to paste "
 "below."
 msgstr ""
-"Ga naar <a href=\"%1\">%2</a> (de link opent in je browser). Als je hebt "
-"ingelogd en de vereiste machtiging hebt afgegeven, dan verschijnt er een "
-"code die je hieronder moet plakken."
+"Ga naar <a href=\"%1\">%2</a> (de link opent in je browser), log in en "
+"verleen de vereiste machtiging. Kopieer daarna de door Google getoonde code "
+"en plak deze hieronder."
 
 #: ../contents/ui/config/ConfigGoogleCalendar.qml
 msgid "Copy Link"
@@ -594,11 +593,11 @@ msgstr "Instellingen"
 
 #: ../contents/ui/config/ConfigWeather.qml
 msgid "Update forecast every: "
-msgstr "Werk de voorspelling bij, elke: "
+msgstr "Ververs de voorspelling elke: "
 
 #: ../contents/ui/config/ConfigWeather.qml
 msgid "Show next "
-msgstr "Komende "
+msgstr "Toon de komende "
 
 #: ../contents/ui/config/ConfigWeather.qml
 msgid " hours"
@@ -608,7 +607,7 @@ msgstr[1] " uur"
 
 #: ../contents/ui/config/ConfigWeather.qml
 msgid " in the meteogram."
-msgstr " tonen in de weergrafiek."
+msgstr " in de weergrafiek."
 
 #: ../contents/ui/config/ConfigWeather.qml
 msgid "Units:"
@@ -632,7 +631,7 @@ msgstr "Tekst"
 
 #: ../contents/ui/config/ConfigWeather.qml
 msgid "Grid"
-msgstr "Raster"
+msgstr "Rooster"
 
 #: ../contents/ui/config/ConfigWeather.qml
 msgid "Rain"
@@ -640,11 +639,11 @@ msgstr "Regen"
 
 #: ../contents/ui/config/ConfigWeather.qml
 msgid "Positive Temp"
-msgstr "Temperatuur boven vriespunt"
+msgstr "Temp. boven vriespunt"
 
 #: ../contents/ui/config/ConfigWeather.qml
 msgid "Negative Temp"
-msgstr "Temperatuur onder vriespunt"
+msgstr "Temp. onder vriespunt"
 
 #: ../contents/ui/config/ConfigWeather.qml
 msgid "Icons"
@@ -658,7 +657,7 @@ msgstr "Locatie kiezen"
 #: ../contents/ui/config/OpenWeatherMapCityDialog.qml
 #: ../contents/ui/config/WeatherCanadaCityDialog.qml
 msgid "Fetched from <a href=\"%1\">%1</a>"
-msgstr "Opgehaald uit <a href=\"%1\">%1</a>"
+msgstr "Opgehaald bij <a href=\"%1\">%1</a>"
 
 #: ../contents/ui/config/OpenWeatherMapCityDialog.qml
 #: ../contents/ui/config/WeatherCanadaCityDialog.qml
@@ -712,11 +711,11 @@ msgstr "Omschrijving toevoegen"
 
 #: ../contents/ui/EditEventForm.qml
 msgid "&Save"
-msgstr "Opslaan"
+msgstr "Op&slaan"
 
 #: ../contents/ui/EditEventForm.qml ../contents/ui/TimerInputView.qml
 msgid "&Cancel"
-msgstr "Annuleren"
+msgstr "&Annuleren"
 
 #: ../contents/ui/lib/AppletVersion.qml
 msgid "<b>Version:</b> %1"
@@ -796,16 +795,16 @@ msgid ""
 "and/or disable the meteogram to hide this area."
 msgstr ""
 "Het weer is niet ingesteld.\n"
-"Ga naar de pagina 'Weer' in de instellingen en stel een locatie in\n"
+"Ga naar de pagina 'Weer' in de instellingen en stel een locatie in,\n"
 "en/of schakel de weergrafiek uit om deze sectie te verbergen."
 
 #: ../contents/ui/PopupView.qml
 msgid "Error fetching weather."
-msgstr "Kan weerinformatie niet opvragen."
+msgstr "De weerinformatie kan niet worden opgevraagd."
 
 #: ../contents/ui/PopupView.qml
 msgid "Weather API limit reached, will try again soon."
-msgstr "Het API-limiet is bereikt; probeer het later opnieuw."
+msgstr "Het API-limiet is bereikt. Probeer het later opnieuw."
 
 #: ../contents/ui/TimerInputView.qml
 msgid "&Start"
@@ -830,7 +829,7 @@ msgstr "%1s"
 
 #: ../contents/ui/TimerView.qml
 msgid "Pause Timer"
-msgstr "Timer pauzeren"
+msgstr "Timer onderbreken"
 
 #: ../contents/ui/TimerView.qml
 msgid "Start Timer"
