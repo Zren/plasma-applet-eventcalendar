@@ -1,10 +1,12 @@
-## v67 - June __ 2020
+## v67 - June 23 2020
 
+* Fix event creation (Issue #137)
 * Workaround hardcoded top/bottom padding in clock text (Issue #6). Note that fixing this has made "Fixed Font Height" text larger so you will need to manually adjust it smaller after the update. Scale to fit now uses the same size as Digital Clock, where 1 line is 71% panel height, and 2 lines uses the entire height.
-* Add option to hide 'All Day' text in the agenda so all day events take up less vertical space.
+* Add option to hide 'All Day' text in the agenda so all day events take up less vertical space. Location is placed next to the summary if it is set.
 * Configurable spacing between days/events. Doubled day spacing to 20px.
 * Update ru translations by @aliger14 (Pull Request #124)
 * Update pt_BR translations by @herzenschein (Pull Request #125)
+* Update nl translations by @Vistaus (Pull Request #138)
 
 ## v66 - December 22 2019
 
