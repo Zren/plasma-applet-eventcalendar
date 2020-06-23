@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: eventcalendar \n"
 "Report-Msgid-Bugs-To: https://github.com/Zren/plasma-applet-eventcalendar\n"
-"POT-Creation-Date: 2020-06-24 03:10+0900\n"
+"POT-Creation-Date: 2020-06-12 18:07-0400\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: yamato kobayashi <Kb_yamato@protonmail.com>\n"
 "Language-Team: \n"
@@ -91,185 +91,6 @@ msgstr ""
 #: ../contents/ui/AgendaView.qml ../contents/ui/UpcomingEvents.qml
 msgid "Event Calendar"
 msgstr "イベントカレンダー"
-
-#: ../contents/ui/DateTimeSelector.qml
-msgctxt "event editor date format"
-msgid "d MMM, yyyy"
-msgstr ""
-
-#: ../contents/ui/DurationSelector.qml
-msgid "to"
-msgstr ""
-
-#: ../contents/ui/EditEventForm.qml
-msgid "Event Title"
-msgstr "イベントタイトル"
-
-#: ../contents/ui/EditEventForm.qml
-msgid "Add location"
-msgstr "地域を追加"
-
-#: ../contents/ui/EditEventForm.qml ../contents/ui/NewEventForm.qml
-msgid "[No Calendars]"
-msgstr "[カレンダーはありません]"
-
-#: ../contents/ui/EditEventForm.qml
-msgid "Add description"
-msgstr "概要を追加"
-
-#: ../contents/ui/EditEventForm.qml
-msgid "&Save"
-msgstr "＆保存"
-
-#: ../contents/ui/EditEventForm.qml ../contents/ui/TimerInputView.qml
-msgid "&Cancel"
-msgstr "＆キャンセル"
-
-#: ../contents/ui/LocaleFuncs.js
-msgctxt "event time on the hour (24 hour clock)"
-msgid "h"
-msgstr "1時間のイベント (24 時間時計)"
-
-#: ../contents/ui/LocaleFuncs.js
-msgctxt "event time (24 hour clock)"
-msgid "h:mm"
-msgstr "イベントタイム (24 時間時計)"
-
-#: ../contents/ui/LocaleFuncs.js
-msgctxt "event time on the hour (12 hour clock)"
-msgid "h AP"
-msgstr "1時間のイベント(12 時間時計)"
-
-#: ../contents/ui/LocaleFuncs.js
-msgctxt "event time (12 hour clock)"
-msgid "h:mm AP"
-msgstr "イベントタイム (12 時間時計)"
-
-#: ../contents/ui/LocaleFuncs.js
-msgctxt "short month+date format"
-msgid "MMM d"
-msgstr ""
-
-#: ../contents/ui/LocaleFuncs.js
-msgctxt "date (%1) with time (%2)"
-msgid "%1, %2"
-msgstr ""
-
-#: ../contents/ui/LocaleFuncs.js
-msgctxt "from date/time %1 until date/time %2"
-msgid "%1 - %2"
-msgstr ""
-
-#: ../contents/ui/MeteogramView.qml
-#, c-format
-msgid "%1mm"
-msgstr ""
-
-#: ../contents/ui/MonthView.qml
-msgctxt "calendar title format for current month"
-msgid "MMMM d, yyyy"
-msgstr ""
-
-#: ../contents/ui/MonthView.qml
-msgctxt "calendar title format for other months of current year"
-msgid "MMMM"
-msgstr ""
-
-#: ../contents/ui/MonthView.qml
-msgctxt "calendar title format for months not from current year"
-msgid "MMMM, yyyy"
-msgstr ""
-
-#: ../contents/ui/NewEventForm.qml
-msgid "Eg: 9am-5pm Work"
-msgstr "例：9am-5pm 仕事"
-
-#: ../contents/ui/PopupView.qml
-msgid ""
-"Weather not configured.\n"
-"Go to Weather in the config and set your city,\n"
-"and/or disable the meteogram to hide this area."
-msgstr ""
-"天気が設定されていません\n"
-"天気の設定に行き都市を設定してください\n"
-"又はこのエリアでの天気予報を無効にしてください"
-
-#: ../contents/ui/PopupView.qml
-msgid "Error fetching weather."
-msgstr "エラー天気を取得できませんでした。"
-
-#: ../contents/ui/PopupView.qml
-msgid "Weather API limit reached, will try again soon."
-msgstr "Weather API がタイムアウトしました、時間を置いてもう一度実行してください"
-
-#: ../contents/ui/TimerInputView.qml
-msgid "&Start"
-msgstr "＆スタート"
-
-#: ../contents/ui/TimerView.qml
-msgctxt "short form for %1 hours"
-msgid "%1h"
-msgstr ""
-
-#: ../contents/ui/TimerView.qml
-#, c-format
-msgctxt "short form for %1 minutes"
-msgid "%1m"
-msgstr ""
-
-#: ../contents/ui/TimerView.qml
-#, c-format
-msgctxt "short form for %1 seconds"
-msgid "%1s"
-msgstr ""
-
-#: ../contents/ui/TimerView.qml
-msgid "Pause Timer"
-msgstr "タイマーを一時停止"
-
-#: ../contents/ui/TimerView.qml
-msgid "Start Timer"
-msgstr "タイマーをスタート"
-
-#: ../contents/ui/TimerView.qml
-msgid "Scroll to add to duration"
-msgstr "スクロール期間を追加"
-
-#: ../contents/ui/TimerView.qml
-msgid "Repeat"
-msgstr "リピート"
-
-#: ../contents/ui/TimerView.qml
-msgid "Sound"
-msgstr "音"
-
-#: ../contents/ui/TimerView.qml ../contents/ui/config/ConfigGeneral.qml
-msgid "Timer"
-msgstr "タイマー"
-
-#: ../contents/ui/TimerView.qml
-msgid "Timer finished"
-msgstr "タイマーが終了"
-
-#: ../contents/ui/TimerView.qml
-msgid "%1 has passed"
-msgstr ""
-
-#: ../contents/ui/TimerView.qml
-msgid "Set Timer"
-msgstr "タイマーセット"
-
-#: ../contents/ui/UpcomingEvents.qml
-msgid "Events Starting"
-msgstr "イベント開始しました"
-
-#: ../contents/ui/UpcomingEvents.qml
-msgid "Events In Progress"
-msgstr "イベントは実行中"
-
-#: ../contents/ui/UpcomingEvents.qml
-msgid "Upcoming Events"
-msgstr "今後のイベント"
 
 #: ../contents/ui/calendars/CalendarManager.qml
 msgctxt "event with no summary"
@@ -533,11 +354,17 @@ msgstr "ウィジェット"
 
 #: ../contents/ui/config/ConfigGeneral.qml
 msgid "Show/Hide widgets above the calendar. Toggle Agenda/Calendar on their respective tabs."
-msgstr "カレンダー上にウィジェットを表示/非表示\n予定表/カレンダーの切り換え"
+msgstr ""
+"カレンダー上にウィジェットを表示/非表示\n"
+"予定表/カレンダーの切り換え"
 
 #: ../contents/ui/config/ConfigGeneral.qml
 msgid "Meteogram"
 msgstr "天気予報マップ"
+
+#: ../contents/ui/config/ConfigGeneral.qml ../contents/ui/TimerView.qml
+msgid "Timer"
+msgstr "タイマー"
 
 #: ../contents/ui/config/ConfigGeneral.qml
 msgid "SFX:"
@@ -821,9 +648,77 @@ msgstr "都市のサイト"
 msgid "Open Link"
 msgstr "リンクを開く"
 
+#: ../contents/ui/DateTimeSelector.qml
+msgctxt "event editor date format"
+msgid "d MMM, yyyy"
+msgstr ""
+
+#: ../contents/ui/DurationSelector.qml
+msgid "to"
+msgstr ""
+
+#: ../contents/ui/EditEventForm.qml
+msgid "Event Title"
+msgstr "イベントタイトル"
+
+#: ../contents/ui/EditEventForm.qml
+msgid "Add location"
+msgstr "地域を追加"
+
+#: ../contents/ui/EditEventForm.qml ../contents/ui/NewEventForm.qml
+msgid "[No Calendars]"
+msgstr "[カレンダーはありません]"
+
+#: ../contents/ui/EditEventForm.qml
+msgid "Add description"
+msgstr "概要を追加"
+
+#: ../contents/ui/EditEventForm.qml
+msgid "&Save"
+msgstr "＆保存"
+
+#: ../contents/ui/EditEventForm.qml ../contents/ui/TimerInputView.qml
+msgid "&Cancel"
+msgstr "＆キャンセル"
+
 #: ../contents/ui/lib/AppletVersion.qml
 msgid "<b>Version:</b> %1"
 msgstr "<b>バージョン:</b> %1"
+
+#: ../contents/ui/LocaleFuncs.js
+msgctxt "event time on the hour (24 hour clock)"
+msgid "h"
+msgstr "1時間のイベント (24 時間時計)"
+
+#: ../contents/ui/LocaleFuncs.js
+msgctxt "event time (24 hour clock)"
+msgid "h:mm"
+msgstr "イベントタイム (24 時間時計)"
+
+#: ../contents/ui/LocaleFuncs.js
+msgctxt "event time on the hour (12 hour clock)"
+msgid "h AP"
+msgstr "1時間のイベント(12 時間時計)"
+
+#: ../contents/ui/LocaleFuncs.js
+msgctxt "event time (12 hour clock)"
+msgid "h:mm AP"
+msgstr "イベントタイム (12 時間時計)"
+
+#: ../contents/ui/LocaleFuncs.js
+msgctxt "short month+date format"
+msgid "MMM d"
+msgstr ""
+
+#: ../contents/ui/LocaleFuncs.js
+msgctxt "date (%1) with time (%2)"
+msgid "%1, %2"
+msgstr ""
+
+#: ../contents/ui/LocaleFuncs.js
+msgctxt "from date/time %1 until date/time %2"
+msgid "%1 - %2"
+msgstr ""
 
 #: ../contents/ui/main.qml
 msgid "Set Language..."
@@ -832,3 +727,110 @@ msgstr "言語を選択"
 #: ../contents/ui/main.qml
 msgid "Set Locale..."
 msgstr "地域を選択"
+
+#: ../contents/ui/MeteogramView.qml
+#, c-format
+msgid "%1mm"
+msgstr ""
+
+#: ../contents/ui/MonthView.qml
+msgctxt "calendar title format for current month"
+msgid "MMMM d, yyyy"
+msgstr ""
+
+#: ../contents/ui/MonthView.qml
+msgctxt "calendar title format for other months of current year"
+msgid "MMMM"
+msgstr ""
+
+#: ../contents/ui/MonthView.qml
+msgctxt "calendar title format for months not from current year"
+msgid "MMMM, yyyy"
+msgstr ""
+
+#: ../contents/ui/NewEventForm.qml
+msgid "Eg: 9am-5pm Work"
+msgstr "例：9am-5pm 仕事"
+
+#: ../contents/ui/PopupView.qml
+msgid ""
+"Weather not configured.\n"
+"Go to Weather in the config and set your city,\n"
+"and/or disable the meteogram to hide this area."
+msgstr ""
+"天気が設定されていません\n"
+"天気の設定に行き都市を設定してください\n"
+"又はこのエリアでの天気予報を無効にしてください"
+
+#: ../contents/ui/PopupView.qml
+msgid "Error fetching weather."
+msgstr "エラー天気を取得できませんでした。"
+
+#: ../contents/ui/PopupView.qml
+msgid "Weather API limit reached, will try again soon."
+msgstr "Weather API がタイムアウトしました、時間を置いてもう一度実行してください"
+
+#: ../contents/ui/TimerInputView.qml
+msgid "&Start"
+msgstr "＆スタート"
+
+#: ../contents/ui/TimerView.qml
+msgctxt "short form for %1 hours"
+msgid "%1h"
+msgstr ""
+
+#: ../contents/ui/TimerView.qml
+#, c-format
+msgctxt "short form for %1 minutes"
+msgid "%1m"
+msgstr ""
+
+#: ../contents/ui/TimerView.qml
+#, c-format
+msgctxt "short form for %1 seconds"
+msgid "%1s"
+msgstr ""
+
+#: ../contents/ui/TimerView.qml
+msgid "Pause Timer"
+msgstr "タイマーを一時停止"
+
+#: ../contents/ui/TimerView.qml
+msgid "Start Timer"
+msgstr "タイマーをスタート"
+
+#: ../contents/ui/TimerView.qml
+msgid "Scroll to add to duration"
+msgstr "スクロール期間を追加"
+
+#: ../contents/ui/TimerView.qml
+msgid "Repeat"
+msgstr "リピート"
+
+#: ../contents/ui/TimerView.qml
+msgid "Sound"
+msgstr "音"
+
+#: ../contents/ui/TimerView.qml
+msgid "Timer finished"
+msgstr "タイマーが終了"
+
+#: ../contents/ui/TimerView.qml
+msgid "%1 has passed"
+msgstr ""
+
+#: ../contents/ui/TimerView.qml
+msgid "Set Timer"
+msgstr "タイマーセット"
+
+#: ../contents/ui/UpcomingEvents.qml
+msgid "Events Starting"
+msgstr "イベント開始しました"
+
+#: ../contents/ui/UpcomingEvents.qml
+msgid "Events In Progress"
+msgstr "イベントは実行中"
+
+#: ../contents/ui/UpcomingEvents.qml
+msgid "Upcoming Events"
+msgstr "今後のイベント"

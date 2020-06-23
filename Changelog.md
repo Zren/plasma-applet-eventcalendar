@@ -1,3 +1,7 @@
+## v68 - June __ 2020
+
+* Added Japanese translations by @ymadd (Pull Request #139)
+
 ## v67 - June 23 2020
 
 * Fix event creation (Issue #137)
