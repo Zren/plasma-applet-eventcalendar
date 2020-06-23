@@ -1,0 +1,834 @@
+# Translation of eventcalendar in ja
+# Copyright (C) 2020
+# This file is distributed under the same license as the eventcalendar package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: eventcalendar \n"
+"Report-Msgid-Bugs-To: https://github.com/Zren/plasma-applet-eventcalendar\n"
+"POT-Creation-Date: 2020-06-24 03:10+0900\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: yamato kobayashi <Kb_yamato@protonmail.com>\n"
+"Language-Team: \n"
+"Language: ja\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
+
+#: ../contents/config/config.qml
+msgid "General"
+msgstr "一般"
+
+#: ../contents/config/config.qml
+msgid "Timezones"
+msgstr "タイムゾーン"
+
+#: ../contents/config/config.qml ../contents/ui/UpcomingEvents.qml
+msgid "Calendar"
+msgstr "カレンダー"
+
+#: ../contents/config/config.qml
+msgid "Agenda"
+msgstr "予定"
+
+#: ../contents/config/config.qml
+msgid "Events"
+msgstr "イベント"
+
+#: ../contents/config/config.qml ../contents/ui/config/ConfigEvents.qml
+msgid "ICalendar (.ics)"
+msgstr ""
+
+#: ../contents/config/config.qml ../contents/ui/config/ConfigEvents.qml
+msgid "Google Calendar"
+msgstr ""
+
+#: ../contents/config/config.qml
+msgid "Weather"
+msgstr "天気"
+
+#: ../contents/config/config.qml
+msgid "Advanced"
+msgstr "高度"
+
+#: ../contents/ui/AgendaEventItem.qml ../contents/ui/EditEventForm.qml ../contents/ui/LocaleFuncs.js
+msgid "All Day"
+msgstr "1日"
+
+#: ../contents/ui/AgendaEventItem.qml
+msgid "Hangout"
+msgstr ""
+
+#: ../contents/ui/AgendaEventItem.qml
+msgid "Edit"
+msgstr "編集"
+
+#: ../contents/ui/AgendaEventItem.qml
+msgid "Delete Event"
+msgstr "イベントを削除"
+
+#: ../contents/ui/AgendaEventItem.qml
+msgid "Confirm Deletion"
+msgstr "削除を確認"
+
+#: ../contents/ui/AgendaEventItem.qml
+msgid "Edit in browser"
+msgstr "ブラウザーで編集"
+
+#: ../contents/ui/AgendaListItem.qml
+msgctxt "agenda date format line 1"
+msgid "MMM d"
+msgstr ""
+
+#: ../contents/ui/AgendaListItem.qml
+msgctxt "agenda date format line 2"
+msgid "ddd"
+msgstr ""
+
+#: ../contents/ui/AgendaView.qml ../contents/ui/UpcomingEvents.qml
+msgid "Event Calendar"
+msgstr "イベントカレンダー"
+
+#: ../contents/ui/DateTimeSelector.qml
+msgctxt "event editor date format"
+msgid "d MMM, yyyy"
+msgstr ""
+
+#: ../contents/ui/DurationSelector.qml
+msgid "to"
+msgstr ""
+
+#: ../contents/ui/EditEventForm.qml
+msgid "Event Title"
+msgstr "イベントタイトル"
+
+#: ../contents/ui/EditEventForm.qml
+msgid "Add location"
+msgstr "地域を追加"
+
+#: ../contents/ui/EditEventForm.qml ../contents/ui/NewEventForm.qml
+msgid "[No Calendars]"
+msgstr "[カレンダーはありません]"
+
+#: ../contents/ui/EditEventForm.qml
+msgid "Add description"
+msgstr "概要を追加"
+
+#: ../contents/ui/EditEventForm.qml
+msgid "&Save"
+msgstr "＆保存"
+
+#: ../contents/ui/EditEventForm.qml ../contents/ui/TimerInputView.qml
+msgid "&Cancel"
+msgstr "＆キャンセル"
+
+#: ../contents/ui/LocaleFuncs.js
+msgctxt "event time on the hour (24 hour clock)"
+msgid "h"
+msgstr "1時間のイベント (24 時間時計)"
+
+#: ../contents/ui/LocaleFuncs.js
+msgctxt "event time (24 hour clock)"
+msgid "h:mm"
+msgstr "イベントタイム (24 時間時計)"
+
+#: ../contents/ui/LocaleFuncs.js
+msgctxt "event time on the hour (12 hour clock)"
+msgid "h AP"
+msgstr "1時間のイベント(12 時間時計)"
+
+#: ../contents/ui/LocaleFuncs.js
+msgctxt "event time (12 hour clock)"
+msgid "h:mm AP"
+msgstr "イベントタイム (12 時間時計)"
+
+#: ../contents/ui/LocaleFuncs.js
+msgctxt "short month+date format"
+msgid "MMM d"
+msgstr ""
+
+#: ../contents/ui/LocaleFuncs.js
+msgctxt "date (%1) with time (%2)"
+msgid "%1, %2"
+msgstr ""
+
+#: ../contents/ui/LocaleFuncs.js
+msgctxt "from date/time %1 until date/time %2"
+msgid "%1 - %2"
+msgstr ""
+
+#: ../contents/ui/MeteogramView.qml
+#, c-format
+msgid "%1mm"
+msgstr ""
+
+#: ../contents/ui/MonthView.qml
+msgctxt "calendar title format for current month"
+msgid "MMMM d, yyyy"
+msgstr ""
+
+#: ../contents/ui/MonthView.qml
+msgctxt "calendar title format for other months of current year"
+msgid "MMMM"
+msgstr ""
+
+#: ../contents/ui/MonthView.qml
+msgctxt "calendar title format for months not from current year"
+msgid "MMMM, yyyy"
+msgstr ""
+
+#: ../contents/ui/NewEventForm.qml
+msgid "Eg: 9am-5pm Work"
+msgstr "例：9am-5pm 仕事"
+
+#: ../contents/ui/PopupView.qml
+msgid ""
+"Weather not configured.\n"
+"Go to Weather in the config and set your city,\n"
+"and/or disable the meteogram to hide this area."
+msgstr ""
+"天気が設定されていません\n"
+"天気の設定に行き都市を設定してください\n"
+"又はこのエリアでの天気予報を無効にしてください"
+
+#: ../contents/ui/PopupView.qml
+msgid "Error fetching weather."
+msgstr "エラー天気を取得できませんでした。"
+
+#: ../contents/ui/PopupView.qml
+msgid "Weather API limit reached, will try again soon."
+msgstr "Weather API がタイムアウトしました、時間を置いてもう一度実行してください"
+
+#: ../contents/ui/TimerInputView.qml
+msgid "&Start"
+msgstr "＆スタート"
+
+#: ../contents/ui/TimerView.qml
+msgctxt "short form for %1 hours"
+msgid "%1h"
+msgstr ""
+
+#: ../contents/ui/TimerView.qml
+#, c-format
+msgctxt "short form for %1 minutes"
+msgid "%1m"
+msgstr ""
+
+#: ../contents/ui/TimerView.qml
+#, c-format
+msgctxt "short form for %1 seconds"
+msgid "%1s"
+msgstr ""
+
+#: ../contents/ui/TimerView.qml
+msgid "Pause Timer"
+msgstr "タイマーを一時停止"
+
+#: ../contents/ui/TimerView.qml
+msgid "Start Timer"
+msgstr "タイマーをスタート"
+
+#: ../contents/ui/TimerView.qml
+msgid "Scroll to add to duration"
+msgstr "スクロール期間を追加"
+
+#: ../contents/ui/TimerView.qml
+msgid "Repeat"
+msgstr "リピート"
+
+#: ../contents/ui/TimerView.qml
+msgid "Sound"
+msgstr "音"
+
+#: ../contents/ui/TimerView.qml ../contents/ui/config/ConfigGeneral.qml
+msgid "Timer"
+msgstr "タイマー"
+
+#: ../contents/ui/TimerView.qml
+msgid "Timer finished"
+msgstr "タイマーが終了"
+
+#: ../contents/ui/TimerView.qml
+msgid "%1 has passed"
+msgstr ""
+
+#: ../contents/ui/TimerView.qml
+msgid "Set Timer"
+msgstr "タイマーセット"
+
+#: ../contents/ui/UpcomingEvents.qml
+msgid "Events Starting"
+msgstr "イベント開始しました"
+
+#: ../contents/ui/UpcomingEvents.qml
+msgid "Events In Progress"
+msgstr "イベントは実行中"
+
+#: ../contents/ui/UpcomingEvents.qml
+msgid "Upcoming Events"
+msgstr "今後のイベント"
+
+#: ../contents/ui/calendars/CalendarManager.qml
+msgctxt "event with no summary"
+msgid "(No title)"
+msgstr "(無題)"
+
+#: ../contents/ui/config/ConfigAgenda.qml
+msgid "Show agenda"
+msgstr "予定を表示"
+
+#: ../contents/ui/config/ConfigAgenda.qml
+msgid "Agenda above the month (Single Column)"
+msgstr "今月の予定 (一列で表示)"
+
+#: ../contents/ui/config/ConfigAgenda.qml
+msgid "Agenda to the left (Two Columns)"
+msgstr "今月の予定 (二列で表示)"
+
+#: ../contents/ui/config/ConfigAgenda.qml
+msgid "Font Size:"
+msgstr "フォントサイズ"
+
+#: ../contents/ui/config/ConfigAgenda.qml ../contents/ui/config/ConfigGeneral.qml
+msgid "px"
+msgstr ""
+
+#: ../contents/ui/config/ConfigAgenda.qml
+msgid " (0px = <b>System Settings > Fonts > General</b>)"
+msgstr " (0px = <b>システムセッティング > フォント > 一般</b>)"
+
+#: ../contents/ui/config/ConfigAgenda.qml
+msgid "Weather Icon"
+msgstr "天気アイコン"
+
+#: ../contents/ui/config/ConfigAgenda.qml
+msgid "Icon Outline"
+msgstr "アイコン概要"
+
+#: ../contents/ui/config/ConfigAgenda.qml
+msgid "Weather Text"
+msgstr "天気のテキスト"
+
+#: ../contents/ui/config/ConfigAgenda.qml
+msgid "Position:"
+msgstr "位置"
+
+#: ../contents/ui/config/ConfigAgenda.qml
+msgid "Left"
+msgstr "左"
+
+#: ../contents/ui/config/ConfigAgenda.qml
+msgid "Right"
+msgstr "右"
+
+#: ../contents/ui/config/ConfigAgenda.qml
+msgid "Click Weather:"
+msgstr "天気をクリック"
+
+#: ../contents/ui/config/ConfigAgenda.qml
+msgid "Open City Forecast In Browser"
+msgstr "天気予報をブラウザーで開く"
+
+#: ../contents/ui/config/ConfigAgenda.qml ../contents/ui/config/ConfigCalendar.qml
+msgid "Click Date:"
+msgstr "日付をクリック"
+
+#: ../contents/ui/config/ConfigAgenda.qml ../contents/ui/config/ConfigCalendar.qml
+msgid "Open New Event In Browser"
+msgstr "新しいイベントをブラウザーで開く"
+
+#: ../contents/ui/config/ConfigAgenda.qml
+msgid "Open New Event Form"
+msgstr "新しいイベントフォーム"
+
+#: ../contents/ui/config/ConfigAgenda.qml
+msgid "Event description"
+msgstr "イベントの概要"
+
+#: ../contents/ui/config/ConfigAgenda.qml
+msgid "Hide 'All Day' text"
+msgstr ""
+
+#: ../contents/ui/config/ConfigAgenda.qml
+msgid "Google Hangouts link"
+msgstr "Google hangout リンク"
+
+#: ../contents/ui/config/ConfigAgenda.qml
+msgid "Click Event:"
+msgstr "イベントクリック："
+
+#: ../contents/ui/config/ConfigAgenda.qml
+msgid "Open Event In Browser"
+msgstr "イベントをブラウザーで開く"
+
+#: ../contents/ui/config/ConfigAgenda.qml
+msgid "Show multi-day events:"
+msgstr "複数のイベントを表示："
+
+#: ../contents/ui/config/ConfigAgenda.qml
+msgid "On all days"
+msgstr "毎日"
+
+#: ../contents/ui/config/ConfigAgenda.qml
+msgid "Only on the first and current day"
+msgstr "当日のみ"
+
+#: ../contents/ui/config/ConfigAgenda.qml
+msgid "Remember selected calendar in New Event Form"
+msgstr "選択したカレンダーを新しいイベントフォームで記憶する"
+
+#: ../contents/ui/config/ConfigAgenda.qml
+msgid "Current Month"
+msgstr "今月"
+
+#: ../contents/ui/config/ConfigAgenda.qml
+msgid "Always show next 14 days"
+msgstr "常に次の14日を表示する"
+
+#: ../contents/ui/config/ConfigAgenda.qml
+msgid "Hide completed events"
+msgstr "完了したイベントを隠す"
+
+#: ../contents/ui/config/ConfigAgenda.qml
+msgid "Show all events of the current day (including completed events)"
+msgstr "今日のイベントをすべて表示 (完了したイベントを含む)"
+
+#: ../contents/ui/config/ConfigAgenda.qml ../contents/ui/config/ConfigWeather.qml
+msgid "Colors"
+msgstr "色"
+
+#: ../contents/ui/config/ConfigAgenda.qml
+msgid "In Progress"
+msgstr "進行中のイベント"
+
+#: ../contents/ui/config/ConfigAgenda.qml
+msgid "Day Spacing:"
+msgstr "一日の間隔："
+
+#: ../contents/ui/config/ConfigAgenda.qml
+msgid "Event Spacing:"
+msgstr "イベントの間隔："
+
+#: ../contents/ui/config/ConfigCalendar.qml
+msgid "Show calendar"
+msgstr "カレンダー表示"
+
+#: ../contents/ui/config/ConfigCalendar.qml
+msgid "Scroll to event in Agenda"
+msgstr "イベントのある予定までスクロール"
+
+#: ../contents/ui/config/ConfigCalendar.qml
+msgid "DoubleClick Date:"
+msgstr "日付をダブルクリック："
+
+#: ../contents/ui/config/ConfigCalendar.qml ../contents/ui/config/ConfigWeather.qml
+msgid "Style"
+msgstr "スタイル"
+
+#: ../contents/ui/config/ConfigCalendar.qml
+msgid "Show Borders"
+msgstr "境界を表示"
+
+#: ../contents/ui/config/ConfigCalendar.qml
+msgid "Show Week Numbers"
+msgstr "週を表示"
+
+#: ../contents/ui/config/ConfigCalendar.qml
+msgid "First day of week:"
+msgstr "週の最初の日"
+
+#: ../contents/ui/config/ConfigCalendar.qml ../contents/ui/config/ConfigGeneral.qml
+msgid "Default"
+msgstr "デフォルト"
+
+#: ../contents/ui/config/ConfigCalendar.qml
+msgid "Event Badge:"
+msgstr "イベントバッジ"
+
+#: ../contents/ui/config/ConfigCalendar.qml
+msgid "Theme"
+msgstr "テーマ"
+
+#: ../contents/ui/config/ConfigCalendar.qml
+msgid "Dots (3 Maximum)"
+msgstr "Dots(最大3)"
+
+#: ../contents/ui/config/ConfigCalendar.qml
+msgid "Bottom Bar (Event Color)"
+msgstr "下部の線 (イベントカラー)"
+
+#: ../contents/ui/config/ConfigCalendar.qml
+msgid "Bottom Bar (Highlight)"
+msgstr "下部の線 (ハイライト)"
+
+#: ../contents/ui/config/ConfigCalendar.qml
+msgid "Count"
+msgstr "カウント"
+
+#: ../contents/ui/config/ConfigCalendar.qml
+msgid "Radius:"
+msgstr "半径"
+
+#: ../contents/ui/config/ConfigCalendar.qml
+msgid "Selected:"
+msgstr "選択済み"
+
+#: ../contents/ui/config/ConfigCalendar.qml
+msgid "Solid Color (Highlight)"
+msgstr "ソリッドカラー (ハイライト)"
+
+#: ../contents/ui/config/ConfigCalendar.qml
+msgid "Today:"
+msgstr "今日"
+
+#: ../contents/ui/config/ConfigCalendar.qml
+msgid "Solid Color (Inverted)"
+msgstr "ソリッドカラー (反転)"
+
+#: ../contents/ui/config/ConfigCalendar.qml
+msgid "Big Number"
+msgstr "大きい数字"
+
+#: ../contents/ui/config/ConfigEvents.qml
+msgid "Event Calendar Plugins"
+msgstr "Event Calendar プラグイン"
+
+#: ../contents/ui/config/ConfigEvents.qml
+msgid "Plasma Calendar Plugins"
+msgstr "Plasma カレンダープラグイン"
+
+#: ../contents/ui/config/ConfigEvents.qml ../contents/ui/config/ConfigGeneral.qml
+msgid "Misc"
+msgstr "その他"
+
+#: ../contents/ui/config/ConfigEvents.qml
+msgid "Refresh events every: "
+msgstr "すべてのイベントを更新"
+
+#: ../contents/ui/config/ConfigEvents.qml ../contents/ui/config/ConfigWeather.qml
+msgctxt "Polling interval in minutes"
+msgid "min"
+msgid_plural "min"
+msgstr[0] "分"
+msgstr[1] "分"
+
+#: ../contents/ui/config/ConfigEvents.qml
+msgid "Notifications"
+msgstr "通知"
+
+#: ../contents/ui/config/ConfigEvents.qml
+msgid "Event Starting"
+msgstr "イベントを開始"
+
+#: ../contents/ui/config/ConfigGeneral.qml ../contents/ui/lib/ConfigNotification.qml
+msgid "Choose a sound effect"
+msgstr "サウンドエフェクトを選択"
+
+#: ../contents/ui/config/ConfigGeneral.qml
+msgid "Widgets"
+msgstr "ウィジェット"
+
+#: ../contents/ui/config/ConfigGeneral.qml
+msgid "Show/Hide widgets above the calendar. Toggle Agenda/Calendar on their respective tabs."
+msgstr "カレンダー上にウィジェットを表示/非表示\n予定表/カレンダーの切り換え"
+
+#: ../contents/ui/config/ConfigGeneral.qml
+msgid "Meteogram"
+msgstr "天気予報マップ"
+
+#: ../contents/ui/config/ConfigGeneral.qml
+msgid "SFX:"
+msgstr "音響効果"
+
+#: ../contents/ui/config/ConfigGeneral.qml
+msgid "Choose"
+msgstr "選択する"
+
+#: ../contents/ui/config/ConfigGeneral.qml
+msgid "Clock"
+msgstr "時計"
+
+#: ../contents/ui/config/ConfigGeneral.qml
+msgid "Time Format"
+msgstr "時間形式"
+
+#: ../contents/ui/config/ConfigGeneral.qml
+msgid "The default font for the Breeze theme is Noto Sans which is hard to read with small text. Try using the Sans Serif font if you find the text too small when adding a second line."
+msgstr "BreezeのデフォルトフォントであるNoto Sansは2業以上になると小さく読みにくいです。2行目以降をを追加するときにテキストが小さすぎる場合は、Sans Serifフォントを使用してみてください。"
+
+#: ../contents/ui/config/ConfigGeneral.qml
+msgid "You can also use %1 or %2 to style a section. Note the single quotes around the tags are used to bypass the time format."
+msgstr "％1または％2を使用してスタイルを設定することもできます。タグを囲む単一引用符は、時刻形式をバイパスするために使用されていることに注意してください。"
+
+#: ../contents/ui/config/ConfigGeneral.qml
+msgid "Font:"
+msgstr "フォント"
+
+#: ../contents/ui/config/ConfigGeneral.qml
+msgid "Fixed Clock Height: "
+msgstr "時計の高さを修正する"
+
+#: ../contents/ui/config/ConfigGeneral.qml
+msgid " (0px = scale to fit)"
+msgstr ""
+
+#: ../contents/ui/config/ConfigGeneral.qml
+msgid "Line 1:"
+msgstr ""
+
+#: ../contents/ui/config/ConfigGeneral.qml
+msgid "Preset:"
+msgstr "プリセット"
+
+#: ../contents/ui/config/ConfigGeneral.qml
+msgid "Bold"
+msgstr "太字"
+
+#: ../contents/ui/config/ConfigGeneral.qml
+msgid "Line 2:"
+msgstr ""
+
+#: ../contents/ui/config/ConfigGeneral.qml
+msgid "Height:"
+msgstr "高さ"
+
+#: ../contents/ui/config/ConfigGeneral.qml
+msgid "Mouse Wheel"
+msgstr "マウスホイール"
+
+#: ../contents/ui/config/ConfigGeneral.qml
+msgid "Run Commands"
+msgstr "コマンドを実行"
+
+#: ../contents/ui/config/ConfigGeneral.qml
+msgid "Scroll Up:"
+msgstr "上にスクロール"
+
+#: ../contents/ui/config/ConfigGeneral.qml
+msgid "Scroll Down:"
+msgstr "下にスクロール"
+
+#: ../contents/ui/config/ConfigGeneral.qml
+msgid "Volume (No UI) (amixer)"
+msgstr "音量 (UIなし) (amixer)"
+
+#: ../contents/ui/config/ConfigGeneral.qml
+msgid "Volume (UI) (qdbus)"
+msgstr "音量 (UIあり) (qdbus)"
+
+#: ../contents/ui/config/ConfigGeneral.qml
+msgid "Desktop Widget: Show background"
+msgstr "デスクトップウィジェット：背景を表示"
+
+#: ../contents/ui/config/ConfigGeneral.qml
+msgid "Debugging"
+msgstr "デバッグ"
+
+#: ../contents/ui/config/ConfigGeneral.qml
+msgid ""
+"Enable Debugging\n"
+"This will log sensitive information to ~/.xsession-errors"
+msgstr ""
+"デバッグを有効化\n"
+"ログが~/.xsession-errorsに記録されます"
+
+#: ../contents/ui/config/ConfigGoogleCalendar.qml
+msgid "Login"
+msgstr "ログイン"
+
+#: ../contents/ui/config/ConfigGoogleCalendar.qml
+msgid "Currently Synched."
+msgstr "現在同期されています"
+
+#: ../contents/ui/config/ConfigGoogleCalendar.qml
+msgid "Logout"
+msgstr "ログアウト"
+
+#: ../contents/ui/config/ConfigGoogleCalendar.qml
+msgid "To sync with Google Calendar"
+msgstr "Google Calendarと同期します"
+
+#: ../contents/ui/config/ConfigGoogleCalendar.qml
+msgid "Visit <a href=\"%1\">%2</a> (opens in your web browser). After you login and give permission to acess your calendar, it will give you a code to paste below."
+msgstr " <a href=\"%1\">%2</a> (ウェブブラウザーで開く)。 カレンダーへのアクセスを許可してください、 以下に貼り付けるコードが表示されます。"
+
+#: ../contents/ui/config/ConfigGoogleCalendar.qml
+msgid "Copy Link"
+msgstr "リンクをコピー"
+
+#: ../contents/ui/config/ConfigGoogleCalendar.qml
+msgid "Enter code here (Eg: %1)"
+msgstr "コードを個々に記入してください(Eg: %1)"
+
+#: ../contents/ui/config/ConfigGoogleCalendar.qml
+msgid "Submit"
+msgstr "参加"
+
+#: ../contents/ui/config/ConfigGoogleCalendar.qml
+msgid "Invalid Google Authorization Code"
+msgstr "Google Authorization Codeが無効です"
+
+#: ../contents/ui/config/ConfigGoogleCalendar.qml ../contents/ui/config/ConfigICal.qml
+msgid "Calendars"
+msgstr "カレンダー"
+
+#: ../contents/ui/config/ConfigGoogleCalendar.qml
+msgid "Refresh"
+msgstr "更新"
+
+#: ../contents/ui/config/ConfigICal.qml
+msgid "Add Calendar"
+msgstr "カレンダーを追加"
+
+#: ../contents/ui/config/ConfigICal.qml
+msgid "New Calendar"
+msgstr "新しいカレンダー"
+
+#: ../contents/ui/config/ConfigICal.qml
+msgid "Calendar Label"
+msgstr "カレンダーラベル"
+
+#: ../contents/ui/config/ConfigICal.qml
+msgid "Browse"
+msgstr "ブラウズ"
+
+#: ../contents/ui/config/ConfigICal.qml
+msgid "iCalendar (*.ics)"
+msgstr ""
+
+#: ../contents/ui/config/ConfigTimezones.qml
+msgid "Tooltip"
+msgstr "選択する"
+
+#: ../contents/ui/config/ConfigTimezones.qml
+msgid "Cannot deselect Local time from the tooltip"
+msgstr "現地時間が必要です"
+
+#: ../contents/ui/config/ConfigWeather.qml
+msgid "Data"
+msgstr "データ"
+
+#: ../contents/ui/config/ConfigWeather.qml
+msgid "API App Id:"
+msgstr ""
+
+#: ../contents/ui/config/ConfigWeather.qml
+msgid "City Id:"
+msgstr "都市 Id"
+
+#: ../contents/ui/config/ConfigWeather.qml
+msgid "Eg: 5983720"
+msgstr "例: 5983720"
+
+#: ../contents/ui/config/ConfigWeather.qml
+msgid "Find City"
+msgstr "都市を探す"
+
+#: ../contents/ui/config/ConfigWeather.qml
+msgid "Eg: on-14"
+msgstr "例: on-14"
+
+#: ../contents/ui/config/ConfigWeather.qml
+msgid "Settings"
+msgstr "設定"
+
+#: ../contents/ui/config/ConfigWeather.qml
+msgid "Update forecast every: "
+msgstr "天気予報を毎回更新"
+
+#: ../contents/ui/config/ConfigWeather.qml
+msgid "Show next "
+msgstr "妻木を表示"
+
+#: ../contents/ui/config/ConfigWeather.qml
+msgid " hours"
+msgid_plural " hours"
+msgstr[0] "時"
+msgstr[1] "時"
+
+#: ../contents/ui/config/ConfigWeather.qml
+msgid " in the meteogram."
+msgstr "天気予報"
+
+#: ../contents/ui/config/ConfigWeather.qml
+msgid "Units:"
+msgstr "単位："
+
+#: ../contents/ui/config/ConfigWeather.qml
+msgid "Celsius"
+msgstr "摂氏(℃)"
+
+#: ../contents/ui/config/ConfigWeather.qml
+msgid "Fahrenheit"
+msgstr "華氏(F)"
+
+#: ../contents/ui/config/ConfigWeather.qml
+msgid "Kelvin"
+msgstr "ケルビン(K)"
+
+#: ../contents/ui/config/ConfigWeather.qml
+msgid "Text"
+msgstr "テキスト"
+
+#: ../contents/ui/config/ConfigWeather.qml
+msgid "Grid"
+msgstr "グリッド"
+
+#: ../contents/ui/config/ConfigWeather.qml
+msgid "Rain"
+msgstr "雨"
+
+#: ../contents/ui/config/ConfigWeather.qml
+msgid "Positive Temp"
+msgstr "0以上の温度"
+
+#: ../contents/ui/config/ConfigWeather.qml
+msgid "Negative Temp"
+msgstr "0以下の温度"
+
+#: ../contents/ui/config/ConfigWeather.qml
+msgid "Icons"
+msgstr "アイコン"
+
+#: ../contents/ui/config/OpenWeatherMapCityDialog.qml ../contents/ui/config/WeatherCanadaCityDialog.qml
+msgid "Select city"
+msgstr "都市を選択"
+
+#: ../contents/ui/config/OpenWeatherMapCityDialog.qml ../contents/ui/config/WeatherCanadaCityDialog.qml
+msgid "Fetched from <a href=\"%1\">%1</a>"
+msgstr " <a href=\"%1\">%1</a> からのデータ"
+
+#: ../contents/ui/config/OpenWeatherMapCityDialog.qml ../contents/ui/config/WeatherCanadaCityDialog.qml
+msgid "Search"
+msgstr "サーチ"
+
+#: ../contents/ui/config/OpenWeatherMapCityDialog.qml ../contents/ui/config/WeatherCanadaCityDialog.qml
+msgid "Name"
+msgstr "名前"
+
+#: ../contents/ui/config/OpenWeatherMapCityDialog.qml ../contents/ui/config/WeatherCanadaCityDialog.qml
+msgid "Id"
+msgstr ""
+
+#: ../contents/ui/config/OpenWeatherMapCityDialog.qml ../contents/ui/config/WeatherCanadaCityDialog.qml
+msgid "City Webpage"
+msgstr "都市のサイト"
+
+#: ../contents/ui/config/OpenWeatherMapCityDialog.qml ../contents/ui/config/WeatherCanadaCityDialog.qml
+msgid "Open Link"
+msgstr "リンクを開く"
+
+#: ../contents/ui/lib/AppletVersion.qml
+msgid "<b>Version:</b> %1"
+msgstr "<b>バージョン:</b> %1"
+
+#: ../contents/ui/main.qml
+msgid "Set Language..."
+msgstr "言語を選択"
+
+#: ../contents/ui/main.qml
+msgid "Set Locale..."
+msgstr "地域を選択"
