@@ -269,6 +269,7 @@ MouseArea {
 	GridLayout {
 		id: widgetGrid
 		anchors.fill: parent
+		anchors.margins: popup.padding
 		columnSpacing: popup.spacing
 		rowSpacing: popup.spacing
 		onColumnsChanged: {
@@ -277,7 +278,6 @@ MouseArea {
 		onRowsChanged: {
 			// logger.debug(popup.state, widgetGrid.columns, widgetGrid.rows)
 		}
-		Layout.margins: popup.padding
 
 
 		MeteogramView {
