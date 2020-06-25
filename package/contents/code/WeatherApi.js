@@ -1,11 +1,6 @@
 .import "OpenWeatherMap.js" as OpenWeatherMap
 .import "WeatherCanada.js" as WeatherCanada
 
-// var weatherService = 'OpenWeatherMap'
-// var dataPointDuration = 3
-// var weatherService = 'WeatherCanada'
-// var dataPointDuration = 1
-
 /* How many hours each data point represents */
 function getDataPointDuration() {
 	var weatherService = plasmoid.configuration.weather_service
