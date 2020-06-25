@@ -265,208 +265,203 @@ MouseArea {
 		}
 	]
 
-	ColumnLayout {
+	GridLayout {
+		id: widgetGrid
 		anchors.fill: parent
+		columnSpacing: popup.spacing
+		rowSpacing: popup.spacing
+		onColumnsChanged: {
+			// logger.debug(popup.state, widgetGrid.columns, widgetGrid.rows)
+		}
+		onRowsChanged: {
+			// logger.debug(popup.state, widgetGrid.columns, widgetGrid.rows)
+		}
+		Layout.margins: popup.padding
 
-		GridLayout {
-			id: widgetGrid
+
+		MeteogramView {
+			id: meteogramView
+			visible: showMeteogram
+			Layout.fillWidth: true
+			Layout.minimumHeight: popup.topRowHeight
+			Layout.preferredHeight: parent.height / 5
+			visibleDuration: plasmoid.configuration.meteogram_hours
+			showIconOutline: plasmoid.configuration.show_outlines
+			xAxisScale: 1 / hoursPerDataPoint
+			xAxisLabelEvery: Math.ceil(3 / hoursPerDataPoint)
+			property int hoursPerDataPoint: WeatherApi.getDataPointDuration()
+
+			Rectangle {
+				id: meteogramMessageBox
+				anchors.fill: parent
+				anchors.margins: 10
+				color: "transparent"
+				border.color: theme.buttonBackgroundColor
+				border.width: 1
+
+				readonly property string message: {
+					if (!WeatherApi.weatherIsSetup()) {
+						return i18n("Weather not configured.\nGo to Weather in the config and set your city,\nand/or disable the meteogram to hide this area.")
+					} else if (lastForecastErr && !meteogramView.populated) {
+						return i18n("Error fetching weather.") + '\n' + lastForecastErr
+					} else {
+						return ''
+					}
+				}
+
+				visible: !!message
+
+				PlasmaComponents.Label {
+					text: meteogramMessageBox.message
+					anchors.fill: parent
+					fontSizeMode: Text.Fit
+					wrapMode: Text.Wrap
+					horizontalAlignment: Text.AlignHCenter
+					verticalAlignment: Text.AlignVCenter
+				}
+			}
+		}
+
+		TimerView {
+			id: timerView
+			visible: showTimer
+			Layout.fillWidth: true
+			Layout.minimumHeight: Math.max(popup.topRowHeight, implicitHeight)
+			Layout.preferredHeight: parent.height / 5
+		}
+
+		MonthView {
+			id: monthView
+			visible: showCalendar
+			borderOpacity: plasmoid.configuration.month_show_border ? 0.25 : 0
+			showWeekNumbers: plasmoid.configuration.month_show_weeknumbers
+
+			Layout.preferredWidth: parent.width/2
 			Layout.fillWidth: true
 			Layout.fillHeight: true
-			columnSpacing: popup.spacing
-			rowSpacing: popup.spacing
-			onColumnsChanged: {
-				// logger.debug(popup.state, widgetGrid.columns, widgetGrid.rows)
-			}
-			onRowsChanged: {
-				// logger.debug(popup.state, widgetGrid.columns, widgetGrid.rows)
-			}
-			Layout.margins: popup.padding
 
+			// Component.onCompleted: {
+			// 	today = new Date()
+			// }
 
-			MeteogramView {
-				id: meteogramView
-				visible: showMeteogram
-				Layout.fillWidth: true
-				Layout.minimumHeight: popup.topRowHeight
-				Layout.preferredHeight: parent.height / 5
-				visibleDuration: plasmoid.configuration.meteogram_hours
-				showIconOutline: plasmoid.configuration.show_outlines
-				xAxisScale: 1 / hoursPerDataPoint
-				xAxisLabelEvery: Math.ceil(3 / hoursPerDataPoint)
-				property int hoursPerDataPoint: WeatherApi.getDataPointDuration()
-
-				Rectangle {
-					id: meteogramMessageBox
-					anchors.fill: parent
-					anchors.margins: 10
-					color: "transparent"
-					border.color: theme.buttonBackgroundColor
-					border.width: 1
-
-					readonly property string message: {
-						if (!WeatherApi.weatherIsSetup()) {
-							return i18n("Weather not configured.\nGo to Weather in the config and set your city,\nand/or disable the meteogram to hide this area.")
-						} else if (lastForecastErr && !meteogramView.populated) {
-							return i18n("Error fetching weather.") + '\n' + lastForecastErr
-						} else {
-							return ''
-						}
-					}
-
-					visible: !!message
-
-					PlasmaComponents.Label {
-						text: meteogramMessageBox.message
-						anchors.fill: parent
-						fontSizeMode: Text.Fit
-						wrapMode: Text.Wrap
-						horizontalAlignment: Text.AlignHCenter
-						verticalAlignment: Text.AlignVCenter
-					}
+			function parseGCalEvents(data) {
+				if (!(data && data.items)) {
+					return
 				}
-			}
 
-			TimerView {
-				id: timerView
-				visible: showTimer
-				Layout.fillWidth: true
-				Layout.minimumHeight: Math.max(popup.topRowHeight, implicitHeight)
-				Layout.preferredHeight: parent.height / 5
-			}
+				// Clear event data since data contains events from all calendars, and this function
+				// is called every time a calendar is recieved.
+				for (var i = 0; i < monthView.daysModel.count; i++) {
+					var dayData = monthView.daysModel.get(i)
+					monthView.daysModel.setProperty(i, 'showEventBadge', false)
+					dayData.events.clear()
+				}
 
-			MonthView {
-				id: monthView
-				visible: showCalendar
-				borderOpacity: plasmoid.configuration.month_show_border ? 0.25 : 0
-				showWeekNumbers: plasmoid.configuration.month_show_weeknumbers
-
-				Layout.preferredWidth: parent.width/2
-				Layout.fillWidth: true
-				Layout.fillHeight: true
-
-				// Component.onCompleted: {
-				// 	today = new Date()
-				// }
-
-				function parseGCalEvents(data) {
-					if (!(data && data.items)) {
-						return
+				// https://github.com/KDE/plasma-framework/blob/master/src/declarativeimports/calendar/daysmodel.h
+				for (var j = 0; j < data.items.length; j++) {
+					var eventItem = data.items[j]
+					var eventItemStartDate = new Date(eventItem.startDateTime.getFullYear(), eventItem.startDateTime.getMonth(), eventItem.startDateTime.getDate())
+					var eventItemEndDate = new Date(eventItem.endDateTime.getFullYear(), eventItem.endDateTime.getMonth(), eventItem.endDateTime.getDate())
+					if (eventItem.end.date) {
+						// All day events end at midnight which is technically the next day.
+						eventItemEndDate.setDate(eventItemEndDate.getDate() - 1)
 					}
-
-					// Clear event data since data contains events from all calendars, and this function
-					// is called every time a calendar is recieved.
+					// logger.debug(eventItemStartDate, eventItemEndDate)
 					for (var i = 0; i < monthView.daysModel.count; i++) {
 						var dayData = monthView.daysModel.get(i)
-						monthView.daysModel.setProperty(i, 'showEventBadge', false)
-						dayData.events.clear()
-					}
-
-					// https://github.com/KDE/plasma-framework/blob/master/src/declarativeimports/calendar/daysmodel.h
-					for (var j = 0; j < data.items.length; j++) {
-						var eventItem = data.items[j]
-						var eventItemStartDate = new Date(eventItem.startDateTime.getFullYear(), eventItem.startDateTime.getMonth(), eventItem.startDateTime.getDate())
-						var eventItemEndDate = new Date(eventItem.endDateTime.getFullYear(), eventItem.endDateTime.getMonth(), eventItem.endDateTime.getDate())
-						if (eventItem.end.date) {
-							// All day events end at midnight which is technically the next day.
-							eventItemEndDate.setDate(eventItemEndDate.getDate() - 1)
-						}
-						// logger.debug(eventItemStartDate, eventItemEndDate)
-						for (var i = 0; i < monthView.daysModel.count; i++) {
-							var dayData = monthView.daysModel.get(i)
-							var dayDataDate = new Date(dayData.yearNumber, dayData.monthNumber - 1, dayData.dayNumber)
-							if (eventItemStartDate <= dayDataDate && dayDataDate <= eventItemEndDate) {
-								// logger.debug('\t', dayDataDate)
-								monthView.daysModel.setProperty(i, 'showEventBadge', true)
-								var events = dayData.events || []
-								events.append(eventItem)
-								monthView.daysModel.setProperty(i, 'events', events)
-							} else if (eventItemEndDate < dayDataDate) {
-								break
-							}
+						var dayDataDate = new Date(dayData.yearNumber, dayData.monthNumber - 1, dayData.dayNumber)
+						if (eventItemStartDate <= dayDataDate && dayDataDate <= eventItemEndDate) {
+							// logger.debug('\t', dayDataDate)
+							monthView.daysModel.setProperty(i, 'showEventBadge', true)
+							var events = dayData.events || []
+							events.append(eventItem)
+							monthView.daysModel.setProperty(i, 'events', events)
+						} else if (eventItemEndDate < dayDataDate) {
+							break
 						}
 					}
 				}
+			}
 
-				onDayDoubleClicked: {
-					var date = new Date(dayData.yearNumber, dayData.monthNumber-1, dayData.dayNumber)
-					// logger.debug('Popup.monthView.onDoubleClicked', date)
-					if (true) {
-						// cfg_month_day_doubleclick == "browser_newevent"
-						Shared.openGoogleCalendarNewEventUrl(date)
-					}
+			onDayDoubleClicked: {
+				var date = new Date(dayData.yearNumber, dayData.monthNumber-1, dayData.dayNumber)
+				// logger.debug('Popup.monthView.onDoubleClicked', date)
+				if (true) {
+					// cfg_month_day_doubleclick == "browser_newevent"
+					Shared.openGoogleCalendarNewEventUrl(date)
 				}
-			} // MonthView
+			}
+		} // MonthView
 
-			AgendaView {
-				id: agendaView
-				visible: showAgenda
+		AgendaView {
+			id: agendaView
+			visible: showAgenda
 
-				Layout.preferredWidth: parent.width / 2
-				Layout.fillWidth: true
-				Layout.fillHeight: true
+			Layout.preferredWidth: parent.width / 2
+			Layout.fillWidth: true
+			Layout.fillHeight: true
 
-				function populateCalendarSelector(calendarSelector, selectedCalendarId) {
-					if (plasmoid.configuration.access_token) {
-						var calendarIdList = plasmoid.configuration.calendar_id_list ? plasmoid.configuration.calendar_id_list.split(',') : ['primary']
-						var calendarList = plasmoid.configuration.calendar_list ? JSON.parse(Qt.atob(plasmoid.configuration.calendar_list)) : []
-						// logger.debug('calendarList', JSON.stringify(calendarList, null, '\t'))
-						var list = []
-						var selectedIndex = 0
-						calendarList.forEach(function(calendar){
-							var canEditCalendar = calendar.accessRole == 'writer' || calendar.accessRole == 'owner'
-							var isSelected = calendar.id === selectedCalendarId
+			function populateCalendarSelector(calendarSelector, selectedCalendarId) {
+				if (plasmoid.configuration.access_token) {
+					var calendarIdList = plasmoid.configuration.calendar_id_list ? plasmoid.configuration.calendar_id_list.split(',') : ['primary']
+					var calendarList = plasmoid.configuration.calendar_list ? JSON.parse(Qt.atob(plasmoid.configuration.calendar_list)) : []
+					// logger.debug('calendarList', JSON.stringify(calendarList, null, '\t'))
+					var list = []
+					var selectedIndex = 0
+					calendarList.forEach(function(calendar){
+						var canEditCalendar = calendar.accessRole == 'writer' || calendar.accessRole == 'owner'
+						var isSelected = calendar.id === selectedCalendarId
 
-							if (isSelected) {
-								selectedIndex = list.length // index after insertion
-							}
+						if (isSelected) {
+							selectedIndex = list.length // index after insertion
+						}
 
-							if (canEditCalendar || isSelected) {
-								list.push({
-									'calendarId': calendar.id,
-									'text': calendar.summary,
-									'backgroundColor': calendar.backgroundColor,
-								})
-							}
-						})
-						calendarSelector.model = list
-						calendarSelector.currentIndex = selectedIndex
-					}
+						if (canEditCalendar || isSelected) {
+							list.push({
+								'calendarId': calendar.id,
+								'text': calendar.summary,
+								'backgroundColor': calendar.backgroundColor,
+							})
+						}
+					})
+					calendarSelector.model = list
+					calendarSelector.currentIndex = selectedIndex
 				}
-				onNewEventFormOpened: {
-					// logger.debug('onNewEventFormOpened')
-					var selectedCalendarId = ""
-					if (plasmoid.configuration.agenda_newevent_remember_calendar) {
-						selectedCalendarId = plasmoid.configuration.agenda_newevent_last_calendar_id
-					}
-					populateCalendarSelector(newEventCalendarId, selectedCalendarId)
+			}
+			onNewEventFormOpened: {
+				// logger.debug('onNewEventFormOpened')
+				var selectedCalendarId = ""
+				if (plasmoid.configuration.agenda_newevent_remember_calendar) {
+					selectedCalendarId = plasmoid.configuration.agenda_newevent_last_calendar_id
 				}
-				onSubmitNewEventForm: {
-					// logger.debug('onSubmitNewEventForm', calendarId)
-					if (plasmoid.configuration.access_token) {
-						logger.debug(calendarId)
-						eventModel.createEvent(calendarId, date, text)
-					}
+				populateCalendarSelector(newEventCalendarId, selectedCalendarId)
+			}
+			onSubmitNewEventForm: {
+				// logger.debug('onSubmitNewEventForm', calendarId)
+				if (plasmoid.configuration.access_token) {
+					logger.debug(calendarId)
+					eventModel.createEvent(calendarId, date, text)
 				}
-				PlasmaComponents.Button {
-					iconSource: 'view-refresh'
-					anchors.bottom: parent.bottom
-					anchors.right: parent.right
-					anchors.rightMargin: agendaView.scrollbarWidth
-					onClicked: {
-						updateEvents()
-						updateWeather()
-					}
+			}
+			PlasmaComponents.Button {
+				iconSource: 'view-refresh'
+				anchors.bottom: parent.bottom
+				anchors.right: parent.right
+				anchors.rightMargin: agendaView.scrollbarWidth
+				onClicked: {
+					updateEvents()
+					updateWeather()
+				}
 
-					// Timer {
-					// 	running: true
-					// 	repeat: true
-					// 	interval: 2000
-					// 	onTriggered: parent.clicked()
-					// }
-				}
-			} // AgendaView
-		} // GridLayout
-	}
+				// Timer {
+				// 	running: true
+				// 	repeat: true
+				// 	interval: 2000
+				// 	onTriggered: parent.clicked()
+				// }
+			}
+		} // AgendaView
+	} // GridLayout
 
 	Component.onCompleted: {
 		update()
