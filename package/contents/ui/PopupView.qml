@@ -17,6 +17,7 @@ MouseArea {
 
 	property int topRowHeight: 100 * units.devicePixelRatio
 	property int bottomRowHeight: 400 * units.devicePixelRatio
+	property int singleColumnMonthViewHeight: units.gridUnit * 18
 
 	// DigitalClock LeftColumn minWidth: units.gridUnit * 22
 	// DigitalClock RightColumn minWidth: units.gridUnit * 14
@@ -217,9 +218,9 @@ MouseArea {
 				Layout.preferredHeight: popup.bottomRowHeight
 			}
 			PropertyChanges { target: monthView
-				Layout.minimumHeight: popup.bottomRowHeight
-				Layout.preferredHeight: popup.bottomRowHeight
-				Layout.maximumHeight: popup.bottomRowHeight
+				Layout.minimumHeight: popup.singleColumnMonthViewHeight
+				Layout.preferredHeight: popup.singleColumnMonthViewHeight
+				Layout.maximumHeight: popup.singleColumnMonthViewHeight
 			}
 		},
 		// State {
