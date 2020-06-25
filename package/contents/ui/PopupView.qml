@@ -17,7 +17,7 @@ MouseArea {
 
 	property int topRowHeight: 100 * units.devicePixelRatio
 	property int bottomRowHeight: 400 * units.devicePixelRatio
-	property int singleColumnMonthViewHeight: units.gridUnit * 18
+	property int singleColumnMonthViewHeight: 300 * units.devicePixelRatio
 
 	// DigitalClock LeftColumn minWidth: units.gridUnit * 22
 	// DigitalClock RightColumn minWidth: units.gridUnit * 14
