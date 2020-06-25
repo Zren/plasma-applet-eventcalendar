@@ -43,6 +43,15 @@ ConfigPage {
 			checked: !plasmoid.configuration.twoColumns
 			onClicked: plasmoid.configuration.twoColumns = false
 		}
+		RowLayout {
+			Text { width: indentWidth } // indent
+			ConfigSpinBox {
+				enabled: plasmoid.configuration.widget_show_agenda && !plasmoid.configuration.twoColumns
+				configKey: 'monthHeightSingleColumn'
+				before: i18n("Calendar Height:")
+				suffix: i18n("px")
+			}
+		}
 	}
 
 	ConfigSection {

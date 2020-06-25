@@ -124,6 +124,9 @@
 		<entry name="monthHighlightCurrentDayWeek" type="bool">
 			<default>true</default>
 		</entry>
+		<entry name="monthHeightSingleColumn" type="uint">
+			<default>300</default>
+		</entry>
 	</group>
 
 	<group name="Agenda">

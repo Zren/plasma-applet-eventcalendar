@@ -17,7 +17,7 @@ MouseArea {
 
 	property int topRowHeight: 100 * units.devicePixelRatio
 	property int bottomRowHeight: 400 * units.devicePixelRatio
-	property int singleColumnMonthViewHeight: 300 * units.devicePixelRatio
+	property int singleColumnMonthViewHeight: plasmoid.configuration.monthHeightSingleColumn * units.devicePixelRatio
 
 	// DigitalClock LeftColumn minWidth: units.gridUnit * 22
 	// DigitalClock RightColumn minWidth: units.gridUnit * 14
