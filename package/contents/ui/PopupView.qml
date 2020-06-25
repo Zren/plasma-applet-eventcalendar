@@ -22,8 +22,9 @@ MouseArea {
 	// DigitalClock LeftColumn minWidth: units.gridUnit * 22
 	// DigitalClock RightColumn minWidth: units.gridUnit * 14
 	// 14/(22+14) * 400 = 156
+	// rightColumnWidth=156 looks nice but is very thin for listing events + date + weather.
 	property int leftColumnWidth: 400 * units.devicePixelRatio // Meteogram + MonthView
-	property int rightColumnWidth: 156 * units.devicePixelRatio // TimerView + AgendaView
+	property int rightColumnWidth: 400 * units.devicePixelRatio // TimerView + AgendaView
 
 	property bool singleColumn: !showAgenda || !showCalendar
 	property bool singleColumnFullHeight: !plasmoid.configuration.twoColumns && showAgenda && showCalendar
