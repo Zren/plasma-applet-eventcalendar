@@ -9,7 +9,6 @@ import "../lib"
 ConfigPage {
 	id: page
 
-	property alias cfg_widget_show_agenda: widget_show_agenda.checked
 	property bool cfg_agendaWeatherOnRight: false
 	property alias cfg_agenda_weather_show_icon: agenda_weather_show_icon.checked
 	property alias cfg_agenda_weather_icon_height: agenda_weather_icon_height.value
@@ -20,31 +19,29 @@ ConfigPage {
 	property bool cfg_agenda_breakup_multiday_events: false
 	property alias cfg_agenda_newevent_remember_calendar: agenda_newevent_remember_calendar.checked
 	property alias cfg_show_outlines: show_outlines.checked
-	property bool cfg_twoColumns: true
 
 	property int indentWidth: 24 * units.devicePixelRatio
 
-	CheckBox {
-		Layout.fillWidth: true
-		id: widget_show_agenda
+	ConfigCheckBox {
+		configKey: 'widget_show_agenda'
 		text: i18n("Show agenda")
 	}
 
 	ConfigSection {
 		ExclusiveGroup { id: layoutGroup }
 		RadioButton {
-			text: i18n("Agenda above the month (Single Column)")
-			exclusiveGroup: layoutGroup
-			enabled: cfg_widget_show_agenda
-			checked: !cfg_twoColumns
-			onClicked: cfg_twoColumns = false
-		}
-		RadioButton {
 			text: i18n("Agenda to the left (Two Columns)")
 			exclusiveGroup: layoutGroup
-			enabled: cfg_widget_show_agenda
-			checked: cfg_twoColumns
-			onClicked: cfg_twoColumns = true
+			enabled: plasmoid.configuration.widget_show_agenda
+			checked: plasmoid.configuration.twoColumns
+			onClicked: plasmoid.configuration.twoColumns = true
+		}
+		RadioButton {
+			text: i18n("Agenda above the month (Single Column)")
+			exclusiveGroup: layoutGroup
+			enabled: plasmoid.configuration.widget_show_agenda
+			checked: !plasmoid.configuration.twoColumns
+			onClicked: plasmoid.configuration.twoColumns = false
 		}
 	}
 

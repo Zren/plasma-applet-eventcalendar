@@ -8,19 +8,17 @@ import "../lib"
 ConfigPage {
 	id: page
 
-	property alias cfg_widget_show_calendar: widget_show_calendar.checked
 	property alias cfg_month_show_border: month_show_border.checked
 	property alias cfg_month_show_weeknumbers: month_show_weeknumbers.checked
 	property alias cfg_monthHighlightCurrentDayWeek: monthHighlightCurrentDayWeek.checked
 	property string cfg_month_eventbadge_type: 'bottomBar'
 	property string cfg_month_today_style: 'theme'
 
-	CheckBox {
-		Layout.fillWidth: true
-		id: widget_show_calendar
+	ConfigCheckBox {
+		configKey: 'cfg_widget_show_calendar'
 		text: i18n("Show calendar")
 	}
-	
+
 	ConfigSection {
 		LabeledRowLayout {
 			label: i18n("Click Date:")
