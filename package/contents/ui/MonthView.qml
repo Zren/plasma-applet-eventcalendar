@@ -49,6 +49,7 @@ PinchArea {
 	property int firstDay: new Date(showDate.getFullYear(), showDate.getMonth(), 1).getDay()
 	property alias today: calendarBackend.today
 	property bool showWeekNumbers: false
+	property bool highlightCurrentDayWeek: true
 
 	property alias cellHeight: mainDaysCalendar.cellHeight
 	// property QtObject daysModel: calendarBackend.daysModel
