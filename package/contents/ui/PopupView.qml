@@ -207,6 +207,8 @@ MouseArea {
 
 			PropertyChanges { target: widgetGrid
 				columns: 1
+				anchors.margins: 0
+				anchors.topMargin: popup.padding
 			}
 			PropertyChanges { target: meteogramView
 				Layout.maximumHeight: popup.topRowHeight

@@ -112,7 +112,7 @@ Item {
 		}
 		padding: {
 			if (isPinVisible && !(plasmoid.configuration.widget_show_timer || plasmoid.configuration.widget_show_meteogram)) {
-				return units.largeSpacing
+				return pinButton.height
 			} else {
 				return 0
 			}
@@ -181,6 +181,7 @@ Item {
 
 		// Allows the user to keep the calendar open for reference
 		PlasmaComponents.ToolButton {
+			id: pinButton
 			visible: isPinVisible
 			anchors.right: parent.right
 			width: Math.round(units.gridUnit * 1.25)
