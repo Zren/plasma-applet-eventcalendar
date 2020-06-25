@@ -318,6 +318,13 @@ Item {
 				text: modelData
 				font.pixelSize: Math.max(theme.smallestFont.pixelSize, Math.min(daysCalendar.cellHeight / 3, daysCalendar.cellWidth * 5/8))
 				font.pointSize: -1 // Ignore pixelSize warning
+				color: {
+					if (modelData == calendarBackend.currentWeek()) {
+						return theme.highlightColor
+					} else {
+						return theme.textColor
+					}
+				}
 			}
 		}
 	}
