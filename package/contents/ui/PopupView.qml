@@ -12,58 +12,58 @@ MouseArea {
 
 	onClicked: focus = true
 
-	// use Layout.prefferedHeight instead of height so that the plasmoid resizes.
-	// width: columnWidth + 10 + columnWidth
+	property int padding: 0 // Assigned in main.qml
 	property int spacing: 10 * units.devicePixelRatio
+
 	property int topRowHeight: 100 * units.devicePixelRatio
 	property int bottomRowHeight: 400 * units.devicePixelRatio
-	property int columnWidth: width / 2
-	property int padding: 0
+
+	// DigitalClock LeftColumn minWidth: units.gridUnit * 22
+	// DigitalClock RightColumn minWidth: units.gridUnit * 14
+	// 14/(22+14) * 400 = 156
+	property int leftColumnWidth: 400 * units.devicePixelRatio // Meteogram + MonthView
+	property int rightColumnWidth: 156 * units.devicePixelRatio // TimerView + AgendaView
+
 	property bool singleColumn: !showAgenda || !showCalendar
 	property bool singleColumnFullHeight: !plasmoid.configuration.twoColumns && showAgenda && showCalendar
 	property bool twoColumns: plasmoid.configuration.twoColumns && showAgenda && showCalendar
 
 	Layout.minimumWidth: {
 		if (twoColumns) {
-			// return (400 + 10 + 400) * units.devicePixelRatio
 			return units.gridUnit * 28
 		} else {
-			// return 400 * units.devicePixelRatio
 			return units.gridUnit * 14
 		}
 	}
 	Layout.preferredWidth: {
 		if (twoColumns) {
-			return (400 + 10 + 400) * units.devicePixelRatio + padding * 2
+			return (leftColumnWidth + spacing + rightColumnWidth) + padding * 2
 		} else {
-			return 400 * units.devicePixelRatio + padding * 2
+			return leftColumnWidth + padding * 2
 		}
 	}
-	// Layout.maximumWidth: plasmoid.screenGeometry.width
 
-	// Layout.minimumHeight: 400 * units.devicePixelRatio
 	Layout.minimumHeight: units.gridUnit * 14
 	Layout.preferredHeight: {
 		if (singleColumnFullHeight) {
 			return plasmoid.screenGeometry.height
 		} else if (singleColumn) {
-			var h = 400 // showAgenda || showCalendar
+			var h = bottomRowHeight // showAgenda || showCalendar
 			if (showMeteogram) {
-				h += 10 + 100
+				h += spacing + topRowHeight
 			}
 			if (showTimer) {
-				h += 10 + 100
+				h += spacing + topRowHeight
 			}
-			return h * units.devicePixelRatio + padding * 2
+			return h + padding * 2
 		} else { // twoColumns
-			var h = 400 // showAgenda || showCalendar
+			var h = bottomRowHeight // showAgenda || showCalendar
 			if (showMeteogram || showTimer) {
-				h += 10 + 100
+				h += spacing + topRowHeight
 			}
-			return h * units.devicePixelRatio + padding * 2
+			return h + padding * 2
 		}
 	}
-	// Layout.maximumHeight: plasmoid.screenGeometry.height
 
 	property var eventModel
 	property var agendaModel
