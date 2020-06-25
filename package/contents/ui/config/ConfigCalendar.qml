@@ -11,6 +11,7 @@ ConfigPage {
 	property alias cfg_widget_show_calendar: widget_show_calendar.checked
 	property alias cfg_month_show_border: month_show_border.checked
 	property alias cfg_month_show_weeknumbers: month_show_weeknumbers.checked
+	property alias cfg_monthHighlightCurrentDayWeek: monthHighlightCurrentDayWeek.checked
 	property string cfg_month_eventbadge_type: 'bottomBar'
 	property string cfg_month_today_style: 'theme'
 
@@ -55,6 +56,10 @@ ConfigPage {
 		CheckBox {
 			id: month_show_weeknumbers
 			text: i18n("Show Week Numbers")
+		}
+		CheckBox {
+			id: monthHighlightCurrentDayWeek
+			text: i18n("Highlight Current Day / Week")
 		}
 		RowLayout {
 			Label {

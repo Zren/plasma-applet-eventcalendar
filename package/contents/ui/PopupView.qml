@@ -337,6 +337,7 @@ MouseArea {
 			visible: showCalendar
 			borderOpacity: plasmoid.configuration.month_show_border ? 0.25 : 0
 			showWeekNumbers: plasmoid.configuration.month_show_weeknumbers
+			highlightCurrentDayWeek: plasmoid.configuration.monthHighlightCurrentDayWeek
 
 			Layout.preferredWidth: parent.width/2
 			Layout.fillWidth: true

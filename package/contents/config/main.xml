@@ -121,6 +121,9 @@
 			<!-- Enum: -1 = Locale default, 0=Sunday, 1=Monday, ..., 6=Saturday -->
 			<default>-1</default>
 		</entry>
+		<entry name="monthHighlightCurrentDayWeek" type="bool">
+			<default>true</default>
+		</entry>
 	</group>
 
 	<group name="Agenda">
