@@ -177,11 +177,6 @@ MouseArea {
 				anchors.top: widgetGrid.top
 				anchors.left: widgetGrid.left
 			}
-			AnchorChanges { target: agendaView
-				anchors.top: widgetGrid.top
-				anchors.right: widgetGrid.right
-				anchors.bottom: widgetGrid.bottom
-			}
 			AnchorChanges { target: monthView
 				anchors.top: timerView.bottom
 				anchors.left: widgetGrid.left
@@ -189,6 +184,11 @@ MouseArea {
 			}
 			PropertyChanges { target: monthView
 				anchors.topMargin: widgetGrid.rowSpacing
+			}
+			AnchorChanges { target: agendaView
+				anchors.top: widgetGrid.top
+				anchors.right: widgetGrid.right
+				anchors.bottom: widgetGrid.bottom
 			}
 		},
 		State {
@@ -213,14 +213,14 @@ MouseArea {
 			PropertyChanges { target: timerView
 				Layout.maximumHeight: popup.topRowHeight
 			}
-			PropertyChanges { target: agendaView
-				// Layout.minimumHeight: popup.bottomRowHeight
-				Layout.preferredHeight: popup.bottomRowHeight
-			}
 			PropertyChanges { target: monthView
 				Layout.minimumHeight: popup.singleColumnMonthViewHeight
 				Layout.preferredHeight: popup.singleColumnMonthViewHeight
 				Layout.maximumHeight: popup.singleColumnMonthViewHeight
+			}
+			PropertyChanges { target: agendaView
+				// Layout.minimumHeight: popup.bottomRowHeight
+				Layout.preferredHeight: popup.bottomRowHeight
 			}
 		},
 		// State {
@@ -238,16 +238,16 @@ MouseArea {
 		// 		Layout.maximumHeight: popup.topRowHeight
 		// 		Layout.row: 0
 		// 	}
-		// 	PropertyChanges { target: agendaView
-		// 		Layout.preferredHeight: popup.bottomRowHeight
-		// 		Layout.fillHeight: true
-		// 		Layout.row: 2
-		// 	}
 		// 	PropertyChanges { target: monthView
 		// 		Layout.minimumHeight: popup.bottomRowHeight
 		// 		Layout.preferredHeight: popup.bottomRowHeight
 		// 		Layout.maximumHeight: popup.bottomRowHeight
 		// 		Layout.row: 1
+		// 	}
+		// 	PropertyChanges { target: agendaView
+		// 		Layout.preferredHeight: popup.bottomRowHeight
+		// 		Layout.fillHeight: true
+		// 		Layout.row: 2
 		// 	}
 		// },
 		State {
