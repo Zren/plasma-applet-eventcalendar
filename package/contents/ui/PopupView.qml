@@ -208,7 +208,7 @@ MouseArea {
 				columns: 1
 			}
 			PropertyChanges { target: meteogramView
-				Layout.maximumHeight: popup.topRowHeight * 1.5 // 150%
+				Layout.maximumHeight: popup.topRowHeight
 			}
 			PropertyChanges { target: timerView
 				Layout.maximumHeight: popup.topRowHeight
