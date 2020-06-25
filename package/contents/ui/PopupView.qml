@@ -295,7 +295,8 @@ MouseArea {
 			Rectangle {
 				id: meteogramMessageBox
 				anchors.fill: parent
-				anchors.margins: 10
+				anchors.margins: units.smallSpacing
+				anchors.onMarginsChanged: console.log('meteogramMessageBox', meteogramMessageBox.anchors.margins)
 				color: "transparent"
 				border.color: theme.buttonBackgroundColor
 				border.width: 1
