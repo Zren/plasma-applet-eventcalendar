@@ -175,16 +175,16 @@ MouseArea {
 			}
 			AnchorChanges { target: timerView
 				anchors.top: widgetGrid.top
-				anchors.right: widgetGrid.right
+				anchors.left: widgetGrid.left
 			}
 			AnchorChanges { target: agendaView
 				anchors.top: widgetGrid.top
-				anchors.left: widgetGrid.left
+				anchors.right: widgetGrid.right
 				anchors.bottom: widgetGrid.bottom
 			}
 			AnchorChanges { target: monthView
 				anchors.top: timerView.bottom
-				anchors.right: widgetGrid.right
+				anchors.left: widgetGrid.left
 				anchors.bottom: widgetGrid.bottom
 			}
 			PropertyChanges { target: monthView
