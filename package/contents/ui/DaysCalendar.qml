@@ -64,9 +64,14 @@ Item {
 	property alias title: heading.text
 
 	// Take the calendar width, subtract the inner and outer spacings and divide by number of columns (==days in week)
-	readonly property int cellWidth: Math.floor((stack.width - (daysCalendar.columns + 1) * root.borderWidth) / (daysCalendar.columns + (showWeekNumbers ? 1 : 0)))
+	readonly property int _cellWidth: Math.floor((stack.width - (daysCalendar.columns + 1) * root.borderWidth) / (daysCalendar.columns + (showWeekNumbers ? 1 : 0)))
 	// Take the calendar height, subtract the inner spacings and divide by number of rows (root.weeks + one row for day names)
-	readonly property int cellHeight:  Math.floor((stack.height - heading.height - calendarGrid.rows * root.borderWidth) / calendarGrid.rows)
+	readonly property int _cellHeight:  Math.floor((stack.height - heading.height - calendarGrid.rows * root.borderWidth) / calendarGrid.rows)
+
+	// Make sure cells are square
+	readonly property int cellSize:  Math.min(_cellWidth, _cellHeight)
+	readonly property int cellWidth: cellSize
+	readonly property int cellHeight: cellSize
 
 	property real transformScale: 1
 	property point transformOrigin: Qt.point(width / 2, height / 2)
@@ -93,12 +98,13 @@ Item {
 	}
 
 	RowLayout {
+		id: headingLayout
 		anchors {
 			top: parent.top
-			left: parent.left
-			right: parent.right
+			horizontalCenter: parent.horizontalCenter
 		}
 		spacing: units.smallSpacing
+		width: canvas.width
 
 		PlasmaExtras.Heading {
 			id: heading
@@ -178,13 +184,25 @@ Item {
 		}
 	}
 
+	onWidthChanged: {
+		console.log(daysCalendar, daysCalendar.width, daysCalendar.height)
+		console.log('    canvas', canvas.width, canvas.height)
+	}
+
 	// Paints the inner grid and the outer frame
 	Canvas {
 		id: canvas
 
+		Rectangle {
+			anchors.fill: parent
+			color: "transparent"
+			border.width: 1
+			border.color: "#f00"
+		}
+
 		anchors {
 			horizontalCenter: parent.horizontalCenter
-			bottom: parent.bottom
+			top: headingLayout.bottom
 		}
 		width: (daysCalendar.cellWidth + root.borderWidth) * gridColumns + root.borderWidth
 		height: (daysCalendar.cellHeight + root.borderWidth) * calendarGrid.rows + root.borderWidth
@@ -328,7 +346,7 @@ Item {
 		anchors {
 			right: canvas.right
 			rightMargin: root.borderWidth
-			bottom: parent.bottom
+			bottom: canvas.bottom
 			bottomMargin: root.borderWidth
 		}
 
