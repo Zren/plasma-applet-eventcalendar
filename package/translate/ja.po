@@ -1,14 +1,14 @@
 # Translation of eventcalendar in ja
 # Copyright (C) 2020
 # This file is distributed under the same license as the eventcalendar package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+# yamato kobayashi <Kb_yamato@protonmail.com>, 2020.
 #
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: eventcalendar \n"
 "Report-Msgid-Bugs-To: https://github.com/Zren/plasma-applet-eventcalendar\n"
-"POT-Creation-Date: 2020-06-24 03:10+0900\n"
+"POT-Creation-Date: 2020-06-24 04:41+0900\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: yamato kobayashi <Kb_yamato@protonmail.com>\n"
 "Language-Team: \n"
@@ -40,11 +40,11 @@ msgstr "イベント"
 
 #: ../contents/config/config.qml ../contents/ui/config/ConfigEvents.qml
 msgid "ICalendar (.ics)"
-msgstr ""
+msgstr "ICalendar (.ics)"
 
 #: ../contents/config/config.qml ../contents/ui/config/ConfigEvents.qml
 msgid "Google Calendar"
-msgstr ""
+msgstr "Google Calendar"
 
 #: ../contents/config/config.qml
 msgid "Weather"
@@ -60,7 +60,7 @@ msgstr "1日"
 
 #: ../contents/ui/AgendaEventItem.qml
 msgid "Hangout"
-msgstr ""
+msgstr "Hangout"
 
 #: ../contents/ui/AgendaEventItem.qml
 msgid "Edit"
@@ -81,12 +81,12 @@ msgstr "ブラウザーで編集"
 #: ../contents/ui/AgendaListItem.qml
 msgctxt "agenda date format line 1"
 msgid "MMM d"
-msgstr ""
+msgstr "agenda date format line 1"
 
 #: ../contents/ui/AgendaListItem.qml
 msgctxt "agenda date format line 2"
 msgid "ddd"
-msgstr ""
+msgstr "agenda date format line 2"
 
 #: ../contents/ui/AgendaView.qml ../contents/ui/UpcomingEvents.qml
 msgid "Event Calendar"
@@ -95,11 +95,11 @@ msgstr "イベントカレンダー"
 #: ../contents/ui/DateTimeSelector.qml
 msgctxt "event editor date format"
 msgid "d MMM, yyyy"
-msgstr ""
+msgstr "event editor date format"
 
 #: ../contents/ui/DurationSelector.qml
 msgid "to"
-msgstr ""
+msgstr "to"
 
 #: ../contents/ui/EditEventForm.qml
 msgid "Event Title"
@@ -350,7 +350,7 @@ msgstr "イベントの概要"
 
 #: ../contents/ui/config/ConfigAgenda.qml
 msgid "Hide 'All Day' text"
-msgstr ""
+msgstr "'今日'を隠す"
 
 #: ../contents/ui/config/ConfigAgenda.qml
 msgid "Google Hangouts link"
@@ -533,7 +533,9 @@ msgstr "ウィジェット"
 
 #: ../contents/ui/config/ConfigGeneral.qml
 msgid "Show/Hide widgets above the calendar. Toggle Agenda/Calendar on their respective tabs."
-msgstr "カレンダー上にウィジェットを表示/非表示\n予定表/カレンダーの切り換え"
+msgstr ""
+"カレンダー上にウィジェットを表示/非表示\n"
+"予定表/カレンダーの切り換え"
 
 #: ../contents/ui/config/ConfigGeneral.qml
 msgid "Meteogram"
@@ -541,7 +543,7 @@ msgstr "天気予報マップ"
 
 #: ../contents/ui/config/ConfigGeneral.qml
 msgid "SFX:"
-msgstr "音響効果"
+msgstr "効果音"
 
 #: ../contents/ui/config/ConfigGeneral.qml
 msgid "Choose"
@@ -697,7 +699,7 @@ msgstr "ブラウズ"
 
 #: ../contents/ui/config/ConfigICal.qml
 msgid "iCalendar (*.ics)"
-msgstr ""
+msgstr "iCalendar (*.ics)"
 
 #: ../contents/ui/config/ConfigTimezones.qml
 msgid "Tooltip"
@@ -713,7 +715,7 @@ msgstr "データ"
 
 #: ../contents/ui/config/ConfigWeather.qml
 msgid "API App Id:"
-msgstr ""
+msgstr "API App Id:"
 
 #: ../contents/ui/config/ConfigWeather.qml
 msgid "City Id:"
@@ -741,17 +743,17 @@ msgstr "天気予報を毎回更新"
 
 #: ../contents/ui/config/ConfigWeather.qml
 msgid "Show next "
-msgstr "妻木を表示"
+msgstr "天気予報を"
 
 #: ../contents/ui/config/ConfigWeather.qml
 msgid " hours"
 msgid_plural " hours"
-msgstr[0] "時"
-msgstr[1] "時"
+msgstr[0] "時間"
+msgstr[1] "時間"
 
 #: ../contents/ui/config/ConfigWeather.qml
 msgid " in the meteogram."
-msgstr "天気予報"
+msgstr "分表示"
 
 #: ../contents/ui/config/ConfigWeather.qml
 msgid "Units:"
@@ -811,7 +813,7 @@ msgstr "名前"
 
 #: ../contents/ui/config/OpenWeatherMapCityDialog.qml ../contents/ui/config/WeatherCanadaCityDialog.qml
 msgid "Id"
-msgstr ""
+msgstr "Id"
 
 #: ../contents/ui/config/OpenWeatherMapCityDialog.qml ../contents/ui/config/WeatherCanadaCityDialog.qml
 msgid "City Webpage"
