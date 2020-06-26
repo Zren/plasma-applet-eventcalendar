@@ -1,4 +1,4 @@
-## v68 - June __ 2020
+## v68 - June 26 2020
 
 * Added Japanese translations by @ymadd (Pull Request #139)
 
