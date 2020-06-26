@@ -15,16 +15,16 @@ MouseArea {
 	property int padding: 0 // Assigned in main.qml
 	property int spacing: 10 * units.devicePixelRatio
 
-	property int topRowHeight: 100 * units.devicePixelRatio
-	property int bottomRowHeight: 400 * units.devicePixelRatio
+	property int topRowHeight: plasmoid.configuration.topRowHeight * units.devicePixelRatio
+	property int bottomRowHeight: plasmoid.configuration.bottomRowHeight * units.devicePixelRatio
 	property int singleColumnMonthViewHeight: plasmoid.configuration.monthHeightSingleColumn * units.devicePixelRatio
 
 	// DigitalClock LeftColumn minWidth: units.gridUnit * 22
 	// DigitalClock RightColumn minWidth: units.gridUnit * 14
 	// 14/(22+14) * 400 = 156
 	// rightColumnWidth=156 looks nice but is very thin for listing events + date + weather.
-	property int leftColumnWidth: 400 * units.devicePixelRatio // Meteogram + MonthView
-	property int rightColumnWidth: 400 * units.devicePixelRatio // TimerView + AgendaView
+	property int leftColumnWidth: plasmoid.configuration.leftColumnWidth * units.devicePixelRatio // Meteogram + MonthView
+	property int rightColumnWidth: plasmoid.configuration.rightColumnWidth * units.devicePixelRatio // TimerView + AgendaView
 
 	property bool singleColumn: !showAgenda || !showCalendar
 	property bool singleColumnFullHeight: !plasmoid.configuration.twoColumns && showAgenda && showCalendar

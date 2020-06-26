@@ -88,6 +88,18 @@
 		<entry name="showBackground" type="bool">
 			<default>true</default>
 		</entry>
+		<entry name="topRowHeight" type="uint">
+			<default>100</default>
+		</entry>
+		<entry name="bottomRowHeight" type="uint">
+			<default>400</default>
+		</entry>
+		<entry name="leftColumnWidth" type="uint">
+			<default>400</default>
+		</entry>
+		<entry name="rightColumnWidth" type="uint">
+			<default>400</default>
+		</entry>
 	</group>
 
 	<group name="Tooltip">

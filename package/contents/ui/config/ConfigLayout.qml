@@ -31,6 +31,7 @@ ConfigPage {
 
 		//--- Row1
 		ConfigDimension {
+			configKey: 'leftColumnWidth'
 			suffix: i18n("px")
 			orientation: Qt.Horizontal
 			Layout.column: 1
@@ -38,6 +39,7 @@ ConfigPage {
 		}
 
 		ConfigDimension {
+			configKey: 'rightColumnWidth'
 			suffix: i18n("px")
 			orientation: Qt.Horizontal
 			Layout.column: 2
@@ -46,6 +48,7 @@ ConfigPage {
 
 		//--- Row2
 		ConfigDimension {
+			configKey: 'topRowHeight'
 			suffix: i18n("px")
 			orientation: Qt.Vertical
 			Layout.column: 0
@@ -54,6 +57,7 @@ ConfigPage {
 
 		//--- Row3
 		ConfigDimension {
+			configKey: 'bottomRowHeight'
 			suffix: i18n("px")
 			orientation: Qt.Vertical
 			Layout.column: 0
@@ -105,6 +109,7 @@ ConfigPage {
 			Layout.row: 0
 		}
 		ConfigDimension {
+			configKey: 'leftColumnWidth'
 			suffix: i18n("px")
 			orientation: Qt.Horizontal
 			Layout.column: 1
