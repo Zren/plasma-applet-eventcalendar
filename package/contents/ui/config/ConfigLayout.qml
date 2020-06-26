@@ -78,6 +78,19 @@ ConfigPage {
 			Layout.fillWidth: true
 			Layout.fillHeight: true
 		}
+
+		//--- Row4: Bottom Panel
+		Rectangle {
+			color: "#888"
+			Layout.column: 1
+			Layout.row: 3
+			Layout.columnSpan: 2
+
+			implicitWidth: 300 * units.devicePixelRatio
+			implicitHeight: 32 * units.devicePixelRatio
+
+			Layout.fillWidth: true
+		}
 	}
 
 	//---
@@ -145,6 +158,19 @@ ConfigPage {
 
 			Layout.fillWidth: true
 			Layout.fillHeight: true
+		}
+
+		//--- Row4: Bottom Panel
+		Rectangle {
+			color: "#888"
+			Layout.column: 0
+			Layout.row: 3
+			Layout.columnSpan: 2
+
+			implicitWidth: 300 * units.devicePixelRatio
+			implicitHeight: 32 * units.devicePixelRatio
+
+			Layout.fillWidth: true
 		}
 	}
 }
