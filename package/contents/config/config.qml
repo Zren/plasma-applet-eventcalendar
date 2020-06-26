@@ -5,6 +5,11 @@ import org.kde.plasma.calendar 2.0 as PlasmaCalendar
 ConfigModel {
 	id: configModel
 
+	// ConfigCategory {
+	// 	name: i18n("Layout")
+	// 	icon: "grid-rectangular"
+	// 	source: "config/ConfigLayout.qml"
+	// }
 	ConfigCategory {
 		name: i18n("General")
 		icon: "clock"
