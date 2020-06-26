@@ -18,21 +18,27 @@ ConfigPage {
 	RadioButton {
 		text: i18n("Agenda to the left (Two Columns)")
 		exclusiveGroup: layoutGroup
-		enabled: plasmoid.configuration.widget_show_agenda
 		checked: plasmoid.configuration.twoColumns
 		onClicked: plasmoid.configuration.twoColumns = true
+		Layout.fillWidth: false
+		Layout.alignment: Qt.AlignHCenter
 	}
 	GridLayout {
+		Layout.fillWidth: false
+		Layout.alignment: Qt.AlignHCenter
+		Layout.preferredWidth: 400 * units.devicePixelRatio
 		columns: 3
 
 		//--- Row1
 		ConfigDimension {
+			suffix: i18n("px")
 			orientation: Qt.Horizontal
 			Layout.column: 1
 			Layout.row: 0
 		}
 
 		ConfigDimension {
+			suffix: i18n("px")
 			orientation: Qt.Horizontal
 			Layout.column: 2
 			Layout.row: 0
@@ -40,6 +46,7 @@ ConfigPage {
 
 		//--- Row2
 		ConfigDimension {
+			suffix: i18n("px")
 			orientation: Qt.Vertical
 			Layout.column: 0
 			Layout.row: 1
@@ -47,6 +54,7 @@ ConfigPage {
 
 		//--- Row3
 		ConfigDimension {
+			suffix: i18n("px")
 			orientation: Qt.Vertical
 			Layout.column: 0
 			Layout.row: 2
@@ -60,8 +68,8 @@ ConfigPage {
 			Layout.columnSpan: 2
 			Layout.rowSpan: 2
 
-			implicitWidth: 300
-			implicitHeight: 300
+			implicitWidth: 300 * units.devicePixelRatio
+			implicitHeight: 300 * units.devicePixelRatio
 
 			Layout.fillWidth: true
 			Layout.fillHeight: true
@@ -69,24 +77,35 @@ ConfigPage {
 	}
 
 	//---
+	Item {
+		implicitHeight: units.largeSpacing * 2
+	}
+
+	//---
 	RadioButton {
 		text: i18n("Agenda above the month (Single Column)")
 		exclusiveGroup: layoutGroup
-		enabled: plasmoid.configuration.widget_show_agenda
 		checked: !plasmoid.configuration.twoColumns
 		onClicked: plasmoid.configuration.twoColumns = false
+		Layout.fillWidth: false
+		Layout.alignment: Qt.AlignHCenter
 	}
 
 	GridLayout {
+		Layout.fillWidth: false
+		Layout.alignment: Qt.AlignHCenter
+		Layout.preferredWidth: 400 * units.devicePixelRatio
 		columns: 3
 
 		//--- Row1
 		Item {
-			implicitWidth: 200
+			implicitWidth: 150 * units.devicePixelRatio
+			Layout.fillWidth: true
 			Layout.column: 0
 			Layout.row: 0
 		}
 		ConfigDimension {
+			suffix: i18n("px")
 			orientation: Qt.Horizontal
 			Layout.column: 1
 			Layout.row: 0
@@ -94,6 +113,8 @@ ConfigPage {
 
 		//--- Row2
 		ConfigDimension {
+			configKey: 'monthHeightSingleColumn'
+			suffix: i18n("px")
 			orientation: Qt.Vertical
 			Layout.column: 2
 			Layout.row: 1
@@ -101,7 +122,7 @@ ConfigPage {
 
 		//--- Row3
 		Item {
-			implicitHeight: 200
+			implicitHeight: 150 * units.devicePixelRatio
 			Layout.column: 2
 			Layout.row: 2
 		}
@@ -114,8 +135,8 @@ ConfigPage {
 			Layout.columnSpan: 2
 			Layout.rowSpan: 2
 
-			implicitWidth: 300
-			implicitHeight: 300
+			implicitWidth: 300 * units.devicePixelRatio
+			implicitHeight: 300 * units.devicePixelRatio
 
 			Layout.fillWidth: true
 			Layout.fillHeight: true
