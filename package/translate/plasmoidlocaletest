@@ -1,5 +1,5 @@
 #!/bin/bash
-# Version 7
+# Version 8
 # Requires plasmoidviewer v5.13.0
 
 function checkIfLangInstalled {
@@ -48,6 +48,7 @@ declare -a langArr=(
 	"fr_CA:fr:French (Canada)"
 	"hr_HR:hr:Croatian (Croatia)"
 	"id_ID:id:Indonesian (Indonesia)"
+	"ja_JP:ja:Japanese (Japan)"
 	"ko_KR:ko:Korean (South Korea)"
 	"nl_NL:nl:Dutch (Netherlands)"
 	"pl_PL:pl:Polish (Poland)"
