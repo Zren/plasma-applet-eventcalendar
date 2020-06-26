@@ -2,6 +2,7 @@ import QtQuick 2.0
 import QtQuick.Controls 1.0
 import QtQuick.Layouts 1.0
 import org.kde.plasma.core 2.0 as PlasmaCore
+import QtGraphicalEffects 1.0 // Colorize
 
 import ".."
 import "../lib"
@@ -34,6 +35,7 @@ ConfigPage {
 			configKey: 'leftColumnWidth'
 			suffix: i18n("px")
 			orientation: Qt.Horizontal
+			lineColor: syspal.text
 			Layout.column: 1
 			Layout.row: 0
 		}
@@ -42,6 +44,7 @@ ConfigPage {
 			configKey: 'rightColumnWidth'
 			suffix: i18n("px")
 			orientation: Qt.Horizontal
+			lineColor: syspal.text
 			Layout.column: 2
 			Layout.row: 0
 		}
@@ -51,6 +54,7 @@ ConfigPage {
 			configKey: 'topRowHeight'
 			suffix: i18n("px")
 			orientation: Qt.Vertical
+			lineColor: syspal.text
 			Layout.column: 0
 			Layout.row: 1
 		}
@@ -60,13 +64,13 @@ ConfigPage {
 			configKey: 'bottomRowHeight'
 			suffix: i18n("px")
 			orientation: Qt.Vertical
+			lineColor: syspal.text
 			Layout.column: 0
 			Layout.row: 2
 		}
 
 		//--- Center
-		Rectangle {
-			color: "#f00"
+		Item {
 			Layout.column: 1
 			Layout.row: 1
 			Layout.columnSpan: 2
@@ -77,19 +81,21 @@ ConfigPage {
 
 			Layout.fillWidth: true
 			Layout.fillHeight: true
-		}
 
-		//--- Row4: Bottom Panel
-		Rectangle {
-			color: "#888"
-			Layout.column: 1
-			Layout.row: 3
-			Layout.columnSpan: 2
+			Image {
+				id: twoColumnsImage
+				anchors.fill: parent
+				source: plasmoid.file("", "images/twocolumns.svg")
+				smooth: true
+				visible: false
+			}
 
-			implicitWidth: 300 * units.devicePixelRatio
-			implicitHeight: 32 * units.devicePixelRatio
-
-			Layout.fillWidth: true
+			ColorOverlay {
+				anchors.fill: parent
+				source: twoColumnsImage
+				color: syspal.text
+				opacity: 0.8
+			}
 		}
 	}
 
@@ -125,6 +131,7 @@ ConfigPage {
 			configKey: 'leftColumnWidth'
 			suffix: i18n("px")
 			orientation: Qt.Horizontal
+			lineColor: syspal.text
 			Layout.column: 1
 			Layout.row: 0
 		}
@@ -134,6 +141,7 @@ ConfigPage {
 			configKey: 'monthHeightSingleColumn'
 			suffix: i18n("px")
 			orientation: Qt.Vertical
+			lineColor: syspal.text
 			Layout.column: 2
 			Layout.row: 1
 		}
@@ -146,8 +154,7 @@ ConfigPage {
 		}
 
 		//--- Center
-		Rectangle {
-			color: "#f00"
+		Item {
 			Layout.column: 0
 			Layout.row: 1
 			Layout.columnSpan: 2
@@ -158,19 +165,21 @@ ConfigPage {
 
 			Layout.fillWidth: true
 			Layout.fillHeight: true
-		}
 
-		//--- Row4: Bottom Panel
-		Rectangle {
-			color: "#888"
-			Layout.column: 0
-			Layout.row: 3
-			Layout.columnSpan: 2
+			Image {
+				id: singleColumnImage
+				anchors.fill: parent
+				source: plasmoid.file("", "images/singlecolumn.svg")
+				smooth: true
+				visible: false
+			}
 
-			implicitWidth: 300 * units.devicePixelRatio
-			implicitHeight: 32 * units.devicePixelRatio
-
-			Layout.fillWidth: true
+			ColorOverlay {
+				anchors.fill: parent
+				source: singleColumnImage
+				color: syspal.text
+				opacity: 0.8
+			}
 		}
 	}
 }
