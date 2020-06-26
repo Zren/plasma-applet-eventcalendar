@@ -38,15 +38,17 @@ GridLayout {
 				implicitWidth: configDimension.lineThickness
 				Layout.fillHeight: true
 			}
-			PropertyChanges { target: centerArea
+			PropertyChanges { target: lineSpanA
 				Layout.fillWidth: true
+				Layout.alignment: Qt.AlignVCenter
+				implicitHeight: configDimension.lineThickness
 			}
-			AnchorChanges { target: lineSpan
-				anchors.left: parent.left
-				anchors.right: parent.right
-				anchors.verticalCenter: parent.verticalCenter
+			PropertyChanges { target: configSpinBox
+				Layout.alignment: Qt.AlignVCenter
 			}
-			PropertyChanges { target: lineSpan
+			PropertyChanges { target: lineSpanB
+				Layout.fillWidth: true
+				Layout.alignment: Qt.AlignVCenter
 				implicitHeight: configDimension.lineThickness
 			}
 			PropertyChanges { target: lineB
@@ -66,15 +68,17 @@ GridLayout {
 				implicitHeight: configDimension.lineThickness
 				implicitWidth: configSpinBox.implicitHeight
 			}
-			PropertyChanges { target: centerArea
+			PropertyChanges { target: lineSpanA
 				Layout.fillHeight: true
+				Layout.alignment: Qt.AlignHCenter
+				implicitWidth: configDimension.lineThickness
 			}
-			AnchorChanges { target: lineSpan
-				anchors.top: parent.top
-				anchors.bottom: parent.bottom
-				anchors.horizontalCenter: parent.horizontalCenter
+			PropertyChanges { target: configSpinBox
+				Layout.alignment: Qt.AlignHCenter
 			}
-			PropertyChanges { target: lineSpan
+			PropertyChanges { target: lineSpanB
+				Layout.fillHeight: true
+				Layout.alignment: Qt.AlignHCenter
 				implicitWidth: configDimension.lineThickness
 			}
 			PropertyChanges { target: lineB
@@ -89,20 +93,16 @@ GridLayout {
 		id: lineA
 		color: configDimension.lineColor
 	}
-	Item {
-		id: centerArea
-		implicitWidth: configSpinBox.implicitWidth
-		implicitHeight: configSpinBox.implicitHeight
-
-		Rectangle {
-			id: lineSpan
-			color: configDimension.lineColor
-		}
-
-		ConfigSpinBox {
-			id: configSpinBox
-			anchors.centerIn: parent
-		}
+	Rectangle {
+		id: lineSpanA
+		color: configDimension.lineColor
+	}
+	ConfigSpinBox {
+		id: configSpinBox
+	}
+	Rectangle {
+		id: lineSpanB
+		color: configDimension.lineColor
 	}
 	Rectangle {
 		id: lineB
