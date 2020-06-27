@@ -1,7 +1,7 @@
 # Translation of eventcalendar in ja
 # Copyright (C) 2020
 # This file is distributed under the same license as the eventcalendar package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+# yamato kobayashi <Kb_yamato@protonmail.com>, 2020.
 #
 #, fuzzy
 msgid ""
@@ -44,11 +44,11 @@ msgstr "イベント"
 
 #: ../contents/config/config.qml ../contents/ui/config/ConfigEvents.qml
 msgid "ICalendar (.ics)"
-msgstr ""
+msgstr "ICalendar (.ics)"
 
 #: ../contents/config/config.qml ../contents/ui/config/ConfigEvents.qml
 msgid "Google Calendar"
-msgstr ""
+msgstr "Google Calendar"
 
 #: ../contents/config/config.qml
 msgid "Weather"
@@ -64,7 +64,7 @@ msgstr "1日"
 
 #: ../contents/ui/AgendaEventItem.qml
 msgid "Hangout"
-msgstr ""
+msgstr "Hangout"
 
 #: ../contents/ui/AgendaEventItem.qml
 msgid "Edit"
@@ -85,12 +85,12 @@ msgstr "ブラウザーで編集"
 #: ../contents/ui/AgendaListItem.qml
 msgctxt "agenda date format line 1"
 msgid "MMM d"
-msgstr ""
+msgstr "M月 d日"
 
 #: ../contents/ui/AgendaListItem.qml
 msgctxt "agenda date format line 2"
 msgid "ddd"
-msgstr ""
+msgstr "ddd曜日"
 
 #: ../contents/ui/AgendaView.qml ../contents/ui/UpcomingEvents.qml
 msgid "Event Calendar"
@@ -167,7 +167,7 @@ msgstr "イベントの概要"
 
 #: ../contents/ui/config/ConfigAgenda.qml
 msgid "Hide 'All Day' text"
-msgstr ""
+msgstr "'今日'を隠す"
 
 #: ../contents/ui/config/ConfigAgenda.qml
 msgid "Google Hangouts link"
@@ -203,7 +203,7 @@ msgstr "今月"
 
 #: ../contents/ui/config/ConfigAgenda.qml
 msgid "Always show next 14 days"
-msgstr "常に次の14日を表示する"
+msgstr "常に次の14日間を表示する"
 
 #: ../contents/ui/config/ConfigAgenda.qml
 msgid "Hide completed events"
@@ -259,7 +259,7 @@ msgstr ""
 
 #: ../contents/ui/config/ConfigCalendar.qml
 msgid "First day of week:"
-msgstr "週の最初の日"
+msgstr "週の最初の曜日"
 
 #: ../contents/ui/config/ConfigCalendar.qml ../contents/ui/config/ConfigGeneral.qml
 msgid "Default"
@@ -368,7 +368,7 @@ msgstr "タイマー"
 
 #: ../contents/ui/config/ConfigGeneral.qml
 msgid "SFX:"
-msgstr "音響効果"
+msgstr "効果音"
 
 #: ../contents/ui/config/ConfigGeneral.qml
 msgid "Choose"
@@ -528,7 +528,7 @@ msgstr "ブラウズ"
 
 #: ../contents/ui/config/ConfigICal.qml
 msgid "iCalendar (*.ics)"
-msgstr ""
+msgstr "iCalendar (*.ics)"
 
 #: ../contents/ui/config/ConfigLayout.qml
 msgid "Calendar to the left of the Agenda (Two Columns)"
@@ -552,7 +552,7 @@ msgstr "データ"
 
 #: ../contents/ui/config/ConfigWeather.qml
 msgid "API App Id:"
-msgstr ""
+msgstr "API App Id:"
 
 #: ../contents/ui/config/ConfigWeather.qml
 msgid "City Id:"
@@ -580,17 +580,17 @@ msgstr "天気予報を毎回更新"
 
 #: ../contents/ui/config/ConfigWeather.qml
 msgid "Show next "
-msgstr "妻木を表示"
+msgstr "天気予報を"
 
 #: ../contents/ui/config/ConfigWeather.qml
 msgid " hours"
 msgid_plural " hours"
-msgstr[0] "時"
-msgstr[1] "時"
+msgstr[0] "時間"
+msgstr[1] "時間"
 
 #: ../contents/ui/config/ConfigWeather.qml
 msgid " in the meteogram."
-msgstr "天気予報"
+msgstr "分表示"
 
 #: ../contents/ui/config/ConfigWeather.qml
 msgid "Units:"
@@ -650,7 +650,7 @@ msgstr "名前"
 
 #: ../contents/ui/config/OpenWeatherMapCityDialog.qml ../contents/ui/config/WeatherCanadaCityDialog.qml
 msgid "Id"
-msgstr ""
+msgstr "Id"
 
 #: ../contents/ui/config/OpenWeatherMapCityDialog.qml ../contents/ui/config/WeatherCanadaCityDialog.qml
 msgid "City Webpage"
@@ -663,11 +663,11 @@ msgstr "リンクを開く"
 #: ../contents/ui/DateTimeSelector.qml
 msgctxt "event editor date format"
 msgid "d MMM, yyyy"
-msgstr ""
+msgstr "M月 d日, yyyy"
 
 #: ../contents/ui/DurationSelector.qml
 msgid "to"
-msgstr ""
+msgstr "から"
 
 #: ../contents/ui/EditEventForm.qml
 msgid "Event Title"
@@ -700,27 +700,27 @@ msgstr "<b>バージョン:</b> %1"
 #: ../contents/ui/LocaleFuncs.js
 msgctxt "event time on the hour (24 hour clock)"
 msgid "h"
-msgstr "1時間のイベント (24 時間時計)"
+msgstr "1時間のイベント (24h)"
 
 #: ../contents/ui/LocaleFuncs.js
 msgctxt "event time (24 hour clock)"
 msgid "h:mm"
-msgstr "イベントタイム (24 時間時計)"
+msgstr "イベントタイム (24h)"
 
 #: ../contents/ui/LocaleFuncs.js
 msgctxt "event time on the hour (12 hour clock)"
 msgid "h AP"
-msgstr "1時間のイベント(12 時間時計)"
+msgstr "1時間のイベント(12h)"
 
 #: ../contents/ui/LocaleFuncs.js
 msgctxt "event time (12 hour clock)"
 msgid "h:mm AP"
-msgstr "イベントタイム (12 時間時計)"
+msgstr "イベントタイム (12h)"
 
 #: ../contents/ui/LocaleFuncs.js
 msgctxt "short month+date format"
 msgid "MMM d"
-msgstr ""
+msgstr "M月 d日"
 
 #: ../contents/ui/LocaleFuncs.js
 msgctxt "date (%1) with time (%2)"
@@ -748,7 +748,7 @@ msgstr ""
 #: ../contents/ui/MonthView.qml
 msgctxt "calendar title format for current month"
 msgid "MMMM d, yyyy"
-msgstr ""
+msgstr "M月 d日 yyyy"
 
 #: ../contents/ui/MonthView.qml
 msgctxt "calendar title format for other months of current year"
