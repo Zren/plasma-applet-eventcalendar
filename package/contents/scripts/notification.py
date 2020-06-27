@@ -12,7 +12,9 @@ from gi.repository import GLib, Notify
 
 # Plasma's Notification server doesn't support sounds,
 # the KNotify manually plays sounds instead. So we manually
-# play then with libcanberra in a subprocess.
+# play them with libcanberra. We can't use canberra-gtk-play since
+# it requires the gnome-session-canberra package in Ubuntu,
+# which is not installed by default.
 def playSound(args):
 	sfxCommand = [
 		"canberra-gtk-play",
