@@ -10,15 +10,8 @@ ConfigPage {
 	id: page
 
 	property bool cfg_agendaWeatherOnRight: false
-	property alias cfg_agenda_weather_show_icon: agenda_weather_show_icon.checked
 	property alias cfg_agenda_weather_icon_height: agenda_weather_icon_height.value
-	property alias cfg_agenda_weather_show_text: agenda_weather_show_text.checked
-	property alias cfg_agendaShowEventDescription: agendaShowEventDescription.checked
-	property alias cfg_agendaShowEventHangoutLink: agendaShowEventHangoutLink.checked
-	property alias cfg_agendaCondensedAllDayEvent: agendaCondensedAllDayEvent.checked
 	property bool cfg_agenda_breakup_multiday_events: false
-	property alias cfg_agenda_newevent_remember_calendar: agenda_newevent_remember_calendar.checked
-	property alias cfg_show_outlines: show_outlines.checked
 
 	property int indentWidth: 24 * units.devicePixelRatio
 
@@ -65,8 +58,8 @@ ConfigPage {
 
 	ConfigSection {
 		RowLayout {
-			CheckBox {
-				id: agenda_weather_show_icon
+			ConfigCheckBox {
+				configKey: 'agenda_weather_show_icon'
 				checked: true
 				text: i18n("Weather Icon")
 			}
@@ -84,14 +77,14 @@ ConfigPage {
 
 		RowLayout {
 			Text { width: indentWidth } // Indent
-			CheckBox {
-				id: show_outlines
+			ConfigCheckBox {
+				configKey: 'show_outlines'
 				text: i18n("Icon Outline")
 			}
 		}
 
-		CheckBox {
-			id: agenda_weather_show_text
+		ConfigCheckBox {
+			configKey: 'agenda_weather_show_text'
 			text: i18n("Weather Text")
 		}
 
@@ -141,16 +134,16 @@ ConfigPage {
 	}
 
 	ConfigSection {
-		CheckBox {
-			id: agendaShowEventDescription
+		ConfigCheckBox {
+			configKey: 'agendaShowEventDescription'
 			text: i18n("Event description")
 		}
-		CheckBox {
-			id: agendaCondensedAllDayEvent
+		ConfigCheckBox {
+			configKey: 'agendaCondensedAllDayEvent'
 			text: i18n("Hide 'All Day' text")
 		}
-		CheckBox {
-			id: agendaShowEventHangoutLink
+		ConfigCheckBox {
+			configKey: 'agendaShowEventHangoutLink'
 			text: i18n("Google Hangouts link")
 		}
 		LabeledRowLayout {
@@ -191,8 +184,8 @@ ConfigPage {
 	}
 
 	ConfigSection {
-		CheckBox {
-			id: agenda_newevent_remember_calendar
+		ConfigCheckBox {
+			configKey: 'agenda_newevent_remember_calendar'
 			text: i18n("Remember selected calendar in New Event Form")
 		}
 	}

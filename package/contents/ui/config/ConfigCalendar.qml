@@ -8,14 +8,11 @@ import "../lib"
 ConfigPage {
 	id: page
 
-	property alias cfg_month_show_border: month_show_border.checked
-	property alias cfg_month_show_weeknumbers: month_show_weeknumbers.checked
-	property alias cfg_monthHighlightCurrentDayWeek: monthHighlightCurrentDayWeek.checked
 	property string cfg_month_eventbadge_type: 'bottomBar'
 	property string cfg_month_today_style: 'theme'
 
 	ConfigCheckBox {
-		configKey: 'cfg_widget_show_calendar'
+		configKey: 'widget_show_calendar'
 		text: i18n("Show calendar")
 	}
 
@@ -47,16 +44,16 @@ ConfigPage {
 		text: i18n("Style")
 	}
 	ConfigSection {
-		CheckBox {
-			id: month_show_border
+		ConfigCheckBox {
+			configKey: 'month_show_border'
 			text: i18n("Show Borders")
 		}
-		CheckBox {
-			id: month_show_weeknumbers
+		ConfigCheckBox {
+			configKey: 'month_show_weeknumbers'
 			text: i18n("Show Week Numbers")
 		}
-		CheckBox {
-			id: monthHighlightCurrentDayWeek
+		ConfigCheckBox {
+			configKey: 'monthHighlightCurrentDayWeek'
 			text: i18n("Highlight Current Day / Week")
 		}
 		RowLayout {
