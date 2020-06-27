@@ -16,6 +16,11 @@ ConfigModel {
 	// 	source: "config/ConfigClock.qml"
 	// }
 	ConfigCategory {
+		name: i18n("Layout")
+		icon: "grid-rectangular"
+		source: "config/ConfigLayout.qml"
+	}
+	ConfigCategory {
 		name: i18n("Timezones")
 		icon: "preferences-system-time"
 		source: "config/ConfigTimezones.qml"

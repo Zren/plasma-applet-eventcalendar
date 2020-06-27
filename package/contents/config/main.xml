@@ -88,6 +88,18 @@
 		<entry name="showBackground" type="bool">
 			<default>true</default>
 		</entry>
+		<entry name="topRowHeight" type="uint">
+			<default>100</default>
+		</entry>
+		<entry name="bottomRowHeight" type="uint">
+			<default>400</default>
+		</entry>
+		<entry name="leftColumnWidth" type="uint">
+			<default>400</default>
+		</entry>
+		<entry name="rightColumnWidth" type="uint">
+			<default>400</default>
+		</entry>
 	</group>
 
 	<group name="Tooltip">
@@ -120,6 +132,12 @@
 		<entry name="firstDayOfWeek" type="int">
 			<!-- Enum: -1 = Locale default, 0=Sunday, 1=Monday, ..., 6=Saturday -->
 			<default>-1</default>
+		</entry>
+		<entry name="monthHighlightCurrentDayWeek" type="bool">
+			<default>true</default>
+		</entry>
+		<entry name="monthHeightSingleColumn" type="uint">
+			<default>300</default>
 		</entry>
 	</group>
 

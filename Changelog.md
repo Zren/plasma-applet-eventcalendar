@@ -1,10 +1,25 @@
-## v67 - June __ 2020
+## v69 - __ 2020
 
+* Swap Agenda and Calendar positions like Digital Clock will in Plasma 5.20. The Calendar appears above the Agenda when in single column mode.
+* The Calendar height in single column mode has been shrunk to 300px from 400px by default so there's more room for events. The 300px is configurable in the config if you dislike the rectangular cells in the Calendar.
+* The padding is now the size of the pin button when in 2 column mode when the meteogram + timer is hidden. The padding has been removed from single column mode except for the top to make room for the pin button.
+* Meteogram is no longer taller when in single column mode.
+* Now highlights current day + current week number. Can be turned off in the config.
+* New Layout tab for switching between two column and single column mode. Includes ability to resize the Calendar, Agenda, Meteogram and Timer in two column mode.
+
+## v68 - June 26 2020
+
+* Added Japanese translations by @ymadd (Pull Request #139)
+
+## v67 - June 23 2020
+
+* Fix event creation (Issue #137)
 * Workaround hardcoded top/bottom padding in clock text (Issue #6). Note that fixing this has made "Fixed Font Height" text larger so you will need to manually adjust it smaller after the update. Scale to fit now uses the same size as Digital Clock, where 1 line is 71% panel height, and 2 lines uses the entire height.
-* Add option to hide 'All Day' text in the agenda so all day events take up less vertical space.
+* Add option to hide 'All Day' text in the agenda so all day events take up less vertical space. Location is placed next to the summary if it is set.
 * Configurable spacing between days/events. Doubled day spacing to 20px.
 * Update ru translations by @aliger14 (Pull Request #124)
 * Update pt_BR translations by @herzenschein (Pull Request #125)
+* Update nl translations by @Vistaus (Pull Request #138)
 
 ## v66 - December 22 2019
 

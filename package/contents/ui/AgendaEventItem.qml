@@ -57,7 +57,13 @@ LinkRect {
 
 			PlasmaComponents.Label {
 				id: eventSummary
-				text: summary
+				text: {
+					if (isCondensed && model.location) {
+						return model.summary + " | " + model.location
+					} else {
+						return model.summary
+					}
+				}
 				color: eventItemInProgress ? inProgressColor : PlasmaCore.ColorScope.textColor
 				font.pointSize: -1
 				font.pixelSize: appletConfig.agendaFontSize
@@ -176,8 +182,18 @@ LinkRect {
 
 			PlasmaComponents.ToolButton {
 				id: eventHangoutLink
-				visible: plasmoid.configuration.agendaShowEventHangoutLink && !!model.hangoutLink
-				text: i18n("Hangout")
+				readonly property bool showProperty: plasmoid.configuration.agendaShowEventHangoutLink && !!model.hangoutLink
+				visible: showProperty && !editEventForm.visible
+				text: {
+					if (!!model.conferenceData
+						&& !!model.conferenceData.conferenceSolution
+						&& !!model.conferenceData.conferenceSolution.name
+					) {
+						return model.conferenceData.conferenceSolution.name
+					} else {
+						return i18n("Hangout")
+					}
+				}
 				iconSource: plasmoid.file("", "icons/hangouts.svg")
 				onClicked: Qt.openUrlExternally(model.hangoutLink)
 			}

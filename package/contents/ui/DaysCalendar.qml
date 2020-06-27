@@ -314,10 +314,13 @@ Item {
 				width: daysCalendar.cellWidth
 				horizontalAlignment: Text.AlignHCenter
 				verticalAlignment: Text.AlignVCenter
-				opacity: 0.4
-				text: modelData
-				font.pixelSize: Math.max(theme.smallestFont.pixelSize, Math.min(daysCalendar.cellHeight / 3, daysCalendar.cellWidth * 5/8))
 				font.pointSize: -1 // Ignore pixelSize warning
+				font.pixelSize: Math.max(theme.smallestFont.pixelSize, Math.min(daysCalendar.cellHeight / 3, daysCalendar.cellWidth * 5/8))
+				readonly property bool isCurrentWeek: modelData == calendarBackend.currentWeek()
+				readonly property bool showHighlight: isCurrentWeek && highlightCurrentDayWeek
+				color: showHighlight ? theme.highlightColor : theme.textColor
+				opacity: showHighlight ? 0.75 : 0.4
+				text: modelData
 			}
 		}
 	}
@@ -354,16 +357,18 @@ Item {
 			PlasmaComponents.Label {
 				width: daysCalendar.cellWidth
 				height: daysCalendar.cellHeight
-				text: Qt.locale().dayName((calendarBackend.firstDayOfWeek + index) % 7, Locale.ShortFormat)
+				font.pointSize: -1 // Ignore pixelSize warning
 				font.pixelSize: Math.max(theme.smallestFont.pixelSize, Math.min(daysCalendar.cellHeight / 3, daysCalendar.cellWidth * 5/8))
-				// This is to avoid the "Both point size and
-				// pixel size set. Using pixel size" warnings
-				font.pointSize: -1
-				opacity: 0.4
 				horizontalAlignment: Text.AlignHCenter
 				verticalAlignment: Text.AlignVCenter
 				elide: Text.ElideRight
 				fontSizeMode: Text.HorizontalFit
+				readonly property int currentDayIndex: (calendarBackend.firstDayOfWeek + index) % 7
+				readonly property bool isCurrentDay: root.today && root.today.getDay() == currentDayIndex
+				readonly property bool showHighlight: isCurrentDay && highlightCurrentDayWeek
+				color: showHighlight ? theme.highlightColor : theme.textColor
+				opacity: showHighlight ? 0.75 : 0.4
+				text: Qt.locale().dayName(currentDayIndex, Locale.ShortFormat)
 			}
 		}
 

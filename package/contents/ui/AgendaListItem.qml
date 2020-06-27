@@ -84,7 +84,7 @@ GridLayout {
 				color: agendaItemIsToday ? inProgressColor : PlasmaCore.ColorScope.textColor
 				opacity: agendaItemIsToday ? 1 : 0.75
 				font.weight: agendaItemIsToday ? inProgressFontWeight : Font.Normal
-				horizontalAlignment: Text.AlignHCenter
+				Layout.alignment: Qt.AlignHCenter
 			}
 
 			PlasmaComponents.Label {
@@ -94,7 +94,7 @@ GridLayout {
 				color: agendaItemIsToday ? inProgressColor : PlasmaCore.ColorScope.textColor
 				opacity: agendaItemIsToday ? 1 : 0.75
 				font.weight: agendaItemIsToday ? inProgressFontWeight : Font.Normal
-				horizontalAlignment: Text.AlignHCenter
+				Layout.alignment: Qt.AlignHCenter
 			}
 		}
 

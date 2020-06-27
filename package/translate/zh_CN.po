@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: eventcalendar\n"
 "Report-Msgid-Bugs-To: https://github.com/Zren/plasma-applet-eventcalendar\n"
-"POT-Creation-Date: 2020-06-12 18:07-0400\n"
+"POT-Creation-Date: 2020-06-26 21:00-0400\n"
 "PO-Revision-Date: 2019-04-17 16:43+0800\n"
 "Last-Translator: Core小睿 <i@coreja.com>\n"
 "Language-Team: \n"
@@ -21,6 +21,10 @@ msgstr ""
 #: ../contents/config/config.qml
 msgid "General"
 msgstr "常规"
+
+#: ../contents/config/config.qml
+msgid "Layout"
+msgstr ""
 
 #: ../contents/config/config.qml
 msgid "Timezones"
@@ -103,19 +107,12 @@ msgid "Show agenda"
 msgstr "显示日程"
 
 #: ../contents/ui/config/ConfigAgenda.qml
-msgid "Agenda above the month (Single Column)"
-msgstr "日程显示在日历上方（单列显示）"
-
-#: ../contents/ui/config/ConfigAgenda.qml
-msgid "Agenda to the left (Two Columns)"
-msgstr "日程显示在日历左侧（双列显示）"
-
-#: ../contents/ui/config/ConfigAgenda.qml
 msgid "Font Size:"
 msgstr "字体大小："
 
 #: ../contents/ui/config/ConfigAgenda.qml
 #: ../contents/ui/config/ConfigGeneral.qml
+#: ../contents/ui/config/ConfigLayout.qml
 msgid "px"
 msgstr "像素"
 
@@ -264,6 +261,10 @@ msgid "Show Week Numbers"
 msgstr "显示周数"
 
 #: ../contents/ui/config/ConfigCalendar.qml
+msgid "Highlight Current Day / Week"
+msgstr ""
+
+#: ../contents/ui/config/ConfigCalendar.qml
 msgid "First day of week:"
 msgstr "一周的第一天："
 
@@ -390,6 +391,10 @@ msgstr "时钟"
 #: ../contents/ui/config/ConfigGeneral.qml
 msgid "Time Format"
 msgstr "时间格式"
+
+#: ../contents/ui/config/ConfigGeneral.qml
+msgid "Time Format Documentation"
+msgstr ""
 
 #: ../contents/ui/config/ConfigGeneral.qml
 msgid ""
@@ -548,6 +553,14 @@ msgstr "浏览"
 
 #: ../contents/ui/config/ConfigICal.qml
 msgid "iCalendar (*.ics)"
+msgstr ""
+
+#: ../contents/ui/config/ConfigLayout.qml
+msgid "Calendar to the left of the Agenda (Two Columns)"
+msgstr ""
+
+#: ../contents/ui/config/ConfigLayout.qml
+msgid "Agenda below the Calendar (Single Column)"
 msgstr ""
 
 #: ../contents/ui/config/ConfigTimezones.qml
@@ -864,6 +877,12 @@ msgstr "正在进行的事件"
 #: ../contents/ui/UpcomingEvents.qml
 msgid "Upcoming Events"
 msgstr "即将到来的事件"
+
+#~ msgid "Agenda to the left (Two Columns)"
+#~ msgstr "日程显示在日历左侧（双列显示）"
+
+#~ msgid "Agenda above the month (Single Column)"
+#~ msgstr "日程显示在日历上方（单列显示）"
 
 #~ msgid "Event Description"
 #~ msgstr "事件描述"

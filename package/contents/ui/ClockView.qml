@@ -26,7 +26,7 @@ import org.kde.plasma.components 2.0 as PlasmaComponents
 Item {
 	id: clock
 
-	property int horizontalFixedLineHeight: 300 * units.devicePixelRatio
+	property int horizontalFixedLineWidth: 300 * units.devicePixelRatio
 	property int verticalFixedLineHeight: 24 * units.devicePixelRatio
 
 	property int targetHeight: verticalFixedLineHeight
@@ -222,9 +222,11 @@ Item {
 			when: plasmoid.formFactor == PlasmaCore.Types.Planar
 
 			PropertyChanges { target: clock
-				targetHeight: clock.verticalHeight
-				width: clock.horizontalFixedLineHeight
-				Layout.preferredWidth: clock.horizontalFixedLineHeight
+				targetHeight: clock.verticalFixedLineHeight
+				width: clock.horizontalFixedLineWidth
+				Layout.preferredWidth: clock.horizontalFixedLineWidth
+				height: clock.targetHeight
+				Layout.preferredHeight: clock.targetHeight
 			}
 			PropertyChanges { target: timeContainer1
 				width: clock.width

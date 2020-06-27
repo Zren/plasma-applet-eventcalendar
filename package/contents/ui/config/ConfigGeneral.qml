@@ -13,9 +13,6 @@ ConfigPage {
 	id: page
 	showAppletVersion: true
 
-	property alias cfg_widget_show_meteogram: widget_show_meteogram.checked
-	property alias cfg_widget_show_timer: widget_show_timer.checked
-	property alias cfg_timer_sfx_enabled: timer_sfx_enabled.checked
 	property alias cfg_timer_sfx_filepath: timer_sfx_filepath.text
 	property string cfg_clock_fontfamily: ""
 	property alias cfg_clock_timeformat: clock_timeformat.text
@@ -23,7 +20,6 @@ ConfigPage {
 	property string cfg_clock_mousewheel: "runcommand"
 	property alias cfg_clock_mousewheel_up: clock_mousewheel_up.text
 	property alias cfg_clock_mousewheel_down: clock_mousewheel_down.text
-	property alias cfg_showBackground: showBackground.checked
 
 	readonly property string localeTimeFormat: Qt.locale().timeFormat(Locale.ShortFormat)
 	readonly property string localeDateFormat: Qt.locale().dateFormat(Locale.ShortFormat)
@@ -90,33 +86,33 @@ ConfigPage {
 	}
 
 	ConfigSection {
-		CheckBox {
-			Layout.fillWidth: true
-			id: widget_show_meteogram
+		ConfigCheckBox {
+			configKey: 'widget_show_meteogram'
 			text: i18n("Meteogram")
 		}
 	}
 
 	ConfigSection {
-		CheckBox {
-			id: widget_show_timer
+		ConfigCheckBox {
+			configKey: 'widget_show_timer'
 			text: i18n("Timer")
 		}
 		RowLayout {
 			Text { width: indentWidth } // indent
-			CheckBox {
-				id: timer_sfx_enabled
+			ConfigCheckBox {
+				id: timerSfxEnabled
+				configKey: 'timer_sfx_enabled'
 				text: i18n("SFX:")
 			}
 			Button {
 				text: i18n("Choose")
 				onClicked: timer_sfx_filepathDialog.visible = true
-				enabled: cfg_timer_sfx_enabled
+				enabled: timerSfxEnabled.checked
 			}
 			TextField {
 				id: timer_sfx_filepath
 				Layout.fillWidth: true
-				enabled: cfg_timer_sfx_enabled
+				enabled: timerSfxEnabled.checked
 				placeholderText: "/usr/share/sounds/freedesktop/stereo/complete.oga"
 			}
 		}
@@ -132,7 +128,7 @@ ConfigPage {
 		}
 
 		LinkText {
-			text: '<a href="https://doc.qt.io/qt-5/qml-qtqml-qt.html#formatDateTime-method">Time Format Documentation</a>'
+			text: '<a href="https://doc.qt.io/qt-5/qml-qtqml-qt.html#formatDateTime-method">' + i18n("Time Format Documentation") + '</a>'
 		}
 
 		Label {
@@ -416,8 +412,8 @@ ConfigPage {
 		text: i18n("Misc")
 	}
 	ConfigSection {
-		CheckBox {
-			id: showBackground
+		ConfigCheckBox {
+			configKey: 'showBackground'
 			Layout.fillWidth: true
 			text: i18n("Desktop Widget: Show background")
 		}
@@ -427,14 +423,9 @@ ConfigPage {
 		text: i18n("Debugging")
 	}
 	ConfigSection {
-		CheckBox {
-			id: debugging
-			Layout.fillWidth: true
+		ConfigCheckBox {
+			configKey: 'debugging'
 			text: i18n("Enable Debugging\nThis will log sensitive information to ~/.xsession-errors")
-			checked: plasmoid.configuration.debugging
-			onClicked: {
-				plasmoid.configuration.debugging = !plasmoid.configuration.debugging
-			}
 		}
 	}
 }
