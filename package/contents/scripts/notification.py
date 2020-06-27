@@ -8,6 +8,28 @@ gi.require_version('GLib', '2.0')
 gi.require_version('Notify', '0.7')
 from gi.repository import GLib, Notify
 
+
+
+# Plasma's Notification server doesn't support sounds,
+# the KNotify manually plays sounds instead. So we manually
+# play then with libcanberra in a subprocess.
+def playSound(args):
+	sfxCommand = [
+		"canberra-gtk-play",
+		"--description", args.appName,
+	]
+
+	if args.sound.startswith('/'):
+		sfxCommand += ["--file", args.sound]
+	else:
+		sfxCommand += ["--id", args.sound]
+
+	if args.loop:
+		sfxCommand += ["--loop", args.loop]
+
+	sfxProc = subprocess.Popen(sfxCommand)
+
+
 def notify(args):
 	sfxProc = None
 
@@ -42,23 +64,7 @@ def notify(args):
 
 	#--- Sound
 	if args.sound:
-		# Plasma's Notification server doesn't support sounds,
-		# the KNotify manually plays sounds instead. So we manually
-		# play then with libcanberra in a subprocess.
-		sfxCommand = [
-			"canberra-gtk-play",
-			"--description", args.appName,
-		]
-
-		if args.sound.startswith('/'):
-			sfxCommand += ["--file", args.sound]
-		else:
-			sfxCommand += ["--id", args.sound]
-
-		if args.loop:
-			sfxCommand += ["--loop", args.loop]
-
-		sfxProc = subprocess.Popen(sfxCommand)
+		playSound(args)
 
 	loop.run()
 
