@@ -135,7 +135,7 @@ def notify(args):
 	)
 
 	def on_action(notification, action, *user_data):
-		print(action, *user_data) # Print to stdout
+		sys.stdout.write(' '.join([action, *user_data]) + '\n')
 		if sfxProc:
 			sfxProc.terminate()
 		loop.quit()
@@ -175,7 +175,7 @@ def main():
 	except KeyboardInterrupt:
 		pass
 	except Exception as e:
-		print(e)
+		sys.stderr.write('{}\n'.format(e))
 		parser.print_help()
 
 def test():
