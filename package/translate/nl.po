@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: eventcalendar\n"
 "Report-Msgid-Bugs-To: https://github.com/Zren/plasma-applet-eventcalendar\n"
-"POT-Creation-Date: 2020-06-12 18:07-0400\n"
+"POT-Creation-Date: 2020-06-26 21:00-0400\n"
 "PO-Revision-Date: 2020-06-23 14:14+0200\n"
 "Last-Translator: Heimen Stoffels <vistausss@outlook.com>\n"
 "Language-Team: Dutch <kde-i18n-doc@kde.org>\n"
@@ -21,6 +21,10 @@ msgstr ""
 #: ../contents/config/config.qml
 msgid "General"
 msgstr "Algemeen"
+
+#: ../contents/config/config.qml
+msgid "Layout"
+msgstr ""
 
 #: ../contents/config/config.qml
 msgid "Timezones"
@@ -103,19 +107,12 @@ msgid "Show agenda"
 msgstr "Agenda tonen"
 
 #: ../contents/ui/config/ConfigAgenda.qml
-msgid "Agenda above the month (Single Column)"
-msgstr "Agenda boven maand tonen (één kolom)"
-
-#: ../contents/ui/config/ConfigAgenda.qml
-msgid "Agenda to the left (Two Columns)"
-msgstr "Agenda links tonen (twee kolommen)"
-
-#: ../contents/ui/config/ConfigAgenda.qml
 msgid "Font Size:"
 msgstr "Lettergrootte:"
 
 #: ../contents/ui/config/ConfigAgenda.qml
 #: ../contents/ui/config/ConfigGeneral.qml
+#: ../contents/ui/config/ConfigLayout.qml
 msgid "px"
 msgstr "px"
 
@@ -264,6 +261,10 @@ msgid "Show Week Numbers"
 msgstr "Weeknummers tonen"
 
 #: ../contents/ui/config/ConfigCalendar.qml
+msgid "Highlight Current Day / Week"
+msgstr ""
+
+#: ../contents/ui/config/ConfigCalendar.qml
 msgid "First day of week:"
 msgstr "Eerste dag van de week:"
 
@@ -393,6 +394,10 @@ msgstr "Klok"
 #: ../contents/ui/config/ConfigGeneral.qml
 msgid "Time Format"
 msgstr "Tijdnotatie"
+
+#: ../contents/ui/config/ConfigGeneral.qml
+msgid "Time Format Documentation"
+msgstr ""
 
 #: ../contents/ui/config/ConfigGeneral.qml
 msgid ""
@@ -554,6 +559,14 @@ msgstr "Bladeren"
 #: ../contents/ui/config/ConfigICal.qml
 msgid "iCalendar (*.ics)"
 msgstr "iCalendar (*.ics)"
+
+#: ../contents/ui/config/ConfigLayout.qml
+msgid "Calendar to the left of the Agenda (Two Columns)"
+msgstr ""
+
+#: ../contents/ui/config/ConfigLayout.qml
+msgid "Agenda below the Calendar (Single Column)"
+msgstr ""
 
 #: ../contents/ui/config/ConfigTimezones.qml
 msgid "Tooltip"
@@ -870,6 +883,12 @@ msgstr "Lopende afspraken"
 #: ../contents/ui/UpcomingEvents.qml
 msgid "Upcoming Events"
 msgstr "Ingeplande afspraken"
+
+#~ msgid "Agenda to the left (Two Columns)"
+#~ msgstr "Agenda links tonen (twee kolommen)"
+
+#~ msgid "Agenda above the month (Single Column)"
+#~ msgstr "Agenda boven maand tonen (één kolom)"
 
 #~ msgid "Event Description"
 #~ msgstr "Omschrijving"

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: eventcalendar \n"
 "Report-Msgid-Bugs-To: https://github.com/Zren/plasma-applet-eventcalendar\n"
-"POT-Creation-Date: 2020-06-12 18:07-0400\n"
+"POT-Creation-Date: 2020-06-26 21:00-0400\n"
 "PO-Revision-Date: 2020-03-02 15:08-0300\n"
 "Last-Translator: Thiago Masato Costa Sueto <herzenschein@gmail.com>\n"
 "Language-Team: Portuguese <kde-i18n-pt_BR@kde.org>\n"
@@ -21,6 +21,10 @@ msgstr ""
 #: ../contents/config/config.qml
 msgid "General"
 msgstr "Geral"
+
+#: ../contents/config/config.qml
+msgid "Layout"
+msgstr ""
 
 #: ../contents/config/config.qml
 msgid "Timezones"
@@ -103,19 +107,12 @@ msgid "Show agenda"
 msgstr "Exibir agenda"
 
 #: ../contents/ui/config/ConfigAgenda.qml
-msgid "Agenda above the month (Single Column)"
-msgstr "Agenda do mês no topo (coluna única)"
-
-#: ../contents/ui/config/ConfigAgenda.qml
-msgid "Agenda to the left (Two Columns)"
-msgstr "Agenda do mês à esquerda (duas colunas)"
-
-#: ../contents/ui/config/ConfigAgenda.qml
 msgid "Font Size:"
 msgstr "Tamanho da fonte:"
 
 #: ../contents/ui/config/ConfigAgenda.qml
 #: ../contents/ui/config/ConfigGeneral.qml
+#: ../contents/ui/config/ConfigLayout.qml
 msgid "px"
 msgstr "px"
 
@@ -264,6 +261,10 @@ msgid "Show Week Numbers"
 msgstr "Mostrar número da semana"
 
 #: ../contents/ui/config/ConfigCalendar.qml
+msgid "Highlight Current Day / Week"
+msgstr ""
+
+#: ../contents/ui/config/ConfigCalendar.qml
 msgid "First day of week:"
 msgstr "Primeiro dia da semana:"
 
@@ -393,6 +394,10 @@ msgstr "Relógio"
 #: ../contents/ui/config/ConfigGeneral.qml
 msgid "Time Format"
 msgstr "Formato de hora"
+
+#: ../contents/ui/config/ConfigGeneral.qml
+msgid "Time Format Documentation"
+msgstr ""
 
 #: ../contents/ui/config/ConfigGeneral.qml
 msgid ""
@@ -555,6 +560,14 @@ msgstr "Navegar"
 #: ../contents/ui/config/ConfigICal.qml
 msgid "iCalendar (*.ics)"
 msgstr "iCalendar (*.ics)"
+
+#: ../contents/ui/config/ConfigLayout.qml
+msgid "Calendar to the left of the Agenda (Two Columns)"
+msgstr ""
+
+#: ../contents/ui/config/ConfigLayout.qml
+msgid "Agenda below the Calendar (Single Column)"
+msgstr ""
 
 #: ../contents/ui/config/ConfigTimezones.qml
 msgid "Tooltip"
@@ -872,6 +885,12 @@ msgstr "Eventos em andamento"
 #: ../contents/ui/UpcomingEvents.qml
 msgid "Upcoming Events"
 msgstr "Próximos eventos"
+
+#~ msgid "Agenda to the left (Two Columns)"
+#~ msgstr "Agenda do mês à esquerda (duas colunas)"
+
+#~ msgid "Agenda above the month (Single Column)"
+#~ msgstr "Agenda do mês no topo (coluna única)"
 
 #~ msgid "Edit description"
 #~ msgstr "Editar a descrição"

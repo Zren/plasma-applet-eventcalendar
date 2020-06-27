@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: eventcalendar \n"
 "Report-Msgid-Bugs-To: https://github.com/Zren/plasma-applet-eventcalendar\n"
-"POT-Creation-Date: 2020-06-12 18:07-0400\n"
+"POT-Creation-Date: 2020-06-26 21:00-0400\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: yamato kobayashi <Kb_yamato@protonmail.com>\n"
 "Language-Team: \n"
@@ -21,6 +21,10 @@ msgstr ""
 #: ../contents/config/config.qml
 msgid "General"
 msgstr "一般"
+
+#: ../contents/config/config.qml
+msgid "Layout"
+msgstr ""
 
 #: ../contents/config/config.qml
 msgid "Timezones"
@@ -102,18 +106,10 @@ msgid "Show agenda"
 msgstr "予定を表示"
 
 #: ../contents/ui/config/ConfigAgenda.qml
-msgid "Agenda above the month (Single Column)"
-msgstr "今月の予定 (一列で表示)"
-
-#: ../contents/ui/config/ConfigAgenda.qml
-msgid "Agenda to the left (Two Columns)"
-msgstr "今月の予定 (二列で表示)"
-
-#: ../contents/ui/config/ConfigAgenda.qml
 msgid "Font Size:"
 msgstr "フォントサイズ"
 
-#: ../contents/ui/config/ConfigAgenda.qml ../contents/ui/config/ConfigGeneral.qml
+#: ../contents/ui/config/ConfigAgenda.qml ../contents/ui/config/ConfigGeneral.qml ../contents/ui/config/ConfigLayout.qml
 msgid "px"
 msgstr ""
 
@@ -258,6 +254,10 @@ msgid "Show Week Numbers"
 msgstr "週を表示"
 
 #: ../contents/ui/config/ConfigCalendar.qml
+msgid "Highlight Current Day / Week"
+msgstr ""
+
+#: ../contents/ui/config/ConfigCalendar.qml
 msgid "First day of week:"
 msgstr "週の最初の日"
 
@@ -381,6 +381,10 @@ msgstr "時計"
 #: ../contents/ui/config/ConfigGeneral.qml
 msgid "Time Format"
 msgstr "時間形式"
+
+#: ../contents/ui/config/ConfigGeneral.qml
+msgid "Time Format Documentation"
+msgstr ""
 
 #: ../contents/ui/config/ConfigGeneral.qml
 msgid "The default font for the Breeze theme is Noto Sans which is hard to read with small text. Try using the Sans Serif font if you find the text too small when adding a second line."
@@ -524,6 +528,14 @@ msgstr "ブラウズ"
 
 #: ../contents/ui/config/ConfigICal.qml
 msgid "iCalendar (*.ics)"
+msgstr ""
+
+#: ../contents/ui/config/ConfigLayout.qml
+msgid "Calendar to the left of the Agenda (Two Columns)"
+msgstr ""
+
+#: ../contents/ui/config/ConfigLayout.qml
+msgid "Agenda below the Calendar (Single Column)"
 msgstr ""
 
 #: ../contents/ui/config/ConfigTimezones.qml
@@ -834,3 +846,9 @@ msgstr "イベントは実行中"
 #: ../contents/ui/UpcomingEvents.qml
 msgid "Upcoming Events"
 msgstr "今後のイベント"
+
+#~ msgid "Agenda to the left (Two Columns)"
+#~ msgstr "今月の予定 (二列で表示)"
+
+#~ msgid "Agenda above the month (Single Column)"
+#~ msgstr "今月の予定 (一列で表示)"

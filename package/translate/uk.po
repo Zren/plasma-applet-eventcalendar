@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: eventcalendar\n"
 "Report-Msgid-Bugs-To: https://github.com/Zren/plasma-applet-eventcalendar\n"
-"POT-Creation-Date: 2020-06-12 18:07-0400\n"
+"POT-Creation-Date: 2020-06-26 21:00-0400\n"
 "PO-Revision-Date: 2017-10-31 20:08+0200\n"
 "Last-Translator: Serhii Golovko <cappelikan@gmail.com>\n"
 "Language-Team: \n"
@@ -22,6 +22,10 @@ msgstr ""
 #: ../contents/config/config.qml
 msgid "General"
 msgstr "Загальний"
+
+#: ../contents/config/config.qml
+msgid "Layout"
+msgstr ""
 
 #: ../contents/config/config.qml
 msgid "Timezones"
@@ -104,19 +108,12 @@ msgid "Show agenda"
 msgstr "Показати порядок денний"
 
 #: ../contents/ui/config/ConfigAgenda.qml
-msgid "Agenda above the month (Single Column)"
-msgstr "Порядок денний над місяцем (Одинарна колонка)"
-
-#: ../contents/ui/config/ConfigAgenda.qml
-msgid "Agenda to the left (Two Columns)"
-msgstr "Порядок денного ліворуч (дві стовпці)"
-
-#: ../contents/ui/config/ConfigAgenda.qml
 msgid "Font Size:"
 msgstr ""
 
 #: ../contents/ui/config/ConfigAgenda.qml
 #: ../contents/ui/config/ConfigGeneral.qml
+#: ../contents/ui/config/ConfigLayout.qml
 msgid "px"
 msgstr "px"
 
@@ -265,6 +262,10 @@ msgid "Show Week Numbers"
 msgstr "Показати номери тижня"
 
 #: ../contents/ui/config/ConfigCalendar.qml
+msgid "Highlight Current Day / Week"
+msgstr ""
+
+#: ../contents/ui/config/ConfigCalendar.qml
 msgid "First day of week:"
 msgstr ""
 
@@ -395,6 +396,10 @@ msgstr "Годинник"
 #: ../contents/ui/config/ConfigGeneral.qml
 msgid "Time Format"
 msgstr "Формат часу"
+
+#: ../contents/ui/config/ConfigGeneral.qml
+msgid "Time Format Documentation"
+msgstr ""
 
 #: ../contents/ui/config/ConfigGeneral.qml
 msgid ""
@@ -552,6 +557,14 @@ msgstr "Перегляд"
 
 #: ../contents/ui/config/ConfigICal.qml
 msgid "iCalendar (*.ics)"
+msgstr ""
+
+#: ../contents/ui/config/ConfigLayout.qml
+msgid "Calendar to the left of the Agenda (Two Columns)"
+msgstr ""
+
+#: ../contents/ui/config/ConfigLayout.qml
+msgid "Agenda below the Calendar (Single Column)"
 msgstr ""
 
 #: ../contents/ui/config/ConfigTimezones.qml
@@ -870,6 +883,12 @@ msgstr "Події в процесі"
 #: ../contents/ui/UpcomingEvents.qml
 msgid "Upcoming Events"
 msgstr "Майбутні події"
+
+#~ msgid "Agenda to the left (Two Columns)"
+#~ msgstr "Порядок денного ліворуч (дві стовпці)"
+
+#~ msgid "Agenda above the month (Single Column)"
+#~ msgstr "Порядок денний над місяцем (Одинарна колонка)"
 
 #~ msgid "Edit description"
 #~ msgstr "Редагувати опис"
