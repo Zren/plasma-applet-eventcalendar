@@ -85,12 +85,12 @@ msgstr "ブラウザーで編集"
 #: ../contents/ui/AgendaListItem.qml
 msgctxt "agenda date format line 1"
 msgid "MMM d"
-msgstr "agenda date format line 1"
+msgstr "M月 d日"
 
 #: ../contents/ui/AgendaListItem.qml
 msgctxt "agenda date format line 2"
 msgid "ddd"
-msgstr "agenda date format line 2"
+msgstr "ddd曜日"
 
 #: ../contents/ui/AgendaView.qml ../contents/ui/UpcomingEvents.qml
 msgid "Event Calendar"
@@ -203,7 +203,7 @@ msgstr "今月"
 
 #: ../contents/ui/config/ConfigAgenda.qml
 msgid "Always show next 14 days"
-msgstr "常に次の14日を表示する"
+msgstr "常に次の14日間を表示する"
 
 #: ../contents/ui/config/ConfigAgenda.qml
 msgid "Hide completed events"
@@ -259,7 +259,7 @@ msgstr ""
 
 #: ../contents/ui/config/ConfigCalendar.qml
 msgid "First day of week:"
-msgstr "週の最初の日"
+msgstr "週の最初の曜日"
 
 #: ../contents/ui/config/ConfigCalendar.qml ../contents/ui/config/ConfigGeneral.qml
 msgid "Default"
@@ -663,11 +663,11 @@ msgstr "リンクを開く"
 #: ../contents/ui/DateTimeSelector.qml
 msgctxt "event editor date format"
 msgid "d MMM, yyyy"
-msgstr ""
+msgstr "M月 d日, yyyy"
 
 #: ../contents/ui/DurationSelector.qml
 msgid "to"
-msgstr ""
+msgstr "から"
 
 #: ../contents/ui/EditEventForm.qml
 msgid "Event Title"
@@ -700,27 +700,27 @@ msgstr "<b>バージョン:</b> %1"
 #: ../contents/ui/LocaleFuncs.js
 msgctxt "event time on the hour (24 hour clock)"
 msgid "h"
-msgstr "1時間のイベント (24 時間時計)"
+msgstr "1時間のイベント (24h)"
 
 #: ../contents/ui/LocaleFuncs.js
 msgctxt "event time (24 hour clock)"
 msgid "h:mm"
-msgstr "イベントタイム (24 時間時計)"
+msgstr "イベントタイム (24h)"
 
 #: ../contents/ui/LocaleFuncs.js
 msgctxt "event time on the hour (12 hour clock)"
 msgid "h AP"
-msgstr "1時間のイベント(12 時間時計)"
+msgstr "1時間のイベント(12h)"
 
 #: ../contents/ui/LocaleFuncs.js
 msgctxt "event time (12 hour clock)"
 msgid "h:mm AP"
-msgstr "イベントタイム (12 時間時計)"
+msgstr "イベントタイム (12h)"
 
 #: ../contents/ui/LocaleFuncs.js
 msgctxt "short month+date format"
 msgid "MMM d"
-msgstr ""
+msgstr "M月 d日"
 
 #: ../contents/ui/LocaleFuncs.js
 msgctxt "date (%1) with time (%2)"
@@ -748,7 +748,7 @@ msgstr ""
 #: ../contents/ui/MonthView.qml
 msgctxt "calendar title format for current month"
 msgid "MMMM d, yyyy"
-msgstr ""
+msgstr "M月 d日 yyyy"
 
 #: ../contents/ui/MonthView.qml
 msgctxt "calendar title format for other months of current year"
