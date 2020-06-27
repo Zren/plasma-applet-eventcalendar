@@ -21,33 +21,6 @@ ConfigPage {
 	}
 
 	ConfigSection {
-		ExclusiveGroup { id: layoutGroup }
-		RadioButton {
-			text: i18n("Agenda to the left (Two Columns)")
-			exclusiveGroup: layoutGroup
-			enabled: plasmoid.configuration.widget_show_agenda
-			checked: plasmoid.configuration.twoColumns
-			onClicked: plasmoid.configuration.twoColumns = true
-		}
-		RadioButton {
-			text: i18n("Agenda above the month (Single Column)")
-			exclusiveGroup: layoutGroup
-			enabled: plasmoid.configuration.widget_show_agenda
-			checked: !plasmoid.configuration.twoColumns
-			onClicked: plasmoid.configuration.twoColumns = false
-		}
-		RowLayout {
-			Text { width: indentWidth } // indent
-			ConfigSpinBox {
-				enabled: plasmoid.configuration.widget_show_agenda && !plasmoid.configuration.twoColumns
-				configKey: 'monthHeightSingleColumn'
-				before: i18n("Calendar Height:")
-				suffix: i18n("px")
-			}
-		}
-	}
-
-	ConfigSection {
 		ConfigSpinBox {
 			configKey: 'agenda_fontSize'
 			before: i18n("Font Size:")

@@ -17,7 +17,7 @@ ConfigPage {
 	//---
 	ExclusiveGroup { id: layoutGroup }
 	RadioButton {
-		text: i18n("Agenda to the left (Two Columns)")
+		text: i18n("Calendar to the left of the Agenda (Two Columns)")
 		exclusiveGroup: layoutGroup
 		checked: plasmoid.configuration.twoColumns
 		onClicked: plasmoid.configuration.twoColumns = true
@@ -106,7 +106,7 @@ ConfigPage {
 
 	//---
 	RadioButton {
-		text: i18n("Agenda above the month (Single Column)")
+		text: i18n("Agenda below the Calendar (Single Column)")
 		exclusiveGroup: layoutGroup
 		checked: !plasmoid.configuration.twoColumns
 		onClicked: plasmoid.configuration.twoColumns = false
