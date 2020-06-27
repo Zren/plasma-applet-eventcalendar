@@ -83,8 +83,22 @@ def main():
 		print(e)
 		parser.print_help()
 
+def test():
+	notify(argparse.Namespace(
+		summary='Summary',
+		message='Message',
+		icon='plasma',
+		appName='Plasma',
+		sound='complete',
+		loop=False,
+		actions=[
+			'ok,Ok',
+			'cancel,Cancel',
+		],
+	))
 
 if __name__ == '__main__':
 	main()
+	# test()
 
 
