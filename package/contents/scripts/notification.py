@@ -9,13 +9,12 @@ gi.require_version('Notify', '0.7')
 from gi.repository import GLib, Notify
 
 def notify(args):
-	appName = "Event Calendar"
 	sfxProc = None
 
 	#--- Notification
 	# https://notify2.readthedocs.io/en/latest/
 	loop = GLib.MainLoop()
-	Notify.init(appName)
+	Notify.init(args.appName)
 	# print(Notify.get_server_caps())
 
 	n = Notify.Notification.new(
@@ -48,7 +47,7 @@ def notify(args):
 		# play then with libcanberra in a subprocess.
 		sfxCommand = [
 			"canberra-gtk-play",
-			"--description", appName,
+			"--description", args.appName,
 		]
 
 		if args.sound.startswith('/'):
