@@ -132,7 +132,7 @@ ConfigPage {
 		}
 
 		LinkText {
-			text: '<a href="https://doc.qt.io/qt-5/qml-qtqml-qt.html#formatDateTime-method">Time Format Documentation</a>'
+			text: '<a href="https://doc.qt.io/qt-5/qml-qtqml-qt.html#formatDateTime-method">' + i18n("Time Format Documentation") + '</a>'
 		}
 
 		Label {
