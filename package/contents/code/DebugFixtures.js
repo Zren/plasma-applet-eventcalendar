@@ -103,14 +103,41 @@ function getEventData() {
 
 	// Hangouts Link
 	var testHangoutLink = "https://hangouts.google.com/hangouts/_/calendar/abcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnop38.abcdefghijklmnopqrstuvwx26"
-	
 	event = addAllDayTestEvent("Hangout Link Test", 5, 6)
 	event.hangoutLink = testHangoutLink
 
-	var event = addAllDayTestEvent("Description + Hangout Test", 5, 6)
+	// Hangouts + Description
+	event = addAllDayTestEvent("Description + Hangout Test", 5, 6)
 	event.description = "Short description."
 	event.hangoutLink = testHangoutLink
 
+	// Google Meet / Conference
+	var googleMeetId = "abc-efgh-ijk"
+	var googleMeetLabel = "meet.google.com/" + googleMeetId
+	var googleMeetUri = "https://" + googleMeetLabel
+	event = addAllDayTestEvent("Google Meet Test", 5, 6)
+	event.hangoutLink = googleMeetUri
+	event.conferenceData = {
+		entryPoints: [
+			{
+				entryPointType: "video",
+				uri: googleMeetUri,
+				label: googleMeetLabel,
+			},
+		],
+		conferenceSolution: {
+			key: {
+				type: "hangoutsMeet",
+			},
+			name: "Google Meet",
+			iconUri: "https://lh5.googleusercontent.com/proxy/abcdef...",
+		},
+		conferenceId: googleMeetId,
+		signature: "abcdef...",
+	}
+
+	// Add 30 days before and after today.
+	// Tests stripping events outside selected range.
 	for (var i = -30; i <= 30; i++) {
 		addAllDayTestEvent("Day " + i, i, i+1)
 	}
