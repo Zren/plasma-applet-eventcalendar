@@ -210,7 +210,7 @@ LinkRect {
 			console.log("calendar", JSON.stringify(calendar, null, '\t'))
 			upcomingEvents.sendEventStartingNotification(model)
 		} else {
-			// cfg_agenda_event_clicked == "browser_viewevent"
+			// agenda_event_clicked == "browser_viewevent"
 			Qt.openUrlExternally(htmlLink)
 		}
 	}

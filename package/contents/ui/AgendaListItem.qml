@@ -104,7 +104,7 @@ GridLayout {
 		onLeftClicked: {
 			// console.log('agendaItem.date.clicked', date)
 			if (true) {
-				// cfg_agenda_weather_clicked == "browser_viewcityforecast"
+				// agenda_weather_clicked == "browser_viewcityforecast"
 				WeatherApi.openCityUrl()
 			}
 		}
@@ -163,10 +163,10 @@ GridLayout {
 		onLeftClicked: {
 			// console.log('agendaItem.date.leftClicked', date)
 			if (false) {
-				// cfg_agenda_date_clicked == "browser_newevent"
+				// agenda_date_clicked == "browser_newevent"
 				Shared.openGoogleCalendarNewEventUrl(date)
 			} else if (true) {
-				// cfg_agenda_date_clicked == "agenda_newevent"
+				// agenda_date_clicked == "agenda_newevent"
 				newEventForm.active = !newEventForm.active
 			}
 		}

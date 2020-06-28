@@ -99,6 +99,7 @@ ConfigPage {
 
 		ConfigSection {
 			ConfigFontFamily {
+				id: clockFontFamily
 				configKey: 'clock_fontfamily'
 				before: i18n("Font:")
 			}
@@ -244,7 +245,7 @@ ConfigPage {
 				}
 				Button {
 					text: "Sans Serif"
-					onClicked: cfg_clock_fontfamily = "Sans Serif"
+					onClicked: clockFontFamily.selectValue("Sans Serif")
 				}
 			}
 
