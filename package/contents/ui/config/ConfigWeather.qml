@@ -143,33 +143,14 @@ ConfigPage {
 	}
 
 	ConfigSection {
-		LabeledRowLayout {
+		ConfigRadioButtonGroup {
+			configKey: 'weather_units'
 			label: i18n("Units:")
-			ExclusiveGroup { id: weather_unitsGroup }
-			RadioButton {
-				text: i18n("Celsius")
-				checked: cfg_weather_units == 'metric'
-				exclusiveGroup: weather_unitsGroup
-				onClicked: {
-					cfg_weather_units = 'metric'
-				}
-			}
-			RadioButton {
-				text: i18n("Fahrenheit")
-				checked: cfg_weather_units == 'imperial'
-				exclusiveGroup: weather_unitsGroup
-				onClicked: {
-					cfg_weather_units = 'imperial'
-				}
-			}
-			RadioButton {
-				text: i18n("Kelvin")
-				checked: cfg_weather_units == 'kelvin'
-				exclusiveGroup: weather_unitsGroup
-				onClicked: {
-					cfg_weather_units = 'kelvin'
-				}
-			}
+			model: [
+				{ value: 'metric', text: i18n("Celsius") },
+				{ value: 'imperial', text: i18n("Fahrenheit") },
+				{ value: 'kelvin', text: i18n("Kelvin") },
+			]
 		}
 	}
 

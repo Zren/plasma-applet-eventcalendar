@@ -55,46 +55,33 @@ ConfigPage {
 			text: i18n("Weather Text")
 		}
 
-		LabeledRowLayout {
+		ConfigRadioButtonGroup {
+			configKey: 'agendaWeatherOnRight'
 			label: i18n("Position:")
-			ExclusiveGroup { id: agendaWeatherOnRightGroup }
-			RadioButton {
-				text: i18n("Left")
-				exclusiveGroup: agendaWeatherOnRightGroup
-				checked: !plasmoid.configuration.agendaWeatherOnRight
-				onClicked: plasmoid.configuration.agendaWeatherOnRight = false
-			}
-			RadioButton {
-				text: i18n("Right")
-				exclusiveGroup: agendaWeatherOnRightGroup
-				checked: plasmoid.configuration.agendaWeatherOnRight
-				onClicked: plasmoid.configuration.agendaWeatherOnRight = true
-			}
+			model: [
+				{ value: false, text: i18n("Left") },
+				{ value: true, text: i18n("Right") },
+			]
 		}
 
-		LabeledRowLayout {
+		ConfigRadioButtonGroup {
 			label: i18n("Click Weather:")
-			ExclusiveGroup { id: agenda_weather_clickGroup }
 			RadioButton {
 				text: i18n("Open City Forecast In Browser")
-				exclusiveGroup: agenda_weather_clickGroup
 				checked: true
 			}
 		}
 	}
 
 	ConfigSection {
-		LabeledRowLayout {
+		ConfigRadioButtonGroup {
 			label: i18n("Click Date:")
-			ExclusiveGroup { id: agenda_date_clickGroup }
 			RadioButton {
 				text: i18n("Open New Event In Browser")
-				exclusiveGroup: agenda_date_clickGroup
 				enabled: false
 			}
 			RadioButton {
 				text: i18n("Open New Event Form")
-				exclusiveGroup: agenda_date_clickGroup
 				checked: true
 			}
 		}
@@ -113,34 +100,24 @@ ConfigPage {
 			configKey: 'agendaShowEventHangoutLink'
 			text: i18n("Google Hangouts link")
 		}
-		LabeledRowLayout {
+		ConfigRadioButtonGroup {
 			label: i18n("Click Event:")
-			ExclusiveGroup { id: agenda_event_clickGroup }
 			RadioButton {
 				text: i18n("Open Event In Browser")
 				checked: true
-				exclusiveGroup: agenda_event_clickGroup
 			}
 		}
 	}
 
 
 	ConfigSection {
-		LabeledRowLayout {
+		ConfigRadioButtonGroup {
+			configKey: 'agenda_breakup_multiday_events'
 			label: i18n("Show multi-day events:")
-			ExclusiveGroup { id: agendaBreakupMultidayEventsGroup }
-			RadioButton {
-				text: i18n("On all days")
-				exclusiveGroup: agendaBreakupMultidayEventsGroup
-				checked: plasmoid.configuration.agenda_breakup_multiday_events
-				onClicked: plasmoid.configuration.agenda_breakup_multiday_events = true
-			}
-			RadioButton {
-				text: i18n("Only on the first and current day")
-				exclusiveGroup: agendaBreakupMultidayEventsGroup
-				checked: !plasmoid.configuration.agenda_breakup_multiday_events
-				onClicked: plasmoid.configuration.agenda_breakup_multiday_events = false
-			}
+			model: [
+				{ value: true, text: i18n("On all days") },
+				{ value: false, text: i18n("Only on the first and current day") },
+			]
 		}
 	}
 
