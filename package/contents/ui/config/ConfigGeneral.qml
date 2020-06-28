@@ -13,7 +13,6 @@ ConfigPage {
 	id: page
 	showAppletVersion: true
 
-	property alias cfg_timer_sfx_filepath: timer_sfx_filepath.text
 	property string cfg_clock_fontfamily: ""
 	property string cfg_clock_mousewheel: "runcommand"
 	property alias cfg_clock_mousewheel_up: clock_mousewheel_up.text
@@ -51,20 +50,6 @@ ConfigPage {
 		plasmoid.configuration.clock_mousewheel_down = down
 	}
 
-	FileDialog {
-		id: timer_sfx_filepathDialog
-		title: i18n("Choose a sound effect")
-		folder: '/usr/share/sounds'
-		nameFilters: [ "Sound files (*.wav *.mp3 *.oga *.ogg)", "All files (*)" ]
-		onAccepted: {
-			console.log("You chose: " + fileUrls)
-			cfg_timer_sfx_filepath = fileUrl
-		}
-		onRejected: {
-			console.log("Canceled")
-		}
-	}
-
 
 
 	//---
@@ -97,21 +82,11 @@ ConfigPage {
 		}
 		RowLayout {
 			Text { width: indentWidth } // indent
-			ConfigCheckBox {
-				id: timerSfxEnabled
-				configKey: 'timer_sfx_enabled'
-				text: i18n("SFX:")
-			}
-			Button {
-				text: i18n("Choose")
-				onClicked: timer_sfx_filepathDialog.visible = true
-				enabled: timerSfxEnabled.checked
-			}
-			TextField {
-				id: timer_sfx_filepath
-				Layout.fillWidth: true
-				enabled: timerSfxEnabled.checked
-				placeholderText: "/usr/share/sounds/freedesktop/stereo/complete.oga"
+			ConfigSound {
+				label: i18n("SFX:")
+				sfxEnabledKey: 'timer_sfx_enabled'
+				sfxPathKey: 'timer_sfx_filepath'
+				sfxPathDefaultValue: '/usr/share/sounds/freedesktop/stereo/complete.oga'
 			}
 		}
 	}
