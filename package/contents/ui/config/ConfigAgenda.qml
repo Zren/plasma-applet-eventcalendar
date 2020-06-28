@@ -65,9 +65,11 @@ ConfigPage {
 		}
 
 		ConfigRadioButtonGroup {
+			id: clickWeatherGroup
 			label: i18n("Click Weather:")
 			RadioButton {
 				text: i18n("Open City Forecast In Browser")
+				exclusiveGroup: clickWeatherGroup.exclusiveGroup
 				checked: true
 			}
 		}
@@ -75,13 +77,16 @@ ConfigPage {
 
 	ConfigSection {
 		ConfigRadioButtonGroup {
+			id: clickDateGroup
 			label: i18n("Click Date:")
 			RadioButton {
 				text: i18n("Open New Event In Browser")
+				exclusiveGroup: clickDateGroup.exclusiveGroup
 				enabled: false
 			}
 			RadioButton {
 				text: i18n("Open New Event Form")
+				exclusiveGroup: clickDateGroup.exclusiveGroup
 				checked: true
 			}
 		}
@@ -101,9 +106,11 @@ ConfigPage {
 			text: i18n("Google Hangouts link")
 		}
 		ConfigRadioButtonGroup {
+			id: clickEventGroup
 			label: i18n("Click Event:")
 			RadioButton {
 				text: i18n("Open Event In Browser")
+				exclusiveGroup: clickEventGroup.exclusiveGroup
 				checked: true
 			}
 		}

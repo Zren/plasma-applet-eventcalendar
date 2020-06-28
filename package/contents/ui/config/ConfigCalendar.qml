@@ -15,9 +15,11 @@ ConfigPage {
 
 	ConfigSection {
 		ConfigRadioButtonGroup {
+			id: clickDateGroup
 			label: i18n("Click Date:")
 			RadioButton {
 				text: i18n("Scroll to event in Agenda")
+				exclusiveGroup: clickDateGroup.exclusiveGroup
 				checked: true
 			}
 		}
@@ -25,9 +27,11 @@ ConfigPage {
 
 	ConfigSection {
 		ConfigRadioButtonGroup {
+			id: doubleClickDateGroup
 			label: i18n("DoubleClick Date:")
 			RadioButton {
 				text: i18n("Open New Event In Browser")
+				exclusiveGroup: doubleClickDateGroup.exclusiveGroup
 				checked: true
 			}
 		}
@@ -100,9 +104,11 @@ ConfigPage {
 		}
 
 		ConfigRadioButtonGroup {
+			id: selectedStyleGroup
 			label: i18n("Selected:")
 			RadioButton {
 				text: i18n("Solid Color (Highlight)")
+				exclusiveGroup: selectedStyleGroup.exclusiveGroup
 				checked: true
 			}
 		}
