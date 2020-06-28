@@ -6,6 +6,11 @@
 * Meteogram is no longer taller when in single column mode.
 * Now highlights current day + current week number. Can be turned off in the config.
 * New Layout tab for switching between two column and single column mode. Includes ability to resize the Calendar, Agenda, Meteogram and Timer in two column mode.
+* Fix timer complete sfx in Ubuntu. I didn't realize `canberra-gtk-play` wasn't installed by default. The `notification.py` now hooks into `libcanberra.so` via directly with Python to play sound effects.
+* Fix centering weather temp + text in Agenda.
+* Various controls in the config no longer require pressing Apply.
+* When an event has a Google Meet link, it used to show "Hangout", now it'll show "Google Meet".
+* Updated Japanese translations by @ymadd (Pull Request #140)
 
 ## v68 - June 26 2020
 
