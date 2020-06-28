@@ -14,9 +14,6 @@ ConfigPage {
 	showAppletVersion: true
 
 	property string cfg_clock_fontfamily: ""
-	property string cfg_clock_mousewheel: "runcommand"
-	property alias cfg_clock_mousewheel_up: clock_mousewheel_up.text
-	property alias cfg_clock_mousewheel_down: clock_mousewheel_down.text
 
 	readonly property string localeTimeFormat: Qt.locale().timeFormat(Locale.ShortFormat)
 	readonly property string localeDateFormat: Qt.locale().dateFormat(Locale.ShortFormat)
@@ -339,9 +336,9 @@ ConfigPage {
 				Label {
 					text: i18n("Scroll Up:")
 				}
-				TextField {
-					Layout.fillWidth: true
-					id: clock_mousewheel_up
+				ConfigString {
+					id: clockMouseWheelUp
+					configKey: 'clock_mousewheel_up'
 				}
 			}
 			RowLayout {
@@ -350,9 +347,9 @@ ConfigPage {
 				Label {
 					text: i18n("Scroll Down:")
 				}
-				TextField {
-					Layout.fillWidth: true
-					id: clock_mousewheel_down
+				ConfigString {
+					id: clockMouseWheelDown
+					configKey: 'clock_mousewheel_down'
 				}
 			}
 
