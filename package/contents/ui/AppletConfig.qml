@@ -62,7 +62,7 @@ QtObject {
 	readonly property string line1TimeFormat: plasmoid.configuration.clock_timeformat || localeTimeFormat
 	readonly property string line2TimeFormat: plasmoid.configuration.clock_timeformat_2 || localeDateFormat
 	readonly property string combinedFormat: {
-		if (plasmoid.configuration.cfg_clock_line_2) {
+		if (plasmoid.configuration.clock_line_2) {
 			return line1TimeFormat + '\n' + line2TimeFormat
 		} else {
 			return line1TimeFormat
