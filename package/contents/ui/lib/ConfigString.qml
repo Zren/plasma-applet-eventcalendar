@@ -1,13 +1,8 @@
+// Version 2
+
 import QtQuick 2.0
 import QtQuick.Controls 1.0
 import QtQuick.Layouts 1.0
-import QtQuick.Dialogs 1.2
-
-import org.kde.plasma.core 2.0 as PlasmaCore
-import org.kde.plasma.components 2.0 as PlasmaComponents
-import org.kde.kquickcontrolsaddons 2.0 as KQuickAddons
-
-import ".."
 
 TextField {
 	id: configString
@@ -40,6 +35,10 @@ TextField {
 	Timer { // throttle
 		id: serializeTimer
 		interval: 300
-		onTriggered: plasmoid.configuration[configKey] = configString.value
+		onTriggered: {
+			if (configKey) {
+				plasmoid.configuration[configKey] = value
+			}
+		}
 	}
 }

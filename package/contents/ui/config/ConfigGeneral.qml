@@ -15,16 +15,14 @@ ConfigPage {
 
 	property alias cfg_timer_sfx_filepath: timer_sfx_filepath.text
 	property string cfg_clock_fontfamily: ""
-	property alias cfg_clock_timeformat: clock_timeformat.text
-	property alias cfg_clock_timeformat_2: clock_timeformat_2.text
 	property string cfg_clock_mousewheel: "runcommand"
 	property alias cfg_clock_mousewheel_up: clock_mousewheel_up.text
 	property alias cfg_clock_mousewheel_down: clock_mousewheel_down.text
 
 	readonly property string localeTimeFormat: Qt.locale().timeFormat(Locale.ShortFormat)
 	readonly property string localeDateFormat: Qt.locale().dateFormat(Locale.ShortFormat)
-	readonly property string line1TimeFormat: cfg_clock_timeformat || localeTimeFormat
-	readonly property string line2TimeFormat: cfg_clock_timeformat_2 || localeDateFormat
+	readonly property string line1TimeFormat: clockTimeFormat.value || localeTimeFormat
+	readonly property string line2TimeFormat: clockTimeFormat2.value || localeDateFormat
 
 	property string timeFormat24hour: 'hh:mm'
 	property string timeFormat12hour: 'h:mm AP'
@@ -201,9 +199,9 @@ ConfigPage {
 					text: i18n("Line 1:")
 					onCheckedChanged: checked = true
 				}
-				TextField {
-					Layout.fillWidth: true
-					id: clock_timeformat
+				ConfigString {
+					id: clockTimeFormat
+					configKey: 'clock_timeformat'
 					placeholderText: localeTimeFormat
 				}
 				Label {
@@ -219,21 +217,21 @@ ConfigPage {
 				}
 				Button {
 					text: Qt.formatDateTime(new Date(), timeFormat12hour)
-					onClicked: cfg_clock_timeformat = timeFormat12hour
+					onClicked: clockTimeFormat.value = timeFormat12hour
 				}
 				Button {
 					text: Qt.formatDateTime(new Date(), timeFormat24hour)
-					onClicked: cfg_clock_timeformat = timeFormat24hour
+					onClicked: clockTimeFormat.value = timeFormat24hour
 				}
 				Button {
 					property string dateFormat: Qt.locale().timeFormat(Locale.ShortFormat).replace('mm', 'mm:ss')
 					text: Qt.formatDateTime(new Date(), dateFormat)
-					onClicked: cfg_clock_timeformat = dateFormat
+					onClicked: clockTimeFormat.value = dateFormat
 				}
 				Button {
 					property string dateFormat: 'MMM d, ' + Qt.locale().timeFormat(Locale.ShortFormat)
 					text: Qt.formatDateTime(new Date(), dateFormat)
-					onClicked: cfg_clock_timeformat = dateFormat
+					onClicked: clockTimeFormat.value = dateFormat
 				}
 			}
 
@@ -247,13 +245,13 @@ ConfigPage {
 				Button {
 					property string dateFormat: '\'<font color="#3daee9">\'MMM d\'</font>\' ' + Qt.locale().timeFormat(Locale.ShortFormat)
 					text: Qt.formatDateTime(new Date(), dateFormat.replace())
-					onClicked: cfg_clock_timeformat = dateFormat
+					onClicked: clockTimeFormat.value = dateFormat
 					style: ButtonStyle {}
 				}
 				Button {
 					property string dateFormat: '\'<font color="#888">\'ddd<>d\'</font>\' h:mm\'<font color="#888">\'AP\'</font>\''
 					text: Qt.formatDateTime(new Date(), dateFormat.replace())
-					onClicked: cfg_clock_timeformat = dateFormat
+					onClicked: clockTimeFormat.value = dateFormat
 					style: ButtonStyle {}
 				}
 			}
@@ -275,9 +273,9 @@ ConfigPage {
 					configKey: 'clock_line_2'
 					text: i18n("Line 2:")
 				}
-				TextField {
-					Layout.fillWidth: true
-					id: clock_timeformat_2
+				ConfigString {
+					id: clockTimeFormat2
+					configKey: 'clock_timeformat_2'
 					placeholderText: localeDateFormat
 				}
 				Label {
@@ -303,17 +301,17 @@ ConfigPage {
 						return format
 					}
 					text: Qt.formatDate(new Date(), dateFormat)
-					onClicked: cfg_clock_timeformat_2 = dateFormat
+					onClicked: clockTimeFormat2.value = dateFormat
 				}
 				Button {
 					property string dateFormat: Qt.locale().dateFormat(Locale.ShortFormat)
 					text: Qt.formatDate(new Date(), dateFormat)
-					onClicked: cfg_clock_timeformat_2 = dateFormat
+					onClicked: clockTimeFormat2.value = dateFormat
 				}
 				Button {
 					property string dateFormat: 'MMM d'
 					text: Qt.formatDateTime(new Date(), dateFormat)
-					onClicked: cfg_clock_timeformat_2 = dateFormat
+					onClicked: clockTimeFormat2.value = dateFormat
 				}
 				Button {
 					text: "Sans Serif"
