@@ -9,10 +9,6 @@ import "../lib"
 ConfigPage {
 	id: page
 
-	property bool cfg_agendaWeatherOnRight: false
-	property alias cfg_agenda_weather_icon_height: agenda_weather_icon_height.value
-	property bool cfg_agenda_breakup_multiday_events: false
-
 	property int indentWidth: 24 * units.devicePixelRatio
 
 	ConfigCheckBox {
@@ -36,15 +32,13 @@ ConfigPage {
 				checked: true
 				text: i18n("Weather Icon")
 			}
-			Slider {
-				id: agenda_weather_icon_height
+			ConfigSlider {
+				configKey: 'agenda_weather_icon_height'
 				minimumValue: 12
 				maximumValue: 48
 				stepSize: 1
-				value: 24
-			}
-			Label {
-				text: cfg_agenda_weather_icon_height + 'px'
+				after: '' + value + i18n("px")
+				Layout.fillWidth: false
 			}
 		}
 
@@ -67,14 +61,14 @@ ConfigPage {
 			RadioButton {
 				text: i18n("Left")
 				exclusiveGroup: agendaWeatherOnRightGroup
-				checked: !cfg_agendaWeatherOnRight
-				onClicked: cfg_agendaWeatherOnRight = false
+				checked: !plasmoid.configuration.agendaWeatherOnRight
+				onClicked: plasmoid.configuration.agendaWeatherOnRight = false
 			}
 			RadioButton {
 				text: i18n("Right")
 				exclusiveGroup: agendaWeatherOnRightGroup
-				checked: cfg_agendaWeatherOnRight
-				onClicked: cfg_agendaWeatherOnRight = true
+				checked: plasmoid.configuration.agendaWeatherOnRight
+				onClicked: plasmoid.configuration.agendaWeatherOnRight = true
 			}
 		}
 
@@ -134,24 +128,18 @@ ConfigPage {
 	ConfigSection {
 		LabeledRowLayout {
 			label: i18n("Show multi-day events:")
-			ExclusiveGroup {
-				id: agenda_breakup_multiday_eventsGroup
-			}
+			ExclusiveGroup { id: agendaBreakupMultidayEventsGroup }
 			RadioButton {
 				text: i18n("On all days")
-				checked: cfg_agenda_breakup_multiday_events
-				exclusiveGroup: agenda_breakup_multiday_eventsGroup
-				onClicked: {
-					cfg_agenda_breakup_multiday_events = true
-				}
+				exclusiveGroup: agendaBreakupMultidayEventsGroup
+				checked: plasmoid.configuration.agenda_breakup_multiday_events
+				onClicked: plasmoid.configuration.agenda_breakup_multiday_events = true
 			}
 			RadioButton {
 				text: i18n("Only on the first and current day")
-				checked: !cfg_agenda_breakup_multiday_events
-				exclusiveGroup: agenda_breakup_multiday_eventsGroup
-				onClicked: {
-					cfg_agenda_breakup_multiday_events = false
-				}
+				exclusiveGroup: agendaBreakupMultidayEventsGroup
+				checked: !plasmoid.configuration.agenda_breakup_multiday_events
+				onClicked: plasmoid.configuration.agenda_breakup_multiday_events = false
 			}
 		}
 	}
