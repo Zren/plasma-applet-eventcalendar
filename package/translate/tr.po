@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: eventcalendar\n"
 "Report-Msgid-Bugs-To: https://github.com/Zren/plasma-applet-eventcalendar\n"
-"POT-Creation-Date: 2020-06-26 21:00-0400\n"
+"POT-Creation-Date: 2020-06-28 11:23-0400\n"
 "PO-Revision-Date: 2019-06-02 22:28+0300\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -269,7 +269,6 @@ msgid "First day of week:"
 msgstr "Haftanın ilk günü:"
 
 #: ../contents/ui/config/ConfigCalendar.qml
-#: ../contents/ui/config/ConfigGeneral.qml
 msgid "Default"
 msgstr "Varsayılan"
 
@@ -355,11 +354,6 @@ msgid "Event Starting"
 msgstr "Etkinlik Başlarken"
 
 #: ../contents/ui/config/ConfigGeneral.qml
-#: ../contents/ui/lib/ConfigNotification.qml
-msgid "Choose a sound effect"
-msgstr "Bir ses efekti seçin"
-
-#: ../contents/ui/config/ConfigGeneral.qml
 msgid "Widgets"
 msgstr "Eklentiler"
 
@@ -380,12 +374,9 @@ msgid "Timer"
 msgstr "Zamanlayıcı"
 
 #: ../contents/ui/config/ConfigGeneral.qml
+#: ../contents/ui/lib/ConfigNotification.qml
 msgid "SFX:"
 msgstr "SFX:"
-
-#: ../contents/ui/config/ConfigGeneral.qml
-msgid "Choose"
-msgstr "Seç"
 
 #: ../contents/ui/config/ConfigGeneral.qml
 msgid "Clock"
@@ -735,6 +726,23 @@ msgstr "İptal"
 msgid "<b>Version:</b> %1"
 msgstr "<b>Sürüm:</b> %1"
 
+#: ../contents/ui/lib/ConfigFontFamily.qml
+msgctxt "Use default font"
+msgid "Default"
+msgstr "Varsayılan"
+
+#: ../contents/ui/lib/ConfigSound.qml
+msgid "Choose a sound effect"
+msgstr "Bir ses efekti seçin"
+
+#: ../contents/ui/lib/ConfigSound.qml
+msgid "Sound files (%1)"
+msgstr ""
+
+#: ../contents/ui/lib/ConfigSound.qml
+msgid "All files (%1)"
+msgstr ""
+
 #: ../contents/ui/LocaleFuncs.js
 msgctxt "event time on the hour (24 hour clock)"
 msgid "h"
@@ -884,6 +892,9 @@ msgstr "Devam Eden Etkinlikler"
 #: ../contents/ui/UpcomingEvents.qml
 msgid "Upcoming Events"
 msgstr "Gelecek Etkinlikler"
+
+#~ msgid "Choose"
+#~ msgstr "Seç"
 
 #~ msgid "Agenda to the left (Two Columns)"
 #~ msgstr "Ajanda sola (İki Sütun)"

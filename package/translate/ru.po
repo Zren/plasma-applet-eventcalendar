@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: eventcalendar\n"
 "Report-Msgid-Bugs-To: https://github.com/Zren/plasma-applet-eventcalendar\n"
-"POT-Creation-Date: 2020-06-26 21:00-0400\n"
+"POT-Creation-Date: 2020-06-28 11:23-0400\n"
 "PO-Revision-Date: 2020-01-05 22:01+0300\n"
 "Last-Translator: aliger14 <aliger14@mail.ru>\n"
 "Language-Team: ru\n"
@@ -271,7 +271,6 @@ msgid "First day of week:"
 msgstr "Первый день недели:"
 
 #: ../contents/ui/config/ConfigCalendar.qml
-#: ../contents/ui/config/ConfigGeneral.qml
 msgid "Default"
 msgstr "Default"
 
@@ -358,11 +357,6 @@ msgid "Event Starting"
 msgstr "Начало события"
 
 #: ../contents/ui/config/ConfigGeneral.qml
-#: ../contents/ui/lib/ConfigNotification.qml
-msgid "Choose a sound effect"
-msgstr "Выбор звукового эффекта"
-
-#: ../contents/ui/config/ConfigGeneral.qml
 msgid "Widgets"
 msgstr "Виджеты"
 
@@ -383,12 +377,9 @@ msgid "Timer"
 msgstr "Таймер"
 
 #: ../contents/ui/config/ConfigGeneral.qml
+#: ../contents/ui/lib/ConfigNotification.qml
 msgid "SFX:"
 msgstr "SFX:"
-
-#: ../contents/ui/config/ConfigGeneral.qml
-msgid "Choose"
-msgstr "Выбрать"
 
 #: ../contents/ui/config/ConfigGeneral.qml
 msgid "Clock"
@@ -739,6 +730,23 @@ msgstr "&Отменить"
 msgid "<b>Version:</b> %1"
 msgstr "<b>Версия:</b> %1"
 
+#: ../contents/ui/lib/ConfigFontFamily.qml
+msgctxt "Use default font"
+msgid "Default"
+msgstr "Default"
+
+#: ../contents/ui/lib/ConfigSound.qml
+msgid "Choose a sound effect"
+msgstr "Выбор звукового эффекта"
+
+#: ../contents/ui/lib/ConfigSound.qml
+msgid "Sound files (%1)"
+msgstr ""
+
+#: ../contents/ui/lib/ConfigSound.qml
+msgid "All files (%1)"
+msgstr ""
+
 #: ../contents/ui/LocaleFuncs.js
 msgctxt "event time on the hour (24 hour clock)"
 msgid "h"
@@ -888,6 +896,9 @@ msgstr "Текущие события"
 #: ../contents/ui/UpcomingEvents.qml
 msgid "Upcoming Events"
 msgstr "Ближайшие события"
+
+#~ msgid "Choose"
+#~ msgstr "Выбрать"
 
 #~ msgid "Agenda to the left (Two Columns)"
 #~ msgstr "Обзор дня слева (в две колонки)"

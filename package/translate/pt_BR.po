@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: eventcalendar \n"
 "Report-Msgid-Bugs-To: https://github.com/Zren/plasma-applet-eventcalendar\n"
-"POT-Creation-Date: 2020-06-26 21:00-0400\n"
+"POT-Creation-Date: 2020-06-28 11:23-0400\n"
 "PO-Revision-Date: 2020-03-02 15:08-0300\n"
 "Last-Translator: Thiago Masato Costa Sueto <herzenschein@gmail.com>\n"
 "Language-Team: Portuguese <kde-i18n-pt_BR@kde.org>\n"
@@ -269,7 +269,6 @@ msgid "First day of week:"
 msgstr "Primeiro dia da semana:"
 
 #: ../contents/ui/config/ConfigCalendar.qml
-#: ../contents/ui/config/ConfigGeneral.qml
 msgid "Default"
 msgstr "Padrão"
 
@@ -355,11 +354,6 @@ msgid "Event Starting"
 msgstr "Evento começou"
 
 #: ../contents/ui/config/ConfigGeneral.qml
-#: ../contents/ui/lib/ConfigNotification.qml
-msgid "Choose a sound effect"
-msgstr "Escolha um efeito sonoro"
-
-#: ../contents/ui/config/ConfigGeneral.qml
 msgid "Widgets"
 msgstr "Interface"
 
@@ -380,12 +374,9 @@ msgid "Timer"
 msgstr "Cronômetro"
 
 #: ../contents/ui/config/ConfigGeneral.qml
+#: ../contents/ui/lib/ConfigNotification.qml
 msgid "SFX:"
 msgstr "Som de evento:"
-
-#: ../contents/ui/config/ConfigGeneral.qml
-msgid "Choose"
-msgstr "Procurar"
 
 #: ../contents/ui/config/ConfigGeneral.qml
 msgid "Clock"
@@ -735,6 +726,23 @@ msgstr "&Cancelar"
 msgid "<b>Version:</b> %1"
 msgstr "<b>Versão:</b> %1"
 
+#: ../contents/ui/lib/ConfigFontFamily.qml
+msgctxt "Use default font"
+msgid "Default"
+msgstr "Padrão"
+
+#: ../contents/ui/lib/ConfigSound.qml
+msgid "Choose a sound effect"
+msgstr "Escolha um efeito sonoro"
+
+#: ../contents/ui/lib/ConfigSound.qml
+msgid "Sound files (%1)"
+msgstr ""
+
+#: ../contents/ui/lib/ConfigSound.qml
+msgid "All files (%1)"
+msgstr ""
+
 #: ../contents/ui/LocaleFuncs.js
 msgctxt "event time on the hour (24 hour clock)"
 msgid "h"
@@ -885,6 +893,9 @@ msgstr "Eventos em andamento"
 #: ../contents/ui/UpcomingEvents.qml
 msgid "Upcoming Events"
 msgstr "Próximos eventos"
+
+#~ msgid "Choose"
+#~ msgstr "Procurar"
 
 #~ msgid "Agenda to the left (Two Columns)"
 #~ msgstr "Agenda do mês à esquerda (duas colunas)"

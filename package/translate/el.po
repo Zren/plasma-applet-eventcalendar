@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: eventcalendar\n"
 "Report-Msgid-Bugs-To: https://github.com/Zren/plasma-applet-eventcalendar\n"
-"POT-Creation-Date: 2020-06-26 21:00-0400\n"
+"POT-Creation-Date: 2020-06-28 11:23-0400\n"
 "PO-Revision-Date: 2018-06-07 01:37+0300\n"
 "Last-Translator: Chris P <skylin@protonmail.com>\n"
 "Language-Team: Chris P <skylin@protonmail.com>\n"
@@ -270,7 +270,6 @@ msgid "First day of week:"
 msgstr ""
 
 #: ../contents/ui/config/ConfigCalendar.qml
-#: ../contents/ui/config/ConfigGeneral.qml
 msgid "Default"
 msgstr "Προεπιλογή"
 
@@ -356,11 +355,6 @@ msgid "Event Starting"
 msgstr "Έναρξη Συμβάντος"
 
 #: ../contents/ui/config/ConfigGeneral.qml
-#: ../contents/ui/lib/ConfigNotification.qml
-msgid "Choose a sound effect"
-msgstr "Επιλογή ηχητικού εφέ"
-
-#: ../contents/ui/config/ConfigGeneral.qml
 msgid "Widgets"
 msgstr "Μικροεφαρμογές"
 
@@ -381,12 +375,9 @@ msgid "Timer"
 msgstr "Χρονομετρητής"
 
 #: ../contents/ui/config/ConfigGeneral.qml
+#: ../contents/ui/lib/ConfigNotification.qml
 msgid "SFX:"
 msgstr "Ηχητικά Εφέ:"
-
-#: ../contents/ui/config/ConfigGeneral.qml
-msgid "Choose"
-msgstr "Επιλογή"
 
 #: ../contents/ui/config/ConfigGeneral.qml
 msgid "Clock"
@@ -736,6 +727,23 @@ msgstr ""
 msgid "<b>Version:</b> %1"
 msgstr "<b>Έκδοση:</b> %1"
 
+#: ../contents/ui/lib/ConfigFontFamily.qml
+msgctxt "Use default font"
+msgid "Default"
+msgstr "Προεπιλογή"
+
+#: ../contents/ui/lib/ConfigSound.qml
+msgid "Choose a sound effect"
+msgstr "Επιλογή ηχητικού εφέ"
+
+#: ../contents/ui/lib/ConfigSound.qml
+msgid "Sound files (%1)"
+msgstr ""
+
+#: ../contents/ui/lib/ConfigSound.qml
+msgid "All files (%1)"
+msgstr ""
+
 #: ../contents/ui/LocaleFuncs.js
 msgctxt "event time on the hour (24 hour clock)"
 msgid "h"
@@ -887,6 +895,9 @@ msgstr "Συμβάντα Σε Εξέλιξη"
 #: ../contents/ui/UpcomingEvents.qml
 msgid "Upcoming Events"
 msgstr "Επόμενα Συμβάντα"
+
+#~ msgid "Choose"
+#~ msgstr "Επιλογή"
 
 #~ msgid "Agenda to the left (Two Columns)"
 #~ msgstr "Ατζέντα στα αριστερά (Δύο Στήλες)"

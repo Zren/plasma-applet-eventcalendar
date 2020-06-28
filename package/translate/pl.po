@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: eventcalendar \n"
 "Report-Msgid-Bugs-To: https://github.com/Zren/plasma-applet-eventcalendar\n"
-"POT-Creation-Date: 2020-06-26 21:00-0400\n"
+"POT-Creation-Date: 2020-06-28 11:23-0400\n"
 "PO-Revision-Date: 2018-09-03 HO:MI+ZONE\n"
 "Last-Translator: Jakub Starzyk <jstarzyk98@gmail.com>\n"
 "Language-Team: Jakub Starzyk <jstarzyk98@gmail.com>\n"
@@ -259,7 +259,7 @@ msgstr ""
 msgid "First day of week:"
 msgstr ""
 
-#: ../contents/ui/config/ConfigCalendar.qml ../contents/ui/config/ConfigGeneral.qml
+#: ../contents/ui/config/ConfigCalendar.qml
 msgid "Default"
 msgstr "Domyślna"
 
@@ -342,10 +342,6 @@ msgstr "Powiadomienia"
 msgid "Event Starting"
 msgstr "Rozpoczęcie wydarzenia"
 
-#: ../contents/ui/config/ConfigGeneral.qml ../contents/ui/lib/ConfigNotification.qml
-msgid "Choose a sound effect"
-msgstr "Wybierz efekt dźwiękowy"
-
 #: ../contents/ui/config/ConfigGeneral.qml
 msgid "Widgets"
 msgstr "Elementy interfejsu"
@@ -362,13 +358,9 @@ msgstr "Wykres prognozy pogody"
 msgid "Timer"
 msgstr "Minutnik"
 
-#: ../contents/ui/config/ConfigGeneral.qml
+#: ../contents/ui/config/ConfigGeneral.qml ../contents/ui/lib/ConfigNotification.qml
 msgid "SFX:"
 msgstr ""
-
-#: ../contents/ui/config/ConfigGeneral.qml
-msgid "Choose"
-msgstr "Wybierz"
 
 #: ../contents/ui/config/ConfigGeneral.qml
 msgid "Clock"
@@ -693,6 +685,23 @@ msgstr "Anuluj"
 msgid "<b>Version:</b> %1"
 msgstr "<b>Wersja:</b> %1"
 
+#: ../contents/ui/lib/ConfigFontFamily.qml
+msgctxt "Use default font"
+msgid "Default"
+msgstr "Domyślna"
+
+#: ../contents/ui/lib/ConfigSound.qml
+msgid "Choose a sound effect"
+msgstr "Wybierz efekt dźwiękowy"
+
+#: ../contents/ui/lib/ConfigSound.qml
+msgid "Sound files (%1)"
+msgstr ""
+
+#: ../contents/ui/lib/ConfigSound.qml
+msgid "All files (%1)"
+msgstr ""
+
 #: ../contents/ui/LocaleFuncs.js
 msgctxt "event time on the hour (24 hour clock)"
 msgid "h"
@@ -842,6 +851,9 @@ msgstr "Trwające wydarzenia"
 #: ../contents/ui/UpcomingEvents.qml
 msgid "Upcoming Events"
 msgstr "Nadchodzące wydarzenia"
+
+#~ msgid "Choose"
+#~ msgstr "Wybierz"
 
 #~ msgid "Agenda to the left (Two Columns)"
 #~ msgstr "Harmonogram po lewej stronie (dwie kolumny)"

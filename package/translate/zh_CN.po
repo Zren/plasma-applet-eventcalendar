@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: eventcalendar\n"
 "Report-Msgid-Bugs-To: https://github.com/Zren/plasma-applet-eventcalendar\n"
-"POT-Creation-Date: 2020-06-26 21:00-0400\n"
+"POT-Creation-Date: 2020-06-28 11:23-0400\n"
 "PO-Revision-Date: 2019-04-17 16:43+0800\n"
 "Last-Translator: Core小睿 <i@coreja.com>\n"
 "Language-Team: \n"
@@ -269,7 +269,6 @@ msgid "First day of week:"
 msgstr "一周的第一天："
 
 #: ../contents/ui/config/ConfigCalendar.qml
-#: ../contents/ui/config/ConfigGeneral.qml
 msgid "Default"
 msgstr "默认"
 
@@ -354,11 +353,6 @@ msgid "Event Starting"
 msgstr "事件开始"
 
 #: ../contents/ui/config/ConfigGeneral.qml
-#: ../contents/ui/lib/ConfigNotification.qml
-msgid "Choose a sound effect"
-msgstr "选择一个音效"
-
-#: ../contents/ui/config/ConfigGeneral.qml
 msgid "Widgets"
 msgstr "小部件"
 
@@ -377,12 +371,9 @@ msgid "Timer"
 msgstr "倒计时器"
 
 #: ../contents/ui/config/ConfigGeneral.qml
+#: ../contents/ui/lib/ConfigNotification.qml
 msgid "SFX:"
 msgstr "音效："
-
-#: ../contents/ui/config/ConfigGeneral.qml
-msgid "Choose"
-msgstr "选择"
 
 #: ../contents/ui/config/ConfigGeneral.qml
 msgid "Clock"
@@ -728,6 +719,23 @@ msgstr "取消"
 msgid "<b>Version:</b> %1"
 msgstr "<b>版本：</b> %1"
 
+#: ../contents/ui/lib/ConfigFontFamily.qml
+msgctxt "Use default font"
+msgid "Default"
+msgstr "默认"
+
+#: ../contents/ui/lib/ConfigSound.qml
+msgid "Choose a sound effect"
+msgstr "选择一个音效"
+
+#: ../contents/ui/lib/ConfigSound.qml
+msgid "Sound files (%1)"
+msgstr ""
+
+#: ../contents/ui/lib/ConfigSound.qml
+msgid "All files (%1)"
+msgstr ""
+
 #: ../contents/ui/LocaleFuncs.js
 msgctxt "event time on the hour (24 hour clock)"
 msgid "h"
@@ -877,6 +885,9 @@ msgstr "正在进行的事件"
 #: ../contents/ui/UpcomingEvents.qml
 msgid "Upcoming Events"
 msgstr "即将到来的事件"
+
+#~ msgid "Choose"
+#~ msgstr "选择"
 
 #~ msgid "Agenda to the left (Two Columns)"
 #~ msgstr "日程显示在日历左侧（双列显示）"
