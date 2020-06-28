@@ -47,10 +47,10 @@ ConfigPage {
 	}
 
 	function setMouseWheelCommands(up, down) {
-		cfg_clock_mousewheel = 'run_commands'
-		clock_mousewheelGroup_runcommands.checked = true
-		cfg_clock_mousewheel_up = up
-		cfg_clock_mousewheel_down = down
+		plasmoid.configuration.clock_mousewheel == 'run_commands'
+		clockMousewheelGroupRunCommands.checked = true
+		plasmoid.configuration.clock_mousewheel_up = up
+		plasmoid.configuration.clock_mousewheel_down = down
 	}
 
 	FileDialog {
@@ -351,16 +351,14 @@ ConfigPage {
 			level: 3
 		}
 		ConfigSection {
-			ExclusiveGroup { id: clock_mousewheelGroup }
+			ExclusiveGroup { id: clockMousewheelGroup }
 
 			RadioButton {
-				id: clock_mousewheelGroup_runcommands
-				exclusiveGroup: clock_mousewheelGroup
-				checked: cfg_clock_mousewheel == 'run_commands'
+				id: clockMousewheelGroupRunCommands
 				text: i18n("Run Commands")
-				onClicked: {
-					cfg_clock_mousewheel = 'run_commands'
-				}
+				exclusiveGroup: clockMousewheelGroup
+				checked: plasmoid.configuration.clock_mousewheel == 'run_commands'
+				onClicked: plasmoid.configuration.clock_mousewheel = 'run_commands'
 			}
 			RowLayout {
 				Layout.fillWidth: true
@@ -386,23 +384,21 @@ ConfigPage {
 			}
 
 			RadioButton {
-				exclusiveGroup: clock_mousewheelGroup
+				exclusiveGroup: clockMousewheelGroup
 				checked: false
 				text: i18n("Volume (No UI) (amixer)")
-				onClicked: {
-					setMouseWheelCommands('amixer -q sset Master 10%+', 'amixer -q sset Master 10%-')
-				}
+				property string upCommand:   'amixer -q sset Master 10%+'
+				property string downCommand: 'amixer -q sset Master 10%-'
+				onClicked: setMouseWheelCommands(upCommand, downCommand)
 			}
 			
 			RadioButton {
-				exclusiveGroup: clock_mousewheelGroup
+				exclusiveGroup: clockMousewheelGroup
 				checked: false
 				text: i18n("Volume (UI) (qdbus)")
 				property string upCommand:   'qdbus org.kde.kglobalaccel /component/kmix invokeShortcut "increase_volume"'
 				property string downCommand: 'qdbus org.kde.kglobalaccel /component/kmix invokeShortcut "decrease_volume"'
-				onClicked: {
-					setMouseWheelCommands(upCommand, downCommand)
-				}
+				onClicked: setMouseWheelCommands(upCommand, downCommand)
 			}
 		}
 
