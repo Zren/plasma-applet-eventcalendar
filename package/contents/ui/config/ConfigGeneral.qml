@@ -13,8 +13,6 @@ ConfigPage {
 	id: page
 	showAppletVersion: true
 
-	property string cfg_clock_fontfamily: ""
-
 	readonly property string localeTimeFormat: Qt.locale().timeFormat(Locale.ShortFormat)
 	readonly property string localeDateFormat: Qt.locale().dateFormat(Locale.ShortFormat)
 	readonly property string line1TimeFormat: clockTimeFormat.value || localeTimeFormat
@@ -25,20 +23,6 @@ ConfigPage {
 
 	property bool showDebug: plasmoid.configuration.debugging
 	property int indentWidth: 24 * units.devicePixelRatio
-
-	// populate
-	onCfg_clock_fontfamilyChanged: {
-		// org.kde.plasma.digitalclock
-		// HACK by the time we populate our model and/or the ComboBox is finished the value is still undefined
-		if (cfg_clock_fontfamily) {
-			for (var i = 0, j = clock_fontfamilyComboBox.model.length; i < j; ++i) {
-				if (clock_fontfamilyComboBox.model[i].value == cfg_clock_fontfamily) {
-					clock_fontfamilyComboBox.currentIndex = i
-					break
-				}
-			}
-		}
-	}
 
 	function setMouseWheelCommands(up, down) {
 		plasmoid.configuration.clock_mousewheel == 'run_commands'
@@ -114,36 +98,9 @@ ConfigPage {
 		}
 
 		ConfigSection {
-			RowLayout {
-				Label {
-					text: i18n("Font:")
-				}
-				ComboBox {
-					// org.kde.plasma.digitalclock
-					// Layout.fillWidth: true
-					id: clock_fontfamilyComboBox
-					textRole: "text" // doesn't autodeduce from model because we manually populate it
-
-					Component.onCompleted: {
-						// org.kde.plasma.digitalclock
-						var arr = [] // use temp array to avoid constant binding stuff
-						arr.push({text: i18n("Default"), value: ""})
-
-						var fonts = Qt.fontFamilies()
-						var foundIndex = 0
-						for (var i = 0, j = fonts.length; i < j; ++i) {
-							arr.push({text: fonts[i], value: fonts[i]})
-						}
-						model = arr
-					}
-
-					onCurrentIndexChanged: {
-						var current = model[currentIndex]
-						if (current) {
-							page.cfg_clock_fontfamily = current.value
-						}
-					}
-				}
+			ConfigFontFamily {
+				configKey: 'clock_fontfamily'
+				before: i18n("Font:")
 			}
 
 			RowLayout {
