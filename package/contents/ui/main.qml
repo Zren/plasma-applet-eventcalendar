@@ -152,7 +152,7 @@ Item {
 			onWeather_canada_city_idChanged: { updateWeather(true) }
 			onWeather_serviceChanged: { updateWeather(true) }
 			onWeather_unitsChanged: { updateWeather(true) }
-			onMeteogram_hoursChanged: { updateWeather() }
+			onMeteogram_hoursChanged: { updateMeteogram() }
 			onWidget_show_meteogramChanged: {
 				if (plasmoid.configuration.widget_show_meteogram) {
 					updateHourlyWeather()

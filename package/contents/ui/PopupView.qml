@@ -587,8 +587,12 @@ MouseArea {
 			lastForecastErr = null
 			hourlyWeatherData = data
 			currentWeatherData = data.list[0]
-			meteogramView.parseWeatherForecast(currentWeatherData, hourlyWeatherData)
+			updateMeteogram()
 		})
+	}
+
+	function updateMeteogram() {
+		meteogramView.parseWeatherForecast(currentWeatherData, hourlyWeatherData)
 	}
 
 	Timer {
