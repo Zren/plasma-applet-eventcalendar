@@ -186,10 +186,6 @@ CalendarManager {
 
 	Connections {
 		target: timeModel
-		// onMinuteChanged: upcomingEvents.update()
 		onMinuteChanged: upcomingEvents.tick()
 	}
-
-	// Component.onCompleted: upcomingEvents.update()
-	// Component.onCompleted: deferredUpdate.restart()
 }
