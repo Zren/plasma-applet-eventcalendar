@@ -6,10 +6,12 @@ import "LocaleFuncs.js" as LocaleFuncs
 EventModel {
 	id: upcomingEvents
 
+	property int upcomingEventRange: 90 // minutes
+
 	dateMin: timeModel.currentTime || new Date()
 	dateMax: {
-		var d = new Date(timeModel)
-		d.setMinutes(d.getMinutes() + 90)
+		var d = new Date(dateMin)
+		d.setMinutes(d.getMinutes() + upcomingEventRange)
 		return d
 	}
 	onFetchingData: {
@@ -24,7 +26,7 @@ EventModel {
 	function isUpcomingEvent(eventItem) {
 		console.log(eventItem.startDateTime, timeModel.currentTime, eventItem.startDateTime - timeModel.currentTime, eventItem.summary)
 		var dt = eventItem.startDateTime - timeModel.currentTime
-		return -30 * 1000 <= dt && dt <= 90 * 60 * 1000 // starting within 90 minutes
+		return -30 * 1000 <= dt && dt <= upcomingEventRange * 60 * 1000 // starting within 90 minutes
 	}
 
 	function isSameMinute(a, b) {
