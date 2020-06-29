@@ -425,31 +425,6 @@ MouseArea {
 		} // AgendaView
 	} // GridLayout
 
-	Connections {
-		target: eventModel
-		onCalendarFetched: {
-			logger.log('onCalendarFetched', calendarId)
-			// logger.debug('onCalendarFetched', calendarId, JSON.stringify(data, null, '\t'))
-			popup.deferredUpdateUI()
-		}
-		onAllDataFetched: {
-			// logger.log('onAllDataFetched')
-			popup.deferredUpdateUI()
-		}
-		onEventCreated: {
-			logger.logJSON('onEventCreated', calendarId, data)
-			popup.deferredUpdateUI()
-		}
-		onEventUpdated: {
-			logger.logJSON('onEventUpdated', calendarId, eventId, data)
-			popup.deferredUpdateUI()
-		}
-		onEventDeleted: {
-			logger.logJSON('onEventDeleted', calendarId, eventId, data)
-			popup.deferredUpdateUI()
-		}
-	}
-
 	function updateMeteogram() {
 		meteogramView.parseWeatherForecast(logic.currentWeatherData, logic.hourlyWeatherData)
 	}

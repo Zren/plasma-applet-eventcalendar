@@ -1,5 +1,5 @@
 import QtQuick 2.0
-import org.kde.plasma.plasmoid 2.0
+import org.kde.plasma.plasmoid 2.0 // root.Plasmoid.___
 import "../code/WeatherApi.js" as WeatherApi
 
 Item {
@@ -102,6 +102,17 @@ Item {
 		}
 	}
 
+	function resetWeatherData() {
+		logic.dailyWeatherData = { "list": [] }
+		logic.hourlyWeatherData = { "list": [] }
+		logic.currentWeatherData = null
+	}
+
+	function resetWeatherAndUpdate() {
+		logic.resetWeatherData()
+		logic.updateWeather(true)
+	}
+
 	function handleWeatherError(funcName, err, data, xhr) {
 		logger.log(funcName + '.err', err, xhr && xhr.status, data)
 		lastForecastAt = Date.now() // If there's an error, don't bother the API for another hour.
@@ -142,11 +153,58 @@ Item {
 	//---
 	Connections {
 		target: plasmoid.configuration
-		onWeather_serviceChanged: {
-			logic.dailyWeatherData = { "list": [] }
-			logic.hourlyWeatherData = { "list": [] }
-			logic.currentWeatherData = null
-			popup.updateUI()
+
+		//--- Events
+		onAccess_tokenChanged: logic.updateEvents()
+		onCalendar_id_listChanged: logic.updateEvents()
+		onEnabledCalendarPluginsChanged: logic.updateEvents()
+
+		//--- Weather
+		onWeather_serviceChanged: logic.resetWeatherAndUpdate()
+		onWeather_app_idChanged: logic.resetWeatherAndUpdate()
+		onWeather_city_idChanged: logic.resetWeatherAndUpdate()
+		onWeather_canada_city_idChanged: logic.resetWeatherAndUpdate()
+		onWeather_unitsChanged: logic.updateWeather(true)
+		onWidget_show_meteogramChanged: {
+			if (plasmoid.configuration.widget_show_meteogram) {
+				logic.updateHourlyWeather()
+			}
+		}
+
+		//--- UI
+		onAgenda_breakup_multiday_eventsChanged: popup.updateUI()
+		onMeteogram_hoursChanged: popup.updateMeteogram()
+	}
+
+	//---
+	Connections {
+		target: appletConfig
+		onClock24hChanged: popup.updateUI()
+	}
+
+	//---
+	Connections {
+		target: eventModel
+		onCalendarFetched: {
+			logger.log('onCalendarFetched', calendarId)
+			// logger.debug('onCalendarFetched', calendarId, JSON.stringify(data, null, '\t'))
+			popup.deferredUpdateUI()
+		}
+		onAllDataFetched: {
+			// logger.log('onAllDataFetched')
+			popup.deferredUpdateUI()
+		}
+		onEventCreated: {
+			logger.logJSON('onEventCreated', calendarId, data)
+			popup.deferredUpdateUI()
+		}
+		onEventUpdated: {
+			logger.logJSON('onEventUpdated', calendarId, eventId, data)
+			popup.deferredUpdateUI()
+		}
+		onEventDeleted: {
+			logger.logJSON('onEventDeleted', calendarId, eventId, data)
+			popup.deferredUpdateUI()
 		}
 	}
 }

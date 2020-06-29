@@ -143,30 +143,6 @@ Item {
 		}
 
 		Connections {
-			target: plasmoid.configuration
-			onAgenda_breakup_multiday_eventsChanged: { updateUI() }
-			onCalendar_id_listChanged: { updateEvents() }
-			onEnabledCalendarPluginsChanged: { updateEvents() }
-			onAccess_tokenChanged: { updateEvents() }
-			onWeather_app_idChanged: { updateWeather(true) }
-			onWeather_city_idChanged: { updateWeather(true) }
-			onWeather_canada_city_idChanged: { updateWeather(true) }
-			onWeather_serviceChanged: { updateWeather(true) }
-			onWeather_unitsChanged: { updateWeather(true) }
-			onMeteogram_hoursChanged: { updateMeteogram() }
-			onWidget_show_meteogramChanged: {
-				if (plasmoid.configuration.widget_show_meteogram) {
-					updateHourlyWeather()
-				}
-			}
-		}
-
-		Connections {
-			target: appletConfig
-			onClock24hChanged: { updateUI() }
-		}
-
-		Connections {
 			target: timeModel
 			onDateChanged: {
 				popup.updateToday()
