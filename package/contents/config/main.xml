@@ -201,7 +201,7 @@
 			<default>true</default>
 		</entry>
 		<entry name="eventStartingSfxPath" type="string">
-			<default>/usr/share/sounds/KDE-Im-Nudge.ogg</default>
+			<default>/usr/share/sounds/Oxygen-Im-Nudge.ogg</default>
 		</entry>
 		<entry name="enabledCalendarPlugins" type="StringList">
 			<label>A list of plugins where additional calendar event data can be sourced.</label>
