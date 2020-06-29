@@ -75,16 +75,11 @@ MouseArea {
 	property bool showAgenda: plasmoid.configuration.widget_show_agenda
 	property bool showCalendar: plasmoid.configuration.widget_show_calendar
 	property bool agendaScrollOnSelect: true
-	property bool agendaScrollOnMonthchange: false
+	property bool agendaScrollOnMonthChange: false
 
 	property alias today: monthView.today
 	property alias selectedDate: monthView.currentDate
 	property alias monthViewDate: monthView.displayedDate
-	property var dailyWeatherData: { "list": [] }
-	property var hourlyWeatherData: { "list": [] }
-	property var currentWeatherData: null
-	property var lastForecastAt: null
-	property var lastForecastErr: null
 
 	Connections {
 		target: monthView
@@ -105,25 +100,15 @@ MouseArea {
 		}
 	}
 
-	Connections {
-		target: plasmoid.configuration
-		onWeather_serviceChanged: {
-			popup.dailyWeatherData = { "list": [] }
-			popup.hourlyWeatherData = { "list": [] }
-			popup.currentWeatherData = null
-			popup.updateUI()
-		}
-	}
-
 	onMonthViewDateChanged: {
 		logger.debug('onMonthViewDateChanged', monthViewDate)
 		var startOfMonth = new Date(monthViewDate)
 		startOfMonth.setDate(1)
 		agendaModel.currentMonth = new Date(startOfMonth)
-		if (agendaScrollOnMonthchange) {
+		if (agendaScrollOnMonthChange) {
 			selectedDate = startOfMonth
 		}
-		updateEvents()
+		logic.updateEvents()
 	}
 
 	onStateChanged: {
@@ -279,8 +264,8 @@ MouseArea {
 				readonly property string message: {
 					if (!WeatherApi.weatherIsSetup()) {
 						return i18n("Weather not configured.\nGo to Weather in the config and set your city,\nand/or disable the meteogram to hide this area.")
-					} else if (lastForecastErr && !meteogramView.populated) {
-						return i18n("Error fetching weather.") + '\n' + lastForecastErr
+					} else if (logic.lastForecastErr && !meteogramView.populated) {
+						return i18n("Error fetching weather.") + '\n' + logic.lastForecastErr
 					} else {
 						return ''
 					}
@@ -427,8 +412,7 @@ MouseArea {
 				anchors.right: parent.right
 				anchors.rightMargin: agendaView.scrollbarWidth
 				onClicked: {
-					updateEvents()
-					updateWeather()
+					logic.update()
 				}
 
 				// Timer {
@@ -440,40 +424,6 @@ MouseArea {
 			}
 		} // AgendaView
 	} // GridLayout
-
-	Component.onCompleted: {
-		update()
-		polltimer.start()
-	}
-
-	Timer {
-		id: polltimer
-		
-		repeat: true
-		triggeredOnStart: true
-		interval: plasmoid.configuration.events_pollinterval * 60000
-		onTriggered: update()
-	}
-
-	function update() {
-		logger.debug('update')
-		updateData()
-	}
-
-	function updateData() {
-		logger.debug('updateData')
-		updateEvents()
-		updateWeather()
-	}
-
-	function updateEvents() {
-		updateEventsTimer.restart()
-	}
-	Timer {
-		id: updateEventsTimer
-		interval: 200
-		onTriggered: deferredUpdateEvents()
-	}
 
 	Connections {
 		target: eventModel
@@ -499,89 +449,9 @@ MouseArea {
 			popup.deferredUpdateUI()
 		}
 	}
-	function deferredUpdateEvents() {
-		var range = agendaModel.getDateRange(monthViewDate)
-		// console.log('   first', monthView.firstDisplayedDate())
-		// console.log('    last', monthView.lastDisplayedDate())
-
-		agendaModel.visibleDateMin = range.min
-		agendaModel.visibleDateMax = range.max
-		eventModel.fetchAll(range.min, range.max)
-	}
-
-	function updateWeather(force) {
-		if (WeatherApi.weatherIsSetup()) {
-			// update every hour
-			var shouldUpdate = false
-			if (lastForecastAt) {
-				var now = new Date()
-				var currentHour = now.getHours()
-				var lastUpdateHour = new Date(lastForecastAt).getHours()
-				var beenOverAnHour = now.valueOf() - lastForecastAt >= 60 * 60 * 1000
-				if (lastUpdateHour != currentHour || beenOverAnHour) {
-					shouldUpdate = true
-				}
-			} else {
-				shouldUpdate = true
-			}
-			
-			if (force || shouldUpdate) {
-				updateWeatherTimer.restart()
-			}
-		}
-	}
-	Timer {
-		id: updateWeatherTimer
-		interval: 100
-		onTriggered: deferredUpdateWeather()
-	}
-	function deferredUpdateWeather() {
-		updateDailyWeather()
-
-		if (popup.showMeteogram) {
-			updateHourlyWeather()
-		}
-	}
-
-	function handleWeatherError(funcName, err, data, xhr) {
-		logger.log(funcName + '.err', err, xhr && xhr.status, data)
-		lastForecastAt = Date.now() // If there's an error, don't bother the API for another hour.
-		if (xhr && xhr.status == 429) {
-			lastForecastErr = i18n("Weather API limit reached, will try again soon.")
-		} else {
-			lastForecastErr = err
-		}
-	}
-
-	function updateDailyWeather() {
-		logger.debug('updateDailyWeather', lastForecastAt, Date.now())
-		WeatherApi.updateDailyWeather(function(err, data, xhr) {
-			if (err) return handleWeatherError('updateDailyWeather', err, data, xhr)
-			logger.debugJSON('updateDailyWeather.response', data)
-
-			lastForecastAt = Date.now()
-			lastForecastErr = null
-			dailyWeatherData = data
-			updateUI()
-		})
-	}
-
-	function updateHourlyWeather() {
-		logger.debug('updateHourlyWeather', lastForecastAt, Date.now())
-		WeatherApi.updateHourlyWeather(function(err, data, xhr) {
-			if (err) return handleWeatherError('updateHourlyWeather', err, data, xhr)
-			logger.debugJSON('updateHourlyWeather.response', data)
-
-			lastForecastAt = Date.now()
-			lastForecastErr = null
-			hourlyWeatherData = data
-			currentWeatherData = data.list[0]
-			updateMeteogram()
-		})
-	}
 
 	function updateMeteogram() {
-		meteogramView.parseWeatherForecast(currentWeatherData, hourlyWeatherData)
+		meteogramView.parseWeatherForecast(logic.currentWeatherData, logic.hourlyWeatherData)
 	}
 
 	Timer {
@@ -602,7 +472,7 @@ MouseArea {
 		}
 
 		agendaModel.parseGCalEvents(eventModel.eventsData)
-		agendaModel.parseWeatherForecast(dailyWeatherData)
+		agendaModel.parseWeatherForecast(logic.dailyWeatherData)
 		monthView.parseGCalEvents(eventModel.eventsData)
 		scrollToSelection()
 	}

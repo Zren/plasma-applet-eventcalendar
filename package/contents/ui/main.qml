@@ -34,6 +34,7 @@ Item {
 		timeModel: timeModel
 		Component.onCompleted: logger.debug('AgendaModel.onCompleted')
 	}
+	Logic { id: logic }
 
 	FontLoader {
 		source: "../fonts/weathericons-regular-webfont.ttf"
@@ -123,7 +124,7 @@ Item {
 			logger.debug('isExpanded', isExpanded)
 			if (isExpanded) {
 				updateToday()
-				updateWeather()
+				logic.updateWeather()
 			}
 		}
 
