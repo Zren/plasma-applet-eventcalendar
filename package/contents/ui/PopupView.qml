@@ -500,24 +500,13 @@ MouseArea {
 		}
 	}
 	function deferredUpdateEvents() {
-		var dateMin = monthView.firstDisplayedDate()
-		if (!dateMin) {
-			// logger.log('updateEvents', 'no dateMin')
-			return
-		}
-		var monthViewDateMax = monthView.lastDisplayedDate()
-		var agendaViewDateMax = new Date(today).setDate(today.getDate() + agendaModel.showNextNumDays)
-		var dateMax
-		if (monthViewDate.getYear() == today.getYear() && monthViewDate.getMonth() == today.getMonth()) {
-			dateMax = new Date(Math.max(monthViewDateMax, agendaViewDateMax))
-		} else {
-			dateMax = monthViewDateMax
-		}
+		var range = agendaModel.getDateRange(monthViewDate)
+		// console.log('   first', monthView.firstDisplayedDate())
+		// console.log('    last', monthView.lastDisplayedDate())
 
-
-		agendaModel.visibleDateMin = dateMin
-		agendaModel.visibleDateMax = dateMax
-		eventModel.fetchAll(dateMin, dateMax)
+		agendaModel.visibleDateMin = range.min
+		agendaModel.visibleDateMax = range.max
+		eventModel.fetchAll(range.min, range.max)
 	}
 
 	function updateWeather(force) {

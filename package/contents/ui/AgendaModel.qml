@@ -24,6 +24,44 @@ ListModel {
 	property date visibleDateMax: new Date()
 	property date currentMonth: new Date()
 
+	function getDateRange(targetDate) {
+		// console.log('getDateRange')
+		// console.log('  target', targetDate)
+		var today = new Date(timeModel.currentTime)
+		// console.log('   today', today)
+
+		// We could calculate how many days are shown before the start of the month,
+		// like monthView.firstDisplayedDate() does, but it's easier to just fetch
+		// a constant 7 days and crop the unused events.
+		var targetMonthMin = new Date(targetDate.getFullYear(), targetDate.getMonth(), 1)
+		var dateMin = new Date(targetMonthMin.getFullYear(), targetMonthMin.getMonth(), targetMonthMin.getDate() - 7)
+
+		// Same as dateMin, we just add 7 days after the end of the month,
+		// instead of using monthView.lastDisplayedDate(), as it's easier.
+		// targetMonthMaxExclusive is the first day of the next month,
+		// so we only need to add 6 days.
+		var targetMonthMaxExclusive = new Date(targetDate.getFullYear(), targetDate.getMonth()+1, 1)
+		var monthViewDateMax = new Date(targetMonthMaxExclusive.getFullYear(), targetMonthMaxExclusive.getMonth(), targetMonthMaxExclusive.getDate() + 6)
+
+		// If the targetDate is from today's month, then we need to check if
+		// agendaViewDateMax is later than monthViewDateMax.
+		var targetMonthContainsToday = targetMonthMin <= today && today < targetMonthMaxExclusive
+		var dateMax
+		if (targetMonthContainsToday) {
+			var agendaViewDateMax = new Date(today.getFullYear(), today.getMonth(), today.getDate() + agendaModel.showNextNumDays)
+			dateMax = new Date(Math.max(monthViewDateMax, agendaViewDateMax))
+		} else {
+			dateMax = monthViewDateMax
+		}
+
+		// console.log('     min', dateMin)
+		// console.log('     max', dateMax)
+		return {
+			min: dateMin,
+			max: dateMax,
+		}
+	}
+
 	function buildAgendaItem(dateTime) {
 		return {
 			date: new Date(dateTime),
