@@ -3,28 +3,22 @@ import org.kde.plasma.core 2.0 as PlasmaCore
 
 import "LocaleFuncs.js" as LocaleFuncs
 
-EventModel {
+CalendarManager {
 	id: upcomingEvents
 
 	property int upcomingEventRange: 90 // minutes
 
-	dateMin: timeModel.currentTime || new Date()
-	dateMax: {
-		var d = new Date(dateMin)
-		d.setMinutes(d.getMinutes() + upcomingEventRange)
-		return d
-	}
 	onFetchingData: {
 		logger.log('upcomingEvents.onFetchingData')
 
 	}
 	onAllDataFetched: {
-		logger.log('upcomingEvents.onAllDataFetched')
+		logger.log('upcomingEvents.onAllDataFetched', upcomingEvents.dateMin, timeModel.currentTime, upcomingEvents.dateMax)
 		// sendEventListNotification()
 	}
 
 	function isUpcomingEvent(eventItem) {
-		console.log(eventItem.startDateTime, timeModel.currentTime, eventItem.startDateTime - timeModel.currentTime, eventItem.summary)
+		// console.log(eventItem.startDateTime, timeModel.currentTime, eventItem.startDateTime - timeModel.currentTime, eventItem.summary)
 		var dt = eventItem.startDateTime - timeModel.currentTime
 		return -30 * 1000 <= dt && dt <= upcomingEventRange * 60 * 1000 // starting within 90 minutes
 	}
