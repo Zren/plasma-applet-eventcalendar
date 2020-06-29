@@ -1,9 +1,6 @@
 import QtQuick 2.0
 
-import "./lib/Requests.js" as Requests
-import "Shared.js" as Shared
 import "./calendars"
-import "../code/ColorIdMap.js" as ColorIdMap
 
 CalendarManager {
 	id: eventModel
