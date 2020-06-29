@@ -75,7 +75,7 @@ MouseArea {
 	property bool showAgenda: plasmoid.configuration.widget_show_agenda
 	property bool showCalendar: plasmoid.configuration.widget_show_calendar
 	property bool agendaScrollOnSelect: true
-	property bool cfg_agenda_scroll_on_monthchange: false
+	property bool agendaScrollOnMonthchange: false
 
 	property alias today: monthView.today
 	property alias selectedDate: monthView.currentDate
@@ -120,7 +120,7 @@ MouseArea {
 		var startOfMonth = new Date(monthViewDate)
 		startOfMonth.setDate(1)
 		agendaModel.currentMonth = new Date(startOfMonth)
-		if (cfg_agenda_scroll_on_monthchange) {
+		if (agendaScrollOnMonthchange) {
 			selectedDate = startOfMonth
 		}
 		updateEvents()
@@ -365,7 +365,7 @@ MouseArea {
 				var date = new Date(dayData.yearNumber, dayData.monthNumber-1, dayData.dayNumber)
 				// logger.debug('Popup.monthView.onDoubleClicked', date)
 				if (true) {
-					// cfg_month_day_doubleclick == "browser_newevent"
+					// month_day_doubleclick == "browser_newevent"
 					Shared.openGoogleCalendarNewEventUrl(date)
 				}
 			}
