@@ -506,7 +506,7 @@ MouseArea {
 			return
 		}
 		var monthViewDateMax = monthView.lastDisplayedDate()
-		var agendaViewDateMax = new Date(today).setDate(today.getDate() + 14)
+		var agendaViewDateMax = new Date(today).setDate(today.getDate() + agendaModel.showNextNumDays)
 		var dateMax
 		if (monthViewDate.getYear() == today.getYear() && monthViewDate.getMonth() == today.getMonth()) {
 			dateMax = new Date(Math.max(monthViewDateMax, agendaViewDateMax))
@@ -610,14 +610,6 @@ MouseArea {
 
 		if (updateUITimer.running) {
 			updateUITimer.running = false
-		}
-
-		if (monthViewDate.getYear() == now.getYear() && monthViewDate.getMonth() == now.getMonth()) {
-			agendaModel.showNextNumDays = 14
-			agendaModel.clipPastEvents = false
-		} else {
-			agendaModel.showNextNumDays = 0
-			agendaModel.clipPastEvents = false
 		}
 
 		agendaModel.parseGCalEvents(eventModel.eventsData)

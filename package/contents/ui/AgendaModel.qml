@@ -142,6 +142,7 @@ ListModel {
 		var nextNumDaysEnd = new Date(today.getFullYear(), today.getMonth(), today.getDate() + showNextNumDays)
 		var currentMonthMin = new Date(currentMonth.getFullYear(), currentMonth.getMonth(), 1)
 		var currentMonthMaxExclusive = new Date(currentMonth.getFullYear(), currentMonth.getMonth()+1, 1)
+		var currentMonthContainsToday = currentMonthMin <= today && today < currentMonthMaxExclusive
 
 		if (clipEventsFromOtherMonths) {
 			// Remove calendar from different months
@@ -161,7 +162,7 @@ ListModel {
 			}
 		}
 
-		if (showNextNumDays > 0) {
+		if (currentMonthContainsToday && showNextNumDays > 0) {
 			var todayMidnight = new Date(today.getFullYear(), today.getMonth(), today.getDate())
 			for (var day = todayMidnight; day <= nextNumDaysEnd; day.setDate(day.getDate() + 1)) {
 				addAgendaItemIfMissing(agendaItemList, day)
