@@ -81,7 +81,7 @@ ConfigPage {
 			notificationEnabledKey: 'eventStartingNotificationEnabled'
 			sfxEnabledKey: 'eventStartingSfxEnabled'
 			sfxPathKey: 'eventStartingSfxPath'
-			sfxPathDefaultValue: '/usr/share/sounds/KDE-Im-Nudge.ogg'
+			sfxPathDefaultValue: '/usr/share/sounds/Oxygen-Im-Nudge.ogg'
 		}
 	}
 
