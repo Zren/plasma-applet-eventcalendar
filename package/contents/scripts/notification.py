@@ -105,6 +105,9 @@ def playSound(args):
 		Canberra.Prop.APPLICATION_NAME, args.appName,
 	]
 
+	if args.sound.startswith('file://'):
+		args.sound = args.sound[len('file://'):]
+
 	if args.sound.startswith('/'):
 		canberra.playFile(args.sound, *props)
 	else:
