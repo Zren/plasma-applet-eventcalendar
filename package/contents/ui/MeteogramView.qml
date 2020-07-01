@@ -509,7 +509,7 @@ Item {
 		if (graph.rainUnits == 'mm') {
 			return i18n("%1mm", valueText)
 		} else { // rainUnits == '%'
-			return i18n('%1%%', valueText)
+			return i18n('%1%', valueText) // Not translated as we use ''
 		}
 	}
 }
