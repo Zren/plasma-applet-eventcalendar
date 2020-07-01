@@ -17,7 +17,6 @@ ConfigPage {
 		id: weatherService
 		configKey: 'weather_service'
 
-		enabled: false
 		model: [
 			{ value: 'OpenWeatherMap', text: 'OpenWeatherMap' },
 			{ value: 'WeatherCanada', text: 'WeatherCanada' },
