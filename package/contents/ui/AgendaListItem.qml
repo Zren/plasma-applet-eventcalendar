@@ -105,7 +105,7 @@ GridLayout {
 			// console.log('agendaItem.date.clicked', date)
 			if (true) {
 				// agenda_weather_clicked == "browser_viewcityforecast"
-				WeatherApi.openCityUrl()
+				WeatherApi.openCityUrl(plasmoid.configuration)
 			}
 		}
 	}

@@ -69,7 +69,7 @@ Item {
 
 	//--- Weather
 	function updateWeather(force) {
-		if (WeatherApi.weatherIsSetup()) {
+		if (WeatherApi.weatherIsSetup(plasmoid.configuration)) {
 			// update every hour
 			var shouldUpdate = false
 			if (lastForecastAt) {
@@ -125,7 +125,7 @@ Item {
 
 	function updateDailyWeather() {
 		logger.debug('updateDailyWeather', lastForecastAt, Date.now())
-		WeatherApi.updateDailyWeather(function(err, data, xhr) {
+		WeatherApi.updateDailyWeather(plasmoid.configuration, function(err, data, xhr) {
 			if (err) return handleWeatherError('updateDailyWeather', err, data, xhr)
 			logger.debugJSON('updateDailyWeather.response', data)
 
@@ -138,7 +138,7 @@ Item {
 
 	function updateHourlyWeather() {
 		logger.debug('updateHourlyWeather', lastForecastAt, Date.now())
-		WeatherApi.updateHourlyWeather(function(err, data, xhr) {
+		WeatherApi.updateHourlyWeather(plasmoid.configuration, function(err, data, xhr) {
 			if (err) return handleWeatherError('updateHourlyWeather', err, data, xhr)
 			logger.debugJSON('updateHourlyWeather.response', data)
 

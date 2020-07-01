@@ -1,9 +1,11 @@
+.pragma library
+
 .import "OpenWeatherMap.js" as OpenWeatherMap
 .import "WeatherCanada.js" as WeatherCanada
 
 /* How many hours each data point represents */
-function getDataPointDuration() {
-	var weatherService = plasmoid.configuration.weather_service
+function getDataPointDuration(config) {
+	var weatherService = config.weather_service
 	if (weatherService == 'OpenWeatherMap') {
 		return 3
 	} else if (weatherService == 'WeatherCanada') {
@@ -14,12 +16,12 @@ function getDataPointDuration() {
 }
 
 /* Open the city's webpage using Qt.openUrlExternally(url) */
-function openCityUrl() {
-	var weatherService = plasmoid.configuration.weather_service
+function openCityUrl(config) {
+	var weatherService = config.weather_service
 	if (weatherService == 'OpenWeatherMap') {
-		OpenWeatherMap.openOpenWeatherMapCityUrl(plasmoid.configuration.weather_city_id)
+		OpenWeatherMap.openOpenWeatherMapCityUrl(config.weather_city_id)
 	} else if (weatherService == 'WeatherCanada') {
-		Qt.openUrlExternally(WeatherCanada.getCityUrl(plasmoid.configuration.weather_canada_city_id))
+		Qt.openUrlExternally(WeatherCanada.getCityUrl(config.weather_canada_city_id))
 	}
 }
 
@@ -45,15 +47,15 @@ function openCityUrl() {
 	]
 }, xhr)
 */
-function updateDailyWeather(callback) {
-	if (!weatherIsSetup()) {
+function updateDailyWeather(config, callback) {
+	if (!weatherIsSetup(config)) {
 		return callback('Weather configuration not setup')
 	}
-	var weatherService = plasmoid.configuration.weather_service
+	var weatherService = config.weather_service
 	if (weatherService == 'OpenWeatherMap') {
-		OpenWeatherMap.updateDailyWeather(callback)
+		OpenWeatherMap.updateDailyWeather(config, callback)
 	} else if (weatherService == 'WeatherCanada') {
-		WeatherCanada.updateDailyWeather(callback)
+		WeatherCanada.updateDailyWeather(config, callback)
 	}
 }
 
@@ -71,25 +73,25 @@ function updateDailyWeather(callback) {
 	]
 }, xhr)
 */
-function updateHourlyWeather(callback) {
-	if (!weatherIsSetup()) {
+function updateHourlyWeather(config, callback) {
+	if (!weatherIsSetup(config)) {
 		return callback('Weather configuration not setup')
 	}
-	var weatherService = plasmoid.configuration.weather_service
+	var weatherService = config.weather_service
 	if (weatherService == 'OpenWeatherMap') {
-		OpenWeatherMap.updateHourlyWeather(callback)
+		OpenWeatherMap.updateHourlyWeather(config, callback)
 	} else if (weatherService == 'WeatherCanada') {
-		WeatherCanada.updateHourlyWeather(callback)
+		WeatherCanada.updateHourlyWeather(config, callback)
 	}
 }
 
 /* Return true if all configuration has been setup. */
-function weatherIsSetup() {
-	var weatherService = plasmoid.configuration.weather_service
+function weatherIsSetup(config) {
+	var weatherService = config.weather_service
 	if (weatherService == 'OpenWeatherMap') {
-		return !!plasmoid.configuration.weather_city_id
+		return !!config.weather_city_id
 	} else if (weatherService == 'WeatherCanada') {
-		return !!plasmoid.configuration.weather_canada_city_id
+		return !!config.weather_canada_city_id
 	} else {
 		return false
 	}

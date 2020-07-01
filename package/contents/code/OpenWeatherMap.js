@@ -1,3 +1,5 @@
+.pragma library
+
 .import "../ui/lib/Requests.js" as Requests
 
 function openOpenWeatherMapCityUrl(cityId) {
@@ -92,37 +94,37 @@ function parseHourlyData(weatherData) {
 }
 
 function handleError(funcName, callback, err, data, xhr) {
-	logger.logJSON(funcName + '.err', err, xhr && xhr.status, data)
+	console.error(funcName + '.err', err, xhr && xhr.status, data)
 	return callback(err, data, xhr)
 }
 
-function updateDailyWeather(callback) {
-	logger.debug('fetchDailyWeatherForecast', lastForecastAt, Date.now())
+function updateDailyWeather(config, callback) {
+	console.debug('OpenWeatherMap.fetchDailyWeatherForecast')
 	fetchDailyWeatherForecast({
-		app_id: plasmoid.configuration.weather_app_id,
-		city_id: plasmoid.configuration.weather_city_id,
-		units: plasmoid.configuration.weather_units,
+		app_id: config.weather_app_id,
+		city_id: config.weather_city_id,
+		units: config.weather_units,
 	}, function(err, data, xhr) {
-		if (err) return handleError('fetchDailyWeatherForecast', callback, err, data, xhr)
-		logger.debug('fetchDailyWeatherForecast.response')
-		// logger.debugJSON('fetchDailyWeatherForecast.response', data)
+		if (err) return handleError('OpenWeatherMap.fetchDailyWeatherForecast', callback, err, data, xhr)
+		// console.debug('OpenWeatherMap.fetchDailyWeatherForecast.response')
+		// console.debug('OpenWeatherMap.fetchDailyWeatherForecast.response', data)
 
 		data = parseDailyData(data)
 
-		callback(err, data)
+		callback(err, data, xhr)
 	})
 }
 
-function updateHourlyWeather(callback) {
-	logger.debug('fetchHourlyWeatherForecast', lastForecastAt, Date.now())
+function updateHourlyWeather(config, callback) {
+	console.debug('OpenWeatherMap.fetchHourlyWeatherForecast')
 	fetchHourlyWeatherForecast({
-		app_id: plasmoid.configuration.weather_app_id,
-		city_id: plasmoid.configuration.weather_city_id,
-		units: plasmoid.configuration.weather_units,
+		app_id: config.weather_app_id,
+		city_id: config.weather_city_id,
+		units: config.weather_units,
 	}, function(err, data, xhr) {
 		if (err) return handleError('updateHourlyWeather', callback, err, data, xhr)
-		logger.debug('fetchHourlyWeatherForecast.response')
-		// logger.debugJSON('fetchHourlyWeatherForecast.response', data)
+		// console.debug('OpenWeatherMap.fetchHourlyWeatherForecast.response')
+		// console.debug('OpenWeatherMap.fetchHourlyWeatherForecast.response', data)
 
 		data = parseHourlyData(data)
 

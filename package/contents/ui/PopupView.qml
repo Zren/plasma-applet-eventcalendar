@@ -251,7 +251,7 @@ MouseArea {
 			showIconOutline: plasmoid.configuration.show_outlines
 			xAxisScale: 1 / hoursPerDataPoint
 			xAxisLabelEvery: Math.ceil(3 / hoursPerDataPoint)
-			property int hoursPerDataPoint: WeatherApi.getDataPointDuration()
+			property int hoursPerDataPoint: WeatherApi.getDataPointDuration(plasmoid.configuration)
 
 			Rectangle {
 				id: meteogramMessageBox
@@ -262,7 +262,7 @@ MouseArea {
 				border.width: 1
 
 				readonly property string message: {
-					if (!WeatherApi.weatherIsSetup()) {
+					if (!WeatherApi.weatherIsSetup(plasmoid.configuration)) {
 						return i18n("Weather not configured.\nGo to Weather in the config and set your city,\nand/or disable the meteogram to hide this area.")
 					} else if (logic.lastForecastErr && !meteogramView.populated) {
 						return i18n("Error fetching weather.") + '\n' + logic.lastForecastErr
