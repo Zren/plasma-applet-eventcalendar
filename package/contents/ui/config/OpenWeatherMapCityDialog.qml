@@ -127,7 +127,7 @@ Dialog {
 	}
 
 	function searchCityList(q) {
-		console.log('searchCityList', q)
+		logger.debug('searchCityList', q)
 		clearCityList()
 		if (q) {
 			chooseCityDialog.loadingCityList = true
@@ -136,7 +136,7 @@ Dialog {
 				q: q,
 			}, function(err, data, xhr) {
 				if (err) return console.log('searchCityList.err', err, xhr && xhr.status, data)
-				logger.log('searchCityList.response')
+				logger.debug('searchCityList.response')
 				logger.debugJSON('searchCityList.response', data)
 
 				parseCityList(data)

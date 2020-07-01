@@ -15,11 +15,6 @@ Item {
 
 	//--- Main
 	Component.onCompleted: {
-		console.log('logic onCompleted')
-		console.log('timeModel', timeModel)
-		console.log('eventModel', eventModel)
-		console.log('agendaModel', agendaModel)
-
 		pollTimer.start()
 	}
 
@@ -186,12 +181,12 @@ Item {
 	Connections {
 		target: eventModel
 		onCalendarFetched: {
-			logger.log('onCalendarFetched', calendarId)
+			logger.debug('onCalendarFetched', calendarId)
 			// logger.debug('onCalendarFetched', calendarId, JSON.stringify(data, null, '\t'))
 			popup.deferredUpdateUI()
 		}
 		onAllDataFetched: {
-			// logger.log('onAllDataFetched')
+			logger.debug('onAllDataFetched')
 			popup.deferredUpdateUI()
 		}
 		onEventCreated: {

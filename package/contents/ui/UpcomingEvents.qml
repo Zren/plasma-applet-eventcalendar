@@ -10,11 +10,15 @@ CalendarManager {
 	property int upcomingEventRange: 90 // minutes
 
 	onFetchingData: {
-		logger.log('upcomingEvents.onFetchingData')
+		logger.debug('upcomingEvents.onFetchingData')
 
 	}
 	onAllDataFetched: {
-		logger.log('upcomingEvents.onAllDataFetched', upcomingEvents.dateMin, timeModel.currentTime, upcomingEvents.dateMax)
+		logger.debug('upcomingEvents.onAllDataFetched',
+			upcomingEvents.dateMin.toISOString(),
+			timeModel.currentTime.toISOString(),
+			upcomingEvents.dateMax.toISOString()
+		)
 		// sendEventListNotification()
 	}
 

@@ -96,7 +96,7 @@ CalendarManager {
 	}
 
 	function setEventProperty(calendarId, eventId, key, value) {
-		console.log('debugCalendarManager.setEventProperty', calendarId, eventId, key, value)
+		logger.log('debugCalendarManager.setEventProperty', calendarId, eventId, key, value)
 		var event = getEvent(calendarId, eventId)
 		if (!event) {
 			logger.log('error, trying to update event that doesn\'t exist')
