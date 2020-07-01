@@ -2,6 +2,10 @@
 
 .import "../ui/lib/Requests.js" as Requests
 
+function weatherIsSetup(config) {
+	return !!config.weather_city_id
+}
+
 function openOpenWeatherMapCityUrl(cityId) {
 	var url = 'https://openweathermap.org/city/'
 	url += cityId

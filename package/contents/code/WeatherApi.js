@@ -89,9 +89,9 @@ function updateHourlyWeather(config, callback) {
 function weatherIsSetup(config) {
 	var weatherService = config.weather_service
 	if (weatherService == 'OpenWeatherMap') {
-		return !!config.weather_city_id
+		return OpenWeatherMap.weatherIsSetup(config)
 	} else if (weatherService == 'WeatherCanada') {
-		return !!config.weather_canada_city_id
+		return WeatherCanada.weatherIsSetup(config)
 	} else {
 		return false
 	}
