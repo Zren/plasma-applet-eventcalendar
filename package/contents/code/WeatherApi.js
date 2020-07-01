@@ -15,6 +15,18 @@ function getDataPointDuration(config) {
 	}
 }
 
+/* Precipitation units ('mm' or '%') */
+function getRainUnits(config) {
+	var weatherService = config.weather_service
+	if (weatherService == 'OpenWeatherMap') {
+		return 'mm'
+	} else if (weatherService == 'WeatherCanada') {
+		return '%'
+	} else {
+		return 'mm'
+	}
+}
+
 /* Open the city's webpage using Qt.openUrlExternally(url) */
 function openCityUrl(config) {
 	var weatherService = config.weather_service

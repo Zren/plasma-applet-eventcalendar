@@ -14,6 +14,7 @@ Item {
 	property bool showGridlines: true
 	property alias xAxisScale: graph.xAxisScale
 	property int xAxisLabelEvery: 1
+	property alias rainUnits: graph.rainUnits
 
 	property bool populated: false
 

@@ -252,6 +252,7 @@ MouseArea {
 			xAxisScale: 1 / hoursPerDataPoint
 			xAxisLabelEvery: Math.ceil(3 / hoursPerDataPoint)
 			property int hoursPerDataPoint: WeatherApi.getDataPointDuration(plasmoid.configuration)
+			rainUnits: WeatherApi.getRainUnits(plasmoid.configuration)
 
 			Rectangle {
 				id: meteogramMessageBox
