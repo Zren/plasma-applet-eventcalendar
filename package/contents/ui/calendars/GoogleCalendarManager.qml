@@ -20,7 +20,7 @@ CalendarManager {
 	function fetchGoogleAccountData() {
 		if (accessToken) {
 			fetchGoogleAccountEvents(calendarIdList)
-			// fetchGoogleTasks('@default')
+			// fetchGoogleAccountTasks(['@default'])
 		}
 	}
 
@@ -151,11 +151,6 @@ CalendarManager {
 			// logger.debugJSON('fetchGCalEventsPage.response', args.calendarId, data)
 			pageCallback(err, data, xhr)
 		})
-	}
-
-	function onErrorFetchingEvents(err) {
-		logger.logJSON('onErrorFetchingEvents: ', err)
-		deferredUpdateAccessTokenThenUpdateEvents.restart()
 	}
 
 	//--- Get Single Event
@@ -676,37 +671,105 @@ CalendarManager {
 
 	//-------------------------
 	// Tasks
-	function fetchGoogleTasks(accessToken, tasklistId) {
-		logger.debug('fetchGoogleTasks', tasklistId)
+	function fetchGoogleAccountTasks(tasklistIdList) {
 		googleCalendarManager.asyncRequests += 1
-		fetchTaskList({
+		var func = fetchGoogleAccountTasks_run.bind(this, tasklistIdList, function(errObj, data) {
+			if (errObj) {
+				fetchGoogleAccountTasks_err(errObj.err, errObj.data, errObj.xhr)
+			} else {
+				fetchGoogleAccountTasks_done(data)
+			}
+		})
+		checkAccessToken(func)
+	}
+	function fetchGoogleAccountTasks_run(tasklistIdList, callback) {
+		logger.debug('fetchGoogleAccountTasks_run', tasklistIdList)
+
+		var tasks = []
+		for (var i = 0; i < tasklistIdList.length; i++) {
+			var tasklistId = tasklistIdList[i]
+			var task = fetchGoogleTasks.bind(this, tasklistId)
+			tasks.push(task)
+		}
+
+		Async.parallel(tasks, callback)
+	}
+	function fetchGoogleAccountTasks_err(err, data, xhr) {
+		logger.debug('fetchGoogleAccountTasks_err', err, data, xhr)
+		googleCalendarManager.asyncRequestsDone += 1
+		return handleError(err, data, xhr)
+	}
+	function fetchGoogleAccountTasks_done(results) {
+		for (var i = 0; i < results.length; i++) {
+			var tasklistId = results[i].tasklistId
+			var tasklistData = results[i].data
+			// setCalendarData(tasklistId, tasklistData)
+		}
+		googleCalendarManager.asyncRequestsDone += 1
+	}
+
+	function fetchGoogleTasks(tasklistId, callback) {
+		logger.debug('fetchGoogleTasks', tasklistId)
+		fetchGCalTasks({
 			tasklistId: tasklistId,
 			// start: googleCalendarManager.dateMin.toISOString(),
 			// end: googleCalendarManager.dateMax.toISOString(),
 			access_token: accessToken,
 		}, function(err, data, xhr) {
 			if (err) {
-				logger.logJSON('fetchGoogleTasks.onError: ', err)
-				if (xhr.status === 404) {
-					return
+				logger.logJSON('onErrorFetchingTasks: ', err)
+				var errObj = {
+					err: err,
+					data: data,
+					xhr: xhr,
 				}
-				googleCalendarManager.asyncRequestsDone += 1
-				return onErrorFetchingTasks(err)
+				return callback(errObj, null)
 			}
 
-			// setCalendarData(tasklistId, data)
-			googleCalendarManager.asyncRequestsDone += 1
+			return callback(null, {
+				tasklistId: tasklistId,
+				data: data,
+			})
 		})
 	}
 
-	function fetchTaskList(args, callback) {
-		logger.debug('fetchTaskList', args.tasklistId)
-		var onResponse = fetchTaskListPage.bind(this, args, callback, null)
-		fetchTaskListPage(args, onResponse)
+	function fetchGCalTasks(args, callback) {
+		logger.debug('fetchGCalTasks', args.tasklistId)
+
+		// return GoogleCalendarTests.testInvalidCredentials(callback)
+		// return GoogleCalendarTests.testDailyLimitExceeded(callback)
+		// return GoogleCalendarTests.testBackendError(callback)
+
+		var onResponse = fetchGCalTasksPageResponse.bind(this, args, callback, null)
+		fetchGCalTasksPage(args, onResponse)
 	}
 
-	function fetchTaskListPage(args, pageCallback) {
-		logger.debug('fetchTaskListPage', args.tasklistId)
+	function fetchGCalTasksPageResponse(args, finishedCallback, allData, err, data, xhr) {
+		logger.debug('fetchGCalTasksPageResponse', args, finishedCallback, allData, err, data, xhr)
+		if (err) {
+			return finishedCallback(err, data, xhr)
+		}
+		if (allData) {
+			data.items = allData.items.concat(data.items)
+			delete allData.items
+			delete allData
+		}
+		allData = data
+		
+		if (allData.nextPageToken) {
+			logger.debug('fetchGCalTasksPageResponse.nextPageToken', allData.nextPageToken)
+			logger.debug('fetchGCalTasksPageResponse.nextPageToken', 'allData.items.length', allData.items.length)
+			args.pageToken = allData.nextPageToken
+			var onResponse = fetchGCalTasksPageResponse.bind(this, args, finishedCallback, allData)
+			fetchGCalTasksPage(args, onResponse)
+		} else {
+			logger.debug('fetchGCalTasksPageResponse.finished', 'allData.items.length', allData.items.length)
+			finishedCallback(err, allData, xhr)
+		}
+	}
+
+	function fetchGCalTasksPage(args, pageCallback) {
+		logger.debug('fetchGCalTasksPage', args.tasklistId)
 		var url = 'https://www.googleapis.com/tasks/v1'
 		url += '/lists/'
 		url += encodeURIComponent(args.tasklistId)
@@ -722,16 +785,12 @@ CalendarManager {
 				"Authorization": "Bearer " + args.access_token,
 			}
 		}, function(err, data, xhr) {
-			logger.debug('fetchTaskListPage.response', args.calendarId, err, data, xhr.status)
+			logger.debug('fetchGCalTasksPage.response', args.tasklistId, err, data, xhr.status)
 			if (!err && data && data.error) {
 				return pageCallback(data, null, xhr)
 			}
-			logger.debugJSON('fetchTaskListPage.response', args.calendarId, data)
+			logger.debugJSON('fetchGCalTasksPage.response', args.tasklistId, data)
 			pageCallback(err, data, xhr)
 		})
-	}
-	function onErrorFetchingTasks(err) {
-		logger.logJSON('onErrorFetchingTasks: ', err)
-		deferredUpdateAccessTokenThenUpdateEvents.restart()
 	}
 }
