@@ -307,6 +307,7 @@ Item {
 
 
 					// yAxis label: precipitation
+					var lastLabelText = ''
 					var lastLabelVisible = false
 					var lastLabelStaggered = false
 					for (var i = 1; i < graph.gridData.length; i++) {
@@ -326,20 +327,28 @@ Item {
 							context.strokeStyle = appletConfig.meteogramPrecipitationTextOutlineColor
 							context.lineWidth = 3
 
+							if (labelText == lastLabelText) {
+								lastLabelText = labelText
+								lastLabelVisible = false
+								lastLabelStaggered = false
+								continue
+							}
+
 							// Stagger the labels so they don't overlap.
-							var labelWidth = context.measureText(labelText).width + 20 // 12px for padding-left
-							if (gridDataAreaWidth < context.measureText(labelText).width && lastLabelVisible && !lastLabelStaggered) {
+							var labelWidth = context.measureText(labelText).width
+							if (gridDataAreaWidth < labelWidth && lastLabelVisible && !lastLabelStaggered) {
 								pY += 12 // 12px
 								lastLabelStaggered = true
 							} else {
 								lastLabelStaggered = false
 							}
 							lastLabelVisible = true
-							
+							lastLabelText = labelText
 
 							context.strokeText(labelText, p.x, pY)
 							context.fillText(labelText, p.x, pY)
 						} else {
+							lastLabelText = ''
 							lastLabelVisible = false
 							lastLabelStaggered = false
 						}
