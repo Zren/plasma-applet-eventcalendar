@@ -1,7 +1,5 @@
 .pragma library
 
-.import "./lib/Requests.js" as Requests
-
 function openGoogleCalendarNewEventUrl(date) {
 	function dateString(year, month, day) {
 		var s = '' + year
