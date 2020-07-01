@@ -316,8 +316,8 @@ Item {
 				verticalAlignment: Text.AlignVCenter
 				font.pointSize: -1 // Ignore pixelSize warning
 				font.pixelSize: Math.max(theme.smallestFont.pixelSize, Math.min(daysCalendar.cellHeight / 3, daysCalendar.cellWidth * 5/8))
-				readonly property bool isCurrentWeek: modelData == calendarBackend.currentWeek()
-				readonly property bool showHighlight: isCurrentWeek && highlightCurrentDayWeek
+				readonly property bool isCurrentWeek: root.currentMonthContainsToday && modelData == calendarBackend.currentWeek()
+				readonly property bool showHighlight: isCurrentWeek && root.highlightCurrentDayWeek
 				color: showHighlight ? theme.highlightColor : theme.textColor
 				opacity: showHighlight ? 0.75 : 0.4
 				text: modelData
@@ -364,8 +364,8 @@ Item {
 				elide: Text.ElideRight
 				fontSizeMode: Text.HorizontalFit
 				readonly property int currentDayIndex: (calendarBackend.firstDayOfWeek + index) % 7
-				readonly property bool isCurrentDay: root.today && root.today.getDay() == currentDayIndex
-				readonly property bool showHighlight: isCurrentDay && highlightCurrentDayWeek
+				readonly property bool isCurrentDay: root.currentMonthContainsToday && root.today && root.today.getDay() == currentDayIndex
+				readonly property bool showHighlight: isCurrentDay && root.highlightCurrentDayWeek
 				color: showHighlight ? theme.highlightColor : theme.textColor
 				opacity: showHighlight ? 0.75 : 0.4
 				text: Qt.locale().dayName(currentDayIndex, Locale.ShortFormat)
