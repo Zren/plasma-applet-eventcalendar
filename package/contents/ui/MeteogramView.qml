@@ -318,15 +318,7 @@ Item {
 							(graph.rainUnits == 'mm' && item.precipitation > 0.3)
 							|| (graph.rainUnits == '%')
 						)) {
-							var p = graph.gridPoint(i, graph.yAxisMin)
-							var pY = graph.gridY + 6
-
-							context.fillStyle = appletConfig.meteogramPrecipitationTextColor
-							context.font = "12px sans-serif"
-							context.textAlign = 'end'
 							var labelText = formatPrecipitation(item.precipitation)
-							context.strokeStyle = appletConfig.meteogramPrecipitationTextOutlineColor
-							context.lineWidth = 3
 
 							if (labelText == lastLabelText) {
 								lastLabelText = labelText
@@ -335,8 +327,25 @@ Item {
 								continue
 							}
 
-							// Stagger the labels so they don't overlap.
+							context.fillStyle = appletConfig.meteogramPrecipitationTextColor
+							context.font = "12px sans-serif"
+							context.strokeStyle = appletConfig.meteogramPrecipitationTextOutlineColor
+							context.lineWidth = 3
+
 							var labelWidth = context.measureText(labelText).width
+							var p
+							// If there isn't enough room
+							if (gridDataAreaWidth < labelWidth) { // left align using previous point
+								p = graph.gridPoint(i-1, graph.yAxisMin)
+								context.textAlign = 'left'
+							} else { // otherwise right align
+								p = graph.gridPoint(i, graph.yAxisMin)
+								context.textAlign = 'end'
+							}
+
+							var pY = graph.gridY + 6
+
+							// Stagger the labels so they don't overlap.
 							if (gridDataAreaWidth < labelWidth && lastLabelVisible && !lastLabelStaggered) {
 								pY += 12 // 12px
 								lastLabelStaggered = true
