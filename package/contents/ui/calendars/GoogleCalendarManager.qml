@@ -739,21 +739,20 @@ CalendarManager {
 
 		eventData.isCompleted = taskData.status == "completed"
 
-		var today = new Date()
-		today = new Date(today.getFullYear(), today.getMonth(), today.getDate())
-
-		eventData.start = {
-			dateTime: Shared.dateString(today),
-		}
-
 		if (taskData.due) {
-			eventData.end = {
-				dateTime: Shared.dateString(new Date(taskData.due)),
-			}
+			var startDateTime = new Date(taskData.due)
+			var endDateTime = new Date(startDateTime.getFullYear(), startDateTime.getMonth(), startDateTime.getDate() + 1)
+			
 		} else {
-			eventData.end = {
-				dateTime: Shared.dateString(today),
-			}
+			var today = new Date()
+			var startDateTime = new Date(today.getFullYear(), today.getMonth(), today.getDate())
+			var endDateTime = new Date(today.getFullYear(), today.getMonth(), today.getDate() + 1)
+		}
+		eventData.start = {
+			date: Shared.dateString(startDateTime),
+		}
+		eventData.end = {
+			date: Shared.dateString(endDateTime),
 		}
 
 		if (taskData.notes) {
