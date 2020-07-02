@@ -704,9 +704,63 @@ CalendarManager {
 		for (var i = 0; i < results.length; i++) {
 			var tasklistId = results[i].tasklistId
 			var tasklistData = results[i].data
-			// setCalendarData(tasklistId, tasklistData)
+			var eventList = parseTasklistAsEvents(tasklistData)
+			setCalendarData(tasklistId, eventList)
 		}
 		googleCalendarManager.asyncRequestsDone += 1
+	}
+
+	function parseTasklistAsEvents(tasklistData) {
+		var eventList = []
+		for (var i = 0; i < tasklistData.items.length; i++) {
+			var taskData = tasklistData.items[i]
+			var eventData = parseTaskAsEventData(taskData)
+			logger.logJSON('tasklistData', i, eventData)
+			eventList.push(eventData)
+		}
+		return {
+			items: eventList,
+		}
+	}
+
+	function parseTaskAsEventData(taskData) {
+		var eventData = {
+			kind: taskData.kind,
+			etag: taskData.etag,
+			id: taskData.id,
+			status: taskData.status,
+			created: taskData.updated,
+			updated: taskData.updated,
+			summary: taskData.title,
+		}
+
+		var editTasksUrl = 'https://tasks.google.com/embed/?origin=' + encodeURIComponent('https://calendar.google.com') + '&fullWidth=1'
+		eventData.htmlLink = editTasksUrl
+
+		eventData.isCompleted = taskData.status == "completed"
+
+		var today = new Date()
+		today = new Date(today.getFullYear(), today.getMonth(), today.getDate())
+
+		eventData.start = {
+			dateTime: Shared.dateString(today),
+		}
+
+		if (taskData.due) {
+			eventData.end = {
+				dateTime: Shared.dateString(new Date(taskData.due)),
+			}
+		} else {
+			eventData.end = {
+				dateTime: Shared.dateString(today),
+			}
+		}
+
+		if (taskData.notes) {
+			eventData.description = taskData.notes
+		}
+
+		return eventData
 	}
 
 	function fetchGoogleTasks(tasklistId, callback) {
