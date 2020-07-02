@@ -129,11 +129,12 @@ LinkRect {
 
 		} // taskColumn
 
-		PlasmaComponents.ToolButton {
-			Layout.alignment: Qt.AlignTop
-			iconName: "zoom-in" // Breeze icon looks like "open link iocn"
-			onClicked: Qt.openUrlExternally(model.htmlLink)
-		}
+		// PlasmaComponents.ToolButton {
+		// 	id: openInBrowserButton
+		// 	Layout.alignment: Qt.AlignTop
+		// 	iconName: "zoom-in" // Breeze icon looks like "open link iocn"
+		// 	onClicked: Qt.openUrlExternally(model.htmlLink)
+		// }
 	}
 	
 	onLeftClicked: {
