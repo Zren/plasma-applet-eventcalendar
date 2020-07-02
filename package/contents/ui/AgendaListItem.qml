@@ -11,6 +11,7 @@ GridLayout {
 	id: agendaListItem
 	readonly property int agendaItemIndex: index
 	columnSpacing: 0
+	property var agendaItemTasks: model.tasks
 	property var agendaItemEvents: model.events
 	property date agendaItemDate: model.date
 	property bool agendaItemIsToday: false
@@ -26,6 +27,7 @@ GridLayout {
 	}
 	property bool agendaItemInProgress: agendaItemIsToday
 	property bool weatherOnRight: plasmoid.configuration.agendaWeatherOnRight
+	property alias tasksRepeater: tasksRepeater
 	property alias eventsRepeater: eventsRepeater
 
 	Connections {
@@ -188,6 +190,15 @@ GridLayout {
 			Layout.fillWidth: true
 
 			Repeater {
+				id: tasksRepeater
+				model: agendaItemTasks
+
+				delegate: AgendaTaskItem {
+					id: agendaTaskItem
+				}
+			}
+
+			Repeater {
 				id: eventsRepeater
 				model: agendaItemEvents
 
@@ -211,9 +222,16 @@ GridLayout {
 
 	function getEventOffset(index) {
 		var yOffset = newEventForm.height
+		for (var i = 0; i < index && i < tasksRepeater.count; i++) {
+			var item = tasksRepeater.itemAt(i)
+			if (i > 0) {
+				yOffset += eventsLayout.spacing
+			}
+			yOffset += item.height
+		}
 		for (var i = 0; i < index && i < eventsRepeater.count; i++) {
 			var item = eventsRepeater.itemAt(i)
-			if (i > 0) {
+			if (i > 0 || tasksRepeater.count > 0) {
 				yOffset += eventsLayout.spacing
 			}
 			yOffset += item.height

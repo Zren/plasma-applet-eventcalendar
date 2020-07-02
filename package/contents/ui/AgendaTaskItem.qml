@@ -9,10 +9,11 @@ import "LocaleFuncs.js" as LocaleFuncs
 import "Shared.js" as Shared
 
 LinkRect {
-	id: agendaEventItem
-	readonly property int eventItemIndex: index
+	id: agendaTaskItem
+	readonly property int taskItemIndex: index
+	width: undefined
 	Layout.fillWidth: true
-	implicitHeight: eventColumn.implicitHeight // contents.implicitHeight causes a binding loop
+	implicitHeight: contents.implicitHeight
 	property bool eventItemInProgress: false
 	function checkIfInProgress() {
 		if (model.startDateTime && timeModel.currentTime && model.endDateTime) {
@@ -24,25 +25,23 @@ LinkRect {
 	}
 	Connections {
 		target: timeModel
-		onLoaded: agendaEventItem.checkIfInProgress()
-		onMinuteChanged: agendaEventItem.checkIfInProgress()
+		onLoaded: agendaTaskItem.checkIfInProgress()
+		onMinuteChanged: agendaTaskItem.checkIfInProgress()
 	}
 	Component.onCompleted: {
-		agendaEventItem.checkIfInProgress()
+		agendaTaskItem.checkIfInProgress()
 
 		//--- Debugging
-		// editEventForm.active = eventItemInProgress && !model.startDateTime
+		// editTaskForm.active = eventItemInProgress && !model.startDateTime
 	}
 
-	property alias isEditing: editEventForm.active
+	property alias isEditing: editTaskForm.active
 	enabled: !isEditing
 
 	readonly property string eventTimestamp: LocaleFuncs.formatEventDuration(model, {
 		relativeDate: agendaItemDate,
 		clock24h: appletConfig.clock24h,
 	})
-	readonly property bool isAllDay: eventTimestamp == i18n("All Day") // TODO: Remove string comparison.
-	readonly property bool isCondensed: plasmoid.configuration.agendaCondensedAllDayEvent && isAllDay
 
 	RowLayout {
 		id: contents
@@ -50,31 +49,26 @@ LinkRect {
 		anchors.right: parent.right
 		spacing: 4 * units.devicePixelRatio
 
-		Rectangle {
-			implicitWidth: appletConfig.eventIndicatorWidth
-			Layout.fillHeight: true
-			color: model.backgroundColor || theme.textColor
+		PlasmaComponents3.CheckBox {
+			Layout.alignment: Qt.AlignTop
+			checked: model.isCompleted
+			enabled: false
 		}
 
 		ColumnLayout {
-			id: eventColumn
+			id: taskColumn
+			Layout.alignment: Qt.AlignTop
 			Layout.fillWidth: true
 			spacing: 0
 
 			PlasmaComponents3.Label {
-				id: eventSummary
-				text: {
-					if (isCondensed && model.location) {
-						return model.summary + " | " + model.location
-					} else {
-						return model.summary
-					}
-				}
+				id: taskTitle
+				text: model.title
 				color: eventItemInProgress ? inProgressColor : PlasmaCore.ColorScope.textColor
 				font.pointSize: -1
 				font.pixelSize: appletConfig.agendaFontSize
 				font.weight: eventItemInProgress ? inProgressFontWeight : Font.Normal
-				visible: !editEventForm.visible
+				visible: !editTaskForm.visible
 				Layout.fillWidth: true
 
 				// The Following doesn't seem to be applicable anymore (left comment just in case).
@@ -84,39 +78,34 @@ LinkRect {
 			}
 
 			PlasmaComponents3.Label {
-				id: eventDateTime
-				text: {
-					if (model.location) {
-						return eventTimestamp + " | " + model.location
-					} else {
-						return eventTimestamp
-					}
-				}
+				id: taskDue
+				readonly property bool showProperty: !!model.due
+				visible: showProperty && !editTaskForm.visible
+				text: eventTimestamp
 				color: eventItemInProgress ? inProgressColor : PlasmaCore.ColorScope.textColor
 				opacity: eventItemInProgress ? 1 : 0.75
 				font.pointSize: -1
 				font.pixelSize: appletConfig.agendaFontSize
 				font.weight: eventItemInProgress ? inProgressFontWeight : Font.Normal
-				visible: !editEventForm.visible && !isCondensed
 			}
 
 			Item {
-				id: eventDescriptionSpacing
-				visible: eventDescription.visible
+				id: taskNoteSpacing
+				visible: taskNotes.visible
 				implicitHeight: 4 * units.devicePixelRatio
 			}
 
 			PlasmaComponents3.Label {
-				id: eventDescription
+				id: taskNotes
 				readonly property bool showProperty: plasmoid.configuration.agendaShowEventDescription && text
-				visible: showProperty && !editEventForm.visible
-				text: Shared.renderText(model.description)
+				visible: showProperty && !editTaskForm.visible
+				text: Shared.renderText(model.notes)
 				color: PlasmaCore.ColorScope.textColor
 				opacity: 0.75
 				font.pointSize: -1
 				font.pixelSize: appletConfig.agendaFontSize
 				Layout.fillWidth: true
-				wrapMode: Text.Wrap // See warning at eventSummary.wrapMode
+				wrapMode: Text.Wrap // See warning at taskTitle.wrapMode
 
 				linkColor: PlasmaCore.ColorScope.highlightColor
 				onLinkActivated: Qt.openUrlExternally(link)
@@ -128,67 +117,44 @@ LinkRect {
 			}
 
 			Item {
-				id: eventEditorSpacing
-				visible: editEventForm.visible
+				id: taskEditorSpacing
+				visible: editTaskForm.visible
 				implicitHeight: 4 * units.devicePixelRatio
 			}
 
 			EditEventForm {
-				id: editEventForm
+				id: editTaskForm
 				// active: true
 			}
 
-			Item {
-				id: eventEditorSpacingBelow
-				visible: editEventForm.visible
-				implicitHeight: 4 * units.devicePixelRatio
-			}
+		} // taskColumn
 
-			PlasmaComponents.ToolButton {
-				id: eventHangoutLink
-				readonly property bool showProperty: plasmoid.configuration.agendaShowEventHangoutLink && !!model.hangoutLink
-				visible: showProperty && !editEventForm.visible
-				text: {
-					if (!!model.conferenceData
-						&& !!model.conferenceData.conferenceSolution
-						&& !!model.conferenceData.conferenceSolution.name
-					) {
-						return model.conferenceData.conferenceSolution.name
-					} else {
-						return i18n("Hangout")
-					}
-				}
-				iconSource: plasmoid.file("", "icons/hangouts.svg")
-				onClicked: Qt.openUrlExternally(model.hangoutLink)
-			}
-
-		} // eventColumn
+		PlasmaComponents.ToolButton {
+			Layout.alignment: Qt.AlignTop
+			iconName: "zoom-in" // Breeze icon looks like "open link iocn"
+			onClicked: Qt.openUrlExternally(model.htmlLink)
+		}
 	}
 	
 	onLeftClicked: {
-		// logger.log('agendaItem.event.leftClicked', model.startDateTime, mouse)
-		if (false) {
-			var event = events.get(index)
-			logger.logJSON("event", event)
-			var calendar = eventModel.getCalendar(event.calendarId)
-			logger.logJSON("calendar", calendar)
-			upcomingEvents.sendEventStartingNotification(model)
-		} else {
-			// agenda_event_clicked == "browser_viewevent"
-			Qt.openUrlExternally(model.htmlLink)
-		}
+		var task = tasks.get(index)
+		logger.logJSON("task", task)
+		// var tasklist = eventModel.getTasklist(task.tasklistId)
+		// logger.logJSON("tasklist", tasklist)
+
+		// eventModel.toggleCompleted(event.tasklistId, task.id)
 	}
 
 	onLoadContextMenu: {
 		var menuItem
-		var event = events.get(index)
+		var task = tasks.get(index)
 
 		menuItem = contextMenu.newMenuItem()
 		menuItem.text = i18n("Edit")
 		menuItem.icon = "edit-rename"
-		menuItem.enabled = event.canEdit
+		// menuItem.enabled = task.canEdit
 		menuItem.clicked.connect(function() {
-			editEventForm.active = !editEventForm.active
+			editTaskForm.active = !editTaskForm.active
 			agendaScrollView.positionViewAtEvent(agendaItemIndex, eventItemIndex)
 		})
 		contextMenu.addMenuItem(menuItem)
@@ -199,21 +165,21 @@ LinkRect {
 		menuItem = contextMenu.newMenuItem(deleteMenuItem)
 		menuItem.text = i18n("Confirm Deletion")
 		menuItem.icon = "delete"
-		menuItem.enabled = event.canEdit
+		// menuItem.enabled = task.canEdit
 		menuItem.clicked.connect(function() {
-			logger.debug('eventModel.deleteEvent', event.calendarId, event.id)
-			eventModel.deleteEvent(event.calendarId, event.id)
+			logger.debug('eventModel.deleteTask', task.tasklistId, task.id)
+			// eventModel.deleteTask(task.tasklistId, task.id)
 		})
-		deleteMenuItem.enabled = event.canEdit
+		// deleteMenuItem.enabled = task.canEdit
 		deleteMenuItem.subMenu.addMenuItem(menuItem)
 		contextMenu.addMenuItem(deleteMenuItem)
 
 		menuItem = contextMenu.newMenuItem()
 		menuItem.text = i18n("Edit in browser")
 		menuItem.icon = "internet-web-browser"
-		menuItem.enabled = !!event.htmlLink
+		menuItem.enabled = !!task.htmlLink
 		menuItem.clicked.connect(function() {
-			Qt.openUrlExternally(event.htmlLink)
+			Qt.openUrlExternally(task.htmlLink)
 		})
 		contextMenu.addMenuItem(menuItem)
 	}

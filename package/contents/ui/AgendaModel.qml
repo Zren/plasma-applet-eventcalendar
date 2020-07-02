@@ -66,6 +66,7 @@ ListModel {
 		return {
 			date: new Date(dateTime),
 			events: [],
+			tasks: [],
 			showWeather: false,
 			tempLow: 0,
 			tempHigh: 0,
@@ -130,7 +131,11 @@ ListModel {
 			agendaItem = buildAgendaItem(date)
 			agendaItemList.push(agendaItem)
 		}
-		agendaItem.events.push(eventItem)
+		if (eventItem.kind == 'tasks#task') {
+			agendaItem.tasks.push(eventItem)
+		} else {
+			agendaItem.events.push(eventItem)
+		}
 	}
 	function parseGCalEvents(data) {
 		agendaModel.populating = true

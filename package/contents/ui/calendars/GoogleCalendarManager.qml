@@ -724,15 +724,8 @@ CalendarManager {
 	}
 
 	function parseTaskAsEventData(taskData) {
-		var eventData = {
-			kind: taskData.kind,
-			etag: taskData.etag,
-			id: taskData.id,
-			status: taskData.status,
-			created: taskData.updated,
-			updated: taskData.updated,
-			summary: taskData.title,
-		}
+		// Don't bother creating a new object.
+		var eventData = taskData
 
 		var editTasksUrl = 'https://tasks.google.com/embed/?origin=' + encodeURIComponent('https://calendar.google.com') + '&fullWidth=1'
 		eventData.htmlLink = editTasksUrl
@@ -741,22 +734,16 @@ CalendarManager {
 
 		if (taskData.due) {
 			var startDateTime = new Date(taskData.due)
-			var endDateTime = new Date(startDateTime.getFullYear(), startDateTime.getMonth(), startDateTime.getDate() + 1)
-			
 		} else {
 			var today = new Date()
 			var startDateTime = new Date(today.getFullYear(), today.getMonth(), today.getDate())
-			var endDateTime = new Date(today.getFullYear(), today.getMonth(), today.getDate() + 1)
 		}
+		var endDateTime = new Date(startDateTime.getFullYear(), startDateTime.getMonth(), startDateTime.getDate() + 1)
 		eventData.start = {
 			date: Shared.dateString(startDateTime),
 		}
 		eventData.end = {
 			date: Shared.dateString(endDateTime),
-		}
-
-		if (taskData.notes) {
-			eventData.description = taskData.notes
 		}
 
 		return eventData
@@ -845,7 +832,7 @@ CalendarManager {
 			if (!err && data && data.error) {
 				return pageCallback(data, null, xhr)
 			}
-			logger.debugJSON('fetchGCalTasksPage.response', args.tasklistId, data)
+			// logger.debugJSON('fetchGCalTasksPage.response', args.tasklistId, data)
 			pageCallback(err, data, xhr)
 		})
 	}
