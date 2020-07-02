@@ -738,7 +738,8 @@ CalendarManager {
 			var today = new Date()
 			var startDateTime = new Date(today.getFullYear(), today.getMonth(), today.getDate())
 		}
-		var endDateTime = new Date(startDateTime.getFullYear(), startDateTime.getMonth(), startDateTime.getDate() + 1)
+		var endDateTime = new Date(startDateTime)
+		endDateTime.setDate(endDateTime.getDate() + 1)
 		eventData.start = {
 			date: Shared.dateString(startDateTime),
 		}
