@@ -37,6 +37,7 @@ LinkRect {
 		relativeDate: agendaItemDate,
 		clock24h: appletConfig.clock24h,
 	})
+	readonly property bool isTask: model.kind == 'tasks#task'
 	readonly property bool isAllDay: eventTimestamp == i18n("All Day") // TODO: Remove string comparison.
 	readonly property bool isCondensed: plasmoid.configuration.agendaCondensedAllDayEvent && isAllDay
 
@@ -47,7 +48,15 @@ LinkRect {
 		Rectangle {
 			Layout.preferredWidth: appletConfig.eventIndicatorWidth
 			Layout.preferredHeight: eventColumn.height
+			visible: !isTask
 			color: model.backgroundColor || theme.textColor
+		}
+
+		PlasmaComponents3.CheckBox {
+			Layout.alignment: Qt.AlignTop
+			visible: isTask
+			checked: isTask && model.isCompleted
+			enabled: false
 		}
 
 		ColumnLayout {
