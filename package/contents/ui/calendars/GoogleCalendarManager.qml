@@ -774,7 +774,9 @@ CalendarManager {
 		url += '/lists/'
 		url += encodeURIComponent(args.tasklistId)
 		url += '/tasks'
-		// url += '?dueMin=' + encodeURIComponent(args.start)
+		url += '?showCompleted=true'
+		url += '&showHidden=true'
+		// url += '&dueMin=' + encodeURIComponent(args.start)
 		// url += '&dueMax=' + encodeURIComponent(args.end)
 		if (args.pageToken) {
 			url += '&pageToken=' + encodeURIComponent(args.pageToken)
