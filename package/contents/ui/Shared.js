@@ -29,3 +29,6 @@ function isDateAfter(a, b) {
 	var c = new Date(b.getFullYear(), b.getMonth(), b.getDate() + 1) // midnight of next day after b
 	return a >= c
 }
+function dateString(d) {
+	return d.toISOString().substr(0, 10)
+}

@@ -1,5 +1,6 @@
 import QtQuick 2.0
 
+import "../Shared.js" as Shared
 import "../lib/Async.js" as Async
 import "../lib/Requests.js" as Requests
 import "../../code/ColorIdMap.js" as ColorIdMap
