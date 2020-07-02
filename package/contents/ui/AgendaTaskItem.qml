@@ -38,10 +38,24 @@ LinkRect {
 	property alias isEditing: editTaskForm.active
 	enabled: !isEditing
 
-	readonly property string eventTimestamp: LocaleFuncs.formatEventDuration(model, {
-		relativeDate: agendaItemDate,
-		clock24h: appletConfig.clock24h,
-	})
+	readonly property string eventTimestamp: {
+		if (model.due) {
+			// Note that new Date(model.due) will not work.
+			var dueDateTime = model.startDateTime
+			if (model.due.indexOf('T00:00:00.000Z') !== -1) {
+				// Due at end of day
+				var shortDateFormat = i18nc("short month+date format", "MMM d")
+				return Qt.formatDateTime(dueDateTime, shortDateFormat)
+			} else {
+				// Due at specific time
+				return LocaleFuncs.formatEventDateTime(dueDateTime, {
+					clock24h: appletConfig.clock24h,
+				})
+			}
+		} else {
+			return ''
+		}
+	}
 
 	RowLayout {
 		id: contents
@@ -77,16 +91,26 @@ LinkRect {
 				wrapMode: Text.Wrap
 			}
 
-			PlasmaComponents3.Label {
+			RowLayout {
 				id: taskDue
 				readonly property bool showProperty: !!model.due
 				visible: showProperty && !editTaskForm.visible
-				text: eventTimestamp
-				color: eventItemInProgress ? inProgressColor : PlasmaCore.ColorScope.textColor
-				opacity: eventItemInProgress ? 1 : 0.75
-				font.pointSize: -1
-				font.pixelSize: appletConfig.agendaFontSize
-				font.weight: eventItemInProgress ? inProgressFontWeight : Font.Normal
+				spacing: units.smallSpacing
+
+				PlasmaCore.IconItem {
+					source: "view-task"
+					Layout.preferredHeight: taskDueLabel.implicitHeight
+					Layout.preferredWidth: taskDueLabel.implicitHeight
+				}
+				PlasmaComponents3.Label {
+					id: taskDueLabel
+					text: eventTimestamp
+					color: eventItemInProgress ? inProgressColor : PlasmaCore.ColorScope.textColor
+					opacity: eventItemInProgress ? 1 : 0.75
+					font.pointSize: -1
+					font.pixelSize: appletConfig.agendaFontSize
+					font.weight: eventItemInProgress ? inProgressFontWeight : Font.Normal
+				}
 			}
 
 			Item {
