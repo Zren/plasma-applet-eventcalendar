@@ -7,10 +7,12 @@ import "../../code/ColorIdMap.js" as ColorIdMap
 
 // import "./GoogleCalendarTests.js" as GoogleCalendarTests
 
-GoogleApiManager {
+CalendarManager {
 	id: googleCalendarManager
 
-	calendarManagerId: "googlecal"
+	calendarManagerId: "GoogleCalendar"
+
+	property var session
 	readonly property var calendarIdList: plasmoid.configuration.calendar_id_list ? plasmoid.configuration.calendar_id_list.split(',') : ['primary']
 
 	onFetchAllCalendars: {
@@ -18,7 +20,7 @@ GoogleApiManager {
 	}
 
 	function fetchGoogleAccountData() {
-		if (accessToken) {
+		if (session.accessToken) {
 			fetchGoogleAccountEvents(calendarIdList)
 		}
 	}
@@ -60,7 +62,7 @@ GoogleApiManager {
 				fetchGoogleAccountEvents_done(data)
 			}
 		})
-		checkAccessToken(func)
+		session.checkAccessToken(func)
 	}
 	function fetchGoogleAccountEvents_run(calendarIdList, callback) {
 		logger.debug('fetchGoogleAccountEvents_run', calendarIdList)
@@ -94,7 +96,7 @@ GoogleApiManager {
 			calendarId: calendarId,
 			start: googleCalendarManager.dateMin.toISOString(),
 			end: googleCalendarManager.dateMax.toISOString(),
-			access_token: accessToken,
+			access_token: session.accessToken,
 		}, function(err, data, xhr) {
 			if (err) {
 				logger.logJSON('onErrorFetchingEvents: ', err)
@@ -179,17 +181,17 @@ GoogleApiManager {
 	//--- Get Single Event
 	function fetchGoogleCalendarEvent(calendarId, eventId, callback) {
 		logger.debug('fetchGoogleCalendarEvent', calendarId, eventId)
-		if (accessToken) {
+		if (session.accessToken) {
 			var func = fetchGoogleCalendarEvent_run.bind(this, calendarId, eventId, callback)
-			checkAccessToken(func)
+			session.checkAccessToken(func)
 		} else {
-			transactionError('attempting to "fetch an event" without an access token set')
+			session.transactionError('attempting to "fetch an event" without an access token set')
 		}
 	}
 	function fetchGoogleCalendarEvent_run(calendarId, eventId, callback) {
 		logger.debugJSON('fetchGoogleCalendarEvent_run', calendarId, eventId)
 		fetchGCalEvent({
-			access_token: accessToken,
+			access_token: session.accessToken,
 			calendarId: calendarId,
 			eventId: eventId,
 		}, callback)
@@ -269,7 +271,7 @@ GoogleApiManager {
 
 	//--- Create / POST
 	function createGoogleCalendarEvent(calendarId, date, text) {
-		if (accessToken) {
+		if (session.accessToken) {
 			var dateString = date.getFullYear() + '-' + (date.getMonth()+1) + '-' + date.getDate()
 			var eventText = dateString + ' ' + text
 
@@ -280,15 +282,15 @@ GoogleApiManager {
 					createGoogleCalendarEvent_done(calendarId, data)
 				}
 			})
-			checkAccessToken(func)
+			session.checkAccessToken(func)
 		} else {
-			transactionError('attempting to "create an event" without an access token set')
+			session.transactionError('attempting to "create an event" without an access token set')
 		}
 	}
 	function createGoogleCalendarEvent_run(calendarId, eventText, callback) {
 		logger.debugJSON('createGoogleCalendarEvent_run', calendarId, eventText)
 		createGCalEvent({
-			access_token: accessToken,
+			access_token: session.accessToken,
 			calendarId: calendarId,
 			text: eventText,
 		}, callback)
@@ -337,14 +339,14 @@ GoogleApiManager {
 
 		// Note: Make sure switching between all day event (event.start.date) and a date+time
 		// event (event.start.dateTime) works properly before switching to PATCH.
-		// patchGoogleCalendarEvent(accessToken, calendarId, eventId, args, callback)
+		// patchGoogleCalendarEvent(calendarId, eventId, args, callback)
 	}
 
 	function updateGoogleCalendarEvent(calendarId, eventId, args) {
-		if (accessToken) {
+		if (session.accessToken) {
 			var event = getEvent(calendarId, eventId)
 			if (!event) {
-				transactionError('attempting to "set an event property" for an event that doesn\'t exist')
+				session.transactionError('attempting to "set an event property" for an event that doesn\'t exist')
 				return
 			}
 
@@ -355,9 +357,9 @@ GoogleApiManager {
 					updateGoogleCalendarEvent_done(calendarId, eventId, event, data)
 				}
 			})
-			checkAccessToken(func)
+			session.checkAccessToken(func)
 		} else {
-			transactionError('attempting to "set an event property" without an access token set')
+			session.transactionError('attempting to "set an event property" without an access token set')
 		}
 	}
 	function updateGoogleCalendarEvent_run(calendarId, eventId, event, args, callback) {
@@ -373,7 +375,7 @@ GoogleApiManager {
 		logger.debugJSON('updateGoogleCalendarEvent', 'sent', data)
 		
 		updateGCalEvent({
-			accessToken: accessToken,
+			accessToken: session.accessToken,
 			calendarId: calendarId,
 			eventId: eventId,
 			data: data,
@@ -420,11 +422,11 @@ GoogleApiManager {
 		})
 	}
 
-	function patchGoogleCalendarEvent(accessToken, calendarId, eventId, eventProps, callback) {
+	function patchGoogleCalendarEvent(calendarId, eventId, eventProps, callback) {
 		logger.debugJSON('patchGoogleCalendarEvent.sent', eventProps)
 		
 		patchGCalEvent({
-			accessToken: accessToken,
+			accessToken: session.accessToken,
 			calendarId: calendarId,
 			eventId: eventId,
 			data: eventProps,
@@ -471,10 +473,10 @@ GoogleApiManager {
 
 	//--- Delete Event
 	function deleteEvent(calendarId, eventId) {
-		if (accessToken) {
+		if (session.accessToken) {
 			var event = getEvent(calendarId, eventId)
 			if (!event) {
-				transactionError('attempting to "delete an event" for an event that doesn\'t exist')
+				session.transactionError('attempting to "delete an event" for an event that doesn\'t exist')
 				return
 			}
 
@@ -485,16 +487,16 @@ GoogleApiManager {
 					deleteEvent_done(calendarId, eventId, data)
 				}
 			})
-			checkAccessToken(func)
+			session.checkAccessToken(func)
 		} else {
-			transactionError('attempting to "delete an event" without an access token set')
+			session.transactionError('attempting to "delete an event" without an access token set')
 		}
 	}
 	function deleteEvent_run(calendarId, eventId, callback) {
 		logger.debugJSON('deleteEvent_run', calendarId, eventId)
 
 		deleteGCalEvent({
-			accessToken: accessToken,
+			accessToken: session.accessToken,
 			calendarId: calendarId,
 			eventId: eventId,
 		}, callback)

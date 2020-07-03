@@ -7,17 +7,18 @@ import "../lib/Requests.js" as Requests
 
 // import "./GoogleCalendarTests.js" as GoogleCalendarTests
 
-GoogleApiManager {
+CalendarManager {
 	id: googleTasksManager
 
-	calendarManagerId: "googletasks"
+	calendarManagerId: "GoogleTasks"
 
+	property var session
 	onFetchAllCalendars: {
 		fetchGoogleAccountData()
 	}
 
 	function fetchGoogleAccountData() {
-		if (accessToken) {
+		if (session.accessToken) {
 			fetchGoogleAccountTasks(['@default'])
 		}
 	}
@@ -43,7 +44,7 @@ GoogleApiManager {
 				fetchGoogleAccountTasks_done(data)
 			}
 		})
-		checkAccessToken(func)
+		session.checkAccessToken(func)
 	}
 	function fetchGoogleAccountTasks_run(tasklistIdList, callback) {
 		logger.debug('fetchGoogleAccountTasks_run', tasklistIdList)
@@ -120,7 +121,7 @@ GoogleApiManager {
 			tasklistId: tasklistId,
 			// start: googleCalendarManager.dateMin.toISOString(),
 			// end: googleCalendarManager.dateMax.toISOString(),
-			access_token: accessToken,
+			access_token: session.accessToken,
 		}, function(err, data, xhr) {
 			if (err) {
 				logger.logJSON('onErrorFetchingTasks: ', err)

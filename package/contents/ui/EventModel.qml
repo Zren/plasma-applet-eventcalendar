@@ -62,11 +62,16 @@ CalendarManager {
 		id: debugCalendarManager
 	}
 
+	GoogleApiSession {
+		id: googleApiSession
+	}
 	GoogleCalendarManager {
 		id: googleCalendarManager
+		session: googleApiSession
 	}
 	GoogleTasksManager {
 		id: googleTasksManager
+		session: googleApiSession
 	}
 
 	PlasmaCalendarManager {

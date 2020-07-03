@@ -1,14 +1,9 @@
 import QtQuick 2.0
 
-import "../Shared.js" as Shared
-import "../lib/Async.js" as Async
 import "../lib/Requests.js" as Requests
-import "../../code/ColorIdMap.js" as ColorIdMap
 
-// import "./GoogleCalendarTests.js" as GoogleCalendarTests
-
-CalendarManager {
-	id: googleCalendarManager
+QtObject {
+	id: googleApiSession
 
 	readonly property string accessToken: plasmoid.configuration.access_token
 
@@ -36,7 +31,7 @@ CalendarManager {
 				logger.debug('onAccessToken', data)
 				data = JSON.parse(data)
 
-				googleCalendarManager.applyAccessToken(data)
+				googleApiSession.applyAccessToken(data)
 
 				callback(null)
 			})
