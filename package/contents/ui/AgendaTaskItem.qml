@@ -11,7 +11,6 @@ import "Shared.js" as Shared
 LinkRect {
 	id: agendaTaskItem
 	readonly property int taskItemIndex: index
-	width: undefined
 	Layout.fillWidth: true
 	implicitHeight: contents.implicitHeight
 	property bool eventItemInProgress: false
@@ -64,6 +63,7 @@ LinkRect {
 		spacing: 4 * units.devicePixelRatio
 
 		PlasmaComponents3.CheckBox {
+			id: taskCheckBox
 			Layout.alignment: Qt.AlignTop
 			checked: model.isCompleted
 			enabled: false
