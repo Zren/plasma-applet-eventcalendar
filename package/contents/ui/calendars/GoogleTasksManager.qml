@@ -13,13 +13,15 @@ CalendarManager {
 	calendarManagerId: "GoogleTasks"
 
 	property var session
+	readonly property var tasklistIdList: ['@default']
+
 	onFetchAllCalendars: {
 		fetchGoogleAccountData()
 	}
 
 	function fetchGoogleAccountData() {
 		if (session.accessToken) {
-			fetchGoogleAccountTasks(['@default'])
+			fetchGoogleAccountTasks(tasklistIdList)
 		}
 	}
 
@@ -77,8 +79,9 @@ CalendarManager {
 		var eventList = []
 		for (var i = 0; i < tasklistData.items.length; i++) {
 			var taskData = tasklistData.items[i]
+			// logger.debugJSON('tasklistData', i, taskData)
 			var eventData = parseTaskAsEventData(taskData)
-			logger.logJSON('tasklistData', i, eventData)
+			// logger.debugJSON('tasklistData', i, eventData)
 			eventList.push(eventData)
 		}
 		return {
@@ -110,7 +113,9 @@ CalendarManager {
 			date: Shared.dateString(endDateTime),
 		}
 
-		logger.debugJSON('task', startDateTime, endDateTime)
+		if (taskData.parent) {
+			// TODO: This is a subtask
+		}
 
 		return eventData
 	}
