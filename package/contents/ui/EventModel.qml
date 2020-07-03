@@ -65,6 +65,9 @@ CalendarManager {
 	GoogleCalendarManager {
 		id: googleCalendarManager
 	}
+	GoogleTasksManager {
+		id: googleTasksManager
+	}
 
 	PlasmaCalendarManager {
 		id: plasmaCalendarManager
@@ -74,6 +77,7 @@ CalendarManager {
 		bindSignals(icalManager)
 		bindSignals(debugCalendarManager)
 		bindSignals(googleCalendarManager)
+		bindSignals(googleTasksManager)
 		bindSignals(plasmaCalendarManager)
 	}
 
@@ -88,6 +92,7 @@ CalendarManager {
 
 	onFetchAllCalendars: {
 		googleCalendarManager.fetchAll(dateMin, dateMax)
+		googleTasksManager.fetchAll(dateMin, dateMax)
 		plasmaCalendarManager.fetchAll(dateMin, dateMax)
 		// icalManager.fetchAll(dateMin, dateMax)
 		// debugCalendarManager.showDebugEvents = true
