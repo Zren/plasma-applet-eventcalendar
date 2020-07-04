@@ -75,6 +75,38 @@ CalendarManager {
 		googleCalendarManager.asyncRequestsDone += 1
 	}
 
+	function sortTasklist(tasklist) {
+		tasklist.sort(function(a,b) {
+			if (typeof a.position !== 'undefined') {
+				if (typeof b.position !== 'undefined') {
+					var ap = a.position
+					var bp = b.position
+					if (ap == bp) {
+						return 0
+					} else if (ap < bp) {
+						return -1
+					} else { // ap > bp
+						return 1
+					}
+				} else {
+					return 1
+				}
+			} else {
+				if (typeof b.position !== 'undefined') {
+					return -1
+				} else {
+					0
+				}
+			}
+		})
+
+		//--- Debug
+		// for (var i = 0; i < tasklist.length; i++) {
+		// 	var taskData = tasklist[i]
+		// 	logger.debug('task', i, taskData.position, taskData.title)
+		// }
+	}
+
 	function parseTasklistAsEvents(tasklistData) {
 		var eventList = []
 		for (var i = 0; i < tasklistData.items.length; i++) {
@@ -84,6 +116,11 @@ CalendarManager {
 			// logger.debugJSON('tasklistData', i, eventData)
 			eventList.push(eventData)
 		}
+
+		// Note that AgendaModel will sort again in AgendaModel.parseGCalEvents,
+		// which ruins this sorting.
+		sortTasklist(eventList)
+
 		return {
 			items: eventList,
 		}
