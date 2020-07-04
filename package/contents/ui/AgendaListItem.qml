@@ -190,20 +190,20 @@ GridLayout {
 			Layout.fillWidth: true
 
 			Repeater {
-				id: tasksRepeater
-				model: agendaItemTasks
-
-				delegate: AgendaTaskItem {
-					id: agendaTaskItem
-				}
-			}
-
-			Repeater {
 				id: eventsRepeater
 				model: agendaItemEvents
 
 				delegate: AgendaEventItem {
 					id: agendaEventItem
+				}
+			}
+
+			Repeater {
+				id: tasksRepeater
+				model: agendaItemTasks
+
+				delegate: AgendaTaskItem {
+					id: agendaTaskItem
 				}
 			}
 		}
@@ -222,16 +222,16 @@ GridLayout {
 
 	function getEventOffset(index) {
 		var yOffset = newEventForm.height
-		for (var i = 0; i < index && i < tasksRepeater.count; i++) {
-			var item = tasksRepeater.itemAt(i)
+		for (var i = 0; i < index && i < eventsRepeater.count; i++) {
+			var item = eventsRepeater.itemAt(i)
 			if (i > 0) {
 				yOffset += eventsLayout.spacing
 			}
 			yOffset += item.height
 		}
-		for (var i = 0; i < index && i < eventsRepeater.count; i++) {
-			var item = eventsRepeater.itemAt(i)
-			if (i > 0 || tasksRepeater.count > 0) {
+		for (var i = 0; i < index && i < tasksRepeater.count; i++) {
+			var item = tasksRepeater.itemAt(i)
+			if (i > 0 || eventsRepeater.count > 0) {
 				yOffset += eventsLayout.spacing
 			}
 			yOffset += item.height
