@@ -17,15 +17,11 @@ LinkRect {
 	property bool taskIsOverdue: false
 	function checkIfIsOverdue() {
 		if (model.due) {
-			console.log('isOverdue')
-			console.log('    agendaItemDate', timeModel.currentTime)
 			if (model.dueEndOfDay) {
 				var dueEndTime = new Date(model.dueDateTime)
 				dueEndTime.setDate(dueEndTime.getDate() + 1)
-				console.log('        dueEndTime', dueEndTime)
 				taskIsOverdue = dueEndTime < timeModel.currentTime
 			} else {
-				console.log('       dueDateTime', model.dueDateTime)
 				taskIsOverdue = model.dueDateTime < timeModel.currentTime
 			}
 		} else {
