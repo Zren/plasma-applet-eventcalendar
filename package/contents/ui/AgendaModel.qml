@@ -174,7 +174,8 @@ ListModel {
 				var now = new Date(timeModel.currentTime)
 				var inProgress = eventItem.startDateTime <= now && now <= eventItem.endDateTime
 				if (inProgress) {
-					insertEventAtDate(agendaItemList, now, eventItem)
+					var today = new Date(now.getFullYear(), now.getMonth(), now.getDate())
+					insertEventAtDate(agendaItemList, today, eventItem)
 				} else {
 					insertEventAtDate(agendaItemList, eventItem.startDateTime, eventItem)
 				}
