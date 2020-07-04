@@ -99,7 +99,14 @@ CalendarManager {
 		eventData.isCompleted = taskData.status == "completed"
 
 		if (taskData.due) {
-			var startDateTime = new Date(taskData.due)
+			var dueDateTime = new Date(taskData.due)
+			// Use local time zone, like we do in CalendarManager.onEventParsing
+			eventData.dueDate = Shared.dateString(dueDateTime)
+			eventData.dueDateTime = new Date(eventData.dueDate + ' 00:00:00')
+			// All day event, due at end of day.
+			eventData.dueEndOfDay = taskData.due.indexOf('T00:00:00.000Z') !== -1
+
+			var startDateTime = new Date(eventData.dueDateTime)
 		} else {
 			var today = new Date()
 			var startDateTime = new Date(today.getFullYear(), today.getMonth(), today.getDate())
