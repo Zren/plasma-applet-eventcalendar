@@ -13,6 +13,7 @@ LinkRect {
 	readonly property int eventItemIndex: index
 	Layout.fillWidth: true
 	implicitHeight: eventColumn.implicitHeight // contents.implicitHeight causes a binding loop
+
 	property bool eventItemInProgress: false
 	function checkIfInProgress() {
 		if (model.startDateTime && timeModel.currentTime && model.endDateTime) {
@@ -44,6 +45,8 @@ LinkRect {
 	readonly property bool isAllDay: eventTimestamp == i18n("All Day") // TODO: Remove string comparison.
 	readonly property bool isCondensed: plasmoid.configuration.agendaCondensedAllDayEvent && isAllDay
 
+
+	//---
 	RowLayout {
 		id: contents
 		anchors.left: parent.left

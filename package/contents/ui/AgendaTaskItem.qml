@@ -13,25 +13,32 @@ LinkRect {
 	readonly property int taskItemIndex: index
 	Layout.fillWidth: true
 	implicitHeight: contents.implicitHeight
-	property bool eventItemInProgress: false
-	function checkIfInProgress() {
-		if (model.startDateTime && timeModel.currentTime && model.endDateTime) {
-			eventItemInProgress = model.startDateTime <= timeModel.currentTime && timeModel.currentTime <= model.endDateTime
+
+	property bool taskIsOverdue: false
+	function checkIfIsOverdue() {
+		if (model.due) {
+			console.log('isOverdue')
+			console.log('    agendaItemDate', timeModel.currentTime)
+			if (model.dueEndOfDay) {
+				var dueEndTime = new Date(model.dueDateTime)
+				dueEndTime.setDate(dueEndTime.getDate() + 1)
+				console.log('        dueEndTime', dueEndTime)
+				taskIsOverdue = dueEndTime < timeModel.currentTime
+			} else {
+				console.log('       dueDateTime', model.dueDateTime)
+				taskIsOverdue = model.dueDateTime < timeModel.currentTime
+			}
 		} else {
-			eventItemInProgress = false
+			taskIsOverdue = false
 		}
-		// console.log('checkIfInProgress()', model.start, timeModel.currentTime, model.end)
 	}
 	Connections {
 		target: timeModel
-		onLoaded: agendaTaskItem.checkIfInProgress()
-		onMinuteChanged: agendaTaskItem.checkIfInProgress()
+		onLoaded: agendaTaskItem.checkIfIsOverdue()
+		onMinuteChanged: agendaTaskItem.checkIfIsOverdue()
 	}
 	Component.onCompleted: {
-		agendaTaskItem.checkIfInProgress()
-
-		//--- Debugging
-		// editTaskForm.active = eventItemInProgress && !model.startDateTime
+		agendaTaskItem.checkIfIsOverdue()
 	}
 
 	property alias isEditing: editTaskForm.active
@@ -39,15 +46,13 @@ LinkRect {
 
 	readonly property string eventTimestamp: {
 		if (model.due) {
-			// Note that new Date(model.due) will not work.
-			var dueDateTime = model.startDateTime
 			if (model.due.indexOf('T00:00:00.000Z') !== -1) {
 				// Due at end of day
 				var shortDateFormat = i18nc("short month+date format", "MMM d")
-				return Qt.formatDateTime(dueDateTime, shortDateFormat)
+				return Qt.formatDateTime(model.dueDateTime, shortDateFormat)
 			} else {
 				// Due at specific time
-				return LocaleFuncs.formatEventDateTime(dueDateTime, {
+				return LocaleFuncs.formatEventDateTime(model.dueDateTime, {
 					clock24h: appletConfig.clock24h,
 				})
 			}
@@ -56,6 +61,8 @@ LinkRect {
 		}
 	}
 
+
+	//---
 	RowLayout {
 		id: contents
 		anchors.left: parent.left
@@ -78,10 +85,9 @@ LinkRect {
 			PlasmaComponents3.Label {
 				id: taskTitle
 				text: model.title
-				color: eventItemInProgress ? inProgressColor : PlasmaCore.ColorScope.textColor
+				color: PlasmaCore.ColorScope.textColor
 				font.pointSize: -1
 				font.pixelSize: appletConfig.agendaFontSize
-				font.weight: eventItemInProgress ? inProgressFontWeight : Font.Normal
 				visible: !editTaskForm.visible
 				Layout.fillWidth: true
 
@@ -105,11 +111,11 @@ LinkRect {
 				PlasmaComponents3.Label {
 					id: taskDueLabel
 					text: eventTimestamp
-					color: eventItemInProgress ? inProgressColor : PlasmaCore.ColorScope.textColor
-					opacity: eventItemInProgress ? 1 : 0.75
+					color: taskIsOverdue ? isOverdueColor : PlasmaCore.ColorScope.textColor
+					opacity: taskIsOverdue ? 1 : 0.75
 					font.pointSize: -1
 					font.pixelSize: appletConfig.agendaFontSize
-					font.weight: eventItemInProgress ? inProgressFontWeight : Font.Normal
+					font.weight: taskIsOverdue ? isOverdueFontWeight : Font.Normal
 				}
 			}
 
