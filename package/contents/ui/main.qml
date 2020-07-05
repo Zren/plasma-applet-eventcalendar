@@ -4,7 +4,7 @@ import QtQuick.Layouts 1.1
 import org.kde.plasma.plasmoid 2.0
 import org.kde.plasma.core 2.0 as PlasmaCore
 import org.kde.plasma.components 2.0 as PlasmaComponents
-
+import org.kde.plasma.private.digitalclock 1.0 as DigitalClock
 import org.kde.kquickcontrolsaddons 2.0 // KCMShell
 
 import "./lib"
@@ -38,6 +38,13 @@ Item {
 
 	FontLoader {
 		source: "../fonts/weathericons-regular-webfont.ttf"
+	}
+
+	Connections {
+		target: plasmoid
+		function onContextualActionsAboutToShow() {
+			DigitalClock.ClipboardMenu.currentDate = timeModel.currentTime;
+		}
 	}
 
 	Plasmoid.toolTipItem: Loader {
@@ -191,6 +198,9 @@ Item {
 	}
 
 	Component.onCompleted: {
+		plasmoid.setAction("clipboard", i18n("Copy to Clipboard"), "edit-copy")
+		DigitalClock.ClipboardMenu.setupMenu(plasmoid.action("clipboard"))
+
 		if (KCMShell.authorize("clock.desktop").length > 0) {
 			plasmoid.setAction("KCMClock", i18nd("plasma_applet_org.kde.plasma.digitalclock", "Adjust Date and Time..."), "preferences-system-time")
 		}
