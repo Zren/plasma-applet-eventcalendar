@@ -43,7 +43,7 @@ Item {
 	Connections {
 		target: plasmoid
 		function onContextualActionsAboutToShow() {
-			DigitalClock.ClipboardMenu.currentDate = timeModel.currentTime;
+			DigitalClock.ClipboardMenu.currentDate = timeModel.currentTime
 		}
 	}
 
@@ -198,7 +198,7 @@ Item {
 	}
 
 	Component.onCompleted: {
-		plasmoid.setAction("clipboard", i18n("Copy to Clipboard"), "edit-copy")
+		plasmoid.setAction("clipboard", i18nd("plasma_applet_org.kde.plasma.digitalclock", "Copy to Clipboard"), "edit-copy")
 		DigitalClock.ClipboardMenu.setupMenu(plasmoid.action("clipboard"))
 
 		if (KCMShell.authorize("clock.desktop").length > 0) {
