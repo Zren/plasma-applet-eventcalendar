@@ -124,7 +124,7 @@ CalendarManager {
 		if (calendarId == "debug") {
 
 		} else if (true) { // Google Calendar
-			if (googleCalendarManager.accessToken) {
+			if (googleCalendarManager.session.accessToken) {
 				googleCalendarManager.createGoogleCalendarEvent(calendarId, date, text)
 			} else {
 				logger.log('attempting to create an event without an access token set')
