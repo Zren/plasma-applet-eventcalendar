@@ -135,7 +135,10 @@ CalendarManager {
 
 		eventData.isCompleted = taskData.status == "completed"
 
-		if (taskData.due) {
+		if (taskData.completed) {
+			var completedAt = new Date(taskData.completed)
+			var startDateTime = new Date(completedAt.getFullYear(), completedAt.getMonth(), completedAt.getDate())
+		} else if (taskData.due) {
 			var dueDateTime = new Date(taskData.due)
 			// Use local time zone, like we do in CalendarManager.onEventParsing
 			eventData.dueDate = Shared.dateString(dueDateTime)
