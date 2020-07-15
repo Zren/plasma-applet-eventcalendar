@@ -21,7 +21,7 @@
 import QtQuick 2.2
 import QtQuick.Layouts 1.1
 import org.kde.plasma.core 2.0 as PlasmaCore
-import org.kde.plasma.components 2.0 as PlasmaComponents
+import org.kde.plasma.components 3.0 as PlasmaComponents3
 
 Item {
 	id: clock
@@ -87,7 +87,7 @@ Item {
 		Item {
 			id: timeContainer1
 
-			PlasmaComponents.Label {
+			PlasmaComponents3.Label {
 				id: timeLabel1
 				anchors.centerIn: parent
 
@@ -125,7 +125,7 @@ Item {
 			id: timeContainer2
 			visible: cfg_clock_line_2
 
-			PlasmaComponents.Label {
+			PlasmaComponents3.Label {
 				id: timeLabel2
 				anchors.centerIn: parent
 				font.family: clock.clock_fontfamily

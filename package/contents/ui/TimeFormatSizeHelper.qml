@@ -1,5 +1,5 @@
 import QtQuick 2.4
-import org.kde.plasma.components 2.0 as PlasmaComponents
+import org.kde.plasma.components 3.0 as PlasmaComponents3
 
 Item {
 	id: timeFromatSizeHelper
@@ -59,7 +59,7 @@ Item {
 		// console.log('\t', 'timePm', timePm, advanceWidthPm)
 	}
 
-	PlasmaComponents.Label {
+	PlasmaComponents3.Label {
 		id: formattedSizeHelper
 
 		font.pointSize: -1
