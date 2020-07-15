@@ -43,6 +43,7 @@ CalendarManager {
 		// Clone the event data and clean up the extra stuff we added when parsing the event.
 		var data = JSON.parse(JSON.stringify(event)) // clone
 		if (data.description == "") delete data.description
+		if (data.calendarManagerId) delete data.calendarManagerId
 		if (data.calendarId) delete data.calendarId
 		delete data.startDateTime
 		delete data.endDateTime

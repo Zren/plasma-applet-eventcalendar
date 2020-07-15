@@ -107,6 +107,7 @@ Item {
 		})
 	}
 	onEventParsing: {
+		event.calendarManagerId = calendarManagerId
 		event.calendarId = calendarId
 
 		event._summary = event.summary
