@@ -2,7 +2,6 @@ import QtQuick 2.0
 import QtQuick.Controls 1.1
 import QtQuick.Layouts 1.1
 import org.kde.plasma.core 2.0 as PlasmaCore
-import org.kde.plasma.components 2.0 as PlasmaComponents
 import org.kde.plasma.components 3.0 as PlasmaComponents3
 
 import "LocaleFuncs.js" as LocaleFuncs
@@ -147,7 +146,7 @@ LinkRect {
 				implicitHeight: 4 * units.devicePixelRatio
 			}
 
-			PlasmaComponents.ToolButton {
+			PlasmaComponents3.ToolButton {
 				id: eventHangoutLink
 				readonly property bool showProperty: plasmoid.configuration.agendaShowEventHangoutLink && !!model.hangoutLink
 				visible: showProperty && !editEventForm.visible
@@ -161,7 +160,7 @@ LinkRect {
 						return i18n("Hangout")
 					}
 				}
-				iconSource: plasmoid.file("", "icons/hangouts.svg")
+				icon.source: plasmoid.file("", "icons/hangouts.svg")
 				onClicked: Qt.openUrlExternally(model.hangoutLink)
 			}
 
