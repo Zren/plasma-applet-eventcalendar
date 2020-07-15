@@ -16,7 +16,7 @@ Loader {
 			Rectangle {
 				Layout.preferredWidth: appletConfig.eventIndicatorWidth
 				Layout.fillHeight: true
-				color: newEventCalendarId.selectedCalendar.backgroundColor || theme.textColor
+				color: calendarSelector.selectedCalendar.backgroundColor || theme.textColor
 			}
 
 			ColumnLayout {
@@ -24,14 +24,11 @@ Loader {
 
 				Component.onCompleted: {
 					newEventText.forceActiveFocus()
-					newEventFormOpened(model, newEventCalendarId)
+					newEventFormOpened(model, calendarSelector)
 				}
-				PlasmaComponents3.ComboBox {
-					id: newEventCalendarId
+				CalendarSelector {
+					id: calendarSelector
 					Layout.fillWidth: true
-					model: [i18n("[No Calendars]")]
-
-					readonly property var selectedCalendar: currentIndex >= 0 ? model[currentIndex] : {}
 				}
 
 				RowLayout {
@@ -40,7 +37,7 @@ Loader {
 						Layout.fillWidth: true
 						placeholderText: i18n("Eg: 9am-5pm Work")
 						onAccepted: {
-							var calendarEntry = newEventCalendarId.model[newEventCalendarId.currentIndex]
+							var calendarEntry = calendarSelector.model[calendarSelector.currentIndex]
 							// calendarId = calendarId.calendarId ? calendarId.calendarId : calendarId
 							var calendarId = calendarEntry.calendarId
 							if (calendarId && date && text) {

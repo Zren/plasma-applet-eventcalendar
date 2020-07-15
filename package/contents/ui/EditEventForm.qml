@@ -211,10 +211,9 @@ Loader {
 				EventPropertyIcon {
 					source: "view-calendar-day"
 				}
-				PlasmaComponents3.ComboBox {
+				CalendarSelector {
 					id: calendarSelector
 					Layout.fillWidth: true
-					model: [i18n("[No Calendars]")]
 					enabled: false
 					Component.onCompleted: {
 						// AgendaView.__

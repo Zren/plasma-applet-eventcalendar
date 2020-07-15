@@ -17,7 +17,7 @@ Item {
 	property color isOverdueColor: PlasmaCore.ColorScope.negativeTextColor
 	property int isOverdueFontWeight: Font.Bold
 
-	signal newEventFormOpened(var agendaItem, var newEventCalendarId)
+	signal newEventFormOpened(var agendaItem, var calendarSelector)
 	signal submitNewEventForm(string calendarId, var date, string text)
 
 	Connections {
