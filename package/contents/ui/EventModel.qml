@@ -58,9 +58,8 @@ CalendarManager {
 		calendarList: appletConfig.icalCalendarList.value
 	}
 
-	DebugCalendarManager {
-		id: debugCalendarManager
-	}
+	DebugCalendarManager { id: debugCalendarManager }
+	DebugGoogleCalendarManager { id: debugGoogleCalendarManager }
 
 	GoogleApiSession {
 		id: googleApiSession
@@ -100,9 +99,8 @@ CalendarManager {
 		googleTasksManager.fetchAll(dateMin, dateMax)
 		plasmaCalendarManager.fetchAll(dateMin, dateMax)
 		// icalManager.fetchAll(dateMin, dateMax)
-		// debugCalendarManager.showDebugEvents = true
-		// debugCalendarManager.importGoogleSession = true
 		// debugCalendarManager.fetchAll(dateMin, dateMax)
+		// debugGoogleCalendarManager.fetchAll(dateMin, dateMax)
 	}
 
 	onAllDataFetched: mergeEvents()
