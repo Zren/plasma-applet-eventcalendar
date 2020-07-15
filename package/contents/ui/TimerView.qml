@@ -1,8 +1,10 @@
 import QtQuick 2.0
-import QtQuick.Controls 1.1
+import QtQuick.Controls 2.2 as QQC2
 import QtQuick.Layouts 1.1
+import org.kde.kirigami 2.0 as Kirigami
 import org.kde.plasma.core 2.0 as PlasmaCore
 import org.kde.plasma.components 2.0 as PlasmaComponents
+import org.kde.plasma.components 3.0 as PlasmaComponents3
 
 Item {
 	id: timerView
@@ -83,10 +85,10 @@ Item {
 			property int contentsWidth: timerLabel.width + topRow.spacing + toggleButtonColumn.Layout.preferredWidth
 			property bool contentsFit: timerButtonView.width >= contentsWidth
 
-			PlasmaComponents.ToolButton {
+			PlasmaComponents3.ToolButton {
 				id: timerLabel
 				text: "0:00"
-				iconSource: {
+				icon.name: {
 					if (timerSeconds == 0) {
 						return 'chronometer'
 					} else if (timerTicker.running) {
@@ -95,10 +97,12 @@ Item {
 						return 'chronometer-start'
 					}
 				}
-				font.pixelSize: appletConfig.timerClockFontHeight
+				icon.width: units.iconSizes.large
+				icon.height: units.iconSizes.large
 				font.pointSize: -1
+				font.pixelSize: appletConfig.timerClockFontHeight
 				Layout.alignment: Qt.AlignVCenter
-				tooltip: {
+				property string tooltip: {
 					var s = ""
 					if (timerSeconds > 0) {
 						if (timerTicker.running) {
@@ -111,6 +115,9 @@ Item {
 					s += i18n("Scroll to add to duration")
 					return s
 				}
+				QQC2.ToolTip.delay: Kirigami.Units.toolTipDelay
+				QQC2.ToolTip.text: tooltip
+				QQC2.ToolTip.visible: hovered
 
 				onClicked: {
 					if (timerTicker.running) {
@@ -153,16 +160,16 @@ Item {
 				Layout.minimumWidth: sizingButton.height
 				Layout.preferredWidth: sizingButton.implicitWidth
 
-				PlasmaComponents.ToolButton {
+				PlasmaComponents3.ToolButton {
 					id: sizingButton
 					text: "Test"
 					visible: false
 				}
 				
-				PlasmaComponents.ToolButton {
+				PlasmaComponents3.ToolButton {
 					id: timerRepeatsButton
 					property bool isChecked: plasmoid.configuration.timer_repeats // New property to avoid checked=pressed theming.
-					iconSource: isChecked ? 'media-playlist-repeat' : 'gtk-stop'
+					icon.name: isChecked ? 'media-playlist-repeat' : 'gtk-stop'
 					text: topRow.contentsFit ? i18n("Repeat") : ""
 					onClicked: {
 						isChecked = !isChecked
@@ -177,10 +184,10 @@ Item {
 					}
 				}
 
-				PlasmaComponents.ToolButton {
+				PlasmaComponents3.ToolButton {
 					id: timerSfxEnabledButton
 					property bool isChecked: plasmoid.configuration.timer_sfx_enabled // New property to avoid checked=pressed theming.
-					iconSource: isChecked ? 'audio-volume-high' : 'dialog-cancel'
+					icon.name: isChecked ? 'audio-volume-high' : 'dialog-cancel'
 					text: topRow.contentsFit ? i18n("Sound") : ""
 					onClicked: {
 						isChecked = !isChecked

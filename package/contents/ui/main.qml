@@ -3,7 +3,7 @@ import QtQuick.Layouts 1.1
 
 import org.kde.plasma.plasmoid 2.0
 import org.kde.plasma.core 2.0 as PlasmaCore
-import org.kde.plasma.components 2.0 as PlasmaComponents
+import org.kde.plasma.components 3.0 as PlasmaComponents3
 import org.kde.plasma.private.digitalclock 1.0 as DigitalClock
 import org.kde.kquickcontrolsaddons 2.0 // KCMShell
 
@@ -164,14 +164,14 @@ Item {
 		}
 
 		// Allows the user to keep the calendar open for reference
-		PlasmaComponents.ToolButton {
+		PlasmaComponents3.ToolButton {
 			id: pinButton
 			visible: isPinVisible
 			anchors.right: parent.right
 			width: Math.round(units.gridUnit * 1.25)
 			height: width
 			checkable: true
-			iconSource: "window-pin"
+			icon.name: "window-pin"
 			checked: plasmoid.configuration.pin
 			onCheckedChanged: plasmoid.configuration.pin = checked
 		}

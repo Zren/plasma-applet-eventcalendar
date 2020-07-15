@@ -1,7 +1,7 @@
 import QtQuick 2.0
 import QtQuick.Controls 1.1
 import QtQuick.Layouts 1.1
-import org.kde.plasma.components 2.0 as PlasmaComponents
+import org.kde.plasma.components 3.0 as PlasmaComponents3
 
 ColumnLayout {
 	id: timerInputView
@@ -44,7 +44,7 @@ ColumnLayout {
 			validator: IntValidator { bottom: 0 }
 		}
 
-		PlasmaComponents.Label {
+		PlasmaComponents3.Label {
 			Layout.fillHeight: true
 			font.pointSize: -1
 			font.pixelSize: textFieldRow.fontPixelSize
@@ -55,7 +55,7 @@ ColumnLayout {
 			id: minutesTextField
 		}
 
-		PlasmaComponents.Label {
+		PlasmaComponents3.Label {
 			Layout.fillHeight: true
 			font.pointSize: -1
 			font.pixelSize: textFieldRow.fontPixelSize
@@ -71,12 +71,12 @@ ColumnLayout {
 		Item {
 			Layout.fillWidth: true
 		}
-		PlasmaComponents.Button {
+		PlasmaComponents3.Button {
 			text: i18n("&Cancel")
 			implicitWidth: minimumWidth
 			onClicked: timerInputView.cancel()
 		}
-		PlasmaComponents.Button {
+		PlasmaComponents3.Button {
 			text: i18n("&Start")
 			implicitWidth: minimumWidth
 			onClicked: timerInputView.start()

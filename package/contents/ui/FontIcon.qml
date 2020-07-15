@@ -1,6 +1,6 @@
 import QtQuick 2.2
 import org.kde.plasma.core 2.0 as PlasmaCore
-import org.kde.plasma.components 2.0 as PlasmaComponents
+import org.kde.plasma.components 3.0 as PlasmaComponents3
 
 // Technique based on plasma-applet-weather-widget
 // https://github.com/kotelnik/plasma-applet-weather-widget/blob/320ed5661475f176116e1785476dc51710494b86/package/contents/code/icons.js
@@ -15,7 +15,7 @@ Item {
 	// 	source: "../fonts/weathericons-regular-webfont.ttf"
 	// }
 
-	PlasmaComponents.Label {
+	PlasmaComponents3.Label {
 		id: iconText
 		text: ''
 		color: PlasmaCore.ColorScope.textColor

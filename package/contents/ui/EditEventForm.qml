@@ -2,7 +2,6 @@ import QtQuick 2.0
 import QtQuick.Controls 1.1
 import QtQuick.Layouts 1.1
 import org.kde.plasma.core 2.0 as PlasmaCore
-import org.kde.plasma.components 2.0 as PlasmaComponents
 import org.kde.plasma.components 3.0 as PlasmaComponents3
 
 Loader {
@@ -212,7 +211,7 @@ Loader {
 				EventPropertyIcon {
 					source: "view-calendar-day"
 				}
-				PlasmaComponents.ComboBox {
+				PlasmaComponents3.ComboBox {
 					id: calendarSelector
 					Layout.fillWidth: true
 					model: [i18n("[No Calendars]")]
@@ -257,14 +256,14 @@ Loader {
 					Item {
 						Layout.fillWidth: true
 					}
-					PlasmaComponents.Button {
-						iconName: "document-save"
+					PlasmaComponents3.Button {
+						icon.name: "document-save"
 						text: i18n("&Save")
 						implicitWidth: minimumWidth
 						onClicked: editEventItem.submit()
 					}
-					PlasmaComponents.Button {
-						iconName: "dialog-cancel"
+					PlasmaComponents3.Button {
+						icon.name: "dialog-cancel"
 						text: i18n("&Cancel")
 						implicitWidth: minimumWidth
 						onClicked: editEventItem.cancel()
