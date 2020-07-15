@@ -2,7 +2,7 @@ import QtQuick 2.0
 import QtQuick.Controls 1.1
 import QtQuick.Layouts 1.1
 import org.kde.plasma.core 2.0 as PlasmaCore
-import org.kde.plasma.components 2.0 as PlasmaComponents
+import org.kde.plasma.components 3.0 as PlasmaComponents3
 
 import "Shared.js" as Shared
 import "../code/WeatherApi.js" as WeatherApi
@@ -79,22 +79,26 @@ GridLayout {
 				Layout.fillWidth: true
 			}
 
-			PlasmaComponents.Label {
+			PlasmaComponents3.Label {
 				id: itemWeatherText
 				visible: showWeather && plasmoid.configuration.agenda_weather_show_text
 				text: weatherText
 				color: agendaItemIsToday ? inProgressColor : PlasmaCore.ColorScope.textColor
 				opacity: agendaItemIsToday ? 1 : 0.75
+				font.pointSize: -1
+				font.pixelSize: appletConfig.agendaFontSize
 				font.weight: agendaItemIsToday ? inProgressFontWeight : Font.Normal
 				Layout.alignment: Qt.AlignHCenter
 			}
 
-			PlasmaComponents.Label {
+			PlasmaComponents3.Label {
 				id: itemWeatherTemps
 				visible: showWeather
 				text: tempHigh + '° | ' + tempLow + '°'
 				color: agendaItemIsToday ? inProgressColor : PlasmaCore.ColorScope.textColor
 				opacity: agendaItemIsToday ? 1 : 0.75
+				font.pointSize: -1
+				font.pixelSize: appletConfig.agendaFontSize
 				font.weight: agendaItemIsToday ? inProgressFontWeight : Font.Normal
 				Layout.alignment: Qt.AlignHCenter
 			}
@@ -128,7 +132,7 @@ GridLayout {
 			anchors.rightMargin: appletConfig.agendaColumnSpacing
 			spacing: 0
 
-			PlasmaComponents.Label {
+			PlasmaComponents3.Label {
 				id: itemDate
 				text: Qt.formatDateTime(date, i18nc("agenda date format line 1", "MMM d"))
 				color: agendaItemIsToday ? inProgressColor : PlasmaCore.ColorScope.textColor
@@ -136,7 +140,6 @@ GridLayout {
 				font.pointSize: -1
 				font.pixelSize: appletConfig.agendaFontSize
 				font.weight: agendaItemIsToday ? inProgressFontWeight : Font.Normal
-				height: paintedHeight
 				Layout.fillWidth: true
 				horizontalAlignment: Text.AlignRight
 
@@ -148,7 +151,7 @@ GridLayout {
 				// }
 			}
 
-			PlasmaComponents.Label {
+			PlasmaComponents3.Label {
 				id: itemDay
 				text: Qt.formatDateTime(date, i18nc("agenda date format line 2", "ddd"))
 				color: agendaItemIsToday ? inProgressColor : PlasmaCore.ColorScope.textColor
@@ -156,7 +159,6 @@ GridLayout {
 				font.pointSize: -1
 				font.pixelSize: appletConfig.agendaFontSize
 				font.weight: agendaItemIsToday ? inProgressFontWeight : Font.Normal
-				height: paintedHeight
 				Layout.fillWidth: true
 				horizontalAlignment: Text.AlignRight
 			}
