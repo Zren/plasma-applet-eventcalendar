@@ -542,7 +542,7 @@ CalendarManager {
 
 	//--- CalendarManager
 	function getCalendarList() {
-		if (plasmoid.configuration.access_token) {
+		if (session.accessToken) {
 			var calendarList = plasmoid.configuration.calendar_list ? JSON.parse(Qt.atob(plasmoid.configuration.calendar_list)) : []
 			return calendarList
 		} else {

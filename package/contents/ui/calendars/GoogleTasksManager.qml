@@ -28,14 +28,18 @@ CalendarManager {
 	//-------------------------
 	// CalendarManager
 	function getCalendarList() {
-		return [
-			{
-				id: '@default',
-				summary: 'Todo',
-				backgroundColor: theme.highlightColor.toString(),
-				accessRole: 'owner',
-			}
-		]
+		if (session.accessToken) {
+			return [
+				{
+					id: '@default',
+					summary: 'Tasks',
+					backgroundColor: theme.highlightColor.toString(),
+					accessRole: 'owner',
+				}
+			]
+		} else {
+			return []
+		}
 	}
 
 
