@@ -16,8 +16,8 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-import QtQuick 2.0
-import QtQuick.Controls 1.1
+import QtQuick 2.2
+import QtQuick.Controls 2.0 as QQC2
 import QtQuick.Layouts 1.1
 
 import org.kde.plasma.calendar 2.0
@@ -309,57 +309,51 @@ PinchArea {
 		}
 	}
 
-	StackView {
+	QQC2.StackView {
 		id: stack
 
 		anchors.fill: parent
 
-		delegate: StackViewDelegate {
-			pushTransition: StackViewTransition {
-				NumberAnimation {
-					target: exitItem
-					duration: units.longDuration
-					property: "opacity"
-					from: 1
-					to: 0
-				}
-				NumberAnimation {
-					target: enterItem
-					duration: units.longDuration
-					property: "opacity"
-					from: 0
-					to: 1
-				}
-				NumberAnimation {
-					target: enterItem
-					duration: units.longDuration
-					property: "transformScale"
-					from: 1.5
-					to: 1
-				}
+		pushEnter: Transition {
+			OpacityAnimator {
+				duration: units.longDuration
+				from: 0
+				to: 1
 			}
-			popTransition: StackViewTransition {
-				NumberAnimation {
-					target: exitItem
-					duration: units.longDuration
-					property: "opacity"
-					from: 1
-					to: 0
-				}
-				NumberAnimation {
-					target: exitItem
-					duration: units.longDuration
-					property: "transformScale"
-					// so no matter how much you scaled, it would still fly towards you
-					to: exitItem.transformScale * 1.5
-				}
-				NumberAnimation {
-					target: enterItem
-					duration: units.longDuration
-					property: "opacity"
-					from: 0
-					to: 1
-				}
+			NumberAnimation {
+				duration: units.longDuration
+				property: "transformScale"
+				from: 1.5
+				to: 1
+			}
+		}
+		pushExit: Transition {
+			OpacityAnimator {
+				duration: units.longDuration
+				from: 1
+				to: 0
+			}
+		}
+
+		popEnter: Transition {
+			OpacityAnimator {
+				duration: units.longDuration
+				from: 0
+				to: 1
+			}
+		}
+		popExit: Transition {
+			id: popExit
+			OpacityAnimator {
+				duration: units.longDuration
+				from: 1
+				to: 0
+			}
+			NumberAnimation {
+				duration: units.longDuration
+				property: "transformScale"
+				// so no matter how much you scaled, it would still fly towards you
+				to: popExit.ViewTransition.item.transformScale * 1.5
 			}
 		}
 

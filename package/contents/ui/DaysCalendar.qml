@@ -19,8 +19,9 @@
 
 import QtQuick 2.2
 import QtQuick.Layouts 1.1
-import QtQuick.Controls 1.1
+import QtQuick.Controls 2.0 as QQC2
 
+import org.kde.kirigami 2.0 as Kirigami
 import org.kde.plasma.calendar 2.0
 import org.kde.plasma.core 2.0 as PlasmaCore
 import org.kde.plasma.components 3.0 as PlasmaComponents3
@@ -85,10 +86,10 @@ Item {
 		}
 	}
 
-	Stack.onStatusChanged: {
-		if (Stack.status === Stack.Inactive) {
+	QQC2.StackView.onStatusChanged: {
+		if (QQC2.StackView.status === QQC2.StackView.Inactive) {
 			daysCalendar.transformScale = 1
-			opacity = 1
+			daysCalendar.opacity = 1
 		}
 	}
 
@@ -153,6 +154,10 @@ Item {
 			id: previousButton
 			icon.name: "go-previous"
 			onClicked: daysCalendar.previous()
+			property string tooltip: ''
+			QQC2.ToolTip.delay: Kirigami.Units.toolTipDelay
+			QQC2.ToolTip.text: tooltip
+			QQC2.ToolTip.visible: hovered
 			Accessible.name: tooltip
 			//SEE QTBUG-58307
 			Layout.preferredHeight: implicitHeight + implicitHeight%2
@@ -161,7 +166,10 @@ Item {
 		PlasmaComponents3.ToolButton {
 			icon.name: "go-jump-today"
 			onClicked: root.resetToToday()
-			tooltip: i18ndc("libplasma5", "Reset calendar to today", "Today")
+			property string tooltip: i18ndc("libplasma5", "Reset calendar to today", "Today")
+			QQC2.ToolTip.delay: Kirigami.Units.toolTipDelay
+			QQC2.ToolTip.text: tooltip
+			QQC2.ToolTip.visible: hovered
 			Accessible.name: tooltip
 			Accessible.description: i18nd("libplasma5", "Reset calendar to today")
 			//SEE QTBUG-58307
@@ -172,6 +180,10 @@ Item {
 			id: nextButton
 			icon.name: "go-next"
 			onClicked: daysCalendar.next()
+			property string tooltip: ''
+			QQC2.ToolTip.delay: Kirigami.Units.toolTipDelay
+			QQC2.ToolTip.text: tooltip
+			QQC2.ToolTip.visible: hovered
 			Accessible.name: tooltip
 			//SEE QTBUG-58307
 			Layout.preferredHeight: implicitHeight + implicitHeight%2
