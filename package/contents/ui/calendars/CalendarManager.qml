@@ -35,6 +35,23 @@ Item {
 		}
 	}
 
+	//--- Calendar
+	function getCalendarList() {
+		return [] // Function is overloaded
+	}
+
+	function getCalendar(calendarId) {
+		var calendarList = getCalendarList()
+		for (var i = 0; i < calendarList.length; i++) {
+			var calendar = calendarList[i]
+			if (calendarId == calendar.id) {
+				return calendar
+			}
+		}
+		return null
+	}
+
+	//--- Calendar data
 	function setCalendarData(calendarId, data) {
 		calendarParsing(calendarId, data)
 		eventsByCalendar[calendarId] = data
@@ -51,6 +68,7 @@ Item {
 		dataCleared()
 	}
 
+	//--- Event
 	function getEvent(calendarId, eventId) {
 		var events = calendarManager.eventsByCalendar[calendarId].items
 		for (var i = 0; i < events.length; i++) {
@@ -81,6 +99,7 @@ Item {
 		logger.log(calendarManager, 'removeEvent', 'event didn\'t exist')
 	}
 
+	//---
 	function fetchAll(dateMin, dateMax) {
 		logger.debug(calendarManager, 'fetchAllEvents', dateMin, dateMax)
 		fetchingData()

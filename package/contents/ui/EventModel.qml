@@ -5,9 +5,20 @@ import "./calendars"
 CalendarManager {
 	id: eventModel
 
+	property var calendarManagerList: []
 	property var calendarPluginMap: ({}) // Empty Map
 	property var eventsData: { "items": [] }
 
+	Component.onCompleted: {
+		bindSignals(googleCalendarManager)
+		bindSignals(googleTasksManager)
+		bindSignals(plasmaCalendarManager)
+		// bindSignals(icalManager)
+		// bindSignals(debugCalendarManager)
+		// bindSignals(debugGoogleCalendarManager)
+	}
+
+	//---
 	function fetchingDataListener() { eventModel.asyncRequests += 1 }
 	function allDataFetchedListener() { eventModel.asyncRequestsDone += 1 }
 	function calendarFetchedListener(calendarId, data) {
@@ -47,12 +58,15 @@ CalendarManager {
 		calendarManager.eventRemoved.connect(eventRemovedListener)
 		calendarManager.eventDeleted.connect(eventDeletedListener)
 		calendarManager.eventUpdated.connect(eventUpdatedListener)
+
+		calendarManagerList.push(calendarManager)
 	}
 
 	function getCalendarManager(calendarId) {
 		return eventModel.calendarPluginMap[calendarId]
 	}
 
+	//---
 	ICalManager {
 		id: icalManager
 		calendarList: appletConfig.icalCalendarList.value
@@ -77,14 +91,7 @@ CalendarManager {
 		id: plasmaCalendarManager
 	}
 
-	Component.onCompleted: {
-		bindSignals(icalManager)
-		bindSignals(debugCalendarManager)
-		bindSignals(googleCalendarManager)
-		bindSignals(googleTasksManager)
-		bindSignals(plasmaCalendarManager)
-	}
-
+	//---
 	property var deferredUpdate: Timer {
 		id: deferredUpdate
 		interval: 200
@@ -95,12 +102,10 @@ CalendarManager {
 	}
 
 	onFetchAllCalendars: {
-		googleCalendarManager.fetchAll(dateMin, dateMax)
-		googleTasksManager.fetchAll(dateMin, dateMax)
-		plasmaCalendarManager.fetchAll(dateMin, dateMax)
-		// icalManager.fetchAll(dateMin, dateMax)
-		// debugCalendarManager.fetchAll(dateMin, dateMax)
-		// debugGoogleCalendarManager.fetchAll(dateMin, dateMax)
+		for (var i = 0; i < calendarManagerList.length; i++) {
+			var calendarManager = calendarManagerList[i]
+			calendarManager.fetchAll(dateMin, dateMax)
+		}
 	}
 
 	onAllDataFetched: mergeEvents()
@@ -114,6 +119,7 @@ CalendarManager {
 		}
 	}
 
+	//---
 	function createEvent(calendarId, date, text) {
 		if (plasmoid.configuration.agenda_newevent_remember_calendar) {
 			plasmoid.configuration.agenda_newevent_last_calendar_id = calendarId
@@ -167,5 +173,17 @@ CalendarManager {
 		} else {
 			logger.log('cannot edit the event property for the calendar', calendarId, eventId)
 		}
+	}
+
+	//--- CalendarManager
+	function getCalendarList() {
+		var calendarList = []
+		for (var i = 0; i < calendarManagerList.length; i++) {
+			var calendarManager = calendarManagerList[i]
+			var list = calendarManager.getCalendarList()
+			// logger.debugJSON(calendarManager.toString(), list)
+			calendarList = calendarList.concat(list)
+		}
+		return calendarList
 	}
 }

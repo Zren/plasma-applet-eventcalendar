@@ -9,5 +9,34 @@ PlasmaComponents3.ComboBox {
 	]
 	textRole: "text"
 
-	readonly property var selectedCalendar: currentIndex >= 0 ? model[currentIndex] : {}
+	readonly property var selectedCalendar: currentIndex >= 0 ? model[currentIndex] : null
+	readonly property var selectedCalendarId: selectedCalendar ? selectedCalendar.id : null
+
+	function populate(calendarList, initialCalendarId) {
+		// logger.debug('CalendarSelector.populate')
+		// logger.debugJSON('calendarList', calendarList)
+		var list = []
+		var selectedIndex = 0
+		calendarList.forEach(function(calendar){
+			var canEditCalendar = calendar.accessRole == 'writer' || calendar.accessRole == 'owner'
+			var isSelected = calendar.id === initialCalendarId
+
+			if (isSelected) {
+				selectedIndex = list.length // set index after insertion
+			}
+
+			if (canEditCalendar || isSelected) {
+				list.push({
+					'calendarId': calendar.id,
+					'text': calendar.summary,
+					'backgroundColor': calendar.backgroundColor,
+				})
+			}
+		})
+		if (list.length == 0) {
+			list.push({ text: i18n("[No Calendars]") })
+		}
+		calendarSelector.model = list
+		calendarSelector.currentIndex = selectedIndex
+	}
 }

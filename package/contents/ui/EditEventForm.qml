@@ -216,9 +216,8 @@ Loader {
 					Layout.fillWidth: true
 					enabled: false
 					Component.onCompleted: {
-						// AgendaView.__
-						// logger.debug('populateCalendarSelector', calendarSelector, event.calendarId)
-						populateCalendarSelector(calendarSelector, event.calendarId)
+						var calendarList = eventModel.getCalendarList()
+						calendarSelector.populate(calendarList, event.calendarId)
 					}
 				}
 

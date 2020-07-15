@@ -365,40 +365,14 @@ MouseArea {
 			Layout.fillWidth: true
 			Layout.fillHeight: true
 
-			function populateCalendarSelector(calendarSelector, selectedCalendarId) {
-				if (plasmoid.configuration.access_token) {
-					var calendarIdList = plasmoid.configuration.calendar_id_list ? plasmoid.configuration.calendar_id_list.split(',') : ['primary']
-					var calendarList = plasmoid.configuration.calendar_list ? JSON.parse(Qt.atob(plasmoid.configuration.calendar_list)) : []
-					// logger.debug('calendarList', JSON.stringify(calendarList, null, '\t'))
-					var list = []
-					var selectedIndex = 0
-					calendarList.forEach(function(calendar){
-						var canEditCalendar = calendar.accessRole == 'writer' || calendar.accessRole == 'owner'
-						var isSelected = calendar.id === selectedCalendarId
-
-						if (isSelected) {
-							selectedIndex = list.length // index after insertion
-						}
-
-						if (canEditCalendar || isSelected) {
-							list.push({
-								'calendarId': calendar.id,
-								'text': calendar.summary,
-								'backgroundColor': calendar.backgroundColor,
-							})
-						}
-					})
-					calendarSelector.model = list
-					calendarSelector.currentIndex = selectedIndex
-				}
-			}
 			onNewEventFormOpened: {
 				// logger.debug('onNewEventFormOpened')
 				var selectedCalendarId = ""
 				if (plasmoid.configuration.agenda_newevent_remember_calendar) {
 					selectedCalendarId = plasmoid.configuration.agenda_newevent_last_calendar_id
 				}
-				populateCalendarSelector(calendarSelector, selectedCalendarId)
+				var calendarList = eventModel.getCalendarList()
+				calendarSelector.populate(calendarList, selectedCalendarId)
 			}
 			onSubmitNewEventForm: {
 				// logger.debug('onSubmitNewEventForm', calendarId)

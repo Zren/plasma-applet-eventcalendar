@@ -16,7 +16,7 @@ Loader {
 			Rectangle {
 				Layout.preferredWidth: appletConfig.eventIndicatorWidth
 				Layout.fillHeight: true
-				color: calendarSelector.selectedCalendar.backgroundColor || theme.textColor
+				color: calendarSelector.selectedCalendar && calendarSelector.selectedCalendar.backgroundColor || theme.textColor
 			}
 
 			ColumnLayout {

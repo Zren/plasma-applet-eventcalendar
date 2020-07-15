@@ -27,11 +27,15 @@ CalendarManager {
 
 	//-------------------------
 	// CalendarManager
-	function getCalendar(calendarId) {
-		return {
-			id: calendarId,
-			backgroundColor: theme.highlightColor
-		}
+	function getCalendarList() {
+		return [
+			{
+				id: '@default',
+				summary: 'Todo',
+				backgroundColor: theme.highlightColor.toString(),
+				accessRole: 'owner',
+			}
+		]
 	}
 
 
