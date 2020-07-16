@@ -102,7 +102,7 @@ Loader {
 					Layout.fillWidth: true
 					Layout.columnSpan: 2
 					placeholderText: i18n("Event Title")
-					text: event.summary
+					text: event && event.summary || ""
 					onAccepted: {
 						logger.debug('editSummaryTextField.onAccepted', text)
 						editEventItem.submit()
@@ -120,7 +120,7 @@ Loader {
 					Layout.columnSpan: 2
 
 					startDateTime: {
-						if (event.startDateTime) {
+						if (event && event.startDateTime) {
 							if (event.start.date) {
 								var d = new Date(event.startDateTime)
 								// Set to 9-10am in case user unchecks All Day
@@ -135,7 +135,7 @@ Loader {
 						}
 					}
 					endDateTime: {
-						if (event.endDateTime) {
+						if (event && event.endDateTime) {
 							if (event.end.date) {
 								// Events end at "midnight" the next day.
 								// See parseEventsForDate() functions for more info.
@@ -185,7 +185,7 @@ Loader {
 					PlasmaComponents3.CheckBox {
 						id: isAllDayCheckBox
 						text: i18n("All Day")
-						checked: !!event.start.date
+						checked: event ? !!event.start.date : false
 						enabled: durationSelector.enabled
 					}
 				}
@@ -199,7 +199,7 @@ Loader {
 					id: editLocationTextField
 					Layout.fillWidth: true
 					placeholderText: i18n("Add location")
-					text: event.location || ""
+					text: event && event.location || ""
 					onAccepted: {
 						logger.debug('editLocationTextField.onAccepted', text)
 						editEventItem.submit()
@@ -229,7 +229,7 @@ Loader {
 				PlasmaComponents3.TextArea {
 					id: editDescriptionTextField
 					placeholderText: i18n("Add description")
-					text: event.description || ""
+					text: (event && event.description) || ""
 
 					Layout.fillWidth: true
 					Layout.preferredHeight: contentHeight + (20 * units.devicePixelRatio)
