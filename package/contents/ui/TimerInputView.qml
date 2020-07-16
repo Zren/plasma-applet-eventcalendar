@@ -72,14 +72,16 @@ ColumnLayout {
 			Layout.fillWidth: true
 		}
 		PlasmaComponents3.Button {
-			text: i18n("&Cancel")
-			implicitWidth: minimumWidth
-			onClicked: timerInputView.cancel()
+			icon.name: 'chronometer-start'
+			text: i18n("&Start")
+			Layout.preferredWidth: Layout.minimumWidth
+			onClicked: timerInputView.start()
 		}
 		PlasmaComponents3.Button {
-			text: i18n("&Start")
-			implicitWidth: minimumWidth
-			onClicked: timerInputView.start()
+			icon.name: 'dialog-cancel'
+			text: i18n("&Cancel")
+			Layout.preferredWidth: Layout.minimumWidth
+			onClicked: timerInputView.cancel()
 		}
 	}
 
