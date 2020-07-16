@@ -125,26 +125,20 @@ CalendarManager {
 			plasmoid.configuration.agenda_newevent_last_calendar_id = calendarId
 		}
 
-		if (calendarId == "debug") {
-
-		} else if (true) { // Google Calendar
-			if (googleCalendarManager.session.accessToken) {
-				googleCalendarManager.createGoogleCalendarEvent(calendarId, date, text)
-			} else {
-				logger.log('attempting to create an event without an access token set')
-			}
+		var calendarManager = getCalendarManager(calendarId)
+		if (calendarManager) {
+			calendarManager.createEvent(calendarId, date, text)
 		} else {
-			logger.log('cannot create a new event for the calendar', calendarId)
+			logger.log('Could not createEvent. Could not find calendarManager for calendarId = ', calendarId)
 		}
 	}
 
 	function deleteEvent(calendarId, eventId) {
-		if (calendarId == "debug") {
-			debugCalendarManager.deleteEvent(calendarId, eventId)
-		} else if (true) { // Google Calendar
-			googleCalendarManager.deleteEvent(calendarId, eventId)
+		var calendarManager = getCalendarManager(calendarId)
+		if (calendarManager) {
+			calendarManager.deleteEvent(calendarId, eventId)
 		} else {
-			logger.log('cannot delete an event for the calendar', calendarId, eventId)
+			logger.log('Could not deleteEvent. Could not find calendarManager for calendarId = ', calendarId)
 		}
 	}
 

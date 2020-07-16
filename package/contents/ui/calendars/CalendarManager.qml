@@ -151,4 +151,13 @@ Item {
 		})
 	}
 
+	//---
+	function createEvent(calendarId, date, text) {
+		logger.log(calendarManager, 'createEvent(', date, text, ') is not implemented')
+	}
+
+	function deleteEvent(calendarId, eventId) {
+		logger.log(calendarManager, 'deleteEvent(', calendarId, eventId, ') is not implemented')
+	}
+
 }

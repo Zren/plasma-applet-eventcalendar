@@ -375,11 +375,8 @@ MouseArea {
 				calendarSelector.populate(calendarList, selectedCalendarId)
 			}
 			onSubmitNewEventForm: {
-				// logger.debug('onSubmitNewEventForm', calendarId)
-				if (plasmoid.configuration.access_token) {
-					logger.debug(calendarId)
-					eventModel.createEvent(calendarId, date, text)
-				}
+				logger.debug('onSubmitNewEventForm', calendarId)
+				eventModel.createEvent(calendarId, date, text)
 			}
 			PlasmaComponents3.Button {
 				icon.name: 'view-refresh'

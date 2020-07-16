@@ -271,16 +271,16 @@ CalendarManager {
 
 
 	//--- Create / POST
-	function createGoogleCalendarEvent(calendarId, date, text) {
+	function createEvent(calendarId, date, text) {
 		if (session.accessToken) {
 			var dateString = date.getFullYear() + '-' + (date.getMonth()+1) + '-' + date.getDate()
 			var eventText = dateString + ' ' + text
 
-			var func = createGoogleCalendarEvent_run.bind(this, calendarId, eventText, function(err, data, xhr) {
+			var func = createEvent_run.bind(this, calendarId, eventText, function(err, data, xhr) {
 				if (err) {
-					createGoogleCalendarEvent_err(err, data, xhr)
+					createEvent_err(err, data, xhr)
 				} else {
-					createGoogleCalendarEvent_done(calendarId, data)
+					createEvent_done(calendarId, data)
 				}
 			})
 			session.checkAccessToken(func)
@@ -288,24 +288,24 @@ CalendarManager {
 			session.transactionError('attempting to "create an event" without an access token set')
 		}
 	}
-	function createGoogleCalendarEvent_run(calendarId, eventText, callback) {
-		logger.debugJSON('createGoogleCalendarEvent_run', calendarId, eventText)
+	function createEvent_run(calendarId, eventText, callback) {
+		logger.debugJSON(calendarManagerId, 'createEvent_run', calendarId, eventText)
 		createGCalEvent({
 			access_token: session.accessToken,
 			calendarId: calendarId,
 			text: eventText,
 		}, callback)
 	}
-	function createGoogleCalendarEvent_done(calendarId, data) {
-		logger.debugJSON('createGoogleCalendarEvent_done', calendarId, data)
+	function createEvent_done(calendarId, data) {
+		logger.debugJSON(calendarManagerId, 'createEvent_done', calendarId, data)
 		if (googleCalendarManager.calendarIdList.indexOf(calendarId) >= 0) {
 			parseSingleEvent(calendarId, data)
 			addEvent(calendarId, data)
 			eventCreated(calendarId, data)
 		}
 	}
-	function createGoogleCalendarEvent_err(err, data, xhr) {
-		logger.log('createGoogleCalendarEvent_err', err, data, xhr)
+	function createEvent_err(err, data, xhr) {
+		logger.log(calendarManagerId, 'createEvent_err', err, data, xhr)
 		return handleError(err, data, xhr)
 	}
 
