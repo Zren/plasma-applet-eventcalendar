@@ -7,6 +7,14 @@ import "../lib/Requests.js" as Requests
 
 // import "./GoogleCalendarTests.js" as GoogleCalendarTests
 
+
+// Google Tasks API
+// https://developers.google.com/tasks/v1/reference/tasks
+
+// You can view Google Tasks with this URL:
+// https://tasks.google.com/embed/?origin=https%3A%2F%2Fcalendar.google.com&fullWidth=1
+// Note that it redirects to /embed/list/~default which you cannot bookmark, as it'll 404.
+
 CalendarManager {
 	id: googleTasksManager
 
@@ -260,6 +268,72 @@ CalendarManager {
 			}
 			// logger.debugJSON('fetchGCalTasksPage.response', args.tasklistId, data)
 			pageCallback(err, data, xhr)
+		})
+	}
+
+
+	//--- Create / POST
+	function createEvent(calendarId, date, text) {
+		if (session.accessToken) {
+			var eventText = text
+
+			var func = createEvent_run.bind(this, calendarId, eventText, function(err, data, xhr) {
+				if (err) {
+					createEvent_err(err, data, xhr)
+				} else {
+					createEvent_done(calendarId, data)
+				}
+			})
+			session.checkAccessToken(func)
+		} else {
+			session.transactionError('attempting to "create an event" without an access token set')
+		}
+	}
+	function createEvent_run(calendarId, eventText, callback) {
+		logger.debugJSON(calendarManagerId, 'createEvent_run', calendarId, eventText)
+		createGoogleTask({
+			access_token: session.accessToken,
+			tasklistId: calendarId,
+			title: eventText,
+		}, callback)
+	}
+	function createEvent_done(calendarId, data) {
+		logger.debugJSON(calendarManagerId, 'createEvent_done', calendarId, data)
+		if (googleTasksManager.tasklistIdList.indexOf(calendarId) >= 0) {
+			var eventData = parseTaskAsEventData(data)
+			parseSingleEvent(calendarId, eventData)
+			addEvent(calendarId, eventData)
+			eventCreated(calendarId, eventData)
+		}
+	}
+	function createEvent_err(err, data, xhr) {
+		logger.log(calendarManagerId, 'createEvent_err', err, data, xhr)
+		return handleError(err, data, xhr)
+	}
+
+	function createGoogleTask(args, callback) {
+		// https://www.googleapis.com/tasks/v1/lists/tasklistId/tasks
+		var url = 'https://www.googleapis.com/tasks/v1'
+		url += '/lists/'
+		url += encodeURIComponent(args.tasklistId)
+		url += '/tasks'
+		var taskData = {
+			title: args.title,
+			// notes: args.notes,
+			// due: args.due,
+		}
+		Requests.postJSON({
+			url: url,
+			headers: {
+				"Authorization": "Bearer " + args.access_token,
+			},
+			data: taskData,
+		}, function(err, data, xhr) {
+			console.log('createGoogleTask.response', err, data, xhr.status)
+			if (!err && data && data.error) {
+				return callback(data, null, xhr)
+			}
+			callback(err, data, xhr)
 		})
 	}
 }
