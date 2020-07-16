@@ -46,7 +46,7 @@ CalendarManager {
 	//-------------------------
 	// Tasks
 	function fetchGoogleAccountTasks(tasklistIdList) {
-		googleCalendarManager.asyncRequests += 1
+		googleTasksManager.asyncRequests += 1
 		var func = fetchGoogleAccountTasks_run.bind(this, tasklistIdList, function(errObj, data) {
 			if (errObj) {
 				fetchGoogleAccountTasks_err(errObj.err, errObj.data, errObj.xhr)
@@ -70,7 +70,7 @@ CalendarManager {
 	}
 	function fetchGoogleAccountTasks_err(err, data, xhr) {
 		logger.debug('fetchGoogleAccountTasks_err', err, data, xhr)
-		googleCalendarManager.asyncRequestsDone += 1
+		googleTasksManager.asyncRequestsDone += 1
 		return handleError(err, data, xhr)
 	}
 	function fetchGoogleAccountTasks_done(results) {
@@ -80,7 +80,7 @@ CalendarManager {
 			var eventList = parseTasklistAsEvents(tasklistData)
 			setCalendarData(tasklistId, eventList)
 		}
-		googleCalendarManager.asyncRequestsDone += 1
+		googleTasksManager.asyncRequestsDone += 1
 	}
 
 	function sortTasklist(tasklist) {
@@ -179,8 +179,8 @@ CalendarManager {
 		logger.debug('fetchGoogleTasks', tasklistId)
 		fetchGCalTasks({
 			tasklistId: tasklistId,
-			// start: googleCalendarManager.dateMin.toISOString(),
-			// end: googleCalendarManager.dateMax.toISOString(),
+			// start: googleTasksManager.dateMin.toISOString(),
+			// end: googleTasksManager.dateMax.toISOString(),
 			access_token: session.accessToken,
 		}, function(err, data, xhr) {
 			if (err) {
