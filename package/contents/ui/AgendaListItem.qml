@@ -11,8 +11,8 @@ GridLayout {
 	id: agendaListItem
 	readonly property int agendaItemIndex: index
 	columnSpacing: 0
-	property var agendaItemTasks: model.tasks
 	property var agendaItemEvents: model.events
+	property var agendaItemTasks: model.tasks
 	property date agendaItemDate: model.date
 	property bool agendaItemIsToday: false
 	function checkIfToday() {
@@ -237,8 +237,12 @@ GridLayout {
 			}
 			yOffset += item.height
 		}
-		for (var i = 0; i < index && i < tasksRepeater.count; i++) {
+		for (var i = 0; i < tasksRepeater.count; i++) {
 			var item = tasksRepeater.itemAt(i)
+			var eventIndex = eventsRepeater.count + i
+			if (eventIndex >= index) {
+				break
+			}
 			if (i > 0 || eventsRepeater.count > 0) {
 				yOffset += eventsLayout.spacing
 			}

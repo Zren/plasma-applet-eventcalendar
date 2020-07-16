@@ -160,6 +160,14 @@ Item {
 			scrollToY(offsetY)
 		}
 
+		function positionViewAtTask(agendaItemIndex, taskIndex) {
+			var offsetY = getItemOffsetY(agendaItemIndex)
+			var agendaListItem = agendaRepeater.itemAt(agendaItemIndex)
+			var eventIndex = agendaListItem.agendaItemEvents.count + taskIndex
+			offsetY += agendaListItem.getEventOffset(eventIndex)
+			scrollToY(offsetY)
+		}
+
 		function positionViewAtEnd() {
 			scrollToY(contentHeight)
 		}

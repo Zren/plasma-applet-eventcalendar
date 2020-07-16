@@ -181,7 +181,7 @@ LinkRect {
 		// menuItem.enabled = task.canEdit
 		menuItem.clicked.connect(function() {
 			editTaskForm.active = !editTaskForm.active
-			agendaScrollView.positionViewAtEvent(agendaItemIndex, eventItemIndex)
+			agendaScrollView.positionViewAtTask(agendaItemIndex, taskItemIndex)
 		})
 		contextMenu.addMenuItem(menuItem)
 
