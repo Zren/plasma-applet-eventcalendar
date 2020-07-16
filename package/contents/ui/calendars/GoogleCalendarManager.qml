@@ -479,6 +479,7 @@ CalendarManager {
 
 	//--- Delete Event
 	function deleteEvent(calendarId, eventId) {
+		logger.log(calendarManagerId, 'deleteEvent', calendarId, eventId)
 		if (session.accessToken) {
 			var event = getEvent(calendarId, eventId)
 			if (!event) {
@@ -499,7 +500,7 @@ CalendarManager {
 		}
 	}
 	function deleteEvent_run(calendarId, eventId, callback) {
-		logger.debugJSON('deleteEvent_run', calendarId, eventId)
+		logger.debugJSON(calendarManagerId, 'deleteEvent_run', calendarId, eventId)
 
 		deleteGCalEvent({
 			accessToken: session.accessToken,
@@ -508,7 +509,7 @@ CalendarManager {
 		}, callback)
 	}
 	function deleteEvent_done(calendarId, eventId, data) {
-		logger.debugJSON('deleteEvent_done', calendarId, eventId, data)
+		logger.debugJSON(calendarManagerId, 'deleteEvent_done', calendarId, eventId, data)
 
 		// Note: No data is returned on success
 		var event = getEvent(calendarId, eventId)
@@ -518,7 +519,7 @@ CalendarManager {
 		}
 	}
 	function deleteEvent_err(err, data, xhr) {
-		logger.log('deleteEvent_err', err, data, xhr)
+		logger.log(calendarManagerId, 'deleteEvent_err', err, data, xhr)
 		return handleError(err, data, xhr)
 	}
 

@@ -146,6 +146,9 @@ CalendarManager {
 		// Don't bother creating a new object.
 		var eventData = taskData
 
+		eventData.summary = taskData.title
+		eventData.canEdit = true
+
 		var editTasksUrl = 'https://tasks.google.com/embed/?origin=' + encodeURIComponent('https://calendar.google.com') + '&fullWidth=1'
 		eventData.htmlLink = editTasksUrl
 
@@ -330,6 +333,76 @@ CalendarManager {
 			data: taskData,
 		}, function(err, data, xhr) {
 			console.log('createGoogleTask.response', err, data, xhr.status)
+			if (!err && data && data.error) {
+				return callback(data, null, xhr)
+			}
+			callback(err, data, xhr)
+		})
+	}
+
+
+	//--- Delete Task
+	function deleteEvent(calendarId, eventId) {
+		logger.log(calendarManagerId, 'deleteEvent', calendarId, eventId)
+		if (session.accessToken) {
+			var event = getEvent(calendarId, eventId)
+			if (!event) {
+				session.transactionError('attempting to "delete an event" for an event that doesn\'t exist')
+				return
+			}
+
+			var func = deleteEvent_run.bind(this, calendarId, eventId, function(err, data, xhr) {
+				if (err) {
+					deleteEvent_err(err, data, xhr)
+				} else {
+					deleteEvent_done(calendarId, eventId, data)
+				}
+			})
+			session.checkAccessToken(func)
+		} else {
+			session.transactionError('attempting to "delete an event" without an access token set')
+		}
+	}
+	function deleteEvent_run(calendarId, eventId, callback) {
+		logger.debugJSON(calendarManagerId, 'deleteEvent_run', calendarId, eventId)
+
+		deleteGoogleTask({
+			accessToken: session.accessToken,
+			tasklistId: calendarId,
+			taskId: eventId,
+		}, callback)
+	}
+	function deleteEvent_done(calendarId, eventId, data) {
+		logger.debugJSON(calendarManagerId, 'deleteEvent_done', calendarId, eventId, data)
+
+		// Note: No data is returned on success
+		var event = getEvent(calendarId, eventId)
+		if (event) {
+			removeEvent(calendarId, eventId)
+			eventDeleted(calendarId, eventId, event)
+		}
+	}
+	function deleteEvent_err(err, data, xhr) {
+		logger.log(calendarManagerId, 'deleteEvent_err', err, data, xhr)
+		return handleError(err, data, xhr)
+	}
+
+	function deleteGoogleTask(args, callback) {
+		// DELETE https://www.googleapis.com/tasks/v1/lists/tasklistId/tasks/taskId
+		// Note: Success means a response of xhr.status == 204 (No Content)
+		var url = 'https://www.googleapis.com/tasks/v1'
+		url += '/lists/'
+		url += encodeURIComponent(args.tasklistId)
+		url += '/tasks/'
+		url += encodeURIComponent(args.taskId)
+		Requests.postJSON({
+			method: 'DELETE',
+			url: url,
+			headers: {
+				"Authorization": "Bearer " + args.accessToken,
+			},
+		}, function(err, data, xhr) {
+			logger.debug('deleteGoogleTask.response', err, data, xhr.status)
 			if (!err && data && data.error) {
 				return callback(data, null, xhr)
 			}

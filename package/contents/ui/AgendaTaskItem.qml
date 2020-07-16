@@ -178,7 +178,7 @@ LinkRect {
 		menuItem = contextMenu.newMenuItem()
 		menuItem.text = i18n("Edit")
 		menuItem.icon = "edit-rename"
-		// menuItem.enabled = task.canEdit
+		menuItem.enabled = task.canEdit
 		menuItem.clicked.connect(function() {
 			editTaskForm.active = !editTaskForm.active
 			agendaScrollView.positionViewAtTask(agendaItemIndex, taskItemIndex)
@@ -191,10 +191,10 @@ LinkRect {
 		menuItem = contextMenu.newMenuItem(deleteMenuItem)
 		menuItem.text = i18n("Confirm Deletion")
 		menuItem.icon = "delete"
-		// menuItem.enabled = task.canEdit
+		menuItem.enabled = task.canEdit
 		menuItem.clicked.connect(function() {
-			logger.debug('eventModel.deleteTask', task.tasklistId, task.id)
-			// eventModel.deleteTask(task.tasklistId, task.id)
+			logger.debug('eventModel.deleteTask', task.calendarId, task.id)
+			eventModel.deleteEvent(task.calendarId, task.id)
 		})
 		// deleteMenuItem.enabled = task.canEdit
 		deleteMenuItem.subMenu.addMenuItem(menuItem)
