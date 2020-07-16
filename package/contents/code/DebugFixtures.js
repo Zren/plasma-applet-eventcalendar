@@ -3,9 +3,39 @@
 function getCalendar() {
 	return {
 		"id": "debug",
+		"summary": "Debug",
 		"backgroundColor": "#9a9cff",
 		"accessRole": "owner",
 	}
+}
+
+function createEvent(summary, start, end, description) {
+	var event = {
+		"kind": "calendar#event",
+		"etag": "\"2561779720126000\"",
+		"id": "debug_" + start.dateTime.getTime() + "_" + end.dateTime.getTime(),
+		"status": "confirmed",
+		"htmlLink": "https://www.google.com/calendar/event?eid=aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa&ctz=Etc/UTC",
+		"created": "2008-03-24T22:34:26.000Z",
+		"updated": "2010-08-04T02:44:20.063Z",
+		"summary": summary,
+		"start": start,
+		"end": end,
+		// "recurringEventId": "a1a1a1a1a1a1a1a1a1a1a1a1a1",
+		"originalStartTime": {
+			"date": "2016-03-25"
+		},
+		"transparency": "transparent",
+		"iCalUID": "a1a1a1a1a1a1a1a1a1a1a1a1a1@google.com",
+		"sequence": 0,
+		"reminders": {
+			"useDefault": false
+		},
+	}
+	if (typeof description !== "undefined") {
+		event.description = description
+	}
+	return event
 }
 
 function getEventData() {
@@ -13,31 +43,7 @@ function getEventData() {
 		"items": []
 	}
 	function addEvent(summary, start, end, description) {
-		var newEvent = {
-			"kind": "calendar#event",
-			"etag": "\"2561779720126000\"",
-			"id": "debug_" + start.dateTime.getTime() + "_" + end.dateTime.getTime(),
-			"status": "confirmed",
-			"htmlLink": "https://www.google.com/calendar/event?eid=aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa&ctz=Etc/UTC",
-			"created": "2008-03-24T22:34:26.000Z",
-			"updated": "2010-08-04T02:44:20.063Z",
-			"summary": summary,
-			"start": start,
-			"end": end,
-			// "recurringEventId": "a1a1a1a1a1a1a1a1a1a1a1a1a1",
-			"originalStartTime": {
-				"date": "2016-03-25"
-			},
-			"transparency": "transparent",
-			"iCalUID": "a1a1a1a1a1a1a1a1a1a1a1a1a1@google.com",
-			"sequence": 0,
-			"reminders": {
-				"useDefault": false
-			},
-		}
-		if (typeof description !== "undefined") {
-			newEvent.description = description
-		}
+		var newEvent = createEvent(summary, start, end, description)
 		debugEventData.items.push(newEvent)
 		return newEvent
 	}

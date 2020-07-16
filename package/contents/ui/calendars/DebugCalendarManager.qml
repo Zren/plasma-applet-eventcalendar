@@ -1,5 +1,6 @@
 import QtQuick 2.0
 
+import "../Shared.js" as Shared
 import "../lib/Requests.js" as Requests
 import "../../code/DebugFixtures.js" as DebugFixtures
 
@@ -31,6 +32,32 @@ CalendarManager {
 			setCalendarData(calendarId, obj)
 			debugCalendarManager.asyncRequestsDone += 1
 		})
+	}
+
+	function getCalendarList() {
+		if (debugCalendar) {
+			return [ debugCalendar ]
+		} else {
+			return []
+		}
+	}
+
+	function createEvent(calendarId, date, text) {
+		var summary = text
+		var start = {
+			date: Shared.dateString(date),
+			dateTime: date,
+		}
+		var endDate = new Date(date.getFullYear(), date.getMonth(), date.getDate() + 1, 0, 0, 0)
+		var end = {
+			date: Shared.dateString(endDate),
+			dateTime: endDate,
+		}
+		var description = ''
+		var data = DebugFixtures.createEvent(summary, start, end, description)
+		parseSingleEvent(calendarId, data)
+		addEvent(calendarId, data)
+		eventCreated(calendarId, data)
 	}
 
 	function deleteEvent(calendarId, eventId) {
