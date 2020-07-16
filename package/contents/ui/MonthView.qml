@@ -315,8 +315,9 @@ PinchArea {
 		anchors.fill: parent
 
 		pushEnter: Transition {
-			OpacityAnimator {
+			NumberAnimation {
 				duration: units.longDuration
+				property: "opacity"
 				from: 0
 				to: 1
 			}
@@ -328,24 +329,27 @@ PinchArea {
 			}
 		}
 		pushExit: Transition {
-			OpacityAnimator {
+			NumberAnimation {
 				duration: units.longDuration
+				property: "opacity"
 				from: 1
 				to: 0
 			}
 		}
 
 		popEnter: Transition {
-			OpacityAnimator {
+			NumberAnimation {
 				duration: units.longDuration
+				property: "opacity"
 				from: 0
 				to: 1
 			}
 		}
 		popExit: Transition {
 			id: popExit
-			OpacityAnimator {
+			NumberAnimation {
 				duration: units.longDuration
+				property: "opacity"
 				from: 1
 				to: 0
 			}
