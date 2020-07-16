@@ -333,9 +333,14 @@ CalendarManager {
 
 	//--- Update Event
 	function setEventProperty(calendarId, eventId, key, value) {
-		console.log('googleCalendarManager.setEventProperty', calendarId, eventId, key, value)
+		logger.log(calendarManagerId, 'setEventProperty', calendarId, eventId, key, value)
 		var args = {}
 		args[key] = value
+		setEventProperties(calendarId, eventId, args)
+	}
+
+	function setEventProperties(calendarId, eventId, args) {
+		logger.logJSON(calendarManagerId, 'setEventProperties', calendarId, eventId, args)
 		updateGoogleCalendarEvent(calendarId, eventId, args)
 
 		// Note: Make sure switching between all day event (event.start.date) and a date+time

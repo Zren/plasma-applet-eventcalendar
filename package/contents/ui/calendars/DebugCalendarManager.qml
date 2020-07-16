@@ -97,4 +97,14 @@ CalendarManager {
 		event[key] = value
 		eventUpdated(calendarId, eventId, event)
 	}
+
+	function setEventProperties(calendarId, eventId, args) {
+		logger.debugJSON('debugCalendarManager.setEventProperties', calendarId, eventId, args)
+		var keys = Object.keys(args)
+		for (var i = 0; i < keys.length; i++) {
+			var key = keys[i]
+			var value = args[key]
+			setEventProperty(calendarId, eventId, key, value)
+		}
+	}
 }

@@ -160,4 +160,12 @@ Item {
 		logger.log(calendarManager, 'deleteEvent(', calendarId, eventId, ') is not implemented')
 	}
 
+	function setEventProperty(calendarId, eventId, key, value) {
+		logger.log(calendarManager, 'setEventProperty(', calendarId, eventId, key, value, ') is not implemented')
+	}
+
+	function setEventProperties(calendarId, eventId, args) {
+		logger.log(calendarManager, 'setEventProperties(', calendarId, eventId, args, ') is not implemented')
+	}
+
 }

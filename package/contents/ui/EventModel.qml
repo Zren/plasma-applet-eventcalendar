@@ -119,7 +119,7 @@ CalendarManager {
 		}
 	}
 
-	//---
+	//--- CalendarManager: Event
 	function createEvent(calendarId, date, text) {
 		if (plasmoid.configuration.agenda_newevent_remember_calendar) {
 			plasmoid.configuration.agenda_newevent_last_calendar_id = calendarId
@@ -144,32 +144,25 @@ CalendarManager {
 
 	function setEventProperty(calendarId, eventId, key, value) {
 		logger.debug('eventModel.setEventProperty', calendarId, eventId, key, value)
-		if (calendarId == "debug") {
-			debugCalendarManager.setEventProperty(calendarId, eventId, key, value)
-		} else if (true) { // Google Calendar
-			googleCalendarManager.setEventProperty(calendarId, eventId, key, value)
+		var calendarManager = getCalendarManager(calendarId)
+		if (calendarManager) {
+			calendarManager.setEventProperty(calendarId, eventId, key, value)
 		} else {
-			logger.log('cannot edit the event property for the calendar', calendarId, eventId)
+			logger.log('Could not setEventProperty. Could not find calendarManager for calendarId = ', calendarId)
 		}
 	}
 
 	function setEventProperties(calendarId, eventId, args) {
 		logger.debugJSON('eventModel.setEventProperties', calendarId, eventId, args)
-		if (calendarId == "debug") {
-			var keys = Object.keys(args)
-			for (var i = 0; i < keys.length; i++) {
-				var key = keys[i]
-				var value = args[key]
-				debugCalendarManager.setEventProperty(calendarId, eventId, key, value)
-			}
-		} else if (true) { // Google Calendar
-			googleCalendarManager.updateGoogleCalendarEvent(calendarId, eventId, args)
+		var calendarManager = getCalendarManager(calendarId)
+		if (calendarManager) {
+			calendarManager.setEventProperties(calendarId, eventId, args)
 		} else {
-			logger.log('cannot edit the event property for the calendar', calendarId, eventId)
+			logger.log('Could not setEventProperties. Could not find calendarManager for calendarId = ', calendarId)
 		}
 	}
 
-	//--- CalendarManager
+	//--- CalendarManager: Calendar
 	function getCalendarList() {
 		var calendarList = []
 		for (var i = 0; i < calendarManagerList.length; i++) {
