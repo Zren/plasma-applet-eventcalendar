@@ -224,11 +224,13 @@ ListModel {
 
 		// Sort by start time if event, or position if tasks
 		data.items.sort(function(a,b) {
-			if (a.kind != 'tasks#task' && b.kind == 'tasks#task') {
+			var aIsTask = a.kind == 'tasks#task'
+			var bIsTask = b.kind == 'tasks#task'
+			if (!aIsTask && bIsTask) {
 				return -1
-			} else if (a.kind == 'tasks#task' && b.kind != 'tasks#task') {
+			} else if (aIsTask && !bIsTask) {
 				return 1
-			} else if (a.kind == 'tasks#task' && b.kind == 'tasks#task') {
+			} else if (aIsTask && bIsTask) {
 				var ap = a.position
 				var bp = b.position
 				if (ap == bp) {
