@@ -71,3 +71,12 @@ function renderText(text) {
 
 	return out
 }
+
+// Merge values of objB into objA
+function merge(objA, objB) {
+	var keys = Object.keys(objB)
+	for (var i = 0; i < keys.length; i++) {
+		var key = keys[i]
+		objA[key] = objB[key]
+	}
+}

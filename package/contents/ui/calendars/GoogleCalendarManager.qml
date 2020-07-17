@@ -370,16 +370,12 @@ CalendarManager {
 	}
 	function updateGoogleCalendarEvent_run(calendarId, eventId, event, args, callback) {
 		logger.debugJSON('updateGoogleCalendarEvent_run', calendarId, eventId, event, args)
-		
+
 		// Merge assigned values into a cloned object
 		var data = cloneRawEvent(event)
-		var keys = Object.keys(args)
-		for (var i = 0; i < keys.length; i++) {
-			var key = keys[i]
-			data[key] = args[key]
-		}
+		Shared.merge(data, args)
 		logger.debugJSON('updateGoogleCalendarEvent', 'sent', data)
-		
+
 		updateGCalEvent({
 			accessToken: session.accessToken,
 			calendarId: calendarId,
@@ -391,11 +387,7 @@ CalendarManager {
 		logger.debugJSON('updateGoogleCalendarEvent_done', calendarId, data)
 
 		// Merge serialized values
-		var keys = Object.keys(data)
-		for (var i = 0; i < keys.length; i++) {
-			var key = keys[i]
-			event[key] = data[key]
-		}
+		Shared.merge(event, data)
 
 		parseSingleEvent(calendarId, event)
 		eventUpdated(calendarId, eventId, event)
