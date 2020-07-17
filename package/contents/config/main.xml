@@ -187,6 +187,9 @@
 		<entry name="agendaCondensedAllDayEvent" type="bool">
 			<default>true</default>
 		</entry>
+		<entry name="agendaPlaceOverdueTasksOnToday" type="bool">
+			<default>true</default>
+		</entry>
 	</group>
 
 

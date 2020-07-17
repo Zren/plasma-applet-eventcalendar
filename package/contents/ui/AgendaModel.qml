@@ -146,6 +146,29 @@ ListModel {
 			return
 		}
 
+		if (plasmoid.configuration.agendaPlaceOverdueTasksOnToday) {
+			for (var i = 0; i < data.items.length; i++) {
+				var eventItem = data.items[i]
+				if (eventItem.kind == 'tasks#task'
+					&& eventItem.due
+					&& !eventItem.isCompleted
+				) {
+					var now = new Date(timeModel.currentTime)
+					var taskIsOverdue = eventItem.dueEndTime < now
+					if (taskIsOverdue) {
+						eventItem.start = {
+							date: Shared.dateString(now),
+						}
+						eventItem.end = {
+							date: Shared.dateString(now),
+						}
+						eventItem.startDateTime = now
+						eventItem.endDateTime = now
+					}
+				}
+			}
+		}
+
 		data.items.sort(function(a,b) { return a.startDateTime - b.startDateTime })
 
 		var agendaItemList = []

@@ -194,7 +194,13 @@ CalendarManager {
 			eventData.dueDateTime = new Date(eventData.dueDate + ' 00:00:00')
 			// All day event, due at end of day.
 			eventData.dueEndOfDay = taskData.due.indexOf('T00:00:00.000Z') !== -1
-
+			if (eventData.dueEndOfDay) {
+				var dueEndTime = new Date(eventData.dueDateTime)
+				dueEndTime.setDate(dueEndTime.getDate() + 1)
+				eventData.dueEndTime = dueEndTime
+			} else {
+				eventData.dueEndTime = eventData.dueDateTime
+			}
 			var startDateTime = new Date(eventData.dueDateTime)
 		} else {
 			var today = new Date()
