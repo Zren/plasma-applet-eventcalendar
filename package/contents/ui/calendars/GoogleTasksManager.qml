@@ -33,6 +33,36 @@ CalendarManager {
 		}
 	}
 
+	//--- Utils
+	function cloneRawTask(task) {
+		var validProperties = [
+			'kind',
+			'id',
+			'etag',
+			'title',
+			'updated',
+			'selfLink',
+			'parent',
+			'position',
+			'notes',
+			'status',
+			'due',
+			'completed',
+			'deleted',
+			'hidden',
+			'links',
+		]
+		var data = {}
+		for (var i = 0; i < validProperties.length; i++) {
+			var key = validProperties[i]
+			var value = task[key]
+			if (typeof value !== 'undefined') {
+				data[key] = value
+			}
+		}
+		return data
+	}
+
 	//-------------------------
 	// CalendarManager
 	function getCalendarList() {
@@ -403,6 +433,88 @@ CalendarManager {
 			},
 		}, function(err, data, xhr) {
 			logger.debug('deleteGoogleTask.response', err, data, xhr.status)
+			if (!err && data && data.error) {
+				return callback(data, null, xhr)
+			}
+			callback(err, data, xhr)
+		})
+	}
+
+	//--- Update Task
+	function setEventProperty(calendarId, eventId, key, value) {
+		logger.log(calendarManagerId, 'setEventProperty', calendarId, eventId, key, value)
+		var args = {}
+		args[key] = value
+		setEventProperties(calendarId, eventId, args)
+	}
+
+	function setEventProperties(calendarId, eventId, args) {
+		logger.logJSON(calendarManagerId, 'setEventProperties', calendarId, eventId, args)
+		if (session.accessToken) {
+			var event = getEvent(calendarId, eventId)
+			if (!event) {
+				session.transactionError('attempting to "set an event property" for an event that doesn\'t exist')
+				return
+			}
+
+			var func = setEventProperties_run.bind(this, calendarId, eventId, event, args, function(err, data, xhr) {
+				if (err) {
+					setEventProperties_err(err, data, xhr)
+				} else {
+					setEventProperties_done(calendarId, eventId, event, data)
+				}
+			})
+			session.checkAccessToken(func)
+		} else {
+			session.transactionError('attempting to "set an event property" without an access token set')
+		}
+	}
+	function setEventProperties_run(calendarId, eventId, event, args, callback) {
+		logger.debugJSON(calendarManagerId, 'setEventProperties_run', calendarId, eventId, event, args)
+		
+		// Merge assigned values into a cloned object
+		var data = cloneRawTask(event)
+		Shared.merge(data, args)
+		logger.debugJSON(calendarManagerId, 'setEventProperties', 'sent', data)
+
+		updateGoogleTask({
+			accessToken: session.accessToken,
+			tasklistId: calendarId,
+			taskId: eventId,
+			data: data,
+		}, callback)
+	}
+	function setEventProperties_done(calendarId, eventId, event, data) {
+		logger.debugJSON(calendarManagerId, 'setEventProperties_done', calendarId, data)
+
+		// Merge serialized values
+		var eventData = parseTaskAsEventData(data)
+		Shared.merge(event, eventData)
+
+		parseSingleEvent(calendarId, event)
+		eventUpdated(calendarId, eventId, event)
+	}
+	function setEventProperties_err(err, data, xhr) {
+		logger.log(calendarManagerId, 'setEventProperties_err', err, data, xhr)
+		return handleError(err, data, xhr)
+	}
+
+	function updateGoogleTask(args, callback) {
+		// PUT https://www.googleapis.com/tasks/v1/lists/tasklistId/tasks/taskId
+		var url = 'https://www.googleapis.com/tasks/v1'
+		url += '/lists/'
+		url += encodeURIComponent(args.tasklistId)
+		url += '/tasks/'
+		url += encodeURIComponent(args.taskId)
+		Requests.postJSON({
+			method: 'PUT',
+			url: url,
+			headers: {
+				"Authorization": "Bearer " + args.accessToken,
+			},
+			data: args.data,
+		}, function(err, data, xhr) {
+			logger.debug('updateGoogleTask.response', err, data, xhr.status)
 			if (!err && data && data.error) {
 				return callback(data, null, xhr)
 			}

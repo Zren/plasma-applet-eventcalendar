@@ -170,7 +170,7 @@ LinkRect {
 	onLeftClicked: {
 		// logger.log('agendaItem.event.leftClicked', model.startDateTime, mouse)
 		if (false) {
-			var event = events.get(index)
+			var event = events.get(eventItemIndex)
 			logger.logJSON("event", event)
 			var calendar = eventModel.getCalendar(event.calendarId)
 			logger.logJSON("calendar", calendar)
@@ -183,7 +183,7 @@ LinkRect {
 
 	onLoadContextMenu: {
 		var menuItem
-		var event = events.get(index)
+		var event = events.get(eventItemIndex)
 
 		menuItem = contextMenu.newMenuItem()
 		menuItem.text = i18n("Edit")

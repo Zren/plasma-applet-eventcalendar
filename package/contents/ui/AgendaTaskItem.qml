@@ -68,7 +68,14 @@ LinkRect {
 			id: taskCheckBox
 			Layout.alignment: Qt.AlignTop
 			checked: model.isCompleted
-			enabled: false
+
+			onToggled: {
+				var task = tasks.get(taskItemIndex)
+				var args = {
+					status: checked ? 'completed' : 'needsAction'
+				}
+				eventModel.setEventProperties(task.calendarId, task.id, args)
+			}
 		}
 
 		ColumnLayout {
@@ -163,7 +170,7 @@ LinkRect {
 	}
 	
 	onLeftClicked: {
-		var task = tasks.get(index)
+		var task = tasks.get(taskItemIndex)
 		logger.logJSON("task", task)
 		// var tasklist = eventModel.getTasklist(task.tasklistId)
 		// logger.logJSON("tasklist", tasklist)
@@ -173,7 +180,7 @@ LinkRect {
 
 	onLoadContextMenu: {
 		var menuItem
-		var task = tasks.get(index)
+		var task = tasks.get(taskItemIndex)
 
 		menuItem = contextMenu.newMenuItem()
 		menuItem.text = i18n("Edit")

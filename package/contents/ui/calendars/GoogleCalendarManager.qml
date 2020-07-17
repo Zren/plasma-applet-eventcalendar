@@ -443,7 +443,7 @@ CalendarManager {
 		// https://bugreports.qt.io/browse/QTBUG-38175
 
 		// Even though Qt 5.10's qmlscene can send a PATCH request with a body,
-		// plasmashell + plasmoidviewer is doesn't something weird, as while both
+		// plasmashell + plasmoidviewer is doing something weird, as while both
 		// send the PATCH request to the server, it does not send the body.
 		// Demo: https://gist.github.com/Zren/3cdee1cd6fce144c234cdca9d3f32fc1
 		throw new Exception("plasmashell with Qt 5.10 still doesn't fully support the PATCH method type")
