@@ -230,8 +230,8 @@ ColumnLayout {
 					configDefaults.append({
 						key: key,
 						valueType: valueType,
-						value: value,
-						stringType: stringType
+						value: (typeof value !== 'undefined' && value !== null) ? value : '',
+						stringType: stringType || '',
 					})
 				})
 			})
