@@ -107,7 +107,10 @@ ColumnLayout {
 			delegate: RowLayout {
 				width: parent.width
 
-				property bool isDefault: ('' + model.value) === model.defaultValue
+				function valueToString(val) {
+					return (typeof val === 'undefined' || val === null) ? '' : ''+val
+				}
+				readonly property bool isDefault: valueToString(model.value) == valueToString(model.defaultValue)
 
 				TextField {
 					Layout.alignment: Qt.AlignTop | Qt.AlignLeft
@@ -284,10 +287,14 @@ ColumnLayout {
 				var value = plasmoid.configuration[key]
 				var valueStr = '' + value
 				var node = configDefaults.get(i)
+				if (key === 'minimumWidth') {
+					continue // Ignore
+				}
 				if (!node) {
-					console.log('configDefaults doesn\'t conain an entry for plasmoid.configuration.' + key)
+					console.log('configDefaults doesn\'t contain an entry for plasmoid.configuration.' + key)
 					continue
 				}
+
 				var configType = node.valueType
 				var stringType = node.stringType
 				var defaultValue = node.value
