@@ -3,7 +3,7 @@ import QtQuick.Controls 1.1
 import QtQuick.Controls.Styles 1.1
 import QtQuick.Controls 2.0 as QQC2
 import QtQuick.Layouts 1.1
-import org.kde.plasma.core 2.0 as PlasmaCore
+import org.kde.kirigami 2.0 as Kirigami
 
 import ".."
 import "../lib"
@@ -168,7 +168,7 @@ ConfigPage {
 		}
 	}
 	ColumnLayout {
-		spacing: units.smallSpacing * 2
+		spacing: Kirigami.Units.smallSpacing * 2
 		Layout.fillWidth: true
 
 		ListModel {

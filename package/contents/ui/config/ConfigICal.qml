@@ -3,7 +3,7 @@ import QtQuick.Controls 1.0
 import QtQuick.Controls.Styles 1.1
 import QtQuick.Dialogs 1.2
 import QtQuick.Layouts 1.0
-import org.kde.plasma.core 2.0 as PlasmaCore
+import org.kde.kirigami 2.0 as Kirigami
 
 import org.kde.kcoreaddons 1.0 as KCoreAddons
 
@@ -25,7 +25,7 @@ ConfigPage {
 			addItem({
 				url: '',
 				name: 'Label',
-				backgroundColor: '' + theme.highlightColor,
+				backgroundColor: '' + Kirigami.Theme.highlightColor,
 				show: true,
 				isReadOnly: true,
 			})
@@ -37,7 +37,7 @@ ConfigPage {
 			addItem({
 				url: icsPath,
 				name: 'Label',
-				backgroundColor: '' + theme.highlightColor,
+				backgroundColor: '' + Kirigami.Theme.highlightColor,
 				show: true,
 				isReadOnly: true,
 			})
@@ -62,7 +62,7 @@ ConfigPage {
 
 	ColumnLayout {
 		Layout.fillWidth: true
-		spacing: 20 * units.devicePixelRatio // double the default 10
+		spacing: 20 * Kirigami.Units.devicePixelRatio // x4 the default spacing (5px)
 
 		Repeater {
 			model: calendarsModel

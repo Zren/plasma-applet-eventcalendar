@@ -1,26 +1,23 @@
-// Version 4
+// Version 5
 
 import QtQuick 2.0
 import QtQuick.Controls 1.0
 import QtQuick.Controls.Styles 1.0
 import QtQuick.Layouts 1.0
+import org.kde.kirigami 2.0 as Kirigami
 
 ColumnLayout {
 	id: page
 
-	SystemPalette {
-		id: syspal
-	}
-
 	Component {
 		id: textFieldStyle
 		TextFieldStyle {
-			// textColor: syspal.text
+			// textColor: Kirigami.Theme.textColor
 
 			background: Rectangle {
 				radius: 2
-				color: control.activeFocus ? syspal.base : "transparent"
-				border.color: control.activeFocus ? syspal.highlight : "transparent"
+				color: control.activeFocus ? Kirigami.Theme.viewBackgroundColor : "transparent"
+				border.color: control.activeFocus ? Kirigami.Theme.highlightColor : "transparent"
 				border.width: 1
 			}
 		}
@@ -36,7 +33,7 @@ ColumnLayout {
 			Layout.fillWidth: true
 			Layout.fillHeight: true
 
-			spacing: units.smallSpacing
+			spacing: Kirigami.Units.smallSpacing
 
 			model: []
 			cacheBuffer: 100000
@@ -118,7 +115,7 @@ ColumnLayout {
 					text: model.key
 					readOnly: true
 					style: textFieldStyle
-					Layout.preferredWidth: 200 * units.devicePixelRatio
+					Layout.preferredWidth: 200 * Kirigami.Units.devicePixelRatio
 					font.bold: !isDefault
 				}
 				TextField {
@@ -126,7 +123,7 @@ ColumnLayout {
 					text: model.stringType || model.configType || model.valueType
 					readOnly: true
 					style: textFieldStyle
-					Layout.preferredWidth: 80 * units.devicePixelRatio
+					Layout.preferredWidth: 80 * Kirigami.Units.devicePixelRatio
 				}
 				Loader {
 					id: valueControlLoader

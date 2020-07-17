@@ -1,7 +1,7 @@
 import QtQuick 2.0
 import QtQuick.Controls 1.0
 import QtQuick.Layouts 1.0
-import org.kde.plasma.core 2.0 as PlasmaCore
+import org.kde.kirigami 2.0 as Kirigami
 import QtGraphicalEffects 1.0 // Colorize
 
 import ".."
@@ -27,7 +27,7 @@ ConfigPage {
 	GridLayout {
 		Layout.fillWidth: false
 		Layout.alignment: Qt.AlignHCenter
-		Layout.preferredWidth: 400 * units.devicePixelRatio
+		Layout.preferredWidth: 400 * Kirigami.Units.devicePixelRatio
 		columns: 3
 
 		//--- Row1
@@ -76,8 +76,8 @@ ConfigPage {
 			Layout.columnSpan: 2
 			Layout.rowSpan: 2
 
-			implicitWidth: 300 * units.devicePixelRatio
-			implicitHeight: 300 * units.devicePixelRatio
+			implicitWidth: 300 * Kirigami.Units.devicePixelRatio
+			implicitHeight: 300 * Kirigami.Units.devicePixelRatio
 
 			Layout.fillWidth: true
 			Layout.fillHeight: true
@@ -101,7 +101,7 @@ ConfigPage {
 
 	//---
 	Item {
-		implicitHeight: units.largeSpacing * 2
+		implicitHeight: Kirigami.Units.largeSpacing * 2
 	}
 
 	//---
@@ -117,12 +117,12 @@ ConfigPage {
 	GridLayout {
 		Layout.fillWidth: false
 		Layout.alignment: Qt.AlignHCenter
-		Layout.preferredWidth: 400 * units.devicePixelRatio
+		Layout.preferredWidth: 400 * Kirigami.Units.devicePixelRatio
 		columns: 3
 
 		//--- Row1
 		Item {
-			implicitWidth: 150 * units.devicePixelRatio
+			implicitWidth: 150 * Kirigami.Units.devicePixelRatio
 			Layout.fillWidth: true
 			Layout.column: 0
 			Layout.row: 0
@@ -148,7 +148,7 @@ ConfigPage {
 
 		//--- Row3
 		Item {
-			implicitHeight: 150 * units.devicePixelRatio
+			implicitHeight: 150 * Kirigami.Units.devicePixelRatio
 			Layout.column: 2
 			Layout.row: 2
 		}
@@ -160,8 +160,8 @@ ConfigPage {
 			Layout.columnSpan: 2
 			Layout.rowSpan: 2
 
-			implicitWidth: 300 * units.devicePixelRatio
-			implicitHeight: 300 * units.devicePixelRatio
+			implicitWidth: 300 * Kirigami.Units.devicePixelRatio
+			implicitHeight: 300 * Kirigami.Units.devicePixelRatio
 
 			Layout.fillWidth: true
 			Layout.fillHeight: true

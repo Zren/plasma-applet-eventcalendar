@@ -3,7 +3,7 @@ import QtQuick.Controls 1.0
 import QtQuick.Controls.Styles 1.0
 import QtQuick.Dialogs 1.0
 import QtQuick.Layouts 1.0
-import org.kde.plasma.core 2.0 as PlasmaCore
+import org.kde.kirigami 2.0 as Kirigami
 
 import ".."
 import "../lib"
@@ -22,7 +22,7 @@ ConfigPage {
 	property string timeFormat12hour: 'h:mm AP'
 
 	property bool showDebug: plasmoid.configuration.debugging
-	property int indentWidth: 24 * units.devicePixelRatio
+	property int indentWidth: 24 * Kirigami.Units.devicePixelRatio
 
 	function setMouseWheelCommands(up, down) {
 		plasmoid.configuration.clock_mousewheel == 'run_commands'

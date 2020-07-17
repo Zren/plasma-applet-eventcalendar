@@ -1,7 +1,7 @@
 import QtQuick 2.0
 import QtQuick.Controls 1.0
 import QtQuick.Layouts 1.0
-import org.kde.plasma.core 2.0 as PlasmaCore
+import org.kde.kirigami 2.0 as Kirigami
 
 import ".."
 import "../lib"
@@ -9,7 +9,7 @@ import "../lib"
 ConfigPage {
 	id: page
 
-	property int indentWidth: 24 * units.devicePixelRatio
+	property int indentWidth: 24 * Kirigami.Units.devicePixelRatio
 
 	ConfigCheckBox {
 		configKey: 'widget_show_agenda'

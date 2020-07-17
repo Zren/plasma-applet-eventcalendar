@@ -1,12 +1,11 @@
-// Version 4
+// Version 5
 
 import QtQuick 2.0
 import QtQuick.Controls 1.0
 import QtQuick.Layouts 1.0
 import QtQuick.Dialogs 1.2
 import QtQuick.Window 2.2
-
-import org.kde.plasma.core 2.0 as PlasmaCore
+import org.kde.kirigami 2.0 as Kirigami
 
 import ".."
 
@@ -14,7 +13,7 @@ RowLayout {
 	id: configColor
 	spacing: 2
 	// Layout.fillWidth: true
-	Layout.maximumWidth: 300 * units.devicePixelRatio
+	Layout.maximumWidth: 300 * Kirigami.Units.devicePixelRatio
 
 	property alias label: label.text
 	property alias labelColor: label.color
@@ -86,7 +85,7 @@ RowLayout {
 			anchors.fill: parent
 			color: configColor.valueColor
 			border.width: 2
-			border.color: parent.containsMouse ? PlasmaCore.ColorScope.highlightColor : buttonOutlineColor
+			border.color: parent.containsMouse ? Kirigami.Theme.highlightColor : buttonOutlineColor
 		}
 	}
 
