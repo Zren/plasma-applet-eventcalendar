@@ -187,7 +187,7 @@ Item {
 			if (!err && data && data.error) {
 				return callback('fetchGoogleTasklistList error', data, xhr)
 			}
-			logger.logJSON('fetchGoogleTasklistList.response.data', data)
+			logger.debugJSON('fetchGoogleTasklistList.response.data', data)
 			callback(err, data, xhr)
 		})
 	}
