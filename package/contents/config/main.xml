@@ -253,6 +253,12 @@
 		<entry name="calendar_id_list" type="string">
 			<default></default>
 		</entry>
+		<entry name="tasklistList" type="string" stringType="base64json">
+			<default></default>
+		</entry>
+		<entry name="tasklistIdList" type="string">
+			<default>@default</default>
+		</entry>
 		<entry name="events_pollinterval" type="UInt">
 			<default>20</default>
 		</entry>

@@ -28,15 +28,15 @@ Item {
 	readonly property string refreshToken: plasmoid.configuration.refresh_token
 
 	// Data
-	property var calendarListData: ConfigSerializedString {
-		id: calendarListData
+	property var m_calendarList: ConfigSerializedString {
+		id: m_calendarList
 		configKey: 'calendar_list'
 		defaultValue: []
 	}
-	property alias calendarList: calendarListData.value
+	property alias calendarList: m_calendarList.value
 
-	property var calendarIdListData: ConfigSerializedString {
-		id: calendarIdListData
+	property var m_calendarIdList: ConfigSerializedString {
+		id: m_calendarIdList
 		configKey: 'calendar_id_list'
 		defaultValue: []
 
@@ -47,8 +47,31 @@ Item {
 			value = configValue.split(',')
 		}
 	}
-	property alias calendarIdList: calendarIdListData.value
+	property alias calendarIdList: m_calendarIdList.value
 
+	property var m_tasklistList: ConfigSerializedString {
+		id: m_tasklistList
+		configKey: 'tasklistList'
+		defaultValue: []
+	}
+	property alias tasklistList: m_tasklistList.value
+
+	property var m_tasklistIdList: ConfigSerializedString {
+		id: m_tasklistIdList
+		configKey: 'tasklistIdList'
+		defaultValue: []
+
+		function serialize() {
+			plasmoid.configuration[configKey] = value.join(',')
+		}
+		function deserialize() {
+			value = configValue.split(',')
+		}
+	}
+	property alias tasklistIdList: m_tasklistIdList.value
+
+
+	//--- Signals
 	signal newAccessToken()
 	signal sessionReset()
 	signal error(string err)
@@ -98,7 +121,12 @@ Item {
 		newAccessToken()
 	}
 
-	onNewAccessToken: updateCalendarList()
+	onNewAccessToken: updateData()
+
+	function updateData() {
+		updateCalendarList()
+		updateTasklistList()
+	}
 
 	function updateCalendarList() {
 		logger.debug('updateCalendarList')
@@ -111,7 +139,7 @@ Item {
 				handleError(err, data)
 				return
 			}
-			calendarListData.value = data.items
+			m_calendarList.value = data.items
 		})
 	}
 
@@ -123,10 +151,43 @@ Item {
 				"Authorization": "Bearer " + args.access_token,
 			}
 		}, function(err, data, xhr) {
-			// console.log('fetchGCalCalendars.response', err, data, xhr.status)
+			// console.log('fetchGCalCalendars.response', err, data, xhr && xhr.status)
 			if (!err && data && data.error) {
 				return callback('fetchGCalCalendars error', data, xhr)
 			}
+			logger.debugJSON('fetchGCalCalendars.response.data', data)
+			callback(err, data, xhr)
+		})
+	}
+
+	function updateTasklistList() {
+		logger.debug('updateTasklistList')
+		logger.debug('access_token', accessToken)
+		fetchGoogleTasklistList({
+			access_token: accessToken,
+		}, function(err, data, xhr) {
+			// Check for errors
+			if (err || data.error) {
+				handleError(err, data)
+				return
+			}
+			m_tasklistList.value = data.items
+		})
+	}
+
+	function fetchGoogleTasklistList(args, callback) {
+		var url = 'https://www.googleapis.com/tasks/v1/users/@me/lists'
+		Requests.getJSON({
+			url: url,
+			headers: {
+				"Authorization": "Bearer " + args.access_token,
+			}
+		}, function(err, data, xhr) {
+			console.log('fetchGoogleTasklistList.response', err, data, xhr && xhr.status)
+			if (!err && data && data.error) {
+				return callback('fetchGoogleTasklistList error', data, xhr)
+			}
+			logger.logJSON('fetchGoogleTasklistList.response.data', data)
 			callback(err, data, xhr)
 		})
 	}
@@ -143,6 +204,8 @@ Item {
 		plasmoid.configuration.agenda_newevent_last_calendar_id = ''
 		calendarList = []
 		calendarIdList = []
+		tasklistList = []
+		tasklistIdList = []
 		sessionReset()
 	}
 

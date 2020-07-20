@@ -21,7 +21,7 @@ CalendarManager {
 	calendarManagerId: "GoogleTasks"
 
 	property var session
-	readonly property var tasklistIdList: ['@default']
+	readonly property var tasklistIdList: plasmoid.configuration.tasklistIdList ? plasmoid.configuration.tasklistIdList.split(',') : []
 
 	onFetchAllCalendars: {
 		fetchGoogleAccountData()

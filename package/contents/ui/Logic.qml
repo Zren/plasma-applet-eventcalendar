@@ -156,6 +156,7 @@ Item {
 		onAccess_tokenChanged: logic.updateEvents()
 		onCalendar_id_listChanged: logic.updateEvents()
 		onEnabledCalendarPluginsChanged: logic.updateEvents()
+		onTasklistIdListChanged: logic.updateEvents()
 
 		//--- Weather
 		onWeather_serviceChanged: logic.resetWeatherAndUpdate()

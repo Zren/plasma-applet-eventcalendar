@@ -19,6 +19,8 @@ CalendarManager {
 			plasmoid.configuration.access_token_expires_at = metadata['access_token_expires_at']
 			plasmoid.configuration.calendar_id_list = metadata['calendar_id_list']
 			plasmoid.configuration.calendar_list = metadata['calendar_list']
+			plasmoid.configuration.tasklistIdList = metadata['tasklistIdList']
+			plasmoid.configuration.tasklistList = metadata['tasklistList']
 			plasmoid.configuration.agenda_newevent_last_calendar_id = metadata['agenda_newevent_last_calendar_id']
 		})
 	}
