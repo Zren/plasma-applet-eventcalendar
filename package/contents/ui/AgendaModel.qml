@@ -282,7 +282,7 @@ ListModel {
 		}
 
 		var today = new Date(timeModel.currentTime)
-		var nextNumDaysEnd = new Date(today.getFullYear(), today.getMonth(), today.getDate() + showNextNumDays)
+		var nextNumDaysEndExclusive = new Date(today.getFullYear(), today.getMonth(), today.getDate() + showNextNumDays + 1)
 		var currentMonthMin = new Date(currentMonth.getFullYear(), currentMonth.getMonth(), 1)
 		var currentMonthMaxExclusive = new Date(currentMonth.getFullYear(), currentMonth.getMonth()+1, 1)
 		var currentMonthContainsToday = currentMonthMin <= today && today < currentMonthMaxExclusive
@@ -291,7 +291,7 @@ ListModel {
 			// Remove calendar from different months
 			for (var i = 0; i < agendaItemList.length; i++) {
 				var agendaItem = agendaItemList[i]
-				if (agendaItem.date < currentMonthMin || currentMonthMaxExclusive <= agendaItem.date && nextNumDaysEnd <= agendaItem.date) {
+				if (agendaItem.date < currentMonthMin || currentMonthMaxExclusive <= agendaItem.date && nextNumDaysEndExclusive < agendaItem.date) {
 					// console.log('removed agendaItem:', agendaItem.date)
 					agendaItemList.splice(i, 1)
 					i--
@@ -307,7 +307,7 @@ ListModel {
 
 		if (currentMonthContainsToday && showNextNumDays > 0) {
 			var todayMidnight = new Date(today.getFullYear(), today.getMonth(), today.getDate())
-			for (var day = todayMidnight; day <= nextNumDaysEnd; day.setDate(day.getDate() + 1)) {
+			for (var day = todayMidnight; day < nextNumDaysEndExclusive; day.setDate(day.getDate() + 1)) {
 				addAgendaItemIfMissing(agendaItemList, day)
 			}
 		}
