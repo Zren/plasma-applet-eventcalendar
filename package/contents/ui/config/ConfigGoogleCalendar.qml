@@ -251,6 +251,16 @@ ConfigPage {
 
 		HeaderText {
 			text: i18n("Tasks")
+
+			Image {
+				source: plasmoid.file("", "icons/google_tasks_96px.png")
+				smooth: true
+				anchors.leftMargin: parent.contentWidth + Kirigami.Units.smallSpacing
+				anchors.left: parent.left
+				anchors.verticalCenter: parent.verticalCenter
+				width: Kirigami.Units.iconSizes.smallMedium
+				height: Kirigami.Units.iconSizes.smallMedium
+			}
 		}
 
 		Button {
