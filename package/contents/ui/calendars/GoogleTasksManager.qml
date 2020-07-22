@@ -66,15 +66,19 @@ CalendarManager {
 	//-------------------------
 	// CalendarManager
 	function getCalendarList() {
-		if (session.accessToken) {
-			return [
-				{
-					id: '@default',
-					summary: 'Tasks',
+		if (session.accessToken && plasmoid.configuration.tasklistList) {
+			var tasklistList = JSON.parse(Qt.atob(plasmoid.configuration.tasklistList))
+			var calendarList = []
+			for (var i = 0; i < tasklistList.length; i++) {
+				var tasklist = tasklistList[i]
+				calendarList.push({
+					id: tasklist.id,
+					summary: tasklist.title,
 					backgroundColor: theme.highlightColor.toString(),
 					accessRole: 'owner',
-				}
-			]
+				})
+			}
+			return calendarList
 		} else {
 			return []
 		}

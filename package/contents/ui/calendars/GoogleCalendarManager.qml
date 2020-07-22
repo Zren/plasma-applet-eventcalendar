@@ -540,8 +540,8 @@ CalendarManager {
 
 	//--- CalendarManager
 	function getCalendarList() {
-		if (session.accessToken) {
-			var calendarList = plasmoid.configuration.calendar_list ? JSON.parse(Qt.atob(plasmoid.configuration.calendar_list)) : []
+		if (session.accessToken && plasmoid.configuration.calendar_list) {
+			var calendarList = JSON.parse(Qt.atob(plasmoid.configuration.calendar_list))
 			return calendarList
 		} else {
 			return []
