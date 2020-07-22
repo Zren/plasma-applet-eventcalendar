@@ -190,6 +190,7 @@ GridLayout {
 
 				delegate: AgendaEventItem {
 					id: agendaEventItem
+					width: parent.width
 				}
 			}
 
@@ -199,6 +200,7 @@ GridLayout {
 
 				delegate: AgendaTaskItem {
 					id: agendaTaskItem
+					width: parent.width
 				}
 			}
 		}

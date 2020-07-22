@@ -11,8 +11,6 @@ LinkRect {
 	id: agendaEventItem
 	readonly property int eventItemIndex: index
 	Layout.fillWidth: true
-	implicitHeight: width > 0 ? contents.implicitHeight : 0
-	// onImplicitHeightChanged: console.log(agendaEventItem, 'implicit', contents.implicitWidth, 'x', contents.implicitHeight, model.summary)
 
 	property bool eventItemInProgress: false
 	function checkIfInProgress() {

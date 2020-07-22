@@ -11,8 +11,6 @@ LinkRect {
 	id: agendaTaskItem
 	readonly property int taskItemIndex: index
 	Layout.fillWidth: true
-	implicitHeight: width > 0 ? contents.implicitHeight : 0
-	// onImplicitHeightChanged: console.log(agendaTaskItem, 'implicit', contents.implicitWidth, 'x', contents.implicitHeight, model.title)
 
 	property bool taskIsOverdue: false
 	function checkIfIsOverdue() {

@@ -74,7 +74,7 @@ Item {
 				model: root.agendaModel
 				delegate: AgendaListItem {
 					// visible: agendaRepeater.populated
-					width: agendaRepeater.width
+					width: parent.width
 					// onHeightChanged: {
 					// 	if (scrollToIndexTimer.running) {
 					// 		scrollToIndexTimer.updatePosition()
