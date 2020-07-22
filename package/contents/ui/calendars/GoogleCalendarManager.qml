@@ -13,7 +13,7 @@ CalendarManager {
 	calendarManagerId: "GoogleCalendar"
 
 	property var session
-	readonly property var calendarIdList: plasmoid.configuration.calendar_id_list ? plasmoid.configuration.calendar_id_list.split(',') : ['primary']
+	readonly property var calendarIdList: plasmoid.configuration.calendar_id_list ? plasmoid.configuration.calendar_id_list.split(',') : []
 
 	onFetchAllCalendars: {
 		fetchGoogleAccountData()
@@ -546,5 +546,16 @@ CalendarManager {
 		} else {
 			return []
 		}
+	}
+
+	function getCalendar(calendarId) {
+		var calendarList = getCalendarList()
+		for (var i = 0; i < calendarList.length; i++) {
+			var calendar = calendarList[i]
+			if (calendarId == calendar.id || (calendarId == 'primary' && calendar.primary)) {
+				return calendar
+			}
+		}
+		return null
 	}
 }

@@ -251,7 +251,7 @@
 			<default></default>
 		</entry>
 		<entry name="calendar_id_list" type="string">
-			<default></default>
+			<default>primary</default>
 		</entry>
 		<entry name="tasklistList" type="string" stringType="base64json">
 			<default></default>

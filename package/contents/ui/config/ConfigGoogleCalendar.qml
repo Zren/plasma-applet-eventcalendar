@@ -37,7 +37,8 @@ ConfigPage {
 			for (var i = 0; i < sortedList.length; i++) {
 				var item = sortedList[i]
 				// console.log(JSON.stringify(item))
-				var isShown = calendarIdList.indexOf(item.id) >= 0
+				var isPrimary = item.primary === true
+				var isShown = calendarIdList.indexOf(item.id) >= 0 || (isPrimary && calendarIdList.indexOf('primary') >= 0)
 				calendarsModel.append({
 					calendarId: item.id, 
 					name: item.summary,
