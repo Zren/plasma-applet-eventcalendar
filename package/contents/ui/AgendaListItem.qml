@@ -142,13 +142,6 @@ GridLayout {
 				font.weight: agendaItemIsToday ? inProgressFontWeight : Font.Normal
 				Layout.fillWidth: true
 				horizontalAlignment: Text.AlignRight
-
-				// MouseArea {
-				// 	anchors.fill: itemDateColumn
-				// 	onClicked: {
-				// 		newEventInput.forceActiveFocus()
-				// 	}
-				// }
 			}
 
 			PlasmaComponents3.Label {
