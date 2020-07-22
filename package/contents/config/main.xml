@@ -257,7 +257,7 @@
 			<default></default>
 		</entry>
 		<entry name="tasklistIdList" type="string">
-			<default>@default</default>
+			<default></default>
 		</entry>
 		<entry name="events_pollinterval" type="UInt">
 			<default>20</default>
