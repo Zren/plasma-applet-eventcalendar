@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: eventcalendar\n"
 "Report-Msgid-Bugs-To: https://github.com/Zren/plasma-applet-eventcalendar\n"
 "POT-Creation-Date: 2020-07-24 20:51-0400\n"
-"PO-Revision-Date: 2020-06-23 14:14+0200\n"
+"PO-Revision-Date: 2020-07-25 13:15+0200\n"
 "Last-Translator: Heimen Stoffels <vistausss@outlook.com>\n"
 "Language-Team: Dutch <kde-i18n-doc@kde.org>\n"
 "Language: nl\n"
@@ -27,6 +27,8 @@ msgstr "Afsprakenboek"
 msgid ""
 "Plasmoid for a calendar+agenda with weather that syncs to Google Calendar."
 msgstr ""
+"Een plasmoid met kalender, agenda en weer die synchroniseert met Google "
+"Agenda."
 
 #: ../contents/config/config.qml
 msgid "General"
@@ -34,7 +36,7 @@ msgstr "Algemeen"
 
 #: ../contents/config/config.qml
 msgid "Layout"
-msgstr ""
+msgstr "Indeling"
 
 #: ../contents/config/config.qml
 msgid "Timezones"
@@ -277,7 +279,7 @@ msgstr "Weeknummers tonen"
 
 #: ../contents/ui/config/ConfigCalendar.qml
 msgid "Highlight Current Day / Week"
-msgstr ""
+msgstr "Huidige dag/week markeren"
 
 #: ../contents/ui/config/ConfigCalendar.qml
 msgid "First day of week:"
@@ -403,7 +405,7 @@ msgstr "Tijdnotatie"
 
 #: ../contents/ui/config/ConfigGeneral.qml
 msgid "Time Format Documentation"
-msgstr ""
+msgstr "Informatie over tijdopmaak"
 
 #: ../contents/ui/config/ConfigGeneral.qml
 msgid ""
@@ -548,7 +550,7 @@ msgstr "Verversen"
 
 #: ../contents/ui/config/ConfigGoogleCalendar.qml
 msgid "Tasks"
-msgstr ""
+msgstr "Taken"
 
 #: ../contents/ui/config/ConfigICal.qml
 msgid "Add Calendar"
@@ -572,11 +574,11 @@ msgstr "iCalendar (*.ics)"
 
 #: ../contents/ui/config/ConfigLayout.qml
 msgid "Calendar to the left of the Agenda (Two Columns)"
-msgstr ""
+msgstr "Kalender links tonen (twee kolommen)"
 
 #: ../contents/ui/config/ConfigLayout.qml
 msgid "Agenda below the Calendar (Single Column)"
-msgstr ""
+msgstr "Agenda onder kalender tonen (één kolom)"
 
 #: ../contents/ui/config/ConfigTimezones.qml
 msgid "Tooltip"
@@ -751,11 +753,11 @@ msgstr "Kies een geluidseffect"
 
 #: ../contents/ui/lib/ConfigSound.qml
 msgid "Sound files (%1)"
-msgstr ""
+msgstr "Geluidsbestanden (%1)"
 
 #: ../contents/ui/lib/ConfigSound.qml
 msgid "All files (%1)"
-msgstr ""
+msgstr "Alle bestanden (%1)"
 
 #: ../contents/ui/LocaleFuncs.js
 msgctxt "event time on the hour (24 hour clock)"
@@ -790,6 +792,7 @@ msgstr "%1 - %2"
 #: ../contents/ui/Logic.qml
 msgid "Could not connect (HTTP Error 0), will try again soon."
 msgstr ""
+"Kan niet verbinden (http-fout 0). Het wordt spoedig opnieuw geprobeerd."
 
 #: ../contents/ui/Logic.qml
 msgid "Weather API limit reached, will try again soon."
