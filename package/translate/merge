@@ -1,5 +1,5 @@
 #!/bin/sh
-# Version: 15
+# Version: 16
 
 # https://techbase.kde.org/Development/Tutorials/Localization/i18n_Build_Systems
 # Based on: https://github.com/psifidotos/nowdock-plasmoid/blob/master/po/Messages.sh
@@ -27,20 +27,32 @@ fi
 
 #---
 echo "[merge] Extracting messages"
-find "${packageRoot}" -name '*.cpp' -o -name '*.h' -o -name '*.c' -o -name '*.qml' -o -name '*.js' | sort > "${DIR}/infiles.list"
+potArgs="--from-code=UTF-8 --width=200 --add-location=file"
 
+find "${packageRoot}" -name '*.desktop' | sort > "${DIR}/infiles.list"
 xgettext \
-	--from-code=UTF-8 \
+	${potArgs} \
+	--files-from="${DIR}/infiles.list" \
+	--language=Desktop \
+	-D "${packageRoot}" \
+	-D "${DIR}" \
+	-o "template.pot.new" \
+	|| \
+	{ echo "[merge] error while calling xgettext. aborting."; exit 1; }
+
+sed -i 's/"Content-Type: text\/plain; charset=CHARSET\\n"/"Content-Type: text\/plain; charset=UTF-8\\n"/' "template.pot.new"
+
+find "${packageRoot}" -name '*.cpp' -o -name '*.h' -o -name '*.c' -o -name '*.qml' -o -name '*.js' | sort > "${DIR}/infiles.list"
+xgettext \
+	${potArgs} \
+	--files-from="${DIR}/infiles.list" \
 	-C -kde -ci18n -ki18n:1 -ki18nc:1c,2 -ki18np:1,2 -ki18ncp:1c,2,3 -ktr2i18n:1 -kI18N_NOOP:1 \
 	-kI18N_NOOP2:1c,2  -kN_:1 -kaliasLocale -kki18n:1 -kki18nc:1c,2 -kki18np:1,2 -kki18ncp:1c,2,3 \
-	--files-from="infiles.list" \
-	--width=200 \
-	--add-location=file \
 	--package-name="${widgetName}" \
-	--package-version="" \
 	--msgid-bugs-address="${bugAddress}" \
 	-D "${packageRoot}" \
 	-D "${DIR}" \
+	--join-existing \
 	-o "template.pot.new" \
 	|| \
 	{ echo "[merge] error while calling xgettext. aborting."; exit 1; }
@@ -123,8 +135,48 @@ for cat in $catalogs; do
 	# mv "$cat" "$cat.old"
 	mv "$cat.new" "$cat"
 done
+echo "[merge] Done merging messages"
 
+#---
+echo "[merge] Updating .desktop file"
+
+# Generate LINGUAS for msgfmt
+if [ -f "$DIR/LINGUAS" ]; then
+	rm "$DIR/LINGUAS"
+fi
+for cat in $catalogs; do
+	catLocale=`basename ${cat%.*}`
+	echo "${catLocale}" >> "$DIR/LINGUAS"
+done
+
+cp -f "$DIR/../metadata.desktop" "$DIR/template.desktop"
+sed -i '/^Name\[/ d; /^GenericName\[/ d; /^Comment\[/ d; /^Keywords\[/ d' "$DIR/template.desktop"
+
+msgfmt \
+	--desktop \
+	--template="$DIR/template.desktop" \
+	-d "$DIR/" \
+	-o "$DIR/new.desktop"
+
+# Place translations at the bottom of the desktop file.
+translatedLines=`cat "$DIR/new.desktop" | grep "]="`
+if [ ! -z "${translatedLines}" ]; then
+	sed -i '/^Name\[/ d; /^GenericName\[/ d; /^Comment\[/ d; /^Keywords\[/ d' "$DIR/new.desktop"
+	if [ "$(tail -c 2 "$DIR/new.desktop" | wc -l)" != "2" ]; then
+		# Does not end with 2 empty lines, so add an empty line.
+		echo "" >> "$DIR/new.desktop"
+	fi
+	echo "${translatedLines}" >> "$DIR/new.desktop"
+fi
+
+# Cleanup
+mv "$DIR/new.desktop" "$DIR/../metadata.desktop"
+rm "$DIR/template.desktop"
+rm "$DIR/LINGUAS"
+
+#---
 # Populate ReadMe.md
+echo "[merge] Updating translate/ReadMe.md"
 sed -i -E 's`share\/plasma\/plasmoids\/(.+)\/translate`share/plasma/plasmoids/'"${plasmoidName}"'/translate`' ./ReadMe.md
 if [[ "$website" == *"github.com"* ]]; then
 	sed -i -E 's`\[new issue\]\(https:\/\/github\.com\/(.+)\/(.+)\/issues\/new\)`[new issue]('"${website}"'/issues/new)`' ./ReadMe.md
@@ -133,4 +185,4 @@ sed -i '/^|/ d' ./ReadMe.md # Remove status table from ReadMe
 cat ./Status.md >> ./ReadMe.md
 rm ./Status.md
 
-echo "[merge] Done merging messages"
+echo "[merge] Done"
