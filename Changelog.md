@@ -15,7 +15,11 @@
 * Fix centering weather temp + text in Agenda.
 * Various controls in the config no longer require pressing Apply.
 * When an event has a Google Meet link, it used to show "Hangout", now it'll show "Google Meet".
-* Unfinished work for integrating Google Tasks.
+* Integrrated Google Tasks. You cannot yet edit Tasks from Plasma, but you can create, delete, and toggle them complete. Unfortunately, there's a 50,000 requests API limit unlike Google Calendar with has a 1MM daily limit so it might hit the rate limit. You may need to logout and log back in in the widget's config to update your permissions to accept Google Tasks. (Issue #57)
+* Refactored Google Calendar code to support another adding/deleting events for another "Calendar" plugin  (Google Tasks).
+* Refactor to use PlasmaComponents3/QtQuickControls2, and Kirigami Units/Colors in the config.
+* Don't consider weather updated if we didn't connect (Issue #144)
+* Typos fixed by @navarroaxel (Pull Request #146)
 * Updated Japanese translations by @ymadd (Pull Request #140)
 
 ## v68 - June 26 2020
