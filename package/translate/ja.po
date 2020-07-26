@@ -32,7 +32,7 @@ msgstr "一般"
 
 #: ../contents/config/config.qml
 msgid "Layout"
-msgstr ""
+msgstr "レイアウト"
 
 #: ../contents/config/config.qml
 msgid "Timezones"
@@ -268,7 +268,7 @@ msgstr "週を表示"
 
 #: ../contents/ui/config/ConfigCalendar.qml
 msgid "Highlight Current Day / Week"
-msgstr ""
+msgstr "現在の [日/週] をハイライトする"
 
 #: ../contents/ui/config/ConfigCalendar.qml
 msgid "First day of week:"
@@ -389,7 +389,7 @@ msgstr "時間形式"
 
 #: ../contents/ui/config/ConfigGeneral.qml
 msgid "Time Format Documentation"
-msgstr ""
+msgstr "時間形式のドキュメント"
 
 #: ../contents/ui/config/ConfigGeneral.qml
 msgid "The default font for the Breeze theme is Noto Sans which is hard to read with small text. Try using the Sans Serif font if you find the text too small when adding a second line."
@@ -517,7 +517,7 @@ msgstr "更新"
 
 #: ../contents/ui/config/ConfigGoogleCalendar.qml
 msgid "Tasks"
-msgstr ""
+msgstr "タスク"
 
 #: ../contents/ui/config/ConfigICal.qml
 msgid "Add Calendar"
@@ -541,11 +541,11 @@ msgstr "iCalendar (*.ics)"
 
 #: ../contents/ui/config/ConfigLayout.qml
 msgid "Calendar to the left of the Agenda (Two Columns)"
-msgstr ""
+msgstr "カレンダーの右側に予定を配置（2列）"
 
 #: ../contents/ui/config/ConfigLayout.qml
 msgid "Agenda below the Calendar (Single Column)"
-msgstr ""
+msgstr "カレンダーの下に予定を配置（1列）"
 
 #: ../contents/ui/config/ConfigTimezones.qml
 msgid "Tooltip"
@@ -713,11 +713,11 @@ msgstr "サウンドエフェクトを選択"
 
 #: ../contents/ui/lib/ConfigSound.qml
 msgid "Sound files (%1)"
-msgstr ""
+msgstr "サウンドファイル (%1)"
 
 #: ../contents/ui/lib/ConfigSound.qml
 msgid "All files (%1)"
-msgstr ""
+msgstr "全てのファイル (%1)"
 
 #: ../contents/ui/LocaleFuncs.js
 msgctxt "event time on the hour (24 hour clock)"
@@ -751,7 +751,7 @@ msgstr ""
 
 #: ../contents/ui/Logic.qml
 msgid "Could not connect (HTTP Error 0), will try again soon."
-msgstr ""
+msgstr "接続できません (HTTP Error 0)、まもなく再接続されます。"
 
 #: ../contents/ui/Logic.qml
 msgid "Weather API limit reached, will try again soon."
