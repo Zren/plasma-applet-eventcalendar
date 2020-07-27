@@ -25,7 +25,6 @@ Item {
 	signal minuteChanged()
 	signal dateChanged()
 	signal loaded()
-	onLoaded: console.log('onLoaded')
 
 	PlasmaCore.DataSource {
 		id: dataSource
