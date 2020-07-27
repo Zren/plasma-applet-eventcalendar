@@ -178,7 +178,7 @@ LinkRect {
 		menuItem = contextMenu.newMenuItem()
 		menuItem.text = i18n("Edit")
 		menuItem.icon = "edit-rename"
-		menuItem.enabled = task.canEdit
+		menuItem.enabled = false // task.canEdit
 		menuItem.clicked.connect(function() {
 			editTaskForm.active = !editTaskForm.active
 			agendaScrollView.positionViewAtTask(agendaItemIndex, taskItemIndex)
