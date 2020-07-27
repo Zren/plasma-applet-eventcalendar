@@ -1,4 +1,4 @@
-## v69 - __ 2020
+## v69 - July 27 2020
 
 * Add copy to clipboard in contextual actions by @navarroaxel (Pull Request #142) (Issue #28). Widget now requires Plasma 5.13.
 * Swap Agenda and Calendar positions like Digital Clock will in Plasma 5.20. The Calendar appears above the Agenda when in single column mode.
@@ -11,7 +11,7 @@
 * If precipitation label is same as last data point, then don't bother drawing it. This makes WeatherCanada graphs readable.
 * Now highlights current day + current week number. Can be turned off in the config.
 * New Layout tab for switching between two column and single column mode. Includes ability to resize the Calendar, Agenda, Meteogram and Timer in two column mode.
-* Fix timer complete sfx in Ubuntu. I didn't realize `canberra-gtk-play` wasn't installed by default. The `notification.py` now hooks into `libcanberra.so` via directly with Python to play sound effects.
+* Fix timer complete sfx in Ubuntu. I didn't realize `canberra-gtk-play` wasn't installed by default. The `notification.py` now hooks into `libcanberra.so` via directly with Python to play sound effects. (Issue #128)
 * Fix centering weather temp + text in Agenda.
 * Various controls in the config no longer require pressing Apply.
 * When an event has a Google Meet link, it used to show "Hangout", now it'll show "Google Meet".
@@ -20,7 +20,8 @@
 * Refactor to use PlasmaComponents3/QtQuickControls2, and Kirigami Units/Colors in the config.
 * Don't consider weather updated if we didn't connect (Issue #144)
 * Typos fixed by @navarroaxel (Pull Request #146)
-* Updated Japanese translations by @ymadd (Pull Request #140)
+* Updated Japanese translations by @ymadd (Pull Request #140 and #149)
+* Updated Dutch translations by @Vistaus (Pull Request #148)
 
 ## v68 - June 26 2020
 
