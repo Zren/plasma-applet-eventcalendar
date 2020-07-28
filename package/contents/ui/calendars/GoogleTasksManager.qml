@@ -192,6 +192,9 @@ CalendarManager {
 			var completedAt = new Date(taskData.completed)
 			var startDateTime = new Date(completedAt.getFullYear(), completedAt.getMonth(), completedAt.getDate())
 		} else if (taskData.due) {
+			// Note: In the Google Tasks API docs:
+			// The due date only records date information; the time portion of the timestamp is discarded when setting the due date.
+			// It isn't possible to read or write the time that a task is due via the API.
 			var dueDateTime = new Date(taskData.due)
 			// Use local time zone, like we do in CalendarManager.onEventParsing
 			eventData.dueDate = Shared.dateString(dueDateTime)

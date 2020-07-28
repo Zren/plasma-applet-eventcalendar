@@ -11,6 +11,7 @@ LinkRect {
 	id: agendaTaskItem
 	readonly property int taskItemIndex: index
 	Layout.fillWidth: true
+	implicitHeight: contents.implicitHeight
 
 	property bool taskIsOverdue: false
 	function checkIfIsOverdue() {
@@ -60,6 +61,7 @@ LinkRect {
 		PlasmaComponents3.CheckBox {
 			id: taskCheckBox
 			Layout.alignment: Qt.AlignTop
+			visible: !editTaskForm.visible
 			checked: model.isCompleted
 
 			onToggled: {
@@ -147,8 +149,9 @@ LinkRect {
 				implicitHeight: 4 * units.devicePixelRatio
 			}
 
-			EditEventForm {
+			EditTaskForm {
 				id: editTaskForm
+				Layout.fillWidth: true
 				// active: true
 			}
 
@@ -178,7 +181,7 @@ LinkRect {
 		menuItem = contextMenu.newMenuItem()
 		menuItem.text = i18n("Edit")
 		menuItem.icon = "edit-rename"
-		menuItem.enabled = false // task.canEdit
+		menuItem.enabled = task.canEdit
 		menuItem.clicked.connect(function() {
 			editTaskForm.active = !editTaskForm.active
 			agendaScrollView.positionViewAtTask(agendaItemIndex, taskItemIndex)
