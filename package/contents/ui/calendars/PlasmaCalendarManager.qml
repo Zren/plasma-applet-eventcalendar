@@ -3,27 +3,81 @@ import QtQuick 2.0
 import org.kde.plasma.core 2.0 as PlasmaCore
 import org.kde.plasma.calendar 2.0 as PlasmaCalendar
 
+import "../lib"
+import "../Shared.js" as Shared
+
 CalendarManager {
 	id: plasmaCalendarManager
 
 	calendarManagerId: "plasma"
 
-	// Default Colors
-	property var plasmaCalendars: [
-		{
-			"calendarId": "plasma_Holidays",
-			"backgroundColor": "" + theme.highlightColor
+	property var executable: ExecUtil { id: executable }
+	property var calendarModel: Qt.createQmlObject("import org.kde.plasma.PimCalendars 1.0; PimCalendarsModel {}", plasmaCalendarManager)
+	function appendPimCalendars(calendarList) {
+		// https://github.com/KDE/kdepim-addons/blob/master/plugins/plasma/pimeventsplugin/PimEventsConfig.qml
+		// https://github.com/KDE/kdepim-addons/blob/master/plugins/plasma/pimeventsplugin/pimcalendarsmodel.cpp
+
+		if (!calendarModel) {
+			logger.debug('KDEPIM Not installed as PimCalendarsModel import failed.', calendarModel)
+			return
 		}
-	]
-	function getCalendarById(calendarId) {
-		for (var i = 0; i < plasmaCalendars.length; i++) {
-			var calendar = plasmaCalendars[i]
-			// console.log('getCalendarById', calendarId, calendar.calendarId)
-			if (calendar.calendarId == calendarId) {
-				return calendar
+
+		logger.debug('calendarModel', calendarModel)
+		logger.debug('calendarModel.count', calendarModel.rowCount())
+		var DataRole = Qt.UserRole + 1
+		for (var i = 0; i < calendarModel.rowCount(); i++) {
+			var index = calendarModel.index(i, 0)
+			var calendarName = calendarModel.data(index, Qt.DisplayRole)
+			var calendarData = calendarModel.data(index, DataRole)
+			logger.debugJSON('PimCalendarsModel', i, calendarName, calendarData)
+
+			if (calendarData['enabled']) {
+				var calendarId = "plasma_Events_" + calendarData['id']
+				calendarList.push({
+					"id": calendarId,
+					"summary": calendarName,
+					"backgroundColor": "#9a9cff",
+					"accessRole": "owner",
+				})
+			}
+
+			if (calendarModel.hasChildren(index)) {
+				var parentIndex = index
+				for (var j = 0; j < calendarModel.rowCount(parentIndex); j++) {
+					var childIndex = calendarModel.index(j, 0, parentIndex)
+					var calendarName = calendarModel.data(childIndex, Qt.DisplayRole)
+					var calendarData = calendarModel.data(childIndex, DataRole)
+					logger.debugJSON('PimCalendarsModel', i, j, calendarName, calendarData)
+
+					if (calendarData['enabled']) {
+						var calendarId = "plasma_Events_" + calendarData['id']
+						calendarList.push({
+							"id": calendarId,
+							"summary": calendarName,
+							"backgroundColor": "#9a9cff",
+							"accessRole": "owner",
+						})
+					}
+				}
 			}
 		}
-		return null
+	}
+
+	//--- CalendarManager
+	function getCalendarList() {
+		var calendarList = []
+
+		// KHolidays
+		calendarList.push({
+			"calendarId": "plasma_Holidays",
+			"backgroundColor": "" + theme.highlightColor,
+			"accessRole": "reader",
+		})
+
+		// KDEPIM
+		appendPimCalendars(calendarList)
+
+		return calendarList
 	}
 
 	// https://github.com/KDE/plasma-framework/blob/master/src/declarativeimports/calendar/eventpluginsmanager.cpp
@@ -255,10 +309,22 @@ CalendarManager {
 				"items": calendarEvents
 			})
 		}
+
+		// Register calendars we didn't fetch so we can create events with them
+		var calendarList = getCalendarList()
+		for (var i = 0; i < calendarList.length; i++) {
+			var calendar = calendarList[i]
+			if (calendarIdList.indexOf(calendar.id) >= 0) {
+				continue
+			}
+			setCalendarData(calendar.id, {
+				"items": [],
+			})
+		}
 	}
 
 	onCalendarParsing: {
-		var calendar = getCalendarById(calendarId)
+		var calendar = getCalendar(calendarId)
 		parseEventList(calendar, data.items)
 	}
 
@@ -270,6 +336,48 @@ CalendarManager {
 	function parseEventList(calendar, eventList) {
 		eventList.forEach(function(event) {
 			parseEvent(calendar, event)
+		})
+	}
+
+	//--- Create
+	function createEvent(calendarId, date, text) {
+		if (calendarId.indexOf('plasma_Events_') != 0) {
+			logger.log('Could not create event with calendarId=', calendarId)
+			return
+		}
+		var akonadiCalendarId = calendarId.substr('plasma_Events_'.length)
+		if (isNaN(parseInt(akonadiCalendarId, 10))) {
+			logger.log('Could not parse a proper akonadiCalendarId=', akonadiCalendarId, ' from calendarId=', calendarId)
+			return
+		}
+		var dateString = Shared.dateString(date)
+
+		// konsolekalendar --add --calendar 12 --summary "Summary" --date 2020-07-27 --time 22:00
+		var cmd = [
+			'konsolekalendar',
+			'--add',
+			'--add',
+			'--calendar',
+			akonadiCalendarId,
+			'--date',
+			dateString,
+			'--summary',
+			text,
+		]
+		executable.exec(cmd, function(cmd, exitCode, exitStatus, stdout, stderr){
+			logger.debug('konsolekalendar.cmd', cmd)
+			logger.debug('konsolekalendar.exitCode', exitCode)
+			logger.debug('konsolekalendar.exitStatus', exitStatus)
+			logger.debug('konsolekalendar.stdout', stdout)
+			logger.debug('konsolekalendar.stderr', stderr)
+
+			if (exitCode == 0) {
+				// It takes a few secs for PIM Events to sync with the PlasmaCalendar API.
+				// refresh calls deferredUpdate which is a 200ms delay which seems to work.
+				refresh()
+			} else {
+				// Error
+			}
 		})
 	}
 }

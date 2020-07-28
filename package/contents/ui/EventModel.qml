@@ -58,6 +58,7 @@ CalendarManager {
 		calendarManager.eventRemoved.connect(eventRemovedListener)
 		calendarManager.eventDeleted.connect(eventDeletedListener)
 		calendarManager.eventUpdated.connect(eventUpdatedListener)
+		calendarManager.refresh.connect(deferredUpdate.restart)
 
 		calendarManagerList.push(calendarManager)
 	}

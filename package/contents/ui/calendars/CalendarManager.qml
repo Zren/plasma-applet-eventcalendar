@@ -13,6 +13,7 @@ Item {
 	property bool clearingData: false
 	property int asyncRequests: 0
 	property int asyncRequestsDone: 0
+	signal refresh()
 	signal dataCleared()
 	signal fetchingData()
 	signal calendarFetched(string calendarId, var data)
