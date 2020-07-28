@@ -124,9 +124,10 @@ CalendarManager {
 		if (lines.length >= 0) {
 			var summary = i18n("Calendar")
 			// var summary = lines.splice(0, 1)[0] // pop first item of array
-			var bodyText = lines.join('<br>')
+			var bodyText = lines.join('<br />')
+			bodyText = bodyText
 
-			notificationManager.createNotification({
+			notificationManager.notify({
 				appName: i18n("Event Calendar"),
 				appIcon: "view-calendar-upcoming-events",
 				summary: summary,
@@ -143,7 +144,7 @@ CalendarManager {
 	}
 
 	function sendEventStartingNotification(eventItem) {
-		notificationManager.createNotification({
+		notificationManager.notify({
 			appName: i18n("Event Calendar"),
 			appIcon: "view-calendar-upcoming-events",
 			// expireTimeout: 10000,

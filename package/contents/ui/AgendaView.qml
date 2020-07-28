@@ -23,7 +23,7 @@ Item {
 	Connections {
 		target: eventModel
 		onEventCreated: {
-			notificationManager.createNotification({
+			notificationManager.notify({
 				appName: i18n("Event Calendar"),
 				appIcon: "resource-calendar-insert",
 				// expireTimeout: 10000,
@@ -36,7 +36,7 @@ Item {
 		}
 		onEventDeleted: {
 			logger.logJSON('AgendaView.onEventDeleted', data)
-			notificationManager.createNotification({
+			notificationManager.notify({
 				appName: i18n("Event Calendar"),
 				appIcon: "user-trash-symbolic",
 				// expireTimeout: 10000,
