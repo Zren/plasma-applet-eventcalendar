@@ -30,7 +30,7 @@ Loader {
 			}
 
 			function isEmpty(s) {
-				return typeof s === "undefined" || s === ""
+				return typeof s === "undefined" || s === null || s === ""
 			}
 			function hasChanged(a, b) {
 				// logger.log('hasChanged', a != b)
@@ -42,7 +42,6 @@ Loader {
 				var changed = hasChanged(task[propKey], newValue)
 				// logger.log(propKey, changed, task[propKey], newValue)
 				if (changed) {
-					console.log('changed', propKey, task[propKey], newValue)
 					args[propKey] = newValue
 				}
 			}
@@ -64,8 +63,7 @@ Loader {
 				}
 
 				var args = getChanges()
-				logger.debugJSON('changes', args)
-				// eventModel.setEventProperties(task.calendarId, task.id, args)
+				eventModel.setEventProperties(task.calendarId, task.id, args)
 			}
 
 			function cancel() {
@@ -84,14 +82,14 @@ Loader {
 					id: taskCheckBox
 					// Not aligned with other CheckBoxes, but is aligned with EditForm icons.
 					Layout.alignment: Qt.AlignHCenter | Qt.AlignVCenter
-					checked: task.isCompleted
+					checked: task && task.isCompleted
 					enabled: false
 				}
 				PlasmaComponents3.TextField {
 					id: editSummaryTextField
 					Layout.fillWidth: true
 					placeholderText: i18n("Event Title")
-					text: task && task.summary || ""
+					text: task && task.title || ""
 					onAccepted: {
 						logger.debug('editSummaryTextField.onAccepted', text)
 						editTaskItem.submit()
@@ -109,7 +107,7 @@ Loader {
 				PlasmaComponents3.TextArea {
 					id: editDescriptionTextField
 					placeholderText: i18n("Add description")
-					text: (task && task.description) || ""
+					text: (task && task.notes) || ""
 
 					Layout.fillWidth: true
 					Layout.preferredHeight: contentHeight + (20 * units.devicePixelRatio)

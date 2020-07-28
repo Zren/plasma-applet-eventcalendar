@@ -30,7 +30,7 @@ Loader {
 			}
 
 			function isEmpty(s) {
-				return typeof s === "undefined" || s === ""
+				return typeof s === "undefined" || s === null || s === ""
 			}
 			function hasChanged(a, b) {
 				// logger.log('hasChanged', a != b)
