@@ -98,12 +98,21 @@ Item {
 				grant_type: 'authorization_code',
 				redirect_uri: 'urn:ietf:wg:oauth:2.0:oob',
 			},
-		}, function(err, data) {
-			data = JSON.parse(data)
-			logger.debugJSON('/oauth2/v4/token Response', data)
+		}, function(err, data, xhr) {
+			logger.debug('/oauth2/v4/token Response', data)
 
 			// Check for errors
-			if (err || data.error) {
+			if (err) {
+				handleError(err, null)
+				return
+			}
+			try {
+				data = JSON.parse(data)
+			} catch (e) {
+				handleError('Error parsing /oauth2/v4/token data as JSON', null)
+				return
+			}
+			if (data && data.error) {
 				handleError(err, data)
 				return
 			}
@@ -211,10 +220,10 @@ Item {
 
 	// https://developers.google.com/calendar/v3/errors
 	function handleError(err, data) {
-		if (data.error && data.error_description) {
+		if (data && data.error && data.error_description) {
 			var errorMessage = '' + data.error + ' (' + data.error_description + ')'
 			session.error(errorMessage)
-		} else if (data.error && data.error.message && typeof data.error.code !== "undefined") {
+		} else if (data && data.error && data.error.message && typeof data.error.code !== "undefined") {
 			var errorMessage = '' + data.error.message + ' (' + data.error.code + ')'
 			session.error(errorMessage)
 		} else if (err) {
