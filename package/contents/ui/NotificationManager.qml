@@ -63,11 +63,15 @@ QtObject {
 			}
 		}
 		cmd.push('--metadata', '' + Date.now())
-		cmd.push(args.summary)
-		cmd.push(args.body)
+		var sanitizedSummary = executable.sanitizeString(args.summary)
+		var sanitizedBody = executable.sanitizeString(args.body)
+		cmd.push(sanitizedSummary)
+		cmd.push(sanitizedBody)
 		executable.exec(cmd, function(cmd, exitCode, exitStatus, stdout, stderr) {
 			var actionId = stdout.replace('\n', ' ').trim()
-			callback(actionId)
+			if (typeof callback === 'function') {
+				callback(actionId)
+			}
 		})
 	}
 }

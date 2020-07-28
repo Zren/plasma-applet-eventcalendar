@@ -1,4 +1,4 @@
-// Version 5
+// Version 6
 
 import QtQuick 2.0
 import org.kde.plasma.core 2.0 as PlasmaCore
@@ -37,6 +37,20 @@ PlasmaCore.DataSource {
 		token = token.replace(/\'/g, "\'\"\'\"\'")
 		token = "\'" + token + "\'"
 		return token
+	}
+
+	// Note that this has not gone under a security audit.
+	// You probably shouldn't trust 3rd party input.
+	// Some of these might be unnecessary.
+	function sanitizeString(str) {
+		// Remove NULL (0x00), Ctrl+C (0x03), Ctrl+D (0x04) block of characters
+		// Remove quotes ("" and '')
+		// Remove DEL
+		return str.replace(/[\x00-\x1F\'\"\x7F]/g, '')
+	}
+
+	function stripQuotes(str) {
+		return str.replace(/[\'\"]/g, '')
 	}
 
 	function exec(cmd, callback) {
