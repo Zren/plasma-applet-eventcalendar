@@ -118,15 +118,27 @@ Item {
 	signal calendarParsing(string calendarId, var data)
 	signal eventParsing(string calendarId, var event)
 
-	// To simplify repeated code amongst implementations,
-	// we'll put the reused code here.
+	// Parsing order:
+	// CalendarManager.onCalendarParsing
+	// CalendarManager.onEventParsing
+	// SubClass.onEventParsing
+	// CalendarManager.defaultEventParsing
+	// SubClass.onCalendarParsing
 	onCalendarParsing: {
 		// logger.debug('CalendarManager.calendarParsing(', calendarManager, ')', calendarId)
 		data.items.forEach(function(event) {
 			eventParsing(calendarId, event)
+			defaultEventParsing(calendarId, event)
 		})
 	}
 	onEventParsing: {
+		// logger.debug('CalendarManager.eventParsing(', calendarManager, ')', calendarId)
+	}
+
+	// To simplify repeated code amongst implementations,
+	// we'll put the reused code here.
+	function defaultEventParsing(calendarId, event) {
+		// logger.debug('CalendarManager.defaultEventParsing')
 		event.calendarManagerId = calendarManagerId
 		event.calendarId = calendarId
 
