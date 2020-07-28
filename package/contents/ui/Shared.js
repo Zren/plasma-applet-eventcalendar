@@ -95,3 +95,14 @@ function merge(objA, objB) {
 		objA[key] = objB[key]
 	}
 }
+
+// Remove keys from objA that are missing in objB
+function removeMissingKeys(objA, objB) {
+	var keys = Object.keys(objA)
+	for (var i = 0; i < keys.length; i++) {
+		var key = keys[i]
+		if (typeof objB[key] === 'undefined') {
+			delete objA[key]
+		}
+	}
+}

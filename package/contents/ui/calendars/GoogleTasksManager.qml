@@ -503,6 +503,7 @@ CalendarManager {
 		// Merge serialized values
 		var eventData = parseTaskAsEventData(data)
 		Shared.merge(event, eventData)
+		Shared.removeMissingKeys(event, eventData)
 
 		parseSingleEvent(calendarId, event)
 		eventUpdated(calendarId, eventId, event)
