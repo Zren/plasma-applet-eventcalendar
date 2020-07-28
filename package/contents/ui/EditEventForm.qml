@@ -4,6 +4,8 @@ import QtQuick.Layouts 1.1
 import org.kde.plasma.core 2.0 as PlasmaCore
 import org.kde.plasma.components 3.0 as PlasmaComponents3
 
+import "Shared.js" as Shared
+
 Loader {
 	id: editEventForm
 	active: false
@@ -153,28 +155,22 @@ Loader {
 						}
 					}
 
-					function dateTimeString(d) {
-						return d.toISOString()
-					}
-					function dateString(d) {
-						return d.toISOString().substr(0, 10)
-					}
 					function getStartObj() {
 						if (showTime) {
-							return { dateTime: dateTimeString(startDateTime), timeZone: event.start.timeZone }
+							return { dateTime: Shared.dateTimeString(startDateTime), timeZone: event.start.timeZone }
 						} else { // All day
-							return { date: dateString(startDateTime) }
+							return { date: Shared.dateString(startDateTime) }
 						}
 					}
 					function getEndObj() {
 						if (showTime) {
-							return { dateTime: dateTimeString(endDateTime), timeZone: event.end.timeZone }
+							return { dateTime: Shared.dateTimeString(endDateTime), timeZone: event.end.timeZone }
 						} else { // All day
 							// Events end at "midnight" the next day.
 							// See parseEventsForDate() functions for more info.
 							var dt = new Date(endDateTime)
 							dt.setDate(dt.getDate() + 1)
-							return { date: dateString(dt) }
+							return { date: Shared.dateString(dt) }
 						}
 					}
 				}
@@ -247,6 +243,8 @@ Loader {
 						}
 					}
 				}
+
+				//---
 
 				RowLayout {
 					Layout.columnSpan: 2

@@ -151,21 +151,6 @@ CalendarManager {
 		}
 	}
 
-	function dateString(d) {
-		return d.toISOString().substr(0, 10)
-	}
-	function localeDateString(d) {
-		return Qt.formatDateTime(d, 'yyyy-MM-dd')
-	}
-	function isValidDate(d) {
-		if (d === null) {
-			return false
-		} else if (isNaN(d)) {
-			return false
-		} else {
-			return true
-		}
-	}
 	function parseEventsForDate(day, dayEvents) {
 		var items = []
 		for (var i = 0; i < dayEvents.length; i++) {
@@ -177,19 +162,19 @@ CalendarManager {
 
 			// The dayItem.___DateTime might be "Invalid Date"
 			// Eg: the "Astronomical Events" plugin
-			var startDateTime = new Date(isValidDate(dayItem.startDateTime) ? dayItem.startDateTime : day)
-			var endDateTime = new Date(isValidDate(dayItem.endDateTime) ? dayItem.endDateTime : day)
+			var startDateTime = new Date(Shared.isValidDate(dayItem.startDateTime) ? dayItem.startDateTime : day)
+			var endDateTime = new Date(Shared.isValidDate(dayItem.endDateTime) ? dayItem.endDateTime : day)
 			// logger.log('\t startDateTime', dayItem.startDateTime, startDateTime)
 			// logger.log('\t endDateTime', dayItem.endDateTime, endDateTime)
 			
 			if (dayItem.isAllDay) {
-				start.date = localeDateString(startDateTime) // 2018-01-31
+				start.date = Shared.localeDateString(startDateTime) // 2018-01-31
 				// Google Calendar has the event start at midnight, and end at midnight the next day
 				// Plasma has the date end on the same day, so we need to add 1 day to it so
 				// the rest of our code stack works.
 				var endDate = new Date(endDateTime)
 				endDate.setDate(endDate.getDate() + 1)
-				end.date = localeDateString(endDate) // 2018-01-31
+				end.date = Shared.localeDateString(endDate) // 2018-01-31
 				endDateTime = new Date(end.date)
 			} else {
 				start.dateTime = startDateTime
@@ -238,7 +223,7 @@ CalendarManager {
 		var items = []
 		
 		// 2018-05-24T00:00:00.000Z
-		var dateMinUtcStr = localeDateString(dateMin) + 'T00:00:00.000Z'
+		var dateMinUtcStr = Shared.localeDateString(dateMin) + 'T00:00:00.000Z'
 		var dateMinUtc = new Date(dateMinUtcStr)
 		// logger.debug('getEventsForDuration.dateMinUtcStr', dateMinUtcStr)
 		// logger.debug('getEventsForDuration.dateMinUtc', dateMinUtc)
