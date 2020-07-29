@@ -341,7 +341,6 @@ CalendarManager {
 		var cmd = [
 			'konsolekalendar',
 			'--add',
-			'--add',
 			'--calendar',
 			akonadiCalendarId,
 			'--date',
