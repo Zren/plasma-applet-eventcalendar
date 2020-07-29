@@ -11,6 +11,7 @@ LinkRect {
 	id: agendaEventItem
 	readonly property int eventItemIndex: index
 	Layout.fillWidth: true
+	implicitHeight: contents.implicitHeight
 
 	property bool eventItemInProgress: false
 	function checkIfInProgress() {
