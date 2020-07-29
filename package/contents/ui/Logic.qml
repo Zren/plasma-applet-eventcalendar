@@ -187,23 +187,23 @@ Item {
 		onCalendarFetched: {
 			logger.debug('onCalendarFetched', calendarId)
 			// logger.debug('onCalendarFetched', calendarId, JSON.stringify(data, null, '\t'))
-			popup.deferredUpdateUI()
+			if (popup) popup.deferredUpdateUI()
 		}
 		onAllDataFetched: {
 			logger.debug('onAllDataFetched')
-			popup.deferredUpdateUI()
+			if (popup) popup.deferredUpdateUI()
 		}
 		onEventCreated: {
 			logger.logJSON('onEventCreated', calendarId, data)
-			popup.deferredUpdateUI()
+			if (popup) popup.deferredUpdateUI()
 		}
 		onEventUpdated: {
 			logger.logJSON('onEventUpdated', calendarId, eventId, data)
-			popup.deferredUpdateUI()
+			if (popup) popup.deferredUpdateUI()
 		}
 		onEventDeleted: {
 			logger.logJSON('onEventDeleted', calendarId, eventId, data)
-			popup.deferredUpdateUI()
+			if (popup) popup.deferredUpdateUI()
 		}
 	}
 }
