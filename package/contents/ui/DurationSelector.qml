@@ -41,7 +41,8 @@ Flow {
 		id: seperatorLabel
 		text: ' ' + i18n("to") + ' '
 		font.weight: Font.Bold
-		Layout.alignment: Qt.AlignRight
+		verticalAlignment: Text.AlignVCenter
+		height: startTimeSelector.implicitHeight
 	}
 	DateTimeSelector {
 		id: endTimeSelector
