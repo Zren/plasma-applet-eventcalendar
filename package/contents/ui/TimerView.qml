@@ -333,12 +333,6 @@ Item {
 		}
 	}
 
-	PlasmaCore.DataSource {
-		id: notificationSource
-		engine: "notifications"
-		connectedSources: "org.freedesktop.Notifications"
-	}
-
 	function createNotification() {
 		var args = {
 			appName: i18n("Timer"),
@@ -350,7 +344,6 @@ Item {
 		if (timerSfxEnabled) {
 			args.soundFile = plasmoid.configuration.timer_sfx_filepath
 		}
-		// notificationManager.createNotification(args)
 
 		args.actions = []
 		if (!plasmoid.configuration.timer_repeats) {
