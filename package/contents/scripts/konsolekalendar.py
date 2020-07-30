@@ -3,11 +3,10 @@
 import os
 import sys
 import subprocess
-import datetime
+from datetime import datetime, timedelta
 import csv
 from pprint import pprint
 from collections import namedtuple
-import time
 
 def konsolekalendarAdd(calendarId, dateTime, text):
 	startDate = dateTime
@@ -36,12 +35,15 @@ def konsolekalendarAdd(calendarId, dateTime, text):
 		cmd += ['--summary', summary]
 	if description:
 		cmd += ['--description', description]
+
 	if location:
 		cmd += ['--location', location]
+	else:
+		cmd += ['--location', ''] # Prevent it populating with 'Default location'
 
 	proc = subprocess.run(cmd, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
 	if proc.returncode != 0:
-		print(proc.returncode, proc.stderr)
+		print(proc.returncode, proc.stderr, proc.stdout)
 		sys.exit(proc.returncode)
 	output = proc.stdout.decode('utf-8').rstrip()
 	print(output)
@@ -59,30 +61,36 @@ KonsoleKalendarEventTuple = namedtuple('KonsoleKalendarEventTuple', [
 	'description',
 	'uid',
 ])
+cDateFormat = '%A, %d %B %Y'
+cTimeFormat = '%H:%M:%S %Z'
+
+def isoDate(dateStr):
+	# LC_TIME=C format: "Wednesday, 29 July 2020"
+	dateTime = datetime.strptime(dateStr, cDateFormat)
+	return dateTime.date().isoformat()
+
+def isoTime(dateStr, timeStr):
+	if timeStr:
+		# LC_TIME=C format: "08:00:00 EDT"
+		dateTimeFormat = cDateFormat + ' ' + cTimeFormat
+		dateTimeStr = dateStr + ' ' + timeStr
+		dateTime = datetime.strptime(dateTimeStr, dateTimeFormat)
+		return dateTime.time().isoformat()
+	else:
+		return timeStr
+
 class KonsoleKalendarEvent(KonsoleKalendarEventTuple):
 	def isoStartDate(self):
-		# LC_TIME=C format: "Wednesday, 29 July 2020"
-		startDate = datetime.datetime.strptime(self.startDate, '%A, %d %B %Y')
-		return startDate.date().isoformat()
+		return isoDate(self.startDate)
 	def isoStartTime(self):
-		if self.startTime:
-			# LC_TIME=C format: "08:00:00 EDT"
-			startTime = datetime.time.strptime(self.startTime, '%H:%M:%S %Z')
-			return startTime.isoformat()
-		else:
-			return self.startTime
-
-def parseEventDateTime(startDate, startTime):
-	# "Wednesday, 29 July 2020"
-	isoStartDate = datetime.datetime.strptime(startDate, '%A, %d %B %Y')
-	isoStartDate = isoStartDate.date().isoformat()
-	if startTime:
-		# "08:00:00 EDT"
-		isoStartTime = datetime.time.strptime(startTime, '%H:%M:%S %Z')
-		isoStartTime = startTime.isoformat()
-		return isoStartDate, isoStartTime
-	else:
-		return isoStartDate, event.startTime
+		return isoTime(self.startDate, self.startTime)
+	def isoEndDate(self):
+		# dateTime = datetime.strptime(self.endDate, cDateFormat)
+		# dateTime += timedelta(days=1)
+		# return dateTime.date().isoformat()
+		return isoDate(self.endDate)
+	def isoEndTime(self):
+		return isoTime(self.endDate, self.endTime)
 
 def konsolekalendarList(calendarId):
 	cmd = [
@@ -97,7 +105,7 @@ def konsolekalendarList(calendarId):
 	env['LC_TIME'] = 'C' # Use a consistent date format for us to parse
 	proc = subprocess.run(cmd, stdout=subprocess.PIPE, stderr=subprocess.PIPE, env=env)
 	if proc.returncode != 0:
-		print(proc.returncode, proc.stderr)
+		print(proc.returncode, proc.stderr, proc.stdout)
 		sys.exit(proc.returncode)
 	output = proc.stdout.decode('utf-8').rstrip()
 	# print(output)
@@ -112,37 +120,56 @@ def konsolekalendarList(calendarId):
 # to guess which event should be modified or deleted.
 def konsolekalendarGetEvent(calendarId, startDate, startTime, summary, description):
 	eventList = konsolekalendarList(calendarId)
+	selectedEvent = None
 	for event in eventList:
 		if event.isoStartDate() == startDate \
 		and event.isoStartTime() == startTime \
 		and event.summary == summary \
 		and event.description == description:
-			return event
-	return None
+			if selectedEvent:
+				# There's 2 possible events, so return an error code.
+				# We don't want to modify or delete the wrong event.
+				return None
+	return selectedEvent
 
+changeKeyMap = {
+	'startDate': 'date',
+	'startTime': 'time',
+	'endDate': 'end-date',
+	'endTime': 'end-time',
+	# Otherwise key => key
+}
 def konsolekalendarChange(eventUid, **kwargs):
 	cmd = [
 		'konsolekalendar',
+		'--verbose',
 		'--change',
 		'--uid',
 		eventUid,
-		
 	]
+
+	for key, value in kwargs.items():
+		cmdArg = '--' + changeKeyMap.get(key, key)
+		if not value and (cmdArg == '--time' or cmdArg == '--end-time'):
+			continue # Skip
+		cmd += [cmdArg, value]
+	print('cmd', cmd)
+
 	env = dict(os.environ)
 	env['LC_TIME'] = 'C' # Use a consistent date format for us to parse
 	proc = subprocess.run(cmd, stdout=subprocess.PIPE, stderr=subprocess.PIPE, env=env)
 	if proc.returncode != 0:
-		print(proc.returncode, proc.stderr)
+		print(proc.returncode, proc.stderr, proc.stdout)
 		sys.exit(proc.returncode)
 	output = proc.stdout.decode('utf-8').rstrip()
-	# print(output)
+	print(output)
 
 
 if __name__ == '__main__':
 	calendarId = '12'
 	eventDate = '2020-07-29'
 	eventTime = ''
-	eventSummary = 'test_{}'.format(datetime.datetime.now())
+	eventSummary = 'test_{}'.format(datetime.now())
 	eventDescription = ''
 	konsolekalendarAdd(calendarId, eventDate, eventSummary)
 
@@ -154,5 +181,15 @@ if __name__ == '__main__':
 	print('event', event)
 	if event:
 		print('event.uid', event.uid)
+
+		# No matter what I do... it will change an "all day" event to an event
+		# with both startTime and endTime set at midnight.
+		# konsolekalendarChange(event.uid,
+		# 	description='New better, longer, and uncut description!',
+		# 	# startDate=event.isoStartDate(),
+		# 	# startTime=event.isoStartTime(),
+		# 	# endDate=event.isoEndDate(),
+		# 	# endTime=event.isoEndTime(),
+		# )
 	else:
 		sys.exit(1)
