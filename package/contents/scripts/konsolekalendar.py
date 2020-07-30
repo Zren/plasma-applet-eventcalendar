@@ -127,9 +127,14 @@ def konsolekalendarGetEvent(calendarId, startDate, startTime, summary, descripti
 		and event.summary == summary \
 		and event.description == description:
 			if selectedEvent:
+				print('duplicate events')
+				print('  selectedEvent', selectedEvent)
+				print('  curEvent', event)
 				# There's 2 possible events, so return an error code.
 				# We don't want to modify or delete the wrong event.
 				return None
+			else:
+				selectedEvent = event
 	return selectedEvent
 
 changeKeyMap = {
@@ -165,6 +170,24 @@ def konsolekalendarChange(eventUid, **kwargs):
 	print(output)
 
 
+def konsolekalendarDelete(eventUid):
+	cmd = [
+		'konsolekalendar',
+		'--delete',
+		'--uid',
+		eventUid,
+	]
+
+	proc = subprocess.run(cmd, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+	if proc.returncode != 0:
+		print(proc.returncode, proc.stderr, proc.stdout)
+		sys.exit(proc.returncode)
+	output = proc.stdout.decode('utf-8').rstrip()
+	print(output)
+
+
+
+
 if __name__ == '__main__':
 	calendarId = '12'
 	eventDate = '2020-07-29'
@@ -191,5 +214,8 @@ if __name__ == '__main__':
 		# 	# endDate=event.isoEndDate(),
 		# 	# endTime=event.isoEndTime(),
 		# )
+
+		konsolekalendarDelete(event.uid)
+
 	else:
 		sys.exit(1)
