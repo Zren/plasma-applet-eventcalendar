@@ -208,6 +208,7 @@ if __name__ == '__main__':
 		# No matter what I do... it will change an "all day" event to an event
 		# with both startTime and endTime set at midnight.
 		# konsolekalendarChange(event.uid,
+		# 	summary=event.summary + '_changed',
 		# 	description='New better, longer, and uncut description!',
 		# 	# startDate=event.isoStartDate(),
 		# 	# startTime=event.isoStartTime(),
