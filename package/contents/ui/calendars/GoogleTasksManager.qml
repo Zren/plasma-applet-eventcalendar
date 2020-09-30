@@ -76,6 +76,7 @@ CalendarManager {
 					summary: tasklist.title,
 					backgroundColor: theme.highlightColor.toString(),
 					accessRole: 'owner',
+					isTasklist: true,
 				})
 			}
 			return calendarList

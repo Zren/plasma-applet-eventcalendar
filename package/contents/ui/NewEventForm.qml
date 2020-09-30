@@ -13,6 +13,13 @@ Loader {
 		RowLayout {
 			spacing: 4 * units.devicePixelRatio
 
+			PlasmaComponents3.CheckBox {
+				Layout.alignment: Qt.AlignHCenter | Qt.AlignTop
+				Layout.preferredHeight: calendarSelector.implicitHeight
+				enabled: false
+				visible: calendarSelector.selectedIsTasklist
+			}
+
 			Rectangle {
 				Layout.preferredWidth: appletConfig.eventIndicatorWidth
 				Layout.fillHeight: true

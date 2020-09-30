@@ -38,6 +38,7 @@ CalendarManager {
 					"summary": calendarName,
 					"backgroundColor": "#9a9cff",
 					"accessRole": "owner",
+					"isTasklist": false,
 				})
 			}
 
@@ -56,6 +57,7 @@ CalendarManager {
 							"summary": calendarName,
 							"backgroundColor": "#9a9cff",
 							"accessRole": "owner",
+							"isTasklist": false,
 						})
 					}
 				}
@@ -72,6 +74,7 @@ CalendarManager {
 			"calendarId": "plasma_Holidays",
 			"backgroundColor": "" + theme.highlightColor,
 			"accessRole": "reader",
+			"isTasklist": false,
 		})
 
 		// KDEPIM

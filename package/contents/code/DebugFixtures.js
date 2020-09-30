@@ -3,6 +3,7 @@
 function getCalendar() {
 	return {
 		"id": "debug",
+		"kind": "calendar#calendarListEntry",
 		"summary": "Debug",
 		"backgroundColor": "#9a9cff",
 		"accessRole": "owner",

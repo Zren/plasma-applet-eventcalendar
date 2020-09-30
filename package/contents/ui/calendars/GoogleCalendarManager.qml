@@ -542,6 +542,10 @@ CalendarManager {
 	function getCalendarList() {
 		if (session.accessToken && plasmoid.configuration.calendar_list) {
 			var calendarList = JSON.parse(Qt.atob(plasmoid.configuration.calendar_list))
+			for (var i = 0; i < calendarList.length; i++) {
+				var calendar = calendarList[i]
+				calendar.isTasklist = false
+			}
 			return calendarList
 		} else {
 			return []

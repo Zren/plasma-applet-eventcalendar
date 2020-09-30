@@ -11,6 +11,7 @@ PlasmaComponents3.ComboBox {
 
 	readonly property var selectedCalendar: currentIndex >= 0 ? model[currentIndex] : null
 	readonly property var selectedCalendarId: selectedCalendar ? selectedCalendar.id : null
+	readonly property bool selectedIsTasklist: selectedCalendar ? selectedCalendar.isTasklist : false
 
 	function populate(calendarList, initialCalendarId) {
 		// logger.debug('CalendarSelector.populate')
@@ -30,6 +31,7 @@ PlasmaComponents3.ComboBox {
 					'calendarId': calendar.id,
 					'text': calendar.summary,
 					'backgroundColor': calendar.backgroundColor,
+					'isTasklist': calendar.isTasklist,
 				})
 			}
 		})
