@@ -168,12 +168,11 @@ Item {
 				
 				PlasmaComponents3.ToolButton {
 					id: timerRepeatsButton
-					property bool isChecked: plasmoid.configuration.timer_repeats // New property to avoid checked=pressed theming.
+					readonly property bool isChecked: plasmoid.configuration.timer_repeats // New property to avoid checked=pressed theming.
 					icon.name: isChecked ? 'media-playlist-repeat' : 'gtk-stop'
 					text: topRow.contentsFit ? i18n("Repeat") : ""
 					onClicked: {
-						isChecked = !isChecked
-						plasmoid.configuration.timer_repeats = isChecked
+						plasmoid.configuration.timer_repeats = !isChecked
 					}
 
 					PlasmaCore.ToolTipArea {
@@ -186,12 +185,11 @@ Item {
 
 				PlasmaComponents3.ToolButton {
 					id: timerSfxEnabledButton
-					property bool isChecked: plasmoid.configuration.timer_sfx_enabled // New property to avoid checked=pressed theming.
+					readonly property bool isChecked: plasmoid.configuration.timer_sfx_enabled // New property to avoid checked=pressed theming.
 					icon.name: isChecked ? 'audio-volume-high' : 'dialog-cancel'
 					text: topRow.contentsFit ? i18n("Sound") : ""
 					onClicked: {
-						isChecked = !isChecked
-						plasmoid.configuration.timer_sfx_enabled = isChecked
+						plasmoid.configuration.timer_sfx_enabled = !isChecked
 					}
 
 					PlasmaCore.ToolTipArea {
