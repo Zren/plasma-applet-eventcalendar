@@ -255,13 +255,11 @@ Loader {
 					PlasmaComponents3.Button {
 						icon.name: "document-save"
 						text: i18n("&Save")
-						Layout.preferredWidth: Layout.minimumWidth
 						onClicked: editEventItem.submit()
 					}
 					PlasmaComponents3.Button {
 						icon.name: "dialog-cancel"
 						text: i18n("&Cancel")
-						Layout.preferredWidth: Layout.minimumWidth
 						onClicked: editEventItem.cancel()
 					}
 				}
