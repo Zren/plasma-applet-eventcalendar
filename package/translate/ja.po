@@ -6,9 +6,9 @@
 #, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: eventcalendar \n"
+"Project-Id-Version: eventcalendar\n"
 "Report-Msgid-Bugs-To: https://github.com/Zren/plasma-applet-eventcalendar\n"
-"POT-Creation-Date: 2020-07-24 20:51-0400\n"
+"POT-Creation-Date: 2020-10-12 08:34-0400\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: yamato kobayashi <Kb_yamato@protonmail.com>\n"
 "Language-Team: \n"
@@ -678,7 +678,7 @@ msgstr "M月 d日, yyyy"
 msgid "to"
 msgstr "から"
 
-#: ../contents/ui/EditEventForm.qml
+#: ../contents/ui/EditEventForm.qml ../contents/ui/EditTaskForm.qml
 msgid "Event Title"
 msgstr "イベントタイトル"
 
@@ -686,17 +686,21 @@ msgstr "イベントタイトル"
 msgid "Add location"
 msgstr "地域を追加"
 
-#: ../contents/ui/EditEventForm.qml
+#: ../contents/ui/EditEventForm.qml ../contents/ui/EditTaskForm.qml
 msgid "Add description"
 msgstr "概要を追加"
 
-#: ../contents/ui/EditEventForm.qml
+#: ../contents/ui/EditEventForm.qml ../contents/ui/EditTaskForm.qml
 msgid "&Save"
 msgstr "＆保存"
 
-#: ../contents/ui/EditEventForm.qml ../contents/ui/TimerInputView.qml
+#: ../contents/ui/EditEventForm.qml ../contents/ui/EditTaskForm.qml ../contents/ui/TimerInputView.qml
 msgid "&Cancel"
 msgstr "＆キャンセル"
+
+#: ../contents/ui/EditTaskForm.qml
+msgid "Add due date"
+msgstr ""
 
 #: ../contents/ui/lib/AppletVersion.qml
 msgid "<b>Version:</b> %1"

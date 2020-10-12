@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: eventcalendar\n"
 "Report-Msgid-Bugs-To: https://github.com/Zren/plasma-applet-eventcalendar\n"
-"POT-Creation-Date: 2020-07-24 20:51-0400\n"
+"POT-Creation-Date: 2020-10-12 08:34-0400\n"
 "PO-Revision-Date: 2017-04-29 11:18+0100\n"
 "Last-Translator: Hans-Peter Jansen <hpj@urpla.net>\n"
 "Language-Team: de <hpj@urpla.net>\n"
@@ -715,7 +715,7 @@ msgstr ""
 msgid "to"
 msgstr "bis"
 
-#: ../contents/ui/EditEventForm.qml
+#: ../contents/ui/EditEventForm.qml ../contents/ui/EditTaskForm.qml
 msgid "Event Title"
 msgstr ""
 
@@ -723,16 +723,21 @@ msgstr ""
 msgid "Add location"
 msgstr ""
 
-#: ../contents/ui/EditEventForm.qml
+#: ../contents/ui/EditEventForm.qml ../contents/ui/EditTaskForm.qml
 msgid "Add description"
 msgstr ""
 
-#: ../contents/ui/EditEventForm.qml
+#: ../contents/ui/EditEventForm.qml ../contents/ui/EditTaskForm.qml
 msgid "&Save"
 msgstr "&Sichern"
 
-#: ../contents/ui/EditEventForm.qml ../contents/ui/TimerInputView.qml
+#: ../contents/ui/EditEventForm.qml ../contents/ui/EditTaskForm.qml
+#: ../contents/ui/TimerInputView.qml
 msgid "&Cancel"
+msgstr ""
+
+#: ../contents/ui/EditTaskForm.qml
+msgid "Add due date"
 msgstr ""
 
 #: ../contents/ui/lib/AppletVersion.qml
