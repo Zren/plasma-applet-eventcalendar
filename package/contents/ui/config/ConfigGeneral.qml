@@ -347,9 +347,15 @@ ConfigPage {
 		text: i18n("Debugging")
 	}
 	ConfigSection {
+		Label {
+			text: i18n("Debugging will log sensitive information to:")
+				+ '<br/><b>Kubuntu:</b> ~/.xsession-errors'
+				+ '<br/><b>Arch/Manjaro:</b> journalctl -b0 _COMM=plasmashell'
+			textFormat: Text.StyledText
+		}
 		ConfigCheckBox {
 			configKey: 'debugging'
-			text: i18n("Enable Debugging\nThis will log sensitive information to ~/.xsession-errors")
+			text: i18n("Enable Debugging")
 		}
 	}
 }
