@@ -1,5 +1,5 @@
 #!/bin/sh
-# Version: 16
+# Version: 17
 
 # https://techbase.kde.org/Development/Tutorials/Localization/i18n_Build_Systems
 # Based on: https://github.com/psifidotos/nowdock-plasmoid/blob/master/po/Messages.sh
@@ -157,6 +157,24 @@ msgfmt \
 	--template="$DIR/template.desktop" \
 	-d "$DIR/" \
 	-o "$DIR/new.desktop"
+
+# Delete empty msgid messages that used the po header
+if [ ! -z "$(grep '^Name=$' "$DIR/new.desktop")" ]; then
+	echo "[merge] Name in metadata.desktop is empty!"
+	sed -i '/^Name\[/ d' "$DIR/new.desktop"
+fi
+if [ ! -z "$(grep '^GenericName=$' "$DIR/new.desktop")" ]; then
+	echo "[merge] GenericName in metadata.desktop is empty!"
+	sed -i '/^GenericName\[/ d' "$DIR/new.desktop"
+fi
+if [ ! -z "$(grep '^Comment=$' "$DIR/new.desktop")" ]; then
+	echo "[merge] Comment in metadata.desktop is empty!"
+	sed -i '/^Comment\[/ d' "$DIR/new.desktop"
+fi
+if [ ! -z "$(grep '^Keywords=$' "$DIR/new.desktop")" ]; then
+	echo "[merge] Keywords in metadata.desktop is empty!"
+	sed -i '/^Keywords\[/ d' "$DIR/new.desktop"
+fi
 
 # Place translations at the bottom of the desktop file.
 translatedLines=`cat "$DIR/new.desktop" | grep "]="`

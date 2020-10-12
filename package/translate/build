@@ -1,5 +1,5 @@
 #!/bin/sh
-# Version: 5
+# Version: 6
 
 # This script will convert the *.po files to *.mo files, rebuilding the package/contents/locale folder.
 # Feature discussion: https://phabricator.kde.org/D5209
@@ -28,7 +28,7 @@ fi
 #---
 echo "[build] Compiling messages"
 
-catalogs=`find . -name '*.po'`
+catalogs=`find . -name '*.po' | sort`
 for cat in $catalogs; do
 	echo "$cat"
 	catLocale=`basename ${cat%.*}`
