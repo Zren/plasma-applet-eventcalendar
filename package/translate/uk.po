@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: eventcalendar\n"
 "Report-Msgid-Bugs-To: https://github.com/Zren/plasma-applet-eventcalendar\n"
-"POT-Creation-Date: 2020-10-12 08:34-0400\n"
+"POT-Creation-Date: 2020-10-12 08:58-0400\n"
 "PO-Revision-Date: 2017-10-31 20:08+0200\n"
 "Last-Translator: Serhii Golovko <cappelikan@gmail.com>\n"
 "Language-Team: \n"
@@ -490,12 +490,12 @@ msgid "Debugging"
 msgstr "Налагодження"
 
 #: ../contents/ui/config/ConfigGeneral.qml
-msgid ""
-"Enable Debugging\n"
-"This will log sensitive information to ~/.xsession-errors"
-msgstr ""
-"Увімкнути налагодження\n"
-"Це буде записувати конфіденційну інформацію до ~/.xsession-помилок"
+msgid "Debugging will log sensitive information to:"
+msgstr "Це буде записувати конфіденційну інформацію до:"
+
+#: ../contents/ui/config/ConfigGeneral.qml
+msgid "Enable Debugging"
+msgstr "Увімкнути налагодження"
 
 #: ../contents/ui/config/ConfigGoogleCalendar.qml
 msgid "Login"

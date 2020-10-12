@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: eventcalendar\n"
 "Report-Msgid-Bugs-To: https://github.com/Zren/plasma-applet-eventcalendar\n"
-"POT-Creation-Date: 2020-10-12 08:34-0400\n"
+"POT-Creation-Date: 2020-10-12 08:58-0400\n"
 "PO-Revision-Date: 2020-07-25 13:15+0200\n"
 "Last-Translator: Heimen Stoffels <vistausss@outlook.com>\n"
 "Language-Team: Dutch <kde-i18n-doc@kde.org>\n"
@@ -490,12 +490,12 @@ msgid "Debugging"
 msgstr "Foutopsporing"
 
 #: ../contents/ui/config/ConfigGeneral.qml
-msgid ""
-"Enable Debugging\n"
-"This will log sensitive information to ~/.xsession-errors"
-msgstr ""
-"Foutopsporing inschakelen\n"
-"Hiermee leg je gevoelige informatie vast in ~/.xsession-errors"
+msgid "Debugging will log sensitive information to:"
+msgstr "Hiermee leg je gevoelige informatie vast in:"
+
+#: ../contents/ui/config/ConfigGeneral.qml
+msgid "Enable Debugging"
+msgstr "Foutopsporing inschakelen"
 
 #: ../contents/ui/config/ConfigGoogleCalendar.qml
 msgid "Login"
@@ -913,6 +913,13 @@ msgstr "Lopende afspraken"
 #: ../contents/ui/UpcomingEvents.qml
 msgid "Upcoming Events"
 msgstr "Ingeplande afspraken"
+
+#~ msgid ""
+#~ "Enable Debugging\n"
+#~ "This will log sensitive information to ~/.xsession-errors"
+#~ msgstr ""
+#~ "Foutopsporing inschakelen\n"
+#~ "Hiermee leg je gevoelige informatie vast in ~/.xsession-errors"
 
 #~ msgid "Choose"
 #~ msgstr "Kiezen"
