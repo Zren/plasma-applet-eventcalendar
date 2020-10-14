@@ -1,3 +1,16 @@
+## v70 - October 14 2020
+
+* Fix Save/Save/Cancel buttons in Edit Timer/Task/Event forms that were invisible in latest KDE Frameworks.
+* Fix bug where toggling timer sfx in config doesn't apply change.
+* Show CheckBox in NewEventForm when tasklist is selected. Gives a visual cue that the last event added was a task instead of an event.
+* Vertical Align "to" text in DurationSelector.
+* Fix EventItem height bug after closing EditForm.
+* Add EditTaskForm based EditEventForm.
+* Remove "notifications" dataengine to support Latte Dock (Issue #60). We also remove the QtMultimedia sfx that caused issues in (Issue #84). We now use notification.py for events as well. I've done my best to sanitize the event summary + body.
+* Implement konsolekalendar add event with PIM calendars (Issue #43). Also added a konsolekalendar.py script to find the uid of an event.
+* Check for err before parsing oauth token data. (Issue #147)
+* Updated Dutch translations by @Vistaus (Pull Request #164)
+
 ## v69 - July 27 2020
 
 * Add copy to clipboard in contextual actions by @navarroaxel (Pull Request #142) (Issue #28). Widget now requires Plasma 5.13.

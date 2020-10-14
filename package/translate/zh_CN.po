@@ -904,7 +904,7 @@ msgstr "正在进行的事件"
 #: ../contents/ui/UpcomingEvents.qml
 msgid "Upcoming Events"
 msgstr "即将到来的事件"
-\
+
 #~ msgid ""
 #~ "Enable Debugging\n"
 #~ "This will log sensitive information to ~/.xsession-errors"
