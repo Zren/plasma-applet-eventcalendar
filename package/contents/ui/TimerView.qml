@@ -95,10 +95,10 @@ Item {
 					onWheel: {
 						var delta = wheel.angleDelta.y || wheel.angleDelta.x
 						if (delta > 0) {
-							timerModel.setDuration(timerModel.duration + 60)
+							timerModel.increaseDuration()
 							timerModel.stop()
 						} else if (delta < 0) {
-							timerModel.setDuration(timerModel.duration - 60)
+							timerModel.decreaseDuration()
 							timerModel.stop()
 						}
 					}

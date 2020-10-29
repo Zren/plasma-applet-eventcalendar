@@ -81,6 +81,38 @@ QtObject {
 		}
 	}
 
+	function getIncrementFor(oldDuration, multiplier) {
+		if (oldDuration >= 15 * 60) { // 15m
+			return 5 * 60 // +5m
+		} else if (oldDuration >= 60) { // 1m
+			if (multiplier < 0 && oldDuration < 120) { // 1-2m -5sec
+				return 5 // -5sec
+			} else {
+				return 60 // +1m
+			}
+		} else if (oldDuration >= 15) { // 15sec
+			return 5 // +5sec
+		} else { 
+			if (multiplier < 0 && oldDuration <= 1) { // 0-1sec
+				return 0 // +0
+			} else { // 2-14sec
+				return 1 // +5sec
+			}
+		}
+	}
+	function deltaDuration(multiplier) {
+		var delta = getIncrementFor(duration, multiplier)
+		var newDuration = Math.max(0, timerModel.duration + (delta * multiplier))
+		// console.log(timerModel.duration, multiplier, delta, newDuration)
+		setDuration(newDuration)
+	}
+	function increaseDuration() {
+		deltaDuration(1)
+	}
+	function decreaseDuration() {
+		deltaDuration(-1)
+	}
+
 	onDurationChanged: {
 		secondsLeft = duration
 	}
