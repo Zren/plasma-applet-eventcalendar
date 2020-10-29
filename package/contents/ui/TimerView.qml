@@ -72,9 +72,9 @@ Item {
 
 				onClicked: {
 					if (timerModel.running) {
-						timerModel.stop()
+						timerModel.pause()
 					} else if (timerModel.secondsLeft > 0) {
-						timerModel.start()
+						timerModel.runTimer()
 					} else { // timerModel.secondsLeft == 0
 						// ignore
 					}
@@ -96,10 +96,10 @@ Item {
 						var delta = wheel.angleDelta.y || wheel.angleDelta.x
 						if (delta > 0) {
 							timerModel.increaseDuration()
-							timerModel.stop()
+							timerModel.pause()
 						} else if (delta < 0) {
 							timerModel.decreaseDuration()
-							timerModel.stop()
+							timerModel.pause()
 						}
 					}
 				}

@@ -9,6 +9,7 @@ QtObject {
 	readonly property bool timerSfxEnabled: plasmoid.configuration.timer_sfx_enabled
 	readonly property string timerSfxFilepath:  plasmoid.configuration.timer_sfx_filepath
 	property alias running: timerTicker.running
+	property date finished: new Date()
 
 	signal timerFinished()
 
@@ -55,6 +56,8 @@ QtObject {
 		{ seconds: 60 * 60 },
 	]
 
+	// Note that QML Timer intervals are shorter when the refresh rate is faster,
+	// so we can't rely on it to tick exactly every 1000ms. See Issue #129.
 	property Timer timerTicker: Timer {
 		id: timerTicker
 		interval: 1000
@@ -62,7 +65,7 @@ QtObject {
 		repeat: true
 
 		onTriggered: {
-			timerModel.secondsLeft -= 1
+			timerModel.tick()
 		}
 	}
 
@@ -77,7 +80,7 @@ QtObject {
 	function setDurationAndStart(newDuration) {
 		setDuration(newDuration)
 		if (newDuration > 0) {
-			timerTicker.restart()
+			timerModel.runTimer()
 		}
 	}
 
@@ -137,29 +140,35 @@ QtObject {
 		return s
 	}
 
+	function tick() {
+		var now = new Date()
+		var deltaMillis = finished.valueOf() - now.valueOf()
+		timerModel.secondsLeft = Math.max(0, Math.ceil(deltaMillis / 1000))
+		// console.log('tick', timerModel.secondsLeft, timerModel.duration)
+	}
+
 	function repeatTimer() {
 		timerModel.secondsLeft = timerModel.duration
-		timerTicker.start()
+		timerModel.runTimer()
 	}
 
-	function start() {
-		timerTicker.start()
-	}
-
-	function restart() {
+	function runTimer() {
+		var now = new Date()
+		timerModel.finished = new Date(now.valueOf() + timerModel.secondsLeft * 1000)
+		// console.log('finished', now.valueOf(), timerModel.secondsLeft * 1000, timerModel.finished)
 		timerTicker.restart()
 	}
 
-	function stop() {
+	function pause() {
 		timerTicker.stop()
 	}
 
 	onTimerFinished: {
-		timerTicker.stop()
-		createNotification()
+		timerModel.pause()
+		timerModel.createNotification()
 
-		if (timerRepeats) {
-			repeatTimer()
+		if (timerModel.timerRepeats) {
+			timerModel.repeatTimer()
 		}
 	}
 
