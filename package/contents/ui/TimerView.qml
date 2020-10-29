@@ -9,65 +9,16 @@ import org.kde.plasma.components 3.0 as PlasmaComponents3
 Item {
 	id: timerView
 
-	property int timerSeconds: 0
-	property int timerDuration: 0
-	property alias timerRepeats: timerRepeatsButton.isChecked
-	property alias timerSfxEnabled: timerSfxEnabledButton.isChecked
-
-	property bool setTimerViewVisible: false
+	property bool isSetTimerViewVisible: false
 
 	implicitHeight: timerButtonView.height
-
-	function getHours(t) {
-		var hours = Math.floor(t / (60 * 60 * 1000))
-		return hours
-	}
-	function getMinutes(t) {
-		var millisLeftInHour = t % (60 * 60 * 1000)
-		var minutes = millisLeftInHour / (60 * 1000)
-		return minutes
-	}
-	function getSeconds(t) {
-		var millisLeftInMinute = t % (60 * 1000)
-		var seconds = millisLeftInMinute / 1000
-		return seconds
-	}
-	function durationShortFormat(totalSeconds) {
-		var t = totalSeconds * 1000
-		var str = ''
-		var hours = Math.floor(getHours(t))
-		if (hours > 0) {
-			str += i18nc("short form for %1 hours", "%1h", hours)
-		}
-		var minutes = Math.floor(getMinutes(t))
-		if (minutes > 0) {
-			str += i18nc("short form for %1 minutes", "%1m", minutes)
-		}
-		var seconds = Math.floor(getSeconds(t))
-		if (seconds > 0) {
-			str += i18nc("short form for %1 seconds", "%1s", seconds)
-		}
-		return str
-	}
-	property var defaultTimers: [
-		{ seconds: 30 },
-		{ seconds: 60 },
-		{ seconds: 5 * 60 },
-		{ seconds: 10 * 60 },
-		{ seconds: 15 * 60 },
-		{ seconds: 20 * 60 },
-		{ seconds: 30 * 60 },
-		{ seconds: 45 * 60 },
-		{ seconds: 60 * 60 },
-	]
 
 	ColumnLayout {
 		id: timerButtonView
 		anchors.left: parent.left
 		anchors.right: parent.right
 		spacing: 4
-		
-		opacity: timerView.setTimerViewVisible ? 0 : 1
+		opacity: timerView.isSetTimerViewVisible ? 0 : 1
 		visible: opacity > 0
 		Behavior on opacity {
 			NumberAnimation { duration: 200 }
@@ -89,9 +40,9 @@ Item {
 				id: timerLabel
 				text: "0:00"
 				icon.name: {
-					if (timerSeconds == 0) {
+					if (timerModel.secondsLeft == 0) {
 						return 'chronometer'
-					} else if (timerTicker.running) {
+					} else if (timerModel.running) {
 						return 'chronometer-pause'
 					} else {
 						return 'chronometer-start'
@@ -104,8 +55,8 @@ Item {
 				Layout.alignment: Qt.AlignVCenter
 				property string tooltip: {
 					var s = ""
-					if (timerSeconds > 0) {
-						if (timerTicker.running) {
+					if (timerModel.secondsLeft > 0) {
+						if (timerModel.running) {
 							s += i18n("Pause Timer")
 						} else {
 							s += i18n("Start Timer")
@@ -120,11 +71,11 @@ Item {
 				QQC2.ToolTip.visible: hovered
 
 				onClicked: {
-					if (timerTicker.running) {
-						timerTicker.stop()
-					} else if (timerSeconds > 0) {
-						timerTicker.start()
-					} else { // timerSeconds == 0
+					if (timerModel.running) {
+						timerModel.stop()
+					} else if (timerModel.secondsLeft > 0) {
+						timerModel.start()
+					} else { // timerModel.secondsLeft == 0
 						// ignore
 					}
 				}
@@ -144,11 +95,11 @@ Item {
 					onWheel: {
 						var delta = wheel.angleDelta.y || wheel.angleDelta.x
 						if (delta > 0) {
-							setDuration(timerDuration + 60)
-							timerTicker.stop()
+							timerModel.setDuration(timerModel.duration + 60)
+							timerModel.stop()
 						} else if (delta < 0) {
-							setDuration(timerDuration - 60)
-							timerTicker.stop()
+							timerModel.setDuration(timerModel.duration - 60)
+							timerModel.stop()
 						}
 					}
 				}
@@ -211,11 +162,11 @@ Item {
 
 			Repeater {
 				id: defaultTimerRepeater
-				model: defaultTimers
+				model: timerModel.defaultTimers
 
 				TimerPresetButton {
-					text: durationShortFormat(modelData.seconds)
-					onClicked: setDurationAndStart(modelData.seconds)
+					text: timerModel.durationShortFormat(modelData.seconds)
+					onClicked: timerModel.setDurationAndStart(modelData.seconds)
 				}
 			}
 
@@ -244,8 +195,8 @@ Item {
 		id: setTimerViewLoader
 		anchors.fill: parent
 		source: "TimerInputView.qml"
-		active: timerView.setTimerViewVisible
-		opacity: timerView.setTimerViewVisible ? 1 : 0
+		active: timerView.isSetTimerViewVisible
+		opacity: timerView.isSetTimerViewVisible ? 1 : 0
 		visible: opacity > 0
 		Behavior on opacity {
 			NumberAnimation { duration: 200 }
@@ -255,104 +206,13 @@ Item {
 
 	Component.onCompleted: {
 		timerView.forceActiveFocus()
-
-		// Debug in qmlviewer
-		if (typeof popup === 'undefined') {
-			timerView.timerDuration = 3
-			timerRepeats = true
-			sfxEnabled = true
-			timerTicker.start()
-		}
 	}
 
-	Timer {
-		id: timerTicker
-		interval: 1000
-		running: false
-		repeat: true
-
-		onTriggered: {
-			timerView.timerSeconds -= 1
+	Connections {
+		target: timerModel
+		onSecondsLeftChanged: {
+			timerLabel.text = timerModel.formatTimer(timerModel.secondsLeft)
 		}
-	}
-
-	function setDuration(duration) {
-		if (duration <= 0) {
-			return
-		}
-		timerDuration = duration
-		timerSeconds = duration
-	}
-
-	function setDurationAndStart(duration) {
-		setDuration(duration)
-		if (duration > 0) {
-			timerTicker.restart()
-		}
-	}
-
-	onTimerDurationChanged: {
-		timerSeconds = timerDuration
-	}
-
-	onTimerSecondsChanged: {
-		// console.log('onTimerSecondsChanged', timerSeconds)
-		timerLabel.text = formatTimer(timerSeconds)
-
-		if (timerSeconds <= 0) {
-			onTimerFinished()
-		}
-	}
-
-	function formatTimer(nSeconds) {
-		// returns "1:00:00" or "10:00" or "0:01"
-		var hours = Math.floor(nSeconds / 3600)
-		var minutes = Math.floor((nSeconds - hours*3600) / 60)
-		var seconds = nSeconds - hours*3600 - minutes*60
-		var s = "" + (seconds < 10 ? "0" : "") + seconds
-		s = minutes + ":" + s
-		if (hours > 0) {
-			s = hours + ":" + (minutes < 10 ? "0" : "") + s
-		}
-		return s
-	}
-
-	function repeatTimer() {
-		timerSeconds = timerDuration
-		timerTicker.start()
-	}
-
-	function onTimerFinished() {
-		timerTicker.stop()
-		createNotification()
-
-		if (timerRepeats) {
-			repeatTimer()
-		}
-	}
-
-	function createNotification() {
-		var args = {
-			appName: i18n("Timer"),
-			appIcon: "chronometer",
-			summary: i18n("Timer finished"),
-			body: i18n("%1 has passed", formatTimer(timerDuration)),
-			expireTimeout: 2000,
-		}
-		if (timerSfxEnabled) {
-			args.soundFile = plasmoid.configuration.timer_sfx_filepath
-		}
-
-		args.actions = []
-		if (!plasmoid.configuration.timer_repeats) {
-			var action = 'repeat' + ',' + i18n("Repeat")
-			args.actions.push(action)
-		}
-		notificationManager.notify(args, function(actionId){
-			if (actionId == 'repeat') {
-				repeatTimer()
-			}
-		})
 	}
 
 
@@ -397,20 +257,20 @@ Item {
 			menuItem.icon = 'text-field'
 			menuItem.text = i18n("Set Timer")
 			menuItem.clicked.connect(function() {
-				timerView.setTimerViewVisible = true
+				timerView.isSetTimerViewVisible = true
 			})
 			contextMenu.addMenuItem(menuItem)
 
 			//
 			contextMenu.addMenuItem(newSeperator())
 
-			for (var i = 0; i < defaultTimers.length; i++) {
-				var timerSeconds = defaultTimers[i].seconds
+			for (var i = 0; i < timerModel.defaultTimers.length; i++) {
+				var presetItem = timerModel.defaultTimers[i]
 
 				var menuItem = newMenuItem()
 				menuItem.icon = 'chronometer'
-				menuItem.text = durationShortFormat(defaultTimers[i].seconds)
-				menuItem.clicked.connect(timerView.setDurationAndStart.bind(timerView, defaultTimers[i].seconds))
+				menuItem.text = timerModel.durationShortFormat(presetItem.seconds)
+				menuItem.clicked.connect(timerModel.setDurationAndStart.bind(timerModel, presetItem.seconds))
 				contextMenu.addMenuItem(menuItem)
 			}
 

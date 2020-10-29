@@ -26,6 +26,7 @@ Item {
 	property alias agendaModel: agendaModel
 	
 	TimeModel { id: timeModel }
+	TimerModel { id: timerModel }
 	EventModel { id: eventModel }
 	UpcomingEvents { id: upcomingEvents }
 	AgendaModel {

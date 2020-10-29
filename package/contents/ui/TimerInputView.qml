@@ -22,13 +22,13 @@ ColumnLayout {
 
 	function cancel() {
 		timerInputView.reset()
-		timerView.setTimerViewVisible = false
+		timerView.isSetTimerViewVisible = false
 	}
 
 	function start() {
-		console.log('timerInputView.totalSeconds', timerInputView.totalSeconds)
-		timerView.setDurationAndStart(timerInputView.totalSeconds)
-		timerView.setTimerViewVisible = false
+		// console.log('timerInputView.totalSeconds', timerInputView.totalSeconds)
+		timerModel.setDurationAndStart(timerInputView.totalSeconds)
+		timerView.isSetTimerViewVisible = false
 	}
 
 	RowLayout {
