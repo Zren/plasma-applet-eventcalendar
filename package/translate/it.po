@@ -11,7 +11,7 @@ msgstr ""
 "PO-Revision-Date: 2020-11-02 13:30+ZONE\n"
 "Last-Translator: Guido Mazzone <guido.mazzone93@outlook.it>\n"
 "Language-Team: Guido Mazzone <guido.mazzone93@outlook.it>\n"
-"Language: \n"
+"Language: it\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -586,7 +586,7 @@ msgstr "Aggiorna previsioni ogni: "
 
 #: ../contents/ui/config/ConfigWeather.qml
 msgid "Show next "
-msgstr ""
+msgstr "Mostra le prossime "
 
 #: ../contents/ui/config/ConfigWeather.qml
 msgid " hours"
