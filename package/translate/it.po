@@ -1,4 +1,4 @@
-# Translation of eventcalendar in LANGUAGE
+# Translation of eventcalendar in it
 # Copyright (C) 2020
 # This file is distributed under the same license as the eventcalendar package.
 # Guido Mazzone <guido.mazzone93@outlook.it>, 2020.
@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: eventcalendar\n"
 "Report-Msgid-Bugs-To: https://github.com/Zren/plasma-applet-eventcalendar\n"
-"POT-Creation-Date: 2020-10-12 08:58-0100\n"
+"POT-Creation-Date: 2020-11-03 09:30-0500\n"
 "PO-Revision-Date: 2020-11-02 13:30+ZONE\n"
 "Last-Translator: Guido Mazzone <guido.mazzone93@outlook.it>\n"
 "Language-Team: Guido Mazzone <guido.mazzone93@outlook.it>\n"
@@ -368,7 +368,7 @@ msgstr "Mostra/nascondi i widget sopra il calendario. Attiva Agenda/Calendario n
 msgid "Meteogram"
 msgstr "Meteogramma"
 
-#: ../contents/ui/config/ConfigGeneral.qml ../contents/ui/TimerView.qml
+#: ../contents/ui/config/ConfigGeneral.qml ../contents/ui/TimerModel.qml
 msgid "Timer"
 msgstr "Timer"
 
@@ -808,22 +808,34 @@ msgstr "Errore nello scaricamento del meteo."
 msgid "&Start"
 msgstr "&Avvia"
 
-#: ../contents/ui/TimerView.qml
+#: ../contents/ui/TimerModel.qml
 msgctxt "short form for %1 hours"
 msgid "%1h"
 msgstr "%1h"
 
-#: ../contents/ui/TimerView.qml
+#: ../contents/ui/TimerModel.qml
 #, c-format
 msgctxt "short form for %1 minutes"
 msgid "%1m"
 msgstr "%1m"
 
-#: ../contents/ui/TimerView.qml
+#: ../contents/ui/TimerModel.qml
 #, c-format
 msgctxt "short form for %1 seconds"
 msgid "%1s"
 msgstr "%1s"
+
+#: ../contents/ui/TimerModel.qml
+msgid "Timer finished"
+msgstr "Timer finito"
+
+#: ../contents/ui/TimerModel.qml
+msgid "%1 has passed"
+msgstr "Sono passati %1"
+
+#: ../contents/ui/TimerModel.qml ../contents/ui/TimerView.qml
+msgid "Repeat"
+msgstr "Ripeti"
 
 #: ../contents/ui/TimerView.qml
 msgid "Pause Timer"
@@ -838,20 +850,8 @@ msgid "Scroll to add to duration"
 msgstr "Scorri per aumentare o diminuire la durata"
 
 #: ../contents/ui/TimerView.qml
-msgid "Repeat"
-msgstr "Ripeti"
-
-#: ../contents/ui/TimerView.qml
 msgid "Sound"
 msgstr "Suono"
-
-#: ../contents/ui/TimerView.qml
-msgid "Timer finished"
-msgstr "Timer finito"
-
-#: ../contents/ui/TimerView.qml
-msgid "%1 has passed"
-msgstr "Sono passati %1"
 
 #: ../contents/ui/TimerView.qml
 msgid "Set Timer"

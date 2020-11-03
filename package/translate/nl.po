@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: eventcalendar\n"
 "Report-Msgid-Bugs-To: https://github.com/Zren/plasma-applet-eventcalendar\n"
-"POT-Creation-Date: 2020-10-12 08:58-0400\n"
+"POT-Creation-Date: 2020-11-03 09:30-0500\n"
 "PO-Revision-Date: 2020-10-12 16:57+0200\n"
 "Last-Translator: Heimen Stoffels <vistausss@outlook.com>\n"
 "Language-Team: Dutch <kde-i18n-doc@kde.org>\n"
@@ -386,7 +386,7 @@ msgstr ""
 msgid "Meteogram"
 msgstr "Weergrafiek"
 
-#: ../contents/ui/config/ConfigGeneral.qml ../contents/ui/TimerView.qml
+#: ../contents/ui/config/ConfigGeneral.qml ../contents/ui/TimerModel.qml
 msgid "Timer"
 msgstr "Timer"
 
@@ -853,22 +853,34 @@ msgstr "De weerinformatie kan niet worden opgevraagd."
 msgid "&Start"
 msgstr "&Starten"
 
-#: ../contents/ui/TimerView.qml
+#: ../contents/ui/TimerModel.qml
 msgctxt "short form for %1 hours"
 msgid "%1h"
 msgstr "%1u"
 
-#: ../contents/ui/TimerView.qml
+#: ../contents/ui/TimerModel.qml
 #, c-format
 msgctxt "short form for %1 minutes"
 msgid "%1m"
 msgstr "%1m"
 
-#: ../contents/ui/TimerView.qml
+#: ../contents/ui/TimerModel.qml
 #, c-format
 msgctxt "short form for %1 seconds"
 msgid "%1s"
 msgstr "%1s"
+
+#: ../contents/ui/TimerModel.qml
+msgid "Timer finished"
+msgstr "Timer verlopen"
+
+#: ../contents/ui/TimerModel.qml
+msgid "%1 has passed"
+msgstr "%1 is verlopen"
+
+#: ../contents/ui/TimerModel.qml ../contents/ui/TimerView.qml
+msgid "Repeat"
+msgstr "Herhalen"
 
 #: ../contents/ui/TimerView.qml
 msgid "Pause Timer"
@@ -883,20 +895,8 @@ msgid "Scroll to add to duration"
 msgstr "Scroll om de duur te verlengen"
 
 #: ../contents/ui/TimerView.qml
-msgid "Repeat"
-msgstr "Herhalen"
-
-#: ../contents/ui/TimerView.qml
 msgid "Sound"
 msgstr "Geluid"
-
-#: ../contents/ui/TimerView.qml
-msgid "Timer finished"
-msgstr "Timer verlopen"
-
-#: ../contents/ui/TimerView.qml
-msgid "%1 has passed"
-msgstr "%1 is verlopen"
 
 #: ../contents/ui/TimerView.qml
 msgid "Set Timer"

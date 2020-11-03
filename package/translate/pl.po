@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: eventcalendar\n"
 "Report-Msgid-Bugs-To: https://github.com/Zren/plasma-applet-eventcalendar\n"
-"POT-Creation-Date: 2020-10-12 08:58-0400\n"
+"POT-Creation-Date: 2020-11-03 09:30-0500\n"
 "PO-Revision-Date: 2018-09-03 HO:MI+ZONE\n"
 "Last-Translator: Jakub Starzyk <jstarzyk98@gmail.com>\n"
 "Language-Team: Jakub Starzyk <jstarzyk98@gmail.com>\n"
@@ -367,7 +367,7 @@ msgstr "Pokaż/ukryj elementy interfejsu nad kalendarzem. Przełączaj harmonogr
 msgid "Meteogram"
 msgstr "Wykres prognozy pogody"
 
-#: ../contents/ui/config/ConfigGeneral.qml ../contents/ui/TimerView.qml
+#: ../contents/ui/config/ConfigGeneral.qml ../contents/ui/TimerModel.qml
 msgid "Timer"
 msgstr "Minutnik"
 
@@ -807,22 +807,34 @@ msgstr ""
 msgid "&Start"
 msgstr ""
 
-#: ../contents/ui/TimerView.qml
+#: ../contents/ui/TimerModel.qml
 msgctxt "short form for %1 hours"
 msgid "%1h"
 msgstr ""
 
-#: ../contents/ui/TimerView.qml
+#: ../contents/ui/TimerModel.qml
 #, c-format
 msgctxt "short form for %1 minutes"
 msgid "%1m"
 msgstr ""
 
-#: ../contents/ui/TimerView.qml
+#: ../contents/ui/TimerModel.qml
 #, c-format
 msgctxt "short form for %1 seconds"
 msgid "%1s"
 msgstr ""
+
+#: ../contents/ui/TimerModel.qml
+msgid "Timer finished"
+msgstr "Minutnik zakończył odmierzanie"
+
+#: ../contents/ui/TimerModel.qml
+msgid "%1 has passed"
+msgstr "Upłynęło %1"
+
+#: ../contents/ui/TimerModel.qml ../contents/ui/TimerView.qml
+msgid "Repeat"
+msgstr "Powtarzaj"
 
 #: ../contents/ui/TimerView.qml
 msgid "Pause Timer"
@@ -837,20 +849,8 @@ msgid "Scroll to add to duration"
 msgstr "Przewiń, by zmienić czas odmierzania"
 
 #: ../contents/ui/TimerView.qml
-msgid "Repeat"
-msgstr "Powtarzaj"
-
-#: ../contents/ui/TimerView.qml
 msgid "Sound"
 msgstr "Dźwięk"
-
-#: ../contents/ui/TimerView.qml
-msgid "Timer finished"
-msgstr "Minutnik zakończył odmierzanie"
-
-#: ../contents/ui/TimerView.qml
-msgid "%1 has passed"
-msgstr "Upłynęło %1"
 
 #: ../contents/ui/TimerView.qml
 msgid "Set Timer"

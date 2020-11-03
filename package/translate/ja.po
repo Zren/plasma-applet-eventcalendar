@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: eventcalendar\n"
 "Report-Msgid-Bugs-To: https://github.com/Zren/plasma-applet-eventcalendar\n"
-"POT-Creation-Date: 2020-10-12 08:58-0400\n"
+"POT-Creation-Date: 2020-11-03 09:30-0500\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: yamato kobayashi <Kb_yamato@protonmail.com>\n"
 "Language-Team: \n"
@@ -370,7 +370,7 @@ msgstr ""
 msgid "Meteogram"
 msgstr "天気予報マップ"
 
-#: ../contents/ui/config/ConfigGeneral.qml ../contents/ui/TimerView.qml
+#: ../contents/ui/config/ConfigGeneral.qml ../contents/ui/TimerModel.qml
 msgid "Timer"
 msgstr "タイマー"
 
@@ -810,22 +810,34 @@ msgstr "エラー天気を取得できませんでした。"
 msgid "&Start"
 msgstr "＆スタート"
 
-#: ../contents/ui/TimerView.qml
+#: ../contents/ui/TimerModel.qml
 msgctxt "short form for %1 hours"
 msgid "%1h"
 msgstr ""
 
-#: ../contents/ui/TimerView.qml
+#: ../contents/ui/TimerModel.qml
 #, c-format
 msgctxt "short form for %1 minutes"
 msgid "%1m"
 msgstr ""
 
-#: ../contents/ui/TimerView.qml
+#: ../contents/ui/TimerModel.qml
 #, c-format
 msgctxt "short form for %1 seconds"
 msgid "%1s"
 msgstr ""
+
+#: ../contents/ui/TimerModel.qml
+msgid "Timer finished"
+msgstr "タイマーが終了"
+
+#: ../contents/ui/TimerModel.qml
+msgid "%1 has passed"
+msgstr ""
+
+#: ../contents/ui/TimerModel.qml ../contents/ui/TimerView.qml
+msgid "Repeat"
+msgstr "リピート"
 
 #: ../contents/ui/TimerView.qml
 msgid "Pause Timer"
@@ -840,20 +852,8 @@ msgid "Scroll to add to duration"
 msgstr "スクロール期間を追加"
 
 #: ../contents/ui/TimerView.qml
-msgid "Repeat"
-msgstr "リピート"
-
-#: ../contents/ui/TimerView.qml
 msgid "Sound"
 msgstr "音"
-
-#: ../contents/ui/TimerView.qml
-msgid "Timer finished"
-msgstr "タイマーが終了"
-
-#: ../contents/ui/TimerView.qml
-msgid "%1 has passed"
-msgstr ""
 
 #: ../contents/ui/TimerView.qml
 msgid "Set Timer"

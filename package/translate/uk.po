@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: eventcalendar\n"
 "Report-Msgid-Bugs-To: https://github.com/Zren/plasma-applet-eventcalendar\n"
-"POT-Creation-Date: 2020-10-12 08:58-0400\n"
+"POT-Creation-Date: 2020-11-03 09:30-0500\n"
 "PO-Revision-Date: 2017-10-31 20:08+0200\n"
 "Last-Translator: Serhii Golovko <cappelikan@gmail.com>\n"
 "Language-Team: \n"
@@ -386,7 +386,7 @@ msgstr ""
 msgid "Meteogram"
 msgstr "Метеограма"
 
-#: ../contents/ui/config/ConfigGeneral.qml ../contents/ui/TimerView.qml
+#: ../contents/ui/config/ConfigGeneral.qml ../contents/ui/TimerModel.qml
 msgid "Timer"
 msgstr "Таймер"
 
@@ -850,22 +850,34 @@ msgstr ""
 msgid "&Start"
 msgstr ""
 
-#: ../contents/ui/TimerView.qml
+#: ../contents/ui/TimerModel.qml
 msgctxt "short form for %1 hours"
 msgid "%1h"
 msgstr "%1ч"
 
-#: ../contents/ui/TimerView.qml
+#: ../contents/ui/TimerModel.qml
 #, c-format
 msgctxt "short form for %1 minutes"
 msgid "%1m"
 msgstr "%1м"
 
-#: ../contents/ui/TimerView.qml
+#: ../contents/ui/TimerModel.qml
 #, c-format
 msgctxt "short form for %1 seconds"
 msgid "%1s"
 msgstr "%1с"
+
+#: ../contents/ui/TimerModel.qml
+msgid "Timer finished"
+msgstr "Таймер закінчився"
+
+#: ../contents/ui/TimerModel.qml
+msgid "%1 has passed"
+msgstr "%1 пройшло"
+
+#: ../contents/ui/TimerModel.qml ../contents/ui/TimerView.qml
+msgid "Repeat"
+msgstr "Повторити"
 
 #: ../contents/ui/TimerView.qml
 msgid "Pause Timer"
@@ -880,20 +892,8 @@ msgid "Scroll to add to duration"
 msgstr "Прокрутіть, щоб додати тривалість"
 
 #: ../contents/ui/TimerView.qml
-msgid "Repeat"
-msgstr "Повторити"
-
-#: ../contents/ui/TimerView.qml
 msgid "Sound"
 msgstr "Звук"
-
-#: ../contents/ui/TimerView.qml
-msgid "Timer finished"
-msgstr "Таймер закінчився"
-
-#: ../contents/ui/TimerView.qml
-msgid "%1 has passed"
-msgstr "%1 пройшло"
 
 #: ../contents/ui/TimerView.qml
 msgid "Set Timer"

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: eventcalendar\n"
 "Report-Msgid-Bugs-To: https://github.com/Zren/plasma-applet-eventcalendar\n"
-"POT-Creation-Date: 2020-10-12 08:58-0400\n"
+"POT-Creation-Date: 2020-11-03 09:30-0500\n"
 "PO-Revision-Date: 2018-06-07 01:37+0300\n"
 "Last-Translator: Chris P <skylin@protonmail.com>\n"
 "Language-Team: Chris P <skylin@protonmail.com>\n"
@@ -385,7 +385,7 @@ msgstr ""
 msgid "Meteogram"
 msgstr "Μετεωρογράφημα"
 
-#: ../contents/ui/config/ConfigGeneral.qml ../contents/ui/TimerView.qml
+#: ../contents/ui/config/ConfigGeneral.qml ../contents/ui/TimerModel.qml
 msgid "Timer"
 msgstr "Χρονομετρητής"
 
@@ -854,22 +854,34 @@ msgstr ""
 msgid "&Start"
 msgstr ""
 
-#: ../contents/ui/TimerView.qml
+#: ../contents/ui/TimerModel.qml
 msgctxt "short form for %1 hours"
 msgid "%1h"
 msgstr "%1ώ"
 
-#: ../contents/ui/TimerView.qml
+#: ../contents/ui/TimerModel.qml
 #, c-format
 msgctxt "short form for %1 minutes"
 msgid "%1m"
 msgstr "%1λ"
 
-#: ../contents/ui/TimerView.qml
+#: ../contents/ui/TimerModel.qml
 #, c-format
 msgctxt "short form for %1 seconds"
 msgid "%1s"
 msgstr "%1δ"
+
+#: ../contents/ui/TimerModel.qml
+msgid "Timer finished"
+msgstr "Ο χρονομετρητής τελείωσε"
+
+#: ../contents/ui/TimerModel.qml
+msgid "%1 has passed"
+msgstr "%1 έχει παρέλθει"
+
+#: ../contents/ui/TimerModel.qml ../contents/ui/TimerView.qml
+msgid "Repeat"
+msgstr "Επανάληψη"
 
 #: ../contents/ui/TimerView.qml
 msgid "Pause Timer"
@@ -884,20 +896,8 @@ msgid "Scroll to add to duration"
 msgstr "Κύλιση ροδέλας για προσθήκη/αφαίρεση στη διάρκεια"
 
 #: ../contents/ui/TimerView.qml
-msgid "Repeat"
-msgstr "Επανάληψη"
-
-#: ../contents/ui/TimerView.qml
 msgid "Sound"
 msgstr "Ήχος"
-
-#: ../contents/ui/TimerView.qml
-msgid "Timer finished"
-msgstr "Ο χρονομετρητής τελείωσε"
-
-#: ../contents/ui/TimerView.qml
-msgid "%1 has passed"
-msgstr "%1 έχει παρέλθει"
 
 #: ../contents/ui/TimerView.qml
 msgid "Set Timer"
