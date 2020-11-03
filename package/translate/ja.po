@@ -3,7 +3,6 @@
 # This file is distributed under the same license as the eventcalendar package.
 # yamato kobayashi <Kb_yamato@protonmail.com>, 2020.
 #
-#, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: eventcalendar\n"
