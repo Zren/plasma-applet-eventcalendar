@@ -71,17 +71,17 @@ GridLayout {
 			anchors.horizontalCenter: parent.horizontalCenter
 
 			FontIcon {
-				visible: showWeather && plasmoid.configuration.agenda_weather_show_icon
+				visible: showWeather && plasmoid.configuration.agendaWeatherShowIcon
 				color: agendaItemIsToday ? inProgressColor : PlasmaCore.ColorScope.textColor
 				source: weatherIcon
 				height: appletConfig.agendaWeatherIconSize
-				showOutline: plasmoid.configuration.show_outlines
+				showOutline: plasmoid.configuration.showOutlines
 				Layout.fillWidth: true
 			}
 
 			PlasmaComponents3.Label {
 				id: itemWeatherText
-				visible: showWeather && plasmoid.configuration.agenda_weather_show_text
+				visible: showWeather && plasmoid.configuration.agendaWeatherShowText
 				text: weatherText
 				color: agendaItemIsToday ? inProgressColor : PlasmaCore.ColorScope.textColor
 				opacity: agendaItemIsToday ? 1 : 0.75

@@ -25,15 +25,11 @@ ConfigPage {
 	property int indentWidth: 24 * Kirigami.Units.devicePixelRatio
 
 	function setMouseWheelCommands(up, down) {
-		plasmoid.configuration.clock_mousewheel == 'run_commands'
+		plasmoid.configuration.clockMouseWheel == 'run_commands'
 		clockMousewheelGroupRunCommands.checked = true
-		plasmoid.configuration.clock_mousewheel_up = up
-		plasmoid.configuration.clock_mousewheel_down = down
+		plasmoid.configuration.clockMouseWheelUp = up
+		plasmoid.configuration.clockMouseWheelDown = down
 	}
-
-
-
-	//---
 
 	LocaleInstaller {
 		packageName: "org.kde.plasma.eventcalendar"
@@ -51,24 +47,18 @@ ConfigPage {
 
 	ConfigSection {
 		ConfigCheckBox {
-			configKey: 'widget_show_meteogram'
+			configKey: 'widgetShowMeteogram'
 			text: i18n("Meteogram")
 		}
 	}
 
 	ConfigSection {
-		ConfigCheckBox {
-			configKey: 'widget_show_timer'
-			text: i18n("Timer")
-		}
-		RowLayout {
-			Text { width: indentWidth } // indent
-			ConfigSound {
-				label: i18n("SFX:")
-				sfxEnabledKey: 'timer_sfx_enabled'
-				sfxPathKey: 'timer_sfx_filepath'
-				sfxPathDefaultValue: '/usr/share/sounds/freedesktop/stereo/complete.oga'
-			}
+		ConfigNotification {
+			label: i18n("Timer:")
+			notificationEnabledKey: 'widgetShowTimer'
+			sfxEnabledKey: 'timerSfxEnabled'
+			sfxPathKey: 'timerSfxFilepath'
+			sfxPathDefaultValue: '/usr/share/sounds/freedesktop/stereo/complete.oga'
 		}
 	}
 
@@ -100,7 +90,7 @@ ConfigPage {
 		ConfigSection {
 			ConfigFontFamily {
 				id: clockFontFamily
-				configKey: 'clock_fontfamily'
+				configKey: 'clockFontFamily'
 				before: i18n("Font:")
 			}
 
@@ -108,9 +98,9 @@ ConfigPage {
 				Label {
 					text: i18n("Fixed Clock Height: ")
 				}
-				
+
 				ConfigSpinBox {
-					configKey: 'clock_maxheight'
+					configKey: 'clockMaxHeight'
 					suffix: i18n("px")
 					minimumValue: 0
 				}
@@ -131,7 +121,7 @@ ConfigPage {
 				}
 				ConfigString {
 					id: clockTimeFormat
-					configKey: 'clock_timeformat'
+					configKey: 'clockTimeFormat'
 					placeholderText: localeTimeFormat
 				}
 				Label {
@@ -141,7 +131,9 @@ ConfigPage {
 
 			RowLayout {
 				Layout.fillWidth: true
-				Text { width: indentWidth } // indent
+				Text {
+					width: indentWidth
+				} // indent
 				Label {
 					text: i18n("Preset:")
 				}
@@ -167,7 +159,9 @@ ConfigPage {
 
 			RowLayout {
 				Layout.fillWidth: true
-				Text { width: indentWidth } // indent
+				Text {
+					width: indentWidth
+				} // indent
 				Label {
 					text: i18n("Preset:")
 					color: "transparent"
@@ -188,9 +182,11 @@ ConfigPage {
 
 			RowLayout {
 				Layout.fillWidth: true
-				Text { width: indentWidth } // indent
+				Text {
+					width: indentWidth
+				} // indent
 				ConfigCheckBox {
-					configKey: 'clock_line_1_bold'
+					configKey: 'clockLine1Bold'
 					text: i18n("Bold")
 				}
 			}
@@ -200,12 +196,12 @@ ConfigPage {
 			RowLayout {
 				Layout.fillWidth: true
 				ConfigCheckBox {
-					configKey: 'clock_line_2'
+					configKey: 'clockline2'
 					text: i18n("Line 2:")
 				}
 				ConfigString {
 					id: clockTimeFormat2
-					configKey: 'clock_timeformat_2'
+					configKey: 'clockTimeFormat2'
 					placeholderText: localeDateFormat
 				}
 				Label {
@@ -215,7 +211,9 @@ ConfigPage {
 
 			RowLayout {
 				Layout.fillWidth: true
-				Text { width: indentWidth } // indent
+				Text {
+					width: indentWidth
+				} // indent
 				Label {
 					text: i18n("Preset:")
 				}
@@ -251,18 +249,22 @@ ConfigPage {
 
 			RowLayout {
 				Layout.fillWidth: true
-				Text { width: indentWidth } // indent
+				Text {
+					width: indentWidth
+				}
 				ConfigCheckBox {
-					configKey: 'clock_line_2_bold'
+					configKey: 'clockLine2Bold'
 					text: i18n("Bold")
 				}
 			}
 
 			RowLayout {
 				Layout.fillWidth: true
-				Text { width: indentWidth } // indent
+				Text {
+					width: indentWidth
+				}
 				ConfigSlider {
-					configKey: 'clock_line_2_height_ratio'
+					configKey: 'clockLine2HeightRatio'
 					before: i18n("Height:")
 					after: Math.floor(value * 100) + '%'
 					minimumValue: 0.3
@@ -272,42 +274,46 @@ ConfigPage {
 			}
 		}
 
-
-
 		HeaderText {
 			text: i18n("Mouse Wheel")
 			level: 3
 		}
 		ConfigSection {
-			ExclusiveGroup { id: clockMousewheelGroup }
+			ExclusiveGroup {
+				id: clockMousewheelGroup
+			}
 
 			RadioButton {
 				id: clockMousewheelGroupRunCommands
 				text: i18n("Run Commands")
 				exclusiveGroup: clockMousewheelGroup
-				checked: plasmoid.configuration.clock_mousewheel == 'run_commands'
-				onClicked: plasmoid.configuration.clock_mousewheel = 'run_commands'
+				checked: plasmoid.configuration.clockMouseWheel == 'run_commands'
+				onClicked: plasmoid.configuration.clockMouseWheel = 'run_commands'
 			}
 			RowLayout {
 				Layout.fillWidth: true
-				Text { width: indentWidth } // indent
+				Text {
+					width: indentWidth
+				}
 				Label {
 					text: i18n("Scroll Up:")
 				}
 				ConfigString {
 					id: clockMouseWheelUp
-					configKey: 'clock_mousewheel_up'
+					configKey: 'clockMouseWheelUp'
 				}
 			}
 			RowLayout {
 				Layout.fillWidth: true
-				Text { width: indentWidth } // indent
+				Text {
+					width: indentWidth
+				}
 				Label {
 					text: i18n("Scroll Down:")
 				}
 				ConfigString {
 					id: clockMouseWheelDown
-					configKey: 'clock_mousewheel_down'
+					configKey: 'clockMouseWheelDown'
 				}
 			}
 
@@ -315,21 +321,20 @@ ConfigPage {
 				exclusiveGroup: clockMousewheelGroup
 				checked: false
 				text: i18n("Volume (No UI) (amixer)")
-				property string upCommand:   'amixer -q sset Master 10%+'
+				property string upCommand: 'amixer -q sset Master 10%+'
 				property string downCommand: 'amixer -q sset Master 10%-'
 				onClicked: setMouseWheelCommands(upCommand, downCommand)
 			}
-			
+
 			RadioButton {
 				exclusiveGroup: clockMousewheelGroup
 				checked: false
 				text: i18n("Volume (UI) (qdbus)")
-				property string upCommand:   'qdbus org.kde.kglobalaccel /component/kmix invokeShortcut "increase_volume"'
+				property string upCommand: 'qdbus org.kde.kglobalaccel /component/kmix invokeShortcut "increase_volume"'
 				property string downCommand: 'qdbus org.kde.kglobalaccel /component/kmix invokeShortcut "decrease_volume"'
 				onClicked: setMouseWheelCommands(upCommand, downCommand)
 			}
 		}
-
 	}
 
 	HeaderText {

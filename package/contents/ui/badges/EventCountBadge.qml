@@ -17,7 +17,7 @@ Item {
 		height: parent.height / 3
 		width: eventBadgeCountText.width
 		color: {
-			if (plasmoid.configuration.show_outlines) {
+			if (plasmoid.configuration.showOutlines) {
 				var c = Qt.darker(PlasmaCore.ColorScope.backgroundColor, 1) // Cast to color
 				c.a = 0.6 // 60%
 				return c

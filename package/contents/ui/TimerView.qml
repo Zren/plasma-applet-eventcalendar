@@ -119,11 +119,11 @@ Item {
 				
 				PlasmaComponents3.ToolButton {
 					id: timerRepeatsButton
-					readonly property bool isChecked: plasmoid.configuration.timer_repeats // New property to avoid checked=pressed theming.
+					readonly property bool isChecked: plasmoid.configuration.timerRepeats // New property to avoid checked=pressed theming.
 					icon.name: isChecked ? 'media-playlist-repeat' : 'gtk-stop'
 					text: topRow.contentsFit ? i18n("Repeat") : ""
 					onClicked: {
-						plasmoid.configuration.timer_repeats = !isChecked
+						plasmoid.configuration.timerRepeats = !isChecked
 					}
 
 					PlasmaCore.ToolTipArea {
@@ -136,11 +136,11 @@ Item {
 
 				PlasmaComponents3.ToolButton {
 					id: timerSfxEnabledButton
-					readonly property bool isChecked: plasmoid.configuration.timer_sfx_enabled // New property to avoid checked=pressed theming.
+					readonly property bool isChecked: plasmoid.configuration.timerSfxEnabled // New property to avoid checked=pressed theming.
 					icon.name: isChecked ? 'audio-volume-high' : 'dialog-cancel'
 					text: topRow.contentsFit ? i18n("Sound") : ""
 					onClicked: {
-						plasmoid.configuration.timer_sfx_enabled = !isChecked
+						plasmoid.configuration.timerSfxEnabled = !isChecked
 					}
 
 					PlasmaCore.ToolTipArea {
@@ -233,7 +233,7 @@ Item {
 
 			// Repeat
 			var menuItem = newMenuItem()
-			menuItem.icon = plasmoid.configuration.timer_repeats ? 'media-playlist-repeat' : 'gtk-stop'
+			menuItem.icon = plasmoid.configuration.timerRepeats ? 'media-playlist-repeat' : 'gtk-stop'
 			menuItem.text = i18n("Repeat")
 			menuItem.clicked.connect(function() {
 				timerRepeatsButton.clicked()
@@ -242,7 +242,7 @@ Item {
 
 			// Sound
 			var menuItem = newMenuItem()
-			menuItem.icon = plasmoid.configuration.timer_sfx_enabled ? 'audio-volume-high' : 'gtk-stop'
+			menuItem.icon = plasmoid.configuration.timerSfxEnabled ? 'audio-volume-high' : 'gtk-stop'
 			menuItem.text = i18n("Sound")
 			menuItem.clicked.connect(function() {
 				timerSfxEnabledButton.clicked()

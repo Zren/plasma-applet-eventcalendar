@@ -70,10 +70,10 @@ MouseArea {
 	property var eventModel
 	property var agendaModel
 
-	property bool showMeteogram: plasmoid.configuration.widget_show_meteogram
-	property bool showTimer: plasmoid.configuration.widget_show_timer
-	property bool showAgenda: plasmoid.configuration.widget_show_agenda
-	property bool showCalendar: plasmoid.configuration.widget_show_calendar
+	property bool showMeteogram: plasmoid.configuration.widgetShowMeteogram
+	property bool showTimer: plasmoid.configuration.widgetShowTimer
+	property bool showAgenda: plasmoid.configuration.widgetShowAgenda
+	property bool showCalendar: plasmoid.configuration.widgetShowCalendar
 	property bool agendaScrollOnSelect: true
 	property bool agendaScrollOnMonthChange: false
 
@@ -248,7 +248,7 @@ MouseArea {
 			Layout.minimumHeight: popup.topRowHeight
 			Layout.preferredHeight: parent.height / 5
 			visibleDuration: plasmoid.configuration.meteogram_hours
-			showIconOutline: plasmoid.configuration.show_outlines
+			showIconOutline: plasmoid.configuration.showOutlines
 			xAxisScale: 1 / hoursPerDataPoint
 			xAxisLabelEvery: Math.ceil(3 / hoursPerDataPoint)
 			property int hoursPerDataPoint: WeatherApi.getDataPointDuration(plasmoid.configuration)
@@ -296,8 +296,8 @@ MouseArea {
 		MonthView {
 			id: monthView
 			visible: showCalendar
-			borderOpacity: plasmoid.configuration.month_show_border ? 0.25 : 0
-			showWeekNumbers: plasmoid.configuration.month_show_weeknumbers
+			borderOpacity: plasmoid.configuration.monthShowBorder ? 0.25 : 0
+			showWeekNumbers: plasmoid.configuration.monthShowWeekNumbers
 			highlightCurrentDayWeek: plasmoid.configuration.monthHighlightCurrentDayWeek
 
 			Layout.preferredWidth: parent.width/2
@@ -373,8 +373,8 @@ MouseArea {
 			onNewEventFormOpened: {
 				// logger.debug('onNewEventFormOpened')
 				var selectedCalendarId = ""
-				if (plasmoid.configuration.agenda_newevent_remember_calendar) {
-					selectedCalendarId = plasmoid.configuration.agenda_newevent_last_calendar_id
+				if (plasmoid.configuration.agendaNewEventRememberCalendar) {
+					selectedCalendarId = plasmoid.configuration.agendaNewEventLastCalendarId
 				}
 				var calendarList = eventModel.getCalendarList()
 				calendarSelector.populate(calendarList, selectedCalendarId)

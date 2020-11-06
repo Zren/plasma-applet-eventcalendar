@@ -12,13 +12,13 @@ ConfigPage {
 	property int indentWidth: 24 * Kirigami.Units.devicePixelRatio
 
 	ConfigCheckBox {
-		configKey: 'widget_show_agenda'
+		configKey: 'widgetShowAgenda'
 		text: i18n("Show agenda")
 	}
 
 	ConfigSection {
 		ConfigSpinBox {
-			configKey: 'agenda_fontSize'
+			configKey: 'agendaFontSize'
 			before: i18n("Font Size:")
 			suffix: i18n("px")
 			after: i18n(" (0px = <b>System Settings > Fonts > General</b>)")
@@ -28,12 +28,12 @@ ConfigPage {
 	ConfigSection {
 		RowLayout {
 			ConfigCheckBox {
-				configKey: 'agenda_weather_show_icon'
+				configKey: 'agendaWeatherShowIcon'
 				checked: true
 				text: i18n("Weather Icon")
 			}
 			ConfigSlider {
-				configKey: 'agenda_weather_icon_height'
+				configKey: 'agendaWeatherIconHeight'
 				minimumValue: 12
 				maximumValue: 48
 				stepSize: 1
@@ -45,13 +45,13 @@ ConfigPage {
 		RowLayout {
 			Text { width: indentWidth } // Indent
 			ConfigCheckBox {
-				configKey: 'show_outlines'
+				configKey: 'showOutlines'
 				text: i18n("Icon Outline")
 			}
 		}
 
 		ConfigCheckBox {
-			configKey: 'agenda_weather_show_text'
+			configKey: 'agendaWeatherShowText'
 			text: i18n("Weather Text")
 		}
 
@@ -119,7 +119,7 @@ ConfigPage {
 
 	ConfigSection {
 		ConfigRadioButtonGroup {
-			configKey: 'agenda_breakup_multiday_events'
+			configKey: 'agendaBreakupMultidayEvents'
 			label: i18n("Show multi-day events:")
 			model: [
 				{ value: true, text: i18n("On all days") },
@@ -130,7 +130,7 @@ ConfigPage {
 
 	ConfigSection {
 		ConfigCheckBox {
-			configKey: 'agenda_newevent_remember_calendar'
+			configKey: 'agendaNewEventRememberCalendar'
 			text: i18n("Remember selected calendar in New Event Form")
 		}
 	}
@@ -160,7 +160,7 @@ ConfigPage {
 		title: i18n("Colors")
 
 		ConfigColor {
-			configKey: 'agenda_inProgressColor'
+			configKey: 'agendaInProgressColor'
 			label: i18n("In Progress")
 			defaultColor: config.agendaInProgressColorDefault
 		}

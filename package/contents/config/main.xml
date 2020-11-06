@@ -21,68 +21,68 @@
 			<label>Whether the popup should remain open when another window is activated</label>
 			<default>false</default>
 		</entry>
-		<entry name="widget_show_meteogram" type="bool">
+		<entry name="widgetShowMeteogram" type="bool">
 			<default>true</default>
 		</entry>
-		<entry name="widget_show_timer" type="bool">
+		<entry name="widgetShowTimer" type="bool">
 			<default>true</default>
 		</entry>
-		<entry name="widget_show_agenda" type="bool">
+		<entry name="widgetShowAgenda" type="bool">
 			<default>true</default>
 		</entry>
-		<entry name="widget_show_calendar" type="bool">
+		<entry name="widgetShowCalendar" type="bool">
 			<default>true</default>
 		</entry>
-		<entry name="timer_sfx_enabled" type="bool">
+		<entry name="timerSfxEnabled" type="bool">
 			<default>true</default>
 		</entry>
-		<entry name="timer_sfx_filepath" type="string">
+		<entry name="timerSfxFilepath" type="string">
 			<default>/usr/share/sounds/freedesktop/stereo/complete.oga</default>
 		</entry>
-		<entry name="clock_fontfamily" type="string">
+		<entry name="clockFontFamily" type="string">
 			<default></default>
 		</entry>
-		<entry name="clock_timeformat" type="string">
+		<entry name="clockTimeFormat" type="string">
 			<!-- For Testing:  '&lt;font color="#888"&gt;'ddd'&lt;&gt;'d'&lt;/font&gt;' h:m:s'&lt;'AP'&gt;' -->
 			<default></default>
 		</entry>
-		<entry name="clock_timeformat_2" type="string">
+		<entry name="clockTimeFormat2" type="string">
 			<default></default>
 		</entry>
-		<entry name="clock_line_2" type="bool">
+                <entry name="clockLine2" type="bool">
 			<default>false</default>
 		</entry>
-		<entry name="clock_line_2_height_ratio" type="double">
+                <entry name="clockLine2HeightRatio" type="double">
 			<default>0.4</default>
 		</entry>
-		<entry name="clock_line_1_bold" type="bool">
+                <entry name="clockLine1Bold" type="bool">
 			<default>false</default>
 		</entry>
-		<entry name="clock_line_2_bold" type="bool">
+                <entry name="clockLine2Bold" type="bool">
 			<default>false</default>
 		</entry>
-		<entry name="clock_maxheight" type="int">
+                <entry name="clockMaxHeight" type="int">
 			<default>0</default>
 		</entry>
-		<entry name="clock_mousewheel" type="string">
+                <entry name="clockMouseWheel" type="string">
 			<default>run_commands</default>
 		</entry>
-		<entry name="clock_mousewheel_up" type="string">
+                <entry name="clockMouseWheelUp" type="string">
 			<default>qdbus org.kde.kglobalaccel /component/kmix invokeShortcut "increase_volume"</default>
 		</entry>
-		<entry name="clock_mousewheel_down" type="string">
+                <entry name="clockMouseWheelDown" type="string">
 			<default>qdbus org.kde.kglobalaccel /component/kmix invokeShortcut "decrease_volume"</default>
 		</entry>
-		<entry name="timer_repeats" type="bool">
+                <entry name="timerRepeats" type="bool">
 			<default>false</default>
 		</entry>
-		<entry name="timer_in_taskbar" type="bool">
+                <entry name="timerInTaskbar" type="bool"> <!-- Doesn't go anywhere, not used -->
 			<default>false</default>
 		</entry>
-		<entry name="timer_ends_at" type="UInt">
+                <entry name="timerEndsAt" type="UInt"> <!-- Doesn't go anywhere, not used -->
 			<default>0</default>
 		</entry>
-		<entry name="show_outlines" type="bool">
+                <entry name="showOutlines" type="bool">
 			<default>true</default>
 		</entry>
 		<entry name="showBackground" type="bool">
@@ -114,22 +114,22 @@
 	</group>
 	
 	<group name="Calendar">
-		<entry name="month_show_border" type="bool">
+                <entry name="monthShowBorder" type="bool">
 			<default>true</default>
 		</entry>
-		<entry name="month_show_weeknumbers" type="bool">
+                <entry name="monthShowWeekNumbers" type="bool">
 			<default>false</default>
 		</entry>
 		<entry name="monthDayDoubleClick" type="string">
 			<default>GoogleCalWeb</default>
 		</entry>
-		<entry name="month_eventbadge_type" type="string">
+                <entry name="monthEventBadgeType" type="string">
 			<default>theme</default>
 		</entry>
-		<entry name="month_today_style" type="string">
+                <entry name="monthTodayStyle" type="string">
 			<default>theme</default>
 		</entry>
-		<entry name="month_cell_radius" type="double">
+                <entry name="monthCellRadius" type="double">
 			<default>0</default>
 		</entry>
 		<entry name="firstDayOfWeek" type="int">
@@ -151,28 +151,28 @@
 		<entry name="agendaWeatherOnRight" type="bool">
 			<default>false</default>
 		</entry>
-		<entry name="agenda_weather_show_icon" type="bool">
+                <entry name="agendaWeatherShowIcon" type="bool">
 			<default>true</default>
 		</entry>
-		<entry name="agenda_weather_icon_height" type="UInt">
+                <entry name="agendaWeatherIconHeight" type="UInt">
 			<default>24</default>
 		</entry>
-		<entry name="agenda_weather_show_text" type="bool">
+                <entry name="agendaWeatherShowText" type="bool">
 			<default>false</default>
 		</entry>
-		<entry name="agenda_breakup_multiday_events" type="bool">
+                <entry name="agendaBreakupMultidayEvents" type="bool">
 			<default>false</default>
 		</entry>
-		<entry name="agenda_newevent_remember_calendar" type="bool">
+                <entry name="agendaNewEventRememberCalendar" type="bool">
 			<default>true</default>
 		</entry>
-		<entry name="agenda_newevent_last_calendar_id" type="string">
+                <entry name="agendaNewEventLastCalendarId" type="string">
 			<default></default>
 		</entry>
-		<entry name="agenda_inProgressColor" type="string" stringType="color">
+                <entry name="agendaInProgressColor" type="string" stringType="color">
 			<default></default>
 		</entry>
-		<entry name="agenda_fontSize" type="uint">
+                <entry name="agendaFontSize" type="uint">
 			<default>0</default>
 		</entry>
 		<entry name="agendaDaySpacing" type="uint">

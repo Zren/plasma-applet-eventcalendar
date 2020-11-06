@@ -96,11 +96,11 @@ Item {
 				// See: https://doc.qt.io/qt-5/qml-qtquick-wheelevent.html#angleDelta-prop
 				while (wheelDelta >= 120) {
 					wheelDelta -= 120
-					executable.exec(plasmoid.configuration.clock_mousewheel_up)
+					executable.exec(plasmoid.configuration.clockMouseWheelUp)
 				}
 				while (wheelDelta <= -120) {
 					wheelDelta += 120
-					executable.exec(plasmoid.configuration.clock_mousewheel_down)
+					executable.exec(plasmoid.configuration.clockMouseWheelDown)
 				}
 			}
 		}
@@ -120,7 +120,7 @@ Item {
 			return plasmoid.location != PlasmaCore.Types.Floating // && plasmoid.configuration.widget_show_pin
 		}
 		padding: {
-			if (isPinVisible && !(plasmoid.configuration.widget_show_timer || plasmoid.configuration.widget_show_meteogram)) {
+			if (isPinVisible && !(plasmoid.configuration.widgetShowTimer || plasmoid.configuration.widgetShowMeteogram)) {
 				return pinButton.height
 			} else {
 				return 0

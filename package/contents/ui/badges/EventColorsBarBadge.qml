@@ -11,7 +11,7 @@ Item {
 		anchors.bottom: eventColorsBarColor.bottom
 		height: parent.height / 8
 		
-		property bool usePadding: !plasmoid.configuration.month_show_border
+		property bool usePadding: !plasmoid.configuration.monthShowBorder
 		anchors.leftMargin: usePadding ? parent.width/8 : 0
 		anchors.rightMargin: usePadding ? parent.width/8 : 0
 		anchors.bottomMargin: usePadding ? parent.height/16 : 0

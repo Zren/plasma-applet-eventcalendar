@@ -122,8 +122,8 @@ CalendarManager {
 
 	//--- CalendarManager: Event
 	function createEvent(calendarId, date, text) {
-		if (plasmoid.configuration.agenda_newevent_remember_calendar) {
-			plasmoid.configuration.agenda_newevent_last_calendar_id = calendarId
+		if (plasmoid.configuration.agendaNewEventRememberCalendar) {
+			plasmoid.configuration.agendaNewEventLastCalendarId = calendarId
 		}
 
 		var calendarManager = getCalendarManager(calendarId)

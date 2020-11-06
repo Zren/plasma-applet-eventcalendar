@@ -8,7 +8,7 @@ ConfigPage {
 	id: page
 
 	ConfigCheckBox {
-		configKey: 'widget_show_calendar'
+		configKey: 'widgetShowCalendar'
 		text: i18n("Show calendar")
 	}
 
@@ -41,11 +41,11 @@ ConfigPage {
 	}
 	ConfigSection {
 		ConfigCheckBox {
-			configKey: 'month_show_border'
+			configKey: 'monthShowBorder'
 			text: i18n("Show Borders")
 		}
 		ConfigCheckBox {
-			configKey: 'month_show_weeknumbers'
+			configKey: 'monthShowWeekNumbers'
 			text: i18n("Show Week Numbers")
 		}
 		ConfigCheckBox {
@@ -82,7 +82,7 @@ ConfigPage {
 			}
 		}
 		ConfigRadioButtonGroup {
-			configKey: 'month_eventbadge_type'
+			configKey: 'monthEventBadgeType'
 			label: i18n("Event Badge:")
 			model: [
 				{ value: 'theme', text: i18n("Theme") },
@@ -94,7 +94,7 @@ ConfigPage {
 		}
 
 		ConfigSlider {
-			configKey: 'month_cell_radius'
+			configKey: 'monthCellRadius'
 			minimumValue: 0
 			maximumValue: 1
 			before: i18n("Radius:")
@@ -113,7 +113,7 @@ ConfigPage {
 		}
 
 		ConfigRadioButtonGroup {
-			configKey: 'month_today_style'
+			configKey: 'monthTodayStyle'
 			label: i18n("Today:")
 			model: [
 				{ value: 'theme', text: i18n("Solid Color (Inverted)") },

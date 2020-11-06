@@ -5,9 +5,9 @@ QtObject {
 
 	property int secondsLeft: 0
 	property int duration: 0
-	readonly property bool timerRepeats: plasmoid.configuration.timer_repeats
-	readonly property bool timerSfxEnabled: plasmoid.configuration.timer_sfx_enabled
-	readonly property string timerSfxFilepath:  plasmoid.configuration.timer_sfx_filepath
+	readonly property bool timerRepeats: plasmoid.configuration.timerRepeats
+	readonly property bool timerSfxEnabled: plasmoid.configuration.timerSfxEnabled
+	readonly property string timerSfxFilepath:  plasmoid.configuration.timerSfxFilepath
 	property alias running: timerTicker.running
 	property date finished: new Date()
 

@@ -5,7 +5,7 @@ Item {
 	id: dotsBadge
 	property int dotSize: (height / 8) + dotBorderWidth*2
 	property color dotColor: theme.highlightColor
-	property int dotBorderWidth: plasmoid.configuration.show_outlines ? 1 : 0
+	property int dotBorderWidth: plasmoid.configuration.showOutlines ? 1 : 0
 	property color dotBorderColor: theme.backgroundColor
 
 	Row {
