@@ -120,6 +120,9 @@
 		<entry name="month_show_weeknumbers" type="bool">
 			<default>false</default>
 		</entry>
+		<entry name="double_click_option" type="string">
+			<default>googleCalWeb</default>
+		</entry>
 		<entry name="month_eventbadge_type" type="string">
 			<default>theme</default>
 		</entry>
