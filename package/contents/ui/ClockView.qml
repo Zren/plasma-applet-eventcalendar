@@ -32,10 +32,10 @@ Item {
 	property int targetHeight: verticalFixedLineHeight
 
 	property int horizontalHeight: {
-		if (cfg_clockMaxHeight) {
-			return cfg_clockMaxHeight
+		if (cfgClockMaxHeight) {
+			return cfgClockMaxHeight
 		} else {
-			if (cfg_clockline2) {
+			if (cfgClockLine2) {
 				// DigitalClock default
 				var timeHeight = clock.height * 0.56
 				var dateHeight = timeHeight * 0.8
@@ -49,10 +49,10 @@ Item {
 	}
 
 	property int verticalHeight: {
-		if (cfg_clockMaxHeight) {
-			return cfg_clockMaxHeight
+		if (cfgClockMaxHeight) {
+			return cfgClockMaxHeight
 		} else {
-			if (cfg_clockline2) {
+			if (cfgClockLine2) {
 				var timeHeight = verticalFixedLineHeight
 				var dateHeight = timeHeight * 0.8
 				return timeHeight + dateHeight
@@ -66,18 +66,18 @@ Item {
 	property date currentTime: new Date()
 
 	property string clockFontFamily: plasmoid.configuration.clockFontFamily || theme.defaultFont.family
-	property string cfg_clockTimeFormat: plasmoid.configuration.clockTimeFormat
-	property string cfg_clockTimeFormat2: plasmoid.configuration.clockTimeFormat2
-	property bool cfg_clockline2: plasmoid.configuration.clockline2
-	property double cfg_clockLine2HeightRatio: plasmoid.configuration.clockLine2HeightRatio
-	property bool cfg_clockLine1Bold: plasmoid.configuration.clockLine1Bold
-	property bool cfg_clockLine2Bold: plasmoid.configuration.clockLine2Bold
-	property int cfg_clockMaxHeight: plasmoid.configuration.clockMaxHeight
-	property bool cfg_clock_fixedWidth: true // plasmoid.configuration.clock_fixedWidth
+	property string cfgClockTimeFormat: plasmoid.configuration.clockTimeFormat
+	property string cfgClockTimeFormat2: plasmoid.configuration.clockTimeFormat2
+	property bool cfgClockLine2: plasmoid.configuration.clockline2
+	property double cfgClockLine2HeightRatio: plasmoid.configuration.clockLine2HeightRatio
+	property bool cfgClickLine1Bold: plasmoid.configuration.clockLine1Bold
+	property bool cfgClockLine2Bold: plasmoid.configuration.clockLine2Bold
+	property int cfgClockMaxHeight: plasmoid.configuration.clockMaxHeight
+	property bool cfgClockFixedWidth: true // plasmoid.configuration.clockFixedWidth
 
-	// property int lineWidth: cfg_clockline2 ? Math.max(timeLabel.paintedWidth, timeLabel2.paintedWidth) : timeLabel.paintedWidth
-	property int lineHeight2: targetHeight * cfg_clockLine2HeightRatio
-	property int lineHeight1: cfg_clockline2 ? targetHeight - lineHeight2 : targetHeight
+	// property int lineWidth: cfgClockLine2 ? Math.max(timeLabel.paintedWidth, timeLabel2.paintedWidth) : timeLabel.paintedWidth
+	property int lineHeight2: targetHeight * cfgClockLine2HeightRatio
+	property int lineHeight1: cfgClockLine2 ? targetHeight - lineHeight2 : targetHeight
 
 	Column {
 		id: labels
@@ -92,7 +92,7 @@ Item {
 				anchors.centerIn: parent
 
 				font.family: clock.clockFontFamily
-				font.weight: clock.cfg_clockLine1Bold ? Font.Bold : Font.Normal
+				font.weight: clock.cfgClickLine1Bold ? Font.Bold : Font.Normal
 				font.pointSize: -1
 				font.pixelSize: timeContainer1.height
 				minimumPixelSize: 1
@@ -108,8 +108,8 @@ Item {
 				// onPaintedWidthChanged: console.log('timeLabel1.paintedWidth', paintedWidth)
 
 				property string timeFormat: {
-					if (clock.cfg_clockTimeFormat) {
-						return clock.cfg_clockTimeFormat
+					if (clock.cfgClockTimeFormat) {
+						return clock.cfgClockTimeFormat
 					} else {
 						return Qt.locale().timeFormat(Locale.ShortFormat)
 					}
@@ -123,13 +123,13 @@ Item {
 		}
 		Item {
 			id: timeContainer2
-			visible: cfg_clockline2
+			visible: cfgClockLine2
 
 			PlasmaComponents3.Label {
 				id: timeLabel2
 				anchors.centerIn: parent
 				font.family: clock.clockFontFamily
-				font.weight: clock.cfg_clockLine2Bold ? Font.Bold : Font.Normal
+				font.weight: clock.cfgClockLine2Bold ? Font.Bold : Font.Normal
 				font.pointSize: -1
 				font.pixelSize: timeContainer2.height
 				minimumPixelSize: 1
@@ -142,8 +142,8 @@ Item {
 				smooth: true
 
 				property string timeFormat: {
-					if (clock.cfg_clockTimeFormat2) {
-						return clock.cfg_clockTimeFormat2
+					if (clock.cfgClockTimeFormat2) {
+						return clock.cfgClockTimeFormat2
 					} else {
 						return Qt.locale().dateFormat(Locale.ShortFormat)
 					}
@@ -157,8 +157,8 @@ Item {
 		}
 	}
 
-	readonly property real fixedWidth: cfg_clockline2 ? Math.max(timeFormatSizer1.minWidth, timeFormatSizer2.minWidth) : timeFormatSizer1.minWidth
-	// onFixedWidthChanged: console.log('fixedWidth', cfg_clockline2, timeFormatSizer1.minWidth, timeFormatSizer2.minWidth)
+	readonly property real fixedWidth: cfgClockLine2 ? Math.max(timeFormatSizer1.minWidth, timeFormatSizer2.minWidth) : timeFormatSizer1.minWidth
+	// onFixedWidthChanged: console.log('fixedWidth', cfgClockLine2, timeFormatSizer1.minWidth, timeFormatSizer2.minWidth)
 	TimeFormatSizeHelper {
 		id: timeFormatSizer1
 		timeLabel: timeLabel1

@@ -76,10 +76,10 @@
                 <entry name="timerRepeats" type="bool">
 			<default>false</default>
 		</entry>
-                <entry name="timerInTaskbar" type="bool"> <!-- Doesn't go anywhere, not used -->
+                <entry name="timerInTaskbar" type="bool">
 			<default>false</default>
 		</entry>
-                <entry name="timerEndsAt" type="UInt"> <!-- Doesn't go anywhere, not used -->
+                <entry name="timerEndsAt" type="UInt">
 			<default>0</default>
 		</entry>
                 <entry name="showOutlines" type="bool">

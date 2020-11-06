@@ -133,7 +133,7 @@ ConfigPage {
 				Layout.fillWidth: true
 				Text {
 					width: indentWidth
-				} // indent
+				}
 				Label {
 					text: i18n("Preset:")
 				}
@@ -161,7 +161,7 @@ ConfigPage {
 				Layout.fillWidth: true
 				Text {
 					width: indentWidth
-				} // indent
+				}
 				Label {
 					text: i18n("Preset:")
 					color: "transparent"
@@ -184,7 +184,7 @@ ConfigPage {
 				Layout.fillWidth: true
 				Text {
 					width: indentWidth
-				} // indent
+				}
 				ConfigCheckBox {
 					configKey: 'clockLine1Bold'
 					text: i18n("Bold")
@@ -213,7 +213,7 @@ ConfigPage {
 				Layout.fillWidth: true
 				Text {
 					width: indentWidth
-				} // indent
+				}
 				Label {
 					text: i18n("Preset:")
 				}
