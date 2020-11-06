@@ -27,12 +27,12 @@ ConfigPage {
 	ConfigSection {
 		ConfigRadioButtonGroup {
 			id: doubleClickDateGroup
-			label: i18n("DoubleClick Date:")
-			RadioButton {
-				text: i18n("Open New Event In Browser")
-				exclusiveGroup: doubleClickDateGroup.exclusiveGroup
-				checked: true
-			}
+			label: i18n("Double-click on Date:")
+			configKey: 'monthDayDoubleClick'
+			model: [
+				{ value: 'GoogleCalWeb', text: i18n("New Google Calendar Event (Web Browser)")  },
+				{ value: 'DoNothing', text: i18n("Do Nothing") },
+			]
 		}
 	}
 
