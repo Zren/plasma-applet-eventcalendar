@@ -350,15 +350,15 @@ MouseArea {
 			onDayDoubleClicked: {
 				var date = new Date(dayData.yearNumber, dayData.monthNumber-1, dayData.dayNumber)
 				// logger.debug('Popup.monthView.onDoubleClicked', date)
-                var doubleClickOption = plasmoid.configuration.double_click_option
+				var doubleClickOption = plasmoid.configuration.monthDayDoubleClick
 
-                switch (doubleClickOption) {
-                    case 'googleCalWeb':
-                        Shared.openGoogleCalendarNewEventUrl(date)
-                        return
-                    default:
-                        return
-                }
+				switch (doubleClickOption) {
+					case 'GoogleCalWeb':
+						Shared.openGoogleCalendarNewEventUrl(date)
+						return
+					default:
+						return
+				}
 			}
 		} // MonthView
 

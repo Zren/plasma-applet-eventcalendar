@@ -25,15 +25,15 @@ ConfigPage {
 	}
 
 	ConfigSection {
-        ConfigRadioButtonGroup {
-            id: doubleClickDateGroup
-            label: i18n("Double-click on Date:")
-            configKey: 'double_click_option'
-            model: [
-                { value: 'googleCalWeb', text: i18n("Google Calender (Open Web)")  },
-                { value: 'doNothing', text: i18n("Do Nothing") },
-            ]
-        }
+		ConfigRadioButtonGroup {
+			id: doubleClickDateGroup
+			label: i18n("Double-click on Date:")
+			configKey: 'monthDayDoubleClick'
+			model: [
+				{ value: 'GoogleCalWeb', text: i18n("New Google Calendar Event (Web Browser)")  },
+				{ value: 'DoNothing', text: i18n("Do Nothing") },
+			]
+		}
 	}
 
 	HeaderText {
