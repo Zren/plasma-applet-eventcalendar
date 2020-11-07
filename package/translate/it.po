@@ -92,17 +92,17 @@ msgstr "Modifica nel browser"
 #: ../contents/ui/AgendaListItem.qml
 msgctxt "agenda date format line 1"
 msgid "MMM d"
-msgstr ""
+msgstr "d MMM"
 
 #: ../contents/ui/AgendaListItem.qml
 msgctxt "agenda date format line 2"
 msgid "ddd"
-msgstr ""
+msgstr "ddd"
 
 #: ../contents/ui/AgendaTaskItem.qml ../contents/ui/LocaleFuncs.js
 msgctxt "short month+date format"
 msgid "MMM d"
-msgstr ""
+msgstr "d MMM"
 
 #: ../contents/ui/calendars/CalendarManager.qml
 msgctxt "event with no summary"
@@ -131,7 +131,7 @@ msgstr " (0px = <b>Impostazioni di Sistema > Caratteri > Caratteri</b>)"
 
 #: ../contents/ui/config/ConfigAgenda.qml
 msgid "Weather Icon"
-msgstr "Icona meteo"
+msgstr "Icone del meteo"
 
 #: ../contents/ui/config/ConfigAgenda.qml
 msgid "Icon Outline"
@@ -139,7 +139,7 @@ msgstr "Bordo delle icone"
 
 #: ../contents/ui/config/ConfigAgenda.qml
 msgid "Weather Text"
-msgstr "Testo meteo"
+msgstr "Testo del meteo"
 
 #: ../contents/ui/config/ConfigAgenda.qml
 msgid "Position:"
@@ -175,7 +175,7 @@ msgstr "Apri modulo del nuovo evento"
 
 #: ../contents/ui/config/ConfigAgenda.qml
 msgid "Event description"
-msgstr "Descrizione evento"
+msgstr "Descrizione eventi"
 
 #: ../contents/ui/config/ConfigAgenda.qml
 msgid "Hide 'All Day' text"
@@ -199,11 +199,11 @@ msgstr "Mostra eventi di più giorni:"
 
 #: ../contents/ui/config/ConfigAgenda.qml
 msgid "On all days"
-msgstr "Su tutti i giorni"
+msgstr "In tutti i giorni"
 
 #: ../contents/ui/config/ConfigAgenda.qml
 msgid "Only on the first and current day"
-msgstr "Solo sul primo giorno e sul giorno corrente"
+msgstr "Solo nel primo giorno e nel giorno corrente"
 
 #: ../contents/ui/config/ConfigAgenda.qml
 msgid "Remember selected calendar in New Event Form"
@@ -247,7 +247,7 @@ msgstr "Mostra il calendario"
 
 #: ../contents/ui/config/ConfigCalendar.qml
 msgid "Scroll to event in Agenda"
-msgstr "Scorri all'evento in agenda"
+msgstr "Scorri agli eventi in agenda"
 
 #: ../contents/ui/config/ConfigCalendar.qml
 msgid "DoubleClick Date:"
@@ -279,7 +279,7 @@ msgstr "Predefinito"
 
 #: ../contents/ui/config/ConfigCalendar.qml
 msgid "Event Badge:"
-msgstr "Etichetta dell'evento:"
+msgstr "Simbolo di un evento:"
 
 #: ../contents/ui/config/ConfigCalendar.qml
 msgid "Theme"
@@ -438,11 +438,11 @@ msgstr "Esegui comandi"
 
 #: ../contents/ui/config/ConfigGeneral.qml
 msgid "Scroll Up:"
-msgstr "Scorri in alto:"
+msgstr "Scorrimento in alto:"
 
 #: ../contents/ui/config/ConfigGeneral.qml
 msgid "Scroll Down:"
-msgstr "Scorri in basso:"
+msgstr "Scorrimento in basso:"
 
 #: ../contents/ui/config/ConfigGeneral.qml
 msgid "Volume (No UI) (amixer)"
@@ -462,7 +462,7 @@ msgstr "Debugging"
 
 #: ../contents/ui/config/ConfigGeneral.qml
 msgid "Debugging will log sensitive information to:"
-msgstr "Il debugging registrerà le informazioni sensibili a:"
+msgstr "Il debugging registrerà le informazioni importanti in:"
 
 #: ../contents/ui/config/ConfigGeneral.qml
 msgid "Enable Debugging"
@@ -669,7 +669,7 @@ msgstr "Apri link"
 #: ../contents/ui/DateTimeSelector.qml
 msgctxt "event editor date format"
 msgid "d MMM, yyyy"
-msgstr ""
+msgstr "d MMM, yyyy"
 
 #: ../contents/ui/DurationSelector.qml
 msgid "to"
@@ -774,17 +774,17 @@ msgstr "%1mm"
 #: ../contents/ui/MonthView.qml
 msgctxt "calendar title format for current month"
 msgid "MMMM d, yyyy"
-msgstr ""
+msgstr "d MMMM yyyy"
 
 #: ../contents/ui/MonthView.qml
 msgctxt "calendar title format for other months of current year"
 msgid "MMMM"
-msgstr ""
+msgstr "MMMM"
 
 #: ../contents/ui/MonthView.qml
 msgctxt "calendar title format for months not from current year"
 msgid "MMMM, yyyy"
-msgstr ""
+msgstr "MMMM yyyy"
 
 #: ../contents/ui/NewEventForm.qml
 msgid "Eg: 9am-5pm Work"
