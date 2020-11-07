@@ -58,6 +58,7 @@ ConfigPage {
 
 	ConfigSection {
 		ConfigCheckBox {
+			id: widgetShowTimer
 			configKey: 'widget_show_timer'
 			text: i18n("Timer")
 		}
@@ -68,6 +69,7 @@ ConfigPage {
 				sfxEnabledKey: 'timer_sfx_enabled'
 				sfxPathKey: 'timer_sfx_filepath'
 				sfxPathDefaultValue: '/usr/share/sounds/freedesktop/stereo/complete.oga'
+				enabled: widgetShowTimer.checked
 			}
 		}
 	}
