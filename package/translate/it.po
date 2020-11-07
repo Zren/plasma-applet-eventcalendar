@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: eventcalendar\n"
 "Report-Msgid-Bugs-To: https://github.com/Zren/plasma-applet-eventcalendar\n"
-"POT-Creation-Date: 2020-11-03 09:30-0500\n"
+"POT-Creation-Date: 2020-11-07 13:45-0500\n"
 "PO-Revision-Date: 2020-11-02 13:30+ZONE\n"
 "Last-Translator: Guido Mazzone <guido.mazzone93@outlook.it>\n"
 "Language-Team: Guido Mazzone <guido.mazzone93@outlook.it>\n"
@@ -165,7 +165,7 @@ msgstr "Apri le previsioni della città nel browser"
 msgid "Click Date:"
 msgstr "Click su una data:"
 
-#: ../contents/ui/config/ConfigAgenda.qml ../contents/ui/config/ConfigCalendar.qml
+#: ../contents/ui/config/ConfigAgenda.qml
 msgid "Open New Event In Browser"
 msgstr "Apri nuovo evento nel browser"
 
@@ -250,8 +250,16 @@ msgid "Scroll to event in Agenda"
 msgstr "Scorri agli eventi in agenda"
 
 #: ../contents/ui/config/ConfigCalendar.qml
-msgid "DoubleClick Date:"
+msgid "Double-click on Date:"
 msgstr "Doppio click su una data:"
+
+#: ../contents/ui/config/ConfigCalendar.qml
+msgid "New Google Calendar Event (Web Browser)"
+msgstr ""
+
+#: ../contents/ui/config/ConfigCalendar.qml
+msgid "Do Nothing"
+msgstr ""
 
 #: ../contents/ui/config/ConfigCalendar.qml ../contents/ui/config/ConfigWeather.qml
 msgid "Style"
