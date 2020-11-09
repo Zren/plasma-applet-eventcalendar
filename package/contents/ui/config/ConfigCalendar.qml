@@ -42,8 +42,7 @@ ConfigPage {
 	ConfigSection {
 		RowLayout {
 			Layout.fillWidth: true
-			ConfigCheckBox {
-				configKey: 'monthCurrentCustomTitle'
+			Label {
 				text: i18n("Current Month Title:")
 			}
 			ConfigString {
@@ -58,8 +57,7 @@ ConfigPage {
 
 		RowLayout {
 			Layout.fillWidth: true
-			ConfigCheckBox {
-				configKey: 'monthOtherCustomTitle'
+			Label {
 				text: i18n("Other Month Title:")
 			}
 			ConfigString {
@@ -68,7 +66,7 @@ ConfigPage {
 				placeholderText: i18nc("calendar title format not for current month", "MMMM, yyyy")
 			}
 			Label {
-				text: Qt.formatDateTime(new Date(), monthCurrentCustomTitleFormat.value)
+				text: Qt.formatDateTime(new Date(), monthOtherCustomTitleFormat.value)
 			}
 		}
 

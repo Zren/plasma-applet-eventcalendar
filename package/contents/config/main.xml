@@ -114,14 +114,8 @@
 	</group>
 	
 	<group name="Calendar">
-		<entry name="monthCurrentCustomTitle" type="bool">
-			<default>false</default>
-		</entry>
 		<entry name="monthCurrentCustomTitleFormat" type="string">
 			<default></default>
-		</entry>
-		<entry name="monthOtherCustomTitle" type="bool">
-			<default>false</default>
 		</entry>
 		<entry name="monthOtherCustomTitleFormat" type="string">
 			<default></default>

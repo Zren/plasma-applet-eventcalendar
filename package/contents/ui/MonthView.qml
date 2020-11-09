@@ -370,7 +370,7 @@ PinchArea {
 						
 						
 
-						if ( !plasmoid.configuration.monthCurrentCustomTitle ) {
+						if ( !plasmoid.configuration.monthCurrentCustomTitleFormat ) {
 							dateFormat = i18nc("calendar title format for current month", "MMMM d, yyyy")
 						} else {
 							dateFormat = plasmoid.configuration.monthCurrentCustomTitleFormat
@@ -379,14 +379,15 @@ PinchArea {
 						text = Qt.formatDateTime(today, dateFormat)
 						return text
 					} else {
-						if ( !plasmoid.configuration.monthOtherCustomTitle ) {
+
+						if ( !plasmoid.configuration.monthOtherCustomTitleFormat ) {
 							dateFormat = i18nc("calendar title format for other months of current year", "MMMM")
 						} else {
 							dateFormat = plasmoid.configuration.monthOtherCustomTitleFormat
 						}
 					}
 				} else {
-					if ( !plasmoid.configuration.monthOtherCustomTitle ) {
+					if ( !plasmoid.configuration.monthOtherCustomTitleFormat ) {
 						dateFormat = i18nc("calendar title format for months not from current year", "MMMM, yyyy")
 					} else {
 						dateFormat = plasmoid.configuration.monthOtherCustomTitleFormat
