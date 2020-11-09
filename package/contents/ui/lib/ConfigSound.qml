@@ -1,4 +1,4 @@
-// Version 4
+// Version 5
 
 import QtQuick 2.0
 import QtQuick.Controls 1.0
@@ -15,8 +15,11 @@ RowLayout {
 	property alias sfxPathValue: sfxPath.value
 	property alias sfxPathDefaultValue: sfxPath.defaultValue
 
-
-	property var sfxTest: Qt.createQmlObject("import QtMultimedia 5.4; Audio {}", configSound)
+	// Importing QtMultimedia apparently segfaults both OpenSUSE and Kubuntu.
+	// https://github.com/Zren/plasma-applet-eventcalendar/issues/84
+	// https://github.com/Zren/plasma-applet-eventcalendar/issues/167
+	// property var sfxTest: Qt.createQmlObject("import QtMultimedia 5.4; Audio {}", configSound)
+	property var sfxTest: null
 
 	spacing: 0
 	ConfigCheckBox {
