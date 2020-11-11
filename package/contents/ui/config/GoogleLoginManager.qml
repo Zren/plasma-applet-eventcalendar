@@ -12,19 +12,28 @@ Item {
 	}
 
 	// Active Session
-	readonly property string accessToken: plasmoid.configuration.accessToken
+	readonly property bool isLoggedIn: !!plasmoid.configuration.accessToken
+	readonly property bool needsRelog: {
+		if (plasmoid.configuration.accessToken && plasmoid.configuration.latestClientId != plasmoid.configuration.sessionClientId) {
+			return true
+		} else if (!plasmoid.configuration.accessToken && plasmoid.configuration.access_token) {
+			return true
+		} else {
+			return false
+		}
+	}
 
 	// Data
 	property var m_calendarList: ConfigSerializedString {
 		id: m_calendarList
-		configKey: 'calendar_list'
+		configKey: 'calendarList'
 		defaultValue: []
 	}
 	property alias calendarList: m_calendarList.value
 
 	property var m_calendarIdList: ConfigSerializedString {
 		id: m_calendarIdList
-		configKey: 'calendar_id_list'
+		configKey: 'calendarIdList'
 		defaultValue: []
 
 		function serialize() {
@@ -190,7 +199,7 @@ Item {
 		})
 	}
 
-	function reset() {
+	function logout() {
 		plasmoid.configuration.sessionClientId = ''
 		plasmoid.configuration.sessionClientSecret = ''
 		plasmoid.configuration.accessToken = ''

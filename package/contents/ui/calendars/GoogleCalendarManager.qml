@@ -13,7 +13,7 @@ CalendarManager {
 	calendarManagerId: "GoogleCalendar"
 
 	property var session
-	readonly property var calendarIdList: plasmoid.configuration.calendar_id_list ? plasmoid.configuration.calendar_id_list.split(',') : []
+	readonly property var calendarIdList: plasmoid.configuration.calendarIdList ? plasmoid.configuration.calendarIdList.split(',') : []
 
 	onFetchAllCalendars: {
 		fetchGoogleAccountData()
@@ -540,8 +540,8 @@ CalendarManager {
 
 	//--- CalendarManager
 	function getCalendarList() {
-		if (session.accessToken && plasmoid.configuration.calendar_list) {
-			var calendarList = JSON.parse(Qt.atob(plasmoid.configuration.calendar_list))
+		if (session.accessToken && plasmoid.configuration.calendarList) {
+			var calendarList = JSON.parse(Qt.atob(plasmoid.configuration.calendarList))
 			for (var i = 0; i < calendarList.length; i++) {
 				var calendar = calendarList[i]
 				calendar.isTasklist = false

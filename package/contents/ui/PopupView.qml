@@ -4,6 +4,7 @@ import QtQuick.Layouts 1.1
 import org.kde.plasma.core 2.0 as PlasmaCore
 import org.kde.plasma.components 3.0 as PlasmaComponents3
 
+import "lib"
 import "Shared.js" as Shared
 import "../code/WeatherApi.js" as WeatherApi
 
@@ -391,7 +392,7 @@ MouseArea {
 				anchors.margins: PlasmaCore.Units.smallSpacing
 				text: {
 					if (plasmoid.configuration.accessToken && plasmoid.configuration.latestClientId != plasmoid.configuration.sessionClientId) {
-						return i18n("Widget has been updated. Please login to Google Calendar again.")
+						return i18n("Widget has been updated. Please logout and login to Google Calendar again.")
 					} else if (!plasmoid.configuration.accessToken && plasmoid.configuration.access_token) {
 						return i18n("Logged out of Google. Please login again.")
 					} else {
