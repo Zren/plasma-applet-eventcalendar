@@ -174,17 +174,15 @@ ConfigPage {
 					text: i18n("Preset:")
 					color: "transparent"
 				}
-				Button {
+				ColorTextButton {
 					property string dateFormat: '\'<font color="#3daee9">\'MMM d\'</font>\' ' + Qt.locale().timeFormat(Locale.ShortFormat)
-					text: Qt.formatDateTime(new Date(), dateFormat.replace())
+					label: Qt.formatDateTime(new Date(), dateFormat.replace())
 					onClicked: clockTimeFormat.value = dateFormat
-					style: ButtonStyle {}
 				}
-				Button {
+				ColorTextButton {
 					property string dateFormat: '\'<font color="#888">\'ddd<>d\'</font>\' h:mm\'<font color="#888">\'AP\'</font>\''
-					text: Qt.formatDateTime(new Date(), dateFormat.replace())
+					label: Qt.formatDateTime(new Date(), dateFormat.replace())
 					onClicked: clockTimeFormat.value = dateFormat
-					style: ButtonStyle {}
 				}
 			}
 
