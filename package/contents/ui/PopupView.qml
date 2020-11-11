@@ -383,7 +383,25 @@ MouseArea {
 				logger.debug('onSubmitNewEventForm', calendarId)
 				eventModel.createEvent(calendarId, date, text)
 			}
+
+			MessageWidget {
+				anchors.left: parent.left
+				anchors.bottom: parent.bottom
+				anchors.right: refreshButton.left
+				anchors.margins: PlasmaCore.Units.smallSpacing
+				text: {
+					if (plasmoid.configuration.accessToken && plasmoid.configuration.latestClientId != plasmoid.configuration.sessionClientId) {
+						return i18n("Widget has been updated. Please login to Google Calendar again.")
+					} else if (!plasmoid.configuration.accessToken && plasmoid.configuration.access_token) {
+						return i18n("Logged out of Google. Please login again.")
+					} else {
+						return ""
+					}
+				}
+			}
+
 			PlasmaComponents3.Button {
+				id: refreshButton
 				icon.name: 'view-refresh'
 				anchors.bottom: parent.bottom
 				anchors.right: parent.right
