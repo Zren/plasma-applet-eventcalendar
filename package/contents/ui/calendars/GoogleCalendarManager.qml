@@ -29,11 +29,38 @@ CalendarManager {
 	// Events
 
 	//--- Errors
+	function showNetworkError(httpCode, msg, suggestion) {
+		var errorMessage = i18n("HTTP Error %1: %2", httpCode, msg)
+		if (suggestion) {
+			errorMessage += '\n' + suggestion
+		}
+		googleCalendarManager.error(errorMessage)
+	}
 	function handleError(err, data, xhr) {
+		var httpCode = xhr.status
+		if (httpCode === 0) {
+			var msg = i18n("Could not connect")
+			var suggestion = i18n("Will try again soon.")
+			showNetworkError(httpCode, msg, suggestion)
+			return
+		}
+
 		// https://developers.google.com/calendar/v3/errors
 		if (err.error && err.error.errors && err.error.errors.length >= 1) {
+			httpCode = err.error.code
 			var err0 = err.error.errors[0]
-			
+
+			if (httpCode === 401 && err0.reason == 'authError') {
+				var suggestion = i18n("Widget has been updated. Please logout and login to Google Calendar again.")
+				showNetworkError(httpCode, err0.message, suggestion)
+			} else if (httpCode === 403 && err0.domain == 'usageLimits') {
+				var suggestion = i18n("Too many web requests. Will try again soon.")
+				showNetworkError(httpCode, err0.message, suggestion)
+			} else {
+				var suggestion = i18n("Will try again soon.")
+				showNetworkError(httpCode, err0.message, suggestion)
+			}
+			return
 		}
 	}
 
@@ -119,6 +146,7 @@ CalendarManager {
 	function fetchGCalEvents(args, callback) {
 		logger.debug('fetchGCalEvents', args.calendarId)
 
+		// return GoogleCalendarTests.testCouldNotConnect(callback)
 		// return GoogleCalendarTests.testInvalidCredentials(callback)
 		// return GoogleCalendarTests.testDailyLimitExceeded(callback)
 		// return GoogleCalendarTests.testBackendError(callback)

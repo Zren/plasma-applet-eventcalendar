@@ -386,6 +386,7 @@ MouseArea {
 			}
 
 			MessageWidget {
+				id: errorMessageWidget
 				anchors.left: parent.left
 				anchors.bottom: parent.bottom
 				anchors.right: refreshButton.left
@@ -397,6 +398,13 @@ MouseArea {
 						return i18n("Logged out of Google. Please login again.")
 					} else {
 						return ""
+					}
+				}
+
+				Connections {
+					target: eventModel
+					onError: {
+						errorMessageWidget.warn(msg)
 					}
 				}
 			}

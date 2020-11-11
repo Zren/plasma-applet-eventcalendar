@@ -23,6 +23,7 @@ Item {
 	signal eventRemoved(string calendarId, string eventId, var data)
 	signal eventDeleted(string calendarId, string eventId, var data)
 	signal eventUpdated(string calendarId, string eventId, var data)
+	signal error(string msg)
 
 
 	onAsyncRequestsDoneChanged: checkIfDone()

@@ -3,6 +3,13 @@
 // Google Calendar Errors are documented at:
 // https://developers.google.com/calendar/v3/errors
 
+function testCouldNotConnect(callback) {
+	var err = 'HTTP 0'
+	var data = null
+	var xhr = { status: 0 }
+	return callback(err, data, xhr)
+}
+
 function testInvalidCredentials(callback) {
 	var err = {
 		"error": {

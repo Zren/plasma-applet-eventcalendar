@@ -60,6 +60,8 @@ CalendarManager {
 		calendarManager.eventUpdated.connect(eventUpdatedListener)
 		calendarManager.refresh.connect(deferredUpdate.restart)
 
+		calendarManager.error.connect(error)
+
 		calendarManagerList.push(calendarManager)
 	}
 

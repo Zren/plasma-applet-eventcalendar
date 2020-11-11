@@ -111,10 +111,16 @@ Item {
 	function handleWeatherError(funcName, err, data, xhr) {
 		logger.log(funcName + '.err', err, xhr && xhr.status, data)
 		if (xhr && xhr.status === 0) { // Error making connection
-			logic.lastForecastErr = i18n("Could not connect (HTTP Error 0), will try again soon.")
+			var msg = i18n("Could not connect")
+			var errorMessage = i18n("HTTP Error %1: %2", xhr.status, msg)
+			errorMessage += '\n' + i18n("Will try again soon.")
+			logic.lastForecastErr = errorMessage
 		} else if (xhr && xhr.status == 429) {
 			lastForecastAt = Date.now() // If there's an error, don't bother the API for another hour.
-			logic.lastForecastErr = i18n("Weather API limit reached, will try again soon.")
+			var msg = i18n("Weather API limit reached")
+			var errorMessage = i18n("HTTP Error %1: %2", xhr.status, msg)
+			errorMessage += '\n' + i18n("Will try again soon.")
+			logic.lastForecastErr = errorMessage
 		} else {
 			lastForecastAt = Date.now() // If there's an error, don't bother the API for another hour.
 			logic.lastForecastErr = err
