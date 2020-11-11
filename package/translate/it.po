@@ -1,16 +1,16 @@
-# Translation of eventcalendar in it
+# Translation of eventcalendar in Italian
 # Copyright (C) 2020
 # This file is distributed under the same license as the eventcalendar package.
-# Guido Mazzone <guido.mazzone93@outlook.it>, 2020.
+# FIRST AUTHOR Guido Mazzone <guido.mazzone93@outlook.it>, 2020.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: eventcalendar\n"
 "Report-Msgid-Bugs-To: https://github.com/Zren/plasma-applet-eventcalendar\n"
 "POT-Creation-Date: 2020-11-07 13:45-0500\n"
-"PO-Revision-Date: 2020-11-02 13:30+ZONE\n"
+"PO-Revision-Date: 2020-11-07 21:35 (GMT+1)\n"
 "Last-Translator: Guido Mazzone <guido.mazzone93@outlook.it>\n"
-"Language-Team: Guido Mazzone <guido.mazzone93@outlook.it>\n"
+"Language-Team: Italian <guido.mazzone93@outlook.it>\n"
 "Language: it\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -171,7 +171,7 @@ msgstr "Apri nuovo evento nel browser"
 
 #: ../contents/ui/config/ConfigAgenda.qml
 msgid "Open New Event Form"
-msgstr "Apri modulo del nuovo evento"
+msgstr "Apri modulo per il nuovo evento"
 
 #: ../contents/ui/config/ConfigAgenda.qml
 msgid "Event description"
@@ -211,7 +211,7 @@ msgstr "Ricorda il calendario selezionato nel modulo Nuovo Evento"
 
 #: ../contents/ui/config/ConfigAgenda.qml
 msgid "Current Month"
-msgstr "Mese Corrente"
+msgstr "Mese corrente"
 
 #: ../contents/ui/config/ConfigAgenda.qml
 msgid "Always show next 14 days"
@@ -235,11 +235,11 @@ msgstr "In corso"
 
 #: ../contents/ui/config/ConfigAgenda.qml
 msgid "Day Spacing:"
-msgstr "Spazio fra i giorni:"
+msgstr "Spaziatura fra i giorni:"
 
 #: ../contents/ui/config/ConfigAgenda.qml
 msgid "Event Spacing:"
-msgstr "Spazio fra gli eventi:"
+msgstr "Spaziatura fra gli eventi:"
 
 #: ../contents/ui/config/ConfigCalendar.qml
 msgid "Show calendar"
@@ -255,11 +255,11 @@ msgstr "Doppio click su una data:"
 
 #: ../contents/ui/config/ConfigCalendar.qml
 msgid "New Google Calendar Event (Web Browser)"
-msgstr ""
+msgstr "Nuovo evento Google Calendar (browser web)"
 
 #: ../contents/ui/config/ConfigCalendar.qml
 msgid "Do Nothing"
-msgstr ""
+msgstr "Non fare nulla"
 
 #: ../contents/ui/config/ConfigCalendar.qml ../contents/ui/config/ConfigWeather.qml
 msgid "Style"
@@ -295,15 +295,15 @@ msgstr "Tema"
 
 #: ../contents/ui/config/ConfigCalendar.qml
 msgid "Dots (3 Maximum)"
-msgstr "Punti (Massimo 3)"
+msgstr "Punti (massimo 3)"
 
 #: ../contents/ui/config/ConfigCalendar.qml
 msgid "Bottom Bar (Event Color)"
-msgstr "Barra in basso (Colore dell'evento)"
+msgstr "Barra in basso (colore dell'evento)"
 
 #: ../contents/ui/config/ConfigCalendar.qml
 msgid "Bottom Bar (Highlight)"
-msgstr "Barra in basso (Evidenzia)"
+msgstr "Barra in basso (evidenzia)"
 
 #: ../contents/ui/config/ConfigCalendar.qml
 msgid "Count"
@@ -410,7 +410,7 @@ msgstr "Carattere:"
 
 #: ../contents/ui/config/ConfigGeneral.qml
 msgid "Fixed Clock Height: "
-msgstr "Altezza fissata dell'orologio: "
+msgstr "Altezza dell'orologio fissata a: "
 
 #: ../contents/ui/config/ConfigGeneral.qml
 msgid " (0px = scale to fit)"
@@ -498,11 +498,11 @@ msgstr "Visita <a href=\"%1\">%2</a> (si apre nel tuo browser web). Dopo che sei
 
 #: ../contents/ui/config/ConfigGoogleCalendar.qml
 msgid "Copy Link"
-msgstr "Incolla link"
+msgstr "Copia link"
 
 #: ../contents/ui/config/ConfigGoogleCalendar.qml
 msgid "Enter code here (Eg: %1)"
-msgstr "Inserisci il codice qui (Eg: %1)"
+msgstr "Inserisci il codice qui (es: %1)"
 
 #: ../contents/ui/config/ConfigGoogleCalendar.qml
 msgid "Submit"
@@ -510,7 +510,7 @@ msgstr "Invia"
 
 #: ../contents/ui/config/ConfigGoogleCalendar.qml
 msgid "Invalid Google Authorization Code"
-msgstr "Codice Google Authorization non valido"
+msgstr "Codice di autorizzazione Google non valido"
 
 #: ../contents/ui/config/ConfigGoogleCalendar.qml ../contents/ui/config/ConfigICal.qml
 msgid "Calendars"
@@ -522,7 +522,7 @@ msgstr "Aggiorna"
 
 #: ../contents/ui/config/ConfigGoogleCalendar.qml
 msgid "Tasks"
-msgstr "Tasks"
+msgstr "Task"
 
 #: ../contents/ui/config/ConfigICal.qml
 msgid "Add Calendar"
@@ -677,11 +677,11 @@ msgstr "Apri link"
 #: ../contents/ui/DateTimeSelector.qml
 msgctxt "event editor date format"
 msgid "d MMM, yyyy"
-msgstr "d MMM, yyyy"
+msgstr "d MMM yyyy"
 
 #: ../contents/ui/DurationSelector.qml
 msgid "to"
-msgstr "to"
+msgstr ""
 
 #: ../contents/ui/EditEventForm.qml ../contents/ui/EditTaskForm.qml
 msgid "Event Title"
@@ -835,7 +835,7 @@ msgstr "%1s"
 
 #: ../contents/ui/TimerModel.qml
 msgid "Timer finished"
-msgstr "Timer finito"
+msgstr "Tempo scaduto"
 
 #: ../contents/ui/TimerModel.qml
 msgid "%1 has passed"
@@ -847,11 +847,11 @@ msgstr "Ripeti"
 
 #: ../contents/ui/TimerView.qml
 msgid "Pause Timer"
-msgstr "Sospendi il timer"
+msgstr "Sospendi timer"
 
 #: ../contents/ui/TimerView.qml
 msgid "Start Timer"
-msgstr "Avvia il timer"
+msgstr "Avvia timer"
 
 #: ../contents/ui/TimerView.qml
 msgid "Scroll to add to duration"
