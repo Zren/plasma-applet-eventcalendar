@@ -224,10 +224,10 @@
 
 	<group name="Google Calendar">
 		<entry name="latestClientId" type="string">
-			<default>391436299960-o4hchof1u5vq49rdn2nlnlbs295qeqhj.apps.googleusercontent.com</default>
+			<default>391436299960-k0s16nm589meovhoblpcquqgbbrena17.apps.googleusercontent.com</default>
 		</entry>
 		<entry name="latestClientSecret" type="string">
-			<default>Vc4NDEV4PvcKWoSeFwPDJLgo</default>
+			<default>Gdr_7lKIQuGBD4Up3MOiw-7i</default>
 		</entry>
 		<entry name="sessionClientId" type="string">
 			<default></default>
