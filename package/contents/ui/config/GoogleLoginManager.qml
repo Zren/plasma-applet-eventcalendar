@@ -137,9 +137,9 @@ Item {
 
 	function updateCalendarList() {
 		logger.debug('updateCalendarList')
-		logger.debug('accessToken', accessToken)
+		logger.debug('accessToken', plasmoid.configuration.accessToken)
 		fetchGCalCalendars({
-			accessToken: accessToken,
+			accessToken: plasmoid.configuration.accessToken,
 		}, function(err, data, xhr) {
 			// Check for errors
 			if (err || data.error) {
@@ -169,9 +169,9 @@ Item {
 
 	function updateTasklistList() {
 		logger.debug('updateTasklistList')
-		logger.debug('accessToken', accessToken)
+		logger.debug('accessToken', plasmoid.configuration.accessToken)
 		fetchGoogleTasklistList({
-			accessToken: accessToken,
+			accessToken: plasmoid.configuration.accessToken,
 		}, function(err, data, xhr) {
 			// Check for errors
 			if (err || data.error) {
