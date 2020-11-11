@@ -1,4 +1,4 @@
 #!/bin/bash
 
 git pull origin master
-source ./reinstall
+source ./install

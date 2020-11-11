@@ -42,16 +42,24 @@ Some awesome users seemed to have packaged this applet under `plasma5-applets-ev
 
 ## Update to GitHub master
 
-If you're asked to test something, open the Terminal and run the following commands.
+If you're asked to test something, you can do so by installing the latest unreleased code.
+
+Beforehand, uninstall the AUR version if you are running Arch (you can reinstall after testing).
+
+Then install pen the Terminal and run the following commands. Please note the install script will restart plasmashell so that you don't have to relog.
 
 ```
 sudo apt install git
 git clone https://github.com/Zren/plasma-applet-eventcalendar.git eventcalendar
 cd eventcalendar
-sh ./reinstall
+sh ./install --restart
 ```
 
-Please note this script will restart plasmashell (so you don't have to relog)!
+When you've finished testing, you may wish to reinstall the KDE Store or AUR version. First uninstall the widget with the following command, then reinstall your desired version of the widget.
+
+```
+sh ./uninstall
+```
 
 ## Configure
 
