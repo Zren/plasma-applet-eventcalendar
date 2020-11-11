@@ -236,7 +236,7 @@ CalendarManager {
 			tasklistId: tasklistId,
 			// start: googleTasksManager.dateMin.toISOString(),
 			// end: googleTasksManager.dateMax.toISOString(),
-			access_token: session.accessToken,
+			accessToken: session.accessToken,
 		}, function(err, data, xhr) {
 			if (err) {
 				logger.logJSON('onErrorFetchingTasks: ', err)
@@ -306,7 +306,7 @@ CalendarManager {
 		Requests.getJSON({
 			url: url,
 			headers: {
-				"Authorization": "Bearer " + args.access_token,
+				"Authorization": "Bearer " + args.accessToken,
 			}
 		}, function(err, data, xhr) {
 			logger.debug('fetchGCalTasksPage.response', args.tasklistId, err, data, xhr.status)
@@ -339,7 +339,7 @@ CalendarManager {
 	function createEvent_run(calendarId, eventText, callback) {
 		logger.debugJSON(calendarManagerId, 'createEvent_run', calendarId, eventText)
 		createGoogleTask({
-			access_token: session.accessToken,
+			accessToken: session.accessToken,
 			tasklistId: calendarId,
 			title: eventText,
 		}, callback)
@@ -372,7 +372,7 @@ CalendarManager {
 		Requests.postJSON({
 			url: url,
 			headers: {
-				"Authorization": "Bearer " + args.access_token,
+				"Authorization": "Bearer " + args.accessToken,
 			},
 			data: taskData,
 		}, function(err, data, xhr) {

@@ -223,30 +223,51 @@
 
 
 	<group name="Google Calendar">
-		<entry name="client_id" type="string">
+		<entry name="latestClientId" type="string">
 			<default>391436299960-o4hchof1u5vq49rdn2nlnlbs295qeqhj.apps.googleusercontent.com</default>
 		</entry>
-		<entry name="client_secret" type="string">
-			<default>f1gCLratkuT6Af2w86Avcqw1</default>
+		<entry name="latestClientSecret" type="string">
+			<default>Vc4NDEV4PvcKWoSeFwPDJLgo</default>
 		</entry>
-		<entry name="device_code" type="string">
+		<entry name="sessionClientId" type="string">
 			<default></default>
 		</entry>
-		<entry name="user_code" type="string">
+		<entry name="sessionClientSecret" type="string">
 			<default></default>
 		</entry>
-		<entry name="user_code_verification_url" type="string">
+		<entry name="accessToken" type="string">
 			<default></default>
 		</entry>
-		<entry name="user_code_expires_at" type="UInt">
+		<entry name="accessTokenType" type="string">
+			<default></default>
+		</entry>
+		<entry name="accessTokenExpiresAt" type="string">
 			<default>0</default>
 		</entry>
-		<entry name="user_code_interval" type="UInt">
-			<default>0</default>
+		<entry name="refreshToken" type="string">
+			<default></default>
 		</entry>
+		<entry name="calendarList" type="string" stringType="base64json">
+			<default></default>
+		</entry>
+		<entry name="calendarIdList" type="string">
+			<default>primary</default>
+		</entry>
+		<entry name="tasklistList" type="string" stringType="base64json">
+			<default></default>
+		</entry>
+		<entry name="tasklistIdList" type="string">
+			<default></default>
+		</entry>
+		<entry name="eventsPollInterval" type="UInt">
+			<default>20</default>
+		</entry>
+
+		<!-- Deprecated in: v71 -->
 		<entry name="access_token" type="string">
 			<default></default>
 		</entry>
+		<!-- Removed in: v71
 		<entry name="access_token_type" type="string">
 			<default></default>
 		</entry>
@@ -262,15 +283,27 @@
 		<entry name="calendar_id_list" type="string">
 			<default>primary</default>
 		</entry>
-		<entry name="tasklistList" type="string" stringType="base64json">
-			<default></default>
-		</entry>
-		<entry name="tasklistIdList" type="string">
-			<default></default>
-		</entry>
 		<entry name="events_pollinterval" type="UInt">
 			<default>20</default>
 		</entry>
+		-->
+		<!-- Removed in: v62
+		<entry name="device_code" type="string">
+			<default></default>
+		</entry>
+		<entry name="user_code" type="string">
+			<default></default>
+		</entry>
+		<entry name="user_code_verification_url" type="string">
+			<default></default>
+		</entry>
+		<entry name="user_code_expires_at" type="UInt">
+			<default>0</default>
+		</entry>
+		<entry name="user_code_interval" type="UInt">
+			<default>0</default>
+		</entry>
+		-->
 	</group>
 
 	<group name="Weather">

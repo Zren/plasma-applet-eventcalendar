@@ -25,7 +25,7 @@ Item {
 		
 		repeat: true
 		triggeredOnStart: true
-		interval: plasmoid.configuration.events_pollinterval * 60000
+		interval: plasmoid.configuration.eventsPollInterval * 60000
 		onTriggered: logic.update()
 	}
 
@@ -153,8 +153,8 @@ Item {
 		target: plasmoid.configuration
 
 		//--- Events
-		onAccess_tokenChanged: logic.updateEvents()
-		onCalendar_id_listChanged: logic.updateEvents()
+		onAccessTokenChanged: logic.updateEvents()
+		onCalendarIdListChanged: logic.updateEvents()
 		onEnabledCalendarPluginsChanged: logic.updateEvents()
 		onTasklistIdListChanged: logic.updateEvents()
 

@@ -5,12 +5,12 @@ import "../lib/Requests.js" as Requests
 QtObject {
 	id: googleApiSession
 
-	readonly property string accessToken: plasmoid.configuration.access_token
+	readonly property string accessToken: plasmoid.configuration.accessToken
 
 	//--- Refresh Credentials
 	function checkAccessToken(callback) {
 		logger.debug('checkAccessToken')
-		if (plasmoid.configuration.access_token_expires_at < Date.now() + 5000) {
+		if (plasmoid.configuration.accessTokenExpiresAt < Date.now() + 5000) {
 			updateAccessToken(callback)
 		} else {
 			callback(null)
@@ -18,10 +18,10 @@ QtObject {
 	}
 
 	function updateAccessToken(callback) {
-		// logger.debug('access_token_expires_at', plasmoid.configuration.access_token_expires_at)
-		// logger.debug('                    now', Date.now())
-		// logger.debug('refresh_token', plasmoid.configuration.refresh_token)
-		if (plasmoid.configuration.refresh_token) {
+		// logger.debug('accessTokenExpiresAt', plasmoid.configuration.accessTokenExpiresAt)
+		// logger.debug('                 now', Date.now())
+		// logger.debug('refreshToken', plasmoid.configuration.refreshToken)
+		if (plasmoid.configuration.refreshToken) {
 			logger.debug('updateAccessToken')
 			fetchNewAccessToken(function(err, data, xhr) {
 				if (err || (!err && data && data.error)) {
@@ -47,9 +47,9 @@ QtObject {
 	onTransactionError: logger.log(msg)
 
 	function applyAccessToken(data) {
-		plasmoid.configuration.access_token = data.access_token
-		plasmoid.configuration.access_token_type = data.token_type
-		plasmoid.configuration.access_token_expires_at = Date.now() + data.expires_in * 1000
+		plasmoid.configuration.accessToken = data.access_token
+		plasmoid.configuration.accessTokenType = data.token_type
+		plasmoid.configuration.accessTokenExpiresAt = Date.now() + data.expires_in * 1000
 		newAccessToken()
 	}
 
@@ -59,9 +59,9 @@ QtObject {
 		Requests.post({
 			url: url,
 			data: {
-				client_id: plasmoid.configuration.client_id,
-				client_secret: plasmoid.configuration.client_secret,
-				refresh_token: plasmoid.configuration.refresh_token,
+				client_id: plasmoid.configuration.sessionClientId,
+				client_secret: plasmoid.configuration.sessionClientSecret,
+				refresh_token: plasmoid.configuration.refreshToken,
 				grant_type: 'refresh_token',
 			},
 		}, callback)

@@ -97,7 +97,7 @@ CalendarManager {
 			calendarId: calendarId,
 			start: googleCalendarManager.dateMin.toISOString(),
 			end: googleCalendarManager.dateMax.toISOString(),
-			access_token: session.accessToken,
+			accessToken: session.accessToken,
 		}, function(err, data, xhr) {
 			if (err) {
 				logger.logJSON('onErrorFetchingEvents: ', err)
@@ -167,7 +167,7 @@ CalendarManager {
 		Requests.getJSON({
 			url: url,
 			headers: {
-				"Authorization": "Bearer " + args.access_token,
+				"Authorization": "Bearer " + args.accessToken,
 			}
 		}, function(err, data, xhr) {
 			logger.debug('fetchGCalEventsPage.response', args.calendarId, err, data, xhr.status)
@@ -192,7 +192,7 @@ CalendarManager {
 	function fetchGoogleCalendarEvent_run(calendarId, eventId, callback) {
 		logger.debugJSON('fetchGoogleCalendarEvent_run', calendarId, eventId)
 		fetchGCalEvent({
-			access_token: session.accessToken,
+			accessToken: session.accessToken,
 			calendarId: calendarId,
 			eventId: eventId,
 		}, callback)
@@ -209,7 +209,7 @@ CalendarManager {
 		Requests.getJSON({
 			url: url,
 			headers: {
-				"Authorization": "Bearer " + args.access_token,
+				"Authorization": "Bearer " + args.accessToken,
 			}
 		}, function(err, data, xhr) {
 			logger.debug('fetchGCalEvent.response', args.calendarId, args.eventId, err, data, xhr.status)
@@ -291,7 +291,7 @@ CalendarManager {
 	function createEvent_run(calendarId, eventText, callback) {
 		logger.debugJSON(calendarManagerId, 'createEvent_run', calendarId, eventText)
 		createGCalEvent({
-			access_token: session.accessToken,
+			accessToken: session.accessToken,
 			calendarId: calendarId,
 			text: eventText,
 		}, callback)
@@ -319,7 +319,7 @@ CalendarManager {
 		Requests.postJSON({
 			url: url,
 			headers: {
-				"Authorization": "Bearer " + args.access_token,
+				"Authorization": "Bearer " + args.accessToken,
 			},
 			data: "",
 		}, function(err, data, xhr) {
