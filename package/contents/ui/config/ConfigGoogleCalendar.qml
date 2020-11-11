@@ -12,6 +12,12 @@ import "../lib/Requests.js" as Requests
 ConfigPage {
 	id: page
 
+	function alphaColor(c, a) {
+		return Qt.rgba(c.r, c.g, c.b, a)
+	}
+	readonly property color readablePositiveTextColor: Qt.tint(Kirigami.Theme.textColor, alphaColor(Kirigami.Theme.positiveTextColor, 0.5))
+	readonly property color readableNegativeTextColor: Qt.tint(Kirigami.Theme.textColor, alphaColor(Kirigami.Theme.negativeTextColor, 0.5))
+
 	function sortByKey(key, a, b){
 		if (typeof a[key] === "string") {
 			return a[key].toLowerCase().localeCompare(b[key].toLowerCase())
@@ -89,7 +95,7 @@ ConfigPage {
 		Label {
 			Layout.fillWidth: true
 			text: i18n("Currently Synched.")
-			color: "#3c763d"
+			color: readablePositiveTextColor
 			wrapMode: Text.Wrap
 		}
 		Button {
@@ -109,13 +115,13 @@ ConfigPage {
 		Label {
 			Layout.fillWidth: true
 			text: i18n("To sync with Google Calendar")
-			color: "#8a6d3b"
+			color: readableNegativeTextColor
 			wrapMode: Text.Wrap
 		}
 		LinkText {
 			Layout.fillWidth: true
 			text: i18n("Visit <a href=\"%1\">%2</a> (opens in your web browser). After you login and give permission to acess your calendar, it will give you a code to paste below.", googleLoginManager.authorizationCodeUrl, 'https://accounts.google.com/...')
-			color: "#8a6d3b"
+			color: readableNegativeTextColor
 			wrapMode: Text.Wrap
 
 			// Tooltip
