@@ -24,7 +24,7 @@ CalendarManager {
 			plasmoid.configuration.calendarList = metadata['calendarList']
 			plasmoid.configuration.tasklistIdList = metadata['tasklistIdList']
 			plasmoid.configuration.tasklistList = metadata['tasklistList']
-			plasmoid.configuration.agenda_newevent_last_calendar_id = metadata['agenda_newevent_last_calendar_id']
+			plasmoid.configuration.agendaNewEventLastCalendarId = metadata['agendaNewEventLastCalendarId']
 		})
 	}
 

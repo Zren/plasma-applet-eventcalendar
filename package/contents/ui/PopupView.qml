@@ -374,8 +374,8 @@ MouseArea {
 			onNewEventFormOpened: {
 				// logger.debug('onNewEventFormOpened')
 				var selectedCalendarId = ""
-				if (plasmoid.configuration.agenda_newevent_remember_calendar) {
-					selectedCalendarId = plasmoid.configuration.agenda_newevent_last_calendar_id
+				if (plasmoid.configuration.agendaNewEventRememberCalendar) {
+					selectedCalendarId = plasmoid.configuration.agendaNewEventLastCalendarId
 				}
 				var calendarList = eventModel.getCalendarList()
 				calendarSelector.populate(calendarList, selectedCalendarId)

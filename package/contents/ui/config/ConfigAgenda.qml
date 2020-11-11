@@ -130,7 +130,7 @@ ConfigPage {
 
 	ConfigSection {
 		ConfigCheckBox {
-			configKey: 'agenda_newevent_remember_calendar'
+			configKey: 'agendaNewEventRememberCalendar'
 			text: i18n("Remember selected calendar in New Event Form")
 		}
 	}

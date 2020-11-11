@@ -169,10 +169,10 @@
 		<entry name="agenda_breakup_multiday_events" type="bool">
 			<default>false</default>
 		</entry>
-		<entry name="agenda_newevent_remember_calendar" type="bool">
+		<entry name="agendaNewEventRememberCalendar" type="bool">
 			<default>true</default>
 		</entry>
-		<entry name="agenda_newevent_last_calendar_id" type="string">
+		<entry name="agendaNewEventLastCalendarId" type="string">
 			<default></default>
 		</entry>
 		<entry name="agenda_inProgressColor" type="string" stringType="color">
@@ -199,6 +199,14 @@
 		<entry name="agendaPlaceOverdueTasksOnToday" type="bool">
 			<default>true</default>
 		</entry>
+		<!-- Removed in v71
+		<entry name="agenda_newevent_remember_calendar" type="bool">
+			<default>true</default>
+		</entry>
+		<entry name="agenda_newevent_last_calendar_id" type="string">
+			<default></default>
+		</entry>
+		-->
 	</group>
 
 

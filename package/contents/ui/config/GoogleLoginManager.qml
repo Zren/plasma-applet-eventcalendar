@@ -210,7 +210,7 @@ Item {
 		// Delete relevant data
 		// TODO: only target google calendar data
 		// TODO: Make a signal?
-		plasmoid.configuration.agenda_newevent_last_calendar_id = ''
+		plasmoid.configuration.agendaNewEventLastCalendarId = ''
 		calendarList = []
 		calendarIdList = []
 		tasklistList = []
