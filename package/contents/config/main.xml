@@ -249,7 +249,7 @@
 		<entry name="accessTokenType" type="string">
 			<default></default>
 		</entry>
-		<entry name="accessTokenExpiresAt" type="string">
+		<entry name="accessTokenExpiresAt" type="uint">
 			<default>0</default>
 		</entry>
 		<entry name="refreshToken" type="string">
