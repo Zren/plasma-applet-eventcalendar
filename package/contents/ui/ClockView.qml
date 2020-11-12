@@ -66,7 +66,7 @@ Item {
 	property date currentTime: new Date()
 
 	readonly property int fixedHeight: plasmoid.configuration.clockMaxHeight
-	readonly property bool useFixedHeight: fixedHeight >= 0
+	readonly property bool useFixedHeight: fixedHeight > 0
 
 	readonly property bool showLine2: plasmoid.configuration.clockShowLine2
 	readonly property int lineHeight2: targetHeight * plasmoid.configuration.clockLine2HeightRatio
