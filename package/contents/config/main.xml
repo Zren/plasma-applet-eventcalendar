@@ -133,9 +133,6 @@
 		<entry name="clock_maxheight" type="int">
 			<default>0</default>
 		</entry>
-		<entry name="clock_mousewheel" type="string">
-			<default>run_commands</default>
-		</entry>
 		<entry name="clock_mousewheel_up" type="string">
 			<default>qdbus org.kde.kglobalaccel /component/kmix invokeShortcut "increase_volume"</default>
 		</entry>
@@ -146,6 +143,9 @@
 			<default>true</default>
 		</entry>
 		<!-- Removed in: v71
+		<entry name="clock_mousewheel" type="string">
+			<default>run_commands</default>
+		</entry>
 		<entry name="timer_in_taskbar" type="bool">
 			<default>false</default>
 		</entry>

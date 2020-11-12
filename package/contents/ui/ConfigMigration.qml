@@ -29,7 +29,6 @@ QtObject {
 			copy('clock_line_1_bold', 'clockLineBold1')
 			copy('clock_line_2_bold', 'clockLineBold2')
 			copy('clock_maxheight', 'clockMaxHeight')
-			copy('clock_mousewheel', 'clockMouseWheel')
 			copy('clock_mousewheel_up', 'clockMouseWheelUp')
 			copy('clock_mousewheel_down', 'clockMouseWheelDown')
 			copy('show_outlines', 'showOutlines')
