@@ -132,7 +132,7 @@ Dialog {
 		if (q) {
 			chooseCityDialog.loadingCityList = true
 			fetchCityList({
-				app_id: plasmoid.configuration.weather_app_id,
+				appid: plasmoid.configuration.openWeatherMapAppId,
 				q: q,
 			}, function(err, data, xhr) {
 				if (err) return console.log('searchCityList.err', err, xhr && xhr.status, data)
@@ -150,14 +150,14 @@ Dialog {
 	}
 
 	function fetchCityList(args, callback) {
-		if (!args.app_id) return callback('OpenWeatherMap AppId not set')
+		if (!args.appId) return callback('OpenWeatherMap AppId not set')
 		
 		var url = 'https://api.openweathermap.org/data/2.5/'
 		url += 'find?q=' + encodeURIComponent(args.q)
 		url += '&type=like'
 		url += '&sort=population'
 		url += '&cnt=30'
-		url += '&appid=' + args.app_id
+		url += '&appid=' + args.appid
 		Requests.getJSON(url, callback)
 	}
 }

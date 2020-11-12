@@ -61,9 +61,9 @@ Item {
 		property string rainUnits: 'mm'
 
 		property double freezingPoint: {
-			if (plasmoid.configuration.weather_units == "kelvin") {
+			if (plasmoid.configuration.weatherUnits == "kelvin") {
 				return 273.15 // https://en.wikipedia.org/wiki/Kelvin
-			} else if (plasmoid.configuration.weather_units == "imperial") {
+			} else if (plasmoid.configuration.weatherUnits == "imperial") {
 				return 32 // https://en.wikipedia.org/wiki/Fahrenheit
 			} else { // "metric"
 				return 0

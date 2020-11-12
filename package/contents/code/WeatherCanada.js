@@ -11,8 +11,8 @@ http://dd.weatheroffice.ec.gc.ca/citypage_weather/xml/ON/s0000001_e.xml
 */
 
 function weatherIsSetup(config) {
-	if (!!config.weather_canada_city_id) {
-		var matches = /[a-z]{2}-\d+/.exec(config.weather_canada_city_id)
+	if (!!config.weatherCanadaCityId) {
+		var matches = /[a-z]{2}-\d+/.exec(config.weatherCanadaCityId)
 		return !!matches
 	} else {
 		return false
@@ -231,7 +231,7 @@ function parseDailyHtml(html) {
 			}
 
 			// Temps
-			// TODO: check plasmoid.configuration.weather_units == 'imperial' to use farenheit.
+			// TODO: check plasmoid.configuration.weatherUnits == 'imperial' to use farenheit.
 			// TODO: check for 'kelvin' and subtract 273 from metric
 			// TODO: Give a shit
 			if (innerIndex < 7) {
@@ -374,7 +374,7 @@ function getCityUrl(cityId) {
 }
 
 function updateDailyWeather(config, callback) {
-	var url = getCityUrl(config.weather_canada_city_id)
+	var url = getCityUrl(config.weatherCanadaCityId)
 	Requests.request(url, function(err, data, xhr) {
 		if (err) return console.error('WeatherCanada.fetchDailyWeatherForecast.err', err, xhr && xhr.status, data)
 		// console.debug('WeatherCanada.fetchDailyWeatherForecast.response')
@@ -390,7 +390,7 @@ function getCityHourlyUrl(cityId) {
 }
 
 function updateHourlyWeather(config, callback) {
-	var url = getCityHourlyUrl(config.weather_canada_city_id)
+	var url = getCityHourlyUrl(config.weatherCanadaCityId)
 	Requests.request(url, function(err, data, xhr) {
 		if (err) return console.error('WeatherCanada.fetchHourlyWeatherForecast.err', err, xhr && xhr.status, data)
 		// console.debug('WeatherCanada.fetchHourlyWeatherForecast.response')

@@ -20,15 +20,15 @@ QtObject {
 	property color meteogramNegativeTempColorDefault: "#369"
 	property color meteogramIconColorDefault: theme.textColor
 
-	property color meteogramTextColor: plasmoid.configuration.meteogram_textColor || meteogramTextColorDefault
-	property color meteogramScaleColor: plasmoid.configuration.meteogram_gridColor || meteogramScaleColorDefault
-	property color meteogramPrecipitationRawColor: plasmoid.configuration.meteogram_rainColor || meteogramPrecipitationRawColorDefault
+	property color meteogramTextColor: plasmoid.configuration.meteogramTextColor || meteogramTextColorDefault
+	property color meteogramScaleColor: plasmoid.configuration.meteogramGridColor || meteogramScaleColorDefault
+	property color meteogramPrecipitationRawColor: plasmoid.configuration.meteogramRainColor || meteogramPrecipitationRawColorDefault
 	property color meteogramPrecipitationColor: setAlpha(meteogramPrecipitationRawColor, 0.6)
 	property color meteogramPrecipitationTextColor: Qt.tint(meteogramTextColor, setAlpha(meteogramPrecipitationRawColor, 0.3))
 	property color meteogramPrecipitationTextOutlineColor: showIconOutline ? theme.backgroundColor : "transparent"
-	property color meteogramPositiveTempColor: plasmoid.configuration.meteogram_positiveTempColor || meteogramPositiveTempColorDefault
-	property color meteogramNegativeTempColor: plasmoid.configuration.meteogram_negativeTempColor || meteogramNegativeTempColorDefault
-	property color meteogramIconColor: plasmoid.configuration.meteogram_iconColor || meteogramIconColorDefault
+	property color meteogramPositiveTempColor: plasmoid.configuration.meteogramPositiveTempColor || meteogramPositiveTempColorDefault
+	property color meteogramNegativeTempColor: plasmoid.configuration.meteogramNegativeTempColor || meteogramNegativeTempColorDefault
+	property color meteogramIconColor: plasmoid.configuration.meteogramIconColor || meteogramIconColorDefault
 
 	property color agendaInProgressColorDefault: theme.highlightColor
 	property color agendaInProgressColor: plasmoid.configuration.agenda_inProgressColor || agendaInProgressColorDefault

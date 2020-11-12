@@ -15,7 +15,7 @@ ConfigPage {
 
 	ConfigComboBox {
 		id: weatherService
-		configKey: 'weather_service'
+		configKey: 'weatherService'
 
 		model: [
 			{ value: 'OpenWeatherMap', text: 'OpenWeatherMap' },
@@ -30,7 +30,7 @@ ConfigPage {
 				text: i18n("API App Id:")
 			}
 			ConfigString {
-				configKey: 'weather_app_id'
+				configKey: 'openWeatherMapAppId'
 			}
 		}
 
@@ -41,7 +41,7 @@ ConfigPage {
 			}
 			ConfigString {
 				id: weatherCityId
-				configKey: 'weather_city_id'
+				configKey: 'openWeatherMapCityId'
 				placeholderText: i18n("Eg: 5983720")
 			}
 			Button {
@@ -64,7 +64,7 @@ ConfigPage {
 			}
 			ConfigString {
 				id: weatherCanadaCityId
-				configKey: 'weather_canada_city_id'
+				configKey: 'weatherCanadaCityId'
 				placeholderText: i18n("Eg: on-14")
 			}
 			Button {
@@ -87,7 +87,7 @@ ConfigPage {
 
 	ConfigSection {
 		ConfigSpinBox {
-			// configKey: 'weatherPollinterval'
+			// configKey: 'weatherPollInterval'
 			before: i18n("Update forecast every: ")
 			enabled: false
 			value: 60
@@ -103,7 +103,7 @@ ConfigPage {
 
 	ConfigSection {
 		ConfigSpinBox {
-			configKey: 'meteogram_hours'
+			configKey: 'meteogramHours'
 			before: i18n("Show next ")
 			suffix: i18np(" hours", " hours", value)
 			after: i18n(" in the meteogram.")
@@ -115,7 +115,7 @@ ConfigPage {
 
 	ConfigSection {
 		ConfigRadioButtonGroup {
-			configKey: 'weather_units'
+			configKey: 'weatherUnits'
 			label: i18n("Units:")
 			model: [
 				{ value: 'metric', text: i18n("Celsius") },
@@ -132,32 +132,32 @@ ConfigPage {
 	AppletConfig { id: config }
 	ColorGrid {
 		ConfigColor {
-			configKey: 'meteogram_textColor'
+			configKey: 'meteogramTextColor'
 			label: i18n("Text")
 			defaultColor: config.meteogramTextColorDefault
 		}
 		ConfigColor {
-			configKey: 'meteogram_gridColor'
+			configKey: 'meteogramGridColor'
 			label: i18n("Grid")
 			defaultColor: config.meteogramScaleColorDefault
 		}
 		ConfigColor {
-			configKey: 'meteogram_rainColor'
+			configKey: 'meteogramRainColor'
 			label: i18n("Rain")
 			defaultColor: config.meteogramPrecipitationRawColorDefault
 		}
 		ConfigColor {
-			configKey: 'meteogram_positiveTempColor'
+			configKey: 'meteogramPositiveTempColor'
 			label: i18n("Positive Temp")
 			defaultColor: config.meteogramPositiveTempColorDefault
 		}
 		ConfigColor {
-			configKey: 'meteogram_negativeTempColor'
+			configKey: 'meteogramNegativeTempColor'
 			label: i18n("Negative Temp")
 			defaultColor: config.meteogramNegativeTempColorDefault
 		}
 		ConfigColor {
-			configKey: 'meteogram_iconColor'
+			configKey: 'meteogramIconColor'
 			label: i18n("Icons")
 			defaultColor: config.meteogramIconColorDefault
 		}

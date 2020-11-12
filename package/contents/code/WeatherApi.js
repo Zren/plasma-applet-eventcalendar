@@ -5,7 +5,7 @@
 
 /* How many hours each data point represents */
 function getDataPointDuration(config) {
-	var weatherService = config.weather_service
+	var weatherService = config.weatherService
 	if (weatherService == 'OpenWeatherMap') {
 		return 3
 	} else if (weatherService == 'WeatherCanada') {
@@ -17,7 +17,7 @@ function getDataPointDuration(config) {
 
 /* Precipitation units ('mm' or '%') */
 function getRainUnits(config) {
-	var weatherService = config.weather_service
+	var weatherService = config.weatherService
 	if (weatherService == 'OpenWeatherMap') {
 		return 'mm'
 	} else if (weatherService == 'WeatherCanada') {
@@ -29,11 +29,11 @@ function getRainUnits(config) {
 
 /* Open the city's webpage using Qt.openUrlExternally(url) */
 function openCityUrl(config) {
-	var weatherService = config.weather_service
+	var weatherService = config.weatherService
 	if (weatherService == 'OpenWeatherMap') {
-		OpenWeatherMap.openOpenWeatherMapCityUrl(config.weather_city_id)
+		OpenWeatherMap.openOpenWeatherMapCityUrl(config.openWeatherMapCityId)
 	} else if (weatherService == 'WeatherCanada') {
-		Qt.openUrlExternally(WeatherCanada.getCityUrl(config.weather_canada_city_id))
+		Qt.openUrlExternally(WeatherCanada.getCityUrl(config.weatherCanadaCityId))
 	}
 }
 
@@ -63,7 +63,7 @@ function updateDailyWeather(config, callback) {
 	if (!weatherIsSetup(config)) {
 		return callback('Weather configuration not setup')
 	}
-	var weatherService = config.weather_service
+	var weatherService = config.weatherService
 	if (weatherService == 'OpenWeatherMap') {
 		OpenWeatherMap.updateDailyWeather(config, callback)
 	} else if (weatherService == 'WeatherCanada') {
@@ -89,7 +89,7 @@ function updateHourlyWeather(config, callback) {
 	if (!weatherIsSetup(config)) {
 		return callback('Weather configuration not setup')
 	}
-	var weatherService = config.weather_service
+	var weatherService = config.weatherService
 	if (weatherService == 'OpenWeatherMap') {
 		OpenWeatherMap.updateHourlyWeather(config, callback)
 	} else if (weatherService == 'WeatherCanada') {
@@ -99,7 +99,7 @@ function updateHourlyWeather(config, callback) {
 
 /* Return true if all configuration has been setup. */
 function weatherIsSetup(config) {
-	var weatherService = config.weather_service
+	var weatherService = config.weatherService
 	if (weatherService == 'OpenWeatherMap') {
 		return OpenWeatherMap.weatherIsSetup(config)
 	} else if (weatherService == 'WeatherCanada') {

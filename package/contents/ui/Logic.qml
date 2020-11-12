@@ -165,11 +165,11 @@ Item {
 		onTasklistIdListChanged: logic.updateEvents()
 
 		//--- Weather
-		onWeather_serviceChanged: logic.resetWeatherAndUpdate()
-		onWeather_app_idChanged: logic.resetWeatherAndUpdate()
-		onWeather_city_idChanged: logic.resetWeatherAndUpdate()
-		onWeather_canada_city_idChanged: logic.resetWeatherAndUpdate()
-		onWeather_unitsChanged: logic.updateWeather(true)
+		onWeatherServiceChanged: logic.resetWeatherAndUpdate()
+		onOpenWeatherMapAppIdChanged: logic.resetWeatherAndUpdate()
+		onOpenWeatherMapCityIdChanged: logic.resetWeatherAndUpdate()
+		onWeatherCanadaCityIdChanged: logic.resetWeatherAndUpdate()
+		onWeatherUnitsChanged: logic.updateWeather(true)
 		onWidget_show_meteogramChanged: {
 			if (plasmoid.configuration.widget_show_meteogram) {
 				logic.updateHourlyWeather()
@@ -178,7 +178,7 @@ Item {
 
 		//--- UI
 		onAgenda_breakup_multiday_eventsChanged: popup.updateUI()
-		onMeteogram_hoursChanged: popup.updateMeteogram()
+		onMeteogramHoursChanged: popup.updateMeteogram()
 	}
 
 	//---

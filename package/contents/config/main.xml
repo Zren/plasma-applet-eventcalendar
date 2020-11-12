@@ -316,20 +316,57 @@
 
 	<group name="Weather">
 		<!-- OpenWeatherMap -->
+		<entry name="openWeatherMapAppId" type="string">
+			<default>99e575d9aa8a8407bcee7693d5912c6a</default>
+		</entry>
+		<entry name="openWeatherMapCityId" type="uint">
+			<default>0</default>
+		</entry>
+		<!-- WeatherCanada -->
+		<entry name="weatherCanadaCityId" type="string">
+			<default></default>
+		</entry>
+
+		<!-- Settings -->
+		<entry name="weatherService" type="string">
+			<!-- enum: OpenWeatherMap, WeatherCanada -->
+			<default>OpenWeatherMap</default>
+		</entry>
+		<entry name="weatherUnits" type="string">
+			<default>metric</default>
+		</entry>
+		<entry name="meteogramHours" type="uint">
+			<default>30</default>
+		</entry>
+		<entry name="meteogramTextColor" type="string" stringType="color">
+			<default></default>
+		</entry>
+		<entry name="meteogramGridColor" type="string" stringType="color">
+			<default></default>
+		</entry>
+		<entry name="meteogramRainColor" type="string" stringType="color">
+			<default></default>
+		</entry>
+		<entry name="meteogramPositiveTempColor" type="string" stringType="color">
+			<default></default>
+		</entry>
+		<entry name="meteogramNegativeTempColor" type="string" stringType="color">
+			<default></default>
+		</entry>
+		<entry name="meteogramIconColor" type="string" stringType="color">
+			<default></default>
+		</entry>
+		<!-- Removed in: v71
 		<entry name="weather_app_id" type="string">
 			<default>99e575d9aa8a8407bcee7693d5912c6a</default>
 		</entry>
 		<entry name="weather_city_id" type="uint">
 			<default>0</default>
 		</entry>
-		<!-- WeatherCanada -->
 		<entry name="weather_canada_city_id" type="string">
 			<default></default>
 		</entry>
-
-		<!-- Settings -->
 		<entry name="weather_service" type="string">
-			<!-- enum: OpenWeatherMap, WeatherCanada -->
 			<default>OpenWeatherMap</default>
 		</entry>
 		<entry name="weather_units" type="string">
@@ -356,6 +393,7 @@
 		<entry name="meteogram_iconColor" type="string" stringType="color">
 			<default></default>
 		</entry>
+		-->
 	</group>
 
 </kcfg>

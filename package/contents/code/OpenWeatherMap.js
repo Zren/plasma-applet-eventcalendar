@@ -3,7 +3,7 @@
 .import "../ui/lib/Requests.js" as Requests
 
 function weatherIsSetup(config) {
-	return !!config.weather_city_id
+	return !!config.openWeatherMapCityId
 }
 
 function openOpenWeatherMapCityUrl(cityId) {
@@ -13,28 +13,28 @@ function openOpenWeatherMapCityUrl(cityId) {
 }
 
 function fetchHourlyWeatherForecast(args, callback) {
-	if (!args.app_id) return callback('OpenWeatherMap AppId not set')
-	if (!args.city_id) return callback('OpenWeatherMap CityId not set')
+	if (!args.appId) return callback('OpenWeatherMap AppId not set')
+	if (!args.cityId) return callback('OpenWeatherMap CityId not set')
 
 	// return testRateLimitError(callback)
 
 	var url = 'https://api.openweathermap.org/data/2.5/'
-	url += 'forecast?id=' + args.city_id
+	url += 'forecast?id=' + args.cityId
 	url += '&units=' + (args.units || 'metric')
-	url += '&appid=' + args.app_id
+	url += '&appid=' + args.appId
 	Requests.getJSON(url, callback)
 }
 
 function fetchDailyWeatherForecast(args, callback) {
-	if (!args.app_id) return callback('OpenWeatherMap AppId not set')
-	if (!args.city_id) return callback('OpenWeatherMap CityId not set')
+	if (!args.appId) return callback('OpenWeatherMap AppId not set')
+	if (!args.cityId) return callback('OpenWeatherMap CityId not set')
 
 	// return testRateLimitError(callback)
 
 	var url = 'https://api.openweathermap.org/data/2.5/'
-	url += 'forecast/daily?id=' + args.city_id
+	url += 'forecast/daily?id=' + args.cityId
 	url += '&units=' + (args.units || 'metric')
-	url += '&appid=' + args.app_id
+	url += '&appid=' + args.appId
 	Requests.getJSON(url, callback)
 }
 
@@ -105,9 +105,9 @@ function handleError(funcName, callback, err, data, xhr) {
 function updateDailyWeather(config, callback) {
 	console.debug('OpenWeatherMap.fetchDailyWeatherForecast')
 	fetchDailyWeatherForecast({
-		app_id: config.weather_app_id,
-		city_id: config.weather_city_id,
-		units: config.weather_units,
+		appId: config.openWeatherMapAppId,
+		cityId: config.openWeatherMapCityId,
+		units: config.weatherUnits,
 	}, function(err, data, xhr) {
 		if (err) return handleError('OpenWeatherMap.fetchDailyWeatherForecast', callback, err, data, xhr)
 		// console.debug('OpenWeatherMap.fetchDailyWeatherForecast.response')
@@ -122,9 +122,9 @@ function updateDailyWeather(config, callback) {
 function updateHourlyWeather(config, callback) {
 	console.debug('OpenWeatherMap.fetchHourlyWeatherForecast')
 	fetchHourlyWeatherForecast({
-		app_id: config.weather_app_id,
-		city_id: config.weather_city_id,
-		units: config.weather_units,
+		appId: config.openWeatherMapAppId,
+		cityId: config.openWeatherMapCityId,
+		units: config.weatherUnits,
 	}, function(err, data, xhr) {
 		if (err) return handleError('updateHourlyWeather', callback, err, data, xhr)
 		// console.debug('OpenWeatherMap.fetchHourlyWeatherForecast.response')
