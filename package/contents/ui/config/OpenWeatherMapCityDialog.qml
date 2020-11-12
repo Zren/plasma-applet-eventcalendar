@@ -132,7 +132,7 @@ Dialog {
 		if (q) {
 			chooseCityDialog.loadingCityList = true
 			fetchCityList({
-				appid: plasmoid.configuration.openWeatherMapAppId,
+				appId: plasmoid.configuration.openWeatherMapAppId,
 				q: q,
 			}, function(err, data, xhr) {
 				if (err) return console.log('searchCityList.err', err, xhr && xhr.status, data)
@@ -157,7 +157,7 @@ Dialog {
 		url += '&type=like'
 		url += '&sort=population'
 		url += '&cnt=30'
-		url += '&appid=' + args.appid
+		url += '&appid=' + args.appId
 		Requests.getJSON(url, callback)
 	}
 }
