@@ -251,7 +251,7 @@ ListModel {
 
 		for (var i = 0; i < data.items.length; i++) {
 			var eventItem = data.items[i]
-			if (plasmoid.configuration.agenda_breakup_multiday_events) {
+			if (plasmoid.configuration.agendaBreakupMultiDayEvents) {
 				// for Max(start, visibleMin) .. Min(end, visibleMax)
 				var lowerLimitDate = (agendaModel.clipEventsOutsideLimits && eventItem.startDateTime < agendaModel.visibleDateMin
 					? agendaModel.visibleDateMin
@@ -330,7 +330,7 @@ ListModel {
 
 		// Make sure the agendaItemList is sorted.
 		// When we have a in-progress multiday event on the current date,
-		// and agenda_breakup_multiday_events is false, the current date agendaItem is
+		// and agendaBreakupMultiDayEvents is false, the current date agendaItem is
 		// out of order since the agendaItem is inserted earlier.
 		agendaItemList.sort(function(a,b) { return a.date - b.date })
 

@@ -18,7 +18,7 @@ ConfigPage {
 
 	ConfigSection {
 		ConfigSpinBox {
-			configKey: 'agenda_fontSize'
+			configKey: 'agendaFontSize'
 			before: i18n("Font Size:")
 			suffix: i18n("px")
 			after: i18n(" (0px = <b>System Settings > Fonts > General</b>)")
@@ -28,12 +28,12 @@ ConfigPage {
 	ConfigSection {
 		RowLayout {
 			ConfigCheckBox {
-				configKey: 'agenda_weather_show_icon'
+				configKey: 'agendaWeatherShowIcon'
 				checked: true
 				text: i18n("Weather Icon")
 			}
 			ConfigSlider {
-				configKey: 'agenda_weather_icon_height'
+				configKey: 'agendaWeatherIconHeight'
 				minimumValue: 12
 				maximumValue: 48
 				stepSize: 1
@@ -51,7 +51,7 @@ ConfigPage {
 		}
 
 		ConfigCheckBox {
-			configKey: 'agenda_weather_show_text'
+			configKey: 'agendaWeatherShowText'
 			text: i18n("Weather Text")
 		}
 
@@ -119,7 +119,7 @@ ConfigPage {
 
 	ConfigSection {
 		ConfigRadioButtonGroup {
-			configKey: 'agenda_breakup_multiday_events'
+			configKey: 'agendaBreakupMultiDayEvents'
 			label: i18n("Show multi-day events:")
 			model: [
 				{ value: true, text: i18n("On all days") },
@@ -160,7 +160,7 @@ ConfigPage {
 		title: i18n("Colors")
 
 		ConfigColor {
-			configKey: 'agenda_inProgressColor'
+			configKey: 'agendaInProgressColor'
 			label: i18n("In Progress")
 			defaultColor: config.agendaInProgressColorDefault
 		}

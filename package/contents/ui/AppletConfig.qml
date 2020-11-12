@@ -39,17 +39,17 @@ QtObject {
 
 	property color agendaHoverBackground: alternateBackgroundColor
 	property color agendaInProgressColorDefault: theme.highlightColor
-	property color agendaInProgressColor: plasmoid.configuration.agenda_inProgressColor || agendaInProgressColorDefault
+	property color agendaInProgressColor: plasmoid.configuration.agendaInProgressColor || agendaInProgressColorDefault
 
 	property int agendaColumnSpacing: 10 * units.devicePixelRatio
 	property int agendaDaySpacing: plasmoid.configuration.agendaDaySpacing * units.devicePixelRatio
 	property int agendaEventSpacing: plasmoid.configuration.agendaEventSpacing * units.devicePixelRatio
 	property int agendaWeatherColumnWidth: 60 * units.devicePixelRatio
-	property int agendaWeatherIconSize: plasmoid.configuration.agenda_weather_icon_height * units.devicePixelRatio
+	property int agendaWeatherIconSize: plasmoid.configuration.agendaWeatherIconHeight * units.devicePixelRatio
 	property int agendaDateColumnWidth: 50 * units.devicePixelRatio + agendaColumnSpacing * 2
 	property int eventIndicatorWidth: 2 * units.devicePixelRatio
 
-	property int agendaFontSize:  plasmoid.configuration.agenda_fontSize == 0 ? theme.defaultFont.pixelSize : plasmoid.configuration.agenda_fontSize * units.devicePixelRatio
+	property int agendaFontSize: plasmoid.configuration.agendaFontSize == 0 ? theme.defaultFont.pixelSize : plasmoid.configuration.agendaFontSize * units.devicePixelRatio
 
 	property int timerClockFontHeight: 40 * units.devicePixelRatio
 	property int timerButtonWidth: 48 * units.devicePixelRatio

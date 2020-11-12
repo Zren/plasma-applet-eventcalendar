@@ -177,7 +177,7 @@ Item {
 		}
 
 		//--- UI
-		onAgenda_breakup_multiday_eventsChanged: popup.updateUI()
+		onAgendaBreakupMultiDayEventsChanged: popup.updateUI()
 		onMeteogramHoursChanged: popup.updateMeteogram()
 	}
 
