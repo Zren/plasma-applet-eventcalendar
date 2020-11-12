@@ -65,10 +65,12 @@ QtObject {
 		configKey: 'icalCalendarList'
 	}
 
+	property string clockFontFamily: plasmoid.configuration.clockFontFamily || theme.defaultFont.family
+
 	readonly property string localeTimeFormat: Qt.locale().timeFormat(Locale.ShortFormat)
 	readonly property string localeDateFormat: Qt.locale().dateFormat(Locale.ShortFormat)
-	readonly property string line1TimeFormat: plasmoid.configuration.clock_timeformat || localeTimeFormat
-	readonly property string line2TimeFormat: plasmoid.configuration.clock_timeformat_2 || localeDateFormat
+	readonly property string line1TimeFormat: plasmoid.configuration.clockTimeFormat1 || localeTimeFormat
+	readonly property string line2TimeFormat: plasmoid.configuration.clockTimeFormat2 || localeDateFormat
 	readonly property string combinedFormat: {
 		if (plasmoid.configuration.clock_line_2) {
 			return line1TimeFormat + '\n' + line2TimeFormat

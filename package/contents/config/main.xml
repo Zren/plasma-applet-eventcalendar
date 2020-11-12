@@ -32,14 +32,14 @@
 		<entry name="timerRepeasts" type="bool">
 			<default>false</default>
 		</entry>
-		<entry name="clock_fontfamily" type="string">
+		<entry name="clockFontFamily" type="string">
 			<default></default>
 		</entry>
-		<entry name="clock_timeformat" type="string">
+		<entry name="clockTimeFormat1" type="string">
 			<!-- For Testing:  '&lt;font color="#888"&gt;'ddd'&lt;&gt;'d'&lt;/font&gt;' h:m:s'&lt;'AP'&gt;' -->
 			<default></default>
 		</entry>
-		<entry name="clock_timeformat_2" type="string">
+		<entry name="clockTimeFormat2" type="string">
 			<default></default>
 		</entry>
 		<entry name="clock_line_2" type="bool">
@@ -111,6 +111,15 @@
 		</entry>
 		<entry name="timer_ends_at" type="uint">
 			<default>0</default>
+		</entry>
+		<entry name="clock_fontfamily" type="string">
+			<default></default>
+		</entry>
+		<entry name="clock_timeformat" type="string">
+			<default></default>
+		</entry>
+		<entry name="clock_timeformat_2" type="string">
+			<default></default>
 		</entry>
 		-->
 		<!-- Removed in: v33

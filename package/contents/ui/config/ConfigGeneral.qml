@@ -102,7 +102,7 @@ ConfigPage {
 		ConfigSection {
 			ConfigFontFamily {
 				id: clockFontFamily
-				configKey: 'clock_fontfamily'
+				configKey: 'clockFontFamily'
 				before: i18n("Font:")
 			}
 
@@ -133,7 +133,7 @@ ConfigPage {
 				}
 				ConfigString {
 					id: clockTimeFormat
-					configKey: 'clock_timeformat'
+					configKey: 'clockTimeFormat1'
 					placeholderText: localeTimeFormat
 				}
 				Label {
@@ -205,7 +205,7 @@ ConfigPage {
 				}
 				ConfigString {
 					id: clockTimeFormat2
-					configKey: 'clock_timeformat_2'
+					configKey: 'clockTimeFormat2'
 					placeholderText: localeDateFormat
 				}
 				Label {

@@ -65,9 +65,6 @@ Item {
 
 	property date currentTime: new Date()
 
-	property string clock_fontfamily: plasmoid.configuration.clock_fontfamily || theme.defaultFont.family
-	property string cfg_clock_timeformat: plasmoid.configuration.clock_timeformat
-	property string cfg_clock_timeformat_2: plasmoid.configuration.clock_timeformat_2
 	property bool cfg_clock_line_2: plasmoid.configuration.clock_line_2
 	property double cfg_clock_line_2_height_ratio: plasmoid.configuration.clock_line_2_height_ratio
 	property bool cfg_clock_line_1_bold: plasmoid.configuration.clock_line_1_bold
@@ -91,7 +88,7 @@ Item {
 				id: timeLabel1
 				anchors.centerIn: parent
 
-				font.family: clock.clock_fontfamily
+				font.family: clock.clockFontFamily
 				font.weight: clock.cfg_clock_line_1_bold ? Font.Bold : Font.Normal
 				font.pointSize: -1
 				font.pixelSize: timeContainer1.height
@@ -107,13 +104,7 @@ Item {
 				// onWidthChanged: console.log('timeLabel1.width', width)
 				// onPaintedWidthChanged: console.log('timeLabel1.paintedWidth', paintedWidth)
 
-				property string timeFormat: {
-					if (clock.cfg_clock_timeformat) {
-						return clock.cfg_clock_timeformat
-					} else {
-						return Qt.locale().timeFormat(Locale.ShortFormat)
-					}
-				}
+				property string timeFormat: appletConfig.line1TimeFormat // Used in TimeFormatSizeHelper
 				text: Qt.formatDateTime(clock.currentTime, timeFormat)
 			}
 
@@ -128,7 +119,7 @@ Item {
 			PlasmaComponents3.Label {
 				id: timeLabel2
 				anchors.centerIn: parent
-				font.family: clock.clock_fontfamily
+				font.family: clock.clockFontFamily
 				font.weight: clock.cfg_clock_line_2_bold ? Font.Bold : Font.Normal
 				font.pointSize: -1
 				font.pixelSize: timeContainer2.height
@@ -141,13 +132,7 @@ Item {
 				verticalAlignment: Text.AlignVCenter
 				smooth: true
 
-				property string timeFormat: {
-					if (clock.cfg_clock_timeformat_2) {
-						return clock.cfg_clock_timeformat_2
-					} else {
-						return Qt.locale().dateFormat(Locale.ShortFormat)
-					}
-				}
+				property string timeFormat: appletConfig.line2TimeFormat // Used in TimeFormatSizeHelper
 				text: Qt.formatDateTime(clock.currentTime, timeFormat)
 			}
 
