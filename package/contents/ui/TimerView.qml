@@ -119,11 +119,11 @@ Item {
 				
 				PlasmaComponents3.ToolButton {
 					id: timerRepeatsButton
-					readonly property bool isChecked: plasmoid.configuration.timerRepeasts // New property to avoid checked=pressed theming.
+					readonly property bool isChecked: plasmoid.configuration.timerRepeats // New property to avoid checked=pressed theming.
 					icon.name: isChecked ? 'media-playlist-repeat' : 'gtk-stop'
 					text: topRow.contentsFit ? i18n("Repeat") : ""
 					onClicked: {
-						plasmoid.configuration.timerRepeasts = !isChecked
+						plasmoid.configuration.timerRepeats = !isChecked
 					}
 
 					PlasmaCore.ToolTipArea {
@@ -233,7 +233,7 @@ Item {
 
 			// Repeat
 			var menuItem = newMenuItem()
-			menuItem.icon = plasmoid.configuration.timerRepeasts ? 'media-playlist-repeat' : 'gtk-stop'
+			menuItem.icon = plasmoid.configuration.timerRepeats ? 'media-playlist-repeat' : 'gtk-stop'
 			menuItem.text = i18n("Repeat")
 			menuItem.clicked.connect(function() {
 				timerRepeatsButton.clicked()

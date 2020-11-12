@@ -29,7 +29,7 @@
 		<entry name="timerSfxFilepath" type="string">
 			<default>/usr/share/sounds/freedesktop/stereo/complete.oga</default>
 		</entry>
-		<entry name="timerRepeasts" type="bool">
+		<entry name="timerRepeats" type="bool">
 			<default>false</default>
 		</entry>
 		<entry name="clockFontFamily" type="string">
