@@ -364,9 +364,7 @@ msgstr "Ereignisse auffrischen alle:"
 #: ../contents/ui/config/ConfigWeather.qml
 msgctxt "Polling interval in minutes"
 msgid "min"
-msgid_plural "min"
-msgstr[0] "  min"
-msgstr[1] "  min"
+msgstr "  min"
 
 #: ../contents/ui/config/ConfigEvents.qml
 msgid "Notifications"
@@ -629,7 +627,7 @@ msgid "Show next "
 msgstr "Vorhersage  für die nächsten"
 
 #: ../contents/ui/config/ConfigWeather.qml
-msgid " hours"
+msgid " hour"
 msgid_plural " hours"
 msgstr[0] "  Stunden"
 msgstr[1] "  Stunden"

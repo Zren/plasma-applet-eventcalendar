@@ -363,8 +363,7 @@ msgstr "刷新事件频率： "
 #: ../contents/ui/config/ConfigWeather.qml
 msgctxt "Polling interval in minutes"
 msgid "min"
-msgid_plural "min"
-msgstr[0] "分钟"
+msgstr "分钟"
 
 #: ../contents/ui/config/ConfigEvents.qml
 msgid "Notifications"
@@ -625,7 +624,7 @@ msgid "Show next "
 msgstr "显示后 "
 
 #: ../contents/ui/config/ConfigWeather.qml
-msgid " hours"
+msgid " hour"
 msgid_plural " hours"
 msgstr[0] " 小时"
 

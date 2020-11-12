@@ -352,9 +352,7 @@ msgstr "すべてのイベントを更新"
 #: ../contents/ui/config/ConfigEvents.qml ../contents/ui/config/ConfigWeather.qml
 msgctxt "Polling interval in minutes"
 msgid "min"
-msgid_plural "min"
-msgstr[0] "分"
-msgstr[1] "分"
+msgstr "分"
 
 #: ../contents/ui/config/ConfigEvents.qml
 msgid "Notifications"
@@ -599,7 +597,7 @@ msgid "Show next "
 msgstr "天気予報を"
 
 #: ../contents/ui/config/ConfigWeather.qml
-msgid " hours"
+msgid " hour"
 msgid_plural " hours"
 msgstr[0] "時間"
 msgstr[1] "時間"

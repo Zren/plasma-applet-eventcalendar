@@ -91,7 +91,7 @@ ConfigPage {
 			before: i18n("Update forecast every: ")
 			enabled: false
 			value: 60
-			suffix: i18ncp("Polling interval in minutes", "min", "min", value)
+			suffix: i18nc("Polling interval in minutes", "min", value)
 			minimumValue: 60
 			maximumValue: 90
 		}
@@ -105,7 +105,7 @@ ConfigPage {
 		ConfigSpinBox {
 			configKey: 'meteogramHours'
 			before: i18n("Show next ")
-			suffix: i18np(" hours", " hours", value)
+			suffix: i18np(" hour", " hours", value)
 			after: i18n(" in the meteogram.")
 			minimumValue: 9
 			maximumValue: 48

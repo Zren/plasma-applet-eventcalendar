@@ -363,9 +363,7 @@ msgstr "Etkinlikleri her ... sürede yenile: "
 #: ../contents/ui/config/ConfigWeather.qml
 msgctxt "Polling interval in minutes"
 msgid "min"
-msgid_plural "min"
-msgstr[0] "dk"
-msgstr[1] "dk"
+msgstr "dk"
 
 #: ../contents/ui/config/ConfigEvents.qml
 msgid "Notifications"
@@ -631,7 +629,7 @@ msgid "Show next "
 msgstr "Sonrakini göster "
 
 #: ../contents/ui/config/ConfigWeather.qml
-msgid " hours"
+msgid " hour"
 msgid_plural " hours"
 msgstr[0] " saat"
 msgstr[1] " saat"
