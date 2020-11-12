@@ -249,7 +249,7 @@ MouseArea {
 			Layout.minimumHeight: popup.topRowHeight
 			Layout.preferredHeight: parent.height / 5
 			visibleDuration: plasmoid.configuration.meteogramHours
-			showIconOutline: plasmoid.configuration.show_outlines
+			showIconOutline: plasmoid.configuration.showOutlines
 			xAxisScale: 1 / hoursPerDataPoint
 			xAxisLabelEvery: Math.ceil(3 / hoursPerDataPoint)
 			property int hoursPerDataPoint: WeatherApi.getDataPointDuration(plasmoid.configuration)

@@ -25,10 +25,10 @@ ConfigPage {
 	property int indentWidth: 24 * Kirigami.Units.devicePixelRatio
 
 	function setMouseWheelCommands(up, down) {
-		plasmoid.configuration.clock_mousewheel == 'run_commands'
+		plasmoid.configuration.clockMouseWheel == 'RunCommands'
 		clockMousewheelGroupRunCommands.checked = true
-		plasmoid.configuration.clock_mousewheel_up = up
-		plasmoid.configuration.clock_mousewheel_down = down
+		plasmoid.configuration.clockMouseWheelUp = up
+		plasmoid.configuration.clockMouseWheelDown = down
 	}
 
 
@@ -285,8 +285,8 @@ ConfigPage {
 				id: clockMousewheelGroupRunCommands
 				text: i18n("Run Commands")
 				exclusiveGroup: clockMousewheelGroup
-				checked: plasmoid.configuration.clock_mousewheel == 'run_commands'
-				onClicked: plasmoid.configuration.clock_mousewheel = 'run_commands'
+				checked: plasmoid.configuration.clockMouseWheel == 'RunCommands'
+				onClicked: plasmoid.configuration.clockMouseWheel = 'RunCommands'
 			}
 			RowLayout {
 				Layout.fillWidth: true
@@ -296,7 +296,7 @@ ConfigPage {
 				}
 				ConfigString {
 					id: clockMouseWheelUp
-					configKey: 'clock_mousewheel_up'
+					configKey: 'clockMouseWheelUp'
 				}
 			}
 			RowLayout {
@@ -307,7 +307,7 @@ ConfigPage {
 				}
 				ConfigString {
 					id: clockMouseWheelDown
-					configKey: 'clock_mousewheel_down'
+					configKey: 'clockMouseWheelDown'
 				}
 			}
 

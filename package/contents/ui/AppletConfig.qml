@@ -7,7 +7,7 @@ import "lib/ColorUtil.js" as ColorUtil
 QtObject {
 	id: config
 
-	property bool showIconOutline: plasmoid.configuration.show_outlines
+	property bool showIconOutline: plasmoid.configuration.showOutlines
 
 	property color alternateBackgroundColor: {
 		var textColor = PlasmaCore.ColorScope.textColor

@@ -75,7 +75,7 @@ GridLayout {
 				color: agendaItemIsToday ? inProgressColor : PlasmaCore.ColorScope.textColor
 				source: weatherIcon
 				height: appletConfig.agendaWeatherIconSize
-				showOutline: plasmoid.configuration.show_outlines
+				showOutline: plasmoid.configuration.showOutlines
 				Layout.fillWidth: true
 			}
 

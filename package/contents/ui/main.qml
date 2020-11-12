@@ -75,7 +75,6 @@ Item {
 
 		currentTime: timeModel.currentTime
 
-		// org.kde.plasma.volume
 		MouseArea {
 			id: mouseArea
 			anchors.fill: parent
@@ -91,16 +90,27 @@ Item {
 			onWheel: {
 				var delta = wheel.angleDelta.y || wheel.angleDelta.x
 				wheelDelta += delta
-				
+
 				// Magic number 120 for common "one click"
 				// See: https://doc.qt.io/qt-5/qml-qtquick-wheelevent.html#angleDelta-prop
 				while (wheelDelta >= 120) {
 					wheelDelta -= 120
-					executable.exec(plasmoid.configuration.clock_mousewheel_up)
+					onScrollUp()
 				}
 				while (wheelDelta <= -120) {
 					wheelDelta += 120
-					executable.exec(plasmoid.configuration.clock_mousewheel_down)
+					onScrollDown()
+				}
+			}
+
+			function onScrollUp() {
+				if (plasmoid.configuration.clockMouseWheel == 'RunCommands') {
+					executable.exec(plasmoid.configuration.clockMouseWheelUp)
+				}
+			}
+			function onScrollDown() {
+				if (plasmoid.configuration.clockMouseWheel == 'RunCommands') {
+					executable.exec(plasmoid.configuration.clockMouseWheelDown)
 				}
 			}
 		}

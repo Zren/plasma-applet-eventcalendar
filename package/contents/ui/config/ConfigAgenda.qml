@@ -45,7 +45,7 @@ ConfigPage {
 		RowLayout {
 			Text { width: indentWidth } // Indent
 			ConfigCheckBox {
-				configKey: 'show_outlines'
+				configKey: 'showOutlines'
 				text: i18n("Icon Outline")
 			}
 		}

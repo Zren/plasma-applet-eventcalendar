@@ -57,16 +57,16 @@
 		<entry name="clockMaxHeight" type="int">
 			<default>0</default>
 		</entry>
-		<entry name="clock_mousewheel" type="string">
-			<default>run_commands</default>
+		<entry name="clockMouseWheel" type="string">
+			<default>RunCommands</default>
 		</entry>
-		<entry name="clock_mousewheel_up" type="string">
+		<entry name="clockMouseWheelUp" type="string">
 			<default>qdbus org.kde.kglobalaccel /component/kmix invokeShortcut "increase_volume"</default>
 		</entry>
-		<entry name="clock_mousewheel_down" type="string">
+		<entry name="clockMouseWheelDown" type="string">
 			<default>qdbus org.kde.kglobalaccel /component/kmix invokeShortcut "decrease_volume"</default>
 		</entry>
-		<entry name="show_outlines" type="bool">
+		<entry name="showOutlines" type="bool">
 			<default>true</default>
 		</entry>
 		<entry name="showBackground" type="bool">
@@ -135,6 +135,18 @@
 		</entry>
 		<entry name="clock_maxheight" type="int">
 			<default>0</default>
+		</entry>
+		<entry name="clock_mousewheel" type="string">
+			<default>run_commands</default>
+		</entry>
+		<entry name="clock_mousewheel_up" type="string">
+			<default>qdbus org.kde.kglobalaccel /component/kmix invokeShortcut "increase_volume"</default>
+		</entry>
+		<entry name="clock_mousewheel_down" type="string">
+			<default>qdbus org.kde.kglobalaccel /component/kmix invokeShortcut "decrease_volume"</default>
+		</entry>
+		<entry name="show_outlines" type="bool">
+			<default>true</default>
 		</entry>
 		-->
 		<!-- Removed in: v33
