@@ -955,11 +955,6 @@ msgstr "Próximos eventos"
 #~ msgid "Adjust Date and Time..."
 #~ msgstr "Ajustar data e hora..."
 
-#~ msgctxt "Intervalo de indicação em minutos"
-#~ msgid "min"
-#~ msgstr[0] "min"
-#~ msgstr[1] "min"
-
 #~ msgctxt "Evento sem resumo"
 #~ msgid "(No title)"
 #~ msgstr "(Sem título)"
