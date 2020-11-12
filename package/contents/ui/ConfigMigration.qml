@@ -4,10 +4,11 @@ QtObject {
 	signal migrate()
 
 	function copy(oldKey, newKey) {
-		if (typeof plasmoid.configuration[oldKey] !== 'undefined') {
-			plasmoid.configuration[newKey] = plasmoid.configuration[oldKey]
-			console.log('[eventcalendar:migrate] copy ' + oldKey + ' => ' + newKey + ' (value: ' + plasmoid.configuration[oldKey] + ')')
-		}
+		if (typeof plasmoid.configuration[oldKey] === 'undefined') return
+		if (typeof plasmoid.configuration[newKey] === 'undefined') return
+		if (plasmoid.configuration[oldKey] === plasmoid.configuration[newKey]) return
+		plasmoid.configuration[newKey] = plasmoid.configuration[oldKey]
+		console.log('[eventcalendar:migrate] copy ' + oldKey + ' => ' + newKey + ' (value: ' + plasmoid.configuration[oldKey] + ')')
 	}
 
 	Component.onCompleted: migrate()
