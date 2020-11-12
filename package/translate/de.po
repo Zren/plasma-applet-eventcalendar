@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: eventcalendar\n"
 "Report-Msgid-Bugs-To: https://github.com/Zren/plasma-applet-eventcalendar\n"
-"POT-Creation-Date: 2020-11-07 13:45-0500\n"
+"POT-Creation-Date: 2020-11-12 11:42-0500\n"
 "PO-Revision-Date: 2017-04-29 11:18+0100\n"
 "Last-Translator: Hans-Peter Jansen <hpj@urpla.net>\n"
 "Language-Team: de <hpj@urpla.net>\n"
@@ -117,6 +117,28 @@ msgstr ""
 #: ../contents/ui/CalendarSelector.qml
 msgid "[No Calendars]"
 msgstr "[Keine Kalender]"
+
+#: ../contents/ui/calendars/GoogleCalendarManager.qml ../contents/ui/Logic.qml
+msgid "HTTP Error %1: %2"
+msgstr ""
+
+#: ../contents/ui/calendars/GoogleCalendarManager.qml ../contents/ui/Logic.qml
+msgid "Could not connect"
+msgstr ""
+
+#: ../contents/ui/calendars/GoogleCalendarManager.qml ../contents/ui/Logic.qml
+msgid "Will try again soon."
+msgstr ""
+
+#: ../contents/ui/calendars/GoogleCalendarManager.qml
+#: ../contents/ui/config/ConfigGoogleCalendar.qml ../contents/ui/PopupView.qml
+msgid ""
+"Widget has been updated. Please logout and login to Google Calendar again."
+msgstr ""
+
+#: ../contents/ui/calendars/GoogleCalendarManager.qml
+msgid "Too many web requests. Will try again soon."
+msgstr ""
 
 #: ../contents/ui/config/ConfigAgenda.qml
 msgid "Show agenda"
@@ -274,6 +296,15 @@ msgstr ""
 #: ../contents/ui/config/ConfigWeather.qml
 msgid "Style"
 msgstr "Stil"
+
+#: ../contents/ui/config/ConfigCalendar.qml
+msgid "Current Month Title:"
+msgstr ""
+
+#: ../contents/ui/config/ConfigCalendar.qml ../contents/ui/MonthView.qml
+msgctxt "calendar title format for current month"
+msgid "MMMM d, yyyy"
+msgstr ""
 
 #: ../contents/ui/config/ConfigCalendar.qml
 msgid "Show Borders"
@@ -797,11 +828,7 @@ msgid "%1 - %2"
 msgstr ""
 
 #: ../contents/ui/Logic.qml
-msgid "Could not connect (HTTP Error 0), will try again soon."
-msgstr ""
-
-#: ../contents/ui/Logic.qml
-msgid "Weather API limit reached, will try again soon."
+msgid "Weather API limit reached"
 msgstr ""
 
 #: ../contents/ui/main.qml
@@ -816,11 +843,6 @@ msgstr "Region einstellen..."
 #, c-format
 msgid "%1mm"
 msgstr "%1mm"
-
-#: ../contents/ui/MonthView.qml
-msgctxt "calendar title format for current month"
-msgid "MMMM d, yyyy"
-msgstr ""
 
 #: ../contents/ui/MonthView.qml
 msgctxt "calendar title format for other months of current year"
@@ -848,6 +870,10 @@ msgstr ""
 
 #: ../contents/ui/PopupView.qml
 msgid "Error fetching weather."
+msgstr ""
+
+#: ../contents/ui/PopupView.qml
+msgid "Logged out of Google. Please login again."
 msgstr ""
 
 #: ../contents/ui/TimerInputView.qml

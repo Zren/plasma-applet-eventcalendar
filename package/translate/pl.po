@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: eventcalendar\n"
 "Report-Msgid-Bugs-To: https://github.com/Zren/plasma-applet-eventcalendar\n"
-"POT-Creation-Date: 2020-11-07 13:45-0500\n"
+"POT-Creation-Date: 2020-11-12 11:42-0500\n"
 "PO-Revision-Date: 2018-09-03 HO:MI+ZONE\n"
 "Last-Translator: Jakub Starzyk <jstarzyk98@gmail.com>\n"
 "Language-Team: Jakub Starzyk <jstarzyk98@gmail.com>\n"
@@ -111,6 +111,26 @@ msgstr "(Brak tytułu)"
 #: ../contents/ui/CalendarSelector.qml
 msgid "[No Calendars]"
 msgstr "[Brak kalendarzy]"
+
+#: ../contents/ui/calendars/GoogleCalendarManager.qml ../contents/ui/Logic.qml
+msgid "HTTP Error %1: %2"
+msgstr ""
+
+#: ../contents/ui/calendars/GoogleCalendarManager.qml ../contents/ui/Logic.qml
+msgid "Could not connect"
+msgstr ""
+
+#: ../contents/ui/calendars/GoogleCalendarManager.qml ../contents/ui/Logic.qml
+msgid "Will try again soon."
+msgstr ""
+
+#: ../contents/ui/calendars/GoogleCalendarManager.qml ../contents/ui/config/ConfigGoogleCalendar.qml ../contents/ui/PopupView.qml
+msgid "Widget has been updated. Please logout and login to Google Calendar again."
+msgstr ""
+
+#: ../contents/ui/calendars/GoogleCalendarManager.qml
+msgid "Too many web requests. Will try again soon."
+msgstr ""
 
 #: ../contents/ui/config/ConfigAgenda.qml
 msgid "Show agenda"
@@ -263,6 +283,15 @@ msgstr ""
 #: ../contents/ui/config/ConfigCalendar.qml ../contents/ui/config/ConfigWeather.qml
 msgid "Style"
 msgstr "Styl"
+
+#: ../contents/ui/config/ConfigCalendar.qml
+msgid "Current Month Title:"
+msgstr ""
+
+#: ../contents/ui/config/ConfigCalendar.qml ../contents/ui/MonthView.qml
+msgctxt "calendar title format for current month"
+msgid "MMMM d, yyyy"
+msgstr "d MMMM yyyy"
 
 #: ../contents/ui/config/ConfigCalendar.qml
 msgid "Show Borders"
@@ -756,11 +785,7 @@ msgid "%1 - %2"
 msgstr ""
 
 #: ../contents/ui/Logic.qml
-msgid "Could not connect (HTTP Error 0), will try again soon."
-msgstr ""
-
-#: ../contents/ui/Logic.qml
-msgid "Weather API limit reached, will try again soon."
+msgid "Weather API limit reached"
 msgstr ""
 
 #: ../contents/ui/main.qml
@@ -775,11 +800,6 @@ msgstr "Ustaw formaty..."
 #, c-format
 msgid "%1mm"
 msgstr "%1 mm"
-
-#: ../contents/ui/MonthView.qml
-msgctxt "calendar title format for current month"
-msgid "MMMM d, yyyy"
-msgstr "d MMMM yyyy"
 
 #: ../contents/ui/MonthView.qml
 msgctxt "calendar title format for other months of current year"
@@ -807,6 +827,10 @@ msgstr ""
 
 #: ../contents/ui/PopupView.qml
 msgid "Error fetching weather."
+msgstr ""
+
+#: ../contents/ui/PopupView.qml
+msgid "Logged out of Google. Please login again."
 msgstr ""
 
 #: ../contents/ui/TimerInputView.qml

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: eventcalendar\n"
 "Report-Msgid-Bugs-To: https://github.com/Zren/plasma-applet-eventcalendar\n"
-"POT-Creation-Date: 2020-11-07 13:45-0500\n"
+"POT-Creation-Date: 2020-11-12 11:42-0500\n"
 "PO-Revision-Date: 2020-10-12 16:57+0200\n"
 "Last-Translator: Heimen Stoffels <vistausss@outlook.com>\n"
 "Language-Team: Dutch <kde-i18n-doc@kde.org>\n"
@@ -118,6 +118,28 @@ msgstr "(naamloos)"
 #: ../contents/ui/CalendarSelector.qml
 msgid "[No Calendars]"
 msgstr "[Geen agenda's]"
+
+#: ../contents/ui/calendars/GoogleCalendarManager.qml ../contents/ui/Logic.qml
+msgid "HTTP Error %1: %2"
+msgstr ""
+
+#: ../contents/ui/calendars/GoogleCalendarManager.qml ../contents/ui/Logic.qml
+msgid "Could not connect"
+msgstr ""
+
+#: ../contents/ui/calendars/GoogleCalendarManager.qml ../contents/ui/Logic.qml
+msgid "Will try again soon."
+msgstr ""
+
+#: ../contents/ui/calendars/GoogleCalendarManager.qml
+#: ../contents/ui/config/ConfigGoogleCalendar.qml ../contents/ui/PopupView.qml
+msgid ""
+"Widget has been updated. Please logout and login to Google Calendar again."
+msgstr ""
+
+#: ../contents/ui/calendars/GoogleCalendarManager.qml
+msgid "Too many web requests. Will try again soon."
+msgstr ""
 
 #: ../contents/ui/config/ConfigAgenda.qml
 msgid "Show agenda"
@@ -275,6 +297,15 @@ msgstr ""
 #: ../contents/ui/config/ConfigWeather.qml
 msgid "Style"
 msgstr "Stijl"
+
+#: ../contents/ui/config/ConfigCalendar.qml
+msgid "Current Month Title:"
+msgstr ""
+
+#: ../contents/ui/config/ConfigCalendar.qml ../contents/ui/MonthView.qml
+msgctxt "calendar title format for current month"
+msgid "MMMM d, yyyy"
+msgstr "d MMMM yyyy"
 
 #: ../contents/ui/config/ConfigCalendar.qml
 msgid "Show Borders"
@@ -800,13 +831,8 @@ msgid "%1 - %2"
 msgstr "%1 - %2"
 
 #: ../contents/ui/Logic.qml
-msgid "Could not connect (HTTP Error 0), will try again soon."
+msgid "Weather API limit reached"
 msgstr ""
-"Kan niet verbinden (http-fout 0). Het wordt spoedig opnieuw geprobeerd."
-
-#: ../contents/ui/Logic.qml
-msgid "Weather API limit reached, will try again soon."
-msgstr "Het API-limiet is bereikt. Probeer het later opnieuw."
 
 #: ../contents/ui/main.qml
 msgid "Set Language..."
@@ -820,11 +846,6 @@ msgstr "Regionale instellingen..."
 #, c-format
 msgid "%1mm"
 msgstr "%1mm"
-
-#: ../contents/ui/MonthView.qml
-msgctxt "calendar title format for current month"
-msgid "MMMM d, yyyy"
-msgstr "d MMMM yyyy"
 
 #: ../contents/ui/MonthView.qml
 msgctxt "calendar title format for other months of current year"
@@ -853,6 +874,10 @@ msgstr ""
 #: ../contents/ui/PopupView.qml
 msgid "Error fetching weather."
 msgstr "De weerinformatie kan niet worden opgevraagd."
+
+#: ../contents/ui/PopupView.qml
+msgid "Logged out of Google. Please login again."
+msgstr ""
 
 #: ../contents/ui/TimerInputView.qml
 msgid "&Start"
@@ -918,6 +943,13 @@ msgstr "Lopende afspraken"
 #: ../contents/ui/UpcomingEvents.qml
 msgid "Upcoming Events"
 msgstr "Ingeplande afspraken"
+
+#~ msgid "Could not connect (HTTP Error 0), will try again soon."
+#~ msgstr ""
+#~ "Kan niet verbinden (http-fout 0). Het wordt spoedig opnieuw geprobeerd."
+
+#~ msgid "Weather API limit reached, will try again soon."
+#~ msgstr "Het API-limiet is bereikt. Probeer het later opnieuw."
 
 #~ msgid ""
 #~ "Enable Debugging\n"
