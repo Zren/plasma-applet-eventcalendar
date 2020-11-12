@@ -1,14 +1,14 @@
 # Translation of eventcalendar in Italian
 # Copyright (C) 2020
 # This file is distributed under the same license as the eventcalendar package.
-# FIRST AUTHOR Guido Mazzone <guido.mazzone93@outlook.it>, 2020.
+# Guido Mazzone <guido.mazzone93@outlook.it>, 2020.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: eventcalendar\n"
 "Report-Msgid-Bugs-To: https://github.com/Zren/plasma-applet-eventcalendar\n"
 "POT-Creation-Date: 2020-11-07 13:45-0500\n"
-"PO-Revision-Date: 2020-11-07 21:35 (GMT+1)\n"
+"PO-Revision-Date: 2020-11-07 21:35+0100\n"
 "Last-Translator: Guido Mazzone <guido.mazzone93@outlook.it>\n"
 "Language-Team: Italian <guido.mazzone93@outlook.it>\n"
 "Language: it\n"
