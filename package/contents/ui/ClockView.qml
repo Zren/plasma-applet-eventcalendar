@@ -32,10 +32,10 @@ Item {
 	property int targetHeight: verticalFixedLineHeight
 
 	property int horizontalHeight: {
-		if (cfg_clock_maxheight) {
-			return cfg_clock_maxheight
+		if (useFixedHeight) {
+			return fixedHeight
 		} else {
-			if (cfg_clock_line_2) {
+			if (showLine2) {
 				// DigitalClock default
 				var timeHeight = clock.height * 0.56
 				var dateHeight = timeHeight * 0.8
@@ -49,10 +49,10 @@ Item {
 	}
 
 	property int verticalHeight: {
-		if (cfg_clock_maxheight) {
-			return cfg_clock_maxheight
+		if (useFixedHeight) {
+			return fixedHeight
 		} else {
-			if (cfg_clock_line_2) {
+			if (showLine2) {
 				var timeHeight = verticalFixedLineHeight
 				var dateHeight = timeHeight * 0.8
 				return timeHeight + dateHeight
@@ -65,16 +65,17 @@ Item {
 
 	property date currentTime: new Date()
 
-	property bool cfg_clock_line_2: plasmoid.configuration.clock_line_2
-	property double cfg_clock_line_2_height_ratio: plasmoid.configuration.clock_line_2_height_ratio
-	property bool cfg_clock_line_1_bold: plasmoid.configuration.clock_line_1_bold
-	property bool cfg_clock_line_2_bold: plasmoid.configuration.clock_line_2_bold
-	property int cfg_clock_maxheight: plasmoid.configuration.clock_maxheight
-	property bool cfg_clock_fixedWidth: true // plasmoid.configuration.clock_fixedWidth
+	readonly property int fixedHeight: plasmoid.configuration.clockMaxHeight
+	readonly property bool useFixedHeight: fixedHeight >= 0
 
-	// property int lineWidth: cfg_clock_line_2 ? Math.max(timeLabel.paintedWidth, timeLabel2.paintedWidth) : timeLabel.paintedWidth
-	property int lineHeight2: targetHeight * cfg_clock_line_2_height_ratio
-	property int lineHeight1: cfg_clock_line_2 ? targetHeight - lineHeight2 : targetHeight
+	readonly property bool showLine2: plasmoid.configuration.clockShowLine2
+	readonly property int lineHeight2: targetHeight * plasmoid.configuration.clockLine2HeightRatio
+	readonly property int lineHeight1: showLine2 ? targetHeight - lineHeight2 : targetHeight
+
+	// readonly property int paintedWidth: showLine2 ? Math.max(timeLabel.paintedWidth, timeLabel2.paintedWidth) : timeLabel.paintedWidth
+	// onPaintedWidthChanged: console.log('paintedWidth', showLine2, timeFormatSizer1.paintedWidth, timeFormatSizer2.paintedWidth)
+	readonly property real fixedWidth: showLine2 ? Math.max(timeFormatSizer1.minWidth, timeFormatSizer2.minWidth) : timeFormatSizer1.minWidth
+	// onFixedWidthChanged: console.log('fixedWidth', showLine2, timeFormatSizer1.minWidth, timeFormatSizer2.minWidth)
 
 	Column {
 		id: labels
@@ -88,8 +89,8 @@ Item {
 				id: timeLabel1
 				anchors.centerIn: parent
 
-				font.family: clock.clockFontFamily
-				font.weight: clock.cfg_clock_line_1_bold ? Font.Bold : Font.Normal
+				font.family: appletConfig.clockFontFamily
+				font.weight: appletConfig.lineWeight1
 				font.pointSize: -1
 				font.pixelSize: timeContainer1.height
 				minimumPixelSize: 1
@@ -114,13 +115,13 @@ Item {
 		}
 		Item {
 			id: timeContainer2
-			visible: cfg_clock_line_2
+			visible: clock.showLine2
 
 			PlasmaComponents3.Label {
 				id: timeLabel2
 				anchors.centerIn: parent
-				font.family: clock.clockFontFamily
-				font.weight: clock.cfg_clock_line_2_bold ? Font.Bold : Font.Normal
+				font.family: appletConfig.clockFontFamily
+				font.weight: appletConfig.lineWeight2
 				font.pointSize: -1
 				font.pixelSize: timeContainer2.height
 				minimumPixelSize: 1
@@ -142,8 +143,6 @@ Item {
 		}
 	}
 
-	readonly property real fixedWidth: cfg_clock_line_2 ? Math.max(timeFormatSizer1.minWidth, timeFormatSizer2.minWidth) : timeFormatSizer1.minWidth
-	// onFixedWidthChanged: console.log('fixedWidth', cfg_clock_line_2, timeFormatSizer1.minWidth, timeFormatSizer2.minWidth)
 	TimeFormatSizeHelper {
 		id: timeFormatSizer1
 		timeLabel: timeLabel1

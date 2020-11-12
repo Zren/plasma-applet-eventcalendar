@@ -42,19 +42,19 @@
 		<entry name="clockTimeFormat2" type="string">
 			<default></default>
 		</entry>
-		<entry name="clock_line_2" type="bool">
+		<entry name="clockShowLine2" type="bool">
 			<default>false</default>
 		</entry>
-		<entry name="clock_line_2_height_ratio" type="double">
+		<entry name="clockLine2HeightRatio" type="double">
 			<default>0.4</default>
 		</entry>
-		<entry name="clock_line_1_bold" type="bool">
+		<entry name="clockLineBold1" type="bool">
 			<default>false</default>
 		</entry>
-		<entry name="clock_line_2_bold" type="bool">
+		<entry name="clockLineBold2" type="bool">
 			<default>false</default>
 		</entry>
-		<entry name="clock_maxheight" type="int">
+		<entry name="clockMaxHeight" type="int">
 			<default>0</default>
 		</entry>
 		<entry name="clock_mousewheel" type="string">
@@ -120,6 +120,21 @@
 		</entry>
 		<entry name="clock_timeformat_2" type="string">
 			<default></default>
+		</entry>
+		<entry name="clock_line_2" type="bool">
+			<default>false</default>
+		</entry>
+		<entry name="clock_line_2_height_ratio" type="double">
+			<default>0.4</default>
+		</entry>
+		<entry name="clock_line_1_bold" type="bool">
+			<default>false</default>
+		</entry>
+		<entry name="clock_line_2_bold" type="bool">
+			<default>false</default>
+		</entry>
+		<entry name="clock_maxheight" type="int">
+			<default>0</default>
 		</entry>
 		-->
 		<!-- Removed in: v33

@@ -112,7 +112,7 @@ ConfigPage {
 				}
 				
 				ConfigSpinBox {
-					configKey: 'clock_maxheight'
+					configKey: 'clockMaxHeight'
 					suffix: i18n("px")
 					minimumValue: 0
 				}
@@ -190,7 +190,7 @@ ConfigPage {
 				Layout.fillWidth: true
 				Text { width: indentWidth } // indent
 				ConfigCheckBox {
-					configKey: 'clock_line_1_bold'
+					configKey: 'clockLineBold1'
 					text: i18n("Bold")
 				}
 			}
@@ -200,7 +200,7 @@ ConfigPage {
 			RowLayout {
 				Layout.fillWidth: true
 				ConfigCheckBox {
-					configKey: 'clock_line_2'
+					configKey: 'clockShowLine2'
 					text: i18n("Line 2:")
 				}
 				ConfigString {
@@ -253,7 +253,7 @@ ConfigPage {
 				Layout.fillWidth: true
 				Text { width: indentWidth } // indent
 				ConfigCheckBox {
-					configKey: 'clock_line_2_bold'
+					configKey: 'clockLineBold2'
 					text: i18n("Bold")
 				}
 			}
@@ -262,7 +262,7 @@ ConfigPage {
 				Layout.fillWidth: true
 				Text { width: indentWidth } // indent
 				ConfigSlider {
-					configKey: 'clock_line_2_height_ratio'
+					configKey: 'clockLine2HeightRatio'
 					before: i18n("Height:")
 					after: Math.floor(value * 100) + '%'
 					minimumValue: 0.3
