@@ -1,17 +1,24 @@
 import QtQuick 2.0
+import org.kde.plasma.core 2.0 as PlasmaCore
 
 import "lib"
+import "lib/ColorUtil.js" as ColorUtil
 
 QtObject {
 	id: config
 
-	function setAlpha(c, a) {
-		var c2 = Qt.darker(c, 1)
-		c2.a = a
-		return c2
-	}
-
 	property bool showIconOutline: plasmoid.configuration.show_outlines
+
+	property color alternateBackgroundColor: {
+		var textColor = PlasmaCore.ColorScope.textColor
+		var bgColor = theme.buttonBackgroundColor
+		if (ColorUtil.hasEnoughContrast(textColor, bgColor)) {
+			return bgColor
+		} else {
+			// 10% of Text color should be a large enough contrast
+			return ColorUtil.setAlpha(textColor, 0.1)
+		}
+	}
 
 	property color meteogramTextColorDefault: theme.textColor
 	property color meteogramScaleColorDefault: theme.buttonBackgroundColor
@@ -23,13 +30,14 @@ QtObject {
 	property color meteogramTextColor: plasmoid.configuration.meteogramTextColor || meteogramTextColorDefault
 	property color meteogramScaleColor: plasmoid.configuration.meteogramGridColor || meteogramScaleColorDefault
 	property color meteogramPrecipitationRawColor: plasmoid.configuration.meteogramRainColor || meteogramPrecipitationRawColorDefault
-	property color meteogramPrecipitationColor: setAlpha(meteogramPrecipitationRawColor, 0.6)
-	property color meteogramPrecipitationTextColor: Qt.tint(meteogramTextColor, setAlpha(meteogramPrecipitationRawColor, 0.3))
+	property color meteogramPrecipitationColor: ColorUtil.setAlpha(meteogramPrecipitationRawColor, 0.6)
+	property color meteogramPrecipitationTextColor: Qt.tint(meteogramTextColor, ColorUtil.setAlpha(meteogramPrecipitationRawColor, 0.3))
 	property color meteogramPrecipitationTextOutlineColor: showIconOutline ? theme.backgroundColor : "transparent"
 	property color meteogramPositiveTempColor: plasmoid.configuration.meteogramPositiveTempColor || meteogramPositiveTempColorDefault
 	property color meteogramNegativeTempColor: plasmoid.configuration.meteogramNegativeTempColor || meteogramNegativeTempColorDefault
 	property color meteogramIconColor: plasmoid.configuration.meteogramIconColor || meteogramIconColorDefault
 
+	property color agendaHoverBackground: alternateBackgroundColor
 	property color agendaInProgressColorDefault: theme.highlightColor
 	property color agendaInProgressColor: plasmoid.configuration.agenda_inProgressColor || agendaInProgressColorDefault
 

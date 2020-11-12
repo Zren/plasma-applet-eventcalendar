@@ -10,7 +10,7 @@ Rectangle {
 	implicitWidth: childrenRect.width
 	implicitHeight: childrenRect.height
 	property color backgroundColor: "transparent"
-	property color backgroundHoverColor: theme.buttonBackgroundColor
+	property color backgroundHoverColor: appletConfig.agendaHoverBackground
 	color: enabled && mouseArea.containsMouse ? backgroundHoverColor : backgroundColor
 	property string tooltipMainText
 	property string tooltipSubText
