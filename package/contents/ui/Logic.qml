@@ -170,8 +170,8 @@ Item {
 		onOpenWeatherMapCityIdChanged: logic.resetWeatherAndUpdate()
 		onWeatherCanadaCityIdChanged: logic.resetWeatherAndUpdate()
 		onWeatherUnitsChanged: logic.updateWeather(true)
-		onWidget_show_meteogramChanged: {
-			if (plasmoid.configuration.widget_show_meteogram) {
+		onWidgetShowMeteogramChanged: {
+			if (plasmoid.configuration.widgetShowMeteogram) {
 				logic.updateHourlyWeather()
 			}
 		}

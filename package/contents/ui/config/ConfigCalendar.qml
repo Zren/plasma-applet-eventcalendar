@@ -8,7 +8,7 @@ ConfigPage {
 	id: page
 
 	ConfigCheckBox {
-		configKey: 'widget_show_calendar'
+		configKey: 'widgetShowCalendar'
 		text: i18n("Show calendar")
 	}
 

@@ -12,7 +12,7 @@ ConfigPage {
 	property int indentWidth: 24 * Kirigami.Units.devicePixelRatio
 
 	ConfigCheckBox {
-		configKey: 'widget_show_agenda'
+		configKey: 'widgetShowAgenda'
 		text: i18n("Show agenda")
 	}
 

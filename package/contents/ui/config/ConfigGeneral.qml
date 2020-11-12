@@ -51,7 +51,7 @@ ConfigPage {
 
 	ConfigSection {
 		ConfigCheckBox {
-			configKey: 'widget_show_meteogram'
+			configKey: 'widgetShowMeteogram'
 			text: i18n("Meteogram")
 		}
 	}
@@ -59,15 +59,15 @@ ConfigPage {
 	ConfigSection {
 		ConfigCheckBox {
 			id: widgetShowTimer
-			configKey: 'widget_show_timer'
+			configKey: 'widgetShowTimer'
 			text: i18n("Timer")
 		}
 		RowLayout {
 			Text { width: indentWidth } // indent
 			ConfigSound {
 				label: i18n("SFX:")
-				sfxEnabledKey: 'timer_sfx_enabled'
-				sfxPathKey: 'timer_sfx_filepath'
+				sfxEnabledKey: 'timerSfxEnabled'
+				sfxPathKey: 'timerSfxFilepath'
 				sfxPathDefaultValue: '/usr/share/sounds/freedesktop/stereo/complete.oga'
 				enabled: widgetShowTimer.checked
 			}

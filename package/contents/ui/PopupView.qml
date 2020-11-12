@@ -71,10 +71,10 @@ MouseArea {
 	property var eventModel
 	property var agendaModel
 
-	property bool showMeteogram: plasmoid.configuration.widget_show_meteogram
-	property bool showTimer: plasmoid.configuration.widget_show_timer
-	property bool showAgenda: plasmoid.configuration.widget_show_agenda
-	property bool showCalendar: plasmoid.configuration.widget_show_calendar
+	property bool showMeteogram: plasmoid.configuration.widgetShowMeteogram
+	property bool showTimer: plasmoid.configuration.widgetShowTimer
+	property bool showAgenda: plasmoid.configuration.widgetShowAgenda
+	property bool showCalendar: plasmoid.configuration.widgetShowCalendar
 	property bool agendaScrollOnSelect: true
 	property bool agendaScrollOnMonthChange: false
 

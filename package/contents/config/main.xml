@@ -21,23 +21,26 @@
 			<label>Whether the popup should remain open when another window is activated</label>
 			<default>false</default>
 		</entry>
-		<entry name="widget_show_meteogram" type="bool">
+		<entry name="widgetShowMeteogram" type="bool">
 			<default>true</default>
 		</entry>
-		<entry name="widget_show_timer" type="bool">
+		<entry name="widgetShowTimer" type="bool">
 			<default>true</default>
 		</entry>
-		<entry name="widget_show_agenda" type="bool">
+		<entry name="widgetShowAgenda" type="bool">
 			<default>true</default>
 		</entry>
-		<entry name="widget_show_calendar" type="bool">
+		<entry name="widgetShowCalendar" type="bool">
 			<default>true</default>
 		</entry>
-		<entry name="timer_sfx_enabled" type="bool">
+		<entry name="timerSfxEnabled" type="bool">
 			<default>true</default>
 		</entry>
-		<entry name="timer_sfx_filepath" type="string">
+		<entry name="timerSfxFilepath" type="string">
 			<default>/usr/share/sounds/freedesktop/stereo/complete.oga</default>
+		</entry>
+		<entry name="timerRepeasts" type="bool">
+			<default>false</default>
 		</entry>
 		<entry name="clock_fontfamily" type="string">
 			<default></default>
@@ -73,15 +76,6 @@
 		<entry name="clock_mousewheel_down" type="string">
 			<default>qdbus org.kde.kglobalaccel /component/kmix invokeShortcut "decrease_volume"</default>
 		</entry>
-		<entry name="timer_repeats" type="bool">
-			<default>false</default>
-		</entry>
-		<entry name="timer_in_taskbar" type="bool">
-			<default>false</default>
-		</entry>
-		<entry name="timer_ends_at" type="uint">
-			<default>0</default>
-		</entry>
 		<entry name="show_outlines" type="bool">
 			<default>true</default>
 		</entry>
@@ -100,6 +94,35 @@
 		<entry name="rightColumnWidth" type="uint">
 			<default>400</default>
 		</entry>
+		<!-- Removed in: v71
+		<entry name="widget_show_meteogram" type="bool">
+			<default>true</default>
+		</entry>
+		<entry name="widget_show_timer" type="bool">
+			<default>true</default>
+		</entry>
+		<entry name="widget_show_agenda" type="bool">
+			<default>true</default>
+		</entry>
+		<entry name="widget_show_calendar" type="bool">
+			<default>true</default>
+		</entry>
+		<entry name="timer_sfx_enabled" type="bool">
+			<default>true</default>
+		</entry>
+		<entry name="timer_sfx_filepath" type="string">
+			<default>/usr/share/sounds/freedesktop/stereo/complete.oga</default>
+		</entry>
+		<entry name="timer_repeats" type="bool">
+			<default>false</default>
+		</entry>
+		<entry name="timer_in_taskbar" type="bool">
+			<default>false</default>
+		</entry>
+		<entry name="timer_ends_at" type="uint">
+			<default>0</default>
+		</entry>
+		-->
 	</group>
 
 	<group name="Tooltip">

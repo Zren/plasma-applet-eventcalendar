@@ -120,7 +120,7 @@ Item {
 			return plasmoid.location != PlasmaCore.Types.Floating // && plasmoid.configuration.widget_show_pin
 		}
 		padding: {
-			if (isPinVisible && !(plasmoid.configuration.widget_show_timer || plasmoid.configuration.widget_show_meteogram)) {
+			if (isPinVisible && !(plasmoid.configuration.widgetShowTimer || plasmoid.configuration.widgetShowMeteogram)) {
 				return pinButton.height
 			} else {
 				return 0
