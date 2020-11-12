@@ -175,9 +175,6 @@
 		<entry name="monthCurrentCustomTitleFormat" type="string">
 			<default></default>
 		</entry>
-		<entry name="monthOtherCustomTitleFormat" type="string">
-			<default></default>
-		</entry>
 		<entry name="monthShowBorder" type="bool">
 			<default>true</default>
 		</entry>

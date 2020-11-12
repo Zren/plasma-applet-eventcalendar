@@ -55,21 +55,6 @@ ConfigPage {
 			}
 		}
 
-		RowLayout {
-			Layout.fillWidth: true
-			Label {
-				text: i18n("Other Month Title:")
-			}
-			ConfigString {
-				id: monthOtherCustomTitleFormat
-				configKey: 'monthOtherCustomTitleFormat'
-				placeholderText: i18nc("calendar title format not for current month", "MMMM, yyyy")
-			}
-			Label {
-				text: Qt.formatDateTime(new Date(), monthOtherCustomTitleFormat.value)
-			}
-		}
-
 		ConfigCheckBox {
 			configKey: 'monthShowBorder'
 			text: i18n("Show Borders")
