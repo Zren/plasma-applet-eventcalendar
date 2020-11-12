@@ -120,22 +120,22 @@
 		<entry name="monthOtherCustomTitleFormat" type="string">
 			<default></default>
 		</entry>
-		<entry name="month_show_border" type="bool">
+		<entry name="monthShowBorder" type="bool">
 			<default>true</default>
 		</entry>
-		<entry name="month_show_weeknumbers" type="bool">
+		<entry name="monthShowWeekNumbers" type="bool">
 			<default>false</default>
 		</entry>
 		<entry name="monthDayDoubleClick" type="string">
 			<default>GoogleCalWeb</default>
 		</entry>
-		<entry name="month_eventbadge_type" type="string">
+		<entry name="monthEventBadgeType" type="string">
 			<default>theme</default>
 		</entry>
-		<entry name="month_today_style" type="string">
+		<entry name="monthTodayStyle" type="string">
 			<default>theme</default>
 		</entry>
-		<entry name="month_cell_radius" type="double">
+		<entry name="monthCellRadius" type="double">
 			<default>0</default>
 		</entry>
 		<entry name="firstDayOfWeek" type="int">
@@ -148,6 +148,23 @@
 		<entry name="monthHeightSingleColumn" type="uint">
 			<default>300</default>
 		</entry>
+		<!-- Removed in: v71
+		<entry name="month_show_border" type="bool">
+			<default>true</default>
+		</entry>
+		<entry name="month_show_weeknumbers" type="bool">
+			<default>false</default>
+		</entry>
+		<entry name="month_eventbadge_type" type="string">
+			<default>theme</default>
+		</entry>
+		<entry name="month_today_style" type="string">
+			<default>theme</default>
+		</entry>
+		<entry name="month_cell_radius" type="double">
+			<default>0</default>
+		</entry>
+		-->
 	</group>
 
 	<group name="Agenda">

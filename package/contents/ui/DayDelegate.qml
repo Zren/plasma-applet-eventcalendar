@@ -29,7 +29,7 @@ MouseArea {
 	hoverEnabled: true
 	property string eventBadgeType: "bottomBar"
 	property string todayStyle: "theme"
-	property real radius: Math.min(width, height) * plasmoid.configuration.month_cell_radius
+	property real radius: Math.min(width, height) * plasmoid.configuration.monthCellRadius
 
 	signal activated()
 

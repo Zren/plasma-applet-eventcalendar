@@ -403,8 +403,8 @@ PinchArea {
 			rows: calendarBackend.weeks
 
 			showWeekNumbers: root.showWeekNumbers
-			eventBadgeType: plasmoid.configuration.month_eventbadge_type
-			todayStyle: plasmoid.configuration.month_today_style
+			eventBadgeType: plasmoid.configuration.monthEventBadgeType
+			todayStyle: plasmoid.configuration.monthTodayStyle
 
 			headerModel: calendarBackend.days
 			// gridModel: calendarBackend.daysModel

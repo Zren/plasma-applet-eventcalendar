@@ -297,8 +297,8 @@ MouseArea {
 		MonthView {
 			id: monthView
 			visible: showCalendar
-			borderOpacity: plasmoid.configuration.month_show_border ? 0.25 : 0
-			showWeekNumbers: plasmoid.configuration.month_show_weeknumbers
+			borderOpacity: plasmoid.configuration.monthShowBorder ? 0.25 : 0
+			showWeekNumbers: plasmoid.configuration.monthShowWeekNumbers
 			highlightCurrentDayWeek: plasmoid.configuration.monthHighlightCurrentDayWeek
 
 			Layout.preferredWidth: parent.width/2
