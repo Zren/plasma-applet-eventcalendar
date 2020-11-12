@@ -84,7 +84,10 @@
 		<entry name="rightColumnWidth" type="uint">
 			<default>400</default>
 		</entry>
-		<!-- Removed in: v71
+		<!-- Deprecated in: v71 -->
+		<entry name="v71Migration" type="bool">
+			<default>false</default>
+		</entry>
 		<entry name="widget_show_meteogram" type="bool">
 			<default>true</default>
 		</entry>
@@ -105,12 +108,6 @@
 		</entry>
 		<entry name="timer_repeats" type="bool">
 			<default>false</default>
-		</entry>
-		<entry name="timer_in_taskbar" type="bool">
-			<default>false</default>
-		</entry>
-		<entry name="timer_ends_at" type="uint">
-			<default>0</default>
 		</entry>
 		<entry name="clock_fontfamily" type="string">
 			<default></default>
@@ -147,6 +144,13 @@
 		</entry>
 		<entry name="show_outlines" type="bool">
 			<default>true</default>
+		</entry>
+		<!-- Removed in: v71
+		<entry name="timer_in_taskbar" type="bool">
+			<default>false</default>
+		</entry>
+		<entry name="timer_ends_at" type="uint">
+			<default>0</default>
 		</entry>
 		-->
 		<!-- Removed in: v33
@@ -202,7 +206,7 @@
 		<entry name="monthHeightSingleColumn" type="uint">
 			<default>300</default>
 		</entry>
-		<!-- Removed in: v71
+		<!-- Deprecated in: v71 -->
 		<entry name="month_show_border" type="bool">
 			<default>true</default>
 		</entry>
@@ -218,7 +222,6 @@
 		<entry name="month_cell_radius" type="double">
 			<default>0</default>
 		</entry>
-		-->
 	</group>
 
 	<group name="Agenda">
@@ -270,7 +273,7 @@
 		<entry name="agendaPlaceOverdueTasksOnToday" type="bool">
 			<default>true</default>
 		</entry>
-		<!-- Removed in v71
+		<!-- Deprecated in: v71 -->
 		<entry name="agenda_newevent_remember_calendar" type="bool">
 			<default>true</default>
 		</entry>
@@ -295,11 +298,13 @@
 		<entry name="agenda_fontSize" type="uint">
 			<default>0</default>
 		</entry>
-		-->
 	</group>
 
 
 	<group name="Events">
+		<entry name="eventsPollInterval" type="uint">
+			<default>20</default>
+		</entry>
 		<entry name="icalCalendarList" type="string" stringType="base64json">
 			<default></default>
 		</entry>
@@ -356,13 +361,13 @@
 		<entry name="tasklistIdList" type="string">
 			<default></default>
 		</entry>
-		<entry name="eventsPollInterval" type="uint">
-			<default>20</default>
-		</entry>
 
 		<!-- Deprecated in: v71 -->
 		<entry name="access_token" type="string">
 			<default></default>
+		</entry>
+		<entry name="events_pollinterval" type="uint">
+			<default>20</default>
 		</entry>
 		<!-- Removed in: v71
 		<entry name="access_token_type" type="string">
@@ -379,9 +384,6 @@
 		</entry>
 		<entry name="calendar_id_list" type="string">
 			<default>primary</default>
-		</entry>
-		<entry name="events_pollinterval" type="uint">
-			<default>20</default>
 		</entry>
 		-->
 		<!-- Removed in: v62
@@ -415,7 +417,6 @@
 		<entry name="weatherCanadaCityId" type="string">
 			<default></default>
 		</entry>
-
 		<!-- Settings -->
 		<entry name="weatherService" type="string">
 			<!-- enum: OpenWeatherMap, WeatherCanada -->
@@ -445,7 +446,7 @@
 		<entry name="meteogramIconColor" type="string" stringType="color">
 			<default></default>
 		</entry>
-		<!-- Removed in: v71
+		<!-- Deprecated in: v71 -->
 		<entry name="weather_app_id" type="string">
 			<default>99e575d9aa8a8407bcee7693d5912c6a</default>
 		</entry>
@@ -482,7 +483,6 @@
 		<entry name="meteogram_iconColor" type="string" stringType="color">
 			<default></default>
 		</entry>
-		-->
 	</group>
 
 </kcfg>

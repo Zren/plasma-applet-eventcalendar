@@ -19,6 +19,7 @@ Item {
 		// showDebug: true
 	}
 
+	ConfigMigration { id: configMigration }
 	AppletConfig { id: appletConfig }
 	NotificationManager { id: notificationManager }
 
