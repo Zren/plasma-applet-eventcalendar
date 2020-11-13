@@ -551,7 +551,7 @@ msgstr "Синхронізувати з Календарем Google"
 #: ../contents/ui/config/ConfigGoogleCalendar.qml
 msgid ""
 "Visit <a href=\"%1\">%2</a> (opens in your web browser). After you login and "
-"give permission to acess your calendar, it will give you a code to paste "
+"give permission to access your calendar, it will give you a code to paste "
 "below."
 msgstr ""
 

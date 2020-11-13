@@ -120,7 +120,7 @@ ConfigPage {
 		}
 		LinkText {
 			Layout.fillWidth: true
-			text: i18n("Visit <a href=\"%1\">%2</a> (opens in your web browser). After you login and give permission to acess your calendar, it will give you a code to paste below.", googleLoginManager.authorizationCodeUrl, 'https://accounts.google.com/...')
+			text: i18n("Visit <a href=\"%1\">%2</a> (opens in your web browser). After you login and give permission to access your calendar, it will give you a code to paste below.", googleLoginManager.authorizationCodeUrl, 'https://accounts.google.com/...')
 			color: readableNegativeTextColor
 			wrapMode: Text.Wrap
 

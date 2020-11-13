@@ -520,7 +520,7 @@ msgid "To sync with Google Calendar"
 msgstr "Per sincronizzare con Google Calendar"
 
 #: ../contents/ui/config/ConfigGoogleCalendar.qml
-msgid "Visit <a href=\"%1\">%2</a> (opens in your web browser). After you login and give permission to acess your calendar, it will give you a code to paste below."
+msgid "Visit <a href=\"%1\">%2</a> (opens in your web browser). After you login and give permission to access your calendar, it will give you a code to paste below."
 msgstr "Visita <a href=\"%1\">%2</a> (si apre nel tuo browser web). Dopo che sei entrato e hai dato il permesso per accedere al tuo calendario, ti darà un codice da incollare qui sotto."
 
 #: ../contents/ui/config/ConfigGoogleCalendar.qml

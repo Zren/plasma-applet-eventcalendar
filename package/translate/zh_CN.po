@@ -547,7 +547,7 @@ msgstr "用以与Google日历同步"
 #: ../contents/ui/config/ConfigGoogleCalendar.qml
 msgid ""
 "Visit <a href=\"%1\">%2</a> (opens in your web browser). After you login and "
-"give permission to acess your calendar, it will give you a code to paste "
+"give permission to access your calendar, it will give you a code to paste "
 "below."
 msgstr ""
 "访问 <a href=\"%1\">%2</a> （会在浏览器中打开）。在你登录并授权访问你的日历"
