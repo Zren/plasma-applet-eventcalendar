@@ -64,7 +64,7 @@ ConfigPage {
 		ConfigSpinBox {
 			configKey: 'eventsPollInterval'
 			before: i18n("Refresh events every: ")
-			suffix: i18nc("Polling interval in minutes", "min", value)
+			suffix: i18nc("Polling interval in minutes", "min")
 			minimumValue: 5
 			maximumValue: 90
 		}

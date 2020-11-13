@@ -91,7 +91,7 @@ ConfigPage {
 			before: i18n("Update forecast every: ")
 			enabled: false
 			value: 60
-			suffix: i18nc("Polling interval in minutes", "min", value)
+			suffix: i18nc("Polling interval in minutes", "min")
 			minimumValue: 60
 			maximumValue: 90
 		}
