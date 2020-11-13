@@ -1,3 +1,19 @@
+## v71 - November 13 2020
+
+* Change the Google API key as we were hiting the daily quota due to 1 user still using v63. This requires you to re-login to Google Calendar Sync.
+* Display alerts above the agenda when a widget update changes the API key. Also displays alerts when the web requests to google return with an error.
+* Refactor the code of most config options. They old config values should migrate cleanly for the next few versions before the migration code is removed.
+* Remove the final QtMultimedia use in ConfigSound to fix the config window crashing on Kubuntu and OpenSUSE (Issue #167)
+* Allow double click in the Calendar to do nothing by @matty-r (Pull Request #170)
+* Refactor Timer as QML Timer is untrustworthy on high refresh screens (Issue #129)
+* Jump timer by 5min when duration over 15min or seconds when under 1min
+* Disable the timer sfx control when showTimer=false (Pull Request #172)
+* Can now configure the calendar's title date format by @matty-r (Pull Request #176)
+* Use ColorScheme colors for GoogleCal login text. Also fix poorly colored date format preset buttons.
+* Now uses a semi-transparent text color as the agenda item hover color when the color theme has low contrast. This fixes Oxygen's white on white when hovering.
+* Merge reinstall code into the install script. Also add uninstall script.
+* Add Italian translation by @guidomazzone (Issue #169 and Pull Request #179)
+
 ## v70 - October 14 2020
 
 * Fix Save/Save/Cancel buttons in Edit Timer/Task/Event forms that were invisible in latest KDE Frameworks.
