@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: eventcalendar\n"
 "Report-Msgid-Bugs-To: https://github.com/Zren/plasma-applet-eventcalendar\n"
 "POT-Creation-Date: 2020-11-12 11:42-0500\n"
-"PO-Revision-Date: 2020-10-12 16:57+0200\n"
+"PO-Revision-Date: 2020-11-13 21:30+0100\n"
 "Last-Translator: Heimen Stoffels <vistausss@outlook.com>\n"
 "Language-Team: Dutch <kde-i18n-doc@kde.org>\n"
 "Language: nl\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 2.4.1\n"
+"X-Generator: Poedit 2.4.2\n"
 
 #: ../metadata.desktop ../contents/ui/AgendaView.qml
 #: ../contents/ui/UpcomingEvents.qml
@@ -121,25 +121,25 @@ msgstr "[Geen agenda's]"
 
 #: ../contents/ui/calendars/GoogleCalendarManager.qml ../contents/ui/Logic.qml
 msgid "HTTP Error %1: %2"
-msgstr ""
+msgstr "HTTP-fout %1: %2"
 
 #: ../contents/ui/calendars/GoogleCalendarManager.qml ../contents/ui/Logic.qml
 msgid "Could not connect"
-msgstr ""
+msgstr "Kan niet verbinden"
 
 #: ../contents/ui/calendars/GoogleCalendarManager.qml ../contents/ui/Logic.qml
 msgid "Will try again soon."
-msgstr ""
+msgstr "Het wordt spoedig opnieuw geprobeerd."
 
 #: ../contents/ui/calendars/GoogleCalendarManager.qml
 #: ../contents/ui/config/ConfigGoogleCalendar.qml ../contents/ui/PopupView.qml
 msgid ""
 "Widget has been updated. Please logout and login to Google Calendar again."
-msgstr ""
+msgstr "De widget is bijgewerkt. Log uit en weer in op Google Agenda."
 
 #: ../contents/ui/calendars/GoogleCalendarManager.qml
 msgid "Too many web requests. Will try again soon."
-msgstr ""
+msgstr "Te veel verzoeken - het wordt spoedig opnieuw geprobeerd."
 
 #: ../contents/ui/config/ConfigAgenda.qml
 msgid "Show agenda"
@@ -287,11 +287,11 @@ msgstr "Bij dubbelklikken op datum:"
 
 #: ../contents/ui/config/ConfigCalendar.qml
 msgid "New Google Calendar Event (Web Browser)"
-msgstr ""
+msgstr "Nieuwe Google Agenda-afspraak (webbrowser)"
 
 #: ../contents/ui/config/ConfigCalendar.qml
 msgid "Do Nothing"
-msgstr ""
+msgstr "Niets doen"
 
 #: ../contents/ui/config/ConfigCalendar.qml
 #: ../contents/ui/config/ConfigWeather.qml
@@ -300,7 +300,7 @@ msgstr "Stijl"
 
 #: ../contents/ui/config/ConfigCalendar.qml
 msgid "Current Month Title:"
-msgstr ""
+msgstr "Naam van huidige maand:"
 
 #: ../contents/ui/config/ConfigCalendar.qml ../contents/ui/MonthView.qml
 msgctxt "calendar title format for current month"
@@ -573,7 +573,7 @@ msgstr "Versturen"
 
 #: ../contents/ui/config/ConfigGoogleCalendar.qml
 msgid "Invalid Google Authorization Code"
-msgstr "Ongeldige autorisatiecode"
+msgstr "Ongeldige verificatiecode"
 
 #: ../contents/ui/config/ConfigGoogleCalendar.qml
 #: ../contents/ui/config/ConfigICal.qml
@@ -832,7 +832,7 @@ msgstr "%1 - %2"
 
 #: ../contents/ui/Logic.qml
 msgid "Weather API limit reached"
-msgstr ""
+msgstr "API-limiet van weerdienst bereikt"
 
 #: ../contents/ui/main.qml
 msgid "Set Language..."
@@ -877,7 +877,7 @@ msgstr "De weerinformatie kan niet worden opgevraagd."
 
 #: ../contents/ui/PopupView.qml
 msgid "Logged out of Google. Please login again."
-msgstr ""
+msgstr "Je bent uitgelogd - log opnieuw in."
 
 #: ../contents/ui/TimerInputView.qml
 msgid "&Start"
@@ -902,11 +902,11 @@ msgstr "%1s"
 
 #: ../contents/ui/TimerModel.qml
 msgid "Timer finished"
-msgstr "Timer verlopen"
+msgstr "Tijdklok verstreken"
 
 #: ../contents/ui/TimerModel.qml
 msgid "%1 has passed"
-msgstr "%1 is verlopen"
+msgstr "%1 is verstreken"
 
 #: ../contents/ui/TimerModel.qml ../contents/ui/TimerView.qml
 msgid "Repeat"
@@ -914,11 +914,11 @@ msgstr "Herhalen"
 
 #: ../contents/ui/TimerView.qml
 msgid "Pause Timer"
-msgstr "Timer onderbreken"
+msgstr "Tijdklok onderbreken"
 
 #: ../contents/ui/TimerView.qml
 msgid "Start Timer"
-msgstr "Timer starten"
+msgstr "Tijdklok starten"
 
 #: ../contents/ui/TimerView.qml
 msgid "Scroll to add to duration"
@@ -930,7 +930,7 @@ msgstr "Geluid"
 
 #: ../contents/ui/TimerView.qml
 msgid "Set Timer"
-msgstr "Timer instellen"
+msgstr "Tijdklok instellen"
 
 #: ../contents/ui/UpcomingEvents.qml
 msgid "Events Starting"
