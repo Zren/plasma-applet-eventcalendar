@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: eventcalendar\n"
 "Report-Msgid-Bugs-To: https://github.com/Zren/plasma-applet-eventcalendar\n"
 "POT-Creation-Date: 2020-11-12 11:42-0500\n"
-"PO-Revision-Date: 2020-11-07 21:35+0100\n"
+"PO-Revision-Date: 2020-11-12 19:45+0100\n"
 "Last-Translator: Guido Mazzone <guido.mazzone93@outlook.it>\n"
 "Language-Team: Italian <guido.mazzone93@outlook.it>\n"
 "Language: it\n"
@@ -115,23 +115,23 @@ msgstr "[Nessun Calendario]"
 
 #: ../contents/ui/calendars/GoogleCalendarManager.qml ../contents/ui/Logic.qml
 msgid "HTTP Error %1: %2"
-msgstr ""
+msgstr "Errore HTTP %1: %2"
 
 #: ../contents/ui/calendars/GoogleCalendarManager.qml ../contents/ui/Logic.qml
 msgid "Could not connect"
-msgstr ""
+msgstr "Impossibile connettersi"
 
 #: ../contents/ui/calendars/GoogleCalendarManager.qml ../contents/ui/Logic.qml
 msgid "Will try again soon."
-msgstr ""
+msgstr "Riproverò a breve"
 
 #: ../contents/ui/calendars/GoogleCalendarManager.qml ../contents/ui/config/ConfigGoogleCalendar.qml ../contents/ui/PopupView.qml
 msgid "Widget has been updated. Please logout and login to Google Calendar again."
-msgstr ""
+msgstr "Il widget è stato agiornato. Sei invitato a disconnetterti e riconnennetterti a Google Calendar."
 
 #: ../contents/ui/calendars/GoogleCalendarManager.qml
 msgid "Too many web requests. Will try again soon."
-msgstr ""
+msgstr "Troppe richieste web. Riproverò a breve."
 
 #: ../contents/ui/config/ConfigAgenda.qml
 msgid "Show agenda"
@@ -287,7 +287,7 @@ msgstr "Stile"
 
 #: ../contents/ui/config/ConfigCalendar.qml
 msgid "Current Month Title:"
-msgstr ""
+msgstr "Titolo del mese corrente:"
 
 #: ../contents/ui/config/ConfigCalendar.qml ../contents/ui/MonthView.qml
 msgctxt "calendar title format for current month"
@@ -626,7 +626,7 @@ msgstr "Mostra le prossime "
 #: ../contents/ui/config/ConfigWeather.qml
 msgid " hour"
 msgid_plural " hours"
-msgstr[0] " ore"
+msgstr[0] " ora"
 msgstr[1] " ore"
 
 #: ../contents/ui/config/ConfigWeather.qml
@@ -708,7 +708,7 @@ msgstr "d MMM yyyy"
 
 #: ../contents/ui/DurationSelector.qml
 msgid "to"
-msgstr ""
+msgstr "fino al"
 
 #: ../contents/ui/EditEventForm.qml ../contents/ui/EditTaskForm.qml
 msgid "Event Title"
@@ -787,7 +787,7 @@ msgstr "%1 - %2"
 
 #: ../contents/ui/Logic.qml
 msgid "Weather API limit reached"
-msgstr ""
+msgstr "Raggiunto il limite dell'API del meteo"
 
 #: ../contents/ui/main.qml
 msgid "Set Language..."
@@ -832,7 +832,7 @@ msgstr "Errore nello scaricamento del meteo."
 
 #: ../contents/ui/PopupView.qml
 msgid "Logged out of Google. Please login again."
-msgstr ""
+msgstr "Disconnesso da Google. Sei invitato a riconnetterti."
 
 #: ../contents/ui/TimerInputView.qml
 msgid "&Start"
