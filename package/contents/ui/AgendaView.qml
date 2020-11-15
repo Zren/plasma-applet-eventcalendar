@@ -59,7 +59,7 @@ Item {
 			id: agendaListView
 			model: root.agendaModel
 			section.property: 'week'
-			section.labelPositioning: ViewSection.InlineLabels | ViewSection.CurrentLabelAtStart
+			section.labelPositioning: ViewSection.InlineLabels // | ViewSection.CurrentLabelAtStart
 			section.delegate: PlasmaComponents3.Label {
 				required property string section
 				text: section

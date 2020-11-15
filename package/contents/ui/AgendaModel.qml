@@ -1,6 +1,7 @@
 import QtQuick 2.0
 
 import "Shared.js" as Shared
+import "LocaleFuncs.js" as LocaleFuncs
 
 ListModel {
 	id: agendaModel
@@ -61,18 +62,42 @@ ListModel {
 			max: dateMax,
 		}
 	}
+
 	function getWeekText(date) {
 		var dayOfWeek = date.getDay()
 		var startOfWeek = new Date(date)
 		startOfWeek.setDate(startOfWeek.getDate() - dayOfWeek)
 		var endOfWeek = new Date(date)
 		endOfWeek.setDate(endOfWeek.getDate() + (7 - 1 - dayOfWeek))
-		var shortDateFormat = i18nc("short month+date format", "MMM d")
-		var startStr = Qt.formatDate(startOfWeek, shortDateFormat)
-		var endStr = Qt.formatDate(endOfWeek, shortDateFormat)
+
+		// TODO: Drop the duplicate month (Jan) text when starting and ending in the same month.
+		// It's too diffult to translate the following atm:
+		// Jan 1 - 7 OR 1 - 7 Jan
+		// Jan 1 - 7, 2021 OR 1 - 7 Jan, 2021
+		var today = new Date(timeModel.currentTime)
+
+		var startFormat, endFormat
+		if (Shared.isSameYear(startOfWeek, endOfWeek)) {
+			if (Shared.isSameYear(startOfWeek, today)) {
+				// Dec 20 - Dec 26
+				startFormat = i18nc("short month+date format", "MMM d")
+				endFormat = i18nc("short month+date format", "MMM d")
+			} else {
+				// Jan 3 - Jan 9, 2021
+				startFormat = i18nc("short month+date format", "MMM d")
+				endFormat = i18nc("short month+date+year format", "MMM d, yyyy")
+			}
+		} else {
+			// Dec 27, 2020 - Jan 2, 2021
+			startFormat = i18nc("short month+date+year format", "MMM d, yyyy")
+			endFormat = i18nc("short month+date+year format", "MMM d, yyyy")
+		}
+		var startStr = Qt.formatDate(startOfWeek, startFormat)
+		var endStr = Qt.formatDate(endOfWeek, endFormat)
 		var weekDurationText = i18nc("from date/time %1 until date/time %2", "%1 - %2", startStr, endStr)
+
 		var weekNumber = 52
-		return i18n("Week %1, %2", weekNumber, weekDurationText)
+		return i18nc("Week [52], [Jan 1 - 7]", "Week %1, %2", weekNumber, weekDurationText)
 	}
 
 	function buildAgendaItem(dateTime) {
