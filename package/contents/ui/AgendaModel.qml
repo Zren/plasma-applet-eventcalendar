@@ -61,10 +61,26 @@ ListModel {
 			max: dateMax,
 		}
 	}
+	function getWeekText(date) {
+		var dayOfWeek = date.getDay()
+		var startOfWeek = new Date(date)
+		startOfWeek.setDate(startOfWeek.getDate() - dayOfWeek)
+		var endOfWeek = new Date(date)
+		endOfWeek.setDate(endOfWeek.getDate() + (7 - 1 - dayOfWeek))
+		var shortDateFormat = i18nc("short month+date format", "MMM d")
+		var startStr = Qt.formatDate(startOfWeek, shortDateFormat)
+		var endStr = Qt.formatDate(endOfWeek, shortDateFormat)
+		var weekDurationText = i18nc("from date/time %1 until date/time %2", "%1 - %2", startStr, endStr)
+		var weekNumber = 52
+		return i18n("Week %1, %2", weekNumber, weekDurationText)
+	}
 
 	function buildAgendaItem(dateTime) {
+		var date = new Date(dateTime)
+		var week = getWeekText(date)
 		return {
-			date: new Date(dateTime),
+			date: date,
+			week: week,
 			events: [],
 			tasks: [],
 			showWeather: false,

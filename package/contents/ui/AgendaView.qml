@@ -2,6 +2,7 @@ import QtQuick 2.0
 import QtQuick.Controls 2.2 as QQC2 // Qt 5.9
 import QtQuick.Layouts 1.1
 import org.kde.plasma.core 2.0 as PlasmaCore
+import org.kde.plasma.components 3.0 as PlasmaComponents3
 
 import "Shared.js" as Shared
 import "LocaleFuncs.js" as LocaleFuncs
@@ -57,6 +58,12 @@ Item {
 		ListView {
 			id: agendaListView
 			model: root.agendaModel
+			section.property: 'week'
+			section.labelPositioning: ViewSection.InlineLabels | ViewSection.CurrentLabelAtStart
+			section.delegate: PlasmaComponents3.Label {
+				required property string section
+				text: section
+			}
 			delegate: AgendaListItem {
 				width: agendaScrollView.width
 				ListView.delayRemove: true
