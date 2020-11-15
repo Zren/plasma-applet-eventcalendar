@@ -1,5 +1,5 @@
 import QtQuick 2.0
-import QtQuick.Controls 1.1
+import QtQuick.Controls 2.2 as QQC2 // Qt 5.9
 import QtQuick.Layouts 1.1
 import org.kde.plasma.core 2.0 as PlasmaCore
 
@@ -49,54 +49,68 @@ Item {
 		}
 	}
 
-	ScrollView {
+	QQC2.ScrollView {
 		id: agendaScrollView
 		anchors.fill: parent
+		QQC2.ScrollBar.horizontal.policy: QQC2.ScrollBar.AlwaysOff
+
+		ListView {
+			id: agendaListView
+			model: root.agendaModel
+			delegate: AgendaListItem {
+				width: agendaScrollView.width
+				ListView.delayRemove: true
+				Component.onCompleted: console.log(Date.now(), 'AgendaListItem.onCompleted', index)
+				Component.onDestruction: console.log(Date.now(), 'AgendaListItem.onDestruction', index)
+			}
+			spacing: appletConfig.agendaDaySpacing
+		}
+
 		// clip: true
-		readonly property int contentWidth: contentItem ? contentItem.width : width
-		readonly property int contentHeight: contentItem ? contentItem.height : 0 // Warning: Binding loop
-		readonly property int viewportWidth: viewport ? viewport.width : width
-		readonly property int viewportHeight: viewport ? viewport.height : height
-		readonly property int scrollY: flickableItem ? flickableItem.contentY : 0
+		// readonly property int contentWidth: contentItem ? contentItem.width : width
+		// readonly property int contentHeight: contentItem ? contentItem.height : 0 // Warning: Binding loop
+		// readonly property int viewportWidth: viewport ? viewport.width : width
+		// readonly property int viewportHeight: viewport ? viewport.height : height
+		// readonly property int scrollY: flickableItem ? flickableItem.contentY : 0
 
 		// onScrollYChanged: console.log('scrollY', scrollY)
 
-		ColumnLayout {
-			id: agendaColumn
-			width: agendaScrollView.viewportWidth
-			spacing: appletConfig.agendaDaySpacing
+		// ColumnLayout {
+		// 	id: agendaColumn
+		// 	width: agendaScrollView.viewportWidth
+		// 	spacing: appletConfig.agendaDaySpacing
 
-			Repeater {
-				id: agendaRepeater
+		// 	Repeater {
+		// 		id: agendaRepeater
 
-				property bool populated: false
-				// onPopulatedChanged: console.log(Date.now(), 'agendaRepeater.populated', populated)
-				model: root.agendaModel
-				delegate: AgendaListItem {
-					// visible: agendaRepeater.populated
-					width: parent.width
-					// onHeightChanged: {
-					// 	if (scrollToIndexTimer.running) {
-					// 		scrollToIndexTimer.updatePosition()
-					// 	}
-					// }
+		// 		property bool populated: false
+		// 		// onPopulatedChanged: console.log(Date.now(), 'agendaRepeater.populated', populated)
+		// 		model: root.agendaModel
+		// 		delegate: AgendaListItem {
+		// 			// visible: agendaRepeater.populated
+		// 			width: parent.width
+		// 			// onHeightChanged: {
+		// 			// 	if (scrollToIndexTimer.running) {
+		// 			// 		scrollToIndexTimer.updatePosition()
+		// 			// 	}
+		// 			// }
 					
-					// Component.onCompleted: console.log(Date.now(), 'AgendaListItem.onCompleted', index)
-					// Component.onDestruction: console.log(Date.now(), 'AgendaListItem.onDestruction', index)
-				}
+		// 			// Component.onCompleted: console.log(Date.now(), 'AgendaListItem.onCompleted', index)
+		// 			// Component.onDestruction: console.log(Date.now(), 'AgendaListItem.onDestruction', index)
+		// 		}
 
-				onItemAdded: {
-					// console.log(Date.now(), 'agendaRepeater.itemAdded', index)
-					if (index == root.agendaModel.count-1) {
-						populated = true
-					}
-				}
-				onItemRemoved: {
-					// console.log(Date.now(), 'agendaRepeater.onItemRemoved', index)
-					populated = false
-				}
-			}
-		}
+		// 		onItemAdded: {
+		// 			// console.log(Date.now(), 'agendaRepeater.itemAdded', index)
+		// 			if (index == root.agendaModel.count-1) {
+		// 				populated = true
+		// 			}
+		// 		}
+		// 		onItemRemoved: {
+		// 			// console.log(Date.now(), 'agendaRepeater.onItemRemoved', index)
+		// 			populated = false
+		// 		}
+		// 	}
+		// }
 
 		function getCurrentAgendaItem() {
 			if (agendaRepeater.count == 0 || scrollY < 0) {
@@ -145,31 +159,36 @@ Item {
 		}
 
 		function positionViewAtBeginning() {
-			scrollToY(0)
+			// scrollToY(0)
+			agendaListView.positionViewAtBeginning()
 		}
 
 		function positionViewAtIndex(i) {
-			var offsetY = getItemOffsetY(i)
-			scrollToY(offsetY)
+			// var offsetY = getItemOffsetY(i)
+			// scrollToY(offsetY)
+			agendaListView.positionViewAtIndex(i, ListView.Beginning)
 		}
 
 		function positionViewAtEvent(agendaItemIndex, eventIndex) {
-			var offsetY = getItemOffsetY(agendaItemIndex)
-			var agendaListItem = agendaRepeater.itemAt(agendaItemIndex)
-			offsetY += agendaListItem.getEventOffset(eventIndex)
-			scrollToY(offsetY)
+			// var offsetY = getItemOffsetY(agendaItemIndex)
+			// var agendaListItem = agendaRepeater.itemAt(agendaItemIndex)
+			// offsetY += agendaListItem.getEventOffset(eventIndex)
+			// scrollToY(offsetY)
+			agendaListView.positionViewAtIndex(agendaItemIndex, ListView.Beginning)
 		}
 
 		function positionViewAtTask(agendaItemIndex, taskIndex) {
-			var offsetY = getItemOffsetY(agendaItemIndex)
-			var agendaListItem = agendaRepeater.itemAt(agendaItemIndex)
-			var eventIndex = agendaListItem.agendaItemEvents.count + taskIndex
-			offsetY += agendaListItem.getEventOffset(eventIndex)
-			scrollToY(offsetY)
+			// var offsetY = getItemOffsetY(agendaItemIndex)
+			// var agendaListItem = agendaRepeater.itemAt(agendaItemIndex)
+			// var eventIndex = agendaListItem.agendaItemEvents.count + taskIndex
+			// offsetY += agendaListItem.getEventOffset(eventIndex)
+			// scrollToY(offsetY)
+			agendaListView.positionViewAtIndex(agendaItemIndex, ListView.Beginning)
 		}
 
 		function positionViewAtEnd() {
-			scrollToY(contentHeight)
+			// scrollToY(contentHeight)
+			agendaListView.positionViewAtEnd()
 		}
 	}
 
