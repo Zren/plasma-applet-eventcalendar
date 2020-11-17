@@ -1,5 +1,6 @@
 import QtQuick 2.0
 
+import "DateFuncs.js" as DateFuncs
 import "Shared.js" as Shared
 import "LocaleFuncs.js" as LocaleFuncs
 
@@ -96,7 +97,7 @@ ListModel {
 		var endStr = Qt.formatDate(endOfWeek, endFormat)
 		var weekDurationText = i18nc("from date/time %1 until date/time %2", "%1 - %2", startStr, endStr)
 
-		var weekNumber = 52
+		var weekNumber = DateFuncs.getDayOfWeek(date)
 		return i18nc("Week [52], [Jan 1 - 7]", "Week %1, %2", weekNumber, weekDurationText)
 	}
 
