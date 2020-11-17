@@ -60,9 +60,26 @@ Item {
 			model: root.agendaModel
 			section.property: 'week'
 			section.labelPositioning: ViewSection.InlineLabels // | ViewSection.CurrentLabelAtStart
-			section.delegate: PlasmaComponents3.Label {
+			section.delegate: RowLayout {
 				required property string section
-				text: section
+
+				width: agendaScrollView.width
+
+				Rectangle {
+					Layout.fillWidth: true
+					implicitWidth: 1 * units.devicePixelRatio
+					implicitHeight: 1 * units.devicePixelRatio
+					color: theme.textColor
+				}
+				PlasmaComponents3.Label {
+					text: section
+				}
+				Rectangle {
+					Layout.fillWidth: true
+					implicitWidth: 1 * units.devicePixelRatio
+					implicitHeight: 1 * units.devicePixelRatio
+					color: theme.textColor
+				}
 			}
 			delegate: AgendaListItem {
 				width: agendaScrollView.width
