@@ -39,11 +39,13 @@ def eventsToJson(eventList=None, indent=4):
 		
 		item['status'] = 'confirmed' # TODO: event['STATUS']
 		item['htmlLink'] = ''
-		item['created'] = event['CREATED'].dt.isoformat()
-		item['updated'] = event['LAST-MODIFIED'].dt.isoformat()
+		if 'CREATED' in event:
+			item['created'] = event['CREATED'].dt.isoformat()
+		if 'LAST-MODIFIED' in event:
+			item['updated'] = event['LAST-MODIFIED'].dt.isoformat()
 
 		item['summary'] = event['SUMMARY']
-		if event['LOCATION']:
+		if 'LOCATION' in event:
 			item['location'] = event['LOCATION']
 
 		item['start'] = dateToJson(event['DTSTART'])
