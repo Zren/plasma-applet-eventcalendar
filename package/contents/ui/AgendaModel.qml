@@ -97,7 +97,7 @@ ListModel {
 		var endStr = Qt.formatDate(endOfWeek, endFormat)
 		var weekDurationText = i18nc("from date/time %1 until date/time %2", "%1 - %2", startStr, endStr)
 
-		var weekNumber = DateFuncs.getDayOfWeek(date)
+		var weekNumber = DateFuncs.getWeekNumber(date)
 		return i18nc("Week [52], [Jan 1 - 7]", "Week %1, %2", weekNumber, weekDurationText)
 	}
 

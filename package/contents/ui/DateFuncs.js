@@ -67,7 +67,7 @@ function getDayOfYear(date) {
 }
 
 // https://github.com/qt/qtbase/blob/dev/src/corelib/time/qdatetime.cpp#L730
-function getDayOfWeek(date) {
+function getWeekNumber(date) {
 	var dayOfWeek = date.getDay()
 	// The Thursday of the same week determines our answer:
 	var thursday = new Date(date)
