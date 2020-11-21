@@ -11,14 +11,14 @@ def debug(*args):
 		print(*args)
 
 def dateToJson(dateObj):
-	if isinstance(dateObj.dt, datetime.date):
-		# { "date": "2010-08-04" }
-		dateStr = dateObj.dt.isoformat()
-		return { 'date': dateStr } 
-	else: # datetime
+	if isinstance(dateObj.dt, datetime.datetime):
 		# { "dateTime": "2010-08-04T02:44:20.063Z" }
 		dateTimeStr = dateObj.dt.isoformat() # 2014-10-02T18:00:00+00:00
 		return { 'dateTime': dateTimeStr }
+	else: # datetime
+		# { "date": "2010-08-04" }
+		dateStr = dateObj.dt.isoformat()
+		return { 'date': dateStr }
 
 def eventsToJson(eventList=None, indent=4):
 	if eventList is None:
@@ -39,11 +39,13 @@ def eventsToJson(eventList=None, indent=4):
 		
 		item['status'] = 'confirmed' # TODO: event['STATUS']
 		item['htmlLink'] = ''
-		item['created'] = event['CREATED'].dt.isoformat()
-		item['updated'] = event['LAST-MODIFIED'].dt.isoformat()
+		if 'CREATED' in event:
+			item['created'] = event['CREATED'].dt.isoformat()
+		if 'LAST-MODIFIED' in event:
+			item['updated'] = event['LAST-MODIFIED'].dt.isoformat()
 
 		item['summary'] = event['SUMMARY']
-		if event['LOCATION']:
+		if 'LOCATION' in event:
 			item['location'] = event['LOCATION']
 
 		item['start'] = dateToJson(event['DTSTART'])
