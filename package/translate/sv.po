@@ -1,4 +1,4 @@
-# Translation of eventcalendar in LANGUAGE
+# Translation of eventcalendar in sv
 # Copyright (C) 2020
 # This file is distributed under the same license as the eventcalendar package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: eventcalendar\n"
 "Report-Msgid-Bugs-To: https://github.com/Zren/plasma-applet-eventcalendar\n"
-"POT-Creation-Date: 2020-12-06 17:55-0500\n"
+"POT-Creation-Date: 2020-11-12 11:42-0500\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: Mathias <EMAIL@ADDRESS>\n"
 "Language-Team: Swedish <LL@li.org>\n"
@@ -444,8 +444,8 @@ msgid " (0px = scale to fit)"
 msgstr " (0px = skala för att passa)"
 
 #: ../contents/ui/config/ConfigGeneral.qml
-msgid "Time Format"
-msgstr "Tidsformat"
+msgid "Line 1:"
+msgstr ""
 
 #: ../contents/ui/config/ConfigGeneral.qml
 msgid "Preset:"
