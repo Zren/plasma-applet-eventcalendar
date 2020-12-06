@@ -1,0 +1,900 @@
+# Translation of eventcalendar in LANGUAGE
+# Copyright (C) 2020
+# This file is distributed under the same license as the eventcalendar package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: eventcalendar\n"
+"Report-Msgid-Bugs-To: https://github.com/Zren/plasma-applet-eventcalendar\n"
+"POT-Creation-Date: 2020-12-06 17:55-0500\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: Mathias <EMAIL@ADDRESS>\n"
+"Language-Team: Swedish <LL@li.org>\n"
+"Language: sv\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
+
+#: ../metadata.desktop ../contents/ui/AgendaView.qml ../contents/ui/UpcomingEvents.qml
+msgid "Event Calendar"
+msgstr ""
+
+#: ../metadata.desktop
+msgid "Plasmoid for a calendar+agenda with weather that syncs to Google Calendar."
+msgstr "Plasmoid för kalender och agenda med väder som synkroniseras med Google Kalender."
+
+#: ../contents/config/config.qml
+msgid "General"
+msgstr "Allmän"
+
+#: ../contents/config/config.qml
+msgid "Layout"
+msgstr ""
+
+#: ../contents/config/config.qml
+msgid "Timezones"
+msgstr "Tidszoner"
+
+#: ../contents/config/config.qml ../contents/ui/UpcomingEvents.qml
+msgid "Calendar"
+msgstr "Kalender"
+
+#: ../contents/config/config.qml
+msgid "Agenda"
+msgstr "Dagordning"
+
+#: ../contents/config/config.qml
+msgid "Events"
+msgstr "Händelser"
+
+#: ../contents/config/config.qml ../contents/ui/config/ConfigEvents.qml
+msgid "ICalendar (.ics)"
+msgstr ""
+
+#: ../contents/config/config.qml ../contents/ui/config/ConfigEvents.qml
+msgid "Google Calendar"
+msgstr "Google Kalender"
+
+#: ../contents/config/config.qml
+msgid "Weather"
+msgstr "Väder"
+
+#: ../contents/config/config.qml
+msgid "Advanced"
+msgstr "Avancerat"
+
+#: ../contents/ui/AgendaEventItem.qml ../contents/ui/EditEventForm.qml ../contents/ui/LocaleFuncs.js
+msgid "All Day"
+msgstr "Alla dagar"
+
+#: ../contents/ui/AgendaEventItem.qml
+msgid "Hangout"
+msgstr ""
+
+#: ../contents/ui/AgendaEventItem.qml ../contents/ui/AgendaTaskItem.qml
+msgid "Edit"
+msgstr "Editera"
+
+#: ../contents/ui/AgendaEventItem.qml ../contents/ui/AgendaTaskItem.qml
+msgid "Delete Event"
+msgstr "Ta bort händelse"
+
+#: ../contents/ui/AgendaEventItem.qml ../contents/ui/AgendaTaskItem.qml
+msgid "Confirm Deletion"
+msgstr "Bekräfta borttagning"
+
+#: ../contents/ui/AgendaEventItem.qml ../contents/ui/AgendaTaskItem.qml
+msgid "Edit in browser"
+msgstr "Redigera i Webbläsare"
+
+#: ../contents/ui/AgendaListItem.qml
+msgctxt "agenda date format line 1"
+msgid "MMM d"
+msgstr ""
+
+#: ../contents/ui/AgendaListItem.qml
+msgctxt "agenda date format line 2"
+msgid "ddd"
+msgstr ""
+
+#: ../contents/ui/AgendaTaskItem.qml ../contents/ui/LocaleFuncs.js
+msgctxt "short month+date format"
+msgid "MMM d"
+msgstr ""
+
+#: ../contents/ui/calendars/CalendarManager.qml
+msgctxt "event with no summary"
+msgid "(No title)"
+msgstr "(Ingen title)"
+
+#: ../contents/ui/CalendarSelector.qml
+msgid "[No Calendars]"
+msgstr "[Inga Kalendrar]"
+
+#: ../contents/ui/calendars/GoogleCalendarManager.qml ../contents/ui/Logic.qml
+msgid "HTTP Error %1: %2"
+msgstr "HTTP-Fel %1: %2"
+
+#: ../contents/ui/calendars/GoogleCalendarManager.qml ../contents/ui/Logic.qml
+msgid "Could not connect"
+msgstr "Kunde inte ansluta"
+
+#: ../contents/ui/calendars/GoogleCalendarManager.qml ../contents/ui/Logic.qml
+msgid "Will try again soon."
+msgstr "Försöker igen snart."
+
+#: ../contents/ui/calendars/GoogleCalendarManager.qml ../contents/ui/config/ConfigGoogleCalendar.qml ../contents/ui/PopupView.qml
+msgid "Widget has been updated. Please logout and login to Google Calendar again."
+msgstr "Widgeten har uppdaterats. Logga ut och sedan in från Google Kalender."
+
+#: ../contents/ui/calendars/GoogleCalendarManager.qml
+msgid "Too many web requests. Will try again soon."
+msgstr "För många anslutsförfrågningar. Försöker igen snart."
+
+#: ../contents/ui/config/ConfigAgenda.qml
+msgid "Show agenda"
+msgstr "Visa dagordning"
+
+#: ../contents/ui/config/ConfigAgenda.qml
+msgid "Font Size:"
+msgstr "Textstorlek:"
+
+#: ../contents/ui/config/ConfigAgenda.qml ../contents/ui/config/ConfigGeneral.qml ../contents/ui/config/ConfigLayout.qml
+msgid "px"
+msgstr ""
+
+#: ../contents/ui/config/ConfigAgenda.qml
+msgid " (0px = <b>System Settings > Fonts > General</b>)"
+msgstr "(0px = <b>Systeminställningar > Teckensnitt > Allmänt</b>)"
+
+#: ../contents/ui/config/ConfigAgenda.qml
+msgid "Weather Icon"
+msgstr "Väderikon"
+
+#: ../contents/ui/config/ConfigAgenda.qml
+msgid "Icon Outline"
+msgstr "Ikonkontur"
+
+#: ../contents/ui/config/ConfigAgenda.qml
+msgid "Weather Text"
+msgstr "Vädertext"
+
+#: ../contents/ui/config/ConfigAgenda.qml
+msgid "Position:"
+msgstr ""
+
+#: ../contents/ui/config/ConfigAgenda.qml
+msgid "Left"
+msgstr "Vänster"
+
+#: ../contents/ui/config/ConfigAgenda.qml
+msgid "Right"
+msgstr "Höger"
+
+#: ../contents/ui/config/ConfigAgenda.qml
+msgid "Click Weather:"
+msgstr "Klicka på Väder:"
+
+#: ../contents/ui/config/ConfigAgenda.qml
+msgid "Open City Forecast In Browser"
+msgstr "Öppna väderprognos i webbläsare"
+
+#: ../contents/ui/config/ConfigAgenda.qml ../contents/ui/config/ConfigCalendar.qml
+msgid "Click Date:"
+msgstr "Klicka på datum:"
+
+#: ../contents/ui/config/ConfigAgenda.qml
+msgid "Open New Event In Browser"
+msgstr "Öppna ny händelse i webbläsare"
+
+#: ../contents/ui/config/ConfigAgenda.qml
+msgid "Open New Event Form"
+msgstr "Öppna nytt händelseformulär"
+
+#: ../contents/ui/config/ConfigAgenda.qml
+msgid "Event description"
+msgstr "Beskrivning för Händelse"
+
+#: ../contents/ui/config/ConfigAgenda.qml
+msgid "Hide 'All Day' text"
+msgstr "Dölj texten 'Hela dagen'"
+
+#: ../contents/ui/config/ConfigAgenda.qml
+msgid "Google Hangouts link"
+msgstr "Google Hangouts Länk"
+
+#: ../contents/ui/config/ConfigAgenda.qml
+msgid "Click Event:"
+msgstr "Klicka på händelse:"
+
+#: ../contents/ui/config/ConfigAgenda.qml
+msgid "Open Event In Browser"
+msgstr "Öppna händelse i webbläsare"
+
+#: ../contents/ui/config/ConfigAgenda.qml
+msgid "Show multi-day events:"
+msgstr "Visa flera händelser per dag:"
+
+#: ../contents/ui/config/ConfigAgenda.qml
+msgid "On all days"
+msgstr "På alla dagar"
+
+#: ../contents/ui/config/ConfigAgenda.qml
+msgid "Only on the first and current day"
+msgstr "Endast den första och nuvarande dagen"
+
+#: ../contents/ui/config/ConfigAgenda.qml
+msgid "Remember selected calendar in New Event Form"
+msgstr "Kom ihåg vald kalender i framtida händelseformulär"
+
+#: ../contents/ui/config/ConfigAgenda.qml
+msgid "Current Month"
+msgstr "Nuvarande månad"
+
+#: ../contents/ui/config/ConfigAgenda.qml
+msgid "Always show next 14 days"
+msgstr "Visa alltid kommande 14 dagar"
+
+#: ../contents/ui/config/ConfigAgenda.qml
+msgid "Hide completed events"
+msgstr "Dölj slutförda händelser"
+
+#: ../contents/ui/config/ConfigAgenda.qml
+msgid "Show all events of the current day (including completed events)"
+msgstr "Visa alla händelser för den aktuella dagen (inklusive slutförda händelser)"
+
+#: ../contents/ui/config/ConfigAgenda.qml ../contents/ui/config/ConfigWeather.qml
+msgid "Colors"
+msgstr "Färger"
+
+#: ../contents/ui/config/ConfigAgenda.qml
+msgid "In Progress"
+msgstr "Pågående"
+
+#: ../contents/ui/config/ConfigAgenda.qml
+msgid "Day Spacing:"
+msgstr "Mellanrum Dagar:"
+
+#: ../contents/ui/config/ConfigAgenda.qml
+msgid "Event Spacing:"
+msgstr "Mellanrum Händelser:"
+
+#: ../contents/ui/config/ConfigCalendar.qml
+msgid "Show calendar"
+msgstr "Visa kalender"
+
+#: ../contents/ui/config/ConfigCalendar.qml
+msgid "Scroll to event in Agenda"
+msgstr "Bläddra till evenemang i Händelser"
+
+#: ../contents/ui/config/ConfigCalendar.qml
+msgid "Double-click on Date:"
+msgstr "Dubbelklick på Datum:"
+
+#: ../contents/ui/config/ConfigCalendar.qml
+msgid "New Google Calendar Event (Web Browser)"
+msgstr "Ny Google Kalender-händelse (webbläsare)"
+
+#: ../contents/ui/config/ConfigCalendar.qml
+msgid "Do Nothing"
+msgstr "Gör inget"
+
+#: ../contents/ui/config/ConfigCalendar.qml ../contents/ui/config/ConfigWeather.qml
+msgid "Style"
+msgstr "Stil"
+
+#: ../contents/ui/config/ConfigCalendar.qml
+msgid "Current Month Title:"
+msgstr "Nuvarande månadsrubrik:"
+
+#: ../contents/ui/config/ConfigCalendar.qml ../contents/ui/MonthView.qml
+msgctxt "calendar title format for current month"
+msgid "MMMM d, yyyy"
+msgstr ""
+
+#: ../contents/ui/config/ConfigCalendar.qml
+msgid "Show Borders"
+msgstr "Visa ramar"
+
+#: ../contents/ui/config/ConfigCalendar.qml
+msgid "Show Week Numbers"
+msgstr "Visa veckonummer"
+
+#: ../contents/ui/config/ConfigCalendar.qml
+msgid "Highlight Current Day / Week"
+msgstr "Markera aktuell dag/vecka"
+
+#: ../contents/ui/config/ConfigCalendar.qml
+msgid "First day of week:"
+msgstr "Första veckodagen:"
+
+#: ../contents/ui/config/ConfigCalendar.qml
+msgid "Default"
+msgstr "Standard"
+
+#: ../contents/ui/config/ConfigCalendar.qml
+msgid "Event Badge:"
+msgstr "Händelseetikett:"
+
+#: ../contents/ui/config/ConfigCalendar.qml
+msgid "Theme"
+msgstr "Tema"
+
+#: ../contents/ui/config/ConfigCalendar.qml
+msgid "Dots (3 Maximum)"
+msgstr "Punkter (3 st max)"
+
+#: ../contents/ui/config/ConfigCalendar.qml
+msgid "Bottom Bar (Event Color)"
+msgstr "Linje (Händelsefärger)"
+
+#: ../contents/ui/config/ConfigCalendar.qml
+msgid "Bottom Bar (Highlight)"
+msgstr "Linje framhävd"
+
+#: ../contents/ui/config/ConfigCalendar.qml
+msgid "Count"
+msgstr "Siffra (Antal händelser)"
+
+#: ../contents/ui/config/ConfigCalendar.qml
+msgid "Radius:"
+msgstr "Radie:"
+
+#: ../contents/ui/config/ConfigCalendar.qml
+msgid "Selected:"
+msgstr "Vald:"
+
+#: ../contents/ui/config/ConfigCalendar.qml
+msgid "Solid Color (Highlight)"
+msgstr "Enfärgad (Framhävd)"
+
+#: ../contents/ui/config/ConfigCalendar.qml
+msgid "Today:"
+msgstr "Idag:"
+
+#: ../contents/ui/config/ConfigCalendar.qml
+msgid "Solid Color (Inverted)"
+msgstr "Enfärgad (Inverterad)"
+
+#: ../contents/ui/config/ConfigCalendar.qml
+msgid "Big Number"
+msgstr "Stor siffra"
+
+#: ../contents/ui/config/ConfigEvents.qml
+msgid "Event Calendar Plugins"
+msgstr ""
+
+#: ../contents/ui/config/ConfigEvents.qml
+msgid "Plasma Calendar Plugins"
+msgstr "Plasma kalender plugins"
+
+#: ../contents/ui/config/ConfigEvents.qml ../contents/ui/config/ConfigGeneral.qml
+msgid "Misc"
+msgstr "Övrigt"
+
+#: ../contents/ui/config/ConfigEvents.qml
+msgid "Refresh events every: "
+msgstr "Uppdatera händelser varje: "
+
+#: ../contents/ui/config/ConfigEvents.qml ../contents/ui/config/ConfigWeather.qml
+msgctxt "Polling interval in minutes"
+msgid "min"
+msgstr ""
+
+#: ../contents/ui/config/ConfigEvents.qml
+msgid "Notifications"
+msgstr "Meddelanden"
+
+#: ../contents/ui/config/ConfigEvents.qml
+msgid "Event Starting"
+msgstr "Händelse startad"
+
+#: ../contents/ui/config/ConfigGeneral.qml
+msgid "Widgets"
+msgstr ""
+
+#: ../contents/ui/config/ConfigGeneral.qml
+msgid "Show/Hide widgets above the calendar. Toggle Agenda/Calendar on their respective tabs."
+msgstr "Visa/dölj widgetar ovanför kalendern. Växla Agenda/Kalender på respektive flik."
+
+#: ../contents/ui/config/ConfigGeneral.qml
+msgid "Meteogram"
+msgstr ""
+
+#: ../contents/ui/config/ConfigGeneral.qml ../contents/ui/TimerModel.qml
+msgid "Timer"
+msgstr ""
+
+#: ../contents/ui/config/ConfigGeneral.qml ../contents/ui/lib/ConfigNotification.qml
+msgid "SFX:"
+msgstr ""
+
+#: ../contents/ui/config/ConfigGeneral.qml
+msgid "Clock"
+msgstr "Klocka"
+
+#: ../contents/ui/config/ConfigGeneral.qml
+msgid "Time Format"
+msgstr "Tidsformat"
+
+#: ../contents/ui/config/ConfigGeneral.qml
+msgid "Time Format Documentation"
+msgstr "Dokumentation för Tidsformat"
+
+#: ../contents/ui/config/ConfigGeneral.qml
+msgid "The default font for the Breeze theme is Noto Sans which is hard to read with small text. Try using the Sans Serif font if you find the text too small when adding a second line."
+msgstr "Standardteckensnittet för Breeze-temat är Noto Sans vilket är svårt att läsa med liten text. Pröva att använda teckensnittet Sans Serif om du tycker att texten är för liten när du lägger till en andra rad."
+
+#: ../contents/ui/config/ConfigGeneral.qml
+msgid "You can also use %1 or %2 to style a section. Note the single quotes around the tags are used to bypass the time format."
+msgstr "Du kan också använda %1 eller %2 för att utforma en sektion. Observera att de enskilda citaten runt taggarna används för att kringgå tidsformat."
+
+#: ../contents/ui/config/ConfigGeneral.qml
+msgid "Font:"
+msgstr "Teckensnitt:"
+
+#: ../contents/ui/config/ConfigGeneral.qml
+msgid "Fixed Clock Height: "
+msgstr "Fixerad klockhöjd: "
+
+#: ../contents/ui/config/ConfigGeneral.qml
+msgid " (0px = scale to fit)"
+msgstr " (0px = skala för att passa)"
+
+#: ../contents/ui/config/ConfigGeneral.qml
+msgid "Time Format"
+msgstr "Tidsformat"
+
+#: ../contents/ui/config/ConfigGeneral.qml
+msgid "Preset:"
+msgstr "Förinställning:"
+
+#: ../contents/ui/config/ConfigGeneral.qml
+msgid "Bold"
+msgstr "Fet text"
+
+#: ../contents/ui/config/ConfigGeneral.qml
+msgid "Line 2:"
+msgstr "Datumformat:"
+
+#: ../contents/ui/config/ConfigGeneral.qml
+msgid "Height:"
+msgstr "Höjd:"
+
+#: ../contents/ui/config/ConfigGeneral.qml
+msgid "Mouse Wheel"
+msgstr "Mushjul"
+
+#: ../contents/ui/config/ConfigGeneral.qml
+msgid "Run Commands"
+msgstr "Kör kommando"
+
+#: ../contents/ui/config/ConfigGeneral.qml
+msgid "Scroll Up:"
+msgstr "Scrolla upp:"
+
+#: ../contents/ui/config/ConfigGeneral.qml
+msgid "Scroll Down:"
+msgstr "Scrolla ner:"
+
+#: ../contents/ui/config/ConfigGeneral.qml
+msgid "Volume (No UI) (amixer)"
+msgstr "Volym (Inget UI) (amixer)"
+
+#: ../contents/ui/config/ConfigGeneral.qml
+msgid "Volume (UI) (qdbus)"
+msgstr "Volym (UI) (qdbus)"
+
+#: ../contents/ui/config/ConfigGeneral.qml
+msgid "Desktop Widget: Show background"
+msgstr "Skrivbordswidget: Visa bakgrund"
+
+#: ../contents/ui/config/ConfigGeneral.qml
+msgid "Debugging"
+msgstr "Felsökning"
+
+#: ../contents/ui/config/ConfigGeneral.qml
+msgid "Debugging will log sensitive information to:"
+msgstr "Felsökning kommer att skriva känslig information till:"
+
+#: ../contents/ui/config/ConfigGeneral.qml
+msgid "Enable Debugging"
+msgstr "Aktivera felsökning"
+
+#: ../contents/ui/config/ConfigGoogleCalendar.qml
+msgid "Login"
+msgstr "Logga in"
+
+#: ../contents/ui/config/ConfigGoogleCalendar.qml
+msgid "Currently Synched."
+msgstr "Synkroniserad."
+
+#: ../contents/ui/config/ConfigGoogleCalendar.qml
+msgid "Logout"
+msgstr "Logga ut"
+
+#: ../contents/ui/config/ConfigGoogleCalendar.qml
+msgid "To sync with Google Calendar"
+msgstr "För att synkronisera med Google Kalender"
+
+#: ../contents/ui/config/ConfigGoogleCalendar.qml
+msgid "Visit <a href=\"%1\">%2</a> (opens in your web browser). After you login and give permission to access your calendar, it will give you a code to paste below."
+msgstr "Besök <a href=\"%1\">%2</a> (öppnas i din webbläsare). När du har loggat in och gett behörighet att komma åt din kalender kommer den att ge dig en kod att klistra in nedan."
+
+#: ../contents/ui/config/ConfigGoogleCalendar.qml
+msgid "Copy Link"
+msgstr "Kopiera länk"
+
+#: ../contents/ui/config/ConfigGoogleCalendar.qml
+msgid "Enter code here (Eg: %1)"
+msgstr "Ange koden här (t.ex. %1)"
+
+#: ../contents/ui/config/ConfigGoogleCalendar.qml
+msgid "Submit"
+msgstr "Skicka in"
+
+#: ../contents/ui/config/ConfigGoogleCalendar.qml
+msgid "Invalid Google Authorization Code"
+msgstr "Ogiltig Google-auktoriseringskod"
+
+#: ../contents/ui/config/ConfigGoogleCalendar.qml ../contents/ui/config/ConfigICal.qml
+msgid "Calendars"
+msgstr "Kalendrar"
+
+#: ../contents/ui/config/ConfigGoogleCalendar.qml
+msgid "Refresh"
+msgstr "Uppdatera"
+
+#: ../contents/ui/config/ConfigGoogleCalendar.qml
+msgid "Tasks"
+msgstr "Uppgifter"
+
+#: ../contents/ui/config/ConfigICal.qml
+msgid "Add Calendar"
+msgstr "Lägg till kalender"
+
+#: ../contents/ui/config/ConfigICal.qml
+msgid "New Calendar"
+msgstr "Ny kalender"
+
+#: ../contents/ui/config/ConfigICal.qml
+msgid "Calendar Label"
+msgstr "Kalenderetikett"
+
+#: ../contents/ui/config/ConfigICal.qml
+msgid "Browse"
+msgstr "Bläddra"
+
+#: ../contents/ui/config/ConfigICal.qml
+msgid "iCalendar (*.ics)"
+msgstr ""
+
+#: ../contents/ui/config/ConfigLayout.qml
+msgid "Calendar to the left of the Agenda (Two Columns)"
+msgstr "Dagordning till höger om kalender (två kolumner)"
+
+#: ../contents/ui/config/ConfigLayout.qml
+msgid "Agenda below the Calendar (Single Column)"
+msgstr "Dagordning under kalender (enkel kolumn)"
+
+#: ../contents/ui/config/ConfigTimezones.qml
+msgid "Tooltip"
+msgstr "Verktygstips"
+
+#: ../contents/ui/config/ConfigTimezones.qml
+msgid "Cannot deselect Local time from the tooltip"
+msgstr "Det går inte att avmarkera lokal tid från verktygstipset"
+
+#: ../contents/ui/config/ConfigWeather.qml
+msgid "Data"
+msgstr ""
+
+#: ../contents/ui/config/ConfigWeather.qml
+msgid "API App Id:"
+msgstr ""
+
+#: ../contents/ui/config/ConfigWeather.qml
+msgid "City Id:"
+msgstr "Stad-ID:"
+
+#: ../contents/ui/config/ConfigWeather.qml
+msgid "Eg: 5983720"
+msgstr "T.ex: 5983720"
+
+#: ../contents/ui/config/ConfigWeather.qml
+msgid "Find City"
+msgstr "Hitta stad"
+
+#: ../contents/ui/config/ConfigWeather.qml
+msgid "Eg: on-14"
+msgstr "T.ex: on-14"
+
+#: ../contents/ui/config/ConfigWeather.qml
+msgid "Settings"
+msgstr "Inställningar"
+
+#: ../contents/ui/config/ConfigWeather.qml
+msgid "Update forecast every: "
+msgstr "Uppdatera prognosen varje: "
+
+#: ../contents/ui/config/ConfigWeather.qml
+msgid "Show next "
+msgstr "Visa nästa "
+
+#: ../contents/ui/config/ConfigWeather.qml
+msgid " hour"
+msgid_plural " hours"
+msgstr[0] " Timme"
+msgstr[1] " Timmar"
+
+#: ../contents/ui/config/ConfigWeather.qml
+msgid " in the meteogram."
+msgstr " i meteogrammet."
+
+#: ../contents/ui/config/ConfigWeather.qml
+msgid "Units:"
+msgstr "Enheter:"
+
+#: ../contents/ui/config/ConfigWeather.qml
+msgid "Celsius"
+msgstr ""
+
+#: ../contents/ui/config/ConfigWeather.qml
+msgid "Fahrenheit"
+msgstr ""
+
+#: ../contents/ui/config/ConfigWeather.qml
+msgid "Kelvin"
+msgstr ""
+
+#: ../contents/ui/config/ConfigWeather.qml
+msgid "Text"
+msgstr ""
+
+#: ../contents/ui/config/ConfigWeather.qml
+msgid "Grid"
+msgstr "Rutnät"
+
+#: ../contents/ui/config/ConfigWeather.qml
+msgid "Rain"
+msgstr "Regn"
+
+#: ../contents/ui/config/ConfigWeather.qml
+msgid "Positive Temp"
+msgstr "Positiv Temp"
+
+#: ../contents/ui/config/ConfigWeather.qml
+msgid "Negative Temp"
+msgstr "Negativ Temp"
+
+#: ../contents/ui/config/ConfigWeather.qml
+msgid "Icons"
+msgstr "Ikoner"
+
+#: ../contents/ui/config/OpenWeatherMapCityDialog.qml ../contents/ui/config/WeatherCanadaCityDialog.qml
+msgid "Select city"
+msgstr "Välj stad"
+
+#: ../contents/ui/config/OpenWeatherMapCityDialog.qml ../contents/ui/config/WeatherCanadaCityDialog.qml
+msgid "Fetched from <a href=\"%1\">%1</a>"
+msgstr "Hämtat från <a href=\"%1\">%1</a>"
+
+#: ../contents/ui/config/OpenWeatherMapCityDialog.qml ../contents/ui/config/WeatherCanadaCityDialog.qml
+msgid "Search"
+msgstr "Sök"
+
+#: ../contents/ui/config/OpenWeatherMapCityDialog.qml ../contents/ui/config/WeatherCanadaCityDialog.qml
+msgid "Name"
+msgstr "Namn"
+
+#: ../contents/ui/config/OpenWeatherMapCityDialog.qml ../contents/ui/config/WeatherCanadaCityDialog.qml
+msgid "Id"
+msgstr ""
+
+#: ../contents/ui/config/OpenWeatherMapCityDialog.qml ../contents/ui/config/WeatherCanadaCityDialog.qml
+msgid "City Webpage"
+msgstr "Länk stad"
+
+#: ../contents/ui/config/OpenWeatherMapCityDialog.qml ../contents/ui/config/WeatherCanadaCityDialog.qml
+msgid "Open Link"
+msgstr "Öppna länk"
+
+#: ../contents/ui/DateTimeSelector.qml
+msgctxt "event editor date format"
+msgid "d MMM, yyyy"
+msgstr ""
+
+#: ../contents/ui/DurationSelector.qml
+msgid "to"
+msgstr "till"
+
+#: ../contents/ui/EditEventForm.qml ../contents/ui/EditTaskForm.qml
+msgid "Event Title"
+msgstr "Titel Händelse"
+
+#: ../contents/ui/EditEventForm.qml
+msgid "Add location"
+msgstr "Lägg till plats"
+
+#: ../contents/ui/EditEventForm.qml ../contents/ui/EditTaskForm.qml
+msgid "Add description"
+msgstr "Lägg till beskrivning"
+
+#: ../contents/ui/EditEventForm.qml ../contents/ui/EditTaskForm.qml
+msgid "&Save"
+msgstr "&Spara"
+
+#: ../contents/ui/EditEventForm.qml ../contents/ui/EditTaskForm.qml ../contents/ui/TimerInputView.qml
+msgid "&Cancel"
+msgstr "&Avbryt"
+
+#: ../contents/ui/EditTaskForm.qml
+msgid "Add due date"
+msgstr "Lägg till slutdatum"
+
+#: ../contents/ui/lib/AppletVersion.qml
+msgid "<b>Version:</b> %1"
+msgstr ""
+
+#: ../contents/ui/lib/ConfigFontFamily.qml
+msgctxt "Use default font"
+msgid "Default"
+msgstr "Standard"
+
+#: ../contents/ui/lib/ConfigSound.qml
+msgid "Choose a sound effect"
+msgstr "Välj en ljudeffekt"
+
+#: ../contents/ui/lib/ConfigSound.qml
+msgid "Sound files (%1)"
+msgstr "Ljudfiler (%1)"
+
+#: ../contents/ui/lib/ConfigSound.qml
+msgid "All files (%1)"
+msgstr "Alla filer (%1)"
+
+#: ../contents/ui/LocaleFuncs.js
+msgctxt "event time on the hour (24 hour clock)"
+msgid "h"
+msgstr ""
+
+#: ../contents/ui/LocaleFuncs.js
+msgctxt "event time (24 hour clock)"
+msgid "h:mm"
+msgstr ""
+
+#: ../contents/ui/LocaleFuncs.js
+msgctxt "event time on the hour (12 hour clock)"
+msgid "h AP"
+msgstr ""
+
+#: ../contents/ui/LocaleFuncs.js
+msgctxt "event time (12 hour clock)"
+msgid "h:mm AP"
+msgstr ""
+
+#: ../contents/ui/LocaleFuncs.js
+msgctxt "date (%1) with time (%2)"
+msgid "%1, %2"
+msgstr ""
+
+#: ../contents/ui/LocaleFuncs.js
+msgctxt "from date/time %1 until date/time %2"
+msgid "%1 - %2"
+msgstr ""
+
+#: ../contents/ui/Logic.qml
+msgid "Weather API limit reached"
+msgstr "Väder-API-gräns uppnådd"
+
+#: ../contents/ui/main.qml
+msgid "Set Language..."
+msgstr "Ställ in språk..."
+
+#: ../contents/ui/main.qml
+msgid "Set Locale..."
+msgstr "Välj språk..."
+
+#: ../contents/ui/MeteogramView.qml
+#, c-format
+msgid "%1mm"
+msgstr ""
+
+#: ../contents/ui/MonthView.qml
+msgctxt "calendar title format for other months of current year"
+msgid "MMMM"
+msgstr ""
+
+#: ../contents/ui/MonthView.qml
+msgctxt "calendar title format for months not from current year"
+msgid "MMMM, yyyy"
+msgstr ""
+
+#: ../contents/ui/NewEventForm.qml
+msgid "Eg: 9am-5pm Work"
+msgstr "T.ex 9.00-17.00 Arbete"
+
+#: ../contents/ui/PopupView.qml
+msgid ""
+"Weather not configured.\n"
+"Go to Weather in the config and set your city,\n"
+"and/or disable the meteogram to hide this area."
+msgstr ""
+"Väder är inte konfigurerat.\n"
+"Gå till Väder i inställningar och ställ in väder för önskad stad,\n"
+"och/eller inaktivera meteogrammet för att dölja detta område."
+
+#: ../contents/ui/PopupView.qml
+msgid "Error fetching weather."
+msgstr "Det gick inte att hämta väder."
+
+#: ../contents/ui/PopupView.qml
+msgid "Logged out of Google. Please login again."
+msgstr "Utloggad från Google. Logga in igen."
+
+#: ../contents/ui/TimerInputView.qml
+msgid "&Start"
+msgstr ""
+
+#: ../contents/ui/TimerModel.qml
+msgctxt "short form for %1 hours"
+msgid "%1h"
+msgstr "%1t"
+
+#: ../contents/ui/TimerModel.qml
+#, c-format
+msgctxt "short form for %1 minutes"
+msgid "%1m"
+msgstr ""
+
+#: ../contents/ui/TimerModel.qml
+#, c-format
+msgctxt "short form for %1 seconds"
+msgid "%1s"
+msgstr ""
+
+#: ../contents/ui/TimerModel.qml
+msgid "Timer finished"
+msgstr "Tiden är ute"
+
+#: ../contents/ui/TimerModel.qml
+msgid "%1 has passed"
+msgstr "%1 har passerat"
+
+#: ../contents/ui/TimerModel.qml ../contents/ui/TimerView.qml
+msgid "Repeat"
+msgstr "Upprepa"
+
+#: ../contents/ui/TimerView.qml
+msgid "Pause Timer"
+msgstr "Pausa Timer"
+
+#: ../contents/ui/TimerView.qml
+msgid "Start Timer"
+msgstr "Starta Timer"
+
+#: ../contents/ui/TimerView.qml
+msgid "Scroll to add to duration"
+msgstr "Scrolla för att ändra tidslängd"
+
+#: ../contents/ui/TimerView.qml
+msgid "Sound"
+msgstr "Ljud"
+
+#: ../contents/ui/TimerView.qml
+msgid "Set Timer"
+msgstr "Ställ in Timer"
+
+#: ../contents/ui/UpcomingEvents.qml
+msgid "Events Starting"
+msgstr "Händelser startar"
+
+#: ../contents/ui/UpcomingEvents.qml
+msgid "Events In Progress"
+msgstr "Händelser pågår"
+
+#: ../contents/ui/UpcomingEvents.qml
+msgid "Upcoming Events"
+msgstr "Kommande Händelser"
