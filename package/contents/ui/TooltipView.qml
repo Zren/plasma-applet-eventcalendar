@@ -35,7 +35,7 @@ Item {
 		var formattedTime = Qt.formatTime(dateTime, timezoneTimeFormat)
 
 		if (dateTime.getDay() != dataSource.data["Local"]["DateTime"].getDay()) {
-			formattedTime += " (" + Qt.formatDate(dateTime, 1) + ")"
+			formattedTime += " (" + Qt.formatDate(dateTime, Locale.ShortFormat) + ")"
 		}
 
 		return formattedTime
