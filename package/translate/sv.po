@@ -445,7 +445,7 @@ msgstr " (0px = skala för att passa)"
 
 #: ../contents/ui/config/ConfigGeneral.qml
 msgid "Line 1:"
-msgstr ""
+msgstr "Rad 1:"
 
 #: ../contents/ui/config/ConfigGeneral.qml
 msgid "Preset:"
@@ -457,7 +457,7 @@ msgstr "Fet text"
 
 #: ../contents/ui/config/ConfigGeneral.qml
 msgid "Line 2:"
-msgstr "Datumformat:"
+msgstr "Rad 2:"
 
 #: ../contents/ui/config/ConfigGeneral.qml
 msgid "Height:"
