@@ -21,7 +21,7 @@ QtObject {
 	}
 
 	property color meteogramTextColorDefault: theme.textColor
-	property color meteogramScaleColorDefault: theme.buttonBackgroundColor
+	property color meteogramScaleColorDefault: ColorUtil.lerp(theme.backgroundColor, theme.textColor, 0.9)
 	property color meteogramPrecipitationRawColorDefault: "#acd"
 	property color meteogramPositiveTempColorDefault: "#900"
 	property color meteogramNegativeTempColorDefault: "#369"

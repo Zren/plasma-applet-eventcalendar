@@ -1,5 +1,5 @@
 .pragma library
-// Version: 1
+// Version: 2
 
 // https://stackoverflow.com/questions/9733288/how-to-programmatically-calculate-the-contrast-ratio-between-two-colors
 // https://www.w3.org/TR/AERT/#color-contrast
@@ -20,4 +20,16 @@ function hasEnoughContrast(c1, c2) {
 
 function setAlpha(c, a) {
 	return Qt.rgba(c.r, c.g, c.b, a)
+}
+
+function _interpolate(a, b, t) {
+	return (a - b) * t + b
+}
+// Linear Interpolation from color1 to color2 by a ratio of t.
+function lerp(c1, c2, t) {
+	var r = _interpolate(c1.r, c2.r, t)
+	var g = _interpolate(c1.g, c2.g, t)
+	var b = _interpolate(c1.b, c2.b, t)
+	var a = _interpolate(c1.a, c2.a, t)
+	return Qt.rgba(r, g, b, a)
 }
