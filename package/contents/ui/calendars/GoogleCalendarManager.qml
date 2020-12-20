@@ -169,12 +169,12 @@ CalendarManager {
 		
 		if (allData.nextPageToken) {
 			logger.debug('fetchGCalEventsPageResponse.nextPageToken', allData.nextPageToken)
-			logger.debug('fetchGCalEventsPageResponse.nextPageToken', 'allData.items.length', allData.items.length)
+			logger.debug('fetchGCalEventsPageResponse.nextPageToken', 'allData.items.length', allData.items && allData.items.length)
 			args.pageToken = allData.nextPageToken
 			var onResponse = fetchGCalEventsPageResponse.bind(this, args, finishedCallback, allData)
 			fetchGCalEventsPage(args, onResponse)
 		} else {
-			logger.debug('fetchGCalEventsPageResponse.finished', 'allData.items.length', allData.items.length)
+			logger.debug('fetchGCalEventsPageResponse.finished', 'allData.items.length', allData.items && allData.items.length)
 			finishedCallback(err, allData, xhr)
 		}
 	}
