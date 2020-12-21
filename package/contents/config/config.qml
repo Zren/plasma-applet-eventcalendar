@@ -2,6 +2,8 @@ import QtQuick 2.1
 import org.kde.plasma.configuration 2.0
 import org.kde.plasma.calendar 2.0 as PlasmaCalendar
 
+import "../ui/calendars/PlasmaCalendarUtils.js" as PlasmaCalendarUtils
+
 ConfigModel {
 	id: configModel
 
@@ -69,7 +71,8 @@ ConfigModel {
 			name: model.display
 			icon: model.decoration
 			source: model.configUi
-			visible: plasmoid.configuration.enabledCalendarPlugins.indexOf(model.pluginPath) > -1
+			readonly property string pluginFilename: PlasmaCalendarUtils.getPluginFilename(model.pluginPath)
+			visible: plasmoid.configuration.enabledCalendarPlugins.indexOf(pluginFilename) > -1
 		}
 
 		onObjectAdded: configModel.appendCategory(object)

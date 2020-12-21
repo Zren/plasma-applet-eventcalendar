@@ -5,6 +5,7 @@ import QtQuick.Layouts 1.0
 import org.kde.plasma.calendar 2.0 as PlasmaCalendar
 
 import "../lib"
+import "../calendars/PlasmaCalendarUtils.js" as PlasmaCalendarUtils
 
 ConfigPage {
 	id: page
@@ -50,10 +51,10 @@ ConfigPage {
 		}
 	}
 	function saveConfig() {
-		plasmoid.configuration.enabledCalendarPlugins = PlasmaCalendar.EventPluginsManager.enabledPlugins
+		plasmoid.configuration.enabledCalendarPlugins = PlasmaCalendarUtils.pluginPathToFilenameList(PlasmaCalendar.EventPluginsManager.enabledPlugins)
 	}
 	Component.onCompleted: {
-		PlasmaCalendar.EventPluginsManager.populateEnabledPluginsList(plasmoid.configuration.enabledCalendarPlugins)
+		PlasmaCalendarUtils.populateEnabledPluginsByFilename(PlasmaCalendar.EventPluginsManager, plasmoid.configuration.enabledCalendarPlugins)
 	}
 
 	HeaderText {

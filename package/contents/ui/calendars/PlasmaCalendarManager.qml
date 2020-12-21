@@ -5,6 +5,7 @@ import org.kde.plasma.calendar 2.0 as PlasmaCalendar
 
 import "../lib"
 import "../Shared.js" as Shared
+import "../calendars/PlasmaCalendarUtils.js" as PlasmaCalendarUtils
 
 CalendarManager {
 	id: plasmaCalendarManager
@@ -101,13 +102,12 @@ CalendarManager {
 	// to get a list of events for a specific day.
 
 	Component.onCompleted: {
-		PlasmaCalendar.EventPluginsManager.enabledPlugins = plasmoid.configuration.enabledCalendarPlugins
-		// PlasmaCalendar.EventPluginsManager.enabledPlugins = "/usr/lib/x86_64-linux-gnu/qt5/plugins/plasmacalendarplugins/holidaysevents.so"
+		PlasmaCalendarUtils.setEnabledPluginsByFilename(PlasmaCalendar.EventPluginsManager, plasmoid.configuration.enabledCalendarPlugins)
 	}
 	Connections {
 		target: plasmoid.configuration
 		onEnabledCalendarPluginsChanged: {
-			PlasmaCalendar.EventPluginsManager.enabledPlugins = plasmoid.configuration.enabledCalendarPlugins
+			PlasmaCalendarUtils.setEnabledPluginsByFilename(PlasmaCalendar.EventPluginsManager, plasmoid.configuration.enabledCalendarPlugins)
 		}
 	}
 
