@@ -84,6 +84,10 @@
 		<entry name="rightColumnWidth" type="uint">
 			<default>400</default>
 		</entry>
+		<!-- Deprecated in: v72 -->
+		<entry name="v72Migration" type="bool">
+			<default>false</default>
+		</entry>
 		<!-- Deprecated in: v71 -->
 		<entry name="v71Migration" type="bool">
 			<default>false</default>
