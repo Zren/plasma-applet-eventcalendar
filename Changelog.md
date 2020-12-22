@@ -1,3 +1,13 @@
+## v72 - December 22 2020
+
+* Only store the filename for enabled PlasmaCalendar plugins (Issue #204)
+* Check if gcal items is undefined before reading length (Issue #203)
+* Use 90% color step from bg to text for grid (Issue #201)
+* icsjson.py fixes by @koosvriezen (Pull Request #184)
+* Add Swedish translations by @EazyDefcon (Issue #197)
+* Updated Italian translation by @guidomazzone (Pull Request #182)
+* Updated Dutch translation by @Vistaus (Pull Request #184)
+
 ## v71 - November 13 2020
 
 * Change the Google API key as we were hiting the daily quota due to 1 user still using v63. This requires you to re-login to Google Calendar Sync.
