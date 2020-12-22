@@ -8,9 +8,12 @@ function getPluginFilename(pluginPath) {
 }
 
 function pluginPathToFilenameList(pluginPathList) {
-	var pluginFilenameList = new Array(pluginPathList.length)
+	var pluginFilenameList = []
 	for (var i = 0; i < pluginPathList.length; i++) {
-		pluginFilenameList[i] = getPluginFilename(pluginPathList[i])
+		var pluginFilename = getPluginFilename(pluginPathList[i])
+		if (pluginFilenameList.indexOf(pluginFilename) == -1) {
+			pluginFilenameList.push(pluginFilename)
+		}
 	}
 	return pluginFilenameList
 }
@@ -42,7 +45,9 @@ function pluginFilenameToPathList(eventPluginsManager, pluginFilenameList) {
 			console.log('[eventcalendar] Tried to load ', pluginFilename, ' however the plasma calendar plugin is not installed.')
 			continue
 		}
-		pluginPathList.push(pluginPath)
+		if (pluginPathList.indexOf(pluginPath) == -1) {
+			pluginPathList.push(pluginPath)
+		}
 	}
 	// console.log('pluginFilenameList', pluginFilenameList)
 	// console.log('pluginPathList', pluginPathList)
