@@ -212,4 +212,14 @@ Item {
 			if (popup) popup.deferredUpdateUI()
 		}
 	}
+
+	//---
+	Connections {
+		target: networkMonitor
+		onIsConnectedChanged: {
+			if (networkMonitor.isConnected) {
+				logic.update()
+			}
+		}
+	}
 }

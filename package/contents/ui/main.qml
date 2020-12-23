@@ -22,6 +22,7 @@ Item {
 	ConfigMigration { id: configMigration }
 	AppletConfig { id: appletConfig }
 	NotificationManager { id: notificationManager }
+	NetworkMonitor { id: networkMonitor }
 
 	property alias eventModel: eventModel
 	property alias agendaModel: agendaModel
