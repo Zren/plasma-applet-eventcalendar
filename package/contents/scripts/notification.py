@@ -25,7 +25,7 @@ except:
 
 def convertArgs(args):
 	return (
-		arg.encode("latin-1") if isinstance(arg, str) else arg
+		arg.encode("utf-8") if isinstance(arg, str) else arg
 		for arg in args
 	)
 
