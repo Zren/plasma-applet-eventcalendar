@@ -27,7 +27,7 @@ msgstr "Календарь событий"
 #: ../metadata.desktop
 msgid ""
 "Plasmoid for a calendar+agenda with weather that syncs to Google Calendar."
-msgstr ""
+msgstr "Календарь событий с погодой и синхронизацией с Google Calendar"
 
 #: ../contents/config/config.qml
 msgid "General"
@@ -35,7 +35,7 @@ msgstr "Главная"
 
 #: ../contents/config/config.qml
 msgid "Layout"
-msgstr ""
+msgstr "Макет"
 
 #: ../contents/config/config.qml
 msgid "Timezones"
@@ -120,25 +120,25 @@ msgstr "[Без календарей]"
 
 #: ../contents/ui/calendars/GoogleCalendarManager.qml ../contents/ui/Logic.qml
 msgid "HTTP Error %1: %2"
-msgstr ""
+msgstr "Ошибка соединения %1: %2"
 
 #: ../contents/ui/calendars/GoogleCalendarManager.qml ../contents/ui/Logic.qml
 msgid "Could not connect"
-msgstr ""
+msgstr "Невозможно установить соединение"
 
 #: ../contents/ui/calendars/GoogleCalendarManager.qml ../contents/ui/Logic.qml
 msgid "Will try again soon."
-msgstr ""
+msgstr "Скоро повторим попытку"
 
 #: ../contents/ui/calendars/GoogleCalendarManager.qml
 #: ../contents/ui/config/ConfigGoogleCalendar.qml ../contents/ui/PopupView.qml
 msgid ""
 "Widget has been updated. Please logout and login to Google Calendar again."
-msgstr ""
+msgstr "Виджет был обновлен. Выйдите из учетной записи Google Calendar и войдите снова."
 
 #: ../contents/ui/calendars/GoogleCalendarManager.qml
 msgid "Too many web requests. Will try again soon."
-msgstr ""
+msgstr "Слишком много запросов. Скоро мы попытаемся снова."
 
 #: ../contents/ui/config/ConfigAgenda.qml
 msgid "Show agenda"
@@ -209,7 +209,7 @@ msgstr "Описание события"
 
 #: ../contents/ui/config/ConfigAgenda.qml
 msgid "Hide 'All Day' text"
-msgstr ""
+msgstr "Спрятать 'Все дни'"
 
 #: ../contents/ui/config/ConfigAgenda.qml
 msgid "Google Hangouts link"
@@ -266,11 +266,11 @@ msgstr "Выбрать"
 
 #: ../contents/ui/config/ConfigAgenda.qml
 msgid "Day Spacing:"
-msgstr ""
+msgstr "Отступы дней"
 
 #: ../contents/ui/config/ConfigAgenda.qml
 msgid "Event Spacing:"
-msgstr ""
+msgstr "Отступы событий"
 
 #: ../contents/ui/config/ConfigCalendar.qml
 msgid "Show calendar"
@@ -286,11 +286,11 @@ msgstr "Двойной клик по дате:"
 
 #: ../contents/ui/config/ConfigCalendar.qml
 msgid "New Google Calendar Event (Web Browser)"
-msgstr ""
+msgstr "Новое событие Google Calendar (В браузере)"
 
 #: ../contents/ui/config/ConfigCalendar.qml
 msgid "Do Nothing"
-msgstr ""
+msgstr "Ничего не делать"
 
 #: ../contents/ui/config/ConfigCalendar.qml
 #: ../contents/ui/config/ConfigWeather.qml
@@ -299,7 +299,7 @@ msgstr "Стиль"
 
 #: ../contents/ui/config/ConfigCalendar.qml
 msgid "Current Month Title:"
-msgstr ""
+msgstr "Заголовок текущего месяца:"
 
 #: ../contents/ui/config/ConfigCalendar.qml ../contents/ui/MonthView.qml
 msgctxt "calendar title format for current month"
@@ -316,7 +316,7 @@ msgstr "Показать номера недель"
 
 #: ../contents/ui/config/ConfigCalendar.qml
 msgid "Highlight Current Day / Week"
-msgstr ""
+msgstr "Подсветка текущего дня/недели"
 
 #: ../contents/ui/config/ConfigCalendar.qml
 msgid "First day of week:"
@@ -324,7 +324,7 @@ msgstr "Первый день недели:"
 
 #: ../contents/ui/config/ConfigCalendar.qml
 msgid "Default"
-msgstr "Default"
+msgstr "По-умолчанию"
 
 #: ../contents/ui/config/ConfigCalendar.qml
 msgid "Event Badge:"
@@ -428,7 +428,7 @@ msgstr "Таймер"
 #: ../contents/ui/config/ConfigGeneral.qml
 #: ../contents/ui/lib/ConfigNotification.qml
 msgid "SFX:"
-msgstr "SFX:"
+msgstr "Звуковой эффект:"
 
 #: ../contents/ui/config/ConfigGeneral.qml
 msgid "Clock"
@@ -440,7 +440,7 @@ msgstr "Формат времени"
 
 #: ../contents/ui/config/ConfigGeneral.qml
 msgid "Time Format Documentation"
-msgstr ""
+msgstr "Документация по форматированию"
 
 #: ../contents/ui/config/ConfigGeneral.qml
 msgid ""
@@ -586,7 +586,7 @@ msgstr "Обновить"
 
 #: ../contents/ui/config/ConfigGoogleCalendar.qml
 msgid "Tasks"
-msgstr ""
+msgstr "Задачи"
 
 #: ../contents/ui/config/ConfigICal.qml
 msgid "Add Calendar"
@@ -610,11 +610,11 @@ msgstr "iCalendar (*.ics)"
 
 #: ../contents/ui/config/ConfigLayout.qml
 msgid "Calendar to the left of the Agenda (Two Columns)"
-msgstr ""
+msgstr "Календарь слева от распорядка (Две колонки)"
 
 #: ../contents/ui/config/ConfigLayout.qml
 msgid "Agenda below the Calendar (Single Column)"
-msgstr ""
+msgstr "Распорядок под календарем (Одна колонка)"
 
 #: ../contents/ui/config/ConfigTimezones.qml
 msgid "Tooltip"
@@ -681,11 +681,11 @@ msgstr "°C Цельсия"
 
 #: ../contents/ui/config/ConfigWeather.qml
 msgid "Fahrenheit"
-msgstr "°F Фаренгейт"
+msgstr "°F Фаренгейта"
 
 #: ../contents/ui/config/ConfigWeather.qml
 msgid "Kelvin"
-msgstr "°K Кельвин"
+msgstr "°K Кельвина"
 
 #: ../contents/ui/config/ConfigWeather.qml
 msgid "Text"
@@ -778,7 +778,7 @@ msgstr "&Отменить"
 
 #: ../contents/ui/EditTaskForm.qml
 msgid "Add due date"
-msgstr ""
+msgstr "Добавить дату окончания"
 
 #: ../contents/ui/lib/AppletVersion.qml
 msgid "<b>Version:</b> %1"
@@ -787,7 +787,7 @@ msgstr "<b>Версия:</b> %1"
 #: ../contents/ui/lib/ConfigFontFamily.qml
 msgctxt "Use default font"
 msgid "Default"
-msgstr "Default"
+msgstr "По-умолчанию"
 
 #: ../contents/ui/lib/ConfigSound.qml
 msgid "Choose a sound effect"
@@ -795,11 +795,11 @@ msgstr "Выбор звукового эффекта"
 
 #: ../contents/ui/lib/ConfigSound.qml
 msgid "Sound files (%1)"
-msgstr ""
+msgstr "Звуковой файл (%1)"
 
 #: ../contents/ui/lib/ConfigSound.qml
 msgid "All files (%1)"
-msgstr ""
+msgstr "Все файлы (%1)"
 
 #: ../contents/ui/LocaleFuncs.js
 msgctxt "event time on the hour (24 hour clock)"
@@ -833,7 +833,7 @@ msgstr "%1 - %2"
 
 #: ../contents/ui/Logic.qml
 msgid "Weather API limit reached"
-msgstr ""
+msgstr "Лимит API по запросам"
 
 #: ../contents/ui/main.qml
 msgid "Set Language..."
@@ -878,7 +878,7 @@ msgstr "Ошибка получения погоды."
 
 #: ../contents/ui/PopupView.qml
 msgid "Logged out of Google. Please login again."
-msgstr ""
+msgstr "Произведен выход из Google. Войдите снова."
 
 #: ../contents/ui/TimerInputView.qml
 msgid "&Start"
