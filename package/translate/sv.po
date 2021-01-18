@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: eventcalendar\n"
 "Report-Msgid-Bugs-To: https://github.com/Zren/plasma-applet-eventcalendar\n"
-"POT-Creation-Date: 2020-11-12 11:42-0500\n"
+"POT-Creation-Date: 2021-01-18 16:52-0500\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: Mathias <EMAIL@ADDRESS>\n"
 "Language-Team: Swedish <LL@li.org>\n"
@@ -125,7 +125,7 @@ msgstr "Kunde inte ansluta"
 msgid "Will try again soon."
 msgstr "Försöker igen snart."
 
-#: ../contents/ui/calendars/GoogleCalendarManager.qml ../contents/ui/config/ConfigGoogleCalendar.qml ../contents/ui/PopupView.qml
+#: ../contents/ui/calendars/GoogleCalendarManager.qml ../contents/ui/config/ConfigGoogleCalendar.qml ../contents/ui/Logic.qml
 msgid "Widget has been updated. Please logout and login to Google Calendar again."
 msgstr "Widgeten har uppdaterats. Logga ut och sedan in från Google Kalender."
 
@@ -789,6 +789,10 @@ msgstr ""
 msgid "Weather API limit reached"
 msgstr "Väder-API-gräns uppnådd"
 
+#: ../contents/ui/Logic.qml
+msgid "Logged out of Google. Please login again."
+msgstr "Utloggad från Google. Logga in igen."
+
 #: ../contents/ui/main.qml
 msgid "Set Language..."
 msgstr "Ställ in språk..."
@@ -829,10 +833,6 @@ msgstr ""
 #: ../contents/ui/PopupView.qml
 msgid "Error fetching weather."
 msgstr "Det gick inte att hämta väder."
-
-#: ../contents/ui/PopupView.qml
-msgid "Logged out of Google. Please login again."
-msgstr "Utloggad från Google. Logga in igen."
 
 #: ../contents/ui/TimerInputView.qml
 msgid "&Start"

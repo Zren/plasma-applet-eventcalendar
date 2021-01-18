@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: eventcalendar\n"
 "Report-Msgid-Bugs-To: https://github.com/Zren/plasma-applet-eventcalendar\n"
-"POT-Creation-Date: 2020-11-12 11:42-0500\n"
+"POT-Creation-Date: 2021-01-18 16:52-0500\n"
 "PO-Revision-Date: 2020-11-12 19:45+0100\n"
 "Last-Translator: Guido Mazzone <guido.mazzone93@outlook.it>\n"
 "Language-Team: Italian <guido.mazzone93@outlook.it>\n"
@@ -125,7 +125,7 @@ msgstr "Impossibile connettersi"
 msgid "Will try again soon."
 msgstr "Riproverò a breve"
 
-#: ../contents/ui/calendars/GoogleCalendarManager.qml ../contents/ui/config/ConfigGoogleCalendar.qml ../contents/ui/PopupView.qml
+#: ../contents/ui/calendars/GoogleCalendarManager.qml ../contents/ui/config/ConfigGoogleCalendar.qml ../contents/ui/Logic.qml
 msgid "Widget has been updated. Please logout and login to Google Calendar again."
 msgstr "Il widget è stato agiornato. Sei invitato a disconnetterti e riconnennetterti a Google Calendar."
 
@@ -789,6 +789,10 @@ msgstr "%1 - %2"
 msgid "Weather API limit reached"
 msgstr "Raggiunto il limite dell'API del meteo"
 
+#: ../contents/ui/Logic.qml
+msgid "Logged out of Google. Please login again."
+msgstr "Disconnesso da Google. Sei invitato a riconnetterti."
+
 #: ../contents/ui/main.qml
 msgid "Set Language..."
 msgstr "Imposta lingua..."
@@ -829,10 +833,6 @@ msgstr ""
 #: ../contents/ui/PopupView.qml
 msgid "Error fetching weather."
 msgstr "Errore nello scaricamento del meteo."
-
-#: ../contents/ui/PopupView.qml
-msgid "Logged out of Google. Please login again."
-msgstr "Disconnesso da Google. Sei invitato a riconnetterti."
 
 #: ../contents/ui/TimerInputView.qml
 msgid "&Start"

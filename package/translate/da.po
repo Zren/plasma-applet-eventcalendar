@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: eventcalendar\n"
 "Report-Msgid-Bugs-To: https://github.com/Zren/plasma-applet-eventcalendar\n"
-"POT-Creation-Date: 2020-11-12 11:42-0500\n"
+"POT-Creation-Date: 2021-01-18 16:52-0500\n"
 "PO-Revision-Date: 2019-05-04 00:48-0400\n"
 "Last-Translator: Chris Darnell <chris@cedeel.com>\n"
 "Language-Team: Chris Darnell <chris@cedeel.com>\n"
@@ -130,7 +130,7 @@ msgid "Will try again soon."
 msgstr ""
 
 #: ../contents/ui/calendars/GoogleCalendarManager.qml
-#: ../contents/ui/config/ConfigGoogleCalendar.qml ../contents/ui/PopupView.qml
+#: ../contents/ui/config/ConfigGoogleCalendar.qml ../contents/ui/Logic.qml
 msgid ""
 "Widget has been updated. Please logout and login to Google Calendar again."
 msgstr ""
@@ -834,6 +834,10 @@ msgstr "%1 - %2"
 msgid "Weather API limit reached"
 msgstr ""
 
+#: ../contents/ui/Logic.qml
+msgid "Logged out of Google. Please login again."
+msgstr ""
+
 #: ../contents/ui/main.qml
 msgid "Set Language..."
 msgstr "Vælg sprog..."
@@ -873,10 +877,6 @@ msgstr ""
 
 #: ../contents/ui/PopupView.qml
 msgid "Error fetching weather."
-msgstr ""
-
-#: ../contents/ui/PopupView.qml
-msgid "Logged out of Google. Please login again."
 msgstr ""
 
 #: ../contents/ui/TimerInputView.qml
