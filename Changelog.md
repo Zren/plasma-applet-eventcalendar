@@ -1,3 +1,10 @@
+## v73 - January 18 2021
+
+* Add a NetworkMonitor to detect when there's no internet (Issue #113)
+* Automatically close HTTP 0 network not connected errors when reconnected (Issue #205)
+* Fix timer sfx not working in certain locales (Issue #209)
+* Update Russian translations by driglu4it on Element
+
 ## v72 - December 22 2020
 
 * Only store the filename for enabled PlasmaCalendar plugins (Issue #204)
