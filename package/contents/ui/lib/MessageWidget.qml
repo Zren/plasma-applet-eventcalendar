@@ -1,4 +1,4 @@
-// Version 5
+// Version 6
 
 import QtQuick 2.0
 import QtQuick.Controls 1.2
@@ -19,22 +19,24 @@ Rectangle {
 	property alias animate: visibleAnimation.enabled
 	property int iconSize: units.iconSizes.large
 
-	property int messageType: warning
-	property int positive: 0
-	property int information: 1
-	property int warning: 2
-	property int error: 3
+	enum MessageType {
+		Positive,
+		Information,
+		Warning,
+		Error
+	}
+	property int messageType: MessageWidget.MessageType.Warning
 
 	clip: true
 	radius: 5
 	border.width: 1
 
 	property var icon: {
-		if (messageType == information) {
+		if (messageType == MessageWidget.MessageType.Information) {
 			return "dialog-information"
-		} else if (messageType == warning) {
+		} else if (messageType == MessageWidget.MessageType.Warning) {
 			return "dialog-warning"
-		} else if (messageType == error) {
+		} else if (messageType == MessageWidget.MessageType.Error) {
 			return "dialog-error"
 		} else { // positive
 			return "dialog-ok"
@@ -42,14 +44,14 @@ Rectangle {
 	}
 
 	property color gradBaseColor: {
-		if (messageType == information) {
+		if (messageType == MessageWidget.MessageType.Information) {
 			// return theme.highlightColor
 			return "#d9edf7" // Bootstrap
-		} else if (messageType == warning) {
+		} else if (messageType == MessageWidget.MessageType.Warning) {
 			// return Qt.rgba(176/255, 128/255, 0, 1) // KMessageWidget
 			// return "#EAC360" // DigitalClock
 			return "#fcf8e3" // Bootstrap
-		} else if (messageType == error) {
+		} else if (messageType == MessageWidget.MessageType.Error) {
 			// return Qt.rgba(191/255, 3/255, 3/255, 1)
 			return "#f2dede" // Bootstrap
 		} else { // positive
@@ -59,13 +61,13 @@ Rectangle {
 	}
 
 	border.color: {
-		if (messageType == information) {
+		if (messageType == MessageWidget.MessageType.Information) {
 			// return theme.highlightColor
 			return "#bcdff1" // Bootstrap
-		} else if (messageType == warning) {
+		} else if (messageType == MessageWidget.MessageType.Warning) {
 			// return "#79735B" // DigitalClock
 			return "#faf2cc" // Bootstrap
-		} else if (messageType == error) {
+		} else if (messageType == MessageWidget.MessageType.Error) {
 			return "#ebcccc" // Bootstrap
 		} else { // positive
 			return "#d0e9c6" // Bootstrap
@@ -74,11 +76,11 @@ Rectangle {
 
 	property color labelColor: {
 		// return PlasmaCore.ColorScope.textColor
-		if (messageType == information) {
+		if (messageType == MessageWidget.MessageType.Information) {
 			return "#31708f" // Bootstrap
-		} else if (messageType == warning) {
+		} else if (messageType == MessageWidget.MessageType.Warning) {
 			return "#8a6d3b" // Bootstrap
-		} else if (messageType == error) {
+		} else if (messageType == MessageWidget.MessageType.Error) {
 			return "#a94442" // Bootstrap
 		} else { // positive
 			return "#3c763d" // Bootstrap
@@ -94,19 +96,19 @@ Rectangle {
 	}
 
 	function success(message) {
-		show(message, positive)
+		show(message, MessageWidget.MessageType.Positive)
 	}
 
 	function info(message) {
-		show(message, information)
+		show(message, MessageWidget.MessageType.Information)
 	}
 
 	function warn(message) {
-		show(message, warning)
+		show(message, MessageWidget.MessageType.Warning)
 	}
 
 	function err(message) {
-		show(message, error)
+		show(message, MessageWidget.MessageType.Error)
 	}
 
 	function close() {
