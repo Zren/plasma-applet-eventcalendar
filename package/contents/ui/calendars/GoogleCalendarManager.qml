@@ -1,5 +1,6 @@
 import QtQuick 2.0
 
+import "../ErrorType.js" as ErrorType
 import "../Shared.js" as Shared
 import "../lib/Async.js" as Async
 import "../lib/Requests.js" as Requests
@@ -29,19 +30,19 @@ CalendarManager {
 	// Events
 
 	//--- Errors
-	function showNetworkError(httpCode, msg, suggestion) {
+	function showHttpError(httpCode, msg, suggestion, errorType) {
 		var errorMessage = i18n("HTTP Error %1: %2", httpCode, msg)
 		if (suggestion) {
 			errorMessage += '\n' + suggestion
 		}
-		googleCalendarManager.error(errorMessage)
+		googleCalendarManager.error(errorMessage, errorType)
 	}
 	function handleError(err, data, xhr) {
 		var httpCode = xhr.status
 		if (httpCode === 0) {
 			var msg = i18n("Could not connect")
 			var suggestion = i18n("Will try again soon.")
-			showNetworkError(httpCode, msg, suggestion)
+			showHttpError(httpCode, msg, suggestion, ErrorType.NetworkError)
 			return
 		}
 
@@ -52,13 +53,13 @@ CalendarManager {
 
 			if (httpCode === 401 && err0.reason == 'authError') {
 				var suggestion = i18n("Widget has been updated. Please logout and login to Google Calendar again.")
-				showNetworkError(httpCode, err0.message, suggestion)
+				showHttpError(httpCode, err0.message, suggestion, ErrorType.ClientError)
 			} else if (httpCode === 403 && err0.domain == 'usageLimits') {
 				var suggestion = i18n("Too many web requests. Will try again soon.")
-				showNetworkError(httpCode, err0.message, suggestion)
+				showHttpError(httpCode, err0.message, suggestion, ErrorType.ClientError)
 			} else {
 				var suggestion = i18n("Will try again soon.")
-				showNetworkError(httpCode, err0.message, suggestion)
+				showHttpError(httpCode, err0.message, suggestion, ErrorType.UnknownError)
 			}
 			return
 		}

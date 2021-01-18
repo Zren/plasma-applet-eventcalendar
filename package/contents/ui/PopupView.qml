@@ -391,22 +391,7 @@ MouseArea {
 				anchors.bottom: parent.bottom
 				anchors.right: refreshButton.left
 				anchors.margins: PlasmaCore.Units.smallSpacing
-				text: {
-					if (plasmoid.configuration.accessToken && plasmoid.configuration.latestClientId != plasmoid.configuration.sessionClientId) {
-						return i18n("Widget has been updated. Please logout and login to Google Calendar again.")
-					} else if (!plasmoid.configuration.accessToken && plasmoid.configuration.access_token) {
-						return i18n("Logged out of Google. Please login again.")
-					} else {
-						return ""
-					}
-				}
-
-				Connections {
-					target: eventModel
-					onError: {
-						errorMessageWidget.warn(msg)
-					}
-				}
+				text: logic.currentErrorMessage
 			}
 
 			PlasmaComponents3.Button {
@@ -431,6 +416,14 @@ MouseArea {
 
 	function updateMeteogram() {
 		meteogramView.parseWeatherForecast(logic.currentWeatherData, logic.hourlyWeatherData)
+	}
+
+	function showError(msg) {
+		errorMessageWidget.warn(msg)
+	}
+
+	function clearError() {
+		errorMessageWidget.close()
 	}
 
 	Timer {

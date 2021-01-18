@@ -1,5 +1,6 @@
 import QtQuick 2.0
 import org.kde.plasma.plasmoid 2.0 // root.Plasmoid.___
+import "./ErrorType.js" as ErrorType
 import "../code/WeatherApi.js" as WeatherApi
 
 Item {
@@ -188,6 +189,30 @@ Item {
 	}
 
 	//---
+	property int currentErrorType: ErrorType.UnknownError
+	property string currentErrorMessage: {
+		if (plasmoid.configuration.accessToken && plasmoid.configuration.latestClientId != plasmoid.configuration.sessionClientId) {
+			return i18n("Widget has been updated. Please logout and login to Google Calendar again.")
+		} else if (!plasmoid.configuration.accessToken && plasmoid.configuration.access_token) {
+			return i18n("Logged out of Google. Please login again.")
+		} else {
+			return ""
+		}
+	}
+	function clearError() {
+		currentErrorType = ErrorType.NoError
+		if (popup) popup.clearError()
+	}
+	Connections {
+		target: eventModel
+		onError: {
+			logic.currentErrorMessage = msg
+			logic.currentErrorType = errorType
+			if (popup) popup.showError(logic.currentErrorMessage)
+		}
+	}
+
+	//---
 	Connections {
 		target: eventModel
 		onCalendarFetched: {
@@ -218,6 +243,9 @@ Item {
 		target: networkMonitor
 		onIsConnectedChanged: {
 			if (networkMonitor.isConnected) {
+				if (logic.currentErrorType == ErrorType.NetworkError) {
+					logic.clearError()
+				}
 				logic.update()
 			}
 		}

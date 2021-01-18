@@ -1,4 +1,4 @@
-// Version 4
+// Version 5
 
 import QtQuick 2.0
 import QtQuick.Controls 1.2
@@ -109,6 +109,10 @@ Rectangle {
 		show(message, error)
 	}
 
+	function close() {
+		visible = false
+	}
+
 	gradient: Gradient {
 		GradientStop { position: 0.0; color: Qt.lighter(messageWidget.gradBaseColor, 1.1) }
 		GradientStop { position: 0.1; color: messageWidget.gradBaseColor }
@@ -180,7 +184,7 @@ Rectangle {
 			iconName: "dialog-close"
 
 			onClicked: {
-				messageWidget.visible = false
+				messageWidget.close()
 			}
 		}
 	}
