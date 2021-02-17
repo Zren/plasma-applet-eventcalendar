@@ -28,6 +28,15 @@ CalendarManager {
 		return -30 * 1000 <= dt && dt <= upcomingEventRange * 60 * 1000 // starting within 90 minutes
 	}
 
+	function isRemindEvent(eventItem, time) {
+		// console.log(eventItem.startDateTime, timeModel.currentTime, eventItem.startDateTime - timeModel.currentTime, eventItem.summary)
+		return timeModel.currentTime.getFullYear() == eventItem.startDateTime.getFullYear()
+			&& timeModel.currentTime.getMonth() == eventItem.startDateTime.getMonth()
+			&& timeModel.currentTime.getDate() == eventItem.startDateTime.getDate()
+			&& timeModel.currentTime.getHours() == eventItem.startDateTime.getHours()
+			&& timeModel.currentTime.getMinutes() == ( eventItem.startDateTime.getMinutes() - time )
+	}
+
 	function isSameMinute(a, b) {
 		return a.getFullYear() == b.getFullYear()
 			&& a.getMonth() == b.getMonth()
@@ -143,6 +152,20 @@ CalendarManager {
 		})
 	}
 
+	function sendEventReminderNotification(eventItem) {
+		notificationManager.notify({
+			appName: i18n("Event Calendar"),
+			appIcon: "view-calendar-upcoming-events",
+			// expireTimeout: 10000,
+			summary: eventItem.summary,
+			body: LocaleFuncs.formatEventDuration(eventItem, {
+				relativeDate: timeModel.currentTime,
+				clock24h: appletConfig.clock24h,
+			}),
+			soundFile: plasmoid.configuration.eventReminderSfxEnabled ? plasmoid.configuration.eventReminderSfxPath : '',
+		})
+	}
+
 	function sendEventStartingNotification(eventItem) {
 		notificationManager.notify({
 			appName: i18n("Event Calendar"),
@@ -162,7 +185,7 @@ CalendarManager {
 			var calendar = eventsByCalendar[calendarId]
 			calendar.items.forEach(function(eventItem, index, calendarEventList) {
 				if (isEventStarting(eventItem)) {
-					if (plasmoid.configuration.eventStartingNotificationEnabled) {
+					if (plasmoid.configuration.eventStartNotificationEnabled) {
 						sendEventStartingNotification(eventItem)
 					}
 				}
@@ -170,7 +193,21 @@ CalendarManager {
 		}
 	}
 
+	function checkForEventsReminder() {
+		for (var calendarId in eventsByCalendar) {
+			var calendar = eventsByCalendar[calendarId]
+			calendar.items.forEach(function(eventItem, index, calendarEventList) {
+				if (isRemindEvent(eventItem, plasmoid.configuration.reminderTime)) {
+					if (plasmoid.configuration.eventReminderEnabled) {
+						sendEventReminderNotification(eventItem)
+					}
+				}
+			})
+		}
+	}
+
 	function tick() {
+		checkForEventsReminder()
 		checkForEventsStarting()
 	}
 
