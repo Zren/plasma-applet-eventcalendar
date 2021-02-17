@@ -83,6 +83,13 @@ ConfigPage {
 			sfxPathKey: 'eventStartingSfxPath'
 			sfxPathDefaultValue: '/usr/share/sounds/Oxygen-Im-Nudge.ogg'
 		}
+		ConfigReminder {
+			label: i18n("Event Reminder")
+			reminderEnabledKey: 'eventReminderEnabled'
+			sfxEnabledKey: 'eventReminderSfxEnabled'
+			sfxPathKey: 'eventReminderSfxPath'
+			sfxPathDefaultValue: '/usr/share/sounds/Oxygen-Im-Nudge.ogg'
+		}
 	}
 
 }
