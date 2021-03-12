@@ -1,6 +1,6 @@
 .pragma library
 
-.import "../ui/lib/Requests.js" as Requests
+.import "../lib/Requests.js" as Requests
 
 /* Note, dd.weatheroffice.ec.gc.ca does exist, but it doesn't contain the hourly forecast,
 nor does the city id match the one used on the website, so it's easier to just parse the html.

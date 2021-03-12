@@ -1,6 +1,6 @@
 .pragma library
 
-.import "../ui/lib/Requests.js" as Requests
+.import "../lib/Requests.js" as Requests
 
 function weatherIsSetup(config) {
 	return !!config.openWeatherMapCityId

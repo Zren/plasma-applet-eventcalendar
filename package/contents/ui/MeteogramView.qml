@@ -2,7 +2,7 @@ import QtQuick 2.0
 import org.kde.plasma.core 2.0 as PlasmaCore
 
 import "Shared.js" as Shared
-import "../code/WeatherApi.js" as WeatherApi
+import "./weather/WeatherApi.js" as WeatherApi
 
 Item {
 	id: meteogramView

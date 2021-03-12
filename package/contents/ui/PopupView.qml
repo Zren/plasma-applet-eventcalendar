@@ -6,7 +6,7 @@ import org.kde.plasma.components 3.0 as PlasmaComponents3
 
 import "lib"
 import "Shared.js" as Shared
-import "../code/WeatherApi.js" as WeatherApi
+import "./weather/WeatherApi.js" as WeatherApi
 
 MouseArea {
 	id: popup

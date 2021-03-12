@@ -6,7 +6,7 @@ import org.kde.plasma.core 2.0 as PlasmaCore
 
 import "../lib/Requests.js" as Requests
 import ".."
-import "../../code/WeatherCanada.js" as WeatherCanada
+import "../weather/WeatherCanada.js" as WeatherCanada
 
 Dialog {
 	id: chooseCityDialog

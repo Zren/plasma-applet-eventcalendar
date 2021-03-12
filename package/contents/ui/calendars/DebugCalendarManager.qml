@@ -2,7 +2,7 @@ import QtQuick 2.0
 
 import "../Shared.js" as Shared
 import "../lib/Requests.js" as Requests
-import "../../code/DebugFixtures.js" as DebugFixtures
+import "../code/DebugFixtures.js" as DebugFixtures
 
 CalendarManager {
 	id: debugCalendarManager

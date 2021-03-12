@@ -5,7 +5,7 @@ import org.kde.plasma.core 2.0 as PlasmaCore
 import org.kde.plasma.components 3.0 as PlasmaComponents3
 
 import "Shared.js" as Shared
-import "../code/WeatherApi.js" as WeatherApi
+import "./weather/WeatherApi.js" as WeatherApi
 
 GridLayout {
 	id: agendaListItem

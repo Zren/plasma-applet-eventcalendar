@@ -1,7 +1,7 @@
 import QtQuick 2.0
 import org.kde.plasma.plasmoid 2.0 // root.Plasmoid.___
 import "./ErrorType.js" as ErrorType
-import "../code/WeatherApi.js" as WeatherApi
+import "./weather/WeatherApi.js" as WeatherApi
 
 Item {
 	readonly property Item popup: root.Plasmoid.fullRepresentationItem
