@@ -103,7 +103,7 @@ function handleError(funcName, callback, err, data, xhr) {
 }
 
 function updateDailyWeather(config, callback) {
-	console.debug('OpenWeatherMap.fetchDailyWeatherForecast')
+	// console.debug('OpenWeatherMap.fetchDailyWeatherForecast')
 	fetchDailyWeatherForecast({
 		appId: config.openWeatherMapAppId,
 		cityId: config.openWeatherMapCityId,
@@ -120,7 +120,7 @@ function updateDailyWeather(config, callback) {
 }
 
 function updateHourlyWeather(config, callback) {
-	console.debug('OpenWeatherMap.fetchHourlyWeatherForecast')
+	// console.debug('OpenWeatherMap.fetchHourlyWeatherForecast')
 	fetchHourlyWeatherForecast({
 		appId: config.openWeatherMapAppId,
 		cityId: config.openWeatherMapCityId,
