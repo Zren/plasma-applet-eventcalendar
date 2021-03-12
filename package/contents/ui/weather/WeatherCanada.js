@@ -172,6 +172,21 @@ function parseDailyHtml(html) {
 		list: []
 	}
 
+	// The current conditions section contains the current temp.
+	// We'll need this in the evening since we no longer have the daytime high.
+	var currentHtml = getInner(html, '<h2>Current Conditions<span', '</details>')
+	if (!currentHtml) {
+		throw new Error('Error parsing currentHtml')
+	}
+	// console.debug('currentHtml', currentHtml)
+
+	var currentTemp = getInner(currentHtml, '<span class="wxo-metric-hide">', '°<abbr title="Celsius">C</abbr>')
+	if (!currentTemp) {
+		throw new Error('Error parsing currentTemp')
+	}
+	currentTemp = parseInt(currentTemp, 10)
+
+
 	// The forecast "table" can be found using the unique 'details.wxo-fcst' selector.
 	// Note that there is two elements matching this selector. We want the desktop view.
 	//     Desktop view: <details class="panel panel-default wxo-fcst" open="open">
@@ -313,17 +328,15 @@ function parseDailyHtml(html) {
 			throw new Error('Error parsing daily temp')
 		} else if (dateIndex == 0 && isNaN(high) && !isNaN(low)) {
 			// We're currently in the evening so there won't be a daytime high.
-			// For now, use the low as the high.
-			// TODO: Use current temp as high.
-			dateData.temp.max = low
+			// So we use the current temp as the high.
+			dateData.temp.max = currentTemp
 			dateData.temp.min = low
 		} else if (dateIndex == 6 && isNaN(low) && !isNaN(high)) {
 			// During the daytime, our maximum weekly forecast runs out of data before the 7th evening.
 			// So there won't be a night low for the last day.
-			// So we'll just use the high as the low.
-			// TODO: Display a ? for the low instead.
+			// Well send a NaN to display a ?
 			dateData.temp.max = high
-			dateData.temp.min = high
+			dateData.temp.min = NaN
 		} else {
 			dateData.temp.max = high
 			dateData.temp.min = low

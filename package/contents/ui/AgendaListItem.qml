@@ -94,7 +94,11 @@ GridLayout {
 			PlasmaComponents3.Label {
 				id: itemWeatherTemps
 				visible: showWeather
-				text: tempHigh + '° | ' + tempLow + '°'
+				text: {
+					var high = isNaN(model.tempHigh) ? '?' : model.tempHigh + '°'
+					var low = isNaN(model.tempLow) ? '?' : model.tempLow + '°'
+					return high + ' | ' + low
+				}
 				color: agendaItemIsToday ? inProgressColor : PlasmaCore.ColorScope.textColor
 				opacity: agendaItemIsToday ? 1 : 0.75
 				font.pointSize: -1
