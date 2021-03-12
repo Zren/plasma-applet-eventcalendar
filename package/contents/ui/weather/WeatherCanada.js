@@ -247,7 +247,7 @@ function parseDailyHtml(html) {
 	//   <div class="div-row div-row3 div-row-head greybkgrd"> </div>
 	//   <div class="div-row div-row4 div-row-data greybkgrd"> </div>
 	var evening = forecastHtml.indexOf('class="div-row div-row1 div-row-head greybkgrd"') >= 0
-	console.debug('evening', evening)
+	// console.debug('evening', evening)
 
 
 	// Today's date
@@ -260,7 +260,7 @@ function parseDailyHtml(html) {
 	if (isNaN(today)) {
 		throw new Error('Error parsing todays date')
 	}
-	console.debug('today', today, 'pageModifiedStr', pageModifiedStr)
+	// console.debug('today', today, 'pageModifiedStr', pageModifiedStr)
 
 	var weeklyData = [] // 7 day forecast
 	for (var i = 0; i < 7; i++) {
@@ -289,12 +289,12 @@ function parseDailyHtml(html) {
 	if (divColumns.length >= 1 && divColumns[0] == '') {
 		divColumns.shift()
 	}
-	console.debug(JSON.stringify(divColumns, null, '\t'))
+	// console.debug(JSON.stringify(divColumns, null, '\t'))
 
 	divColumns.forEach(function(innerHtml, dateIndex) {
 		var date = new Date(today)
 		date.setDate(date.getDate() + dateIndex)
-		console.debug(dateIndex, date)
+		// console.debug(dateIndex, date)
 
 		var dateData = weeklyData[dateIndex]
 
@@ -346,7 +346,7 @@ function parseDailyHtml(html) {
 			throw new Error('Error parsing daily temp')
 		}
 
-		console.debug(dateIndex, JSON.stringify(dateData, null, "\t"))
+		// console.debug(dateIndex, JSON.stringify(dateData, null, "\t"))
 	})
 
 	weatherData.list = weeklyData
@@ -357,8 +357,11 @@ function parseDailyHtml(html) {
 
 
 function parseHourlyHtml(html) {
-	html = getInner(html, '<tbody>', '</tbody>')
-	return parseHourlyTbody(html)
+	var tableHtml = getInner(html, '<tbody>', '</tbody>')
+	if (!tableHtml) {
+		throw new Error('Error parsing hourly table')
+	}
+	return parseHourlyTbody(tableHtml)
 }
 function parseHourlyTbody(html) {
 	// Iterate all <tr>
@@ -374,6 +377,9 @@ function parseHourlyTbody(html) {
 		}
 		start += '<tr>'.length
 		var end = html.indexOf('</tr>', cursor)
+		if (end == -1) {
+			throw new Error('Error parsing hourly row. Closing </tr> not found.')
+		}
 		var trHtml = html.substr(start, end-start)
 
 		if (trHtml.indexOf('<th ') >= 0) {
@@ -403,19 +409,39 @@ function parseHourlyTbody(html) {
 	return weatherData
 }
 function parseHourlyDate(trHtml) {
-	return getInner(trHtml, '>', '</')
+	var str = getInner(trHtml, '>', '</')
+	if (!str) {
+		throw new Error('Error parsing hourly date.')
+	}
+	return str
 }
 function parseHourlyTime(trHtml) {
-	return getInner(trHtml, '<td headers="header1" class="text-center">', '</td>')
+	var str = getInner(trHtml, '<td headers="header1" class="text-center">', '</td>')
+	if (!str) {
+		throw new Error('Error parsing hourly time.')
+	}
+	return str
 }
 function parseHourlyTemp(trHtml) {
 	var str = getInner(trHtml, '<td headers="header2" class="text-center">', '</td>')
+	if (!str) {
+		throw new Error('Error parsing hourly temp.')
+	}
 	return parseInt(str, 10)
 }
 function parseHourlyConditions(trHtml) {
 	var td = getInner(trHtml, '<td headers="header3" class="media">', '</td>')
+	if (!td) {
+		throw new Error('Error parsing hourly conditions td.')
+	}
 	var imageId = getInner(td, 'src="/weathericons/small/', '.png"')
+	if (!imageId) {
+		throw new Error('Error parsing hourly imageId.')
+	}
 	var text = getInner(td, '<p>', '</p>')
+	if (!text) {
+		throw new Error('Error parsing hourly text.')
+	}
 
 	return {
 		id: imageId,
@@ -450,7 +476,7 @@ function handleError(funcName, callback, err, data, xhr) {
 }
 
 function updateDailyWeather(config, callback) {
-	console.debug('WeatherCanada.fetchDailyWeatherForecast')
+	// console.debug('WeatherCanada.fetchDailyWeatherForecast')
 	var url = getCityUrl(config.weatherCanadaCityId)
 	Requests.request(url, function(err, data, xhr) {
 		if (err) return handleError('WeatherCanada.fetchDailyWeatherForecast', callback, err, data, xhr)
@@ -464,7 +490,7 @@ function updateDailyWeather(config, callback) {
 			return handleError('WeatherCanada.parseDailyHtml', callback, e.message, '', xhr)
 		}
 
-		console.debug(JSON.stringify(weatherData, null, '\t'))
+		// console.debug(JSON.stringify(weatherData, null, '\t'))
 		callback(null, weatherData, xhr)
 	})
 }
@@ -474,13 +500,20 @@ function getCityHourlyUrl(cityId) {
 }
 
 function updateHourlyWeather(config, callback) {
+	// console.debug('WeatherCanada.fetchHourlyWeatherForecast')
 	var url = getCityHourlyUrl(config.weatherCanadaCityId)
 	Requests.request(url, function(err, data, xhr) {
-		if (err) return console.error('WeatherCanada.fetchHourlyWeatherForecast.err', err, xhr && xhr.status, data)
+		if (err) return handleError('WeatherCanada.fetchHourlyWeatherForecast', callback, err, data, xhr)
 		// console.debug('WeatherCanada.fetchHourlyWeatherForecast.response')
-		
-		var weatherData = parseHourlyHtml(data)
-		// console.log(JSON.stringify(weatherData, null, '\t'))
+		// console.debug('WeatherCanada.fetchHourlyWeatherForecast.response', data)
+
+		try {
+			var weatherData = parseHourlyHtml(data)
+		} catch (e) {
+			// Don't log data as the HTML is longer than the default scrollback.
+			return handleError('WeatherCanada.parseHourlyHtml', callback, e.message, '', xhr)
+		}
+		// console.debug(JSON.stringify(weatherData, null, '\t'))
 		callback(err, weatherData, xhr)
 	})
 }
