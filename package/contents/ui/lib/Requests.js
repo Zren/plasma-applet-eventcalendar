@@ -1,19 +1,16 @@
 .pragma library
-// Version 6
+// Version 8
 
 function request(opt, callback) {
 	if (typeof opt === 'string') {
 		opt = { url: opt }
 	}
 	var req = new XMLHttpRequest()
-	req.onerror = function(e) {
-		console.log('XMLHttpRequest.onerror', e)
-		if (e) {
-			console.log('\t', e.status, e.statusText, e.message)
-			callback(e.message)
-		} else {
-			callback('XMLHttpRequest.onerror(undefined)')
-		}
+	req.onerror = function() {
+		// Network Error / No Connection
+		console.log('XMLHttpRequest.onerror', req.status)
+		var msg = "HTTP Error " + req.status
+		callback(msg, null, req)
 	}
 	req.onreadystatechange = function() {
 		if (req.readyState === XMLHttpRequest.DONE) { // https://xhr.spec.whatwg.org/#dom-xmlhttprequest-done
@@ -23,7 +20,7 @@ function request(opt, callback) {
 				if (req.status === 0) {
 					console.log('HTTP 0 Headers: \n' + req.getAllResponseHeaders())
 				}
-				var msg = "HTTP Error " + req.status + ": " + req.statusText
+				var msg = "HTTP Error " + req.status
 				callback(msg, req.responseText, req)
 			}
 		}
@@ -37,26 +34,30 @@ function request(opt, callback) {
 	req.send(opt.data)
 }
 
+function encodeParams(params) {
+	var s = ''
+	var i = 0
+	for (var key in params) {
+		if (i > 0) {
+			s += '&'
+		}
+		var value = params[key]
+		if (typeof value === "object") {
+			// TODO: Flatten obj={list: [1, 2]} as
+			// obj[list][0]=1
+			// obj[list][1]=2
+		}
+		s += encodeURIComponent(key) + '=' + encodeURIComponent(value)
+		i += 1
+	}
+	return s
+}
+
 function encodeFormData(opt) {
 	opt.headers = opt.headers || {}
 	opt.headers['Content-Type'] = 'application/x-www-form-urlencoded'
 	if (opt.data) {
-		var s = ''
-		var i = 0
-		for (var key in opt.data) {
-			if (i > 0) {
-				s += '&'
-			}
-			var value = opt.data[key]
-			if (typeof value === "object") {
-				// TODO: Flatten obj={list: [1, 2]} as
-				// obj[list][0]=1
-				// obj[list][1]=2
-			}
-			s += encodeURIComponent(key) + '=' + encodeURIComponent(value)
-			i += 1
-		}
-		opt.data = s
+		opt.data = encodeParams(opt.data)
 	}
 	return opt
 }
@@ -101,14 +102,11 @@ function postJSON(opt, callback) {
 
 function getFile(url, callback) {
 	var req = new XMLHttpRequest()
-	req.onerror = function(e) {
-		console.log('XMLHttpRequest.onerror', e)
-		if (e) {
-			console.log('\t', e.status, e.statusText, e.message)
-			callback(e.message)
-		} else {
-			callback('XMLHttpRequest.onerror(undefined)')
-		}
+	req.onerror = function() {
+		// Network Error / No Connection
+		console.log('XMLHttpRequest.onerror', req.status)
+		var msg = "HTTP Error " + req.status
+		callback(msg, null, req)
 	}
 	req.onreadystatechange = function() {
 		if (req.readyState === 4) {
