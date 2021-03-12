@@ -266,7 +266,7 @@ MouseArea {
 				readonly property string message: {
 					if (!WeatherApi.weatherIsSetup(plasmoid.configuration)) {
 						return i18n("Weather not configured.\nGo to Weather in the config and set your city,\nand/or disable the meteogram to hide this area.")
-					} else if (logic.lastForecastErr && !meteogramView.populated) {
+					} else if (logic.lastForecastErr) {
 						return i18n("Error fetching weather.") + '\n' + logic.lastForecastErr
 					} else {
 						return ''
