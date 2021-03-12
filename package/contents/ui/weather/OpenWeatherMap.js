@@ -98,7 +98,7 @@ function parseHourlyData(weatherData) {
 }
 
 function handleError(funcName, callback, err, data, xhr) {
-	console.error(funcName + '.err', err, xhr && xhr.status, data)
+	console.error('[eventcalendar]', funcName + '.err', err, xhr && xhr.status, data)
 	return callback(err, data, xhr)
 }
 
