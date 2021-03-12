@@ -143,6 +143,9 @@ function loopInner(html, a, b, callback) {
 		start += a.length
 		// console.log('loop', i, 'with', start, cursor)
 		var end = html.indexOf(b, start)
+		if (end == -1) {
+			break
+		}
 		var innerHtml = html.substr(start, end-start)
 		// console.log(i, start, end, innerHtml)
 		callback(innerHtml, i)
@@ -165,30 +168,84 @@ function parseFutureDate(day, month) {
 
 
 function parseDailyHtml(html) {
-	// var tableHtml = getInner(html, '<table class="table mrgn-bttm-md mrgn-tp-md textforecast hidden-xs">', '</table>')
-	// console.log('tableHtml', tableHtml)
-
 	var weatherData = {
 		list: []
 	}
 
-	
+	// The forecast "table" can be found using the unique 'details.wxo-fcst' selector.
+	// Note that there is two elements matching this selector. We want the desktop view.
+	//     Desktop view: <details class="panel panel-default wxo-fcst" open="open">
+	//     Mobile view: <details class="panel panel-default wxo-fcst mrgn-bttm-md mrgn-tp-md" open="open">
+	var forecastHtml = getInner(html, '<details class="panel panel-default wxo-fcst" open="open">', '</details>')
+	if (!forecastHtml) {
+		throw new Error('Error parsing forecastHtml')
+	}
+	// console.debug('forecastHtml', forecastHtml)
 
-	// Daily forcast is a 7x4 table
-	// <th> Today | Mon 21 Nov | Tue 22 Nov | ...
-	// <td> Icon -1*C 60% Desc | ... (high temp)
-	// <th> Tonight | Night | Night | ...
-	// <td> Icon -6*C 60% Desc | ... (low temp)
-	var forecastHtml = getInner(html, '<table class="table table-condensed mrgn-bttm-0 wxo-iconfore hidden-xs">', '</table>')
 
-	var todayHtml = getInner(html, '<span class="small visible-print-inline-block pull-right">Issued: ', '</span>') // 3:30 PM EST Sunday 20 November 2016
-	// Skip Time by looking for T which doesn't exist in the hours/minutes/AM/PM,
-	// but exists at the end of the time zone: PST, MST, CST, EST, AST, NST
-	var todayStr = todayHtml.substr(todayHtml.indexOf('T') + 'T '.length)
-	// Skip day name (Sunday, Monday, ...) since Qt doesn't like it.
-	todayStr = todayStr.substr(todayStr.indexOf(' ') + ' '.length)
-	var today = new Date(todayStr)
-	// console.log('today', todayHtml, todayStr, today)
+	// Daily forcast is a 7x4 table using divs + css instead of a table.
+	// <details class="panel panel-default wxo-fcst" open="open">
+	//   <summary>...</summary>
+	//   <ul>...</ul>
+	//   <div class="div-table">
+	//     <div class="div-column">...</div>
+
+	// Inside each column is 4 rows. For the first column representing today/tonight, there is
+	// an anchor link with the hourly forecast wrapping the row div. We can easily ignore the <a> though.
+	// <div class="div-column">
+	// 	<div class="div-row div-row1 div-row-head" style="height: 58px;">
+	// 		<a href="/forecast/hourly/on-143_metric_e.html">
+	// 			<strong title="Friday">Fri</strong><br>
+	// 			12 <abbr title="March">Mar</abbr></br>
+	// 		</a>
+	// 	</div>
+	// 	<a class="linkdate" href="/forecast/hourly/on-143_metric_e.html">
+	// 		<div class="div-row div-row2 div-row-data" style="height: 166px;">
+	// 			<img alt="Mainly sunny" class="center-block" height="51" src="/weathericons/01.gif" width="60">
+	// 				<p class="mrgn-bttm-0">
+	// 					<span class="high wxo-metric-hide" title="max">10°<abbr title="Celsius">C</abbr></span>
+	// 					<span class="high wxo-imperial-hide wxo-city-hidden" title="max">50°<abbr title="Fahrenheit">F</abbr></span>
+	// 				</p>
+	// 				<p class="mrgn-bttm-0 pop text-center"></p>
+	// 				<p class="mrgn-bttm-0">Mainly sunny</p>
+	// 			</img>
+	// 		</div>
+	// 	</a>
+	// 	<div class="div-row div-row3 div-row-head" style="height: 35px;">Tonight</div>
+	// 	<div class="div-row div-row4 div-row-data" style="height: 166px;">
+	// 		<img alt="A few clouds" class="center-block" height="51" src="/weathericons/31.gif" width="60">
+	// 			<p class="mrgn-bttm-0">
+	// 				<span class="low wxo-metric-hide" title="min">-5°<abbr title="Celsius">C</abbr></span>
+	// 				<span class="low wxo-imperial-hide wxo-city-hidden" title="min">23°<abbr title="Fahrenheit">F</abbr></span>
+	// 			</p>
+	// 			<p class="mrgn-bttm-0 pop text-center"></p>
+	// 			<p class="mrgn-bttm-0">A few clouds</p>
+	// 		</img>
+	// 	</div>
+	// </div>
+
+
+	// During night, today's daytime cell is blank.
+	//   <div class="div-row div-row1 div-row-head greybkgrd"> </div>
+	//   <div class="div-row div-row2 div-row-data greybkgrd"> </div>
+	// During daytime, the nighttime data for the last day in the forecast is blank.
+	//   <div class="div-row div-row3 div-row-head greybkgrd"> </div>
+	//   <div class="div-row div-row4 div-row-data greybkgrd"> </div>
+	var evening = forecastHtml.indexOf('class="div-row div-row1 div-row-head greybkgrd"') >= 0
+	console.debug('evening', evening)
+
+
+	// Today's date
+	var pageModifiedStr = getInner(html, '<meta name="dcterms.modified" title="W3CDTF" content="', '" />') // 2021-03-12
+	if (!pageModifiedStr) {
+		throw new Error('Error parsing pageModifiedStr')
+	}
+	// We need to append the time string (without a timezone) to get midnight of the current timezone.
+	var today = new Date(pageModifiedStr + 'T00:00:00')
+	if (isNaN(today)) {
+		throw new Error('Error parsing todays date')
+	}
+	console.debug('today', today, 'pageModifiedStr', pageModifiedStr)
 
 	var weeklyData = [] // 7 day forecast
 	for (var i = 0; i < 7; i++) {
@@ -204,78 +261,79 @@ function parseDailyHtml(html) {
 			notes: '',
 		})
 	}
-	var evening = false // Did we skip Today's daytime?
 
-	// Loop the two rows of 7 <td>.
-	// console.log('forecastHtml', forecastHtml)
-	loopInner(forecastHtml, '<td', '</td>', function(innerHtml, innerIndex) {
+	// Daily forecast loop
+	// While <div class="div-column"> is pretty unique, the columns just end with </div> which isn't.
+	// So we get the start and end of the table first, then split it by <div class="div-column">.
+	var tableHtml = getInner(forecastHtml, '<div class="div-table">', '<section><details open="open" class="wxo-detailedfore">')
+	tableHtml = tableHtml.trim() // Strip \n before first "div-column".
+	// console.debug('tableHtml', tableHtml)
+
+	// Since there's a <div class="div-column"> at the start, we need to remove the leading empty string.
+	var divColumns = tableHtml.split('<div class="div-column">')
+	if (divColumns.length >= 1 && divColumns[0] == '') {
+		divColumns.shift()
+	}
+	console.debug(JSON.stringify(divColumns, null, '\t'))
+
+	divColumns.forEach(function(innerHtml, dateIndex) {
 		var date = new Date(today)
-		var dateIndex = innerIndex % 7 // 7 columns represent 7 days
 		date.setDate(date.getDate() + dateIndex)
-		// console.log(innerIndex, date)
+		console.debug(dateIndex, date)
 
 		var dateData = weeklyData[dateIndex]
 
 		dateData.dt = date.valueOf() / 1000
 
-		if (innerHtml.indexOf('class="greybkgrd"') >= 0) {
-			// Today (daytime) is over, we'll use nighttime data
-			evening = true
-		} else {
-			if (innerIndex < 7 || (evening && innerIndex == 7)) {
-				// Use daytime weather
-				var imageId = getInner(innerHtml, 'src="/weathericons/', '.gif"')
-				dateData.iconName = weatherIconMap[imageId]
-				dateData.description = getInner(innerHtml, '.gif" alt="', '"')
-				dateData.text = weatherIconToTextMap[dateData.iconName] || dateData.description
-			}
-
-			// Temps
-			// TODO: check plasmoid.configuration.weatherUnits == 'imperial' to use farenheit.
-			// TODO: check for 'kelvin' and subtract 273 from metric
-			// TODO: Give a shit
-			if (innerIndex < 7) {
-				// high
-				var high = getInner(innerHtml, 'wxo-metric-hide" title="max">', '&deg;<abbr title="Celsius">C</abbr>')
-				high = parseInt(high, 10)
-				dateData.temp.max = high
-			} else {
-				// low
-				var low = getInner(innerHtml, 'wxo-metric-hide" title="min">', '&deg;<abbr title="Celsius">C</abbr>')
-				low = parseInt(low, 10)
-				dateData.temp.min = low
-
-				if (evening && dateIndex == 8) {
-					// For now, use the low as the current temperature for "Tonight".
-					// TODO: look at current conditions.
-					dateData.temp.max = low
-				}
-			}
+		// Forecast Icon + Text
+		var imageId = getInner(innerHtml, 'src="/weathericons/', '.gif"')
+		if (!imageId) {
+			throw new Error('Error parsing weather icon')
 		}
 
-		// var notesHtml = getInner(tableHtml, '\u00A0' + day + '\u00A0<abbr title="', '<strong>')
-		// console.log('notesHtml', notesHtml)
-		// if (!notesHtml) { // Last item
-		// 	notesHtml = getInner(tableHtml, '\u00A0' + day + '\u00A0<abbr title="', '</tbody>')
-		// 	console.log('notesHtml', notesHtml)
-		// }
-		// var dayNotes = getInner(notesHtml, '</td>\n              <td>', '</td>')
-		// console.log('dayNotes', dayNotes)
-		// if (notesHtml.indexOf('night">Tonight</strong>') >= 0) {
-		// 	notes = i18n("<b>Tonight:</b> %1", dayNotes)
-		// } else {
-		// 	var nightNotes = getInner(notesHtml, 'night"> Night\n</td>\n              <td>', '</td>')
-		// 	// console.log('nightNotes', nightNotes)
-		// 	if (nightNotes) {
-		// 		notes = i18n("%1<br><b>Night:</b> %2", dayNotes, nightNotes)
-		// 	} else { // Last item (w/ Tonight as first item)
-		// 		notes = dayNotes
-		// 	}
-		// }
-		
-		// notes = dayNotes + '<br>' + nightNotes
-		
-		// console.log(dateIndex, JSON.stringify(dateData, null, "\t"))
+		dateData.iconName = weatherIconMap[imageId]
+		if (!dateData.iconName) {
+			console.log('[eventcalendar] WeatherCanada icon not mapped (/weathericons/' + imageId + '.gif)')
+		}
+		dateData.description = getInner(innerHtml, '.gif" alt="', '"')
+		if (!dateData.description) {
+			console.log('[eventcalendar] WeatherCanada icon has no description (/weathericons/' + imageId + '.gif)')
+		}
+		dateData.text = weatherIconToTextMap[dateData.iconName] || dateData.description
+
+
+		// Temps
+		var high = getInner(innerHtml, '<span class="high wxo-metric-hide" title="max">', '°<abbr title="Celsius">C</abbr>')
+		high = parseInt(high, 10)
+
+		var low = getInner(innerHtml, '<span class="low wxo-metric-hide" title="min">', '°<abbr title="Celsius">C</abbr>')
+		low = parseInt(low, 10)
+
+		if (isNaN(high) && isNaN(low)) {
+			throw new Error('Error parsing daily temp')
+		} else if (dateIndex == 0 && isNaN(high) && !isNaN(low)) {
+			// We're currently in the evening so there won't be a daytime high.
+			// For now, use the low as the high.
+			// TODO: Use current temp as high.
+			dateData.temp.max = low
+			dateData.temp.min = low
+		} else if (dateIndex == 6 && isNaN(low) && !isNaN(high)) {
+			// During the daytime, our maximum weekly forecast runs out of data before the 7th evening.
+			// So there won't be a night low for the last day.
+			// So we'll just use the high as the low.
+			// TODO: Display a ? for the low instead.
+			dateData.temp.max = high
+			dateData.temp.min = high
+		} else {
+			dateData.temp.max = high
+			dateData.temp.min = low
+		}
+
+		if (isNaN(high) && isNaN(low)) {
+			throw new Error('Error parsing daily temp')
+		}
+
+		console.debug(dateIndex, JSON.stringify(dateData, null, "\t"))
 	})
 
 	weatherData.list = weeklyData
@@ -373,15 +431,28 @@ function getCityUrl(cityId) {
 	return 'https://weather.gc.ca/city/pages/' + cityId + '_metric_e.html'
 }
 
+function handleError(funcName, callback, err, data, xhr) {
+	console.error(funcName + '.err', err, xhr && xhr.status, data)
+	return callback(err, data, xhr)
+}
+
 function updateDailyWeather(config, callback) {
+	console.debug('WeatherCanada.fetchDailyWeatherForecast')
 	var url = getCityUrl(config.weatherCanadaCityId)
 	Requests.request(url, function(err, data, xhr) {
-		if (err) return console.error('WeatherCanada.fetchDailyWeatherForecast.err', err, xhr && xhr.status, data)
+		if (err) return handleError('WeatherCanada.fetchDailyWeatherForecast', callback, err, data, xhr)
 		// console.debug('WeatherCanada.fetchDailyWeatherForecast.response')
-		
-		var weatherData = parseDailyHtml(data)
-		// console.log(JSON.stringify(weatherData, null, '\t'))
-		callback(err, weatherData, xhr)
+		// console.debug('WeatherCanada.fetchDailyWeatherForecast.response', data)
+
+		try {
+			var weatherData = parseDailyHtml(data)
+		} catch (e) {
+			// Don't log data as the HTML is longer than the default scrollback.
+			return handleError('WeatherCanada.parseDailyHtml', callback, e.message, '', xhr)
+		}
+
+		console.debug(JSON.stringify(weatherData, null, '\t'))
+		callback(null, weatherData, xhr)
 	})
 }
 
