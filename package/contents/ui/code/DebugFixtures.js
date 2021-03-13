@@ -85,6 +85,9 @@ function getEventData() {
 		addMinuteTestEvent("Minute Event " + i, i)
 	}
 
+	// Test reminder notifications
+	addMinuteTestEvent("Reminder Test " + 16, 16)
+
 	// This test is known to crash plasmashell.
 	// See https://github.com/Zren/plasma-applets/issues/60
 	// Note: Emoji's do not show up in plasmoidviewer.

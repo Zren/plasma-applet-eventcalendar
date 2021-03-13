@@ -77,6 +77,26 @@ ConfigPage {
 
 	ConfigSection {
 		ConfigNotification {
+			label: i18n("Event Reminder")
+			notificationEnabledKey: 'eventReminderNotificationEnabled'
+			sfxEnabledKey: 'eventReminderSfxEnabled'
+			sfxPathKey: 'eventReminderSfxPath'
+			sfxPathDefaultValue: '/usr/share/sounds/Oxygen-Im-Nudge.ogg'
+
+			RowLayout {
+				spacing: 0
+				Item { implicitWidth: parent.parent.indentWidth } // indent
+				ConfigSpinBox {
+					configKey: 'eventReminderMinutesBefore'
+					suffix: i18nc("Polling interval in minutes", "min")
+					minimumValue: 1
+				}
+			}
+		}
+	}
+
+	ConfigSection {
+		ConfigNotification {
 			label: i18n("Event Starting")
 			notificationEnabledKey: 'eventStartingNotificationEnabled'
 			sfxEnabledKey: 'eventStartingSfxEnabled'

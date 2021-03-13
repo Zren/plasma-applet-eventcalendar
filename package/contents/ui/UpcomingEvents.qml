@@ -8,6 +8,7 @@ CalendarManager {
 	id: upcomingEvents
 
 	property int upcomingEventRange: 90 // minutes
+	property int minutesBeforeReminding: plasmoid.configuration.eventReminderMinutesBefore // minutes
 
 	onFetchingData: {
 		logger.debug('upcomingEvents.onFetchingData')
@@ -34,6 +35,17 @@ CalendarManager {
 			&& a.getDate() == b.getDate()
 			&& a.getHours() == b.getHours()
 			&& a.getMinutes() == b.getMinutes()
+	}
+
+	function getDeltaMinutes(a1, n) {
+		var a2 = new Date(a1)
+		a2.setMinutes(a2.getMinutes() + n)
+		return a2
+	}
+
+	function shouldSendReminder(eventItem) {
+		var reminderDateTime = getDeltaMinutes(timeModel.currentTime, minutesBeforeReminding)
+		return isSameMinute(reminderDateTime, eventItem.startDateTime)
 	}
 
 	function isEventStarting(eventItem) {
@@ -143,6 +155,25 @@ CalendarManager {
 		})
 	}
 
+	function sendEventReminderNotification(eventItem, minutes) {
+		var deltaText = LocaleFuncs.durationShortFormat(minutes * 60)
+		var summaryText = i18nc("%1 = 15 minutes", "Starting in %1", deltaText)
+		var bodyText = ''
+		bodyText += eventItem.summary + '<br />'
+		bodyText += LocaleFuncs.formatEventDuration(eventItem, {
+			relativeDate: timeModel.currentTime,
+			clock24h: appletConfig.clock24h,
+		})
+		notificationManager.notify({
+			appName: i18n("Event Calendar"),
+			appIcon: "view-calendar-upcoming-events",
+			// expireTimeout: (minutes*60 - 1) * 1000, // timeout resets on hover so may last longer than event starts.
+			summary: summaryText,
+			body: bodyText,
+			soundFile: plasmoid.configuration.eventReminderSfxEnabled ? plasmoid.configuration.eventReminderSfxPath : '',
+		})
+	}
+
 	function sendEventStartingNotification(eventItem) {
 		notificationManager.notify({
 			appName: i18n("Event Calendar"),
@@ -164,6 +195,10 @@ CalendarManager {
 				if (isEventStarting(eventItem)) {
 					if (plasmoid.configuration.eventStartingNotificationEnabled) {
 						sendEventStartingNotification(eventItem)
+					}
+				} else if (shouldSendReminder(eventItem)) {
+					if (plasmoid.configuration.eventReminderNotificationEnabled) {
+						sendEventReminderNotification(eventItem, minutesBeforeReminding)
 					}
 				}
 			})
