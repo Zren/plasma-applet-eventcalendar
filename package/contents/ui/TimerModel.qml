@@ -147,7 +147,7 @@ QtObject {
 			appIcon: "chronometer",
 			summary: i18n("Timer finished"),
 			body: i18n("%1 has passed", formatTimer(timerModel.duration)),
-			expireTimeout: 2000,
+			// expireTimeout: 2000,
 		}
 		if (timerModel.timerSfxEnabled) {
 			args.soundFile = timerModel.timerSfxFilepath

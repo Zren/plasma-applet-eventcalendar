@@ -137,6 +137,9 @@ def notify(args):
 		icon=args.icon,
 	)
 
+	# Note: EXPIRES_DEFAULT = -1, EXPIRES_NEVER = 0
+	n.set_timeout(args.timeout)
+
 	def on_action(notification, action, *user_data):
 		sys.stdout.write(' '.join([action, *user_data]) + '\n')
 		if sfxProc:
@@ -168,6 +171,7 @@ def main():
 	parser.add_argument('--app-name', dest='appName', default='Event Calendar')
 	parser.add_argument('--sound')
 	parser.add_argument('--loop')
+	parser.add_argument('--timeout', type=int, default=Notify.EXPIRES_DEFAULT)
 	parser.add_argument('--action', dest='actions', action='append')
 	parser.add_argument('--metadata')
 

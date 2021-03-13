@@ -15,7 +15,7 @@ QtObject {
 		var cmd = [
 			'python3',
 			plasmoid.file("", "scripts/notification.py"),
-		]		
+		]
 		if (args.appName) {
 			cmd.push('--app-name', args.appName)
 		}
@@ -27,6 +27,9 @@ QtObject {
 			if (args.loop) {
 				cmd.push('--loop', args.loop)
 			}
+		}
+		if (typeof args.expireTimeout !== 'undefined') {
+			cmd.push('--timeout', args.expireTimeout)
 		}
 		if (args.actions) {
 			for (var i = 0; i < args.actions.length; i++) {
