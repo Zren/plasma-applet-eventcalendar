@@ -1,19 +1,19 @@
 import QtQuick 2.0
-import org.kde.plasma.networkmanagement 0.2 as PlasmaNM
+// import org.kde.plasma.networkmanagement 0.2 as PlasmaNM
 
 QtObject {
 	id: networkMonitor
 
 	// https://invent.kde.org/plasma/plasma-nm
-	readonly property var plasmaNMStatus: PlasmaNM.NetworkStatus {
-		id: plasmaNMStatus
-		// onActiveConnectionsChanged: logger.debug('NetworkStatus.activeConnections', activeConnections)
-		onNetworkStatusChanged: logger.debug('NetworkStatus.networkStatus', networkStatus)
-		Component.onCompleted: {
-			// logger.debug('NetworkStatus.activeConnections', activeConnections)
-			logger.debug('NetworkStatus.networkStatus', networkStatus)
-		}
-	}
+	// readonly property var plasmaNMStatus: PlasmaNM.NetworkStatus {
+	// 	id: plasmaNMStatus
+	// 	// onActiveConnectionsChanged: logger.debug('NetworkStatus.activeConnections', activeConnections)
+	// 	onNetworkStatusChanged: logger.debug('NetworkStatus.networkStatus', networkStatus)
+	// 	Component.onCompleted: {
+	// 		// logger.debug('NetworkStatus.activeConnections', activeConnections)
+	// 		logger.debug('NetworkStatus.networkStatus', networkStatus)
+	// 	}
+	// }
 	// readonly property var plasmaNMIcon: PlasmaNM.ConnectionIcon {
 	// 	id: plasmaNMIcon
 	// 	onConnectingChanged: logger.debug('ConnectionIcon.connecting', connecting)
@@ -43,11 +43,20 @@ QtObject {
 
 
 
+	// We need to dynamically import PlasmaNM since it's not preinstalled on every distro (Issue #212)
+	// readonly property var plasmaNMStatus: Qt.createQmlObject("import org.kde.plasma.networkmanagement 0.2 as PlasmaNM; PlasmaNM.NetworkStatus {}", networkMonitor)
+	readonly property Loader plasmaNMStatusLoader: Loader {
+		id: plasmaNMStatusLoader
+		source: "NetworkMonitorPlasmaNM.qml"
+	}
+
+
 	// Since the network status state isn't exposed, we need to either parse the icon or user message to know the state.
 	// We could compare the icon, however it has a number of network types (wired/wireless) with different wireless strengths
 	// like network-wireless-connected-80 for 80% signal. There's a ton of disconnected types too.
 	// (network-flightmode-on/network-unavailable/network-wired-available/network-mobile-available)
 	// While comparing the i18n messages could be buggy in certain locales, at least we have a simple complete list of states.
+
 
 	// https://invent.kde.org/plasma/plasma-nm/-/blame/master/libs/declarative/networkstatus.cpp#L115
 	readonly property var connectedMessages: [
@@ -62,7 +71,21 @@ QtObject {
 	// 	i18ndc("plasmanetworkmanagement-libs", "A network device is connecting to a network and there is no other available network connection", "Connecting"),
 	// ]
 
-	readonly property bool isConnected: connectedMessages.indexOf(plasmaNMStatus.networkStatus) >= 0
+	readonly property string networkStatus: {
+		if (plasmaNMStatusLoader.status == Loader.Ready) {
+			return plasmaNMStatusLoader.item.networkStatus
+		} else {
+			return ''
+		}
+	}
+	readonly property bool isConnected: {
+		if (plasmaNMStatusLoader.status == Loader.Error) {
+			// Failed to load PlasmaNM, so treat it as connected.
+			return true
+		} else {
+			return connectedMessages.indexOf(networkStatus) >= 0
+		}
+	}
 
 	onIsConnectedChanged: logger.debug('NetworkMonitor.isConnected', isConnected)
 	Component.onCompleted: {
