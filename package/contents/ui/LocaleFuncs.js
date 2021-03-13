@@ -67,3 +67,35 @@ function formatEventDuration(event, args) {
 		return i18nc("from date/time %1 until date/time %2", "%1 - %2", startStr, endStr)
 	}
 }
+
+function getHours(t) {
+	var hours = Math.floor(t / (60 * 60 * 1000))
+	return hours
+}
+function getMinutes(t) {
+	var millisLeftInHour = t % (60 * 60 * 1000)
+	var minutes = millisLeftInHour / (60 * 1000)
+	return minutes
+}
+function getSeconds(t) {
+	var millisLeftInMinute = t % (60 * 1000)
+	var seconds = millisLeftInMinute / 1000
+	return seconds
+}
+function durationShortFormat(nSeconds) {
+	var t = nSeconds * 1000
+	var str = ''
+	var hours = Math.floor(getHours(t))
+	if (hours > 0) {
+		str += i18nc("short form for %1 hours", "%1h", hours)
+	}
+	var minutes = Math.floor(getMinutes(t))
+	if (minutes > 0) {
+		str += i18nc("short form for %1 minutes", "%1m", minutes)
+	}
+	var seconds = Math.floor(getSeconds(t))
+	if (seconds > 0) {
+		str += i18nc("short form for %1 seconds", "%1s", seconds)
+	}
+	return str
+}

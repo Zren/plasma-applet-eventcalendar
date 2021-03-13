@@ -6,6 +6,8 @@ import org.kde.plasma.core 2.0 as PlasmaCore
 import org.kde.plasma.components 2.0 as PlasmaComponents
 import org.kde.plasma.components 3.0 as PlasmaComponents3
 
+import "LocaleFuncs.js" as LocaleFuncs
+
 Item {
 	id: timerView
 
@@ -165,7 +167,7 @@ Item {
 				model: timerModel.defaultTimers
 
 				TimerPresetButton {
-					text: timerModel.durationShortFormat(modelData.seconds)
+					text: LocaleFuncs.durationShortFormat(modelData.seconds)
 					onClicked: timerModel.setDurationAndStart(modelData.seconds)
 				}
 			}
@@ -269,7 +271,7 @@ Item {
 
 				var menuItem = newMenuItem()
 				menuItem.icon = 'chronometer'
-				menuItem.text = timerModel.durationShortFormat(presetItem.seconds)
+				menuItem.text = LocaleFuncs.durationShortFormat(presetItem.seconds)
 				menuItem.clicked.connect(timerModel.setDurationAndStart.bind(timerModel, presetItem.seconds))
 				contextMenu.addMenuItem(menuItem)
 			}
