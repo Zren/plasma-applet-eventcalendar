@@ -26,8 +26,8 @@ msgstr "Calendário de eventos"
 #: ../metadata.desktop
 msgid ""
 "Plasmoid for a calendar+agenda with weather that syncs to Google Calendar."
-msgstr "
-Plasmoid para um calendário + agenda com Metereologia que sincroniza com o Google Calendar."
+msgstr ""
+"Plasmoid para um calendário + agenda com Metereologia que sincroniza com o Google Calendar."
 
 #: ../contents/config/config.qml
 msgid "General"
@@ -270,7 +270,7 @@ msgstr "Dia (espaçamento)"
 
 #: ../contents/ui/config/ConfigAgenda.qml
 msgid "Event Spacing:"
-msgstr "Evento (espaçamento"
+msgstr "Evento (espaçamento)"
 
 #: ../contents/ui/config/ConfigCalendar.qml
 msgid "Show calendar"
