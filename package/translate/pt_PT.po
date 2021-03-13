@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: eventcalendar\n"
 "Report-Msgid-Bugs-To: https://github.com/Zren/plasma-applet-eventcalendar\n"
-"POT-Creation-Date: 2021-03-09 13:58+0\n"
+"POT-Creation-Date: 2021-03-13 15:06-0500\n"
 "PO-Revision-Date: 2020-03-09 15:08+0\n"
 "Last-Translator: DMMLeal <dmleal.Documentation@gmail.com>\n"
 "Language-Team: Portuguese <Adress@mail>\n"
@@ -27,7 +27,8 @@ msgstr "Calendário de eventos"
 msgid ""
 "Plasmoid for a calendar+agenda with weather that syncs to Google Calendar."
 msgstr ""
-"Plasmoid para um calendário + agenda com Metereologia que sincroniza com o Google Calendar."
+"Plasmoid para um calendário + agenda com Metereologia que sincroniza com o "
+"Google Calendar."
 
 #: ../contents/config/config.qml
 msgid "General"
@@ -134,7 +135,9 @@ msgstr "Tentaremos novamente em breve."
 #: ../contents/ui/config/ConfigGoogleCalendar.qml ../contents/ui/Logic.qml
 msgid ""
 "Widget has been updated. Please logout and login to Google Calendar again."
-msgstr "A aplicação foi atualizado. Saia e volte a entrar novamente no Google calendário."
+msgstr ""
+"A aplicação foi atualizado. Saia e volte a entrar novamente no Google "
+"calendário."
 
 #: ../contents/ui/calendars/GoogleCalendarManager.qml
 msgid "Too many web requests. Will try again soon."
@@ -400,6 +403,10 @@ msgstr "min"
 #: ../contents/ui/config/ConfigEvents.qml
 msgid "Notifications"
 msgstr "Notificações"
+
+#: ../contents/ui/config/ConfigEvents.qml
+msgid "Event Reminder"
+msgstr ""
 
 #: ../contents/ui/config/ConfigEvents.qml
 msgid "Event Starting"
@@ -830,6 +837,23 @@ msgctxt "from date/time %1 until date/time %2"
 msgid "%1 - %2"
 msgstr "%1 - %2"
 
+#: ../contents/ui/LocaleFuncs.js
+msgctxt "short form for %1 hours"
+msgid "%1h"
+msgstr "%1h"
+
+#: ../contents/ui/LocaleFuncs.js
+#, c-format
+msgctxt "short form for %1 minutes"
+msgid "%1m"
+msgstr "%1m"
+
+#: ../contents/ui/LocaleFuncs.js
+#, c-format
+msgctxt "short form for %1 seconds"
+msgid "%1s"
+msgstr "%1s"
+
 #: ../contents/ui/Logic.qml
 msgid "Weather API limit reached"
 msgstr ""
@@ -884,23 +908,6 @@ msgid "&Start"
 msgstr "&Iniciar"
 
 #: ../contents/ui/TimerModel.qml
-msgctxt "short form for %1 hours"
-msgid "%1h"
-msgstr "%1h"
-
-#: ../contents/ui/TimerModel.qml
-#, c-format
-msgctxt "short form for %1 minutes"
-msgid "%1m"
-msgstr "%1m"
-
-#: ../contents/ui/TimerModel.qml
-#, c-format
-msgctxt "short form for %1 seconds"
-msgid "%1s"
-msgstr "%1s"
-
-#: ../contents/ui/TimerModel.qml
 msgid "Timer finished"
 msgstr "O cronômetro terminou"
 
@@ -943,3 +950,8 @@ msgstr "Eventos em andamento"
 #: ../contents/ui/UpcomingEvents.qml
 msgid "Upcoming Events"
 msgstr "Próximos eventos"
+
+#: ../contents/ui/UpcomingEvents.qml
+msgctxt "%1 = 15 minutes"
+msgid "Starting in %1"
+msgstr ""

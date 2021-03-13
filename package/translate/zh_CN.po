@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: eventcalendar\n"
 "Report-Msgid-Bugs-To: https://github.com/Zren/plasma-applet-eventcalendar\n"
-"POT-Creation-Date: 2021-01-18 16:52-0500\n"
+"POT-Creation-Date: 2021-03-13 15:06-0500\n"
 "PO-Revision-Date: 2019-04-17 16:43+0800\n"
 "Last-Translator: Core小睿 <i@coreja.com>\n"
 "Language-Team: \n"
@@ -399,6 +399,10 @@ msgstr "分钟"
 #: ../contents/ui/config/ConfigEvents.qml
 msgid "Notifications"
 msgstr "通知"
+
+#: ../contents/ui/config/ConfigEvents.qml
+msgid "Event Reminder"
+msgstr ""
 
 #: ../contents/ui/config/ConfigEvents.qml
 msgid "Event Starting"
@@ -823,6 +827,23 @@ msgctxt "from date/time %1 until date/time %2"
 msgid "%1 - %2"
 msgstr ""
 
+#: ../contents/ui/LocaleFuncs.js
+msgctxt "short form for %1 hours"
+msgid "%1h"
+msgstr ""
+
+#: ../contents/ui/LocaleFuncs.js
+#, c-format
+msgctxt "short form for %1 minutes"
+msgid "%1m"
+msgstr ""
+
+#: ../contents/ui/LocaleFuncs.js
+#, c-format
+msgctxt "short form for %1 seconds"
+msgid "%1s"
+msgstr ""
+
 #: ../contents/ui/Logic.qml
 msgid "Weather API limit reached"
 msgstr ""
@@ -877,23 +898,6 @@ msgid "&Start"
 msgstr ""
 
 #: ../contents/ui/TimerModel.qml
-msgctxt "short form for %1 hours"
-msgid "%1h"
-msgstr ""
-
-#: ../contents/ui/TimerModel.qml
-#, c-format
-msgctxt "short form for %1 minutes"
-msgid "%1m"
-msgstr ""
-
-#: ../contents/ui/TimerModel.qml
-#, c-format
-msgctxt "short form for %1 seconds"
-msgid "%1s"
-msgstr ""
-
-#: ../contents/ui/TimerModel.qml
 msgid "Timer finished"
 msgstr "倒计时结束"
 
@@ -936,6 +940,11 @@ msgstr "正在进行的事件"
 #: ../contents/ui/UpcomingEvents.qml
 msgid "Upcoming Events"
 msgstr "即将到来的事件"
+
+#: ../contents/ui/UpcomingEvents.qml
+msgctxt "%1 = 15 minutes"
+msgid "Starting in %1"
+msgstr ""
 
 #~ msgid ""
 #~ "Enable Debugging\n"
