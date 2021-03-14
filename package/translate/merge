@@ -1,8 +1,9 @@
 #!/bin/sh
-# Version: 17
+# Version: 20
 
 # https://techbase.kde.org/Development/Tutorials/Localization/i18n_Build_Systems
-# Based on: https://github.com/psifidotos/nowdock-plasmoid/blob/master/po/Messages.sh
+# https://techbase.kde.org/Development/Tutorials/Localization/i18n_Build_Systems/Outside_KDE_repositories
+# https://invent.kde.org/sysadmin/l10n-scripty/-/blob/master/extract-messages.sh
 
 DIR=`cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd`
 plasmoidName=`kreadconfig5 --file="$DIR/../metadata.desktop" --group="Desktop Entry" --key="X-KDE-PluginInfo-Name"`
@@ -42,12 +43,27 @@ xgettext \
 
 sed -i 's/"Content-Type: text\/plain; charset=CHARSET\\n"/"Content-Type: text\/plain; charset=UTF-8\\n"/' "template.pot.new"
 
+# See Ki18n's extract-messages.sh for a full example:
+# https://invent.kde.org/sysadmin/l10n-scripty/-/blob/master/extract-messages.sh#L25
+# The -kN_ and -kaliasLocale keywords are mentioned in the Outside_KDE_repositories wiki.
+# We don't need -kN_ since we don't use intltool-extract but might as well keep it.
+# I have no idea what -kaliasLocale is used for. Googling aliasLocale found only listed kde1 code.
+# We don't need to parse -ki18nd since that'll extract messages from other domains.
 find "${packageRoot}" -name '*.cpp' -o -name '*.h' -o -name '*.c' -o -name '*.qml' -o -name '*.js' | sort > "${DIR}/infiles.list"
 xgettext \
 	${potArgs} \
 	--files-from="${DIR}/infiles.list" \
-	-C -kde -ci18n -ki18n:1 -ki18nc:1c,2 -ki18np:1,2 -ki18ncp:1c,2,3 -ktr2i18n:1 -kI18N_NOOP:1 \
-	-kI18N_NOOP2:1c,2  -kN_:1 -kaliasLocale -kki18n:1 -kki18nc:1c,2 -kki18np:1,2 -kki18ncp:1c,2,3 \
+	-C -kde \
+	-ci18n \
+	-ki18n:1 -ki18nc:1c,2 -ki18np:1,2 -ki18ncp:1c,2,3 \
+	-kki18n:1 -kki18nc:1c,2 -kki18np:1,2 -kki18ncp:1c,2,3 \
+	-kxi18n:1 -kxi18nc:1c,2 -kxi18np:1,2 -kxi18ncp:1c,2,3 \
+	-kkxi18n:1 -kkxi18nc:1c,2 -kkxi18np:1,2 -kkxi18ncp:1c,2,3 \
+	-kI18N_NOOP:1 -kI18NC_NOOP:1c,2 \
+	-kI18N_NOOP2:1c,2 -kI18N_NOOP2_NOSTRIP:1c,2 \
+	-ktr2i18n:1 -ktr2xi18n:1 \
+	-kN_:1 \
+	-kaliasLocale \
 	--package-name="${widgetName}" \
 	--msgid-bugs-address="${bugAddress}" \
 	-D "${packageRoot}" \
@@ -144,6 +160,7 @@ echo "[merge] Updating .desktop file"
 if [ -f "$DIR/LINGUAS" ]; then
 	rm "$DIR/LINGUAS"
 fi
+touch "$DIR/LINGUAS"
 for cat in $catalogs; do
 	catLocale=`basename ${cat%.*}`
 	echo "${catLocale}" >> "$DIR/LINGUAS"
