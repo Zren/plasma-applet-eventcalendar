@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: eventcalendar\n"
 "Report-Msgid-Bugs-To: https://github.com/Zren/plasma-applet-eventcalendar\n"
 "POT-Creation-Date: 2021-03-13 15:06-0500\n"
-"PO-Revision-Date: 2020-11-13 21:30+0100\n"
+"PO-Revision-Date: 2021-03-15 17:49+0100\n"
 "Last-Translator: Heimen Stoffels <vistausss@outlook.com>\n"
 "Language-Team: Dutch <kde-i18n-doc@kde.org>\n"
 "Language: nl\n"
@@ -404,7 +404,7 @@ msgstr "Meldingen"
 
 #: ../contents/ui/config/ConfigEvents.qml
 msgid "Event Reminder"
-msgstr ""
+msgstr "Afspraakherinnering"
 
 #: ../contents/ui/config/ConfigEvents.qml
 msgid "Event Starting"
@@ -951,7 +951,7 @@ msgstr "Ingeplande afspraken"
 #: ../contents/ui/UpcomingEvents.qml
 msgctxt "%1 = 15 minutes"
 msgid "Starting in %1"
-msgstr ""
+msgstr "Start over %1"
 
 #~ msgid "Could not connect (HTTP Error 0), will try again soon."
 #~ msgstr ""
