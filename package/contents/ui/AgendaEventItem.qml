@@ -198,22 +198,27 @@ LinkRect {
 				implicitHeight: 4 * units.devicePixelRatio
 			}
 
-			PlasmaComponents3.ToolButton {
-				id: eventHangoutLink
+			Loader {
+				id: eventHangoutLinkLoader
 				readonly property bool showProperty: plasmoid.configuration.agendaShowEventHangoutLink && !!model.hangoutLink
 				visible: showProperty && !editEventForm.visible
-				text: {
-					if (!!model.conferenceData
-						&& !!model.conferenceData.conferenceSolution
-						&& !!model.conferenceData.conferenceSolution.name
-					) {
-						return model.conferenceData.conferenceSolution.name
-					} else {
-						return i18n("Hangout")
+				active: visible
+
+				sourceComponent: PlasmaComponents3.ToolButton {
+					id: eventHangoutLink
+					text: {
+						if (!!model.conferenceData
+							&& !!model.conferenceData.conferenceSolution
+							&& !!model.conferenceData.conferenceSolution.name
+						) {
+							return model.conferenceData.conferenceSolution.name
+						} else {
+							return i18n("Hangout")
+						}
 					}
+					icon.source: plasmoid.file("", "icons/hangouts.svg")
+					onClicked: Qt.openUrlExternally(model.hangoutLink)
 				}
-				icon.source: plasmoid.file("", "icons/hangouts.svg")
-				onClicked: Qt.openUrlExternally(model.hangoutLink)
 			}
 
 		} // eventColumn
