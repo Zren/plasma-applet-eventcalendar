@@ -108,6 +108,10 @@ function getEventData() {
 	event.description = "Short description."
 
 	// Long description
+	event = addAllDayTestEvent("Long Description Test", 4, 5)
+	event.description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+
+	// Long RichText description
 	event = addAllDayTestEvent("Long RichText Description Test", 4, 5)
 	event.description = "Lorem <b>ipsum</b> dolor sit amet, consectetur <u>adipiscing</u> elit, sed do eiusmod tempor incididunt ut labore et dolore magna <a href=\"https://www.google.com\">aliqua</a>. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.<br><br>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.<br><ul><li>Apples<br></li><li>Oranges<br></li><li>Carrots<br></li></ul>"
 
