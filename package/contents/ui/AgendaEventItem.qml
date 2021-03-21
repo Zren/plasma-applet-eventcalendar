@@ -84,7 +84,7 @@ LinkRect {
 				}
 				Text {
 					id: toolTipDescriptionLabel
-					readonly property bool showProperty: !plasmoid.configuration.agendaShowEventDescription && text
+					readonly property bool showProperty: eventDescription.showInTooltip && text
 					visible: showProperty
 					text: Shared.renderText(model.description)
 					color: eventToolTip.palette.text
@@ -171,6 +171,10 @@ LinkRect {
 				font.pixelSize: appletConfig.agendaFontSize
 				Layout.fillWidth: true
 				wrapMode: Text.Wrap // See warning at eventSummary.wrapMode
+
+				readonly property bool showInTooltip: !showProperty || truncated
+				maximumLineCount: plasmoid.configuration.agendaMaxDescriptionLines
+				elide: Text.ElideRight
 
 				linkColor: PlasmaCore.ColorScope.highlightColor
 				onLinkActivated: Qt.openUrlExternally(link)

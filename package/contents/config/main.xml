@@ -262,6 +262,9 @@
 		<entry name="agendaEventSpacing" type="uint">
 			<default>10</default>
 		</entry>
+		<entry name="agendaMaxDescriptionLines" type="uint">
+			<default>5</default>
+		</entry>
 		<entry name="agendaShowEventDescription" type="bool">
 			<default>true</default>
 		</entry>
