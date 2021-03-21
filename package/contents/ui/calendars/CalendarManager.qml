@@ -46,7 +46,7 @@ Item {
 		var calendarList = getCalendarList()
 		for (var i = 0; i < calendarList.length; i++) {
 			var calendar = calendarList[i]
-			if (calendarId == calendar.id) {
+			if (calendarId === calendar.id) {
 				return calendar
 			}
 		}

@@ -87,7 +87,7 @@ Item {
 
 				onItemAdded: {
 					// console.log(Date.now(), 'agendaRepeater.itemAdded', index)
-					if (index == root.agendaModel.count-1) {
+					if (index === root.agendaModel.count-1) {
 						populated = true
 					}
 				}
@@ -99,7 +99,7 @@ Item {
 		}
 
 		function getCurrentAgendaItem() {
-			if (agendaRepeater.count == 0 || scrollY < 0) {
+			if (agendaRepeater.count === 0 || scrollY < 0) {
 				return null
 			} else {
 				var offsetY = 0

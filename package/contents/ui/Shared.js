@@ -19,7 +19,7 @@ function openGoogleCalendarNewEventUrl(date) {
 
 function isSameDate(a, b) {
 	// console.log('isSameDate', a, b)
-	return a.getFullYear() == b.getFullYear() && a.getMonth() == b.getMonth() && a.getDate() == b.getDate()
+	return a.getFullYear() === b.getFullYear() && a.getMonth() === b.getMonth() && a.getDate() === b.getDate()
 }
 function isDateEarlier(a, b) {
 	var c = new Date(b.getFullYear(), b.getMonth(), b.getDate()) // midnight of date b
@@ -61,7 +61,7 @@ function renderText(text) {
 	// However, we should treat it as a link. This simple regex replacement works when we're not
 	// dealing with HTML. So if we see an HTML anchor tag, skip it and assume the link has been
 	// formatted.
-	if (out.indexOf('<a href') == -1) {
+	if (out.indexOf('<a href') === -1) {
 		var rUrl = /(http|https):\/\/[\w-]+(\.[\w-]+)+([\w.,@?^=%&amp;:\/~+#-]*[\w@?^=%&amp;\/~+#-])?/gi
 		out = out.replace(rUrl, function(m) {
 			// Google replaces ampersands with HTML the entity in the url text.

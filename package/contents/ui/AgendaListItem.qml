@@ -214,13 +214,13 @@ GridLayout {
 	function indexOfEvent(eventId) {
 		for (var i = 0; i < eventsRepeater.model.length; i++) {
 			var event = eventsRepeater.model[i]
-			if (event.id == eventId) {
+			if (event.id === eventId) {
 				return i
 			}
 		}
 		for (var i = 0; i < tasksRepeater.model.length; i++) {
 			var task = tasksRepeater.model[i]
-			if (task.id == eventId) {
+			if (task.id === eventId) {
 				return eventsRepeater.model.length + i
 			}
 		}

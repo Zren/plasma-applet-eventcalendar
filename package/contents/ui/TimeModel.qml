@@ -15,7 +15,7 @@ Item {
 		} else {
 			timezones = []
 		}
-		if (timezones.indexOf('Local') == -1) {
+		if (timezones.indexOf('Local') === -1) {
 			timezones.push('Local')
 		}
 		return timezones
@@ -33,7 +33,7 @@ Item {
 		interval: 1000
 		intervalAlignment: PlasmaCore.Types.NoAlignment
 		onNewData: {
-			if (sourceName == 'Local') {
+			if (sourceName === 'Local') {
 				timeModel.tick()
 			}
 		}

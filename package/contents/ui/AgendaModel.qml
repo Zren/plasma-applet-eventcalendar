@@ -131,7 +131,7 @@ ListModel {
 			agendaItem = buildAgendaItem(date)
 			agendaItemList.push(agendaItem)
 		}
-		if (eventItem.kind == 'tasks#task') {
+		if (eventItem.kind === 'tasks#task') {
 			agendaItem.tasks.push(eventItem)
 		} else {
 			agendaItem.events.push(eventItem)
@@ -143,11 +143,11 @@ ListModel {
 		for (var i = 0; i < eventList.length; i++) {
 			var eventItem = eventList[i]
 			// console.log('i', i, eventItem.summary)
-			if (eventItem.kind == 'tasks#task' && typeof eventItem.parent !== 'undefined') {
+			if (eventItem.kind === 'tasks#task' && typeof eventItem.parent !== 'undefined') {
 				for (var j = 0; j < eventList.length; j++) {
 					var parentItem = eventList[j]
 					// console.log('  j', j, parentItem.summary)
-					if (parentItem.kind == 'tasks#task' && parentItem.id == eventItem.parent) {
+					if (parentItem.kind === 'tasks#task' && parentItem.id === eventItem.parent) {
 						var foundDestination = false
 						for (var k = j+1; k < eventList.length; k++) {
 							var childItem = eventList[k]
@@ -224,8 +224,8 @@ ListModel {
 
 		// Sort by start time if event, or position if tasks
 		data.items.sort(function(a,b) {
-			var aIsTask = a.kind == 'tasks#task'
-			var bIsTask = b.kind == 'tasks#task'
+			var aIsTask = a.kind === 'tasks#task'
+			var bIsTask = b.kind === 'tasks#task'
 			if (!aIsTask && bIsTask) {
 				return -1
 			} else if (aIsTask && !bIsTask) {
@@ -233,7 +233,7 @@ ListModel {
 			} else if (aIsTask && bIsTask) {
 				var ap = a.position
 				var bp = b.position
-				if (ap == bp) {
+				if (ap === bp) {
 					return 0
 				} else if (ap < bp) {
 					return -1

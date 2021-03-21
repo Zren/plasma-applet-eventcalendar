@@ -17,7 +17,7 @@ PlasmaComponents3.TextField {
 		if (focus) {
 			selectAll()
 		} else {
-			if (text == "") {
+			if (text === "") {
 				text = defaultText
 			}
 		}

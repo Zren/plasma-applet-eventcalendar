@@ -61,9 +61,9 @@ Item {
 		property string rainUnits: 'mm'
 
 		property double freezingPoint: {
-			if (plasmoid.configuration.weatherUnits == "kelvin") {
+			if (plasmoid.configuration.weatherUnits === "kelvin") {
 				return 273.15 // https://en.wikipedia.org/wiki/Kelvin
-			} else if (plasmoid.configuration.weatherUnits == "imperial") {
+			} else if (plasmoid.configuration.weatherUnits === "imperial") {
 				return 32 // https://en.wikipedia.org/wiki/Fahrenheit
 			} else { // "metric"
 				return 0
@@ -90,10 +90,10 @@ Item {
 			for (var i = 0; i < gridData.length; i++) {
 				var y = gridData[i].y
 				yData.push(y)
-				if (i == 0 || y < yDataMin) {
+				if (i === 0 || y < yDataMin) {
 					yDataMin = y
 				}
-				if (i == 0 || y > yDataMax) {
+				if (i === 0 || y > yDataMax) {
 					yDataMax = y
 				}
 				if (rainUnits == 'mm') {
@@ -102,7 +102,7 @@ Item {
 					}
 				}
 			}
-			if (rainUnits == '%') {
+			if (rainUnits === '%') {
 				yAxisRainMax = 100
 			}
 
@@ -217,7 +217,7 @@ Item {
 					if (!context) return
 					context.reset()
 					if (graph.gridData.length < 2) return
-					if (graph.yAxisMin == graph.yAxisMax) return
+					if (graph.yAxisMin === graph.yAxisMax) return
 
 					// rain
 					graph.showYAxisRainMax = false
@@ -282,8 +282,8 @@ Item {
 					for (var i = 0; i < graph.gridData.length; i++) {
 						var item = graph.gridData[i]
 						path.push({ x: i, y: item.y })
-						if (i == 0 || item.y < pathMinY) pathMinY = item.y
-						if (i == 0 || item.y > pathMaxY) pathMaxY = item.y
+						if (i === 0 || item.y < pathMinY) pathMinY = item.y
+						if (i === 0 || item.y > pathMaxY) pathMaxY = item.y
 					}
 					
 					var pZeroY = graph.gridPoint(0, graph.freezingPoint).y
@@ -315,8 +315,8 @@ Item {
 						var item = graph.gridData[i]
 						// console.log('label', graph.rainUnits, i, item.precipitation)
 						if (item.precipitation && (
-							(graph.rainUnits == 'mm' && item.precipitation > 0.3)
-							|| (graph.rainUnits == '%')
+							(graph.rainUnits === 'mm' && item.precipitation > 0.3)
+							|| (graph.rainUnits === '%')
 						)) {
 							var labelText = formatPrecipitation(item.precipitation)
 
@@ -487,7 +487,7 @@ Item {
 
 	function formatXAxisLabels(gData) {
 		for (var i = 0; i < gData.length; i++) {
-			var firstOrLast = i == 0 || i == gData.length-1
+			var firstOrLast = i === 0 || i === gData.length-1
 			var labelSkipped = i % Math.ceil(meteogramView.xAxisLabelEvery) != 0
 			// if (i != 0 && i != gData.length-1) {
 			if (!firstOrLast && !labelSkipped) {
@@ -499,7 +499,7 @@ Item {
 				} else {
 					// 12 hour clock
 					// (3am = 3) (11pm = 11p)
-					label += hour % 12 == 0 ? 12 : hour % 12
+					label += hour % 12 === 0 ? 12 : hour % 12
 					label += (hour < 12 ? '' : 'p')
 				}
 				gData[i].xLabel = label
@@ -515,7 +515,7 @@ Item {
 	}
 	function formatPrecipitation(value) {
 		var valueText = formatDecimal(value, 1)
-		if (graph.rainUnits == 'mm') {
+		if (graph.rainUnits === 'mm') {
 			return i18n("%1mm", valueText)
 		} else { // rainUnits == '%'
 			return i18n('%1%', valueText) // Not translated as we use ''

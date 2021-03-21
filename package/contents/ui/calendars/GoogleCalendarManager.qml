@@ -585,7 +585,7 @@ CalendarManager {
 		var calendarList = getCalendarList()
 		for (var i = 0; i < calendarList.length; i++) {
 			var calendar = calendarList[i]
-			if (calendarId == calendar.id || (calendarId == 'primary' && calendar.primary)) {
+			if (calendarId === calendar.id || (calendarId === 'primary' && calendar.primary)) {
 				return calendar
 			}
 		}

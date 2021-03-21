@@ -84,7 +84,7 @@ PlasmaComponents3.TextField {
 		for (var i = 0; i < model.length; i++) {
 			var entry = model[i]
 			var eDT = entry[valueRole]
-			if (dt.getHours() == eDT.getHours() && dt.getMinutes() == eDT.getMinutes()) {
+			if (dt.getHours() === eDT.getHours() && dt.getMinutes() === eDT.getMinutes()) {
 				listView.currentIndex = i
 				listView.positionViewAtIndex(i, ListView.Contain)
 				return

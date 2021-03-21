@@ -42,7 +42,7 @@ Item {
 				id: timerLabel
 				text: "0:00"
 				icon.name: {
-					if (timerModel.secondsLeft == 0) {
+					if (timerModel.secondsLeft === 0) {
 						return 'chronometer'
 					} else if (timerModel.running) {
 						return 'chronometer-pause'

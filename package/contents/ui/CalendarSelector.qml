@@ -19,7 +19,7 @@ PlasmaComponents3.ComboBox {
 		var list = []
 		var selectedIndex = 0
 		calendarList.forEach(function(calendar){
-			var canEditCalendar = calendar.accessRole == 'writer' || calendar.accessRole == 'owner'
+			var canEditCalendar = calendar.accessRole === 'writer' || calendar.accessRole === 'owner'
 			var isSelected = calendar.id === initialCalendarId
 
 			if (isSelected) {
@@ -35,7 +35,7 @@ PlasmaComponents3.ComboBox {
 				})
 			}
 		})
-		if (list.length == 0) {
+		if (list.length === 0) {
 			list.push({ text: i18n("[No Calendars]") })
 		}
 		calendarSelector.model = list

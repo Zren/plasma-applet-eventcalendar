@@ -228,7 +228,7 @@ Item {
 			for (var i = 0; i < calendarGrid.rows + 1; i++) {
 				var lineY = lineBasePoint + (daysCalendar.cellHeight + root.borderWidth) * (i)
 
-				if (i == 0 || i == calendarGrid.rows) {
+				if (i === 0 || i === calendarGrid.rows) {
 					ctx.moveTo(0, lineY)
 				} else {
 					ctx.moveTo(showWeekNumbers ? daysCalendar.cellWidth + root.borderWidth : root.borderWidth, lineY)
@@ -376,7 +376,7 @@ Item {
 				elide: Text.ElideRight
 				fontSizeMode: Text.HorizontalFit
 				readonly property int currentDayIndex: (calendarBackend.firstDayOfWeek + index) % 7
-				readonly property bool isCurrentDay: root.currentMonthContainsToday && root.today && root.today.getDay() == currentDayIndex
+				readonly property bool isCurrentDay: root.currentMonthContainsToday && root.today && root.today.getDay() === currentDayIndex
 				readonly property bool showHighlight: isCurrentDay && root.highlightCurrentDayWeek
 				color: showHighlight ? PlasmaCore.ColorScope.highlightColor : PlasmaCore.ColorScope.textColor
 				opacity: showHighlight ? 0.75 : 0.4

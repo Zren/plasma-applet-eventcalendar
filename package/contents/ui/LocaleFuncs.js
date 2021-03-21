@@ -4,13 +4,13 @@ function formatEventTime(dateTime, args) {
 	var clock24h = args && args.clock24h
 	var timeFormat
 	if (clock24h) {
-		if (dateTime.getMinutes() == 0) {
+		if (dateTime.getMinutes() === 0) {
 			timeFormat = i18nc("event time on the hour (24 hour clock)", "h")
 		} else {
 			timeFormat = i18nc("event time (24 hour clock)", "h:mm")
 		}
 	} else { // 12h
-		if (dateTime.getMinutes() == 0) {
+		if (dateTime.getMinutes() === 0) {
 			timeFormat = i18nc("event time on the hour (12 hour clock)", "h AP")
 		} else {
 			timeFormat = i18nc("event time (12 hour clock)", "h:mm AP")
@@ -53,7 +53,7 @@ function formatEventDuration(event, args) {
 			startStr = formatEventTime(startTime, args) // h:mm AP
 		}
 
-		if (startTime.valueOf() == endTime.valueOf()) {
+		if (startTime.valueOf() === endTime.valueOf()) {
 			return startStr // Don't need the end time
 		}
 

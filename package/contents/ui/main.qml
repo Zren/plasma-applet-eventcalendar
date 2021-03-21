@@ -106,12 +106,12 @@ Item {
 			}
 
 			function onScrollUp() {
-				if (plasmoid.configuration.clockMouseWheel == 'RunCommands') {
+				if (plasmoid.configuration.clockMouseWheel === 'RunCommands') {
 					executable.exec(plasmoid.configuration.clockMouseWheelUp)
 				}
 			}
 			function onScrollDown() {
-				if (plasmoid.configuration.clockMouseWheel == 'RunCommands') {
+				if (plasmoid.configuration.clockMouseWheel === 'RunCommands') {
 					executable.exec(plasmoid.configuration.clockMouseWheelDown)
 				}
 			}

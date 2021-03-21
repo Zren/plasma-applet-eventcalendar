@@ -30,11 +30,11 @@ CalendarManager {
 	}
 
 	function isSameMinute(a, b) {
-		return a.getFullYear() == b.getFullYear()
-			&& a.getMonth() == b.getMonth()
-			&& a.getDate() == b.getDate()
-			&& a.getHours() == b.getHours()
-			&& a.getMinutes() == b.getMinutes()
+		return a.getFullYear() === b.getFullYear()
+			&& a.getMonth() === b.getMonth()
+			&& a.getDate() === b.getDate()
+			&& a.getHours() === b.getHours()
+			&& a.getMinutes() === b.getMinutes()
 	}
 
 	function getDeltaMinutes(a1, n) {

@@ -159,7 +159,7 @@ QtObject {
 			args.actions.push(action)
 		}
 		notificationManager.notify(args, function(actionId){
-			if (actionId == 'repeat') {
+			if (actionId === 'repeat') {
 				repeatTimer()
 			}
 		})

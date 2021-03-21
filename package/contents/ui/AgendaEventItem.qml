@@ -42,7 +42,7 @@ LinkRect {
 		relativeDate: agendaItemDate,
 		clock24h: appletConfig.clock24h,
 	})
-	readonly property bool isAllDay: eventTimestamp == i18n("All Day") // TODO: Remove string comparison.
+	readonly property bool isAllDay: eventTimestamp === i18n("All Day") // TODO: Remove string comparison.
 	readonly property bool isCondensed: plasmoid.configuration.agendaCondensedAllDayEvent && isAllDay
 
 

@@ -51,7 +51,7 @@ PinchArea {
 	property bool showWeekNumbers: false
 	property bool highlightCurrentDayWeek: true
 
-	readonly property bool isCurrentMonth: displayedDate.getFullYear() == today.getFullYear() && displayedDate.getMonth() == today.getMonth()
+	readonly property bool isCurrentMonth: displayedDate.getFullYear() === today.getFullYear() && displayedDate.getMonth() === today.getMonth()
 	readonly property bool currentMonthContainsToday: {
 		return daysModel && daysModel.count > 0
 			&& firstDisplayedDate() <= today && today <= lastDisplayedDate()
@@ -91,7 +91,7 @@ PinchArea {
 	}
 
 	function isToday(date) {
-		if (date.toDateString() == new Date().toDateString()) {
+		if (date.toDateString() === new Date().toDateString()) {
 			return true
 		}
 
@@ -134,7 +134,7 @@ PinchArea {
 		var daysBeforeCurrentMonth = 0
 		var daysAfterCurrentMonth = 0
 		var firstDay = new Date(year, month, 1)
-		var firstDayOfWeek = firstDay.getDay() == 0 ? 7 : firstDay.getDay()
+		var firstDayOfWeek = firstDay.getDay() === 0 ? 7 : firstDay.getDay()
 		if (calendarBackend.firstDayOfWeek < firstDayOfWeek) {
 			daysBeforeCurrentMonth = firstDayOfWeek - calendarBackend.firstDayOfWeek
 		} else {
@@ -222,7 +222,7 @@ PinchArea {
 		days: 7
 		weeks: 6
 		firstDayOfWeek: {
-			if (plasmoid.configuration.firstDayOfWeek == -1) {
+			if (plasmoid.configuration.firstDayOfWeek === -1) {
 				return Qt.locale().firstDayOfWeek
 			} else {
 				return plasmoid.configuration.firstDayOfWeek
@@ -365,8 +365,8 @@ PinchArea {
 			id: mainDaysCalendar
 			title: {
 				var dateFormat, text
-				if (calendarBackend.displayedDate.getFullYear() == today.getFullYear()) {
-					if (showTodaysDate && calendarBackend.displayedDate.getMonth() == today.getMonth()) {
+				if (calendarBackend.displayedDate.getFullYear() === today.getFullYear()) {
+					if (showTodaysDate && calendarBackend.displayedDate.getMonth() === today.getMonth()) {
 						if (plasmoid.configuration.monthCurrentCustomTitleFormat) {
 							dateFormat = plasmoid.configuration.monthCurrentCustomTitleFormat
 						} else {
