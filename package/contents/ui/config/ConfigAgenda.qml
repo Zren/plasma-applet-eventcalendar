@@ -93,9 +93,15 @@ ConfigPage {
 	}
 
 	ConfigSection {
-		ConfigCheckBox {
-			configKey: 'agendaShowEventDescription'
-			text: i18n("Event description")
+		RowLayout {
+			ConfigCheckBox {
+				configKey: 'agendaShowEventDescription'
+				text: i18n("Event description")
+			}
+			// ConfigSpinBox {
+			// 	configKey: 'agendaMaxDescriptionLines'
+			// 	after: i18n("lines")
+			// }
 		}
 		ConfigCheckBox {
 			configKey: 'agendaCondensedAllDayEvent'
