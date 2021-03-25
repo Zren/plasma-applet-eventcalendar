@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: eventcalendar\n"
 "Report-Msgid-Bugs-To: https://github.com/Zren/plasma-applet-eventcalendar\n"
 "POT-Creation-Date: 2021-03-13 15:06-0500\n"
-"PO-Revision-Date: 2021-03-16 12:00+0\n"
+"PO-Revision-Date: 2021-03-16 12:00-0500\n"
 "Last-Translator: DMMLeal <dmleal.doc@gmail.com>\n"
 "Language: pt_PT\n"
 "MIME-Version: 1.0\n"
@@ -387,7 +387,7 @@ msgstr "Notificações"
 
 #: ../contents/ui/config/ConfigEvents.qml
 msgid "Event Reminder"
-msgstr ""
+msgstr "Lembrete de Evento"
 
 #: ../contents/ui/config/ConfigEvents.qml
 msgid "Event Starting"
@@ -904,4 +904,4 @@ msgstr "Próximos Eventos"
 #: ../contents/ui/UpcomingEvents.qml
 msgctxt "%1 = 15 minutes"
 msgid "Starting in %1"
-msgstr ""
+msgstr "Começando em %1"
