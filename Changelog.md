@@ -1,3 +1,17 @@
+## v74 - March 24 2021
+
+* Make PlasmaNM optional using a QML Loader (Issue #212)
+* Fix HTTP request code to fix weather not updating on connect when using OpenWeatherMap (Issue #218)
+* Fix daily forecast in agenda when using WeatherCanada and add error handling.
+* Show a notification 15min before events starts. Defaults with no sfx but can be enabled. (PR #221)
+* Implement expiresTimeout in notification.py should we want notification to last longer in the future.
+* Add event tooltip to agenda that always displays the calendar name, and the description if it's been hidden (Issue #152 and #195)
+* Limit event description to 5 lines by default (Issue #196)
+* Shift js files around. Use === instead of ==.
+* Wrap hangout ToolButton in a Loader so we avoid creating unused controls (which loads an svg) when creating events.
+* Add Portuguese european translations by @dmmleal (Pull Request #226 and #230)
+* Updated Dutch translation by @Vistaus (Pull Request #228)
+
 ## v73 - January 18 2021
 
 * Add a NetworkMonitor to detect when there's no internet (Issue #113)
