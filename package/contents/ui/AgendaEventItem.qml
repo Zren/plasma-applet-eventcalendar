@@ -62,21 +62,6 @@ LinkRect {
 				columns: 2
 
 				EventPropertyIcon {
-					source: "view-calendar-day"
-				}
-				Text {
-					text: {
-						var event = events.get(eventItemIndex)
-						var calendar = eventModel.getCalendar(event.calendarId)
-						return calendar.summary
-					}
-					color: eventToolTip.palette.text
-					font: eventToolTip.font
-					wrapMode: Text.Wrap
-					Layout.fillWidth: true
-				}
-
-				EventPropertyIcon {
 					visible: toolTipDescriptionLabel.showProperty
 					source: "x-shape-text"
 					Layout.fillHeight: false
@@ -87,6 +72,21 @@ LinkRect {
 					readonly property bool showProperty: eventDescription.showInTooltip && text
 					visible: showProperty
 					text: Shared.renderText(model.description)
+					color: eventToolTip.palette.text
+					font: eventToolTip.font
+					wrapMode: Text.Wrap
+					Layout.fillWidth: true
+				}
+
+				EventPropertyIcon {
+					source: "view-calendar-day"
+				}
+				Text {
+					text: {
+						var event = events.get(eventItemIndex)
+						var calendar = eventModel.getCalendar(event.calendarId)
+						return calendar.summary
+					}
 					color: eventToolTip.palette.text
 					font: eventToolTip.font
 					wrapMode: Text.Wrap
