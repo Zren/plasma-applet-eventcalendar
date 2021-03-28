@@ -133,7 +133,11 @@ Dialog {
 		cityListModel.clear()
 
 		Requests.request(provinceUrl, function(err, data) {
-			// console.log(data)
+			if (err) {
+				console.log('[eventcalendar]', 'loadCityList.err', err, data)
+				chooseCityDialog.loadingCityList = false
+				return
+			}
 			var cityList = WeatherCanada.parseProvincePage(data)
 			for (var i = 0; i < cityList.length; i++) {
 				cityListModel.append(cityList[i])
