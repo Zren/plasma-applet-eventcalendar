@@ -538,6 +538,6 @@ function parseCityList(html) {
 	return cityList
 }
 function parseProvincePage(html) {
-	html = getInner(html, '[Provincial Summary]</a>&nbsp;</p>\n<div class="well"><div class="row">', '</div></div>')
+	html = getInner(html, '\n<div class="well"><div class="row">', '</div></div>')
 	return parseCityList(html)
 }
