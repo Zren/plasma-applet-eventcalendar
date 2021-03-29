@@ -389,7 +389,7 @@ msgstr "Notifiche"
 
 #: ../contents/ui/config/ConfigEvents.qml
 msgid "Event Reminder"
-msgstr ""
+msgstr "Promemoria evento"
 
 #: ../contents/ui/config/ConfigEvents.qml
 msgid "Event Starting"
@@ -906,7 +906,7 @@ msgstr "Eventi imminenti"
 #: ../contents/ui/UpcomingEvents.qml
 msgctxt "%1 = 15 minutes"
 msgid "Starting in %1"
-msgstr ""
+msgstr "Partenza tra %1"
 
 #~ msgid "Could not connect (HTTP Error 0), will try again soon."
 #~ msgstr "Impossibile connettersi (errore HTTP 0), riproverò a breve."
