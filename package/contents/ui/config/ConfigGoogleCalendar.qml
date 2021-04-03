@@ -338,6 +338,11 @@ ConfigPage {
 		}
 	}
 
+	ConfigCheckBox {
+		configKey: 'gcalHideGoalsDesc'
+		text: i18n("Remove \"This event was added from Goals in Google Calendar\" from description")
+	}
+
 	Component.onCompleted: {
 		if (googleLoginManager.isLoggedIn) {
 			googleLoginManager.calendarListChanged()
