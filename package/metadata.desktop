@@ -19,7 +19,7 @@ X-Plasma-MainScript=ui/main.qml
 X-Plasma-Provides=org.kde.plasma.time,org.kde.plasma.date
 
 Name[da]=Begivenhedskalender
-Name[de]=Kalender des Ereignisses
+Name[de]=Ereigniskalender
 Name[el]=Ημερολόγιο Συμβάντων
 Name[es]=Calendario de Eventos
 Name[fr]=Calendrier des événements
@@ -31,6 +31,7 @@ Name[pt_PT]=Calendário de eventos
 Name[ru]=Календарь событий
 Name[tr]=Etkinlik Takvimi
 Name[uk]=Календар подій
+Comment[de]=Miniprogramm für einen Kalender mit Ereignisansicht und Wetter, der Ereignisse mit Google Kalender synchronisiert.
 Comment[it]=Plasmoide per un calendario+agenda con meteo che si sincronizza con Google Calendar.
 Comment[nl]=Een plasmoid met kalender, agenda en weer die synchroniseert met Google Agenda.
 Comment[pt_PT]=Plasmoid para um calendário+agenda com Meteorologia que sincroniza com o Calendário Google.
