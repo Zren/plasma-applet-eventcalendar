@@ -137,7 +137,8 @@ msgstr "Versuche in Kürze erneut."
 msgid ""
 "Widget has been updated. Please logout and login to Google Calendar again."
 msgstr ""
-"Widget wurde aktualisiert. Bitte beim Google Kalender ab- und wieder anmelden."
+"Widget wurde aktualisiert. Bitte beim Google Kalender ab- und wieder "
+"anmelden."
 
 #: ../contents/ui/calendars/GoogleCalendarManager.qml
 msgid "Too many web requests. Will try again soon."
