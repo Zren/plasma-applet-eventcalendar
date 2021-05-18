@@ -204,7 +204,8 @@ LinkRect {
 
 			Loader {
 				id: eventHangoutLinkLoader
-				readonly property bool showProperty: plasmoid.configuration.agendaShowEventHangoutLink && !!model.hangoutLink
+				readonly property bool showProperty: plasmoid.configuration.agendaShowEventHangoutLink && !!externalLink
+				readonly property string externalLink: model.hangoutLink || model.conferenceData && model.conferenceData.entryPoints && model.conferenceData.entryPoints[0].uri || ''
 				visible: showProperty && !editEventForm.visible
 				active: visible
 
@@ -221,7 +222,7 @@ LinkRect {
 						}
 					}
 					icon.source: plasmoid.file("", "icons/hangouts.svg")
-					onClicked: Qt.openUrlExternally(model.hangoutLink)
+					onClicked: Qt.openUrlExternally(externalLink)
 				}
 			}
 
