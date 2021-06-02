@@ -1,3 +1,12 @@
+## v75 - June 1 2021
+
+* Show conference button for Google Meet and Zoom by @gaganpreet (Issue #63 and Pull Request #243)
+* Fix parsing WeatherCanada AB/MB city list.
+* Move the calendar name in the tooltip below the description like on Google Calendar.
+* Complete German translations by @TimL20 (Pull Request #237)
+* Update Italian translations by @guidomazzone (Pull Request #234)
+* Update Portuguese translations by @dmmleal (Pull Request #232)
+
 ## v74 - March 24 2021
 
 * Make PlasmaNM optional using a QML Loader (Issue #212)
