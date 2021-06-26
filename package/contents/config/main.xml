@@ -382,6 +382,10 @@
 		<entry name="tasklistIdList" type="string">
 			<default></default>
 		</entry>
+		<entry name="gcalHideGoalsDesc" type="bool">
+			<label>Remove "This event was added from Goals in Google Calendar" from description</label>
+			<default>false</default>
+		</entry>
 
 		<!-- Deprecated in: v71 -->
 		<entry name="access_token" type="string">

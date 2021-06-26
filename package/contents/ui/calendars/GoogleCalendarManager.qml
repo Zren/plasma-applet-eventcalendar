@@ -260,6 +260,11 @@ CalendarManager {
 
 	function parseEvent(calendar, event) {
 		event.description = event.description || ""
+		if (plasmoid.configuration.gcalHideGoalsDesc && 
+			event.organizer.email == "unknownorganizer@calendar.google.com" &&
+			event.organizer.displayName == "Google Calendar") {
+			event.description = ""
+		}
 		event.backgroundColor = parseColor(calendar, event)
 		event.canEdit = (calendar.accessRole == 'writer' || calendar.accessRole == 'owner') && !event.recurringEventId // We cannot currently edit repeating events.
 		if (true && event.htmlLink) {
