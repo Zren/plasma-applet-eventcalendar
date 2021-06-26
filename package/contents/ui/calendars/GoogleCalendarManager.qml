@@ -261,7 +261,8 @@ CalendarManager {
 	function parseEvent(calendar, event) {
 		event.description = event.description || ""
 		if (plasmoid.configuration.gcalHideGoalsDesc && 
-			event.description.includes("This event was added from Goals in Google Calendar")) {
+			event.organizer.email == "unknownorganizer@calendar.google.com" &&
+			event.organizer.displayName == "Google Calendar") {
 			event.description = ""
 		}
 		event.backgroundColor = parseColor(calendar, event)
