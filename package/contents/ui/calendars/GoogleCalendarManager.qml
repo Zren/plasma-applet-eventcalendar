@@ -271,7 +271,7 @@ CalendarManager {
 			if (eidMatch) {
 				var eid = eidMatch[1]
 				if (eid) {
-					event.htmlLink = 'https://calendar.google.com/calendar/r/eventedit/' + eid
+					event.htmlLink = 'https://calendar.google.com/calendar/event?action=VIEW&eid=' + eid
 				}
 			}
 		}
