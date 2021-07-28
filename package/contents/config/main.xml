@@ -180,7 +180,7 @@
 			<default></default>
 		</entry>
 		<entry name="monthShowBorder" type="bool">
-			<default>true</default>
+			<default>false</default>
 		</entry>
 		<entry name="monthShowWeekNumbers" type="bool">
 			<default>false</default>
