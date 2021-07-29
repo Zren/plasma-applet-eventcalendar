@@ -1,0 +1,957 @@
+# Translation of eventcalendar in sl
+# Copyright (C) 2020
+# This file is distributed under the same license as the eventcalendar package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: eventcalendar\n"
+"Report-Msgid-Bugs-To: https://github.com/Zren/plasma-applet-eventcalendar\n"
+"POT-Creation-Date: 2021-03-13 15:06-0500\n"
+"PO-Revision-Date: 2021-07-29 01:08+0200\n"
+"Last-Translator: Ugo Ugowsky <ugowsky@gmail.com>\n"
+"Language-Team: Slovenian <lugos-slo@lugos.si>\n"
+"Language: sl\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=4; plural=(n%100==1 ? 0 : n%100==2 ? 1 : n%100>=3 && n"
+"%100<=4 ? 2 : 3);\n"
+"X-Generator: Poedit 3.0\n"
+
+#: ../metadata.desktop ../contents/ui/AgendaView.qml
+#: ../contents/ui/UpcomingEvents.qml
+msgid "Event Calendar"
+msgstr "Koledar z dnevnim redom"
+
+#: ../metadata.desktop
+msgid ""
+"Plasmoid for a calendar+agenda with weather that syncs to Google Calendar."
+msgstr ""
+"Vtičnik za koledar z dnevnim redom in vremensko napovedjo, ki se usklajuje z "
+"Googlovim koledarjem."
+
+#: ../contents/config/config.qml
+msgid "General"
+msgstr "Splošno"
+
+#: ../contents/config/config.qml
+msgid "Layout"
+msgstr "Postavitev"
+
+#: ../contents/config/config.qml
+msgid "Timezones"
+msgstr "Časovni pas"
+
+#: ../contents/config/config.qml ../contents/ui/UpcomingEvents.qml
+msgid "Calendar"
+msgstr "Koledar"
+
+#: ../contents/config/config.qml
+msgid "Agenda"
+msgstr "Dnevni red"
+
+#: ../contents/config/config.qml
+msgid "Events"
+msgstr "Dogodki"
+
+#: ../contents/config/config.qml ../contents/ui/config/ConfigEvents.qml
+msgid "ICalendar (.ics)"
+msgstr ""
+
+#: ../contents/config/config.qml ../contents/ui/config/ConfigEvents.qml
+msgid "Google Calendar"
+msgstr "Googlov koledar"
+
+#: ../contents/config/config.qml
+msgid "Weather"
+msgstr "Vreme"
+
+#: ../contents/config/config.qml
+msgid "Advanced"
+msgstr "Napredno"
+
+#: ../contents/ui/AgendaEventItem.qml ../contents/ui/EditEventForm.qml
+#: ../contents/ui/LocaleFuncs.js
+msgid "All Day"
+msgstr "Ves dan"
+
+#: ../contents/ui/AgendaEventItem.qml
+msgid "Hangout"
+msgstr "Hangout klepet"
+
+#: ../contents/ui/AgendaEventItem.qml ../contents/ui/AgendaTaskItem.qml
+msgid "Edit"
+msgstr "Uredi"
+
+#: ../contents/ui/AgendaEventItem.qml ../contents/ui/AgendaTaskItem.qml
+msgid "Delete Event"
+msgstr "Izbriši dogodek"
+
+#: ../contents/ui/AgendaEventItem.qml ../contents/ui/AgendaTaskItem.qml
+msgid "Confirm Deletion"
+msgstr "Potrdi izbris"
+
+#: ../contents/ui/AgendaEventItem.qml ../contents/ui/AgendaTaskItem.qml
+msgid "Edit in browser"
+msgstr "Uredi v brskalniku"
+
+#: ../contents/ui/AgendaListItem.qml
+msgctxt "agenda date format line 1"
+msgid "MMM d"
+msgstr "MMM d"
+
+#: ../contents/ui/AgendaListItem.qml
+msgctxt "agenda date format line 2"
+msgid "ddd"
+msgstr "ddd"
+
+#: ../contents/ui/AgendaTaskItem.qml ../contents/ui/LocaleFuncs.js
+msgctxt "short month+date format"
+msgid "MMM d"
+msgstr "MMM d"
+
+#: ../contents/ui/calendars/CalendarManager.qml
+msgctxt "event with no summary"
+msgid "(No title)"
+msgstr "(brez naslova)"
+
+#: ../contents/ui/CalendarSelector.qml
+msgid "[No Calendars]"
+msgstr "[Ni koledarjev]"
+
+#: ../contents/ui/calendars/GoogleCalendarManager.qml ../contents/ui/Logic.qml
+msgid "HTTP Error %1: %2"
+msgstr "HTTP napaka %1: %2"
+
+#: ../contents/ui/calendars/GoogleCalendarManager.qml ../contents/ui/Logic.qml
+msgid "Could not connect"
+msgstr "Ni povezave"
+
+#: ../contents/ui/calendars/GoogleCalendarManager.qml ../contents/ui/Logic.qml
+msgid "Will try again soon."
+msgstr "Ponovni poizkus kmalu."
+
+#: ../contents/ui/calendars/GoogleCalendarManager.qml
+#: ../contents/ui/config/ConfigGoogleCalendar.qml ../contents/ui/Logic.qml
+msgid ""
+"Widget has been updated. Please logout and login to Google Calendar again."
+msgstr ""
+"Vtičnik je bil posodobljen. Potrebna je ponovna prijava v Googlov koledar."
+
+#: ../contents/ui/calendars/GoogleCalendarManager.qml
+msgid "Too many web requests. Will try again soon."
+msgstr "Preveč spletnih poizvedb. Ponovni poizkus kmalu."
+
+#: ../contents/ui/config/ConfigAgenda.qml
+msgid "Show agenda"
+msgstr "Pokaži dnevni red"
+
+#: ../contents/ui/config/ConfigAgenda.qml
+msgid "Font Size:"
+msgstr "Velikost pisave:"
+
+#: ../contents/ui/config/ConfigAgenda.qml
+#: ../contents/ui/config/ConfigGeneral.qml
+#: ../contents/ui/config/ConfigLayout.qml
+msgid "px"
+msgstr " točk"
+
+#: ../contents/ui/config/ConfigAgenda.qml
+msgid " (0px = <b>System Settings > Fonts > General</b>)"
+msgstr " (0 točk = <b>sistemske nastavitve > pisave > General</b>)"
+
+#: ../contents/ui/config/ConfigAgenda.qml
+msgid "Weather Icon"
+msgstr "Vremenska ikona"
+
+#: ../contents/ui/config/ConfigAgenda.qml
+msgid "Icon Outline"
+msgstr "Obroba ikone"
+
+#: ../contents/ui/config/ConfigAgenda.qml
+msgid "Weather Text"
+msgstr "Pisava za vreme"
+
+#: ../contents/ui/config/ConfigAgenda.qml
+msgid "Position:"
+msgstr "Položaj:"
+
+#: ../contents/ui/config/ConfigAgenda.qml
+msgid "Left"
+msgstr "Levo"
+
+#: ../contents/ui/config/ConfigAgenda.qml
+msgid "Right"
+msgstr "Desno"
+
+#: ../contents/ui/config/ConfigAgenda.qml
+msgid "Click Weather:"
+msgstr "Klik na vreme:"
+
+#: ../contents/ui/config/ConfigAgenda.qml
+msgid "Open City Forecast In Browser"
+msgstr "Odpre vremensko napoved v brskalniku"
+
+#: ../contents/ui/config/ConfigAgenda.qml
+#: ../contents/ui/config/ConfigCalendar.qml
+msgid "Click Date:"
+msgstr "Klik na datum:"
+
+#: ../contents/ui/config/ConfigAgenda.qml
+msgid "Open New Event In Browser"
+msgstr "Odpre nov dogodek v brskalniku"
+
+#: ../contents/ui/config/ConfigAgenda.qml
+msgid "Open New Event Form"
+msgstr "Odpre okno za vpis dogodka"
+
+#: ../contents/ui/config/ConfigAgenda.qml
+msgid "Event description"
+msgstr "Opis dogodka"
+
+#: ../contents/ui/config/ConfigAgenda.qml
+msgid "Hide 'All Day' text"
+msgstr "Skrij besedilo 'ves dan'"
+
+#: ../contents/ui/config/ConfigAgenda.qml
+msgid "Google Hangouts link"
+msgstr "Povezava do Google Hangout"
+
+#: ../contents/ui/config/ConfigAgenda.qml
+msgid "Click Event:"
+msgstr "Klik na dogodek:"
+
+#: ../contents/ui/config/ConfigAgenda.qml
+msgid "Open Event In Browser"
+msgstr "Odpre dogodek v brskalniku"
+
+#: ../contents/ui/config/ConfigAgenda.qml
+msgid "Show multi-day events:"
+msgstr "Prikaži večdnevne dogodke:"
+
+#: ../contents/ui/config/ConfigAgenda.qml
+msgid "On all days"
+msgstr "Na vseh dneh"
+
+#: ../contents/ui/config/ConfigAgenda.qml
+msgid "Only on the first and current day"
+msgstr "Le na prvem in današnjem dnevu"
+
+#: ../contents/ui/config/ConfigAgenda.qml
+msgid "Remember selected calendar in New Event Form"
+msgstr "Zapomni si izbran koledar pri ustvarjanju novega dogodka"
+
+#: ../contents/ui/config/ConfigAgenda.qml
+msgid "Current Month"
+msgstr "Trenutni mesec"
+
+#: ../contents/ui/config/ConfigAgenda.qml
+msgid "Always show next 14 days"
+msgstr "Vedno prikaži naslednjih 14 dni"
+
+#: ../contents/ui/config/ConfigAgenda.qml
+msgid "Hide completed events"
+msgstr "Skrij minule dogodke"
+
+#: ../contents/ui/config/ConfigAgenda.qml
+msgid "Show all events of the current day (including completed events)"
+msgstr "Prikaži vse današnje dogodke (vključno z minulimi)"
+
+#: ../contents/ui/config/ConfigAgenda.qml
+#: ../contents/ui/config/ConfigWeather.qml
+msgid "Colors"
+msgstr "Barve"
+
+#: ../contents/ui/config/ConfigAgenda.qml
+msgid "In Progress"
+msgstr "Se izvaja"
+
+#: ../contents/ui/config/ConfigAgenda.qml
+msgid "Day Spacing:"
+msgstr "Razmak (datum):"
+
+#: ../contents/ui/config/ConfigAgenda.qml
+msgid "Event Spacing:"
+msgstr "Razmak (dogodek):"
+
+#: ../contents/ui/config/ConfigCalendar.qml
+msgid "Show calendar"
+msgstr "Prikaži koledar"
+
+#: ../contents/ui/config/ConfigCalendar.qml
+msgid "Scroll to event in Agenda"
+msgstr "Pojdi do dogodka v dnevnem redu"
+
+#: ../contents/ui/config/ConfigCalendar.qml
+msgid "Double-click on Date:"
+msgstr "Dvojni klik na datum:"
+
+#: ../contents/ui/config/ConfigCalendar.qml
+msgid "New Google Calendar Event (Web Browser)"
+msgstr "Nov dogodek v Googlovem koledarju (brskalnik)"
+
+#: ../contents/ui/config/ConfigCalendar.qml
+msgid "Do Nothing"
+msgstr "Ne naredi ničesar"
+
+#: ../contents/ui/config/ConfigCalendar.qml
+#: ../contents/ui/config/ConfigWeather.qml
+msgid "Style"
+msgstr "Slog"
+
+#: ../contents/ui/config/ConfigCalendar.qml
+msgid "Current Month Title:"
+msgstr "Ime trenutnega meseca:"
+
+#: ../contents/ui/config/ConfigCalendar.qml ../contents/ui/MonthView.qml
+msgctxt "calendar title format for current month"
+msgid "MMMM d, yyyy"
+msgstr "MMMM d, yyyy"
+
+#: ../contents/ui/config/ConfigCalendar.qml
+msgid "Show Borders"
+msgstr "Pokaži obrobe"
+
+#: ../contents/ui/config/ConfigCalendar.qml
+msgid "Show Week Numbers"
+msgstr "Pokaži št. tednov"
+
+#: ../contents/ui/config/ConfigCalendar.qml
+msgid "Highlight Current Day / Week"
+msgstr "Poudari današnji dan / teden"
+
+#: ../contents/ui/config/ConfigCalendar.qml
+msgid "First day of week:"
+msgstr "Prvi dan v tednu:"
+
+#: ../contents/ui/config/ConfigCalendar.qml
+msgid "Default"
+msgstr "Ponastavi"
+
+#: ../contents/ui/config/ConfigCalendar.qml
+msgid "Event Badge:"
+msgstr "Oznaka dogodka:"
+
+#: ../contents/ui/config/ConfigCalendar.qml
+msgid "Theme"
+msgstr "Po temi namizja"
+
+#: ../contents/ui/config/ConfigCalendar.qml
+msgid "Dots (3 Maximum)"
+msgstr "Pike (največ tri)"
+
+#: ../contents/ui/config/ConfigCalendar.qml
+msgid "Bottom Bar (Event Color)"
+msgstr "Spodnja črta (barva dogodka)"
+
+#: ../contents/ui/config/ConfigCalendar.qml
+msgid "Bottom Bar (Highlight)"
+msgstr "Spodnja črta (poudarek)"
+
+#: ../contents/ui/config/ConfigCalendar.qml
+msgid "Count"
+msgstr "Številka"
+
+#: ../contents/ui/config/ConfigCalendar.qml
+msgid "Radius:"
+msgstr "Premer:"
+
+#: ../contents/ui/config/ConfigCalendar.qml
+msgid "Selected:"
+msgstr "Izbrano:"
+
+#: ../contents/ui/config/ConfigCalendar.qml
+msgid "Solid Color (Highlight)"
+msgstr "Polna barva (poudarek)"
+
+#: ../contents/ui/config/ConfigCalendar.qml
+msgid "Today:"
+msgstr "Danes:"
+
+#: ../contents/ui/config/ConfigCalendar.qml
+msgid "Solid Color (Inverted)"
+msgstr "Polna barva (obrnjeno)"
+
+#: ../contents/ui/config/ConfigCalendar.qml
+msgid "Big Number"
+msgstr "Velika številka"
+
+#: ../contents/ui/config/ConfigEvents.qml
+msgid "Event Calendar Plugins"
+msgstr "Vtičniki za Koledar z dnevnim redom"
+
+#: ../contents/ui/config/ConfigEvents.qml
+msgid "Plasma Calendar Plugins"
+msgstr "Vtičniki za Plasma koledar"
+
+#: ../contents/ui/config/ConfigEvents.qml
+#: ../contents/ui/config/ConfigGeneral.qml
+msgid "Misc"
+msgstr "Razno"
+
+#: ../contents/ui/config/ConfigEvents.qml
+msgid "Refresh events every: "
+msgstr "Osveži dogodke na: "
+
+#: ../contents/ui/config/ConfigEvents.qml
+#: ../contents/ui/config/ConfigWeather.qml
+msgctxt "Polling interval in minutes"
+msgid "min"
+msgstr ""
+
+#: ../contents/ui/config/ConfigEvents.qml
+msgid "Notifications"
+msgstr "Obvestila"
+
+#: ../contents/ui/config/ConfigEvents.qml
+msgid "Event Reminder"
+msgstr ""
+
+#: ../contents/ui/config/ConfigEvents.qml
+msgid "Event Starting"
+msgstr "Začetek dogodka"
+
+#: ../contents/ui/config/ConfigGeneral.qml
+msgid "Widgets"
+msgstr "Pripomočki"
+
+#: ../contents/ui/config/ConfigGeneral.qml
+msgid ""
+"Show/Hide widgets above the calendar. Toggle Agenda/Calendar on their "
+"respective tabs."
+msgstr ""
+"Prikaži/skrij pripomočke nad koledarjem. Preklapljaj med dnevnim redom in "
+"koledarjem."
+
+#: ../contents/ui/config/ConfigGeneral.qml
+msgid "Meteogram"
+msgstr "Meteogram"
+
+#: ../contents/ui/config/ConfigGeneral.qml ../contents/ui/TimerModel.qml
+msgid "Timer"
+msgstr "Odštevalnik"
+
+#: ../contents/ui/config/ConfigGeneral.qml
+#: ../contents/ui/lib/ConfigNotification.qml
+msgid "SFX:"
+msgstr "Zvočni efekt:"
+
+#: ../contents/ui/config/ConfigGeneral.qml
+msgid "Clock"
+msgstr "Ura"
+
+#: ../contents/ui/config/ConfigGeneral.qml
+msgid "Time Format"
+msgstr "Časovni format"
+
+#: ../contents/ui/config/ConfigGeneral.qml
+msgid "Time Format Documentation"
+msgstr "Dokumentacija o časovnem formatu"
+
+#: ../contents/ui/config/ConfigGeneral.qml
+msgid ""
+"The default font for the Breeze theme is Noto Sans which is hard to read "
+"with small text. Try using the Sans Serif font if you find the text too "
+"small when adding a second line."
+msgstr ""
+"Privzeta pisava za namizno temo Sapica je Noto Sans, ki pa jo je težje "
+"brati, če je besedilo malo. Poskusite s Sans Serif, če npr. dodajate še "
+"drugo vrstico, saj se velikost besedila prepolovi."
+
+#: ../contents/ui/config/ConfigGeneral.qml
+msgid ""
+"You can also use %1 or %2 to style a section. Note the single quotes around "
+"the tags are used to bypass the time format."
+msgstr ""
+"Za oblikovanje posameznih odsekov lahko uporabite tudi %1 ali %2. Če kodo "
+"opremite z opuščaji (apostrofi ' ) lahko zaobidete časovni format."
+
+#: ../contents/ui/config/ConfigGeneral.qml
+msgid "Font:"
+msgstr "Pisava:"
+
+#: ../contents/ui/config/ConfigGeneral.qml
+msgid "Fixed Clock Height: "
+msgstr "Določena višina ure: "
+
+#: ../contents/ui/config/ConfigGeneral.qml
+msgid " (0px = scale to fit)"
+msgstr " (0 točk = samodejna velikost)"
+
+#: ../contents/ui/config/ConfigGeneral.qml
+msgid "Line 1:"
+msgstr "Vrstica 1:"
+
+#: ../contents/ui/config/ConfigGeneral.qml
+msgid "Preset:"
+msgstr "Nastavitev:"
+
+#: ../contents/ui/config/ConfigGeneral.qml
+msgid "Bold"
+msgstr "Krepko"
+
+#: ../contents/ui/config/ConfigGeneral.qml
+msgid "Line 2:"
+msgstr "Vrstica 2:"
+
+#: ../contents/ui/config/ConfigGeneral.qml
+msgid "Height:"
+msgstr "Višina:"
+
+#: ../contents/ui/config/ConfigGeneral.qml
+msgid "Mouse Wheel"
+msgstr "Miškin kolešček"
+
+#: ../contents/ui/config/ConfigGeneral.qml
+msgid "Run Commands"
+msgstr "Zaženi ukaz"
+
+#: ../contents/ui/config/ConfigGeneral.qml
+msgid "Scroll Up:"
+msgstr "Gor:"
+
+#: ../contents/ui/config/ConfigGeneral.qml
+msgid "Scroll Down:"
+msgstr "Dol:"
+
+#: ../contents/ui/config/ConfigGeneral.qml
+msgid "Volume (No UI) (amixer)"
+msgstr "Glasnost (brez upor. vmesnika) (amixer)"
+
+#: ../contents/ui/config/ConfigGeneral.qml
+msgid "Volume (UI) (qdbus)"
+msgstr "Glasnost (upor. vmesnik) (qdbus)"
+
+#: ../contents/ui/config/ConfigGeneral.qml
+msgid "Desktop Widget: Show background"
+msgstr "Pripomoček na namizju: Prikaži ozadje"
+
+#: ../contents/ui/config/ConfigGeneral.qml
+msgid "Debugging"
+msgstr "Razhroščevanje"
+
+#: ../contents/ui/config/ConfigGeneral.qml
+msgid "Debugging will log sensitive information to:"
+msgstr "Razhroščevanje bo beležilo ključne informacije v:"
+
+#: ../contents/ui/config/ConfigGeneral.qml
+msgid "Enable Debugging"
+msgstr "Omogoči razhroščevanje"
+
+#: ../contents/ui/config/ConfigGoogleCalendar.qml
+msgid "Login"
+msgstr "Prijava"
+
+#: ../contents/ui/config/ConfigGoogleCalendar.qml
+msgid "Currently Synched."
+msgstr "Trenutno usklajeno."
+
+#: ../contents/ui/config/ConfigGoogleCalendar.qml
+msgid "Logout"
+msgstr "Odjava"
+
+#: ../contents/ui/config/ConfigGoogleCalendar.qml
+msgid "To sync with Google Calendar"
+msgstr "Za uskladitev z Googlovim koledarjem"
+
+#: ../contents/ui/config/ConfigGoogleCalendar.qml
+msgid ""
+"Visit <a href=\"%1\">%2</a> (opens in your web browser). After you login and "
+"give permission to access your calendar, it will give you a code to paste "
+"below."
+msgstr ""
+"obiščite <a href=\"%1\">%2</a> (odpre v brskalniku). Po uspešni prijavi in "
+"odobritvi dovoljenj do dostopa, boste prejeli kodo, ki jo prilepite spodaj."
+
+#: ../contents/ui/config/ConfigGoogleCalendar.qml
+msgid "Copy Link"
+msgstr "Kopiraj povezavo"
+
+#: ../contents/ui/config/ConfigGoogleCalendar.qml
+msgid "Enter code here (Eg: %1)"
+msgstr "Prilepi kodo sem (npr. %1)"
+
+#: ../contents/ui/config/ConfigGoogleCalendar.qml
+msgid "Submit"
+msgstr "Potrdi"
+
+#: ../contents/ui/config/ConfigGoogleCalendar.qml
+msgid "Invalid Google Authorization Code"
+msgstr "Neveljavna Googlova koda za avtorizacijo"
+
+#: ../contents/ui/config/ConfigGoogleCalendar.qml
+#: ../contents/ui/config/ConfigICal.qml
+msgid "Calendars"
+msgstr "Koledar"
+
+#: ../contents/ui/config/ConfigGoogleCalendar.qml
+msgid "Refresh"
+msgstr "Posodobi"
+
+#: ../contents/ui/config/ConfigGoogleCalendar.qml
+msgid "Tasks"
+msgstr "Opravila"
+
+#: ../contents/ui/config/ConfigICal.qml
+msgid "Add Calendar"
+msgstr "Dodaj koledar"
+
+#: ../contents/ui/config/ConfigICal.qml
+msgid "New Calendar"
+msgstr "Nov koledar"
+
+#: ../contents/ui/config/ConfigICal.qml
+msgid "Calendar Label"
+msgstr "Ime koledarja"
+
+#: ../contents/ui/config/ConfigICal.qml
+msgid "Browse"
+msgstr "Brskaj"
+
+#: ../contents/ui/config/ConfigICal.qml
+msgid "iCalendar (*.ics)"
+msgstr ""
+
+#: ../contents/ui/config/ConfigLayout.qml
+msgid "Calendar to the left of the Agenda (Two Columns)"
+msgstr "Koledar na levi od dnevnega reda (dva stolpca)"
+
+#: ../contents/ui/config/ConfigLayout.qml
+msgid "Agenda below the Calendar (Single Column)"
+msgstr "Dnevni red pod koledarjem (en stolpec)"
+
+#: ../contents/ui/config/ConfigTimezones.qml
+msgid "Tooltip"
+msgstr "Izbira"
+
+#: ../contents/ui/config/ConfigTimezones.qml
+msgid "Cannot deselect Local time from the tooltip"
+msgstr "Ni mogoče odstraniti izbire osnovnega kraja"
+
+#: ../contents/ui/config/ConfigWeather.qml
+msgid "Data"
+msgstr "Podatki"
+
+#: ../contents/ui/config/ConfigWeather.qml
+msgid "API App Id:"
+msgstr ""
+
+#: ../contents/ui/config/ConfigWeather.qml
+msgid "City Id:"
+msgstr "Krajevni ID:"
+
+#: ../contents/ui/config/ConfigWeather.qml
+msgid "Eg: 5983720"
+msgstr "npr.: 5983720"
+
+#: ../contents/ui/config/ConfigWeather.qml
+msgid "Find City"
+msgstr "Najdi mesto"
+
+#: ../contents/ui/config/ConfigWeather.qml
+msgid "Eg: on-14"
+msgstr "npr.: on-14"
+
+#: ../contents/ui/config/ConfigWeather.qml
+msgid "Settings"
+msgstr "Nastavitve"
+
+#: ../contents/ui/config/ConfigWeather.qml
+msgid "Update forecast every: "
+msgstr "Posodobi vreme vsakih: "
+
+#: ../contents/ui/config/ConfigWeather.qml
+msgid "Show next "
+msgstr "Pokaži naslednjih "
+
+#: ../contents/ui/config/ConfigWeather.qml
+msgid " hour"
+msgid_plural " hours"
+msgstr[0] " uro"
+msgstr[1] " uri"
+msgstr[2] " ure"
+msgstr[3] " ur"
+
+#: ../contents/ui/config/ConfigWeather.qml
+msgid " in the meteogram."
+msgstr " v meteogramu."
+
+#: ../contents/ui/config/ConfigWeather.qml
+msgid "Units:"
+msgstr "Enote:"
+
+#: ../contents/ui/config/ConfigWeather.qml
+msgid "Celsius"
+msgstr "Celzij"
+
+#: ../contents/ui/config/ConfigWeather.qml
+msgid "Fahrenheit"
+msgstr ""
+
+#: ../contents/ui/config/ConfigWeather.qml
+msgid "Kelvin"
+msgstr ""
+
+#: ../contents/ui/config/ConfigWeather.qml
+msgid "Text"
+msgstr "Besedilo"
+
+#: ../contents/ui/config/ConfigWeather.qml
+msgid "Grid"
+msgstr "Mreža"
+
+#: ../contents/ui/config/ConfigWeather.qml
+msgid "Rain"
+msgstr "Regija"
+
+#: ../contents/ui/config/ConfigWeather.qml
+msgid "Positive Temp"
+msgstr "Temperatura (+)"
+
+#: ../contents/ui/config/ConfigWeather.qml
+msgid "Negative Temp"
+msgstr "Temperatura (-)"
+
+#: ../contents/ui/config/ConfigWeather.qml
+msgid "Icons"
+msgstr "Ikone"
+
+#: ../contents/ui/config/OpenWeatherMapCityDialog.qml
+#: ../contents/ui/config/WeatherCanadaCityDialog.qml
+msgid "Select city"
+msgstr "Izberi mesto"
+
+#: ../contents/ui/config/OpenWeatherMapCityDialog.qml
+#: ../contents/ui/config/WeatherCanadaCityDialog.qml
+msgid "Fetched from <a href=\"%1\">%1</a>"
+msgstr "Prenešeno z: <a href=\"%1\">%1</a>"
+
+#: ../contents/ui/config/OpenWeatherMapCityDialog.qml
+#: ../contents/ui/config/WeatherCanadaCityDialog.qml
+msgid "Search"
+msgstr "Iskanje"
+
+#: ../contents/ui/config/OpenWeatherMapCityDialog.qml
+#: ../contents/ui/config/WeatherCanadaCityDialog.qml
+msgid "Name"
+msgstr "Ime"
+
+#: ../contents/ui/config/OpenWeatherMapCityDialog.qml
+#: ../contents/ui/config/WeatherCanadaCityDialog.qml
+msgid "Id"
+msgstr ""
+
+#: ../contents/ui/config/OpenWeatherMapCityDialog.qml
+#: ../contents/ui/config/WeatherCanadaCityDialog.qml
+msgid "City Webpage"
+msgstr "Spletna stran mesta"
+
+#: ../contents/ui/config/OpenWeatherMapCityDialog.qml
+#: ../contents/ui/config/WeatherCanadaCityDialog.qml
+msgid "Open Link"
+msgstr "Odpri povezavo"
+
+#: ../contents/ui/DateTimeSelector.qml
+msgctxt "event editor date format"
+msgid "d MMM, yyyy"
+msgstr ""
+
+#: ../contents/ui/DurationSelector.qml
+msgid "to"
+msgstr "do"
+
+#: ../contents/ui/EditEventForm.qml ../contents/ui/EditTaskForm.qml
+msgid "Event Title"
+msgstr "Ime dogodka"
+
+#: ../contents/ui/EditEventForm.qml
+msgid "Add location"
+msgstr "Dodaj lokacijo"
+
+#: ../contents/ui/EditEventForm.qml ../contents/ui/EditTaskForm.qml
+msgid "Add description"
+msgstr "Dodaj opis"
+
+#: ../contents/ui/EditEventForm.qml ../contents/ui/EditTaskForm.qml
+msgid "&Save"
+msgstr "&Shrani"
+
+#: ../contents/ui/EditEventForm.qml ../contents/ui/EditTaskForm.qml
+#: ../contents/ui/TimerInputView.qml
+msgid "&Cancel"
+msgstr "&Prekliči"
+
+#: ../contents/ui/EditTaskForm.qml
+msgid "Add due date"
+msgstr "Dodaj obdobje trajanja"
+
+#: ../contents/ui/lib/AppletVersion.qml
+msgid "<b>Version:</b> %1"
+msgstr "<b>Različica:</b> %1"
+
+#: ../contents/ui/lib/ConfigFontFamily.qml
+msgctxt "Use default font"
+msgid "Default"
+msgstr "Privzeto"
+
+#: ../contents/ui/lib/ConfigSound.qml
+msgid "Choose a sound effect"
+msgstr "Izberi zvočni efekt"
+
+#: ../contents/ui/lib/ConfigSound.qml
+msgid "Sound files (%1)"
+msgstr "Zvokovne datoteke (%1)"
+
+#: ../contents/ui/lib/ConfigSound.qml
+msgid "All files (%1)"
+msgstr "Vse datoteke (%1)"
+
+#: ../contents/ui/LocaleFuncs.js
+msgctxt "event time on the hour (24 hour clock)"
+msgid "h"
+msgstr ""
+
+#: ../contents/ui/LocaleFuncs.js
+msgctxt "event time (24 hour clock)"
+msgid "h:mm"
+msgstr ""
+
+#: ../contents/ui/LocaleFuncs.js
+msgctxt "event time on the hour (12 hour clock)"
+msgid "h AP"
+msgstr ""
+
+#: ../contents/ui/LocaleFuncs.js
+msgctxt "event time (12 hour clock)"
+msgid "h:mm AP"
+msgstr ""
+
+#: ../contents/ui/LocaleFuncs.js
+msgctxt "date (%1) with time (%2)"
+msgid "%1, %2"
+msgstr ""
+
+#: ../contents/ui/LocaleFuncs.js
+msgctxt "from date/time %1 until date/time %2"
+msgid "%1 - %2"
+msgstr ""
+
+#: ../contents/ui/LocaleFuncs.js
+msgctxt "short form for %1 hours"
+msgid "%1h"
+msgstr ""
+
+#: ../contents/ui/LocaleFuncs.js
+#, c-format
+msgctxt "short form for %1 minutes"
+msgid "%1m"
+msgstr ""
+
+#: ../contents/ui/LocaleFuncs.js
+#, c-format
+msgctxt "short form for %1 seconds"
+msgid "%1s"
+msgstr ""
+
+#: ../contents/ui/Logic.qml
+msgid "Weather API limit reached"
+msgstr "Dosežena omejitev API-ja za vreme"
+
+#: ../contents/ui/Logic.qml
+msgid "Logged out of Google. Please login again."
+msgstr "Odjavljen/a iz Googla. Potrebna je ponovna prijava."
+
+#: ../contents/ui/main.qml
+msgid "Set Language..."
+msgstr "Določi jezik ..."
+
+#: ../contents/ui/main.qml
+msgid "Set Locale..."
+msgstr "Določi državo ..."
+
+#: ../contents/ui/MeteogramView.qml
+#, c-format
+msgid "%1mm"
+msgstr ""
+
+#: ../contents/ui/MonthView.qml
+msgctxt "calendar title format for other months of current year"
+msgid "MMMM"
+msgstr ""
+
+#: ../contents/ui/MonthView.qml
+msgctxt "calendar title format for months not from current year"
+msgid "MMMM, yyyy"
+msgstr ""
+
+#: ../contents/ui/NewEventForm.qml
+msgid "Eg: 9am-5pm Work"
+msgstr "npr.: 9.00-17.00 služba"
+
+#: ../contents/ui/PopupView.qml
+msgid ""
+"Weather not configured.\n"
+"Go to Weather in the config and set your city,\n"
+"and/or disable the meteogram to hide this area."
+msgstr ""
+"Vreme ni nastavljeno.\n"
+"V nastavitvah tega vtičnika kliknite na Vreme ter določite svoje mesto,\n"
+"in/ali onemogočite meteogram, da se skrije to območje."
+
+#: ../contents/ui/PopupView.qml
+msgid "Error fetching weather."
+msgstr "Napaka pri prenosu podatkov o vremenu."
+
+#: ../contents/ui/TimerInputView.qml
+msgid "&Start"
+msgstr ""
+
+#: ../contents/ui/TimerModel.qml
+msgid "Timer finished"
+msgstr "Odštevanje zaključeno"
+
+#: ../contents/ui/TimerModel.qml
+msgid "%1 has passed"
+msgstr "%1 je mimo"
+
+#: ../contents/ui/TimerModel.qml ../contents/ui/TimerView.qml
+msgid "Repeat"
+msgstr "Ponovi"
+
+#: ../contents/ui/TimerView.qml
+msgid "Pause Timer"
+msgstr "Premor"
+
+#: ../contents/ui/TimerView.qml
+msgid "Start Timer"
+msgstr "Začni z odštevanjem"
+
+#: ../contents/ui/TimerView.qml
+msgid "Scroll to add to duration"
+msgstr "Drsanje  daljša/krajša čas odštevalnika"
+
+#: ../contents/ui/TimerView.qml
+msgid "Sound"
+msgstr "Zvok"
+
+#: ../contents/ui/TimerView.qml
+msgid "Set Timer"
+msgstr "Določi ročno"
+
+#: ../contents/ui/UpcomingEvents.qml
+msgid "Events Starting"
+msgstr "Dogodki, ki se bodo začeli"
+
+#: ../contents/ui/UpcomingEvents.qml
+msgid "Events In Progress"
+msgstr "Dogodki, ki potekajo"
+
+#: ../contents/ui/UpcomingEvents.qml
+msgid "Upcoming Events"
+msgstr "Prihajajoči dogodki"
+
+#: ../contents/ui/UpcomingEvents.qml
+msgctxt "%1 = 15 minutes"
+msgid "Starting in %1"
+msgstr ""
