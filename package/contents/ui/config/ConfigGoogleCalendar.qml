@@ -188,6 +188,7 @@ ConfigPage {
 
 	RowLayout {
 		Layout.fillWidth: true
+		visible: googleLoginManager.isLoggedIn
 
 		HeaderText {
 			text: i18n("Calendars")
@@ -202,6 +203,7 @@ ConfigPage {
 	ColumnLayout {
 		spacing: Kirigami.Units.smallSpacing * 2
 		Layout.fillWidth: true
+		visible: googleLoginManager.isLoggedIn
 
 		ListModel {
 			id: calendarsModel
@@ -259,6 +261,7 @@ ConfigPage {
 
 	RowLayout {
 		Layout.fillWidth: true
+		visible: googleLoginManager.isLoggedIn
 
 		HeaderText {
 			text: i18n("Tasks")
@@ -283,6 +286,7 @@ ConfigPage {
 	ColumnLayout {
 		spacing: Kirigami.Units.smallSpacing * 2
 		Layout.fillWidth: true
+		visible: googleLoginManager.isLoggedIn
 
 		ListModel {
 			id: tasklistsModel
