@@ -27,7 +27,7 @@ msgstr "Calendário de eventos"
 msgid ""
 "Plasmoid for a calendar+agenda with weather that syncs to Google Calendar."
 msgstr ""
-"Plasmoid para um calendário e agenda com informações do clima que sincroniza com o Google Agenda."
+"Plasmoide para um calendário e agenda com informações do clima que sincroniza com o Google Agenda."
 
 #: ../contents/config/config.qml
 msgid "General"
