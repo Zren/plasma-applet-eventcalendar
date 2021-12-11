@@ -1,4 +1,4 @@
-// Version 5
+// Version 6
 
 import QtQuick 2.0
 import QtQuick.Controls 1.0
@@ -9,15 +9,17 @@ import org.kde.kirigami 2.0 as Kirigami
 ColumnLayout {
 	id: page
 
+	SystemPalette { id: systemPalette }
+
 	Component {
 		id: textFieldStyle
 		TextFieldStyle {
-			// textColor: Kirigami.Theme.textColor
+			textColor: control.activeFocus ? systemPalette.text : systemPalette.text
 
 			background: Rectangle {
 				radius: 2
-				color: control.activeFocus ? Kirigami.Theme.viewBackgroundColor : "transparent"
-				border.color: control.activeFocus ? Kirigami.Theme.highlightColor : "transparent"
+				color: control.activeFocus ? systemPalette.base : "transparent"
+				border.color: control.activeFocus ? systemPalette.highlight : "transparent"
 				border.width: 1
 			}
 		}
@@ -51,9 +53,9 @@ ColumnLayout {
 				id: numberControl
 				SpinBox {
 					value: modelValue
-					property bool isInteger: modelConfigType === 'UInt' || modelConfigType === 'int'
+					readonly property bool isInteger: modelConfigType === 'uint' || modelConfigType === 'int' || Number.isInteger(modelValue)
 					decimals: isInteger ? 0 : 3
-					maximumValue: 2147483647
+					maximumValue: Number.MAX_SAFE_INTEGER
 					Component.onCompleted: {
 						valueChanged.connect(function() {
 							plasmoid.configuration[modelKey] = value
@@ -110,7 +112,8 @@ ColumnLayout {
 				function valueToString(val) {
 					return (typeof val === 'undefined' || val === null) ? '' : ''+val
 				}
-				readonly property bool isDefault: valueToString(model.value) == valueToString(model.defaultValue)
+				readonly property var configDefaultValue: plasmoid.configuration[model.key + 'Default']
+				readonly property bool isDefault: valueToString(model.value) == valueToString(model.defaultValue) || valueToString(model.value) == valueToString(configDefaultValue)
 
 				TextField {
 					Layout.alignment: Qt.AlignTop | Qt.AlignLeft
@@ -157,6 +160,11 @@ ColumnLayout {
 		}
 	}
 
+	// Note: Since KF5 5.78 (released 2021-01-02) (Debian 11 / Ubuntu 21.04),
+	//   ConfigPropertyMap loads the default values as plasmoid.configuration.____Default
+	//   https://invent.kde.org/frameworks/kdeclarative/-/merge_requests/38
+	// Note: In recent versions of Qt, XHR on local files requires QML_XHR_ALLOW_FILE_READ=1 which
+	//   makes it useless to users for debugging.
 	ListModel {
 		id: configDefaults
 
@@ -245,7 +253,7 @@ ColumnLayout {
 
 
 	// plasmoid.configuration is a KDeclarative::ConfigPropertyMap which inherits QQmlPropertyMap
-	// https://github.com/KDE/kdeclarative/blob/master/src/kdeclarative/configpropertymap.h
+	// https://invent.kde.org/frameworks/kdeclarative/-/blob/master/src/kdeclarative/configpropertymap.h
 	// https://doc.qt.io/qt-5/qqmlpropertymap.html
 	ListModel {
 		id: configTableModel
@@ -254,7 +262,21 @@ ColumnLayout {
 		property var keys: []
 
 		Component.onCompleted: {
-			keys = plasmoid.configuration.keys()
+			var keys = plasmoid.configuration.keys()
+			var defaultKeys = []
+
+			// Filter KF5 5.78 default keys https://invent.kde.org/frameworks/kdeclarative/-/merge_requests/38
+			keys = keys.filter(function(key) {
+				if (key.endsWith('Default')) {
+					var key2 = key.substr(0, key.length - 'Default'.length)
+					if (typeof plasmoid.configuration[key2] !== 'undefined') {
+						return false
+					}
+				}
+				return true
+			})
+			configTableModel.keys = keys
+
 			// console.log(JSON.stringify(keys, null, '\t'))
 			for (var i = 0; i < keys.length; i++) {
 				var key = keys[i]
@@ -295,7 +317,7 @@ ColumnLayout {
 					continue
 				}
 
-				var configType = node.valueType
+				var configType = node.valueType.toLowerCase()
 				var stringType = node.stringType
 				var defaultValue = node.value
 
