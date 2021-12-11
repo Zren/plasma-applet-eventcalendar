@@ -209,7 +209,7 @@
 		</entry>
 		<!-- Deprecated in: v71 -->
 		<entry name="month_show_border" type="bool">
-			<default>true</default>
+			<default>false</default>
 		</entry>
 		<entry name="month_show_weeknumbers" type="bool">
 			<default>false</default>
