@@ -342,6 +342,26 @@ ConfigPage {
 		}
 	}
 
+	HeaderText {
+		text: i18n("Options")
+		visible: googleLoginManager.isLoggedIn
+	}
+
+	RowLayout {
+		Layout.fillWidth: true
+		visible: googleLoginManager.isLoggedIn
+
+		ConfigRadioButtonGroup {
+			id: googleEventClickAction
+			label: i18n("Event Click:")
+			configKey: 'googleEventClickAction'
+			model: [
+				{ value: 'WebEventView', text: i18n("Open Web Event View") },
+				{ value: 'WebMonthView', text: i18n("Open Web Month View") },
+			]
+		}
+	}
+
 	Component.onCompleted: {
 		if (googleLoginManager.isLoggedIn) {
 			googleLoginManager.calendarListChanged()

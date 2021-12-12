@@ -382,6 +382,10 @@
 		<entry name="tasklistIdList" type="string">
 			<default></default>
 		</entry>
+		<entry name="googleEventClickAction" type="string">
+			<!-- enum: WebEventView, WebMonthView -->
+			<default>WebEventView</default>
+		</entry>
 
 		<!-- Deprecated in: v71 -->
 		<entry name="access_token" type="string">

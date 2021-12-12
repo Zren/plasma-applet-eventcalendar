@@ -164,6 +164,7 @@ Item {
 		onCalendarIdListChanged: logic.updateEvents()
 		onEnabledCalendarPluginsChanged: logic.updateEvents()
 		onTasklistIdListChanged: logic.updateEvents()
+		onGoogleEventClickActionChanged: logic.updateEvents()
 
 		//--- Weather
 		onWeatherServiceChanged: logic.resetWeatherAndUpdate()
