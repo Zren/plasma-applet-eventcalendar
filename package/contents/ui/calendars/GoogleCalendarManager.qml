@@ -262,6 +262,12 @@ CalendarManager {
 		event.description = event.description || ""
 		event.backgroundColor = parseColor(calendar, event)
 		event.canEdit = (calendar.accessRole == 'writer' || calendar.accessRole == 'owner') && !event.recurringEventId // We cannot currently edit repeating events.
+		if (plasmoid.configuration.googleHideGoalsDesc
+			&& event.organizer.email == "unknownorganizer@calendar.google.com"
+			&& event.organizer.displayName == "Google Calendar"
+		) {
+			event.description = ""
+		}
 		if (event.htmlLink) {
 			// The new material website doesn't open the editor right away.
 			// The htmlLink will select the event in the month view, forcing the

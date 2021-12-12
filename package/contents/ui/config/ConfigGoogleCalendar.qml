@@ -347,7 +347,7 @@ ConfigPage {
 		visible: googleLoginManager.isLoggedIn
 	}
 
-	RowLayout {
+	ColumnLayout {
 		Layout.fillWidth: true
 		visible: googleLoginManager.isLoggedIn
 
@@ -359,6 +359,11 @@ ConfigPage {
 				{ value: 'WebEventView', text: i18n("Open Web Event View") },
 				{ value: 'WebMonthView', text: i18n("Open Web Month View") },
 			]
+		}
+
+		ConfigCheckBox {
+			configKey: 'googleHideGoalsDesc'
+			text: i18n("Hide \"This event was added from Goals in Google Calendar\" description")
 		}
 	}
 
