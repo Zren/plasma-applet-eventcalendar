@@ -199,28 +199,56 @@ Item {
 	Plasmoid.fullRepresentation: popupComponent
 
 	function action_KCMClock() {
-		KCMShell.open("clock")
+		// Note: https://invent.kde.org/plasma/plasma-workspace/-/commit/4e34ba26e6fc53dc47e7079d863e15408534dcf6
+		// Note: KCMShell.open uses kcmshell5 which converts "translations" => "kcm_translations".
+		// Note: https://github.com/KDE/kde-cli-tools/blob/master/kcmshell/main.cpp
+		// Note: systemsettings5 needs the exact name.
+		// TODO: Use KCMShell.openSystemSettings("kcm_clock") once we no longer need to support Plasma 5.23
+		KCMShell.open([
+			"kcm_clock", // Plasma 5.24
+			"clock" // Plasma 5.23
+		])
 	}
 
 	function action_KCMTranslations() {
-		KCMShell.open("translations")
+		// Note: https://invent.kde.org/plasma/plasma-workspace/-/commit/68b2a75568563223cc79d585bdae7ca7e0aeb54a
+		KCMShell.open([
+			"kcm_translations", // Plasma 5.15
+			"translations" // Plasma 5.14
+		])
 	}
 
 	function action_KCMFormats() {
-		KCMShell.open("formats")
+		KCMShell.open([
+			"kcm_formats", // Plasma 5.24
+			"formats" // Plasma 5.23
+		])
 	}
 
 	Component.onCompleted: {
 		plasmoid.setAction("clipboard", i18nd("plasma_applet_org.kde.plasma.digitalclock", "Copy to Clipboard"), "edit-copy")
 		DigitalClock.ClipboardMenu.setupMenu(plasmoid.action("clipboard"))
 
-		if (KCMShell.authorize("clock.desktop").length > 0) {
+		// An uninstalled KCM like 'user_manager.desktop' in Plasma 5.20 is returned
+		// in the output list, so we need to check if user has permission for both.
+		if (KCMShell.authorize([
+			"kcm_clock.desktop", // Plasma 5.24
+			"clock.desktop" // Plasma 5.23
+		]).length == 2) {
+			// DigitalClock uses symbolic "clock" icon in Plasma 5.24
 			plasmoid.setAction("KCMClock", i18nd("plasma_applet_org.kde.plasma.digitalclock", "Adjust Date and Time..."), "preferences-system-time")
 		}
-		if (KCMShell.authorize("translations.desktop").length > 0) {
+		if (KCMShell.authorize([
+			"kcm_translations.desktop", // Plasma 5.15
+			"translations.desktop", // Plasma 5.14
+		]).length == 2) {
 			plasmoid.setAction("KCMTranslations", i18n("Set Language..."), "preferences-desktop-locale")
 		}
-		if (KCMShell.authorize("formats.desktop").length > 0) {
+		if (KCMShell.authorize([
+			"kcm_formats.desktop", // Plasma 5.24
+			"formats.desktop" // Plasma 5.23
+		]).length == 2) {
+			// DigitalClock uses symbolic "gnumeric-format-thousand-separator" icon in Plasma 5.24
 			plasmoid.setAction("KCMFormats", i18n("Set Locale..."), "preferences-desktop-locale")
 		}
 
