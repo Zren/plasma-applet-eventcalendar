@@ -860,12 +860,12 @@ msgid "Logged out of Google. Please login again."
 msgstr ""
 
 #: ../contents/ui/main.qml
-msgid "Set Language..."
-msgstr "Ορισμός Γλώσσας..."
+msgid "Set Language…"
+msgstr "Ορισμός Γλώσσας…"
 
 #: ../contents/ui/main.qml
-msgid "Set Locale..."
-msgstr "Ρύθμιση Τοπικότητας..."
+msgid "Set Locale…"
+msgstr "Ρύθμιση Τοπικότητας…"
 
 #: ../contents/ui/MeteogramView.qml
 #, c-format
@@ -983,5 +983,5 @@ msgstr ""
 #~ "Καταχωρίστε τον ακόλουθο κωδικό στο <a href=\"https://www.google.com/"
 #~ "device\">https://www.google.com/device</a>."
 
-#~ msgid "Generating Code..."
-#~ msgstr "Δημιουργία κωδικού ..."
+#~ msgid "Generating Code…"
+#~ msgstr "Δημιουργία κωδικού …"

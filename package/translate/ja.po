@@ -817,11 +817,11 @@ msgid "Logged out of Google. Please login again."
 msgstr ""
 
 #: ../contents/ui/main.qml
-msgid "Set Language..."
+msgid "Set Language…"
 msgstr "言語を選択"
 
 #: ../contents/ui/main.qml
-msgid "Set Locale..."
+msgid "Set Locale…"
 msgstr "地域を選択"
 
 #: ../contents/ui/MeteogramView.qml

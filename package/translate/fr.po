@@ -863,12 +863,12 @@ msgid "Logged out of Google. Please login again."
 msgstr ""
 
 #: ../contents/ui/main.qml
-msgid "Set Language..."
-msgstr "Régler la langue..."
+msgid "Set Language…"
+msgstr "Régler la langue…"
 
 #: ../contents/ui/main.qml
-msgid "Set Locale..."
-msgstr "Paramètres régionaux..."
+msgid "Set Locale…"
+msgstr "Paramètres régionaux…"
 
 #: ../contents/ui/MeteogramView.qml
 #, c-format
@@ -996,8 +996,8 @@ msgstr ""
 #~ "Entrer le code sur <a href=\"https://www.google.com/device\">https://www."
 #~ "google.com/device</a>."
 
-#~ msgid "Generating Code..."
-#~ msgstr "Génération du code..."
+#~ msgid "Generating Code…"
+#~ msgstr "Génération du code…"
 
 #~ msgid "Event In Progress:"
 #~ msgstr "Événement en cours:"

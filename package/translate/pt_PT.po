@@ -813,12 +813,12 @@ msgid "Logged out of Google. Please login again."
 msgstr "Desconectado do Google. Por favor faça login novamente."
 
 #: ../contents/ui/main.qml
-msgid "Set Language..."
-msgstr "Definir idioma..."
+msgid "Set Language…"
+msgstr "Definir idioma…"
 
 #: ../contents/ui/main.qml
-msgid "Set Locale..."
-msgstr "Definir local..."
+msgid "Set Locale…"
+msgstr "Definir local…"
 
 #: ../contents/ui/MeteogramView.qml
 #, c-format

@@ -860,12 +860,12 @@ msgid "Logged out of Google. Please login again."
 msgstr "Je bent uitgelogd - log opnieuw in."
 
 #: ../contents/ui/main.qml
-msgid "Set Language..."
-msgstr "Taal instellen..."
+msgid "Set Language…"
+msgstr "Taal instellen…"
 
 #: ../contents/ui/main.qml
-msgid "Set Locale..."
-msgstr "Regionale instellingen..."
+msgid "Set Locale…"
+msgstr "Regionale instellingen…"
 
 #: ../contents/ui/MeteogramView.qml
 #, c-format
@@ -1004,5 +1004,5 @@ msgstr "Start over %1"
 #~ "Voer de volgende code in op <a href=\"https://www.google.com/device"
 #~ "\">https://www.google.com/device</a>."
 
-#~ msgid "Generating Code..."
-#~ msgstr "Bezig met genereren van code..."
+#~ msgid "Generating Code…"
+#~ msgstr "Bezig met genereren van code…"

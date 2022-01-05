@@ -144,10 +144,10 @@ function getEventData() {
 				type: "hangoutsMeet",
 			},
 			name: "Google Meet",
-			iconUri: "https://lh5.googleusercontent.com/proxy/abcdef...",
+			iconUri: "https://lh5.googleusercontent.com/proxy/abcdef…",
 		},
 		conferenceId: googleMeetId,
-		signature: "abcdef...",
+		signature: "abcdef…",
 	}
 
 	// Add 30 days before and after today.

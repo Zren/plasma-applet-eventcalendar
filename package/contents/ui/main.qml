@@ -236,20 +236,20 @@ Item {
 			"clock.desktop" // Plasma 5.23
 		]).length == 2) {
 			// DigitalClock uses symbolic "clock" icon in Plasma 5.24
-			plasmoid.setAction("KCMClock", i18nd("plasma_applet_org.kde.plasma.digitalclock", "Adjust Date and Time..."), "preferences-system-time")
+			plasmoid.setAction("KCMClock", i18nd("plasma_applet_org.kde.plasma.digitalclock", "Adjust Date and Time…"), "preferences-system-time")
 		}
 		if (KCMShell.authorize([
 			"kcm_translations.desktop", // Plasma 5.15
 			"translations.desktop", // Plasma 5.14
 		]).length == 2) {
-			plasmoid.setAction("KCMTranslations", i18n("Set Language..."), "preferences-desktop-locale")
+			plasmoid.setAction("KCMTranslations", i18n("Set Language…"), "preferences-desktop-locale")
 		}
 		if (KCMShell.authorize([
 			"kcm_formats.desktop", // Plasma 5.24
 			"formats.desktop" // Plasma 5.23
 		]).length == 2) {
 			// DigitalClock uses symbolic "gnumeric-format-thousand-separator" icon in Plasma 5.24
-			plasmoid.setAction("KCMFormats", i18n("Set Locale..."), "preferences-desktop-locale")
+			plasmoid.setAction("KCMFormats", i18n("Set Locale…"), "preferences-desktop-locale")
 		}
 
 		// plasmoid.action("configure").trigger()

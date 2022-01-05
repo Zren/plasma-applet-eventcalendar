@@ -864,12 +864,12 @@ msgid "Logged out of Google. Please login again."
 msgstr "Von Googel abgemeldet. Bitte erneut anmelden."
 
 #: ../contents/ui/main.qml
-msgid "Set Language..."
+msgid "Set Language…"
 msgstr "Sprache einstellen"
 
 #: ../contents/ui/main.qml
-msgid "Set Locale..."
-msgstr "Region einstellen..."
+msgid "Set Locale…"
+msgstr "Region einstellen…"
 
 #: ../contents/ui/MeteogramView.qml
 #, c-format
@@ -982,11 +982,8 @@ msgstr "Startet in %1"
 #~ "Bitte diese Zeichenfolge bei <a href=\"https://www.google.com/device"
 #~ "\">https://www.google.com/device</a> eingeben."
 
-#~ msgid "Generating Code..."
-#~ msgstr "Zeichenfolge erzeugen..."
-
-#~ msgid "Adjust Date and Time..."
-#~ msgstr "Zeit und Datum einstellen..."
+#~ msgid "Generating Code…"
+#~ msgstr "Zeichenfolge erzeugen…"
 
 #~ msgid "Event In Progress:"
 #~ msgstr "Laufendes Ereignis:"

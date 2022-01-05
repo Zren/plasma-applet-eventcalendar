@@ -859,12 +859,12 @@ msgid "Logged out of Google. Please login again."
 msgstr ""
 
 #: ../contents/ui/main.qml
-msgid "Set Language..."
-msgstr "Dili Ayarla..."
+msgid "Set Language…"
+msgstr "Dili Ayarla…"
 
 #: ../contents/ui/main.qml
-msgid "Set Locale..."
-msgstr "Bölgeyi Ayarla..."
+msgid "Set Locale…"
+msgstr "Bölgeyi Ayarla…"
 
 #: ../contents/ui/MeteogramView.qml
 #, c-format

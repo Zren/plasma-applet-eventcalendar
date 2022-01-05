@@ -863,12 +863,12 @@ msgid "Logged out of Google. Please login again."
 msgstr "Odjavljen/a iz Googla. Potrebna je ponovna prijava."
 
 #: ../contents/ui/main.qml
-msgid "Set Language..."
-msgstr "Določi jezik ..."
+msgid "Set Language…"
+msgstr "Določi jezik …"
 
 #: ../contents/ui/main.qml
-msgid "Set Locale..."
-msgstr "Določi državo ..."
+msgid "Set Locale…"
+msgstr "Določi državo …"
 
 #: ../contents/ui/MeteogramView.qml
 #, c-format

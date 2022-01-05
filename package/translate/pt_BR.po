@@ -861,12 +861,12 @@ msgid "Logged out of Google. Please login again."
 msgstr "Você se desconectou do Google. Por favor entre novamente."
 
 #: ../contents/ui/main.qml
-msgid "Set Language..."
-msgstr "Definir idioma..."
+msgid "Set Language…"
+msgstr "Definir idioma…"
 
 #: ../contents/ui/main.qml
-msgid "Set Locale..."
-msgstr "Definir Formato..."
+msgid "Set Locale…"
+msgstr "Definir Formato…"
 
 #: ../contents/ui/MeteogramView.qml
 #, c-format
@@ -989,11 +989,8 @@ msgstr "Começando em %1"
 #~ "Digite o seguinte código em <a href=\"https://www.google.com/device"
 #~ "\">https://www.google.com/device</a>."
 
-#~ msgid "Generating Code..."
-#~ msgstr "Gerando código..."
-
-#~ msgid "Adjust Date and Time..."
-#~ msgstr "Ajustar data e hora..."
+#~ msgid "Generating Code…"
+#~ msgstr "Gerando código…"
 
 #~ msgctxt "Evento sem resumo"
 #~ msgid "(No title)"

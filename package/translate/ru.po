@@ -863,12 +863,12 @@ msgid "Logged out of Google. Please login again."
 msgstr "Произведен выход из Google. Войдите снова."
 
 #: ../contents/ui/main.qml
-msgid "Set Language..."
-msgstr "Установить язык..."
+msgid "Set Language…"
+msgstr "Установить язык…"
 
 #: ../contents/ui/main.qml
-msgid "Set Locale..."
-msgstr "Установить локаль ..."
+msgid "Set Locale…"
+msgstr "Установить локаль …"
 
 #: ../contents/ui/MeteogramView.qml
 #, c-format
@@ -990,5 +990,5 @@ msgstr ""
 #~ "Введите следующий код <a href=\"https://www.google.com/device\">https://"
 #~ "www.google.com/device</a>."
 
-#~ msgid "Generating Code..."
-#~ msgstr "Генерация кода..."
+#~ msgid "Generating Code…"
+#~ msgstr "Генерация кода…"

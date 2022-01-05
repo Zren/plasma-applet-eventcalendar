@@ -815,12 +815,12 @@ msgid "Logged out of Google. Please login again."
 msgstr "Utloggad från Google. Logga in igen."
 
 #: ../contents/ui/main.qml
-msgid "Set Language..."
-msgstr "Ställ in språk..."
+msgid "Set Language…"
+msgstr "Ställ in språk…"
 
 #: ../contents/ui/main.qml
-msgid "Set Locale..."
-msgstr "Välj språk..."
+msgid "Set Locale…"
+msgstr "Välj språk…"
 
 #: ../contents/ui/MeteogramView.qml
 #, c-format

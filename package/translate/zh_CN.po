@@ -853,12 +853,12 @@ msgid "Logged out of Google. Please login again."
 msgstr ""
 
 #: ../contents/ui/main.qml
-msgid "Set Language..."
-msgstr "设置语言..."
+msgid "Set Language…"
+msgstr "设置语言…"
 
 #: ../contents/ui/main.qml
-msgid "Set Locale..."
-msgstr "设置本地化..."
+msgid "Set Locale…"
+msgstr "设置本地化…"
 
 #: ../contents/ui/MeteogramView.qml
 #, c-format
