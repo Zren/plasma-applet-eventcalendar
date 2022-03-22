@@ -247,7 +247,8 @@ MouseArea {
 			visible: showMeteogram
 			Layout.fillWidth: true
 			Layout.minimumHeight: popup.topRowHeight
-			Layout.preferredHeight: parent.height / 5
+			Layout.preferredWidth: popup.leftColumnWidth
+			Layout.preferredHeight: popup.topRowHeight
 			visibleDuration: plasmoid.configuration.meteogramHours
 			showIconOutline: plasmoid.configuration.showOutlines
 			xAxisScale: 1 / hoursPerDataPoint
@@ -291,7 +292,8 @@ MouseArea {
 			visible: showTimer
 			Layout.fillWidth: true
 			Layout.minimumHeight: Math.max(popup.topRowHeight, implicitHeight)
-			Layout.preferredHeight: parent.height / 5
+			Layout.preferredWidth: popup.rightColumnWidth
+			Layout.preferredHeight: popup.topRowHeight
 		}
 
 		MonthView {
@@ -301,7 +303,8 @@ MouseArea {
 			showWeekNumbers: plasmoid.configuration.monthShowWeekNumbers
 			highlightCurrentDayWeek: plasmoid.configuration.monthHighlightCurrentDayWeek
 
-			Layout.preferredWidth: parent.width/2
+			Layout.preferredWidth: popup.leftColumnWidth
+			Layout.preferredHeight: popup.bottomRowHeight
 			Layout.fillWidth: true
 			Layout.fillHeight: true
 
@@ -367,7 +370,8 @@ MouseArea {
 			id: agendaView
 			visible: showAgenda
 
-			Layout.preferredWidth: parent.width / 2
+			Layout.preferredWidth: popup.rightColumnWidth
+			Layout.preferredHeight: popup.bottomRowHeight
 			Layout.fillWidth: true
 			Layout.fillHeight: true
 
