@@ -309,7 +309,7 @@ msgstr "Nykyinen kuukausi otsikko:"
 #: ../contents/ui/config/ConfigCalendar.qml ../contents/ui/MonthView.qml
 msgctxt "calendar title format for current month"
 msgid "MMMM d, yyyy"
-msgstr "kalenterin otsikkomuoto nykyiselle kuukaudelle"
+msgstr "MMMM d, yyyy"
 
 #: ../contents/ui/config/ConfigCalendar.qml
 msgid "Show Borders"
@@ -761,7 +761,7 @@ msgstr "Avaa linkki"
 #: ../contents/ui/DateTimeSelector.qml
 msgctxt "event editor date format"
 msgid "d MMM, yyyy"
-msgstr "tapahtuman muokkauksen päivän muoto"
+msgstr "d MMM, yyyy"
 
 #: ../contents/ui/DurationSelector.qml
 msgid "to"
