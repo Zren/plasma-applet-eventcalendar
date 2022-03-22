@@ -1,5 +1,5 @@
 #!/bin/sh
-# Version: 20
+# Version: 22
 
 # https://techbase.kde.org/Development/Tutorials/Localization/i18n_Build_Systems
 # https://techbase.kde.org/Development/Tutorials/Localization/i18n_Build_Systems/Outside_KDE_repositories
@@ -30,11 +30,16 @@ fi
 echo "[merge] Extracting messages"
 potArgs="--from-code=UTF-8 --width=200 --add-location=file"
 
+# Note: xgettext v0.20.1 (Kubuntu 20.04) and below will attempt to translate Icon,
+# so we need to specify Name, GenericName, Comment, and Keywords.
+# https://github.com/Zren/plasma-applet-lib/issues/1
+# https://savannah.gnu.org/support/?108887
 find "${packageRoot}" -name '*.desktop' | sort > "${DIR}/infiles.list"
 xgettext \
 	${potArgs} \
 	--files-from="${DIR}/infiles.list" \
 	--language=Desktop \
+	-k -kName -kGenericName -kComment -kKeywords \
 	-D "${packageRoot}" \
 	-D "${DIR}" \
 	-o "template.pot.new" \
@@ -128,6 +133,16 @@ for cat in $catalogs; do
 		widthArg="--width=400"
 	fi
 
+	compendiumArg=""
+	if [ ! -z "$COMPENDIUM_DIR" ]; then
+		langCode=`basename "${cat%.*}"`
+		compendiumPath=`realpath "$COMPENDIUM_DIR/compendium-${langCode}.po"`
+		if [ -f "$compendiumPath" ]; then
+			echo "compendiumPath=$compendiumPath"
+			compendiumArg="--compendium=$compendiumPath"
+		fi
+	fi
+
 	cp "$cat" "$cat.new"
 	sed -i 's/"Content-Type: text\/plain; charset=CHARSET\\n"/"Content-Type: text\/plain; charset=UTF-8\\n"/' "$cat.new"
 
@@ -135,6 +150,7 @@ for cat in $catalogs; do
 		${widthArg} \
 		--add-location=file \
 		--no-fuzzy-matching \
+		${compendiumArg} \
 		-o "$cat.new" \
 		"$cat.new" "${DIR}/template.pot"
 
