@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: eventcalendar\n"
 "Report-Msgid-Bugs-To: https://github.com/Zren/plasma-applet-eventcalendar\n"
-"POT-Creation-Date: 2022-03-20 05:23+0200\n"
+"POT-Creation-Date: 2022-03-22 18:16-0400\n"
 "PO-Revision-Date: 2022-03-21 23:40+ZONE\n"
 "Last-Translator: Ilpo Kantonen <ilpo@iki.fi>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -20,17 +20,13 @@ msgstr ""
 "X-Language: fi_FI\n"
 "X-Source-Language: C\n"
 
-#: ../metadata.desktop ../contents/ui/AgendaView.qml
-#: ../contents/ui/UpcomingEvents.qml
+#: ../metadata.desktop ../contents/ui/AgendaView.qml ../contents/ui/UpcomingEvents.qml
 msgid "Event Calendar"
 msgstr "Tapahtumakalenteri"
 
 #: ../metadata.desktop
-msgid ""
-"Plasmoid for a calendar+agenda with weather that syncs to Google Calendar."
-msgstr ""
-"Plasmoidi kalenteri + agenda säätietoineen synkronoitu Google Calendarin "
-"kanssa."
+msgid "Plasmoid for a calendar+agenda with weather that syncs to Google Calendar."
+msgstr "Plasmoidi kalenteri + agenda säätietoineen synkronoitu Google Calendarin kanssa."
 
 #: ../contents/config/config.qml
 msgid "General"
@@ -72,8 +68,7 @@ msgstr "Sää"
 msgid "Advanced"
 msgstr "Lisäasetukset"
 
-#: ../contents/ui/AgendaEventItem.qml ../contents/ui/EditEventForm.qml
-#: ../contents/ui/LocaleFuncs.js
+#: ../contents/ui/AgendaEventItem.qml ../contents/ui/EditEventForm.qml ../contents/ui/LocaleFuncs.js
 msgid "All Day"
 msgstr "Koko päivä"
 
@@ -122,7 +117,6 @@ msgid "[No Calendars]"
 msgstr "[Ei kalentereja]"
 
 #: ../contents/ui/calendars/GoogleCalendarManager.qml ../contents/ui/Logic.qml
-#, qt-format
 msgid "HTTP Error %1: %2"
 msgstr "HTTP-virhe %1: %2"
 
@@ -134,12 +128,9 @@ msgstr "Ei voitu yhdistää"
 msgid "Will try again soon."
 msgstr "Yhdistää uudelleen pian."
 
-#: ../contents/ui/calendars/GoogleCalendarManager.qml
-#: ../contents/ui/config/ConfigGoogleCalendar.qml ../contents/ui/Logic.qml
-msgid ""
-"Widget has been updated. Please logout and login to Google Calendar again."
-msgstr ""
-"Kalenteri on päivitetty. Ole hyvä ja kirjaudu Google-kalenteriin uudelleen."
+#: ../contents/ui/calendars/GoogleCalendarManager.qml ../contents/ui/config/ConfigGoogleCalendar.qml ../contents/ui/Logic.qml
+msgid "Widget has been updated. Please logout and login to Google Calendar again."
+msgstr "Kalenteri on päivitetty. Ole hyvä ja kirjaudu Google-kalenteriin uudelleen."
 
 #: ../contents/ui/calendars/GoogleCalendarManager.qml
 msgid "Too many web requests. Will try again soon."
@@ -153,9 +144,7 @@ msgstr "Näytä Agenda"
 msgid "Font Size:"
 msgstr "Kirjasimen koko:"
 
-#: ../contents/ui/config/ConfigAgenda.qml
-#: ../contents/ui/config/ConfigGeneral.qml
-#: ../contents/ui/config/ConfigLayout.qml
+#: ../contents/ui/config/ConfigAgenda.qml ../contents/ui/config/ConfigGeneral.qml ../contents/ui/config/ConfigLayout.qml
 msgid "px"
 msgstr "px"
 
@@ -195,8 +184,7 @@ msgstr "Napsauta Sää:"
 msgid "Open City Forecast In Browser"
 msgstr "Avaa kaupungin sää selaimessa"
 
-#: ../contents/ui/config/ConfigAgenda.qml
-#: ../contents/ui/config/ConfigCalendar.qml
+#: ../contents/ui/config/ConfigAgenda.qml ../contents/ui/config/ConfigCalendar.qml
 msgid "Click Date:"
 msgstr "Napsauta päivä:"
 
@@ -260,8 +248,7 @@ msgstr "Piilota menneet tapahtumat"
 msgid "Show all events of the current day (including completed events)"
 msgstr "Näytä tämän päivän kaikki tapahtumat (sisältäen menneet tapahtumat)"
 
-#: ../contents/ui/config/ConfigAgenda.qml
-#: ../contents/ui/config/ConfigWeather.qml
+#: ../contents/ui/config/ConfigAgenda.qml ../contents/ui/config/ConfigWeather.qml
 msgid "Colors"
 msgstr "Värit"
 
@@ -297,8 +284,7 @@ msgstr "Uusi Google-kalenterin tapahtuma (www-selain)"
 msgid "Do Nothing"
 msgstr "Älä tee mitään"
 
-#: ../contents/ui/config/ConfigCalendar.qml
-#: ../contents/ui/config/ConfigWeather.qml
+#: ../contents/ui/config/ConfigCalendar.qml ../contents/ui/config/ConfigWeather.qml
 msgid "Style"
 msgstr "Tyyli"
 
@@ -387,8 +373,7 @@ msgstr "Tapahumakalenterin liitännäinen"
 msgid "Plasma Calendar Plugins"
 msgstr "Plasma-kalenterin liitännäinen"
 
-#: ../contents/ui/config/ConfigEvents.qml
-#: ../contents/ui/config/ConfigGeneral.qml
+#: ../contents/ui/config/ConfigEvents.qml ../contents/ui/config/ConfigGeneral.qml
 msgid "Misc"
 msgstr "Sekalaiset"
 
@@ -396,8 +381,7 @@ msgstr "Sekalaiset"
 msgid "Refresh events every: "
 msgstr "Päivitä tapahtumat joka: "
 
-#: ../contents/ui/config/ConfigEvents.qml
-#: ../contents/ui/config/ConfigWeather.qml
+#: ../contents/ui/config/ConfigEvents.qml ../contents/ui/config/ConfigWeather.qml
 msgctxt "Polling interval in minutes"
 msgid "min"
 msgstr "min"
@@ -419,12 +403,8 @@ msgid "Widgets"
 msgstr "Sovellukset"
 
 #: ../contents/ui/config/ConfigGeneral.qml
-msgid ""
-"Show/Hide widgets above the calendar. Toggle Agenda/Calendar on their "
-"respective tabs."
-msgstr ""
-"Näytä/Piilota tietoja kalenterin edellä. Vaihda Agenda/Kalenteri niiden "
-"vastaavilla välilehdillä."
+msgid "Show/Hide widgets above the calendar. Toggle Agenda/Calendar on their respective tabs."
+msgstr "Näytä/Piilota tietoja kalenterin edellä. Vaihda Agenda/Kalenteri niiden vastaavilla välilehdillä."
 
 #: ../contents/ui/config/ConfigGeneral.qml
 msgid "Meteogram"
@@ -434,8 +414,7 @@ msgstr "Säätila"
 msgid "Timer"
 msgstr "Ajastin"
 
-#: ../contents/ui/config/ConfigGeneral.qml
-#: ../contents/ui/lib/ConfigNotification.qml
+#: ../contents/ui/config/ConfigGeneral.qml ../contents/ui/lib/ConfigNotification.qml
 msgid "SFX:"
 msgstr "Ääni:"
 
@@ -452,23 +431,12 @@ msgid "Time Format Documentation"
 msgstr "Ajan muodon dokumentaatio"
 
 #: ../contents/ui/config/ConfigGeneral.qml
-msgid ""
-"The default font for the Breeze theme is Noto Sans which is hard to read "
-"with small text. Try using the Sans Serif font if you find the text too "
-"small when adding a second line."
-msgstr ""
-"Oletuskirjasin Breeze-teemalle on Noto Sans, joka on vaikea lukea pienellä "
-"tekstillä. Kokeile käyttää Sans Serif -kirjasinta, jos teksti on liian "
-"pientä kun lisäät sekunnit riville."
+msgid "The default font for the Breeze theme is Noto Sans which is hard to read with small text. Try using the Sans Serif font if you find the text too small when adding a second line."
+msgstr "Oletuskirjasin Breeze-teemalle on Noto Sans, joka on vaikea lukea pienellä tekstillä. Kokeile käyttää Sans Serif -kirjasinta, jos teksti on liian pientä kun lisäät sekunnit riville."
 
 #: ../contents/ui/config/ConfigGeneral.qml
-#, qt-format
-msgid ""
-"You can also use %1 or %2 to style a section. Note the single quotes around "
-"the tags are used to bypass the time format."
-msgstr ""
-"Voit käyttää myös %1 tai %2 muotoilla osiota. Huomaa, että yksinkertaisen "
-"lainausmerkit tunnisteen ympärillä käytetään ajan muodon ohitukseen."
+msgid "You can also use %1 or %2 to style a section. Note the single quotes around the tags are used to bypass the time format."
+msgstr "Voit käyttää myös %1 tai %2 muotoilla osiota. Huomaa, että yksinkertaisen lainausmerkit tunnisteen ympärillä käytetään ajan muodon ohitukseen."
 
 #: ../contents/ui/config/ConfigGeneral.qml
 msgid "Font:"
@@ -559,22 +527,14 @@ msgid "To sync with Google Calendar"
 msgstr "Google-kalenteriin yhdistäminen"
 
 #: ../contents/ui/config/ConfigGoogleCalendar.qml
-#, qt-format
-msgid ""
-"Visit <a href=\"%1\">%2</a> (opens in your web browser). After you login and "
-"give permission to access your calendar, it will give you a code to paste "
-"below."
-msgstr ""
-"Mene osoitteeseen <a href=\"%1\">%2</a> (avaa www-selaimeen). Kun olet "
-"kirjautunut ja antanut luvat kalenteriisi, sinulle annetaan koodi. Kopioi "
-"koodi alle."
+msgid "Visit <a href=\"%1\">%2</a> (opens in your web browser). After you login and give permission to access your calendar, it will give you a code to paste below."
+msgstr "Mene osoitteeseen <a href=\"%1\">%2</a> (avaa www-selaimeen). Kun olet kirjautunut ja antanut luvat kalenteriisi, sinulle annetaan koodi. Kopioi koodi alle."
 
 #: ../contents/ui/config/ConfigGoogleCalendar.qml
 msgid "Copy Link"
 msgstr "Kopioi linkki"
 
 #: ../contents/ui/config/ConfigGoogleCalendar.qml
-#, qt-format
 msgid "Enter code here (Eg: %1)"
 msgstr "Anna koodi tähän (Esim: %1)"
 
@@ -586,8 +546,7 @@ msgstr "Lähetä"
 msgid "Invalid Google Authorization Code"
 msgstr "Väärä Googlen valtuutuskoodi"
 
-#: ../contents/ui/config/ConfigGoogleCalendar.qml
-#: ../contents/ui/config/ConfigICal.qml
+#: ../contents/ui/config/ConfigGoogleCalendar.qml ../contents/ui/config/ConfigICal.qml
 msgid "Calendars"
 msgstr "Kalenterit"
 
@@ -598,6 +557,26 @@ msgstr "Päivitä"
 #: ../contents/ui/config/ConfigGoogleCalendar.qml
 msgid "Tasks"
 msgstr "Tehtävät"
+
+#: ../contents/ui/config/ConfigGoogleCalendar.qml
+msgid "Options"
+msgstr ""
+
+#: ../contents/ui/config/ConfigGoogleCalendar.qml
+msgid "Event Click:"
+msgstr ""
+
+#: ../contents/ui/config/ConfigGoogleCalendar.qml
+msgid "Open Web Event View"
+msgstr ""
+
+#: ../contents/ui/config/ConfigGoogleCalendar.qml
+msgid "Open Web Month View"
+msgstr ""
+
+#: ../contents/ui/config/ConfigGoogleCalendar.qml
+msgid "Hide \"This event was added from Goals in Google Calendar\" description"
+msgstr ""
 
 #: ../contents/ui/config/ConfigICal.qml
 msgid "Add Calendar"
@@ -722,39 +701,31 @@ msgstr "Pakkasasteet"
 msgid "Icons"
 msgstr "Kuvakkeet"
 
-#: ../contents/ui/config/OpenWeatherMapCityDialog.qml
-#: ../contents/ui/config/WeatherCanadaCityDialog.qml
+#: ../contents/ui/config/OpenWeatherMapCityDialog.qml ../contents/ui/config/WeatherCanadaCityDialog.qml
 msgid "Select city"
 msgstr "Valitse kaupunki"
 
-#: ../contents/ui/config/OpenWeatherMapCityDialog.qml
-#: ../contents/ui/config/WeatherCanadaCityDialog.qml
-#, qt-format
+#: ../contents/ui/config/OpenWeatherMapCityDialog.qml ../contents/ui/config/WeatherCanadaCityDialog.qml
 msgid "Fetched from <a href=\"%1\">%1</a>"
 msgstr "Haettu osoitteesta <a href=\"%1\">%1</a>"
 
-#: ../contents/ui/config/OpenWeatherMapCityDialog.qml
-#: ../contents/ui/config/WeatherCanadaCityDialog.qml
+#: ../contents/ui/config/OpenWeatherMapCityDialog.qml ../contents/ui/config/WeatherCanadaCityDialog.qml
 msgid "Search"
 msgstr "Etsi"
 
-#: ../contents/ui/config/OpenWeatherMapCityDialog.qml
-#: ../contents/ui/config/WeatherCanadaCityDialog.qml
+#: ../contents/ui/config/OpenWeatherMapCityDialog.qml ../contents/ui/config/WeatherCanadaCityDialog.qml
 msgid "Name"
 msgstr "Nimi"
 
-#: ../contents/ui/config/OpenWeatherMapCityDialog.qml
-#: ../contents/ui/config/WeatherCanadaCityDialog.qml
+#: ../contents/ui/config/OpenWeatherMapCityDialog.qml ../contents/ui/config/WeatherCanadaCityDialog.qml
 msgid "Id"
 msgstr "Id"
 
-#: ../contents/ui/config/OpenWeatherMapCityDialog.qml
-#: ../contents/ui/config/WeatherCanadaCityDialog.qml
+#: ../contents/ui/config/OpenWeatherMapCityDialog.qml ../contents/ui/config/WeatherCanadaCityDialog.qml
 msgid "City Webpage"
 msgstr "Kaupungin www-sivu"
 
-#: ../contents/ui/config/OpenWeatherMapCityDialog.qml
-#: ../contents/ui/config/WeatherCanadaCityDialog.qml
+#: ../contents/ui/config/OpenWeatherMapCityDialog.qml ../contents/ui/config/WeatherCanadaCityDialog.qml
 msgid "Open Link"
 msgstr "Avaa linkki"
 
@@ -783,8 +754,7 @@ msgstr "Lisää kuvaus"
 msgid "&Save"
 msgstr "&Talleta"
 
-#: ../contents/ui/EditEventForm.qml ../contents/ui/EditTaskForm.qml
-#: ../contents/ui/TimerInputView.qml
+#: ../contents/ui/EditEventForm.qml ../contents/ui/EditTaskForm.qml ../contents/ui/TimerInputView.qml
 msgid "&Cancel"
 msgstr "&Keskeytä"
 
@@ -793,7 +763,6 @@ msgid "Add due date"
 msgstr "Lisää eräpäivä"
 
 #: ../contents/ui/lib/AppletVersion.qml
-#, qt-format
 msgid "<b>Version:</b> %1"
 msgstr "<b>Versio:</b> %1"
 
@@ -807,12 +776,10 @@ msgid "Choose a sound effect"
 msgstr "Valitse ääni"
 
 #: ../contents/ui/lib/ConfigSound.qml
-#, qt-format
 msgid "Sound files (%1)"
 msgstr "Äänitiedostot (%1)"
 
 #: ../contents/ui/lib/ConfigSound.qml
-#, qt-format
 msgid "All files (%1)"
 msgstr "Kaikki tiedostot (%1)"
 
@@ -837,19 +804,16 @@ msgid "h:mm AP"
 msgstr "h:mm AP"
 
 #: ../contents/ui/LocaleFuncs.js
-#, qt-format
 msgctxt "date (%1) with time (%2)"
 msgid "%1, %2"
 msgstr "%1, %2"
 
 #: ../contents/ui/LocaleFuncs.js
-#, qt-format
 msgctxt "from date/time %1 until date/time %2"
 msgid "%1 - %2"
 msgstr "%1 - %2"
 
 #: ../contents/ui/LocaleFuncs.js
-#, qt-format
 msgctxt "short form for %1 hours"
 msgid "%1h"
 msgstr "%1 h"
@@ -924,7 +888,6 @@ msgid "Timer finished"
 msgstr "Ajastin lopetti."
 
 #: ../contents/ui/TimerModel.qml
-#, qt-format
 msgid "%1 has passed"
 msgstr "%1 on hyväksytty"
 
@@ -965,7 +928,6 @@ msgid "Upcoming Events"
 msgstr "Tulevat tapahtumat"
 
 #: ../contents/ui/UpcomingEvents.qml
-#, qt-format
 msgctxt "%1 = 15 minutes"
 msgid "Starting in %1"
 msgstr "Alkaa %1 kuluttua"
