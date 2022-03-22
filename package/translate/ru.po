@@ -596,7 +596,7 @@ msgstr "Задачи"
 
 #: ../contents/ui/config/ConfigGoogleCalendar.qml
 msgid "Options"
-msgstr ""
+msgstr "Параметры"
 
 #: ../contents/ui/config/ConfigGoogleCalendar.qml
 msgid "Event Click:"

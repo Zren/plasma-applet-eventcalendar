@@ -79,7 +79,7 @@ msgstr ""
 
 #: ../contents/ui/AgendaEventItem.qml ../contents/ui/AgendaTaskItem.qml
 msgid "Edit"
-msgstr ""
+msgstr "Επεξεργασία"
 
 #: ../contents/ui/AgendaEventItem.qml ../contents/ui/AgendaTaskItem.qml
 msgid "Delete Event"
@@ -592,7 +592,7 @@ msgstr ""
 
 #: ../contents/ui/config/ConfigGoogleCalendar.qml
 msgid "Options"
-msgstr ""
+msgstr "Επιλογές"
 
 #: ../contents/ui/config/ConfigGoogleCalendar.qml
 msgid "Event Click:"
@@ -797,7 +797,7 @@ msgstr "Αποθήκευση"
 #: ../contents/ui/EditEventForm.qml ../contents/ui/EditTaskForm.qml
 #: ../contents/ui/TimerInputView.qml
 msgid "&Cancel"
-msgstr ""
+msgstr "&Ακύρωση"
 
 #: ../contents/ui/EditTaskForm.qml
 msgid "Add due date"

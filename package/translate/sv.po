@@ -409,7 +409,7 @@ msgstr ""
 
 #: ../contents/ui/config/ConfigGeneral.qml ../contents/ui/TimerModel.qml
 msgid "Timer"
-msgstr ""
+msgstr "Stoppur"
 
 #: ../contents/ui/config/ConfigGeneral.qml ../contents/ui/lib/ConfigNotification.qml
 msgid "SFX:"
@@ -557,7 +557,7 @@ msgstr "Uppgifter"
 
 #: ../contents/ui/config/ConfigGoogleCalendar.qml
 msgid "Options"
-msgstr ""
+msgstr "Alternativ"
 
 #: ../contents/ui/config/ConfigGoogleCalendar.qml
 msgid "Event Click:"
@@ -613,7 +613,7 @@ msgstr "Det går inte att avmarkera lokal tid från verktygstipset"
 
 #: ../contents/ui/config/ConfigWeather.qml
 msgid "Data"
-msgstr ""
+msgstr "Data"
 
 #: ../contents/ui/config/ConfigWeather.qml
 msgid "API App Id:"
@@ -675,7 +675,7 @@ msgstr ""
 
 #: ../contents/ui/config/ConfigWeather.qml
 msgid "Text"
-msgstr ""
+msgstr "Text"
 
 #: ../contents/ui/config/ConfigWeather.qml
 msgid "Grid"
@@ -715,7 +715,7 @@ msgstr "Namn"
 
 #: ../contents/ui/config/OpenWeatherMapCityDialog.qml ../contents/ui/config/WeatherCanadaCityDialog.qml
 msgid "Id"
-msgstr ""
+msgstr "Identifikation"
 
 #: ../contents/ui/config/OpenWeatherMapCityDialog.qml ../contents/ui/config/WeatherCanadaCityDialog.qml
 msgid "City Webpage"

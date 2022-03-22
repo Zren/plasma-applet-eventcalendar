@@ -74,7 +74,7 @@ msgstr ""
 
 #: ../contents/ui/AgendaEventItem.qml ../contents/ui/AgendaTaskItem.qml
 msgid "Edit"
-msgstr ""
+msgstr "Edytuj"
 
 #: ../contents/ui/AgendaEventItem.qml ../contents/ui/AgendaTaskItem.qml
 msgid "Delete Event"
@@ -307,7 +307,7 @@ msgstr ""
 
 #: ../contents/ui/config/ConfigCalendar.qml
 msgid "First day of week:"
-msgstr ""
+msgstr "Pierwszy dzień tygodnia:"
 
 #: ../contents/ui/config/ConfigCalendar.qml
 msgid "Default"
@@ -556,7 +556,7 @@ msgstr ""
 
 #: ../contents/ui/config/ConfigGoogleCalendar.qml
 msgid "Options"
-msgstr ""
+msgstr "Opcje"
 
 #: ../contents/ui/config/ConfigGoogleCalendar.qml
 msgid "Event Click:"
