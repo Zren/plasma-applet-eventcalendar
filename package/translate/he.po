@@ -265,7 +265,7 @@ msgstr "צבעים"
 
 #: ../contents/ui/config/ConfigAgenda.qml
 msgid "In Progress"
-msgstr "בתהליך"
+msgstr "אירוע שמתרחש כעת"
 
 #: ../contents/ui/config/ConfigAgenda.qml
 msgid "Day Spacing:"
@@ -963,7 +963,7 @@ msgstr "אירועים שמתחילים"
 
 #: ../contents/ui/UpcomingEvents.qml
 msgid "Events In Progress"
-msgstr "אירועים בתהליך"
+msgstr "אירועים שמתרחשים כעת"
 
 #: ../contents/ui/UpcomingEvents.qml
 msgid "Upcoming Events"
