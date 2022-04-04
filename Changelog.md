@@ -1,3 +1,21 @@
+## v76 - May 3 2022
+
+* Do not show calendar border by default anymore.
+* Hide Google Calendar/Tasks headers when not logged in to not confuse
+* Optionally open google events in web month view (Pull Request #251)
+* Hide "This event was added from Goals" in event description (Pull Request #236)
+* Support Plasma 5.24 kcms (Set Formats, Language, Adjust Date and Time), and use ellipsis unicode.
+* Actually implement custom height/width in twocolumn mode (Issue #299)
+* Update hidden Advanced config
+* Remove manual LocaleInstaller which was needed for AUR installs.
+* Update i18n scripts, and reuse a couple translations from l10n.kde.org
+* Fix broken datetime format in Japanese translation by @gyu-don (Pull Request #246)
+* Add Slovenian translation by @Ugowsky (Issue #255)
+* Add Finnish translation by https://www.opendesktop.org/u/ilkant
+* Updated pt_BR translations by @Bernardozomer (Pull Request #276)
+* Add Hebrew translation by @omeritzics (Pull Request #305)
+* Updated Dutch translation by @Vistaus (Pull Request #306)
+
 ## v75 - June 1 2021
 
 * Show conference button for Google Meet and Zoom by @gaganpreet (Issue #63 and Pull Request #243)
