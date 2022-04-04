@@ -1,14 +1,14 @@
 # Translation of eventcalendar in LANGUAGE
 # Copyright (C) 2021
 # This file is distributed under the same license as the eventcalendar package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+# Omer I.S. <omeritzicschwartz@gmail.com>, 2022.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: eventcalendar\n"
 "Report-Msgid-Bugs-To: https://github.com/Zren/plasma-applet-eventcalendar\n"
 "POT-Creation-Date: 2022-03-22 18:16-0400\n"
-"PO-Revision-Date: 2022-04-05 00:29+0300\n"
+"PO-Revision-Date: 2022-04-05 00:34+0300\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: he\n"
@@ -136,7 +136,7 @@ msgstr "ננסה שוב בקרוב."
 #: ../contents/ui/config/ConfigGoogleCalendar.qml ../contents/ui/Logic.qml
 msgid ""
 "Widget has been updated. Please logout and login to Google Calendar again."
-msgstr ""
+msgstr "היישומון עודכן. נא לצאת ולהיכנס בחזרה אל Google Calendar."
 
 #: ../contents/ui/calendars/GoogleCalendarManager.qml
 msgid "Too many web requests. Will try again soon."
@@ -256,7 +256,7 @@ msgstr "הסתרת האירועים שהסתיימו"
 
 #: ../contents/ui/config/ConfigAgenda.qml
 msgid "Show all events of the current day (including completed events)"
-msgstr ""
+msgstr "הצגת כל אירועי היום הנוכחי (לרבות אירועים שהסתיימו)"
 
 #: ../contents/ui/config/ConfigAgenda.qml
 #: ../contents/ui/config/ConfigWeather.qml
@@ -398,7 +398,7 @@ msgstr "ריענון האירועים כל: "
 #: ../contents/ui/config/ConfigWeather.qml
 msgctxt "Polling interval in minutes"
 msgid "min"
-msgstr ""
+msgstr "דק׳"
 
 #: ../contents/ui/config/ConfigEvents.qml
 msgid "Notifications"
@@ -422,6 +422,7 @@ msgid ""
 "Show/Hide widgets above the calendar. Toggle Agenda/Calendar on their "
 "respective tabs."
 msgstr ""
+"הצגת/הסתרת יישומונים שמעל לוח השנה. לוח השנה וסדר היום יוצגו בלשוניות נפרדות."
 
 #: ../contents/ui/config/ConfigGeneral.qml
 msgid "Meteogram"
