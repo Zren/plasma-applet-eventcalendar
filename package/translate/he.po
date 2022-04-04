@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: eventcalendar\n"
 "Report-Msgid-Bugs-To: https://github.com/Zren/plasma-applet-eventcalendar\n"
-"POT-Creation-Date: 2021-03-13 15:06-0500\n"
-"PO-Revision-Date: 2022-04-04 20:13+0300\n"
+"POT-Creation-Date: 2022-03-22 18:16-0400\n"
+"PO-Revision-Date: 2022-04-05 00:29+0300\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: he\n"
@@ -99,7 +99,7 @@ msgstr "עריכה בדפדפן"
 #: ../contents/ui/AgendaListItem.qml
 msgctxt "agenda date format line 1"
 msgid "MMM d"
-msgstr "d ב־MMM׳"
+msgstr "d ב־MMM"
 
 #: ../contents/ui/AgendaListItem.qml
 msgctxt "agenda date format line 2"
@@ -109,7 +109,7 @@ msgstr "ddd"
 #: ../contents/ui/AgendaTaskItem.qml ../contents/ui/LocaleFuncs.js
 msgctxt "short month+date format"
 msgid "MMM d"
-msgstr "d ב־MMM׳"
+msgstr "d ב־MMM"
 
 #: ../contents/ui/calendars/CalendarManager.qml
 msgctxt "event with no summary"
@@ -140,7 +140,7 @@ msgstr ""
 
 #: ../contents/ui/calendars/GoogleCalendarManager.qml
 msgid "Too many web requests. Will try again soon."
-msgstr ""
+msgstr "יותר מדי בקשות. ננסה שוב בקרוב."
 
 #: ../contents/ui/config/ConfigAgenda.qml
 msgid "Show agenda"
@@ -228,7 +228,7 @@ msgstr "פתיחת האירוע בדפדפן"
 
 #: ../contents/ui/config/ConfigAgenda.qml
 msgid "Show multi-day events:"
-msgstr ""
+msgstr "הצגת אירועים שנפרשים על יותר מיום אחד:"
 
 #: ../contents/ui/config/ConfigAgenda.qml
 msgid "On all days"
@@ -280,9 +280,8 @@ msgid "Show calendar"
 msgstr "הצגת לוח השנה"
 
 #: ../contents/ui/config/ConfigCalendar.qml
-#, fuzzy
 msgid "Scroll to event in Agenda"
-msgstr "הצגת סדר היום"
+msgstr "גלילה לאירוע בסדר היום"
 
 #: ../contents/ui/config/ConfigCalendar.qml
 msgid "Double-click on Date:"
@@ -308,7 +307,7 @@ msgstr "כותרת החודש הנוכחי:"
 #: ../contents/ui/config/ConfigCalendar.qml ../contents/ui/MonthView.qml
 msgctxt "calendar title format for current month"
 msgid "MMMM d, yyyy"
-msgstr "ה־d ב־MMMM, yyyy"
+msgstr "ה־d MMMM, yyyy"
 
 #: ../contents/ui/config/ConfigCalendar.qml
 msgid "Show Borders"
@@ -516,11 +515,11 @@ msgstr "גלילה למטה:"
 
 #: ../contents/ui/config/ConfigGeneral.qml
 msgid "Volume (No UI) (amixer)"
-msgstr ""
+msgstr "עוצמת שמע (בלי ממשק משתמש) (amixer)"
 
 #: ../contents/ui/config/ConfigGeneral.qml
 msgid "Volume (UI) (qdbus)"
-msgstr ""
+msgstr "עוצמת שמע (עם ממשק משתמש) (qdbus)"
 
 #: ../contents/ui/config/ConfigGeneral.qml
 msgid "Desktop Widget: Show background"
@@ -560,7 +559,7 @@ msgid ""
 "give permission to access your calendar, it will give you a code to paste "
 "below."
 msgstr ""
-"נא לפתוח את <a href=\"%1\">%2</a> (הקישור ייפתח בדפדפן האינטרנט שלך). לאחר "
+"נא לפתוח את <a href=\"%1\">%2</a> (הקישור ייפתח בדפדפן האינטרנט). לאחר "
 "הכניסה והענקת הרשאת הגישה ללוח השנה, יינתן לך קוד שיהיה אפשר להדביק למטה."
 
 #: ../contents/ui/config/ConfigGoogleCalendar.qml
@@ -591,6 +590,26 @@ msgstr "ריענון"
 #: ../contents/ui/config/ConfigGoogleCalendar.qml
 msgid "Tasks"
 msgstr "משימות"
+
+#: ../contents/ui/config/ConfigGoogleCalendar.qml
+msgid "Options"
+msgstr "אפשרויות"
+
+#: ../contents/ui/config/ConfigGoogleCalendar.qml
+msgid "Event Click:"
+msgstr "לחיצה על אירוע:"
+
+#: ../contents/ui/config/ConfigGoogleCalendar.qml
+msgid "Open Web Event View"
+msgstr "פתיחת תצוגת האירוע ברשת"
+
+#: ../contents/ui/config/ConfigGoogleCalendar.qml
+msgid "Open Web Month View"
+msgstr "פתיחת תצוגת השבוע ברשת"
+
+#: ../contents/ui/config/ConfigGoogleCalendar.qml
+msgid "Hide \"This event was added from Goals in Google Calendar\" description"
+msgstr "הסתרת התיאור \"אירוע זה נוסף מהמטרות שב־Google Calendar\""
 
 #: ../contents/ui/config/ConfigICal.qml
 msgid "Add Calendar"
@@ -754,7 +773,7 @@ msgstr "פתיחת הקישור"
 #: ../contents/ui/DateTimeSelector.qml
 msgctxt "event editor date format"
 msgid "d MMM, yyyy"
-msgstr "d ב־MMM׳, yyyy"
+msgstr "d ב־MMM, yyyy"
 
 #: ../contents/ui/DurationSelector.qml
 msgid "to"
