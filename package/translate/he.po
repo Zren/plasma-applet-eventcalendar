@@ -1,4 +1,4 @@
-# Translation of eventcalendar in LANGUAGE
+# Translation of eventcalendar in Hebrew
 # Copyright (C) 2021
 # This file is distributed under the same license as the eventcalendar package.
 # Omer I.S. <omeritzicschwartz@gmail.com>, 2022.
@@ -446,9 +446,8 @@ msgid "Time Format"
 msgstr "תבנית שעה"
 
 #: ../contents/ui/config/ConfigGeneral.qml
-#, fuzzy
 msgid "Time Format Documentation"
-msgstr "תבנית שעה"
+msgstr "תיעוד תבניות השעה"
 
 #: ../contents/ui/config/ConfigGeneral.qml
 msgid ""
