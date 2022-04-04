@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: eventcalendar\n"
 "Report-Msgid-Bugs-To: https://github.com/Zren/plasma-applet-eventcalendar\n"
-"POT-Creation-Date: 2021-03-13 15:06-0500\n"
+"POT-Creation-Date: 2022-03-22 18:16-0400\n"
 "PO-Revision-Date: 2020-11-12 19:45+0100\n"
 "Last-Translator: Guido Mazzone <guido.mazzone93@outlook.it>\n"
 "Language-Team: Italian <guido.mazzone93@outlook.it>\n"
@@ -554,6 +554,26 @@ msgstr "Aggiorna"
 #: ../contents/ui/config/ConfigGoogleCalendar.qml
 msgid "Tasks"
 msgstr "Task"
+
+#: ../contents/ui/config/ConfigGoogleCalendar.qml
+msgid "Options"
+msgstr "Opzioni"
+
+#: ../contents/ui/config/ConfigGoogleCalendar.qml
+msgid "Event Click:"
+msgstr ""
+
+#: ../contents/ui/config/ConfigGoogleCalendar.qml
+msgid "Open Web Event View"
+msgstr ""
+
+#: ../contents/ui/config/ConfigGoogleCalendar.qml
+msgid "Open Web Month View"
+msgstr ""
+
+#: ../contents/ui/config/ConfigGoogleCalendar.qml
+msgid "Hide \"This event was added from Goals in Google Calendar\" description"
+msgstr ""
 
 #: ../contents/ui/config/ConfigICal.qml
 msgid "Add Calendar"

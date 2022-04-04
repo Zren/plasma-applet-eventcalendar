@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: eventcalendar\n"
 "Report-Msgid-Bugs-To: https://github.com/Zren/plasma-applet-eventcalendar\n"
-"POT-Creation-Date: 2021-03-13 15:06-0500\n"
+"POT-Creation-Date: 2022-03-22 18:16-0400\n"
 "PO-Revision-Date: 2017-10-31 20:08+0200\n"
 "Last-Translator: Serhii Golovko <cappelikan@gmail.com>\n"
 "Language-Team: \n"
@@ -51,7 +51,7 @@ msgstr "Порядок денний"
 
 #: ../contents/config/config.qml
 msgid "Events"
-msgstr ""
+msgstr "Події"
 
 #: ../contents/config/config.qml ../contents/ui/config/ConfigEvents.qml
 msgid "ICalendar (.ics)"
@@ -80,7 +80,7 @@ msgstr ""
 
 #: ../contents/ui/AgendaEventItem.qml ../contents/ui/AgendaTaskItem.qml
 msgid "Edit"
-msgstr ""
+msgstr "Змінити"
 
 #: ../contents/ui/AgendaEventItem.qml ../contents/ui/AgendaTaskItem.qml
 msgid "Delete Event"
@@ -176,11 +176,11 @@ msgstr ""
 
 #: ../contents/ui/config/ConfigAgenda.qml
 msgid "Left"
-msgstr ""
+msgstr "Ліворуч"
 
 #: ../contents/ui/config/ConfigAgenda.qml
 msgid "Right"
-msgstr ""
+msgstr "Праворуч"
 
 #: ../contents/ui/config/ConfigAgenda.qml
 msgid "Click Weather:"
@@ -320,7 +320,7 @@ msgstr ""
 
 #: ../contents/ui/config/ConfigCalendar.qml
 msgid "First day of week:"
-msgstr ""
+msgstr "Перший день тижня:"
 
 #: ../contents/ui/config/ConfigCalendar.qml
 msgid "Default"
@@ -588,6 +588,26 @@ msgstr "Оновити"
 msgid "Tasks"
 msgstr ""
 
+#: ../contents/ui/config/ConfigGoogleCalendar.qml
+msgid "Options"
+msgstr "Параметри"
+
+#: ../contents/ui/config/ConfigGoogleCalendar.qml
+msgid "Event Click:"
+msgstr ""
+
+#: ../contents/ui/config/ConfigGoogleCalendar.qml
+msgid "Open Web Event View"
+msgstr ""
+
+#: ../contents/ui/config/ConfigGoogleCalendar.qml
+msgid "Open Web Month View"
+msgstr ""
+
+#: ../contents/ui/config/ConfigGoogleCalendar.qml
+msgid "Hide \"This event was added from Goals in Google Calendar\" description"
+msgstr ""
+
 #: ../contents/ui/config/ConfigICal.qml
 msgid "Add Calendar"
 msgstr "Додати календар"
@@ -774,7 +794,7 @@ msgstr "Зберегти"
 #: ../contents/ui/EditEventForm.qml ../contents/ui/EditTaskForm.qml
 #: ../contents/ui/TimerInputView.qml
 msgid "&Cancel"
-msgstr ""
+msgstr "&Скасувати"
 
 #: ../contents/ui/EditTaskForm.qml
 msgid "Add due date"

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: eventcalendar\n"
 "Report-Msgid-Bugs-To: https://github.com/Zren/plasma-applet-eventcalendar\n"
-"POT-Creation-Date: 2021-03-13 15:06-0500\n"
+"POT-Creation-Date: 2022-03-22 18:16-0400\n"
 "PO-Revision-Date: 2021-10-19 20:30-0300\n"
 "Last-Translator: Bernardo Barzotto Zomer <bernardobarzottoz@gmail.com>\n"
 "Language-Team: Portuguese <kde-i18n-pt_BR@kde.org>\n"
@@ -27,7 +27,8 @@ msgstr "Calendário de eventos"
 msgid ""
 "Plasmoid for a calendar+agenda with weather that syncs to Google Calendar."
 msgstr ""
-"Plasmoide para um calendário e agenda com informações do clima que sincroniza com o Google Agenda."
+"Plasmoide para um calendário e agenda com informações do clima que "
+"sincroniza com o Google Agenda."
 
 #: ../contents/config/config.qml
 msgid "General"
@@ -135,7 +136,8 @@ msgstr "Uma nova tentativa será feita em breve."
 msgid ""
 "Widget has been updated. Please logout and login to Google Calendar again."
 msgstr ""
-"O widget foi atualizado. Por favor se desconecte do Google Agenda e então entre novamente."
+"O widget foi atualizado. Por favor se desconecte do Google Agenda e então "
+"entre novamente."
 
 #: ../contents/ui/calendars/GoogleCalendarManager.qml
 msgid "Too many web requests. Will try again soon."
@@ -419,8 +421,8 @@ msgid ""
 "Show/Hide widgets above the calendar. Toggle Agenda/Calendar on their "
 "respective tabs."
 msgstr ""
-"Mostrar ou ocultar widgets acima do calendário. Alternar entre Agenda "
-"e Calendário em suas respectivas guias."
+"Mostrar ou ocultar widgets acima do calendário. Alternar entre Agenda e "
+"Calendário em suas respectivas guias."
 
 #: ../contents/ui/config/ConfigGeneral.qml
 msgid "Meteogram"
@@ -453,9 +455,9 @@ msgid ""
 "with small text. Try using the Sans Serif font if you find the text too "
 "small when adding a second line."
 msgstr ""
-"A fonte padrão para o tema Breeze é a Noto Sans, que é difícil de ler usando um "
-"tamanho de fonte pequena. Caso o texto fique muito pequeno ao adicionar uma "
-"linha, tente usar a fonte Sans Serif."
+"A fonte padrão para o tema Breeze é a Noto Sans, que é difícil de ler usando "
+"um tamanho de fonte pequena. Caso o texto fique muito pequeno ao adicionar "
+"uma linha, tente usar a fonte Sans Serif."
 
 #: ../contents/ui/config/ConfigGeneral.qml
 msgid ""
@@ -592,6 +594,26 @@ msgstr "Atualizar"
 #: ../contents/ui/config/ConfigGoogleCalendar.qml
 msgid "Tasks"
 msgstr "Tarefas"
+
+#: ../contents/ui/config/ConfigGoogleCalendar.qml
+msgid "Options"
+msgstr "Opções"
+
+#: ../contents/ui/config/ConfigGoogleCalendar.qml
+msgid "Event Click:"
+msgstr ""
+
+#: ../contents/ui/config/ConfigGoogleCalendar.qml
+msgid "Open Web Event View"
+msgstr ""
+
+#: ../contents/ui/config/ConfigGoogleCalendar.qml
+msgid "Open Web Month View"
+msgstr ""
+
+#: ../contents/ui/config/ConfigGoogleCalendar.qml
+msgid "Hide \"This event was added from Goals in Google Calendar\" description"
+msgstr ""
 
 #: ../contents/ui/config/ConfigICal.qml
 msgid "Add Calendar"

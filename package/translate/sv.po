@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: eventcalendar\n"
 "Report-Msgid-Bugs-To: https://github.com/Zren/plasma-applet-eventcalendar\n"
-"POT-Creation-Date: 2021-03-13 15:06-0500\n"
+"POT-Creation-Date: 2022-03-22 18:16-0400\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: Mathias <EMAIL@ADDRESS>\n"
 "Language-Team: Swedish <LL@li.org>\n"
@@ -409,7 +409,7 @@ msgstr ""
 
 #: ../contents/ui/config/ConfigGeneral.qml ../contents/ui/TimerModel.qml
 msgid "Timer"
-msgstr ""
+msgstr "Stoppur"
 
 #: ../contents/ui/config/ConfigGeneral.qml ../contents/ui/lib/ConfigNotification.qml
 msgid "SFX:"
@@ -555,6 +555,26 @@ msgstr "Uppdatera"
 msgid "Tasks"
 msgstr "Uppgifter"
 
+#: ../contents/ui/config/ConfigGoogleCalendar.qml
+msgid "Options"
+msgstr "Alternativ"
+
+#: ../contents/ui/config/ConfigGoogleCalendar.qml
+msgid "Event Click:"
+msgstr ""
+
+#: ../contents/ui/config/ConfigGoogleCalendar.qml
+msgid "Open Web Event View"
+msgstr ""
+
+#: ../contents/ui/config/ConfigGoogleCalendar.qml
+msgid "Open Web Month View"
+msgstr ""
+
+#: ../contents/ui/config/ConfigGoogleCalendar.qml
+msgid "Hide \"This event was added from Goals in Google Calendar\" description"
+msgstr ""
+
 #: ../contents/ui/config/ConfigICal.qml
 msgid "Add Calendar"
 msgstr "Lägg till kalender"
@@ -593,7 +613,7 @@ msgstr "Det går inte att avmarkera lokal tid från verktygstipset"
 
 #: ../contents/ui/config/ConfigWeather.qml
 msgid "Data"
-msgstr ""
+msgstr "Data"
 
 #: ../contents/ui/config/ConfigWeather.qml
 msgid "API App Id:"
@@ -655,7 +675,7 @@ msgstr ""
 
 #: ../contents/ui/config/ConfigWeather.qml
 msgid "Text"
-msgstr ""
+msgstr "Text"
 
 #: ../contents/ui/config/ConfigWeather.qml
 msgid "Grid"
@@ -695,7 +715,7 @@ msgstr "Namn"
 
 #: ../contents/ui/config/OpenWeatherMapCityDialog.qml ../contents/ui/config/WeatherCanadaCityDialog.qml
 msgid "Id"
-msgstr ""
+msgstr "Identifikation"
 
 #: ../contents/ui/config/OpenWeatherMapCityDialog.qml ../contents/ui/config/WeatherCanadaCityDialog.qml
 msgid "City Webpage"
