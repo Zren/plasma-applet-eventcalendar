@@ -202,9 +202,8 @@ msgid "Open New Event In Browser"
 msgstr "פתיחת אירוע חדש בדפדפן"
 
 #: ../contents/ui/config/ConfigAgenda.qml
-#, fuzzy
 msgid "Open New Event Form"
-msgstr "פתח כתמונה חדשה"
+msgstr "פתיחת דו־שיח מקומי ליצירת אירועים"
 
 #: ../contents/ui/config/ConfigAgenda.qml
 msgid "Event description"
@@ -240,7 +239,7 @@ msgstr "ביום הראשון וביום הנוכחי בלבד"
 
 #: ../contents/ui/config/ConfigAgenda.qml
 msgid "Remember selected calendar in New Event Form"
-msgstr ""
+msgstr "זכירת לוח השנה הנבחר בדו־שיח יצירת האירועים החדשים"
 
 #: ../contents/ui/config/ConfigAgenda.qml
 msgid "Current Month"
