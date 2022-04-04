@@ -154,11 +154,11 @@ msgstr "גודל גופן:"
 #: ../contents/ui/config/ConfigGeneral.qml
 #: ../contents/ui/config/ConfigLayout.qml
 msgid "px"
-msgstr "פיקסלים"
+msgstr " פיקסלים"
 
 #: ../contents/ui/config/ConfigAgenda.qml
 msgid " (0px = <b>System Settings > Fonts > General</b>)"
-msgstr " (0px = <b>הגדרות מערכת > גופנים > כללי</b>)"
+msgstr " (0 פיקסלים = <b>הגדרות מערכת > גופנים > כללי</b>)"
 
 #: ../contents/ui/config/ConfigAgenda.qml
 msgid "Weather Icon"
@@ -476,7 +476,7 @@ msgstr "גובה שעון קבוע: "
 
 #: ../contents/ui/config/ConfigGeneral.qml
 msgid " (0px = scale to fit)"
-msgstr " (0px = שינוי קנה מידה להתאמה)"
+msgstr " (0 פיקסלים = שינוי קנה מידה להתאמה)"
 
 #: ../contents/ui/config/ConfigGeneral.qml
 msgid "Line 1:"
