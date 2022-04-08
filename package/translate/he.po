@@ -1,0 +1,974 @@
+# Translation of eventcalendar in Hebrew
+# Copyright (C) 2021
+# This file is distributed under the same license as the eventcalendar package.
+# Omer I.S. <omeritzicschwartz@gmail.com>, 2022.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: eventcalendar\n"
+"Report-Msgid-Bugs-To: https://github.com/Zren/plasma-applet-eventcalendar\n"
+"POT-Creation-Date: 2022-03-22 18:16-0400\n"
+"PO-Revision-Date: 2022-04-05 00:34+0300\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: he\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=4; plural=(n==1 ? 0 : n==2 ? 1 : n>10 && n%10==0 ? "
+"2 : 3);\n"
+"X-Generator: Poedit 3.0.1\n"
+
+#: ../metadata.desktop ../contents/ui/AgendaView.qml
+#: ../contents/ui/UpcomingEvents.qml
+msgid "Event Calendar"
+msgstr "לוח שנה עם אירועים"
+
+#: ../metadata.desktop
+msgid ""
+"Plasmoid for a calendar+agenda with weather that syncs to Google Calendar."
+msgstr ""
+"יישומון לוח שנה וסדר יום שמסתנכרן עם Google Calendar ועם גישה ישירה לתחזית "
+"מזג האוויר."
+
+#: ../contents/config/config.qml
+msgid "General"
+msgstr "כללי"
+
+#: ../contents/config/config.qml
+msgid "Layout"
+msgstr "פריסה"
+
+#: ../contents/config/config.qml
+msgid "Timezones"
+msgstr "אזורי זמן"
+
+#: ../contents/config/config.qml ../contents/ui/UpcomingEvents.qml
+msgid "Calendar"
+msgstr "לוח שנה"
+
+#: ../contents/config/config.qml
+msgid "Agenda"
+msgstr "סדר יום"
+
+#: ../contents/config/config.qml
+msgid "Events"
+msgstr "אירועים"
+
+#: ../contents/config/config.qml ../contents/ui/config/ConfigEvents.qml
+msgid "ICalendar (.ics)"
+msgstr "ICalendar (.ics)"
+
+#: ../contents/config/config.qml ../contents/ui/config/ConfigEvents.qml
+msgid "Google Calendar"
+msgstr "Google Calendar"
+
+#: ../contents/config/config.qml
+msgid "Weather"
+msgstr "מזג האוויר"
+
+#: ../contents/config/config.qml
+msgid "Advanced"
+msgstr "מתקדם"
+
+#: ../contents/ui/AgendaEventItem.qml ../contents/ui/EditEventForm.qml
+#: ../contents/ui/LocaleFuncs.js
+msgid "All Day"
+msgstr "כל היום"
+
+#: ../contents/ui/AgendaEventItem.qml
+msgid "Hangout"
+msgstr "בילוי"
+
+#: ../contents/ui/AgendaEventItem.qml ../contents/ui/AgendaTaskItem.qml
+msgid "Edit"
+msgstr "עריכה"
+
+#: ../contents/ui/AgendaEventItem.qml ../contents/ui/AgendaTaskItem.qml
+msgid "Delete Event"
+msgstr "מחיקת האירוע"
+
+#: ../contents/ui/AgendaEventItem.qml ../contents/ui/AgendaTaskItem.qml
+msgid "Confirm Deletion"
+msgstr "אישור מחיקה"
+
+#: ../contents/ui/AgendaEventItem.qml ../contents/ui/AgendaTaskItem.qml
+msgid "Edit in browser"
+msgstr "עריכה בדפדפן"
+
+#: ../contents/ui/AgendaListItem.qml
+msgctxt "agenda date format line 1"
+msgid "MMM d"
+msgstr "d ב־MMM"
+
+#: ../contents/ui/AgendaListItem.qml
+msgctxt "agenda date format line 2"
+msgid "ddd"
+msgstr "ddd"
+
+#: ../contents/ui/AgendaTaskItem.qml ../contents/ui/LocaleFuncs.js
+msgctxt "short month+date format"
+msgid "MMM d"
+msgstr "d ב־MMM"
+
+#: ../contents/ui/calendars/CalendarManager.qml
+msgctxt "event with no summary"
+msgid "(No title)"
+msgstr "(אין כותרת)"
+
+#: ../contents/ui/CalendarSelector.qml
+msgid "[No Calendars]"
+msgstr "[אין לוחות שנה]"
+
+#: ../contents/ui/calendars/GoogleCalendarManager.qml ../contents/ui/Logic.qml
+msgid "HTTP Error %1: %2"
+msgstr "שגיאת HTTP‏ %1:‏ %2"
+
+#: ../contents/ui/calendars/GoogleCalendarManager.qml ../contents/ui/Logic.qml
+msgid "Could not connect"
+msgstr "לא היה ניתן להתחבר"
+
+#: ../contents/ui/calendars/GoogleCalendarManager.qml ../contents/ui/Logic.qml
+msgid "Will try again soon."
+msgstr "ננסה שוב בקרוב."
+
+#: ../contents/ui/calendars/GoogleCalendarManager.qml
+#: ../contents/ui/config/ConfigGoogleCalendar.qml ../contents/ui/Logic.qml
+msgid ""
+"Widget has been updated. Please logout and login to Google Calendar again."
+msgstr "היישומון עודכן. נא לצאת ולהיכנס בחזרה אל Google Calendar."
+
+#: ../contents/ui/calendars/GoogleCalendarManager.qml
+msgid "Too many web requests. Will try again soon."
+msgstr "יותר מדי בקשות. ננסה שוב בקרוב."
+
+#: ../contents/ui/config/ConfigAgenda.qml
+msgid "Show agenda"
+msgstr "הצגת סדר היום"
+
+#: ../contents/ui/config/ConfigAgenda.qml
+msgid "Font Size:"
+msgstr "גודל גופן:"
+
+#: ../contents/ui/config/ConfigAgenda.qml
+#: ../contents/ui/config/ConfigGeneral.qml
+#: ../contents/ui/config/ConfigLayout.qml
+msgid "px"
+msgstr " פיקסלים"
+
+#: ../contents/ui/config/ConfigAgenda.qml
+msgid " (0px = <b>System Settings > Fonts > General</b>)"
+msgstr " (0 פיקסלים = <b>הגדרות מערכת > גופנים > כללי</b>)"
+
+#: ../contents/ui/config/ConfigAgenda.qml
+msgid "Weather Icon"
+msgstr "סמל מזג האוויר"
+
+#: ../contents/ui/config/ConfigAgenda.qml
+msgid "Icon Outline"
+msgstr "קו מתאר לסמל"
+
+#: ../contents/ui/config/ConfigAgenda.qml
+msgid "Weather Text"
+msgstr "טקסט למזג האוויר"
+
+#: ../contents/ui/config/ConfigAgenda.qml
+msgid "Position:"
+msgstr "מיקום:"
+
+#: ../contents/ui/config/ConfigAgenda.qml
+msgid "Left"
+msgstr "ימין"
+
+#: ../contents/ui/config/ConfigAgenda.qml
+msgid "Right"
+msgstr "שמאל"
+
+#: ../contents/ui/config/ConfigAgenda.qml
+msgid "Click Weather:"
+msgstr "לחיצה על מזג האוויר:"
+
+#: ../contents/ui/config/ConfigAgenda.qml
+msgid "Open City Forecast In Browser"
+msgstr "פתיחת התחזית לעיר בדפדפן"
+
+#: ../contents/ui/config/ConfigAgenda.qml
+#: ../contents/ui/config/ConfigCalendar.qml
+msgid "Click Date:"
+msgstr "לחיצה על תאריך:"
+
+#: ../contents/ui/config/ConfigAgenda.qml
+msgid "Open New Event In Browser"
+msgstr "פתיחת אירוע חדש בדפדפן"
+
+#: ../contents/ui/config/ConfigAgenda.qml
+msgid "Open New Event Form"
+msgstr "פתיחת דו־שיח מקומי ליצירת אירועים"
+
+#: ../contents/ui/config/ConfigAgenda.qml
+msgid "Event description"
+msgstr "תיאור האירוע"
+
+#: ../contents/ui/config/ConfigAgenda.qml
+msgid "Hide 'All Day' text"
+msgstr "הסתרת טקסט \"כל היום\""
+
+#: ../contents/ui/config/ConfigAgenda.qml
+msgid "Google Hangouts link"
+msgstr "קישור ל־Google Hangouts"
+
+#: ../contents/ui/config/ConfigAgenda.qml
+msgid "Click Event:"
+msgstr "לחיצה על אירוע:"
+
+#: ../contents/ui/config/ConfigAgenda.qml
+msgid "Open Event In Browser"
+msgstr "פתיחת האירוע בדפדפן"
+
+#: ../contents/ui/config/ConfigAgenda.qml
+msgid "Show multi-day events:"
+msgstr "הצגת אירועים שנפרשים על יותר מיום אחד:"
+
+#: ../contents/ui/config/ConfigAgenda.qml
+msgid "On all days"
+msgstr "בכל הימים"
+
+#: ../contents/ui/config/ConfigAgenda.qml
+msgid "Only on the first and current day"
+msgstr "ביום הראשון וביום הנוכחי בלבד"
+
+#: ../contents/ui/config/ConfigAgenda.qml
+msgid "Remember selected calendar in New Event Form"
+msgstr "זכירת לוח השנה הנבחר בדו־שיח יצירת האירועים החדשים"
+
+#: ../contents/ui/config/ConfigAgenda.qml
+msgid "Current Month"
+msgstr "החודש הנוכחי"
+
+#: ../contents/ui/config/ConfigAgenda.qml
+msgid "Always show next 14 days"
+msgstr "תמיד להציג את השבועיים הבאים"
+
+#: ../contents/ui/config/ConfigAgenda.qml
+msgid "Hide completed events"
+msgstr "הסתרת האירועים שהסתיימו"
+
+#: ../contents/ui/config/ConfigAgenda.qml
+msgid "Show all events of the current day (including completed events)"
+msgstr "הצגת כל אירועי היום הנוכחי (לרבות אירועים שהסתיימו)"
+
+#: ../contents/ui/config/ConfigAgenda.qml
+#: ../contents/ui/config/ConfigWeather.qml
+msgid "Colors"
+msgstr "צבעים"
+
+#: ../contents/ui/config/ConfigAgenda.qml
+msgid "In Progress"
+msgstr "אירוע שמתרחש כעת"
+
+#: ../contents/ui/config/ConfigAgenda.qml
+msgid "Day Spacing:"
+msgstr "מרווח בין ימים:"
+
+#: ../contents/ui/config/ConfigAgenda.qml
+msgid "Event Spacing:"
+msgstr "מרווח בין אירועים:"
+
+#: ../contents/ui/config/ConfigCalendar.qml
+msgid "Show calendar"
+msgstr "הצגת לוח השנה"
+
+#: ../contents/ui/config/ConfigCalendar.qml
+msgid "Scroll to event in Agenda"
+msgstr "גלילה לאירוע בסדר היום"
+
+#: ../contents/ui/config/ConfigCalendar.qml
+msgid "Double-click on Date:"
+msgstr "לחיצה כפולה על תאריך:"
+
+#: ../contents/ui/config/ConfigCalendar.qml
+msgid "New Google Calendar Event (Web Browser)"
+msgstr "אירוע חדש ב־Google Calendar (בדפדפן האינטרנט)"
+
+#: ../contents/ui/config/ConfigCalendar.qml
+msgid "Do Nothing"
+msgstr "לא לעשות דבר"
+
+#: ../contents/ui/config/ConfigCalendar.qml
+#: ../contents/ui/config/ConfigWeather.qml
+msgid "Style"
+msgstr "סגנון"
+
+#: ../contents/ui/config/ConfigCalendar.qml
+msgid "Current Month Title:"
+msgstr "כותרת החודש הנוכחי:"
+
+#: ../contents/ui/config/ConfigCalendar.qml ../contents/ui/MonthView.qml
+msgctxt "calendar title format for current month"
+msgid "MMMM d, yyyy"
+msgstr "ה־d MMMM, yyyy"
+
+#: ../contents/ui/config/ConfigCalendar.qml
+msgid "Show Borders"
+msgstr "הצגת גבולות"
+
+#: ../contents/ui/config/ConfigCalendar.qml
+msgid "Show Week Numbers"
+msgstr "הצגת ימי השבוע"
+
+#: ../contents/ui/config/ConfigCalendar.qml
+msgid "Highlight Current Day / Week"
+msgstr "סימון היום או השבוע הנוכחי"
+
+#: ../contents/ui/config/ConfigCalendar.qml
+msgid "First day of week:"
+msgstr "היום הראשון בשבוע:"
+
+#: ../contents/ui/config/ConfigCalendar.qml
+msgid "Default"
+msgstr "ברירת מחדל"
+
+#: ../contents/ui/config/ConfigCalendar.qml
+msgid "Event Badge:"
+msgstr "תווית אירוע:"
+
+#: ../contents/ui/config/ConfigCalendar.qml
+msgid "Theme"
+msgstr "ערכות הנושא"
+
+#: ../contents/ui/config/ConfigCalendar.qml
+msgid "Dots (3 Maximum)"
+msgstr "נקודות (עד 3)"
+
+#: ../contents/ui/config/ConfigCalendar.qml
+msgid "Bottom Bar (Event Color)"
+msgstr "שורה תחתונה (צבע אירוע)"
+
+#: ../contents/ui/config/ConfigCalendar.qml
+msgid "Bottom Bar (Highlight)"
+msgstr "שורה תחתונה (סימון)"
+
+#: ../contents/ui/config/ConfigCalendar.qml
+msgid "Count"
+msgstr "כמות"
+
+#: ../contents/ui/config/ConfigCalendar.qml
+msgid "Radius:"
+msgstr "רדיוס:"
+
+#: ../contents/ui/config/ConfigCalendar.qml
+msgid "Selected:"
+msgstr "נבחרו:"
+
+#: ../contents/ui/config/ConfigCalendar.qml
+msgid "Solid Color (Highlight)"
+msgstr "צבע אחיד (מודגש)"
+
+#: ../contents/ui/config/ConfigCalendar.qml
+msgid "Today:"
+msgstr "היום:"
+
+#: ../contents/ui/config/ConfigCalendar.qml
+msgid "Solid Color (Inverted)"
+msgstr "צבע אחיד (הפוך)"
+
+#: ../contents/ui/config/ConfigCalendar.qml
+msgid "Big Number"
+msgstr "ספרות גדולות"
+
+#: ../contents/ui/config/ConfigEvents.qml
+msgid "Event Calendar Plugins"
+msgstr "תוספי לוח שנה עם אירועים"
+
+#: ../contents/ui/config/ConfigEvents.qml
+msgid "Plasma Calendar Plugins"
+msgstr "תוספי לוח שנה ל־‏Plasma"
+
+#: ../contents/ui/config/ConfigEvents.qml
+#: ../contents/ui/config/ConfigGeneral.qml
+msgid "Misc"
+msgstr "שונות"
+
+#: ../contents/ui/config/ConfigEvents.qml
+msgid "Refresh events every: "
+msgstr "ריענון האירועים כל: "
+
+#: ../contents/ui/config/ConfigEvents.qml
+#: ../contents/ui/config/ConfigWeather.qml
+msgctxt "Polling interval in minutes"
+msgid "min"
+msgstr "דק׳"
+
+#: ../contents/ui/config/ConfigEvents.qml
+msgid "Notifications"
+msgstr "התראות"
+
+#: ../contents/ui/config/ConfigEvents.qml
+msgid "Event Reminder"
+msgstr "תזכורות לאירועים"
+
+#: ../contents/ui/config/ConfigEvents.qml
+#, fuzzy
+msgid "Event Starting"
+msgstr "מתחיל בעוד %1"
+
+#: ../contents/ui/config/ConfigGeneral.qml
+msgid "Widgets"
+msgstr "יישומונים"
+
+#: ../contents/ui/config/ConfigGeneral.qml
+msgid ""
+"Show/Hide widgets above the calendar. Toggle Agenda/Calendar on their "
+"respective tabs."
+msgstr ""
+"הצגת/הסתרת יישומונים שמעל לוח השנה. לוח השנה וסדר היום יוצגו בלשוניות נפרדות."
+
+#: ../contents/ui/config/ConfigGeneral.qml
+msgid "Meteogram"
+msgstr "תחזית"
+
+#: ../contents/ui/config/ConfigGeneral.qml ../contents/ui/TimerModel.qml
+msgid "Timer"
+msgstr "טיימר"
+
+#: ../contents/ui/config/ConfigGeneral.qml
+#: ../contents/ui/lib/ConfigNotification.qml
+msgid "SFX:"
+msgstr ""
+
+#: ../contents/ui/config/ConfigGeneral.qml
+msgid "Clock"
+msgstr "שעון"
+
+#: ../contents/ui/config/ConfigGeneral.qml
+msgid "Time Format"
+msgstr "תבנית שעה"
+
+#: ../contents/ui/config/ConfigGeneral.qml
+msgid "Time Format Documentation"
+msgstr "תיעוד תבניות השעה"
+
+#: ../contents/ui/config/ConfigGeneral.qml
+msgid ""
+"The default font for the Breeze theme is Noto Sans which is hard to read "
+"with small text. Try using the Sans Serif font if you find the text too "
+"small when adding a second line."
+msgstr ""
+"גופן ברירת המחדל לערכת הנושא Breeze הוא Noto Sans הקשה לקריאה בטקסט קטן. "
+"כדאי לנסות להשתמש בפונט סאן־סריפי אם הטקסט קטן מדי בשבילך בעת הוספת שורה "
+"שנייה."
+
+#: ../contents/ui/config/ConfigGeneral.qml
+msgid ""
+"You can also use %1 or %2 to style a section. Note the single quotes around "
+"the tags are used to bypass the time format."
+msgstr ""
+
+#: ../contents/ui/config/ConfigGeneral.qml
+msgid "Font:"
+msgstr "גופן:"
+
+#: ../contents/ui/config/ConfigGeneral.qml
+msgid "Fixed Clock Height: "
+msgstr "גובה שעון קבוע: "
+
+#: ../contents/ui/config/ConfigGeneral.qml
+msgid " (0px = scale to fit)"
+msgstr " (0 פיקסלים = שינוי קנה מידה להתאמה)"
+
+#: ../contents/ui/config/ConfigGeneral.qml
+msgid "Line 1:"
+msgstr "שורה 1:"
+
+#: ../contents/ui/config/ConfigGeneral.qml
+msgid "Preset:"
+msgstr "מערך:"
+
+#: ../contents/ui/config/ConfigGeneral.qml
+msgid "Bold"
+msgstr "מודגש"
+
+#: ../contents/ui/config/ConfigGeneral.qml
+msgid "Line 2:"
+msgstr "שורה 2:"
+
+#: ../contents/ui/config/ConfigGeneral.qml
+msgid "Height:"
+msgstr "גובה:"
+
+#: ../contents/ui/config/ConfigGeneral.qml
+msgid "Mouse Wheel"
+msgstr "גלגלת העכבר"
+
+#: ../contents/ui/config/ConfigGeneral.qml
+msgid "Run Commands"
+msgstr "הרצת פקודות"
+
+#: ../contents/ui/config/ConfigGeneral.qml
+msgid "Scroll Up:"
+msgstr "גלילה למעלה:"
+
+#: ../contents/ui/config/ConfigGeneral.qml
+msgid "Scroll Down:"
+msgstr "גלילה למטה:"
+
+#: ../contents/ui/config/ConfigGeneral.qml
+msgid "Volume (No UI) (amixer)"
+msgstr "עוצמת שמע (בלי ממשק משתמש) (amixer)"
+
+#: ../contents/ui/config/ConfigGeneral.qml
+msgid "Volume (UI) (qdbus)"
+msgstr "עוצמת שמע (עם ממשק משתמש) (qdbus)"
+
+#: ../contents/ui/config/ConfigGeneral.qml
+msgid "Desktop Widget: Show background"
+msgstr "יישומון לשולחן העבודה: הצגת הרקע"
+
+#: ../contents/ui/config/ConfigGeneral.qml
+msgid "Debugging"
+msgstr "ניפוי שגיאות"
+
+#: ../contents/ui/config/ConfigGeneral.qml
+msgid "Debugging will log sensitive information to:"
+msgstr "ניפוי השגיאות ירשום מידע רגיש בקובץ:"
+
+#: ../contents/ui/config/ConfigGeneral.qml
+msgid "Enable Debugging"
+msgstr "הפעלת ניפוי שגיאות"
+
+#: ../contents/ui/config/ConfigGoogleCalendar.qml
+msgid "Login"
+msgstr "כניסה"
+
+#: ../contents/ui/config/ConfigGoogleCalendar.qml
+msgid "Currently Synched."
+msgstr "כרגע מסונכרן."
+
+#: ../contents/ui/config/ConfigGoogleCalendar.qml
+msgid "Logout"
+msgstr "יציאה"
+
+#: ../contents/ui/config/ConfigGoogleCalendar.qml
+msgid "To sync with Google Calendar"
+msgstr "לסנכרון עם Google Calendar"
+
+#: ../contents/ui/config/ConfigGoogleCalendar.qml
+msgid ""
+"Visit <a href=\"%1\">%2</a> (opens in your web browser). After you login and "
+"give permission to access your calendar, it will give you a code to paste "
+"below."
+msgstr ""
+"נא לפתוח את <a href=\"%1\">%2</a> (הקישור ייפתח בדפדפן האינטרנט). לאחר "
+"הכניסה והענקת הרשאת הגישה ללוח השנה, יינתן לך קוד שיהיה אפשר להדביק למטה."
+
+#: ../contents/ui/config/ConfigGoogleCalendar.qml
+msgid "Copy Link"
+msgstr "העתקת הקישור"
+
+#: ../contents/ui/config/ConfigGoogleCalendar.qml
+msgid "Enter code here (Eg: %1)"
+msgstr "נא לציין את הקוד כאן (למשל: %1)"
+
+#: ../contents/ui/config/ConfigGoogleCalendar.qml
+msgid "Submit"
+msgstr "שליחה"
+
+#: ../contents/ui/config/ConfigGoogleCalendar.qml
+msgid "Invalid Google Authorization Code"
+msgstr "קוד בלתי־תקין של Google Authorization"
+
+#: ../contents/ui/config/ConfigGoogleCalendar.qml
+#: ../contents/ui/config/ConfigICal.qml
+msgid "Calendars"
+msgstr "לוחות שנה"
+
+#: ../contents/ui/config/ConfigGoogleCalendar.qml
+msgid "Refresh"
+msgstr "ריענון"
+
+#: ../contents/ui/config/ConfigGoogleCalendar.qml
+msgid "Tasks"
+msgstr "משימות"
+
+#: ../contents/ui/config/ConfigGoogleCalendar.qml
+msgid "Options"
+msgstr "אפשרויות"
+
+#: ../contents/ui/config/ConfigGoogleCalendar.qml
+msgid "Event Click:"
+msgstr "לחיצה על אירוע:"
+
+#: ../contents/ui/config/ConfigGoogleCalendar.qml
+msgid "Open Web Event View"
+msgstr "פתיחת תצוגת האירוע ברשת"
+
+#: ../contents/ui/config/ConfigGoogleCalendar.qml
+msgid "Open Web Month View"
+msgstr "פתיחת תצוגת השבוע ברשת"
+
+#: ../contents/ui/config/ConfigGoogleCalendar.qml
+msgid "Hide \"This event was added from Goals in Google Calendar\" description"
+msgstr "הסתרת התיאור \"אירוע זה נוסף מהמטרות שב־Google Calendar\""
+
+#: ../contents/ui/config/ConfigICal.qml
+msgid "Add Calendar"
+msgstr "הוספת לוח שנה"
+
+#: ../contents/ui/config/ConfigICal.qml
+msgid "New Calendar"
+msgstr "לוח שנה חדש"
+
+#: ../contents/ui/config/ConfigICal.qml
+msgid "Calendar Label"
+msgstr "תווית לוח שנה"
+
+#: ../contents/ui/config/ConfigICal.qml
+msgid "Browse"
+msgstr "עיון"
+
+#: ../contents/ui/config/ConfigICal.qml
+msgid "iCalendar (*.ics)"
+msgstr "iCalendar (.ics)"
+
+#: ../contents/ui/config/ConfigLayout.qml
+msgid "Calendar to the left of the Agenda (Two Columns)"
+msgstr "לוח השנה מימין לסדר היום (שתי עמודות)"
+
+#: ../contents/ui/config/ConfigLayout.qml
+msgid "Agenda below the Calendar (Single Column)"
+msgstr "סדר היום מתחת ללוח השנה (עמודה אחת)"
+
+#: ../contents/ui/config/ConfigTimezones.qml
+msgid "Tooltip"
+msgstr "חלונית הגדרה"
+
+#: ../contents/ui/config/ConfigTimezones.qml
+msgid "Cannot deselect Local time from the tooltip"
+msgstr "לא ניתן לבטל את בחירת הזמן המקומי מתוך חלונית ההגדרות"
+
+#: ../contents/ui/config/ConfigWeather.qml
+msgid "Data"
+msgstr "נתונים"
+
+#: ../contents/ui/config/ConfigWeather.qml
+msgid "API App Id:"
+msgstr "מזהה ה־API של היישום:"
+
+#: ../contents/ui/config/ConfigWeather.qml
+msgid "City Id:"
+msgstr "מזהה עיר:"
+
+#: ../contents/ui/config/ConfigWeather.qml
+msgid "Eg: 5983720"
+msgstr "למשל: 5983720"
+
+#: ../contents/ui/config/ConfigWeather.qml
+msgid "Find City"
+msgstr "איתור עיר"
+
+#: ../contents/ui/config/ConfigWeather.qml
+msgid "Eg: on-14"
+msgstr ""
+
+#: ../contents/ui/config/ConfigWeather.qml
+msgid "Settings"
+msgstr "הגדרות"
+
+#: ../contents/ui/config/ConfigWeather.qml
+msgid "Update forecast every: "
+msgstr "עדכון התחזית כל: "
+
+#: ../contents/ui/config/ConfigWeather.qml
+msgid "Show next "
+msgstr "הצגת התחזית ל־"
+
+#: ../contents/ui/config/ConfigWeather.qml
+msgid " hour"
+msgid_plural " hours"
+msgstr[0] " השעות"
+msgstr[1] " השעות"
+msgstr[2] " השעות"
+msgstr[3] " השעות"
+
+#: ../contents/ui/config/ConfigWeather.qml
+msgid " in the meteogram."
+msgstr "הבאות."
+
+#: ../contents/ui/config/ConfigWeather.qml
+msgid "Units:"
+msgstr "יחידת מידה:"
+
+#: ../contents/ui/config/ConfigWeather.qml
+msgid "Celsius"
+msgstr "צלזיוס"
+
+#: ../contents/ui/config/ConfigWeather.qml
+msgid "Fahrenheit"
+msgstr "פרנהייט"
+
+#: ../contents/ui/config/ConfigWeather.qml
+msgid "Kelvin"
+msgstr "קלווין"
+
+#: ../contents/ui/config/ConfigWeather.qml
+msgid "Text"
+msgstr "טקסט"
+
+#: ../contents/ui/config/ConfigWeather.qml
+msgid "Grid"
+msgstr "רשת"
+
+#: ../contents/ui/config/ConfigWeather.qml
+msgid "Rain"
+msgstr "גשם"
+
+#: ../contents/ui/config/ConfigWeather.qml
+msgid "Positive Temp"
+msgstr "טמפרטורה חיובית"
+
+#: ../contents/ui/config/ConfigWeather.qml
+msgid "Negative Temp"
+msgstr "טמפרטורה שלילית"
+
+#: ../contents/ui/config/ConfigWeather.qml
+msgid "Icons"
+msgstr "סמלים"
+
+#: ../contents/ui/config/OpenWeatherMapCityDialog.qml
+#: ../contents/ui/config/WeatherCanadaCityDialog.qml
+msgid "Select city"
+msgstr "בחירת עיר"
+
+#: ../contents/ui/config/OpenWeatherMapCityDialog.qml
+#: ../contents/ui/config/WeatherCanadaCityDialog.qml
+msgid "Fetched from <a href=\"%1\">%1</a>"
+msgstr "הנתונים נמשכו מתוך <a href=\"%1\">%1</a>"
+
+#: ../contents/ui/config/OpenWeatherMapCityDialog.qml
+#: ../contents/ui/config/WeatherCanadaCityDialog.qml
+msgid "Search"
+msgstr "חיפוש"
+
+#: ../contents/ui/config/OpenWeatherMapCityDialog.qml
+#: ../contents/ui/config/WeatherCanadaCityDialog.qml
+msgid "Name"
+msgstr "שם"
+
+#: ../contents/ui/config/OpenWeatherMapCityDialog.qml
+#: ../contents/ui/config/WeatherCanadaCityDialog.qml
+msgid "Id"
+msgstr "מזהה"
+
+#: ../contents/ui/config/OpenWeatherMapCityDialog.qml
+#: ../contents/ui/config/WeatherCanadaCityDialog.qml
+msgid "City Webpage"
+msgstr "אתר האינטרנט של העיר"
+
+#: ../contents/ui/config/OpenWeatherMapCityDialog.qml
+#: ../contents/ui/config/WeatherCanadaCityDialog.qml
+msgid "Open Link"
+msgstr "פתיחת הקישור"
+
+#: ../contents/ui/DateTimeSelector.qml
+msgctxt "event editor date format"
+msgid "d MMM, yyyy"
+msgstr "d ב־MMM, yyyy"
+
+#: ../contents/ui/DurationSelector.qml
+msgid "to"
+msgstr "עד"
+
+#: ../contents/ui/EditEventForm.qml ../contents/ui/EditTaskForm.qml
+msgid "Event Title"
+msgstr "כותרת האירוע"
+
+#: ../contents/ui/EditEventForm.qml
+msgid "Add location"
+msgstr "הוספת מיקום"
+
+#: ../contents/ui/EditEventForm.qml ../contents/ui/EditTaskForm.qml
+msgid "Add description"
+msgstr "הוספת תיאור"
+
+#: ../contents/ui/EditEventForm.qml ../contents/ui/EditTaskForm.qml
+msgid "&Save"
+msgstr "&שמירה"
+
+#: ../contents/ui/EditEventForm.qml ../contents/ui/EditTaskForm.qml
+#: ../contents/ui/TimerInputView.qml
+msgid "&Cancel"
+msgstr "בי_טול"
+
+#: ../contents/ui/EditTaskForm.qml
+msgid "Add due date"
+msgstr "הוספת תאריך יעד"
+
+#: ../contents/ui/lib/AppletVersion.qml
+msgid "<b>Version:</b> %1"
+msgstr "<b>גרסה:</b> %1"
+
+#: ../contents/ui/lib/ConfigFontFamily.qml
+msgctxt "Use default font"
+msgid "Default"
+msgstr "ברירת המחדל"
+
+#: ../contents/ui/lib/ConfigSound.qml
+msgid "Choose a sound effect"
+msgstr "נא לבחור אפקט צליל"
+
+#: ../contents/ui/lib/ConfigSound.qml
+msgid "Sound files (%1)"
+msgstr "קובצי שמע (%1)"
+
+#: ../contents/ui/lib/ConfigSound.qml
+msgid "All files (%1)"
+msgstr "כל הקבצים (%1)"
+
+#: ../contents/ui/LocaleFuncs.js
+msgctxt "event time on the hour (24 hour clock)"
+msgid "h"
+msgstr "h"
+
+#: ../contents/ui/LocaleFuncs.js
+msgctxt "event time (24 hour clock)"
+msgid "h:mm"
+msgstr "h:mm"
+
+#: ../contents/ui/LocaleFuncs.js
+msgctxt "event time on the hour (12 hour clock)"
+msgid "h AP"
+msgstr "h AP"
+
+#: ../contents/ui/LocaleFuncs.js
+msgctxt "event time (12 hour clock)"
+msgid "h:mm AP"
+msgstr "h:mm AP"
+
+#: ../contents/ui/LocaleFuncs.js
+msgctxt "date (%1) with time (%2)"
+msgid "%1, %2"
+msgstr "%1, %2"
+
+#: ../contents/ui/LocaleFuncs.js
+msgctxt "from date/time %1 until date/time %2"
+msgid "%1 - %2"
+msgstr "%1 - %2"
+
+#: ../contents/ui/LocaleFuncs.js
+msgctxt "short form for %1 hours"
+msgid "%1h"
+msgstr "%1 שע׳"
+
+#: ../contents/ui/LocaleFuncs.js
+#, c-format
+msgctxt "short form for %1 minutes"
+msgid "%1m"
+msgstr "%1 דק׳"
+
+#: ../contents/ui/LocaleFuncs.js
+#, c-format
+msgctxt "short form for %1 seconds"
+msgid "%1s"
+msgstr "%1 שנ׳"
+
+#: ../contents/ui/Logic.qml
+msgid "Weather API limit reached"
+msgstr "הגעת למכסת ה־API של תחזית מזג האוויר"
+
+#: ../contents/ui/Logic.qml
+msgid "Logged out of Google. Please login again."
+msgstr "מחוץ לחשבון Google. נא להיכנס שוב."
+
+#: ../contents/ui/main.qml
+msgid "Set Language…"
+msgstr "הגדרת שפה…"
+
+#: ../contents/ui/main.qml
+msgid "Set Locale…"
+msgstr "הגדרת מיקום…"
+
+#: ../contents/ui/MeteogramView.qml
+#, c-format
+msgid "%1mm"
+msgstr "%1 מ״מ"
+
+#: ../contents/ui/MonthView.qml
+msgctxt "calendar title format for other months of current year"
+msgid "MMMM"
+msgstr "MMMM"
+
+#: ../contents/ui/MonthView.qml
+msgctxt "calendar title format for months not from current year"
+msgid "MMMM, yyyy"
+msgstr "MMMM, yyyy"
+
+#: ../contents/ui/NewEventForm.qml
+msgid "Eg: 9am-5pm Work"
+msgstr "למשל: עבודה בשעות 9:00-‏17:00"
+
+#: ../contents/ui/PopupView.qml
+msgid ""
+"Weather not configured.\n"
+"Go to Weather in the config and set your city,\n"
+"and/or disable the meteogram to hide this area."
+msgstr ""
+"לא הוגדרה תחזית מזג האוויר.\n"
+"יש לבחור בלשונית מזג האוויר במסך ההגדרה ולבחור את העיר שלך,\n"
+"ו/או להשבית את תחזית מזג האוויר כדי להסתיר את האזור הזה."
+
+#: ../contents/ui/PopupView.qml
+msgid "Error fetching weather."
+msgstr "שגיאה במשיכת תחזית מזג האוויר."
+
+#: ../contents/ui/TimerInputView.qml
+msgid "&Start"
+msgstr "ה&תחלה"
+
+#: ../contents/ui/TimerModel.qml
+msgid "Timer finished"
+msgstr "הטיימר הסתיים"
+
+#: ../contents/ui/TimerModel.qml
+msgid "%1 has passed"
+msgstr "%1 עבר"
+
+#: ../contents/ui/TimerModel.qml ../contents/ui/TimerView.qml
+msgid "Repeat"
+msgstr "חזרה"
+
+#: ../contents/ui/TimerView.qml
+msgid "Pause Timer"
+msgstr "השהיית הטיימר"
+
+#: ../contents/ui/TimerView.qml
+msgid "Start Timer"
+msgstr "התחלת הטיימר"
+
+#: ../contents/ui/TimerView.qml
+msgid "Scroll to add to duration"
+msgstr "יש לגלול כדי להוסיף משך זמן"
+
+#: ../contents/ui/TimerView.qml
+msgid "Sound"
+msgstr "צליל"
+
+#: ../contents/ui/TimerView.qml
+msgid "Set Timer"
+msgstr "הגדרת טיימר"
+
+#: ../contents/ui/UpcomingEvents.qml
+msgid "Events Starting"
+msgstr "אירועים שמתחילים"
+
+#: ../contents/ui/UpcomingEvents.qml
+msgid "Events In Progress"
+msgstr "אירועים שמתרחשים כעת"
+
+#: ../contents/ui/UpcomingEvents.qml
+msgid "Upcoming Events"
+msgstr "אירועים קרובים"
+
+#: ../contents/ui/UpcomingEvents.qml
+msgctxt "%1 = 15 minutes"
+msgid "Starting in %1"
+msgstr "מתחיל בעוד %1"
