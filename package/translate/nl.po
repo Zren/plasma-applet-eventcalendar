@@ -27,8 +27,8 @@ msgstr "Afsprakenboek"
 msgid ""
 "Plasmoid for a calendar+agenda with weather that syncs to Google Calendar."
 msgstr ""
-"Een plasmoid met kalender, agenda en weer die synchroniseert met Google"
-" Agenda."
+"Een plasmoid met kalender, agenda en weer die synchroniseert met Google "
+"Agenda."
 
 #: ../contents/config/config.qml
 msgid "General"
