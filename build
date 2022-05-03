@@ -1,33 +1,59 @@
 #!/bin/bash
-# Version 8
+# Version 13
 
+### User Variables
+qtMinVer="5.12"
+kfMinVer="5.68"
+plasmaMinVer="5.13"
+filenameTag="-plasma${plasmaMinVer}"
+
+
+### Misc
 startDir=$PWD
 
+### Check QML Versions
+# See https://zren.github.io/kde/versions/ for distro versions
+if [ -f checkimports.py ]; then
+	python3 checkimports.py --qt="$qtMinVer" --kf="$kfMinVer" --plasma="$plasmaMinVer"
+	if [ $? == 1 ]; then
+		exit 1
+	fi
+fi
 
 ### Translations
 if [ -d "package/translate" ]; then
 	echo "[build] translate dir found, running merge."
-	(cd package/translate && sh ./merge && sh ./build)
+	(cd package/translate && sh ./merge)
+	(cd package/translate && sh ./build)
 	if [ "$(git diff --stat .)" != "" ]; then
 		echo "[build] Changed detected. Cancelling build."
 		git diff --stat .
-		# exit
+		exit 1
 	fi
 fi
 
 
 ### Variables
-packageNamespace=$(kreadconfig5 --file="$PWD/package/metadata.desktop" --group="Desktop Entry" --key="X-KDE-PluginInfo-Name")
+packageNamespace=`kreadconfig5 --file="$PWD/package/metadata.desktop" --group="Desktop Entry" --key="X-KDE-PluginInfo-Name"`
 packageName="${packageNamespace##*.}" # Strip namespace (Eg: "org.kde.plasma.")
-packageVersion=$(kreadconfig5 --file="$PWD/package/metadata.desktop" --group="Desktop Entry" --key="X-KDE-PluginInfo-Version")
-packageAuthor=$(kreadconfig5 --file="$PWD/package/metadata.desktop" --group="Desktop Entry" --key="X-KDE-PluginInfo-Author")
-packageAuthorEmail=$(kreadconfig5 --file="$PWD/package/metadata.desktop" --group="Desktop Entry" --key="X-KDE-PluginInfo-Email")
-packageWebsite=$(kreadconfig5 --file="$PWD/package/metadata.desktop" --group="Desktop Entry" --key="X-KDE-PluginInfo-Website")
-packageComment=$(kreadconfig5 --file="$PWD/package/metadata.desktop" --group="Desktop Entry" --key="Comment")
+packageVersion=`kreadconfig5 --file="$PWD/package/metadata.desktop" --group="Desktop Entry" --key="X-KDE-PluginInfo-Version"`
+packageAuthor=`kreadconfig5 --file="$PWD/package/metadata.desktop" --group="Desktop Entry" --key="X-KDE-PluginInfo-Author"`
+packageAuthorEmail=`kreadconfig5 --file="$PWD/package/metadata.desktop" --group="Desktop Entry" --key="X-KDE-PluginInfo-Email"`
+packageWebsite=`kreadconfig5 --file="$PWD/package/metadata.desktop" --group="Desktop Entry" --key="X-KDE-PluginInfo-Website"`
+packageComment=`kreadconfig5 --file="$PWD/package/metadata.desktop" --group="Desktop Entry" --key="Comment"`
+
+### metadata.desktop => metadata.json
+if command -v desktoptojson &> /dev/null ; then
+	genOutput=`desktoptojson --serviceType="plasma-applet.desktop" -i "$PWD/package/metadata.desktop" -o "$PWD/package/metadata.json"`
+	if [ "$?" != "0" ]; then
+		exit 1
+	fi
+	# Tabify metadata.json
+	sed -i '{s/ \{4\}/\t/g}' "$PWD/package/metadata.json"
+fi
 
 
 ### *.plasmoid
-filenameTag="-plasma5.13"
 filename="${packageName}-v${packageVersion}${filenameTag}.plasmoid"
 rm ${packageName}-v*.plasmoid # Cleanup
 (cd package \
