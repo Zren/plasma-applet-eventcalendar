@@ -337,6 +337,11 @@ ConfigPage {
 			Layout.fillWidth: true
 			text: i18n("Desktop Widget: Show background")
 		}
+		ConfigCheckBox {
+			configKey: 'fillPanel'
+			Layout.fillWidth: true
+			text: i18n("Fill the widget in the panel")
+		}
 	}
 
 	HeaderText {
