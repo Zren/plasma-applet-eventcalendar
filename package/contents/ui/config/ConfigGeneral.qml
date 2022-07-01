@@ -338,9 +338,9 @@ ConfigPage {
 			text: i18n("Desktop Widget: Show background")
 		}
 		ConfigCheckBox {
-			configKey: 'fillPanel'
+			configKey: 'forceExpanded'
 			Layout.fillWidth: true
-			text: i18n("Fill the widget in the panel")
+			text: i18n("Always keep expanded (Experimental)")
 		}
 	}
 

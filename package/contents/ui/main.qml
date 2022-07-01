@@ -129,7 +129,7 @@ Item {
 		// * the timer widget is enabled since there's room in the top right
 		property bool isPinVisible: {
 			// plasmoid.location == PlasmaCore.Types.Floating when using plasmawindowed and when used as a desktop widget.
-			return plasmoid.location != PlasmaCore.Types.Floating && !plasmoid.configuration.fillPanel // && plasmoid.configuration.widget_show_pin
+			return plasmoid.location != PlasmaCore.Types.Floating && !plasmoid.configuration.forceExpanded // && plasmoid.configuration.widget_show_pin
 		}
 		padding: {
 			if (isPinVisible && !(plasmoid.configuration.widgetShowTimer || plasmoid.configuration.widgetShowMeteogram)) {
@@ -194,7 +194,7 @@ Item {
 	Plasmoid.backgroundHints: plasmoid.configuration.showBackground ? PlasmaCore.Types.DefaultBackground : PlasmaCore.Types.NoBackground
 
 	property bool isDesktopContainment: plasmoid.location == PlasmaCore.Types.Floating
-	Plasmoid.preferredRepresentation: plasmoid.configuration.fillPanel ? Plasmoid.fullRepresentation : Plasmoid.compactRepresentation
+	Plasmoid.preferredRepresentation: plasmoid.configuration.forceExpanded ? Plasmoid.fullRepresentation : Plasmoid.compactRepresentation
 	Plasmoid.compactRepresentation: clockComponent
 	Plasmoid.fullRepresentation: popupComponent
 
