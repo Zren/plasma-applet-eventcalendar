@@ -340,7 +340,7 @@ ConfigPage {
 		ConfigCheckBox {
 			configKey: 'forceExpanded'
 			Layout.fillWidth: true
-			text: i18n("Always keep expanded (Experimental)")
+			text: i18n("Always keep expanded (panels)")
 		}
 	}
 

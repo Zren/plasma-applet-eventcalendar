@@ -194,7 +194,7 @@ Item {
 	Plasmoid.backgroundHints: plasmoid.configuration.showBackground ? PlasmaCore.Types.DefaultBackground : PlasmaCore.Types.NoBackground
 
 	property bool isDesktopContainment: plasmoid.location == PlasmaCore.Types.Floating
-	Plasmoid.preferredRepresentation: plasmoid.configuration.forceExpanded ? Plasmoid.fullRepresentation : Plasmoid.compactRepresentation
+	Plasmoid.preferredRepresentation: isDesktopContainment ? Plasmoid.fullRepresentation : plasmoid.configuration.forceExpanded ? Plasmoid.fullRepresentation : Plasmoid.compactRepresentation
 	Plasmoid.compactRepresentation: clockComponent
 	Plasmoid.fullRepresentation: popupComponent
 
