@@ -529,6 +529,10 @@ msgid "Desktop Widget: Show background"
 msgstr "Widget de bureau: Afficher le fond d'écran"
 
 #: ../contents/ui/config/ConfigGeneral.qml
+msgid "Always keep expanded (Experimental)"
+msgstr "Toujours garder l'affichage étendu (Experimental)"
+
+#: ../contents/ui/config/ConfigGeneral.qml
 msgid "Debugging"
 msgstr "Débogage"
 

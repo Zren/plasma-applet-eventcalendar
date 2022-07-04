@@ -249,6 +249,24 @@ ListModel {
 
 		var agendaItemList = []
 
+		/* Filter out reccurent events to show only the closest one */
+		if (!plasmoid.configuration.agendaBreakupReccurentEvents) {
+		const sortedEventsByReccurence = data.items.reduce((reccurentEvents,event) => {
+			if (reccurentEvents[event.summary] && reccurentEvents[event.summary].find(e => e.id !== event.id && e.summary === event.summary)) {
+				reccurentEvents[event.summary].push(event)
+			}
+			else { 
+				reccurentEvents[event.summary] = [];
+				reccurentEvents[event.summary].push(event); }
+			return reccurentEvents;
+		},{})
+
+		data.items = Object.values(sortedEventsByReccurence).map(events => events.filter(event => {
+			const today = new Date(new Date().setHours(0,0,0,0));
+			return event.startDateTime <= today;
+		} )[0] || events[0])
+		}
+
 		for (var i = 0; i < data.items.length; i++) {
 			var eventItem = data.items[i]
 			if (plasmoid.configuration.agendaBreakupMultiDayEvents) {
