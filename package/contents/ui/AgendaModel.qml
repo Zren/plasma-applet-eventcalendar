@@ -263,7 +263,7 @@ ListModel {
 
 		data.items = Object.values(sortedEventsByReccurence).map(events => events.filter(event => {
 			const today = new Date(new Date().setHours(0,0,0,0));
-			return event.startDateTime >= today;
+			return event.endDateTime >= today;
 		} )[0] || events[0])
 		}
 
