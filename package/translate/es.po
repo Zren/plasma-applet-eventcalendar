@@ -24,7 +24,7 @@ msgstr "Calendario de Eventos"
 
 #: ../metadata.desktop
 msgid "Plasmoid for a calendar+agenda with weather that syncs to Google Calendar."
-msgstr ""
+msgstr "Plasmoid para calendario + agenda con información del clima. Sincroniza con Google Calendar."
 
 #: ../contents/config/config.qml
 msgid "General"
@@ -32,7 +32,7 @@ msgstr "General"
 
 #: ../contents/config/config.qml
 msgid "Layout"
-msgstr ""
+msgstr "Diseño"
 
 #: ../contents/config/config.qml
 msgid "Timezones"
@@ -72,7 +72,7 @@ msgstr "Todo el Día"
 
 #: ../contents/ui/AgendaEventItem.qml
 msgid "Hangout"
-msgstr "Colgar"
+msgstr "Hangout"
 
 #: ../contents/ui/AgendaEventItem.qml ../contents/ui/AgendaTaskItem.qml
 msgid "Edit"
@@ -116,23 +116,23 @@ msgstr "[Sin Calendarios]"
 
 #: ../contents/ui/calendars/GoogleCalendarManager.qml ../contents/ui/Logic.qml
 msgid "HTTP Error %1: %2"
-msgstr ""
+msgstr "Error HTTP %1: %2"
 
 #: ../contents/ui/calendars/GoogleCalendarManager.qml ../contents/ui/Logic.qml
 msgid "Could not connect"
-msgstr ""
+msgstr "No se pudo conectar"
 
 #: ../contents/ui/calendars/GoogleCalendarManager.qml ../contents/ui/Logic.qml
 msgid "Will try again soon."
-msgstr ""
+msgstr "Intentaremos más tarde."
 
 #: ../contents/ui/calendars/GoogleCalendarManager.qml ../contents/ui/config/ConfigGoogleCalendar.qml ../contents/ui/Logic.qml
 msgid "Widget has been updated. Please logout and login to Google Calendar again."
-msgstr ""
+msgstr "El widget se ha actualizado. Por favor cierra y vuelve a iniciar sesión en Google Calendar"
 
 #: ../contents/ui/calendars/GoogleCalendarManager.qml
 msgid "Too many web requests. Will try again soon."
-msgstr ""
+msgstr "Demasiadas peticiones web. Intentaremos más tarde."
 
 #: ../contents/ui/config/ConfigAgenda.qml
 msgid "Show agenda"
@@ -200,7 +200,7 @@ msgstr "Descripción del evento"
 
 #: ../contents/ui/config/ConfigAgenda.qml
 msgid "Hide 'All Day' text"
-msgstr ""
+msgstr "Ocultar texto 'todo el día'"
 
 #: ../contents/ui/config/ConfigAgenda.qml
 msgid "Google Hangouts link"
@@ -256,11 +256,11 @@ msgstr "En progreso"
 
 #: ../contents/ui/config/ConfigAgenda.qml
 msgid "Day Spacing:"
-msgstr ""
+msgstr "Espacio entre días"
 
 #: ../contents/ui/config/ConfigAgenda.qml
 msgid "Event Spacing:"
-msgstr ""
+msgstr "Espacio ente eventos"
 
 #: ../contents/ui/config/ConfigCalendar.qml
 msgid "Show calendar"
@@ -276,19 +276,19 @@ msgstr "Doble-Click Fecha:"
 
 #: ../contents/ui/config/ConfigCalendar.qml
 msgid "New Google Calendar Event (Web Browser)"
-msgstr ""
+msgstr "Nuevo evento de Google Calendar (Navegador Web)"
 
 #: ../contents/ui/config/ConfigCalendar.qml
 msgid "Do Nothing"
-msgstr ""
+msgstr "No hacer nada"
 
 #: ../contents/ui/config/ConfigCalendar.qml ../contents/ui/config/ConfigWeather.qml
 msgid "Style"
-msgstr "Stilo"
+msgstr "Estilo"
 
 #: ../contents/ui/config/ConfigCalendar.qml
 msgid "Current Month Title:"
-msgstr ""
+msgstr "Título del mes actual"
 
 #: ../contents/ui/config/ConfigCalendar.qml ../contents/ui/MonthView.qml
 msgctxt "calendar title format for current month"
@@ -305,7 +305,7 @@ msgstr "Mostrar Números de la Semana"
 
 #: ../contents/ui/config/ConfigCalendar.qml
 msgid "Highlight Current Day / Week"
-msgstr ""
+msgstr "Resaltar dia/semana actual"
 
 #: ../contents/ui/config/ConfigCalendar.qml
 msgid "First day of week:"
@@ -361,7 +361,7 @@ msgstr "Color Sólido (Invertido)"
 
 #: ../contents/ui/config/ConfigCalendar.qml
 msgid "Big Number"
-msgstr "Gran Número"
+msgstr "Número grande"
 
 #: ../contents/ui/config/ConfigEvents.qml
 msgid "Event Calendar Plugins"
@@ -373,7 +373,7 @@ msgstr "Complementos de calendario de plasma"
 
 #: ../contents/ui/config/ConfigEvents.qml ../contents/ui/config/ConfigGeneral.qml
 msgid "Misc"
-msgstr "Misc"
+msgstr "Misceláneo"
 
 #: ../contents/ui/config/ConfigEvents.qml
 msgid "Refresh events every: "
@@ -390,7 +390,7 @@ msgstr "Notificaciones"
 
 #: ../contents/ui/config/ConfigEvents.qml
 msgid "Event Reminder"
-msgstr ""
+msgstr "Recordatorio de Evento"
 
 #: ../contents/ui/config/ConfigEvents.qml
 msgid "Event Starting"
@@ -426,7 +426,7 @@ msgstr "Formato de Hora"
 
 #: ../contents/ui/config/ConfigGeneral.qml
 msgid "Time Format Documentation"
-msgstr ""
+msgstr "Documentación sobre el formato de hora"
 
 #: ../contents/ui/config/ConfigGeneral.qml
 msgid "The default font for the Breeze theme is Noto Sans which is hard to read with small text. Try using the Sans Serif font if you find the text too small when adding a second line."
@@ -434,7 +434,7 @@ msgstr "La fuente predeterminada del tema Brisa es Noto Sans el cual es difícil
 
 #: ../contents/ui/config/ConfigGeneral.qml
 msgid "You can also use %1 or %2 to style a section. Note the single quotes around the tags are used to bypass the time format."
-msgstr "Puede además usar %1 o %2 para modificar el estilo de una sección. Tenga en cuenta que las comillas alrededor de las etiquetas son usadas para evitar elformato tiempo."
+msgstr "Puede además usar %1 o %2 para modificar el estilo de una sección. Tenga en cuenta que las comillas alrededor de las etiquetas son usadas para evitar el formato tiempo."
 
 #: ../contents/ui/config/ConfigGeneral.qml
 msgid "Font:"
@@ -446,7 +446,7 @@ msgstr "Altura del Reloj Fijada: "
 
 #: ../contents/ui/config/ConfigGeneral.qml
 msgid " (0px = scale to fit)"
-msgstr " (0px = scalar para coincidir)"
+msgstr " (0px = escalar para coincidir)"
 
 #: ../contents/ui/config/ConfigGeneral.qml
 msgid "Line 1:"
@@ -554,7 +554,7 @@ msgstr "Refrescar"
 
 #: ../contents/ui/config/ConfigGoogleCalendar.qml
 msgid "Tasks"
-msgstr ""
+msgstr "Tareas"
 
 #: ../contents/ui/config/ConfigGoogleCalendar.qml
 msgid "Options"
@@ -566,15 +566,15 @@ msgstr ""
 
 #: ../contents/ui/config/ConfigGoogleCalendar.qml
 msgid "Open Web Event View"
-msgstr ""
+msgstr "Abrir vista web del evento"
 
 #: ../contents/ui/config/ConfigGoogleCalendar.qml
 msgid "Open Web Month View"
-msgstr ""
+msgstr "Abrir vista web del mes"
 
 #: ../contents/ui/config/ConfigGoogleCalendar.qml
 msgid "Hide \"This event was added from Goals in Google Calendar\" description"
-msgstr ""
+msgstr "Ocultar descripción \"Este evento fue añadido desde Goals en Google Calendar\""
 
 #: ../contents/ui/config/ConfigICal.qml
 msgid "Add Calendar"
@@ -598,11 +598,11 @@ msgstr "iCalendar (*.ics)"
 
 #: ../contents/ui/config/ConfigLayout.qml
 msgid "Calendar to the left of the Agenda (Two Columns)"
-msgstr ""
+msgstr "Calendario a la izquierda de la agenda (Dos Columnas)"
 
 #: ../contents/ui/config/ConfigLayout.qml
 msgid "Agenda below the Calendar (Single Column)"
-msgstr ""
+msgstr "Agenda debajo del calendario (Una Columna)"
 
 #: ../contents/ui/config/ConfigTimezones.qml
 msgid "Tooltip"
@@ -757,7 +757,7 @@ msgstr "&Cancelar"
 
 #: ../contents/ui/EditTaskForm.qml
 msgid "Add due date"
-msgstr ""
+msgstr "Añadir fecha de vencimiento"
 
 #: ../contents/ui/lib/AppletVersion.qml
 msgid "<b>Version:</b> %1"
@@ -774,11 +774,11 @@ msgstr "Elegir un efecto de sonido"
 
 #: ../contents/ui/lib/ConfigSound.qml
 msgid "Sound files (%1)"
-msgstr ""
+msgstr "Archivos de sonido (%1)"
 
 #: ../contents/ui/lib/ConfigSound.qml
 msgid "All files (%1)"
-msgstr ""
+msgstr "Todos los archivos (%1)"
 
 #: ../contents/ui/LocaleFuncs.js
 msgctxt "event time on the hour (24 hour clock)"
@@ -829,11 +829,11 @@ msgstr "%1s"
 
 #: ../contents/ui/Logic.qml
 msgid "Weather API limit reached"
-msgstr ""
+msgstr "Alcanzado límite de la API meteorológica"
 
 #: ../contents/ui/Logic.qml
 msgid "Logged out of Google. Please login again."
-msgstr ""
+msgstr "Sesión cerrada en Google. Por favor vuelva a iniciar sessión."
 
 #: ../contents/ui/main.qml
 msgid "Set Language…"
@@ -927,7 +927,7 @@ msgstr "Próximos Eventos"
 #: ../contents/ui/UpcomingEvents.qml
 msgctxt "%1 = 15 minutes"
 msgid "Starting in %1"
-msgstr ""
+msgstr "Empiezan en %1"
 
 #~ msgid "Weather API limit reached, will try again soon."
 #~ msgstr "Se alcanzó el límite de la API meteorológica, lo intentaremos nuevamente pronto."
