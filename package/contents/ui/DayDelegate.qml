@@ -223,7 +223,11 @@ MouseArea {
 			for (var i = 0; i < model.events.count; i++) {
 				var eventItem = model.events.get(i)
 				var line = ''
-				line += '<font color="' + eventItem.backgroundColor + '">■</font> '
+				var eventBullet = '■'
+				if(new Date(eventItem.end.dateTime) < new Date()) {
+					eventBullet = '✓'
+				}
+				line += '<font color="' + eventItem.backgroundColor + '">' + eventBullet + '</font> '
 				line += '<b>' + eventItem.summary + ':</b> '
 				line += LocaleFuncs.formatEventDuration(eventItem, {
 					relativeDate: thisDate,
