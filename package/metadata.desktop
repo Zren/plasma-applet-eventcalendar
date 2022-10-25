@@ -2,6 +2,7 @@
 Name=Event Calendar
 Comment=Plasmoid for a calendar+agenda with weather that syncs to Google Calendar.
 
+
 Icon=view-calendar
 Type=Service
 
@@ -27,6 +28,7 @@ Name[fr]=Calendrier des événements
 Name[he]=לוח שנה עם אירועים
 Name[it]=Calendario Eventi
 Name[ja]=イベントカレンダー
+Name[ko]=이벤트 달력
 Name[nl]=Afsprakenboek
 Name[pt_BR]=Calendário de eventos
 Name[pt_PT]=Calendário de eventos
@@ -38,6 +40,7 @@ Comment[de]=Miniprogramm für einen Kalender mit Ereignisansicht und Wetter, der
 Comment[fi]=Plasmoidi kalenteri + agenda säätietoineen synkronoitu Google Calendarin kanssa.
 Comment[he]=יישומון לוח שנה וסדר יום שמסתנכרן עם Google Calendar ועם גישה ישירה לתחזית מזג האוויר.
 Comment[it]=Plasmoide per un calendario+agenda con meteo che si sincronizza con Google Calendar.
+Comment[ko]=Google 캘린더랑 동기화할 수 있는 달력, 일정 및 날씨 Plasmoid 위젯
 Comment[nl]=Een plasmoid met kalender, agenda en weer die synchroniseert met Google Agenda.
 Comment[pt_BR]=Plasmoide para um calendário e agenda com informações do clima que sincroniza com o Google Agenda.
 Comment[pt_PT]=Plasmoid para um calendário+agenda com Meteorologia que sincroniza com o Calendário Google.
