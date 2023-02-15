@@ -118,68 +118,11 @@ ConfigPage {
 			color: readableNegativeTextColor
 			wrapMode: Text.Wrap
 		}
-		LinkText {
-			Layout.fillWidth: true
-			text: i18n("Visit <a href=\"%1\">%2</a> (opens in your web browser). After you login and give permission to access your calendar, it will give you a code to paste below.", googleLoginManager.authorizationCodeUrl, 'https://accounts.google.com/...')
-			color: readableNegativeTextColor
-			wrapMode: Text.Wrap
-
-			// Tooltip
-			// QQC2.ToolTip.visible: !!hoveredLink
-			// QQC2.ToolTip.text: googleLoginManager.authorizationCodeUrl
-
-			// ContextMenu
-			MouseArea {
-				anchors.fill: parent
-				acceptedButtons: Qt.RightButton
-				onClicked: {
-					if (mouse.button === Qt.RightButton) {
-						contextMenu.popup()
-					}
-				}
-				onPressAndHold: {
-					if (mouse.source === Qt.MouseEventNotSynthesized) {
-						contextMenu.popup()
-					}
-				}
-
-				QQC2.Menu {
-					id: contextMenu
-					QQC2.MenuItem {
-						text: i18n("Copy Link")
-						onTriggered: clipboardHelper.copyText(googleLoginManager.authorizationCodeUrl)
-					}
-				}
-
-				TextEdit {
-					id: clipboardHelper
-					visible: false
-					function copyText(text) {
-						clipboardHelper.text = text
-						clipboardHelper.selectAll()
-						clipboardHelper.copy()
-					}
-				}
-			}
-		}
 		RowLayout {
-			TextField {
-				id: authorizationCodeInput
-				Layout.fillWidth: true
-
-				placeholderText: i18n("Enter code here (Eg: %1)", '1/2B3C4defghijklmnopqrst-uvwxyz123456789ab-cdeFGHIJKlmnio')
-				text: ""
-			}
 			Button {
-				text: i18n("Submit")
+				text: i18n("Authorize")
 				onClicked: {
-					if (authorizationCodeInput.text) {
-						googleLoginManager.fetchAccessToken({
-							authorizationCode: authorizationCodeInput.text,
-						})
-					} else {
-						messageWidget.err(i18n("Invalid Google Authorization Code"))
-					}
+					googleLoginManager.fetchAccessToken()
 				}
 			}
 		}

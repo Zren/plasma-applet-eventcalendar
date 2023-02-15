@@ -5,6 +5,7 @@ import "../lib/Requests.js" as Requests
 
 Item {
 	id: session
+	ExecUtil { id: executable }
 
 	Logger {
 		id: logger
@@ -73,48 +74,29 @@ Item {
 	signal error(string err)
 
 
-	//---
-	readonly property string authorizationCodeUrl: {
-		var url = 'https://accounts.google.com/o/oauth2/v2/auth'
-		url += '?scope=' + encodeURIComponent('https://www.googleapis.com/auth/calendar https://www.googleapis.com/auth/tasks')
-		url += '&response_type=code'
-		url += '&redirect_uri=' + encodeURIComponent('urn:ietf:wg:oauth:2.0:oob')
-		url += '&client_id=' + encodeURIComponent(plasmoid.configuration.latestClientId)
-		return url
-	}
+	function fetchAccessToken() {
 
-	function fetchAccessToken(args) {
-		var url = 'https://www.googleapis.com/oauth2/v4/token'
-		Requests.post({
-			url: url,
-			data: {
-				client_id: plasmoid.configuration.latestClientId,
-				client_secret: plasmoid.configuration.latestClientSecret,
-				code: args.authorizationCode,
-				grant_type: 'authorization_code',
-				redirect_uri: 'urn:ietf:wg:oauth:2.0:oob',
-			},
-		}, function(err, data, xhr) {
-			logger.debug('/oauth2/v4/token Response', data)
+		logger.debug('gcal.fetchAccessToken')
+		var cmd = [plasmoid.file("", "scripts/local-http"), encodeURIComponent(plasmoid.configuration.latestClientId), encodeURIComponent(plasmoid.configuration.latestClientSecret)]
+		logger.debug('gcal.fetchAccessToken', cmd)
 
-			// Check for errors
-			if (err) {
-				handleError(err, null)
+		executable.exec(cmd, function(cmd, exitCode, exitStatus, stdout, stderr) {
+			if (exitCode) {
+				logger.log('gcal.fetchAccessToken.stderr', stderr)
+				logger.log('gcal.fetchAccessToken.stdout', stdout)
 				return
 			}
+
 			try {
-				data = JSON.parse(data)
+				logger.log('gcal.fetchAccessToken.stdout', stdout)
+				var data = JSON.parse(stdout)
+				updateAccessToken(data)
 			} catch (e) {
-				handleError('Error parsing /oauth2/v4/token data as JSON', null)
-				return
-			}
-			if (data && data.error) {
-				handleError(err, data)
+				logger.log('gcal.fetchAccessToken.e', e)
+				handleError('Error parsing oauth2/token data as JSON', null)
 				return
 			}
 
-			// Ready
-			updateAccessToken(data)
 		})
 	}
 

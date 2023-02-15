@@ -4,6 +4,9 @@
 # This script detects if the widget is already installed.
 # If it is, it will use --upgrade instead and restart plasmashell.
 
+### compile golang helper
+go build -o package/contents/scripts/local-http google-oauth-helper/local-http.go || { echo "unable to compile go helper"; exit; }
+
 packageNamespace=`kreadconfig5 --file="$PWD/package/metadata.desktop" --group="Desktop Entry" --key="X-KDE-PluginInfo-Name"`
 restartPlasmashell=false
 
