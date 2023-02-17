@@ -253,6 +253,9 @@
 		<entry name="agendaInProgressColor" type="string" stringType="color">
 			<default></default>
 		</entry>
+		<entry name="agendaPastColor" type="string" stringType="color">
+			<default></default>
+		</entry>
 		<entry name="agendaFontSize" type="uint">
 			<default>0</default>
 		</entry>
@@ -297,6 +300,9 @@
 			<default>false</default>
 		</entry>
 		<entry name="agenda_inProgressColor" type="string" stringType="color">
+			<default></default>
+		</entry>
+		<entry name="agenda_pastColor" type="string" stringType="color">
 			<default></default>
 		</entry>
 		<entry name="agenda_fontSize" type="uint">

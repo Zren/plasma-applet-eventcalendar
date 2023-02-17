@@ -170,6 +170,11 @@ ConfigPage {
 			label: i18n("In Progress")
 			defaultColor: config.agendaInProgressColorDefault
 		}
+		ConfigColor {
+			configKey: 'agendaPastColor'
+			label: i18n("Event in past")
+			defaultColor: config.agendaPastColorDefault
+		}
 	}
 
 	ConfigSection {

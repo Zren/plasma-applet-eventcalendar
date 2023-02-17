@@ -15,6 +15,7 @@ LinkRect {
 	implicitHeight: contents.implicitHeight
 
 	property bool eventItemInProgress: false
+	property bool eventItemPast: false
 	function checkIfInProgress() {
 		if (model.startDateTime && timeModel.currentTime && model.endDateTime) {
 			eventItemInProgress = model.startDateTime <= timeModel.currentTime && timeModel.currentTime <= model.endDateTime
@@ -22,6 +23,11 @@ LinkRect {
 			eventItemInProgress = false
 		}
 		// console.log('checkIfInProgress()', model.start, timeModel.currentTime, model.end)
+		if (model.startDateTime && timeModel.currentTime && model.endDateTime) {
+		    eventItemPast = model.endDateTime < timeModel.currentTime
+		} else {
+		    eventItemPast = false
+		}
 	}
 	Connections {
 		target: timeModel
@@ -124,7 +130,7 @@ LinkRect {
 						return model.summary
 					}
 				}
-				color: eventItemInProgress ? inProgressColor : PlasmaCore.ColorScope.textColor
+				color: eventItemInProgress ? inProgressColor : ( eventItemPast ? pastColor : PlasmaCore.ColorScope.textColor )
 				font.pointSize: -1
 				font.pixelSize: appletConfig.agendaFontSize
 				font.weight: eventItemInProgress ? inProgressFontWeight : Font.Normal
@@ -146,7 +152,7 @@ LinkRect {
 						return eventTimestamp
 					}
 				}
-				color: eventItemInProgress ? inProgressColor : PlasmaCore.ColorScope.textColor
+				color: eventItemInProgress ? inProgressColor : ( eventItemPast ? pastColor : PlasmaCore.ColorScope.textColor )
 				opacity: eventItemInProgress ? 1 : 0.75
 				font.pointSize: -1
 				font.pixelSize: appletConfig.agendaFontSize

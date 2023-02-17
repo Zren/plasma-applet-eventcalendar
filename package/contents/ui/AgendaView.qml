@@ -14,6 +14,9 @@ Item {
 	property color inProgressColor: appletConfig.agendaInProgressColor
 	property int inProgressFontWeight: Font.Bold
 
+	property color pastColor: appletConfig.agendaPastColor
+	property int pastFontWeight: Font.Light
+
 	property color isOverdueColor: PlasmaCore.ColorScope.negativeTextColor
 	property int isOverdueFontWeight: Font.Bold
 

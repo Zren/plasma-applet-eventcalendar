@@ -40,6 +40,8 @@ QtObject {
 	property color agendaHoverBackground: alternateBackgroundColor
 	property color agendaInProgressColorDefault: theme.highlightColor
 	property color agendaInProgressColor: plasmoid.configuration.agendaInProgressColor || agendaInProgressColorDefault
+	property color agendaPastColorDefault: theme.highlightColor
+	property color agendaPastColor: plasmoid.configuration.agendaPastColor || agendaPastColorDefault
 
 	property int agendaColumnSpacing: 10 * units.devicePixelRatio
 	property int agendaDaySpacing: plasmoid.configuration.agendaDaySpacing * units.devicePixelRatio
