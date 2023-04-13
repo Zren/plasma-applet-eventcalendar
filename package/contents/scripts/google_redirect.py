@@ -41,10 +41,6 @@ class OAuthRedirectHandler(BaseHTTPRequestHandler):
                 print(e.read().decode("utf-8"))
                 self.wfile.write(b"Handling redirect failed.")
                 raise SystemExit(1)
-
-            # Parse the response and extract the access token
-            with open("/tmp/token.json", "w") as f:
-                json.dump(token_data, f)
             print(json.dumps(token_data, sort_keys=True))
 
         self.send_response(200)
