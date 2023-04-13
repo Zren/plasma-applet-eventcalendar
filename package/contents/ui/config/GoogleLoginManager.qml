@@ -74,26 +74,26 @@ Item {
 	signal sessionReset()
 	signal error(string err)
 
-    readonly property string authorizationCodeUrl: {
-        var url = 'https://accounts.google.com/o/oauth2/v2/auth'
-        url += '?scope=' + encodeURIComponent('https://www.googleapis.com/auth/calendar https://www.googleapis.com/auth/tasks')
-        url += '&response_type=code'
-        url += '&redirect_uri=' + "http://127.0.0.1:" + callbackListenPort.toString() + "/"
-        url += '&client_id=' + encodeURIComponent(plasmoid.configuration.latestClientId)
-        return url
-    }
+	readonly property string authorizationCodeUrl: {
+		var url = 'https://accounts.google.com/o/oauth2/v2/auth'
+		url += '?scope=' + encodeURIComponent('https://www.googleapis.com/auth/calendar https://www.googleapis.com/auth/tasks')
+		url += '&response_type=code'
+		url += '&redirect_uri=' + "http://127.0.0.1:" + callbackListenPort.toString() + "/"
+		url += '&client_id=' + encodeURIComponent(plasmoid.configuration.latestClientId)
+		return url
+	}
 
 
 	function fetchAccessToken() {
 		var cmd = [
 			'python3',
 			plasmoid.file("", "scripts/google_redirect.py"),
-            "--client_id", plasmoid.configuration.latestClientId,
-            "--client_secret", plasmoid.configuration.latestClientSecret,
-            "--listen_port", callbackListenPort.toString(),
+			"--client_id", plasmoid.configuration.latestClientId,
+			"--client_secret", plasmoid.configuration.latestClientSecret,
+			"--listen_port", callbackListenPort.toString(),
 		]
 
-        Qt.openUrlExternally(authorizationCodeUrl);
+		Qt.openUrlExternally(authorizationCodeUrl);
 
 		executable.exec(cmd, function(cmd, exitCode, exitStatus, stdout, stderr) {
 			if (exitCode) {
