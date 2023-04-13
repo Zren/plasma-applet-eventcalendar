@@ -11,6 +11,23 @@ from urllib.parse import urlparse, parse_qs
 client_id = client_secret = listen_port = None
 
 
+def exchange_code_for_token(code):
+    # Exchange code for token from https://oauth2.googleapis.com/token
+    # using the following POST request:
+    token_params = {
+        "code": code,
+        "client_id": client_id,
+        "client_secret": client_secret,
+        "redirect_uri": "http://127.0.0.1:{}/".format(listen_port),
+        "grant_type": "authorization_code",
+    }
+    data = urllib.parse.urlencode(token_params).encode("utf-8")
+    req = urllib.request.Request("https://oauth2.googleapis.com/token", data)
+    response = urllib.request.urlopen(req)
+    token_data = json.loads(response.read().decode("utf-8"))
+    return token_data
+
+
 class OAuthRedirectHandler(BaseHTTPRequestHandler):
     def do_GET(self):
         query = urlparse(self.path).query
@@ -18,28 +35,14 @@ class OAuthRedirectHandler(BaseHTTPRequestHandler):
         # handle OAuth redirect here
         if "code" in params:
             code = params["code"][0]
-            # Exchange code for token from https://oauth2.googleapis.com/token
-            # using the following POST request:
-            token_params = {
-                "code": code,
-                "client_id": client_id,
-                "client_secret": client_secret,
-                "redirect_uri": "http://127.0.0.1:{}/".format(listen_port),
-                "grant_type": "authorization_code",
-            }
-            data = urllib.parse.urlencode(token_params).encode("utf-8")
             try:
-                req = urllib.request.Request(
-                    "https://oauth2.googleapis.com/token", data
-                )
-                response = urllib.request.urlopen(req)
+                token_data = exchange_code_for_token(code)
             except urllib.error.HTTPError as e:
                 print(e.read().decode("utf-8"))
                 self.wfile.write(b"Handling redirect failed.")
                 raise SystemExit(1)
 
             # Parse the response and extract the access token
-            token_data = json.loads(response.read().decode("utf-8"))
             with open("/tmp/token.json", "w") as f:
                 json.dump(token_data, f)
             print(json.dumps(token_data, sort_keys=True))
