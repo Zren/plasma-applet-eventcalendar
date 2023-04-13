@@ -43,14 +43,15 @@ class OAuthRedirectHandler(BaseHTTPRequestHandler):
                 raise SystemExit(1)
             print(json.dumps(token_data, sort_keys=True))
 
-        self.send_response(200)
-        self.send_header("Content-type", "text/html")
-        self.end_headers()
-        self.wfile.write(
-            b"OAuth redirect handled successfully. You can close this tab now."
-        )
-        # Exit the server
-        raise SystemExit(0)
+            self.send_response(200)
+            self.send_header("Content-type", "text/html")
+            self.end_headers()
+            self.wfile.write(
+                b"OAuth redirect handled successfully. You can close this tab now."
+            )
+            raise SystemExit(0)
+        self.wfile.write(b"Missing code parameter in redirect.")
+        raise SystemExit(1)
 
 
 if __name__ == "__main__":
