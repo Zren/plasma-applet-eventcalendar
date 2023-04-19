@@ -78,7 +78,7 @@ Item {
 		var url = 'https://accounts.google.com/o/oauth2/v2/auth'
 		url += '?scope=' + encodeURIComponent('https://www.googleapis.com/auth/calendar https://www.googleapis.com/auth/tasks')
 		url += '&response_type=code'
-		url += '&redirect_uri=' + "http://127.0.0.1:" + callbackListenPort.toString() + "/"
+		url += '&redirect_uri=' + encodeURIComponent("http://127.0.0.1:" + callbackListenPort.toString() + "/")
 		url += '&client_id=' + encodeURIComponent(plasmoid.configuration.latestClientId)
 		return url
 	}
