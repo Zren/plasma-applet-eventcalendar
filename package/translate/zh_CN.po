@@ -34,7 +34,7 @@ msgstr "常规"
 
 #: ../contents/config/config.qml
 msgid "Layout"
-msgstr ""
+msgstr "布局"
 
 #: ../contents/config/config.qml
 msgid "Timezones"
@@ -285,11 +285,11 @@ msgstr "双击日期："
 
 #: ../contents/ui/config/ConfigCalendar.qml
 msgid "New Google Calendar Event (Web Browser)"
-msgstr ""
+msgstr "在浏览器中新建Google 日历事件"
 
 #: ../contents/ui/config/ConfigCalendar.qml
 msgid "Do Nothing"
-msgstr ""
+msgstr "无动作"
 
 #: ../contents/ui/config/ConfigCalendar.qml
 #: ../contents/ui/config/ConfigWeather.qml

@@ -55,4 +55,4 @@ Or if you know how to make a pull request
 | sv       | 179/219 |   81% |
 | tr       | 183/219 |   83% |
 | uk       | 157/219 |   71% |
-| zh_CN    | 163/219 |   74% |
+| zh_CN    | 166/219 |   75% |
