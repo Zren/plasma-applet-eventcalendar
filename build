@@ -1,5 +1,5 @@
 #!/bin/bash
-# Version 16
+# Version 17
 
 ### User Variables
 qtMinVer="5.12"
@@ -37,10 +37,15 @@ if [ -d "package/translate" ]; then
 	echo "[build] translate dir found, running merge."
 	(cd package/translate && sh ./merge)
 	(cd package/translate && sh ./build)
-	if [ "$(git diff --stat package/translate)" != "" ]; then
-		echo "[build] Changed detected. Cancelling build."
-		git diff --stat .
-		exit 1
+	if type "git" > /dev/null; then
+		# echo "[build] Git found, running translation diff check."
+		if [ "$(git diff --stat package/translate)" != "" ]; then
+			echo "[build] Changed detected. Cancelling build."
+			git diff --stat .
+			exit 1
+		fi
+	else
+		echo "[build] Git not found, skipping translation diff check."
 	fi
 fi
 
