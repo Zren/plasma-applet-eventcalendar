@@ -72,6 +72,9 @@
 		<entry name="showBackground" type="bool">
 			<default>true</default>
 		</entry>
+		<entry name="forceExpanded" type="bool">
+			<default>false</default>
+		</entry>
 		<entry name="topRowHeight" type="uint">
 			<default>100</default>
 		</entry>
