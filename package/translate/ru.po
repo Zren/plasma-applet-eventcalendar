@@ -3,6 +3,8 @@
 # This file is distributed under the same license as the eventcalendar package.
 # aliger14 <aliger14@mail.ru>, 2020.
 #
+# Убедительная просьба — не переводить "icons" как "иконка", используйте слово "значок"
+#
 msgid ""
 msgstr ""
 "Project-Id-Version: eventcalendar\n"
@@ -27,11 +29,11 @@ msgstr "Календарь событий"
 #: ../metadata.desktop
 msgid ""
 "Plasmoid for a calendar+agenda with weather that syncs to Google Calendar."
-msgstr "Календарь событий с погодой и синхронизацией с Google Calendar"
+msgstr "Календарь событий с погодой и синхронизацией с Google Calendar."
 
 #: ../contents/config/config.qml
 msgid "General"
-msgstr "Главная"
+msgstr "Основное"
 
 #: ../contents/config/config.qml
 msgid "Layout"
@@ -128,7 +130,7 @@ msgstr "Невозможно установить соединение"
 
 #: ../contents/ui/calendars/GoogleCalendarManager.qml ../contents/ui/Logic.qml
 msgid "Will try again soon."
-msgstr "Скоро повторим попытку"
+msgstr "Чуть позже повторим."
 
 #: ../contents/ui/calendars/GoogleCalendarManager.qml
 #: ../contents/ui/config/ConfigGoogleCalendar.qml ../contents/ui/Logic.qml
@@ -140,7 +142,7 @@ msgstr ""
 
 #: ../contents/ui/calendars/GoogleCalendarManager.qml
 msgid "Too many web requests. Will try again soon."
-msgstr "Слишком много запросов. Скоро мы попытаемся снова."
+msgstr "Слишком много запросов. Чуть позже повторим."
 
 #: ../contents/ui/config/ConfigAgenda.qml
 msgid "Show agenda"
@@ -211,7 +213,7 @@ msgstr "Описание события"
 
 #: ../contents/ui/config/ConfigAgenda.qml
 msgid "Hide 'All Day' text"
-msgstr "Спрятать 'Все дни'"
+msgstr "Скрыть «Все дни»"
 
 #: ../contents/ui/config/ConfigAgenda.qml
 msgid "Google Hangouts link"
@@ -268,11 +270,11 @@ msgstr "Выбрать"
 
 #: ../contents/ui/config/ConfigAgenda.qml
 msgid "Day Spacing:"
-msgstr "Отступы дней"
+msgstr "Интервал между днями:"
 
 #: ../contents/ui/config/ConfigAgenda.qml
 msgid "Event Spacing:"
-msgstr "Отступы событий"
+msgstr "Интервал между событиями:"
 
 #: ../contents/ui/config/ConfigCalendar.qml
 msgid "Show calendar"
@@ -350,7 +352,7 @@ msgstr "Низ панели (подсветка)"
 
 #: ../contents/ui/config/ConfigCalendar.qml
 msgid "Count"
-msgstr "Подсчитать"
+msgstr "Число событий"
 
 #: ../contents/ui/config/ConfigCalendar.qml
 msgid "Radius:"
@@ -387,7 +389,7 @@ msgstr "Плагины календаря Plasma"
 #: ../contents/ui/config/ConfigEvents.qml
 #: ../contents/ui/config/ConfigGeneral.qml
 msgid "Misc"
-msgstr "Другое"
+msgstr "Разное"
 
 #: ../contents/ui/config/ConfigEvents.qml
 msgid "Refresh events every: "
@@ -405,7 +407,7 @@ msgstr "Уведомления"
 
 #: ../contents/ui/config/ConfigEvents.qml
 msgid "Event Reminder"
-msgstr ""
+msgstr "Напоминание о событии"
 
 #: ../contents/ui/config/ConfigEvents.qml
 msgid "Event Starting"
@@ -562,7 +564,7 @@ msgid ""
 "below."
 msgstr ""
 "Посетите <a href=\"%1\">%2</a> (открывается в вашем веб-браузере). После "
-"того, как вы войдете в систему и дадите разрешение на доступ к своему "
+"того, как вы войдёте в систему и дадите разрешение на доступ к своему "
 "календарю, он даст вам код для вставки ниже."
 
 #: ../contents/ui/config/ConfigGoogleCalendar.qml
@@ -613,6 +615,7 @@ msgstr ""
 #: ../contents/ui/config/ConfigGoogleCalendar.qml
 msgid "Hide \"This event was added from Goals in Google Calendar\" description"
 msgstr ""
+"Скрыть описание \"Это событие было добавлено из целей Google календаря\""
 
 #: ../contents/ui/config/ConfigICal.qml
 msgid "Add Calendar"
