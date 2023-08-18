@@ -1,5 +1,5 @@
 #!/bin/bash
-# Version 17
+# Version 18
 
 ### User Variables
 qtMinVer="5.12"
@@ -13,15 +13,25 @@ packageExt="plasmoid"
 startDir=$PWD
 
 ### Colors
-TC_Red='\033[31m'
-TC_Orange='\033[33m'
-TC_LightGray='\033[90m'
-TC_LightRed='\033[91m'
-TC_LightGreen='\033[92m'
-TC_Yellow='\033[93m'
-TC_LightBlue='\033[94m'
-TC_Bold='\033[1m'
-TC_Reset='\033[0m'
+# https://stackoverflow.com/questions/5947742/how-to-change-the-output-color-of-echo-in-linux
+# https://stackoverflow.com/questions/911168/how-can-i-detect-if-my-shell-script-is-running-through-a-pipe
+TC_Red='\033[31m'; TC_Orange='\033[33m';
+TC_LightGray='\033[90m'; TC_LightRed='\033[91m'; TC_LightGreen='\033[92m'; TC_Yellow='\033[93m'; TC_LightBlue='\033[94m';
+TC_Reset='\033[0m'; TC_Bold='\033[1m';
+if [ ! -t 1 ]; then
+	TC_Red=''; TC_Orange='';
+	TC_LightGray=''; TC_LightRed=''; TC_LightGreen=''; TC_Yellow=''; TC_LightBlue='';
+	TC_Bold=''; TC_Reset='';
+fi
+function echoTC() {
+	text="$1"
+	textColor="$2"
+	echo -e "${textColor}${text}${TC_Reset}"
+}
+function echoGray { echoTC "$1" "$TC_LightGray"; }
+function echoRed { echoTC "$1" "$TC_Red"; }
+function echoGreen { echoTC "$1" "$TC_LightGreen"; }
+
 
 ### Check QML Versions
 # See https://zren.github.io/kde/versions/ for distro versions
@@ -34,18 +44,18 @@ fi
 
 ### Translations
 if [ -d "package/translate" ]; then
-	echo "[build] translate dir found, running merge."
+	echoGray "[build] translate dir found, running merge."
 	(cd package/translate && sh ./merge)
 	(cd package/translate && sh ./build)
 	if type "git" > /dev/null; then
 		# echo "[build] Git found, running translation diff check."
 		if [ "$(git diff --stat package/translate)" != "" ]; then
-			echo "[build] Changed detected. Cancelling build."
+			echoRed "[build] Changed detected. Cancelling build."
 			git diff --stat .
 			exit 1
 		fi
 	else
-		echo "[build] Git not found, skipping translation diff check."
+		echoGray "[build] Git not found, skipping translation diff check."
 	fi
 fi
 
@@ -73,21 +83,22 @@ fi
 ### *.plasmoid
 
 if ! type "zip" > /dev/null; then
-	echo -e "${TC_Red}[error] 'zip' command not found.${TC_Reset}"
+	echoRed "[error] 'zip' command not found."
 	if type "zypper" > /dev/null; then
-		echo -e "${TC_Red}[error] Opensuse detected, please run: ${TC_Bold}sudo zypper install zip${TC_Reset}"
+		echoRed "[error] Opensuse detected, please run: ${TC_Bold}sudo zypper install zip"
 	fi
 	exit 1
 fi
 filename="${packageName}-v${packageVersion}${filenameTag}.${packageExt}"
 rm ${packageName}-v*.${packageExt} # Cleanup
+echoGray "[${packageExt}] Zipping '${filename}'"
 (cd package \
 	&& zip -r $filename * \
 	&& mv $filename $startDir/$filename \
 )
 cd $startDir
-echo "[${packageExt}] md5: $(md5sum $filename | awk '{ print $1 }')"
-echo "[${packageExt}] sha256: $(sha256sum $filename | awk '{ print $1 }')"
+echoGray "[${packageExt}] md5: $(md5sum $filename | awk '{ print $1 }')"
+echoGray "[${packageExt}] sha256: $(sha256sum $filename | awk '{ print $1 }')"
 
 
 ### Done
