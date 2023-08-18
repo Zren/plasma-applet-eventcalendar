@@ -223,6 +223,7 @@ Item {
 		}
 		onAllDataFetched: {
 			logger.debug('onAllDataFetched')
+			if (logic.currentErrorType == ErrorType.NetworkError) logic.clearError()
 			if (popup) popup.deferredUpdateUI()
 		}
 		onEventCreated: {
