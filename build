@@ -1,15 +1,27 @@
 #!/bin/bash
-# Version 13
+# Version 16
 
 ### User Variables
 qtMinVer="5.12"
 kfMinVer="5.68"
-plasmaMinVer="5.13"
+plasmaMinVer="5.18"
 filenameTag="-plasma${plasmaMinVer}"
+packageExt="plasmoid"
 
 
 ### Misc
 startDir=$PWD
+
+### Colors
+TC_Red='\033[31m'
+TC_Orange='\033[33m'
+TC_LightGray='\033[90m'
+TC_LightRed='\033[91m'
+TC_LightGreen='\033[92m'
+TC_Yellow='\033[93m'
+TC_LightBlue='\033[94m'
+TC_Bold='\033[1m'
+TC_Reset='\033[0m'
 
 ### Check QML Versions
 # See https://zren.github.io/kde/versions/ for distro versions
@@ -25,7 +37,7 @@ if [ -d "package/translate" ]; then
 	echo "[build] translate dir found, running merge."
 	(cd package/translate && sh ./merge)
 	(cd package/translate && sh ./build)
-	if [ "$(git diff --stat .)" != "" ]; then
+	if [ "$(git diff --stat package/translate)" != "" ]; then
 		echo "[build] Changed detected. Cancelling build."
 		git diff --stat .
 		exit 1
@@ -54,15 +66,23 @@ fi
 
 
 ### *.plasmoid
-filename="${packageName}-v${packageVersion}${filenameTag}.plasmoid"
-rm ${packageName}-v*.plasmoid # Cleanup
+
+if ! type "zip" > /dev/null; then
+	echo -e "${TC_Red}[error] 'zip' command not found.${TC_Reset}"
+	if type "zypper" > /dev/null; then
+		echo -e "${TC_Red}[error] Opensuse detected, please run: ${TC_Bold}sudo zypper install zip${TC_Reset}"
+	fi
+	exit 1
+fi
+filename="${packageName}-v${packageVersion}${filenameTag}.${packageExt}"
+rm ${packageName}-v*.${packageExt} # Cleanup
 (cd package \
 	&& zip -r $filename * \
 	&& mv $filename $startDir/$filename \
 )
 cd $startDir
-echo "[plasmoid] md5: $(md5sum $filename | awk '{ print $1 }')"
-echo "[plasmoid] sha256: $(sha256sum $filename | awk '{ print $1 }')"
+echo "[${packageExt}] md5: $(md5sum $filename | awk '{ print $1 }')"
+echo "[${packageExt}] sha256: $(sha256sum $filename | awk '{ print $1 }')"
 
 
 ### Done
