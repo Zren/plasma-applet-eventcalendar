@@ -135,6 +135,17 @@ ConfigPage {
 	}
 
 	ConfigSection {
+		ConfigRadioButtonGroup {
+			configKey: 'agendaBreakupReccurentEvents'
+			label: i18n("Show reccurent events:")
+			model: [
+				{ value: true, text: i18n("On all days") },
+				{ value: false, text: i18n("Only on the first and current day") },
+			]
+		}
+	}
+
+	ConfigSection {
 		ConfigCheckBox {
 			configKey: 'agendaNewEventRememberCalendar'
 			text: i18n("Remember selected calendar in New Event Form")
