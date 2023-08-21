@@ -106,7 +106,7 @@ CalendarManager {
 	}
 	Connections {
 		target: plasmoid.configuration
-		onEnabledCalendarPluginsChanged: {
+		function onEnabledCalendarPluginsChanged() {
 			PlasmaCalendarUtils.setEnabledPluginsByFilename(PlasmaCalendar.EventPluginsManager, plasmoid.configuration.enabledCalendarPlugins)
 		}
 	}
@@ -169,7 +169,7 @@ CalendarManager {
 			var endDateTime = new Date(Shared.isValidDate(dayItem.endDateTime) ? dayItem.endDateTime : day)
 			// logger.log('\t startDateTime', dayItem.startDateTime, startDateTime)
 			// logger.log('\t endDateTime', dayItem.endDateTime, endDateTime)
-			
+
 			if (dayItem.isAllDay) {
 				start.date = Shared.localeDateString(startDateTime) // 2018-01-31
 				// Google Calendar has the event start at midnight, and end at midnight the next day
@@ -224,7 +224,7 @@ CalendarManager {
 		calendarBackend.displayedDate = middleDay
 
 		var items = []
-		
+
 		// 2018-05-24T00:00:00.000Z
 		var dateMinUtcStr = Shared.localeDateString(dateMin) + 'T00:00:00.000Z'
 		var dateMinUtc = new Date(dateMinUtcStr)

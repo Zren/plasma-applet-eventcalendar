@@ -84,7 +84,7 @@ MouseArea {
 
 	Connections {
 		target: monthView
-		onDateSelected: {
+		function onDateSelected() {
 			// logger.debug('onDateSelected', selectedDate)
 			scrollToSelection()
 		}

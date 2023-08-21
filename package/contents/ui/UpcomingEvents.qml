@@ -211,7 +211,7 @@ CalendarManager {
 
 	Connections {
 		target: eventModel
-		onAllDataFetched: {
+		function onAllDataFetched() {
 			logger.debug('upcomingEvents eventModel.onAllDataFetched', eventModel.dateMin, timeModel.currentTime, eventModel.dateMax)
 			// if data is from current month
 			if (eventModel.dateMin <= timeModel.currentTime && timeModel.currentTime <= eventModel.dateMax) {
@@ -227,6 +227,8 @@ CalendarManager {
 
 	Connections {
 		target: timeModel
-		onMinuteChanged: upcomingEvents.tick()
+		function onMinuteChanged() {
+		 upcomingEvents.tick()
+		}
 	}
 }

@@ -25,8 +25,12 @@ LinkRect {
 	}
 	Connections {
 		target: timeModel
-		onLoaded: agendaEventItem.checkIfInProgress()
-		onMinuteChanged: agendaEventItem.checkIfInProgress()
+		function onLoaded() {
+			agendaEventItem.checkIfInProgress()
+		}
+		function onMinuteChanged() {
+			agendaEventItem.checkIfInProgress()
+		}
 	}
 	Component.onCompleted: {
 		agendaEventItem.checkIfInProgress()
@@ -228,7 +232,7 @@ LinkRect {
 
 		} // eventColumn
 	}
-	
+
 	onLeftClicked: {
 		// logger.log('agendaItem.event.leftClicked', model.startDateTime, mouse)
 		if (false) {

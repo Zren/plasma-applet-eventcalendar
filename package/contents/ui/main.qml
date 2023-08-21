@@ -26,7 +26,7 @@ Item {
 
 	property alias eventModel: eventModel
 	property alias agendaModel: agendaModel
-	
+
 	TimeModel { id: timeModel }
 	TimerModel { id: timerModel }
 	EventModel { id: eventModel }
@@ -177,7 +177,7 @@ Item {
 
 		Connections {
 			target: timeModel
-			onDateChanged: {
+			function onDateChanged() {
 				popup.updateToday()
 				logger.debug('root.onDateChanged', timeModel.currentTime, popup.today)
 			}

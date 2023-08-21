@@ -25,14 +25,14 @@ Dialog {
 		sourceModel: emptyListModel
 		filterRole: 'name'
 		sortRole: 'name'
-		sortCaseSensitivity: Qt.CaseInsensitive 
+		sortCaseSensitivity: Qt.CaseInsensitive
 	}
 
 	property string selectedCityId: ''
 	Connections {
 		target: tableView.selection
-		
-		onSelectionChanged: {
+
+		function onSelectionChanged() {
 			tableView.selection.forEach(function(row) {
 				var city = filteredCityListModel.get(row)
 				chooseCityDialog.selectedCityId = city.id
@@ -42,8 +42,8 @@ Dialog {
 	}
 	Connections {
 		target: filteredCityListModel
-		
-		onFilterRegExpChanged: {
+
+		function onFilterRegExpChanged() {
 			tableView.selection.clear()
 			chooseCityDialog.selectedCityId = ''
 		}
@@ -83,7 +83,7 @@ Dialog {
 				onCurrentIndexChanged: loadProvinceCityList()
 			}
 		}
-		
+
 		TextField {
 			id: cityNameInput
 			Layout.fillWidth: true
@@ -142,10 +142,10 @@ Dialog {
 			for (var i = 0; i < cityList.length; i++) {
 				cityListModel.append(cityList[i])
 			}
-			
+
 			// link after populating so that each append() doesn't attempt to rebuild the UI.
 			filteredCityListModel.sourceModel = cityListModel
-			
+
 			chooseCityDialog.cityListLoaded = true
 			chooseCityDialog.loadingCityList = false
 		})
@@ -157,7 +157,7 @@ Dialog {
 		if (provinceTabView.currentIndex >= 0) {
 			provinceId = provinceIdList[provinceTabView.currentIndex]
 		}
-		
+
 		var provinceUrl = 'https://weather.gc.ca/forecast/canada/index_e.html?id=' + provinceId
 		loadCityList(provinceUrl)
 	}

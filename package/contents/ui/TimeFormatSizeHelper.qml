@@ -73,16 +73,26 @@ Item {
 
 	Connections {
 		target: clock
-		onWidthChanged: timeFormatSizeHelper.updateMinWidth()
-		onHeightChanged: timeFormatSizeHelper.updateMinWidth()
+		function onWidthChanged() {
+			timeFormatSizeHelper.updateMinWidth()
+		}
+		function onHeightChanged() {
+			timeFormatSizeHelper.updateMinWidth()
+		}
 	}
 	Connections {
 		target: timeLabel
-		onHeightChanged: timeFormatSizeHelper.updateMinWidth()
-		onTimeFormatChanged: timeFormatSizeHelper.updateMinWidth()
+		function onHeightChanged() {
+			timeFormatSizeHelper.updateMinWidth()
+		}
+		function onTimeFormatChanged() {
+			timeFormatSizeHelper.updateMinWidth()
+		}
 	}
 	Connections {
 		target: timeModel
-		onDateChanged: timeFormatSizeHelper.updateMinWidth()
+		function onDateChanged() {
+			timeFormatSizeHelper.updateMinWidth()
+		}
 	}
 }
