@@ -35,11 +35,21 @@ Item {
 
 	Connections {
 		target: appletConfig
-		onMeteogramTextColorChanged: graph.update()
-		onMeteogramScaleColorChanged: graph.update()
-		onMeteogramPositiveTempColorChanged: graph.update()
-		onMeteogramNegativeTempColorChanged: graph.update()
-		onMeteogramPrecipitationRawColorChanged: graph.update()
+		function onMeteogramTextColorChanged() {
+			graph.update()
+		}
+		function onMeteogramScaleColorChanged() {
+			graph.update()
+		}
+		function onMeteogramPositiveTempColorChanged() {
+			graph.update()
+		}
+		function onMeteogramNegativeTempColorChanged() {
+			graph.update()
+		}
+		function onMeteogramPrecipitationRawColorChanged() {
+			graph.update()
+		}
 	}
 
 	Item {
@@ -201,7 +211,7 @@ Item {
 					for (var i = 1; i < path.length - 2; i++) {
 						var xc = (gridPath[i].x + gridPath[i+1].x) / 2
 						var yc = (gridPath[i].y + gridPath[i+1].y) / 2
-						
+
 						context.quadraticCurveTo(gridPath[i].x, gridPath[i].y, xc, yc)
 					}
 					var n = path.length-1
@@ -285,7 +295,7 @@ Item {
 						if (i === 0 || item.y < pathMinY) pathMinY = item.y
 						if (i === 0 || item.y > pathMaxY) pathMaxY = item.y
 					}
-					
+
 					var pZeroY = graph.gridPoint(0, graph.freezingPoint).y
 					var pMaxY = graph.gridPoint(0, pathMinY).y // y axis gets flipped
 					var pMinY = graph.gridPoint(0, pathMaxY).y // y axis gets flipped
@@ -373,7 +383,7 @@ Item {
 					// 	context.strokeText(labelText, graph.gridX2, graph.gridY + 6)
 					// 	context.fillText(labelText, graph.gridX2, graph.gridY + 6)
 					// }
-					
+
 
 					// Area
 					graph.updateGridItemAreas()
@@ -384,7 +394,7 @@ Item {
 			}
 
 
- 
+
 			Repeater {
 				id: gridDataAreas
 				anchors.fill: parent

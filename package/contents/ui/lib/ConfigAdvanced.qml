@@ -152,10 +152,10 @@ ColumnLayout {
 								return stringControl
 							}
 						}
-						
+
 					}
 				}
-				
+
 			}
 		}
 	}
@@ -285,7 +285,7 @@ ColumnLayout {
 				}
 
 				var value = plasmoid.configuration[key]
-				
+
 				configTableModel.append({
 					key: key,
 					valueType: typeof value,
@@ -301,7 +301,7 @@ ColumnLayout {
 
 	Connections {
 		target: configDefaults
-		onUpdated: {
+		function onUpdated() {
 			var keys = configTableModel.keys
 			// Assume the default main.xml's order and plasmoid.configuration is the same (we probably shouldn't).
 			for (var i = 0; i < keys.length; i++) {
@@ -330,7 +330,7 @@ ColumnLayout {
 
 	Connections {
 		target: plasmoid.configuration
-		onValueChanged: {
+		function onValueChanged() {
 			var keyIndex = configTableModel.keys.indexOf(key)
 			if (keyIndex >= 0) {
 				configTableModel.setProperty(keyIndex, 'value', value)

@@ -106,7 +106,7 @@ Item {
 					}
 				}
 			}
-			
+
 			ColumnLayout {
 				id: toggleButtonColumn
 				Layout.alignment: Qt.AlignBottom
@@ -118,7 +118,7 @@ Item {
 					text: "Test"
 					visible: false
 				}
-				
+
 				PlasmaComponents3.ToolButton {
 					id: timerRepeatsButton
 					readonly property bool isChecked: plasmoid.configuration.timerRepeats // New property to avoid checked=pressed theming.
@@ -153,7 +153,7 @@ Item {
 					}
 				}
 			}
-			
+
 		}
 
 		RowLayout {
@@ -212,7 +212,7 @@ Item {
 
 	Connections {
 		target: timerModel
-		onSecondsLeftChanged: {
+		function onSecondsLeftChanged() {
 			timerLabel.text = timerModel.formatTimer(timerModel.secondsLeft)
 		}
 	}

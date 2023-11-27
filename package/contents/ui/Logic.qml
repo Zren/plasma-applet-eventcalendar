@@ -23,7 +23,7 @@ Item {
 	//--- Update
 	Timer {
 		id: pollTimer
-		
+
 		repeat: true
 		triggeredOnStart: true
 		interval: plasmoid.configuration.eventsPollInterval * 60000
@@ -79,7 +79,7 @@ Item {
 			} else {
 				shouldUpdate = true
 			}
-			
+
 			if (force || shouldUpdate) {
 				updateWeatherTimer.restart()
 			}
@@ -160,33 +160,59 @@ Item {
 		target: plasmoid.configuration
 
 		//--- Events
-		onAccessTokenChanged: logic.updateEvents()
-		onCalendarIdListChanged: logic.updateEvents()
-		onEnabledCalendarPluginsChanged: logic.updateEvents()
-		onTasklistIdListChanged: logic.updateEvents()
-		onGoogleEventClickActionChanged: logic.updateEvents()
+		function onAccessTokenChanged() {
+			logic.updateEvents()
+		}
+		function onCalendarIdListChanged() {
+			logic.updateEvents()
+		}
+		function onEnabledCalendarPluginsChanged() {
+			logic.updateEvents()
+		}
+		function onTasklistIdListChanged() {
+			logic.updateEvents()
+		}
+		function onGoogleEventClickActionChanged() {
+			logic.updateEvents()
+		}
 
 		//--- Weather
-		onWeatherServiceChanged: logic.resetWeatherAndUpdate()
-		onOpenWeatherMapAppIdChanged: logic.resetWeatherAndUpdate()
-		onOpenWeatherMapCityIdChanged: logic.resetWeatherAndUpdate()
-		onWeatherCanadaCityIdChanged: logic.resetWeatherAndUpdate()
-		onWeatherUnitsChanged: logic.updateWeather(true)
-		onWidgetShowMeteogramChanged: {
+		function onWeatherServiceChanged() {
+			logic.resetWeatherAndUpdate()
+		}
+		function onOpenWeatherMapAppIdChanged() {
+			logic.resetWeatherAndUpdate()
+		}
+		function onOpenWeatherMapCityIdChanged() {
+			logic.resetWeatherAndUpdate()
+		}
+		function onWeatherCanadaCityIdChanged() {
+			logic.resetWeatherAndUpdate()
+		}
+		function onWeatherUnitsChanged() {
+			logic.updateWeather(true)
+		}
+		function onWidgetShowMeteogramChanged() {
 			if (plasmoid.configuration.widgetShowMeteogram) {
 				logic.updateHourlyWeather()
 			}
 		}
 
 		//--- UI
-		onAgendaBreakupMultiDayEventsChanged: popup.updateUI()
-		onMeteogramHoursChanged: popup.updateMeteogram()
+		function onAgendaBreakupMultiDayEventsChanged() {
+			popup.updateUI()
+		}
+		function onMeteogramHoursChanged() {
+			popup.updateMeteogram()
+		}
 	}
 
 	//---
 	Connections {
 		target: appletConfig
-		onClock24hChanged: popup.updateUI()
+		function onClock24hChanged() {
+			popup.updateUI()
+		}
 	}
 
 	//---
@@ -206,7 +232,7 @@ Item {
 	}
 	Connections {
 		target: eventModel
-		onError: {
+		function onError() {
 			logic.currentErrorMessage = msg
 			logic.currentErrorType = errorType
 			if (popup) popup.showError(logic.currentErrorMessage)
@@ -216,24 +242,24 @@ Item {
 	//---
 	Connections {
 		target: eventModel
-		onCalendarFetched: {
+		function onCalendarFetched() {
 			logger.debug('onCalendarFetched', calendarId)
 			// logger.debug('onCalendarFetched', calendarId, JSON.stringify(data, null, '\t'))
 			if (popup) popup.deferredUpdateUI()
 		}
-		onAllDataFetched: {
+		function onAllDataFetched() {
 			logger.debug('onAllDataFetched')
 			if (popup) popup.deferredUpdateUI()
 		}
-		onEventCreated: {
+		function onEventCreated() {
 			logger.logJSON('onEventCreated', calendarId, data)
 			if (popup) popup.deferredUpdateUI()
 		}
-		onEventUpdated: {
+		function onEventUpdated() {
 			logger.logJSON('onEventUpdated', calendarId, eventId, data)
 			if (popup) popup.deferredUpdateUI()
 		}
-		onEventDeleted: {
+		function onEventDeleted() {
 			logger.logJSON('onEventDeleted', calendarId, eventId, data)
 			if (popup) popup.deferredUpdateUI()
 		}
@@ -242,7 +268,7 @@ Item {
 	//---
 	Connections {
 		target: networkMonitor
-		onIsConnectedChanged: {
+		function onIsConnectedChanged() {
 			if (networkMonitor.isConnected) {
 				if (logic.currentErrorType == ErrorType.NetworkError) {
 					logic.clearError()

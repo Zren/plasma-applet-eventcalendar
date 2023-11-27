@@ -27,14 +27,14 @@ Dialog {
 		// sourceModel: cityListModel // Link after populating cityListModel so the UI doesn't freeze.
 		filterRole: 'name'
 		sortRole: 'name'
-		sortCaseSensitivity: Qt.CaseInsensitive 
+		sortCaseSensitivity: Qt.CaseInsensitive
 	}
 
 	property string selectedCityId: ''
 	Connections {
 		target: tableView.selection
-		
-		onSelectionChanged: {
+
+		function onSelectionChanged() {
 			tableView.selection.forEach(function(row) {
 				var city = filteredCityListModel.get(row)
 				chooseCityDialog.selectedCityId = city.id
@@ -44,8 +44,8 @@ Dialog {
 	}
 	Connections {
 		target: filteredCityListModel
-		
-		onFilterRegExpChanged: {
+
+		function onFilterRegExpChanged() {
 			tableView.selection.clear()
 			chooseCityDialog.selectedCityId = ''
 		}
@@ -143,7 +143,7 @@ Dialog {
 
 				// link after populating so that each append() doesn't attempt to rebuild the UI.
 				filteredCityListModel.sourceModel = cityListModel
-				
+
 				chooseCityDialog.loadingCityList = false
 			})
 		}
@@ -151,7 +151,7 @@ Dialog {
 
 	function fetchCityList(args, callback) {
 		if (!args.appId) return callback('OpenWeatherMap AppId not set')
-		
+
 		var url = 'https://api.openweathermap.org/data/2.5/'
 		url += 'find?q=' + encodeURIComponent(args.q)
 		url += '&type=like'
