@@ -15,6 +15,8 @@ LinkRect {
 	implicitHeight: contents.implicitHeight
 
 	property bool eventItemInProgress: false
+	property bool eventItemInPast: false
+
 	function checkIfInProgress() {
 		if (model.startDateTime && timeModel.currentTime && model.endDateTime) {
 			eventItemInProgress = model.startDateTime <= timeModel.currentTime && timeModel.currentTime <= model.endDateTime
@@ -22,6 +24,11 @@ LinkRect {
 			eventItemInProgress = false
 		}
 		// console.log('checkIfInProgress()', model.start, timeModel.currentTime, model.end)
+		if (model.startDateTime && timeModel.currentTime && model.endDateTime) {
+			eventItemInPast = model.endDateTime < timeModel.currentTime
+		} else {
+			eventItemInPast = false
+		}
 	}
 	Connections {
 		target: timeModel
@@ -122,13 +129,16 @@ LinkRect {
 			PlasmaComponents3.Label {
 				id: eventSummary
 				text: {
+					var eventBullet = eventItemInPast ? '✓ ' : ' '
 					if (isCondensed && model.location) {
-						return model.summary + " | " + model.location
+						return eventBullet + model.summary + " | " + model.location
 					} else {
-						return model.summary
+						return eventBullet + model.summary
 					}
 				}
-				color: eventItemInProgress ? inProgressColor : PlasmaCore.ColorScope.textColor
+				color: {
+					eventItemInPast ? PlasmaCore.ColorScope.disabledTextColor : (eventItemInProgress ? inProgressColor : PlasmaCore.ColorScope.textColor)
+				}
 				font.pointSize: -1
 				font.pixelSize: appletConfig.agendaFontSize
 				font.weight: eventItemInProgress ? inProgressFontWeight : Font.Normal
@@ -150,8 +160,8 @@ LinkRect {
 						return eventTimestamp
 					}
 				}
-				color: eventItemInProgress ? inProgressColor : PlasmaCore.ColorScope.textColor
-				opacity: eventItemInProgress ? 1 : 0.75
+				color: eventItemInProgress ? inProgressColor : (eventItemInPast ? PlasmaCore.ColorScope.disabledTextColor : PlasmaCore.ColorScope.textColor)
+				opacity: eventItemInProgress ? 1 : (eventItemInPast ? 0.25 : 0.75)
 				font.pointSize: -1
 				font.pixelSize: appletConfig.agendaFontSize
 				font.weight: eventItemInProgress ? inProgressFontWeight : Font.Normal
@@ -169,7 +179,9 @@ LinkRect {
 				readonly property bool showProperty: plasmoid.configuration.agendaShowEventDescription && text
 				visible: showProperty && !editEventForm.visible
 				text: Shared.renderText(model.description)
-				color: PlasmaCore.ColorScope.textColor
+				
+				color: eventItemInPast ? PlasmaCore.ColorScope.disabledTextColor : (eventItemInProgress ? inProgressColor : PlasmaCore.ColorScope.textColor)
+				
 				opacity: 0.75
 				font.pointSize: -1
 				font.pixelSize: appletConfig.agendaFontSize
@@ -225,8 +237,14 @@ LinkRect {
 							return i18n("Hangout")
 						}
 					}
+					contentItem: Text {
+						text: eventHangoutLink.text
+						color: eventItemInPast ? PlasmaCore.ColorScope.disabledTextColor : (eventItemInProgress ? inProgressColor : PlasmaCore.ColorScope.textColor)
+					}
 					icon.source: plasmoid.file("", "icons/hangouts.svg")
 					onClicked: Qt.openUrlExternally(externalLink)
+					flat: eventItemInPast
+
 				}
 			}
 
