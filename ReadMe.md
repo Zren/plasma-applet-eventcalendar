@@ -1,6 +1,5 @@
 # Event Calendar
 
-https://store.kde.org/p/998901/
 
 Plasmoid for a calendar+agenda with weather that syncs to Google Calendar.
 
@@ -22,7 +21,7 @@ Plasmoid for a calendar+agenda with weather that syncs to Google Calendar.
 ## B) Install via GitHub
 
 ```
-git clone https://github.com/Zren/plasma-applet-eventcalendar.git eventcalendar
+git clone https://github.com/ALikesToCode/plasma-applet-eventcalendar.git eventcalendar
 cd eventcalendar
 sh ./install
 ```
