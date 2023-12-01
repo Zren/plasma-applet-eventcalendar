@@ -1,4 +1,4 @@
-# Event Calendar
+# Event Calendar Updated version
 
 
 Plasmoid for a calendar+agenda with weather that syncs to Google Calendar.
