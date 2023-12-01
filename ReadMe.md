@@ -33,7 +33,7 @@ Then install pen the Terminal and run the following commands. Please note the in
 
 ```
 sudo apt install git
-git clone https://github.com/Zren/plasma-applet-eventcalendar.git eventcalendar
+git clone https://github.com/ALikesToCode/plasma-applet-eventcalendar.git eventcalendar
 cd eventcalendar
 sh ./install --restart
 ```
