@@ -1,5 +1,7 @@
 # Event Calendar Updated version
 This is an updated version that I modified for my own needs, with fix for Google Calender and quality of life improvements. 
+
+
 Plasmoid for a calendar+agenda with weather that syncs to Google Calendar.
 
 ## Screenshots
