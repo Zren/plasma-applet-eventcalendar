@@ -43,5 +43,5 @@ fi
 
 if $restartPlasmashell; then
 	killall plasmashell
-	kstart5 plasmashell
+	( cd $HOME && kstart5 plasmashell )
 fi
