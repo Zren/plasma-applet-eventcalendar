@@ -1,106 +1,115 @@
 #!/bin/bash
-# Version 18
 
-### User Variables
+# User Variables
 qtMinVer="5.12"
 kfMinVer="5.68"
 plasmaMinVer="5.18"
 filenameTag="-plasma${plasmaMinVer}"
 packageExt="plasmoid"
 
-
-### Misc
+# Misc
 startDir=$PWD
 
-### Colors
-# https://stackoverflow.com/questions/5947742/how-to-change-the-output-color-of-echo-in-linux
-# https://stackoverflow.com/questions/911168/how-can-i-detect-if-my-shell-script-is-running-through-a-pipe
-TC_Red='\033[31m'; TC_Orange='\033[33m';
-TC_LightGray='\033[90m'; TC_LightRed='\033[91m'; TC_LightGreen='\033[92m'; TC_Yellow='\033[93m'; TC_LightBlue='\033[94m';
-TC_Reset='\033[0m'; TC_Bold='\033[1m';
-if [ ! -t 1 ]; then
-	TC_Red=''; TC_Orange='';
-	TC_LightGray=''; TC_LightRed=''; TC_LightGreen=''; TC_Yellow=''; TC_LightBlue='';
-	TC_Bold=''; TC_Reset='';
-fi
-function echoTC() {
-	text="$1"
-	textColor="$2"
-	echo -e "${textColor}${text}${TC_Reset}"
+# Function Definitions
+
+## Check Command Success
+check_command_success() {
+        if [ "$1" != "0" ]; then
+                echoRed "[error] Failed executing: $2"
+                exit 1
+        fi
 }
-function echoGray { echoTC "$1" "$TC_LightGray"; }
-function echoRed { echoTC "$1" "$TC_Red"; }
-function echoGreen { echoTC "$1" "$TC_LightGreen"; }
 
+## Initialize Color Variables and Functions
+initialize_colors() {
+        # Color definitions
+        TC_Red='\033[31m'; TC_Orange='\033[33m';
+        TC_LightGray='\033[90m'; TC_LightRed='\033[91m'; TC_LightGreen='\033[92m'; TC_Yellow='\033[93m'; TC_LightBlue='\033[94m';
+        TC_Reset='\033[0m'; TC_Bold='\033[1m';
+        if [ ! -t 1 ]; then
+                TC_Red=''; TC_Orange='';
+                TC_LightGray=''; TC_LightRed=''; TC_LightGreen=''; TC_Yellow=''; TC_LightBlue='';
+                TC_Bold=''; TC_Reset='';
+        fi
 
-### Check QML Versions
-# See https://zren.github.io/kde/versions/ for distro versions
-if [ -f checkimports.py ]; then
-	python3 checkimports.py --qt="$qtMinVer" --kf="$kfMinVer" --plasma="$plasmaMinVer"
-	if [ $? == 1 ]; then
-		exit 1
-	fi
-fi
+        # Color echo functions
+        echoTC() {
+                local text="$1"
+                local textColor="$2"
+                echo -e "${textColor}${text}${TC_Reset}"
+        }
+        echoGray() { echoTC "$1" "$TC_LightGray"; }
+        echoRed() { echoTC "$1" "$TC_Red"; }
+        echoGreen() { echoTC "$1" "$TC_LightGreen"; }
+}
 
-### Translations
-if [ -d "package/translate" ]; then
-	echoGray "[build] translate dir found, running merge."
-	(cd package/translate && sh ./merge)
-	(cd package/translate && sh ./build)
-	if type "git" > /dev/null; then
-		# echo "[build] Git found, running translation diff check."
-		if [ "$(git diff --stat package/translate)" != "" ]; then
-			echoRed "[build] Changed detected. Cancelling build."
-			git diff --stat .
-			exit 1
-		fi
-	else
-		echoGray "[build] Git not found, skipping translation diff check."
-	fi
-fi
+## Check QML Versions
+check_qml_versions() {
+        if [ -f checkimports.py ]; then
+                python3 checkimports.py --qt="$qtMinVer" --kf="$kfMinVer" --plasma="$plasmaMinVer"
+                check_command_success "$?" "Version check failed"
+        fi
+}
 
+## Handle Translations
+handle_translations() {
+        if [ -d "package/translate" ]; then
+                echoGray "[build] translate dir found, running merge."
+                (cd package/translate && sh ./merge)
+                (cd package/translate && sh ./build)
+                if type "git" > /dev/null; then
+                        if [ "$(git diff --stat package/translate)" != "" ]; then
+                                echoRed "[build] Changed detected. Cancelling build."
+                                git diff --stat .
+                                exit 1
+                        fi
+                else
+                        echoGray "[build] Git not found, skipping translation diff check."
+                fi
+        fi
+}
 
-### Variables
-packageNamespace=`kreadconfig5 --file="$PWD/package/metadata.desktop" --group="Desktop Entry" --key="X-KDE-PluginInfo-Name"`
-packageName="${packageNamespace##*.}" # Strip namespace (Eg: "org.kde.plasma.")
-packageVersion=`kreadconfig5 --file="$PWD/package/metadata.desktop" --group="Desktop Entry" --key="X-KDE-PluginInfo-Version"`
-packageAuthor=`kreadconfig5 --file="$PWD/package/metadata.desktop" --group="Desktop Entry" --key="X-KDE-PluginInfo-Author"`
-packageAuthorEmail=`kreadconfig5 --file="$PWD/package/metadata.desktop" --group="Desktop Entry" --key="X-KDE-PluginInfo-Email"`
-packageWebsite=`kreadconfig5 --file="$PWD/package/metadata.desktop" --group="Desktop Entry" --key="X-KDE-PluginInfo-Website"`
-packageComment=`kreadconfig5 --file="$PWD/package/metadata.desktop" --group="Desktop Entry" --key="Comment"`
+## Convert metadata.desktop to metadata.json
+convert_metadata() {
+        if command -v desktoptojson &> /dev/null ; then
+                desktoptojson --serviceType="plasma-applet.desktop" -i "$PWD/package/metadata.desktop" -o "$PWD/package/metadata.json"
+                check_command_success "$?" "desktoptojson conversion failed"
+                sed -i '{s/ \{4\}/\t/g}' "$PWD/package/metadata.json"
+        fi
+}
 
-### metadata.desktop => metadata.json
-if command -v desktoptojson &> /dev/null ; then
-	genOutput=`desktoptojson --serviceType="plasma-applet.desktop" -i "$PWD/package/metadata.desktop" -o "$PWD/package/metadata.json"`
-	if [ "$?" != "0" ]; then
-		exit 1
-	fi
-	# Tabify metadata.json
-	sed -i '{s/ \{4\}/\t/g}' "$PWD/package/metadata.json"
-fi
+## Package the plasmoid
+package_plasmoid() {
+        if ! type "zip" > /dev/null; then
+                echoRed "[error] 'zip' command not found."
+                if type "zypper" > /dev/null; then
+                        echoRed "[error] Opensuse detected, please run: ${TC_Bold}sudo zypper install zip"
+                fi
+                exit 1
+        fi
 
+        local packageNamespace=$(kreadconfig5 --file="$PWD/package/metadata.desktop" --group="Desktop Entry" --key="X-KDE-PluginInfo-Name")
+        local packageName="${packageNamespace##*.}" # Strip namespace (Eg: "org.kde.plasma.")
+        local packageVersion=$(kreadconfig5 --file="$PWD/package/metadata.desktop" --group="Desktop Entry" --key="X-KDE-PluginInfo-Version")
 
-### *.plasmoid
+        local filename="${packageName}-v${packageVersion}${filenameTag}.${packageExt}"
+        rm -f ${packageName}-v*.${packageExt} # Cleanup
+        echoGray "[${packageExt}] Zipping '${filename}'"
+        (cd package \
+                && zip -r $filename * \
+                && mv $filename $startDir/$filename \
+        )
+        echoGray "[${packageExt}] md5: $(md5sum $filename | awk '{ print $1 }')"
+        echoGray "[${packageExt}] sha256: $(sha256sum $filename | awk '{ print $1 }')"
+}
 
-if ! type "zip" > /dev/null; then
-	echoRed "[error] 'zip' command not found."
-	if type "zypper" > /dev/null; then
-		echoRed "[error] Opensuse detected, please run: ${TC_Bold}sudo zypper install zip"
-	fi
-	exit 1
-fi
-filename="${packageName}-v${packageVersion}${filenameTag}.${packageExt}"
-rm ${packageName}-v*.${packageExt} # Cleanup
-echoGray "[${packageExt}] Zipping '${filename}'"
-(cd package \
-	&& zip -r $filename * \
-	&& mv $filename $startDir/$filename \
-)
+# Main Script Logic
+initialize_colors
+check_qml_versions
+handle_translations
+convert_metadata
+package_plasmoid
+echoGreen "[build] Packaging completed successfully."
+
+# Return to start directory
 cd $startDir
-echoGray "[${packageExt}] md5: $(md5sum $filename | awk '{ print $1 }')"
-echoGray "[${packageExt}] sha256: $(sha256sum $filename | awk '{ print $1 }')"
-
-
-### Done
-cd $startDir
-
