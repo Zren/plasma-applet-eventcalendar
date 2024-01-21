@@ -1,3 +1,4 @@
+"""Script to handle oauth redirects from Google"""
 import json
 import urllib.parse
 import urllib.request
