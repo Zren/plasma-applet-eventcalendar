@@ -1,7 +1,21 @@
 #!/bin/bash
-# Version 3
 
-packageServiceType=`kreadconfig5 --file="$PWD/package/metadata.desktop" --group="Desktop Entry" --key="X-KDE-ServiceTypes"`
+metadataFile="$PWD/package/metadata.desktop"
+if [ ! -f "$metadataFile" ]; then
+    echo "Error: metadata.desktop file not found in the package directory."
+    exit 1
+fi
 
-# Eg: kpackagetool5 -t "Plasma/Applet" -r package
-kpackagetool5 -t "${packageServiceType}" -r package
+packageServiceType=$(kreadconfig5 --file="$metadataFile" --group="Desktop Entry" --key="X-KDE-ServiceTypes")
+if [ -z "$packageServiceType" ]; then
+    echo "Error: Unable to read the package service type from metadata.desktop."
+    exit 1
+fi
+
+echo "Removing package of type: $packageServiceType"
+if kpackagetool5 -t "$packageServiceType" -r package; then
+    echo "Package removal successful."
+else
+    echo "Error: Package removal failed."
+    exit 1
+fi
