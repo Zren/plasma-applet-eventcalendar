@@ -1,4 +1,15 @@
 #!/bin/bash
+set -e # Exit on error
 
-git pull origin master
-source ./install
+echo "Pulling updates from the master branch..."
+git pull origin master || { echo "Git pull failed"; exit 1; }
+
+if [ -f "./install" ]; then
+    echo "Running the install script..."
+    source ./install || { echo "Install script failed"; exit 1; }
+else
+    echo "Install script not found"
+    exit 1
+fi
+
+echo "Update and installation completed successfully."
