@@ -86,8 +86,8 @@ Loader {
 			//---- Testing
 			// Connections {
 			// 	target: durationSelector
-			// 	onStartDateTimeChanged: logger.logJSON('onStartDateTimeChanged', editEventItem.getChanges())
-			// 	onEndDateTimeChanged: logger.logJSON('onEndDateTimeChanged', editEventItem.getChanges())
+			// 	function onStartDateTimeChanged() { logger.logJSON('onStartDateTimeChanged', editEventItem.getChanges()) }
+			// 	function onEndDateTimeChanged() { logger.logJSON('onEndDateTimeChanged', editEventItem.getChanges()) }
 			// }
 
 			//----

@@ -299,7 +299,7 @@ Item {
 
 	Connections {
 		target: theme
-		onTextColorChanged: {
+		function onTextColorChanged() {
 			canvas.requestPaint()
 		}
 	}
@@ -424,7 +424,7 @@ Item {
 
 				Connections {
 					target: daysCalendar
-					onActivateHighlightedItem: {
+					function onActivateHighlightedItem() {
 						if (delegate.containsMouse) {
 							delegate.clicked(null)
 						}

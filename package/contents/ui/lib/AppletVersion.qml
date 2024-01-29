@@ -31,7 +31,7 @@ Item {
 
 	Connections {
 		target: executable
-		onExited: {
+		function onExited() {
 			version = stdout.replace('\n', ' ').trim()
 		}
 	}

@@ -23,8 +23,12 @@ LinkRect {
 	}
 	Connections {
 		target: timeModel
-		onLoaded: agendaTaskItem.checkIfIsOverdue()
-		onMinuteChanged: agendaTaskItem.checkIfIsOverdue()
+		function onLoaded() {
+			agendaTaskItem.checkIfIsOverdue()
+		}
+		function onMinuteChanged() {
+			agendaTaskItem.checkIfIsOverdue()
+		}
 	}
 	Component.onCompleted: {
 		agendaTaskItem.checkIfIsOverdue()
@@ -164,7 +168,7 @@ LinkRect {
 		// 	onClicked: Qt.openUrlExternally(model.htmlLink)
 		// }
 	}
-	
+
 	onLeftClicked: {
 		var task = tasks.get(taskItemIndex)
 		logger.logJSON("task", task)

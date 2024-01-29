@@ -80,7 +80,7 @@ ColumnLayout { // ConfigPage creates a binding loop when a child uses fillHeight
 
 				Connections {
 					target: timeZoneView
-					onToggleCurrent: {
+					function onToggleCurrent() {
 						if (styleData.row === timeZoneView.currentRow) {
 							checkBox.setValue(!checkBox.checked)
 						}
