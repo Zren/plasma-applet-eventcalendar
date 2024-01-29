@@ -228,7 +228,7 @@ CalendarManager {
 	Connections {
 		target: timeModel
 		function onMinuteChanged() {
-		 upcomingEvents.tick()
+			upcomingEvents.tick()
 		}
 	}
 }
